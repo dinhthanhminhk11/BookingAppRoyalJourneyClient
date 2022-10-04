@@ -13,6 +13,7 @@
         android:layout_height="@dimen/_150dp"
         android:layout_marginTop="@dimen/_80dp"
         android:src="@drawable/ic_subtract"
+        android:transitionName="logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -43,6 +44,7 @@
         android:background="@drawable/bg_edittext"
         android:fontFamily="@font/poppins"
         android:hint="@string/email"
+
         android:paddingStart="@dimen/_30dp"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_13sp"
@@ -61,7 +63,7 @@
         android:background="@drawable/bg_edittext"
         android:fontFamily="@font/poppins"
         android:hint="@string/password"
-
+        android:inputType="textPassword"
         android:paddingStart="@dimen/_30dp"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_13sp"
@@ -86,12 +88,14 @@
         android:layout_height="@dimen/_60dp"
         android:layout_marginStart="@dimen/_25dp"
         android:layout_marginTop="@dimen/_20dp"
-        android:background="@drawable/bg_edittext"
+        android:background="@drawable/bg_buttom"
         android:drawableLeft="@drawable/ic_facebook"
         android:paddingStart="@dimen/_20dp"
         android:text="@string/facebook"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+
+        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Google"
@@ -99,7 +103,7 @@
         android:layout_height="@dimen/_60dp"
         android:layout_marginTop="@dimen/_20dp"
         android:layout_marginEnd="@dimen/_25dp"
-        android:background="@drawable/bg_edittext"
+        android:background="@drawable/bg_buttom"
         android:drawableLeft="@drawable/ic_google"
         android:paddingStart="@dimen/_20dp"
         android:text="@string/google"
@@ -121,6 +125,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Login"
+
         android:layout_width="@dimen/_150dp"
         android:layout_height="@dimen/_60dp"
         android:layout_marginTop="@dimen/_50dp"
@@ -128,6 +133,7 @@
         android:background="@drawable/bg_login"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/login"
+
         android:textColor="@color/white"
         android:textSize="@dimen/_16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,5 +141,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Forgot" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,4 +8,8 @@
     <string name="forgot_pass">Forgot Your Password?</string>
     <string name="login">Login</string>
     <string name="google">Google</string>
+    <string name="Keep">Keep Me Signed In</string>
+    <string name="MeAbout">Email Me About Special Pricing</string>
+    <string name="create_acco">Create Account</string>
+    <string name="text_signin">already have an account?</string>
 </resources>
