@@ -24,7 +24,7 @@
         android:theme="@style/Theme.BookingAppRoyalJourney"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.SignUpActivity"
+            android:name=".ui.activity.RegisterActivity"
             android:exported="true" >
 
         </activity>
@@ -32,7 +32,7 @@
             android:name=".ui.activity.LoginActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".SplashScreenVer2"
+            android:name=".ui.activity.SplashScreenVer2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

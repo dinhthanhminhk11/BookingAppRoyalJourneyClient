@@ -9,10 +9,17 @@
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/bg_checkbox.xml" value="0.167" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/bg_edittext.xml" value="0.156" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/bg_login.xml" value="0.156" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/bg_shape.xml" value="0.167" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_bg_login.xml" value="0.167" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_ellipse_2.xml" value="0.167" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_ellipse_3.xml" value="0.167" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_shape_login.xml" value="0.167" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/font/poppins.xml" value="0.28" />
-        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_forgot.xml" value="0.264" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_splash_screen_ver2.xml" value="0.264" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/xml/activity_splash_scene.xml" value="0.20778110303548525" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_item_activity.xml" value="0.319" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/font/poppins.xml" value="0.3927083333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/font/poppins_medium.xml" value="0.3927083333333333" />

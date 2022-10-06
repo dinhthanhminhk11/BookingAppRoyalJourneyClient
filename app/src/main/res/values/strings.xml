@@ -12,4 +12,26 @@
     <string name="MeAbout">Email Me About Special Pricing</string>
     <string name="create_acco">Create Account</string>
     <string name="text_signin">already have an account?</string>
+    <string name="welcome_back_login">Welcome Back!</string>
+    <string name="enter_your_email_login">Enter your email</string>
+    <string name="forgot_password_login">Forgot Password</string>
+    <string name="an_account_login">Don\'t have an account ?</string>
+    <string name="sign_up_login">Sign Up</string>
+    <string name="sign_in_login">Sign In</string>
+    <string name="enter_pass_login">Enter password</string>
+    <string name="welcome_royaljourney_registration">Welcome RoyalJourney!</string>
+    <string name="help_your_registration">Let’s help you meet up your tasks</string>
+    <string name="full_name_registration">Enter your full name</string>
+    <string name="enter_your_email_registration">Enter your email</string>
+    <string name="enter_pass_registration">Enter password</string>
+    <string name="confirm_password_registration">Confirm Password</string>
+    <string name="register_registration">Register</string>
+    <string name="already_have_an_account_registration">Already have an account ?</string>
+    <string name="forgot_pass_forgot">Forgot Password?</string>
+    <string name="help_pass1_forgot">Do not worry! We will help you</string>
+    <string name="help_pass2_forgot">recover your password</string>
+    <string name="send_my_password_forgot">Send My Password</string>
+    <string name="an_account_forgot">Don\'t have an account ?</string>
+
+    //_forgot
 </resources>

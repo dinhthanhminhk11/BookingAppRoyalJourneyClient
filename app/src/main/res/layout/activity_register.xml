@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.LoginActivity">
+    tools:context=".ui.activity.RegisterActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -18,62 +18,45 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/welcome_back_login"
+        android:text="@string/welcome_royaljourney_registration"
         android:textColor="@color/black"
         android:textSize="@dimen/_18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.174" />
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_bg_login"
+        android:fontFamily="@font/poppins"
+        android:text="@string/help_your_registration"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <EditText
-        android:id="@+id/edEmail"
+        android:id="@+id/edNameRegister"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_51dp"
         android:layout_marginStart="@dimen/_25dp"
         android:layout_marginEnd="@dimen/_25dp"
         android:background="@drawable/bg_edittext"
         android:fontFamily="@font/poppins"
-        android:paddingStart="@dimen/_30dp"
-        android:textSize="@dimen/_13sp"
-        android:hint="@string/enter_your_email_login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.13"
-        android:textColorHint="@color/hint_color"/>
-
-    <EditText
-        android:id="@+id/edPass"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_51dp"
-        android:layout_marginStart="@dimen/_25dp"
-        android:layout_marginEnd="@dimen/_25dp"
-        android:background="@drawable/bg_edittext"
-        android:fontFamily="@font/poppins"
-        android:hint="@string/enter_pass_login"
+        android:hint="@string/full_name_registration"
         android:paddingStart="@dimen/_30dp"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_13sp"
@@ -81,32 +64,75 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edEmail"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.044" />
 
-    <TextView
-        android:id="@+id/tvForgotPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/edMailRegister"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_51dp"
+        android:layout_marginStart="@dimen/_25dp"
+        android:layout_marginEnd="@dimen/_25dp"
+        android:background="@drawable/bg_edittext"
         android:fontFamily="@font/poppins"
-        android:text="@string/forgot_password_login"
-        android:textColor="@color/blue"
-        android:textSize="@dimen/_14sp"
+        android:hint="@string/enter_your_email_registration"
+        android:paddingStart="@dimen/_30dp"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edPass"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintTop_toBottomOf="@+id/edNameRegister"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <EditText
+        android:id="@+id/edPassRegister"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_51dp"
+        android:layout_marginStart="@dimen/_25dp"
+        android:layout_marginEnd="@dimen/_25dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/poppins"
+        android:hint="@string/enter_pass_registration"
+        android:paddingStart="@dimen/_30dp"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edMailRegister"
+        app:layout_constraintVertical_bias="0.107" />
+
+    <EditText
+        android:id="@+id/edCfPassRegister"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_51dp"
+        android:layout_marginStart="@dimen/_25dp"
+        android:layout_marginEnd="@dimen/_25dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/poppins"
+        android:hint="@string/confirm_password_registration"
+        android:paddingStart="@dimen/_30dp"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edPassRegister"
+        app:layout_constraintVertical_bias="0.14" />
 
     <Button
-        android:id="@+id/btnSignIn"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_62dp"
         android:layout_marginStart="@dimen/_25dp"
         android:layout_marginEnd="@dimen/_25dp"
         android:background="@drawable/bg_buttom"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/sign_in_login"
+        android:text="@string/register_registration"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_18sp"
@@ -114,37 +140,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvForgotPass"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintTop_toBottomOf="@+id/edCfPassRegister"
+        app:layout_constraintVertical_bias="0.269" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
-        android:text="@string/an_account_login"
+        android:text="@string/already_have_an_account_registration"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
         app:layout_constraintVertical_bias="0.359" />
 
     <TextView
-        android:id="@+id/tvSignUp"
+        android:id="@+id/tvSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/sign_up_login"
+        android:text="@string/sign_in_login"
         android:textColor="@color/blue"
         android:textSize="@dimen/_14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
         app:layout_constraintVertical_bias="0.359" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
