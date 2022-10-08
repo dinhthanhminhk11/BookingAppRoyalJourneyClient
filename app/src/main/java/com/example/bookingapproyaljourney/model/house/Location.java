@@ -1,8 +1,8 @@
 package com.example.bookingapproyaljourney.model.house;
 
 public class Location {
-    private double log;
-    private double lat;
+    public double log;
+    public double lat;
 
     public Location(double log, double lat) {
         this.log = log;

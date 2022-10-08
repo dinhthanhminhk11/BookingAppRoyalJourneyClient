@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="ld_activityScreenTitles">
+        <item>@string/home_arrays</item>
+        <item>@string/profile_arrays</item>
+        <item>@string/nearby_arrays</item>
+        <item />
+        <item>@string/bookmark_arrays</item>
+        <item>@string/notification_arrays</item>
+        <item>@string/message_arrays</item>
+        <item />
+        <item>@string/setting_arrays</item>
+        <item>@string/help_arrays</item>
+        <item>@string/logout_arrays</item>
+    </string-array>
+
+    <array name="ld_activityScreenIcons">
+        <item>@drawable/ic_home_white_menu</item>
+        <item>@drawable/ic_profile_white_menu</item>
+        <item>@drawable/ic_nearby_white_menu</item>
+        <item>0</item>
+        <item>@drawable/ic_bookmark_white_menu</item>
+        <item>@drawable/ic_notification_white_menu</item>
+        <item>@drawable/ic_message_white_menu</item>
+        <item>0</item>
+        <item>@drawable/ic_setting_white_menu</item>
+        <item>@drawable/ic_helps_white_menu</item>
+        <item>@drawable/ic_logout_white_menu</item>
+    </array>
+
+
+</resources>

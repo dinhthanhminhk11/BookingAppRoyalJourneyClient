@@ -8,4 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_f5f5f5">#f5f5f5</color>
+    <color name="blue">#0A8ED9</color>
+    <color name="color_FAFAFA">#FAFAFA</color>
+    <color name="color_838383">#838383</color>
+    <color name="color_858585">#858585</color>
+    <color name="color_3D000000">#3D000000</color>
+    <color name="color_A0DAFB">#A0DAFB</color>
+    <color name="color_0A8ED9">#0A8ED9</color>
+
 </resources>

@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">BookingAppRoyalJourney</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="location_homeFragment">Location</string>
+    <string name="titleSearch_homeFragment">Search address, or near you</string>
+    <string name="NearFromYou_homeFragment">Near from you</string>
+    <string name="SeeMore_homeFragment">See more</string>
+    <string name="BestForYou_homeFragment">Best for you</string>
+    <string name="Vuotsangphaishowmenu_fragmentText">Vuốt sang phải để show menu</string>
+    <string name="OrchadHouse_itemBestforyou">Orchad House</string>
+    <string name="Rp_itemBestForYou">Rp. 25000</string>
+    <string name="Bedroom_itemBestforyou">6 Bedroom</string>
+    <string name="Bathroom_itemBestforyou">6 Bathroom</string>
+    <string name="DreamsvilleHouse_itemNearFromYou">Dreamsville House</string>
+    <string name="JlSultanIskandarMuda_itemNearFromYou">Jl. Sultan Iskandar Muda</string>
+    <string name="km_itemNearFromYou">1.8 km</string>
+    <string name="home_arrays">Home</string>
+    <string name="profile_arrays">Profile</string>
+    <string name="nearby_arrays">Nearby</string>
+    <string name="bookmark_arrays">Bookmark</string>
+    <string name="notification_arrays">Notification</string>
+    <string name="message_arrays">Message</string>
+    <string name="setting_arrays">Setting</string>
+    <string name="help_arrays">Help</string>
+    <string name="logout_arrays">Logout</string>
+
 </resources>
