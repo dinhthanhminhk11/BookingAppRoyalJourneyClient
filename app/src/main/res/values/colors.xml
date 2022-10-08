@@ -12,5 +12,7 @@
     <color name="hint_color">#656262</color>
     <color name="color_edittext">#F4F4F4</color>
     <color name="light_Background">#ecf0f3</color>
-
+    <color name="color_FAFAFA">#FAFAFA</color>
+    <color name="color_858585">#858585</color>
+    <color name="color_D9D9D9">#D9D9D9</color>
 </resources>

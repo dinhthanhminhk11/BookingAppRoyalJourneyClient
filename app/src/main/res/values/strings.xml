@@ -32,6 +32,10 @@
     <string name="help_pass2_forgot">recover your password</string>
     <string name="send_my_password_forgot">Send My Password</string>
     <string name="an_account_forgot">Don\'t have an account ?</string>
-
+    <string name="tin_tuc_detaiproduct">Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập ...</string>
+    <string name="huy_phong_detailproduct">Hủy đặt phòng là việc khách thông báo và yêu cầu khách sạn xỏa bỏ các thỏa thuận đặt buồng đã có giữa 2 bên ngay từ khi họ chưa lưu trú tại khách sạn vì không còn nhu cầu sử dụng các buồng đã thuê nữa. Khi đó, khách sạn có quyền bán những phòng khách đã báo hủy cho khách khác</string>
+    <string name="feedback_detaiproduct">1 week ago</string>
+    <string name="underlineText"><u>Hiển thị tất cả 53 đánh giá</u></string>
+    <string name="room_detailproduct">1 bed big</string>
     //_forgot
 </resources>
