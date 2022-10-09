@@ -25,7 +25,7 @@
             android:layout_marginVertical="@dimen/_10dp"
             android:orientation="horizontal">
 
-            <com.example.librarycireleimageview.CircleImageView
+            <com.example.librarycireleimage.CircleImageView
                 android:id="@+id/imgFeedback"
                 android:layout_width="@dimen/_30dp"
                 android:layout_height="@dimen/_30dp"

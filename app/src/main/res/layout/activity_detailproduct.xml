@@ -200,7 +200,7 @@
                     android:layout_marginTop="@dimen/_18dp"
                     android:orientation="horizontal">
 
-                    <com.example.librarycireleimageview.CircleImageView
+                    <com.example.librarycireleimage.CircleImageView
                         android:id="@+id/imgManage"
                         android:layout_width="@dimen/_40dp"
                         android:layout_height="@dimen/_40dp"
