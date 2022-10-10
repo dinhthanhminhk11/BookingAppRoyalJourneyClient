@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FAFAFA"
+    tools:context=".ui.activity.DetailproductActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:layout_editor_absoluteX="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/contenTOp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_319dp"
+                android:layout_marginTop="@dimen/_10dp"
+                app:cardCornerRadius="@dimen/_20dp"
+                app:cardElevation="@dimen/_0dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <include layout="@layout/tool_bar" />
+
+                    <ImageView
+                        android:id="@+id/ivimgHotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/imagetest" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_marginBottom="@dimen/_16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvNameHotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Dreamsville House"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Jl. Sultan Iskandar Muda"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_bedroom_detailproduct" />
+
+                                <TextView
+                                    android:id="@+id/tvAmountBedRoom"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_8dp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="6 Bedroom"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_bathroom_detailproduct" />
+
+                                <TextView
+                                    android:id="@+id/tvAmountBedroom"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_8dp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="6 Bedroom"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/contenTOp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:layout_marginBottom="@dimen/_14dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Description"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_14dp">
+
+                    <ImageView
+                        android:id="@+id/imgStar1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_star_detailproduct" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="5.0"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_18dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="53 feedback"
+                        android:textColor="#0A8ED9"
+                        android:textSize="@dimen/_18dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/tin_tuc_detaiproduct" />
+
+                <!--                <com.example.libraryreadmoretextview.ReadMoreTextView-->
+                <!--                    android:id="@+id/tvMoto"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:text="@string/the_3_level"-->
+                <!--                    android:textColor="@color/black"-->
+                <!--                    android:theme="@style/Theme.MaterialComponents"-->
+                <!--                    app:readMoreColor="@color/blue"-->
+                <!--                    app:readMoreMaxLine="3"-->
+                <!--                    app:readMoreText="…Xem Thêm" />-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18dp"
+                    android:orientation="horizontal">
+
+                    <com.example.librarycireleimage.CircleImageView
+                        android:id="@+id/imgManage"
+                        android:layout_width="@dimen/_40dp"
+                        android:layout_height="@dimen/_40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_16sp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/NameManage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Garry Allen"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Owner"
+                            android:textColor="@color/color_858585"
+                            android:textSize="@dimen/_12sp" />
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/btPhone"
+                        android:layout_width="@dimen/_35dp"
+                        android:layout_height="@dimen/_35dp"
+                        android:layout_below="@+id/btnFiler"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/background_button_call_detailproduct"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@drawable/ic_phone_detaiproduct"
+                        android:textAllCaps="false"
+                        app:backgroundTint="@null" />
+
+                    <ImageButton
+                        android:id="@+id/btMesseger"
+                        android:layout_width="@dimen/_35dp"
+                        android:layout_height="@dimen/_35dp"
+                        android:layout_below="@+id/btnFiler"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:background="@drawable/background_button_call_detailproduct"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@drawable/ic_message_detaiproduct"
+                        android:textAllCaps="false"
+                        app:backgroundTint="@null" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Sleeping place"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Convenient "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="Xem Thêm"
+                        android:textColor="#0A8ED9"
+                        android:textSize="@dimen/_16sp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvConvenient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:orientation="vertical"
+                    android:overScrollMode="never" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Gallery"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:overScrollMode="never" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Map"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150dp"
+                    android:layout_marginTop="@dimen/_20dp"
+                    app:cardCornerRadius="@dimen/_20dp"
+                    app:cardElevation="@dimen/_0dp">
+
+                    <!--                    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--                        xmlns:map="http://schemas.android.com/apk/res-auto"-->
+                    <!--                        xmlns:tools="http://schemas.android.com/tools"-->
+                    <!--                        android:id="@+id/mapinfo"-->
+                    <!--                        android:name="com.google.android.gms.maps.SupportMapFragment"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        tools:context=".ActivityMaintain.InFoKhachSanActivity" />-->
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:layout_marginBottom="@dimen/_10dp">
+
+                    <ImageView
+                        android:id="@+id/imgStar2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_star_detailproduct" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="5.0"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_20dp"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="53 feedback"
+                        android:textColor="#0A8ED9"
+                        android:textSize="@dimen/_20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="Xem Thêm"
+                        android:textColor="#0A8ED9"
+                        android:textSize="@dimen/_16dp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Availability status:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="rooms"
+                        android:textColor="#0A8ED9"
+                        android:textSize="@dimen/_14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="House Rules:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:layout_marginTop="20dp"
+                        android:text=" 14:00 - 17:00"
+                        android:textColor="#0A8ED9"
+                        android:textSize="@dimen/_14dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Safe Medical "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/tin_tuc_detaiproduct" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Cancellation Policy"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/huy_phong_detailproduct" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:background="@drawable/gradientbackground_detailproduct"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_10dp"
+        android:paddingBottom="@dimen/_28dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Price"
+                android:textColor="@color/color_858585"
+                android:textSize="@dimen/_12dp" />
+
+            <TextView
+                android:id="@+id/GiaMoPhong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Rp. 2.500.000.000 / Year"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRentNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/gradiendetailproduct"
+            android:fontFamily="@font/poppins_medium"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:paddingHorizontal="@dimen/_24dp"
+            android:paddingVertical="@dimen/_12dp"
+            android:text="Rent Now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sp"
+            app:backgroundTint="@null" />
+    </RelativeLayout>
+
+</RelativeLayout>

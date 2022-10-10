@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_180dp"
+    android:layout_height="@dimen/_180dp"
+    android:layout_marginTop="@dimen/_5dp"
+    android:layout_marginRight="@dimen/_16dp"
+    android:background="@drawable/background_border_feedback">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_10dp">
+        <!--        <ImageView-->
+        <!--            android:layout_width="@dimen/_30dp"-->
+        <!--            android:layout_height="@dimen/_30dp"-->
+        <!--            android:layout_marginLeft="@dimen/_10dp"-->
+        <!--            android:layout_marginTop="@dimen/_10dp"-->
+        <!--            android:src="@drawable/img_item_gallery"-->
+        <!--            />-->
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10dp"
+            android:orientation="horizontal">
+
+            <com.example.librarycireleimage.CircleImageView
+                android:id="@+id/imgFeedback"
+                android:layout_width="@dimen/_30dp"
+                android:layout_height="@dimen/_30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_launcher_background" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Minh beo"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/feedback_detaiproduct"
+                    android:textSize="@dimen/_10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout">
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/tvNews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="6"
+                android:text="@string/tin_tuc_detaiproduct"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sp" />
+
+        </LinearLayout>
+        <TextView
+            android:visibility="gone"
+            android:elevation="@dimen/_10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAmount"
+            android:textColor="@color/black"
+            android:text="@string/underlineText"
+            android:gravity="center"
+            android:textSize="@dimen/_18sp"
+
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

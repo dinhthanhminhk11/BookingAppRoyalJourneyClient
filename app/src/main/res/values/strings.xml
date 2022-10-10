@@ -1,5 +1,43 @@
 <resources>
     <string name="app_name">BookingAppRoyalJourney</string>
+    <string name="login_text">Login To Your Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="by_tapping_">Or Continue With</string>
+    <string name="facebook">Facebook</string>
+    <string name="forgot_pass">Forgot Your Password?</string>
+    <string name="login">Login</string>
+    <string name="google">Google</string>
+    <string name="Keep">Keep Me Signed In</string>
+    <string name="MeAbout">Email Me About Special Pricing</string>
+    <string name="create_acco">Create Account</string>
+    <string name="text_signin">already have an account?</string>
+    <string name="welcome_back_login">Welcome Back!</string>
+    <string name="enter_your_email_login">Enter your email</string>
+    <string name="forgot_password_login">Forgot Password</string>
+    <string name="an_account_login">Don\'t have an account ?</string>
+    <string name="sign_up_login">Sign Up</string>
+    <string name="sign_in_login">Sign In</string>
+    <string name="enter_pass_login">Enter password</string>
+    <string name="welcome_royaljourney_registration">Welcome RoyalJourney!</string>
+    <string name="help_your_registration">Let’s help you meet up your tasks</string>
+    <string name="full_name_registration">Enter your full name</string>
+    <string name="enter_your_email_registration">Enter your email</string>
+    <string name="enter_pass_registration">Enter password</string>
+    <string name="confirm_password_registration">Confirm Password</string>
+    <string name="register_registration">Register</string>
+    <string name="already_have_an_account_registration">Already have an account ?</string>
+    <string name="forgot_pass_forgot">Forgot Password?</string>
+    <string name="help_pass1_forgot">Do not worry! We will help you</string>
+    <string name="help_pass2_forgot">recover your password</string>
+    <string name="send_my_password_forgot">Send My Password</string>
+    <string name="an_account_forgot">Don\'t have an account ?</string>
+    <string name="tin_tuc_detaiproduct">Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập ...</string>
+    <string name="huy_phong_detailproduct">Hủy đặt phòng là việc khách thông báo và yêu cầu khách sạn xỏa bỏ các thỏa thuận đặt buồng đã có giữa 2 bên ngay từ khi họ chưa lưu trú tại khách sạn vì không còn nhu cầu sử dụng các buồng đã thuê nữa. Khi đó, khách sạn có quyền bán những phòng khách đã báo hủy cho khách khác</string>
+    <string name="feedback_detaiproduct">1 week ago</string>
+    <string name="underlineText"><u>Hiển thị tất cả 53 đánh giá</u></string>
+    <string name="room_detailproduct">1 bed big</string>
+    //_forgot
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="location_homeFragment">Location</string>
