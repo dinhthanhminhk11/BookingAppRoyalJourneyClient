@@ -5,9 +5,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,7 @@ import com.example.bookingapproyaljourney.model.house.Location;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
+import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
 import com.example.librarynav.SlidingRootNav;
 
 import java.util.ArrayList;
@@ -60,15 +63,9 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
     private NearFromYouAdapter nearFromYouAdapter;
     private BestForYouAdapter bestForYouAdapter;
 
-    private static final String TAG = "swipe position";
-    private float x1, x2, y1, y2;
-    private static int Min_DISTANCE = 150;
-    private GestureDetector gestureDetector;
+    private CategoryViewModel categoryViewModel;
 
-    private SlidingRootNav slidingRootNavLayout;
-
-    public HomeFragment(SlidingRootNav silSlidingRootNavLayout) {
-        this.slidingRootNavLayout = silSlidingRootNavLayout;
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -111,9 +108,8 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
         seeMoreBestForYou = (TextView) view.findViewById(R.id.seeMoreBestForYouHomeFragment);
         recyclerviewListBestForYou = (RecyclerView) view.findViewById(R.id.recyclerviewBestForYouHomeFragment);
 
-        if(slidingRootNavLayout.isMenuOpened()){
+        categoryViewModel = new ViewModelProvider(getActivity()).get(CategoryViewModel.class);
 
-        }
 
     }
 
@@ -126,20 +122,9 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
         locations.add("Tp.Hồ Chí Minh");
         ArrayAdapter listAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, locations);
         listLocation.setAdapter(listAdapter);
-//        fake data Category
-        dataCategory = new ArrayList<>();
-        dataCategory.add(new Category(1, "Business"));
-        dataCategory.add(new Category(2, "Airport Hotel"));
-        dataCategory.add(new Category(3, "Golf Hotel"));
-        dataCategory.add(new Category(4, "Resort"));
-        dataCategory.add(new Category(5, "Condotel"));
-        dataCategory.add(new Category(6, "Capsule Hotel"));
-        dataCategory.add(new Category(7, "Serviced Apartment"));
-        dataCategory.add(new Category(8, "House"));
 
-        categoryHouseAdapter = new CategoryHouseAdapter(this, dataCategory);
-        listCategory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        listCategory.setAdapter(categoryHouseAdapter);
+        getListCategory();
+
 //      fake data NearFromYou
         dataHouse = new ArrayList<>();
         dataHouse.add(new House(1, "Hanoi Prime Center", "Ha Noi", 1, "1.5", 15000, 2, 2, 5));
@@ -156,6 +141,14 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
         recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
 
 
+    }
+
+    private void getListCategory() {
+        categoryViewModel.getListCategory().observe(getActivity(), items -> {
+            categoryHouseAdapter = new CategoryHouseAdapter(this, items);
+            listCategory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+            listCategory.setAdapter(categoryHouseAdapter);
+        });
     }
 
     @Override

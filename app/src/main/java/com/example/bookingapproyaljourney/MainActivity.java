@@ -125,11 +125,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             // chỗ này là đoạn show home Frament
             // những cái kia tương tự
             // nếu show ở trong nay thì comment ở cái dưới đi dòng 92 93 ok
-            showFragment(new HomeFragment(slidingRootNav));
+            showFragment(new HomeFragment());
         }
         slidingRootNav.closeMenu();
 //        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position], slidingRootNav);
-        showFragment(new HomeFragment(slidingRootNav));
+        showFragment(new HomeFragment());
     }
 
     private void showFragment(Fragment fragment) {
