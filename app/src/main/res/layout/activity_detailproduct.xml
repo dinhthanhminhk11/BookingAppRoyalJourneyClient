@@ -172,7 +172,7 @@
                         android:layout_marginLeft="@dimen/_10dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="53 feedback"
-                        android:textColor="@color/blue"
+                        android:textColor="#0A8ED9"
                         android:textSize="@dimen/_18dp" />
                 </LinearLayout>
 
@@ -302,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="Xem Thêm"
-                        android:textColor="@color/blue"
+                        android:textColor="#0A8ED9"
                         android:textSize="@dimen/_16sp" />
                 </LinearLayout>
 
@@ -387,7 +387,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_medium"
                         android:text="53 feedback"
-                        android:textColor="@color/blue"
+                        android:textColor="#0A8ED9"
                         android:textSize="@dimen/_20dp" />
 
                     <TextView
@@ -396,7 +396,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="Xem Thêm"
-                        android:textColor="@color/blue"
+                        android:textColor="#0A8ED9"
                         android:textSize="@dimen/_16dp" />
                 </LinearLayout>
 
@@ -427,7 +427,7 @@
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="rooms"
-                        android:textColor="@color/blue"
+                        android:textColor="#0A8ED9"
                         android:textSize="@dimen/_14dp" />
                 </LinearLayout>
 
@@ -451,7 +451,7 @@
                         android:layout_marginLeft="@dimen/_5dp"
                         android:layout_marginTop="20dp"
                         android:text=" 14:00 - 17:00"
-                        android:textColor="@color/blue"
+                        android:textColor="#0A8ED9"
                         android:textSize="@dimen/_14dp" />
                 </LinearLayout>
 
