@@ -1,7 +1,7 @@
 package com.example.bookingapproyaljourney.model.user;
 
 public class UserLogin {
-    private String email ;
+    private String email;
     private String password;
 
     public UserLogin(String email, String password) {
