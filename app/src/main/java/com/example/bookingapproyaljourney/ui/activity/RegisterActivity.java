@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.api.LoginClient;
+import com.example.bookingapproyaljourney.model.user.User;
+
+import retrofit2.Call;
 
 public class RegisterActivity extends AppCompatActivity {
     private float horizontalAxis1, horizontalAxis2, verticalAxis1, verticalAxis2;
@@ -33,5 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
+    }
+    public void User( User user){
+//        Call<User> userCall = LoginClient.getLognin()
     }
 }
