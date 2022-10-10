@@ -24,13 +24,16 @@
         android:theme="@style/Theme.BookingAppRoyalJourney"
         tools:targetApi="31">
         <activity
-            android:name=".DetailproductActivity"
+            android:name=".ui.activity.DetailProductActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.RegisterActivity"
-            android:exported="true"></activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ui.activity.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.ForgotActivity"
             android:exported="true" />
         <activity
             android:name=".ui.activity.SplashScreenVer2"

@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.Location;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
@@ -132,7 +134,12 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
         dataHouse.add(new House(3, "Thaibinh Prime Center", "Thai Binh", 3, "3", 10000, 2, 1, 3));
         dataHouse.add(new House(4, "HCM Prime Center", "Tp.Ho Chi Minh", 4, "4.5", 17000, 2, 2, 2));
         dataHouse.add(new House(5, "Hungyen Prime Center", "Hung Yen", 5, "4", 12000, 1, 1, 1));
-        nearFromYouAdapter = new NearFromYouAdapter(dataHouse);
+        nearFromYouAdapter = new NearFromYouAdapter(dataHouse, new NearFromYouAdapter.Listerner() {
+            @Override
+            public void onClick(View v, int position) {
+                startActivity(new Intent(getActivity(), DetailProductActivity.class));
+            }
+        });
         recyclerviewNearFromYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerviewNearFromYou.setAdapter(nearFromYouAdapter);
 //      fake data BestForYou

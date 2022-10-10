@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_F6F6F6"
     tools:context=".ui.activity.LoginActivity">
-
 
 
     <ImageView
@@ -56,16 +56,16 @@
         android:layout_marginEnd="@dimen/_25dp"
         android:background="@drawable/bg_edittext"
         android:fontFamily="@font/poppins"
-        android:paddingStart="@dimen/_30dp"
-        android:textSize="@dimen/_13sp"
         android:hint="@string/enter_your_email_login"
+        android:paddingStart="@dimen/_30dp"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.13"
-        android:textColorHint="@color/hint_color"/>
+        app:layout_constraintVertical_bias="0.13" />
 
     <EditText
         android:id="@+id/edPass"

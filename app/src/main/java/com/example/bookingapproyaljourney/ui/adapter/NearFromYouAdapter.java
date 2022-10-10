@@ -5,7 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.bookingapproyaljourney.R;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,14 +20,15 @@ import java.util.List;
 public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.ViewHolder> {
 
     private List<House> dataHouse;
-    Listernaer mListerner;
+    private Listerner listerner;
     private NumberFormat fm = new DecimalFormat("#,###");
 
-    public NearFromYouAdapter(List<House> dataHouse) {
+    public NearFromYouAdapter(List<House> dataHouse , Listerner listerner) {
         this.dataHouse = dataHouse;
+        this.listerner = listerner;
     }
 
-    public interface Listernaer {
+    public interface Listerner {
         public void onClick(View v, int position);
     }
 
@@ -52,7 +55,7 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
             holder.tvNameNearFromYou.setText(house.getName());
 
             holder.itemView.setOnClickListener(v -> {
-                mListerner.onClick(v, position);
+                listerner.onClick(v, position);
             });
         }
     }

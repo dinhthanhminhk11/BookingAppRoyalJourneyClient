@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.bookingapproyaljourney.R;
 
-public class DetailproductActivity extends AppCompatActivity {
+public class DetailProductActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

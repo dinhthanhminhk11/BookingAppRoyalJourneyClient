@@ -1,4 +1,6 @@
 <resources>
+
+
     <string name="app_name">BookingAppRoyalJourney</string>
     <string name="login_text">Login To Your Account</string>
     <string name="email">Email</string>
@@ -37,8 +39,6 @@
     <string name="feedback_detaiproduct">1 week ago</string>
     <string name="underlineText"><u>Hiển thị tất cả 53 đánh giá</u></string>
     <string name="room_detailproduct">1 bed big</string>
-    //_forgot
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="location_homeFragment">Location</string>
     <string name="titleSearch_homeFragment">Search address, or near you</string>
