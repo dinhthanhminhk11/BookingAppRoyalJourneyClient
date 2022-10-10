@@ -164,7 +164,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/sign_in_login"
-        android:textColor="@color/blue"
+        android:textColor="#0A8ED9"
         android:textSize="@dimen/_14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
