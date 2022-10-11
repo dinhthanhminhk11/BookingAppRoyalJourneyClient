@@ -2,6 +2,7 @@ package com.example.bookingapproyaljourney.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -15,8 +16,19 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.model.house.Convenient;
+import com.example.bookingapproyaljourney.model.house.Feedback;
+import com.example.bookingapproyaljourney.model.house.Gallery;
+import com.example.bookingapproyaljourney.model.house.Room;
+import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
+import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
+import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
+import com.example.bookingapproyaljourney.ui.adapter.RoomAdapter;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetailProductActivity extends AppCompatActivity {
     private ScrollView scrollView;
@@ -40,6 +52,10 @@ public class DetailProductActivity extends AppCompatActivity {
     private TextView GiaMoPhong;
     private Button btnRentNow;
     private MenuItem menuItem;
+    FeedbackAdapter feedbackAdapter;
+    RoomAdapter roomAdapter;
+    GalleryAdapter galleryAdapter;
+    ConvenientAdapter convenientAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +95,26 @@ public class DetailProductActivity extends AppCompatActivity {
         });
         getSupportActionBar().setTitle("");
 
+        rcvConvenient.setHasFixedSize(true);
+        rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        ConvenientAdapter convenientAdapter = new ConvenientAdapter(getListConvenient(),this);
+        rcvConvenient.setAdapter(convenientAdapter);
+
+        rcvRoom.setHasFixedSize(true);
+        rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        RoomAdapter roomAdapter = new RoomAdapter(this,getListRoom());
+        rcvRoom.setAdapter(roomAdapter);
+
+        rcvFeedback.setHasFixedSize(true);
+        rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        FeedbackAdapter feedbackAdapter = new FeedbackAdapter(this,getListFeedback());
+        rcvFeedback.setAdapter(feedbackAdapter);
+
+        rcvGallery.setHasFixedSize(true);
+        rcvGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        GalleryAdapter galleryAdapter = new GalleryAdapter(this,getListGallery());
+        rcvGallery.setAdapter(galleryAdapter);
+
     }
 
     @Override
@@ -96,6 +132,44 @@ public class DetailProductActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private List<Convenient> getListConvenient(){
+        List<Convenient> listconvenient = new ArrayList<>();
+        listconvenient.add(new Convenient(1,"Kitchen",R.drawable.ic_item_convenien));
+        listconvenient.add(new Convenient(2,"Kitchen",R.drawable.ic_item_convenien));
+        listconvenient.add(new Convenient(3,"Kitchen",R.drawable.ic_item_convenien));
+        listconvenient.add(new Convenient(4,"Kitchen",R.drawable.ic_item_convenien));
+        return listconvenient;
+    }
+    private List<Room> getListRoom(){
+        List<Room> listroom = new ArrayList<>();
+        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
+        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
+        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
+        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
+        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
+        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
+        return listroom;
+    }
+    private List<Feedback> getListFeedback(){
+        List<Feedback> list = new ArrayList<>();
+        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
+        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
+        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
+        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
+        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
+
+        return list;
+    }
+    private List<Gallery> getListGallery(){
+        List<Gallery> list = new ArrayList<>();
+        list.add(new Gallery(R.drawable.imagetest,5));
+        list.add(new Gallery(R.drawable.imagetest,4));
+        list.add(new Gallery(R.drawable.imagetest,3));
+        list.add(new Gallery(R.drawable.imagetest,2));
+        list.add(new Gallery(R.drawable.imagetest,1));
+        return list;
     }
 
 }
