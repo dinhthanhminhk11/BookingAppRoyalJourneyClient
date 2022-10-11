@@ -62,5 +62,7 @@
     <string name="setting_arrays">Setting</string>
     <string name="help_arrays">Help</string>
     <string name="logout_arrays">Logout</string>
+    <string name="LoginSuccess">Sign in successfully</string>
+    <string name="LoginFailed">Email or password is incorrect</string>
 
 </resources>

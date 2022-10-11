@@ -2,19 +2,24 @@ package com.example.bookingapproyaljourney.model.user;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
-    @SerializedName("id")
+public class UserClient {
     private String id;
-    @SerializedName("name")
     private String name;
-    @SerializedName("email")
     private String email;
-    @SerializedName("image")
     private String image;
-    @SerializedName("phone")
     private String phone;
-    @SerializedName("address")
     private String address;
+
+    private static UserClient instance = null;
+
+    protected UserClient() {}
+
+    public static UserClient getInstance() {
+        if (instance == null) {
+            instance = new UserClient();
+        }
+        return instance;
+    }
 
     public String getId() {
         return id;
@@ -62,5 +67,9 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public static void setInstance(UserClient instance) {
+        UserClient.instance = instance;
     }
 }

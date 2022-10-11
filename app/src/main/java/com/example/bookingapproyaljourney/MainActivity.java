@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerItem;
@@ -120,6 +123,13 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     @Override
     public void onItemSelected(int position) {
         if (position == POS_LOGOUT) {
+            UserClient userClient = UserClient.getInstance();
+            userClient.setEmail("");
+            userClient.setId("");
+            userClient.setName("");
+            userClient.setImage("");
+            userClient.setPhone("");
+            userClient.setAddress("");
             finish();
         } else if (position == POS_HOME) {
             // chỗ này là đoạn show home Frament
@@ -171,4 +181,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         return ContextCompat.getColor(this, res);
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(false);
+    }
 }

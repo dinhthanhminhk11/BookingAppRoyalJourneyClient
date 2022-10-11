@@ -4,6 +4,7 @@ import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.response.CategoryResponse;
+import com.example.bookingapproyaljourney.response.LoginResponse;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface ApiRequest {
     Call<List<Category>> getCategory();
 
     @POST("api/signin")
-    Call<UserLogin> getUser(@Body String body);
+    Call<LoginResponse> getUser(@Body UserLogin userLogin);
 }
