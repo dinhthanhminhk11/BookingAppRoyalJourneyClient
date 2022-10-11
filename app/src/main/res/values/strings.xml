@@ -64,5 +64,7 @@
     <string name="logout_arrays">Logout</string>
     <string name="LoginSuccess">Sign in successfully</string>
     <string name="LoginFailed">Email or password is incorrect</string>
+    <string name="RegisterSuccess">Sign up successfully</string>
+    <string name="RegisterFailed">Email already exists</string>
 
 </resources>

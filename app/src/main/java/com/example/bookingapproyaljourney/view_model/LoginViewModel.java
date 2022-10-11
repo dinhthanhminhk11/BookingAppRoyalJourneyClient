@@ -19,6 +19,7 @@ import com.example.bookingapproyaljourney.response.LoginResponse;
 public class LoginViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<String> mLoginResultMutableData = new MutableLiveData<>();
+
     private UserRepository userRepository;
 
     public LoginViewModel(@NonNull Application application) {
@@ -28,7 +29,7 @@ public class LoginViewModel extends AndroidViewModel {
 
     public void login(String username, String password, String loginSuccess, String loginFail) {
         mProgressMutableData.postValue(View.VISIBLE);
-        userRepository.getUser(new UserLogin(username, password), new UserRepository.InterfaceLoginResponse() {
+        userRepository.getUser(new UserLogin(username, password), new UserRepository.InterfaceResponse() {
             @Override
             public void onResponse(LoginResponse loginResponse) {
                 mProgressMutableData.postValue(View.INVISIBLE);

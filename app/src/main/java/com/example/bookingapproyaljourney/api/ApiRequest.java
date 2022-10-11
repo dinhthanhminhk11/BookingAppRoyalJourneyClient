@@ -3,8 +3,10 @@ package com.example.bookingapproyaljourney.api;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
+import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.response.CategoryResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.response.RegisterResponse;
 
 import java.util.List;
 
@@ -19,4 +21,7 @@ public interface ApiRequest {
 
     @POST("api/signin")
     Call<LoginResponse> getUser(@Body UserLogin userLogin);
+
+    @POST("api/signup")
+    Call<RegisterResponse> getUserRegister(@Body UserRegister userRegister);
 }
