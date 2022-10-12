@@ -29,5 +29,8 @@
         <item>@drawable/ic_logout_white_menu</item>
     </array>
 
-
+    <array name="initial_slider_values">
+        <item>2000</item>
+        <item>3500</item>
+    </array>
 </resources>

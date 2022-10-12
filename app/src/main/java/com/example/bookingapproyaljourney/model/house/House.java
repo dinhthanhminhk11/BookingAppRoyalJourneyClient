@@ -10,9 +10,21 @@ public class House {
     private int countBedroom;
     private int countBathroom;
     private int start;
+    private double lat;
+    private double log;
 //    private Location location;
 
     public House() {
+    }
+
+    public House(long id, String name,int start ,String address , double price, double lat, double log) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.price = price;
+        this.start = start;
+        this.lat = lat;
+        this.log = log;
     }
 
     public House(long id, String name, String address, int image, String distance, double price, int countBedroom, int countBathroom, int start) {
@@ -107,4 +119,21 @@ public class House {
 //    public void setLocation(Location location) {
 //        this.location = location;
 //    }
+
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLog() {
+        return log;
+    }
+
+    public void setLog(double log) {
+        this.log = log;
+    }
 }
