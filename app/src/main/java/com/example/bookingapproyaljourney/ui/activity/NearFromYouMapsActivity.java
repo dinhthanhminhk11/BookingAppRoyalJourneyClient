@@ -98,6 +98,12 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         binding.toolBar2.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
+        binding.toolBar2                                                       .setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(binding.recyclerview);
         resultReceiver = new AddressResultReceiver(new Handler());

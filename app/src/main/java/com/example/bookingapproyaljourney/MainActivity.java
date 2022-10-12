@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Spinner;
 
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerItem;
@@ -136,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             // những cái kia tương tự
             // nếu show ở trong nay thì comment ở cái dưới đi dòng 92 93 ok
             showFragment(new HomeFragment());
+        } else if (position == POS_NEARBY) {
+            startActivity(new Intent(MainActivity.this, NearFromYouMapsActivity.class));
         }
         slidingRootNav.closeMenu();
 //        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position], slidingRootNav);
