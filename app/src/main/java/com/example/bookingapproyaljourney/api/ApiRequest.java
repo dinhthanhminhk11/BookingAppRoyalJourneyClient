@@ -7,6 +7,7 @@ import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.response.CategoryResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 
 import java.util.List;
 

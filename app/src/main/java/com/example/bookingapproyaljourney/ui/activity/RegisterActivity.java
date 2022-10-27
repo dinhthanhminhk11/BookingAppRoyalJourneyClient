@@ -42,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
     private String correct_cfpassword = "";
 
 
-
     private RegisterViewModel viewModel;
 
     private ActivityRegisterBinding binding;
