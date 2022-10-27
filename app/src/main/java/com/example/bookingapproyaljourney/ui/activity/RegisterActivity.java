@@ -80,7 +80,6 @@ public class RegisterActivity extends AppCompatActivity {
             String CFPassword = edCfPassRegister.getText().toString();
 
             validateinfo(Name, Email,Password,CFPassword);
-            viewModel.register(binding.edNameRegister.getText().toString(), binding.edMailRegister.getText().toString(), binding.edPassRegister.getText().toString(), this.getResources().getString(R.string.RegisterSuccess), this.getResources().getString(R.string.RegisterFailed));
         });
 
         viewModel.getLoginResult().observe(this, new Observer<String>() {
@@ -108,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (name.length()==0){
             edNameRegister.requestFocus();
             edNameRegister.setError("name");
-            return false;
+            return true;
         }
         else if (!name.matches("[a-zA-z]+")){
             edNameRegister.requestFocus();
@@ -135,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         else{
+            viewModel.register(binding.edNameRegister.getText().toString(), binding.edMailRegister.getText().toString(), binding.edPassRegister.getText().toString(), this.getResources().getString(R.string.RegisterSuccess), this.getResources().getString(R.string.RegisterFailed));
             return true;
         }
         return null;
