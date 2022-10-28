@@ -97,11 +97,11 @@ public class BottomSheetFilterMap extends BottomSheetDialog implements View.OnCl
         list.add(new Category("1", "Apartment"));
 
         List<Convenient> list2 = new ArrayList<>();
-        list2.add(new Convenient(1, "Restoran"));
-        list2.add(new Convenient(1, "Parking"));
-        list2.add(new Convenient(1, "Room Service"));
-        list2.add(new Convenient(1, "Fitness center"));
-        list2.add(new Convenient(1, "Wi-Fi"));
+//        list2.add(new Convenient(1, "Restoran"));
+//        list2.add(new Convenient(1, "Parking"));
+//        list2.add(new Convenient(1, "Room Service"));
+//        list2.add(new Convenient(1, "Fitness center"));
+//        list2.add(new Convenient(1, "Wi-Fi"));
         sortedByAdapter = new SortedByAdapter(list, new SortedByAdapter.Callback() {
             @Override
             public void onClick() {

@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 
@@ -36,7 +38,11 @@ public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHodel holder, int position) {
-        holder.imgConvenien.setImageResource(convenientTestList.get(position).getImage());
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
+        Glide.with(context).load(convenientTestList.get(position).getIconImage()).apply(options).into(holder.imgConvenien);
         holder.tvConvenien.setText(convenientTestList.get(position).getName());
     }
 

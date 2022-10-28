@@ -1,44 +1,37 @@
 package com.example.bookingapproyaljourney.model.house;
 
 import com.example.bookingapproyaljourney.R;
+import com.google.gson.annotations.SerializedName;
 
 public class Convenient {
-    private long id;
-    private String name;
-    private int image = R.drawable.ic_ellipse_96;
+    @SerializedName("id")
+    public String _id;
+    @SerializedName("name")
+    public String name;
+    @SerializedName("iconImage")
+    public String iconImage;
 
-    public Convenient(long id, String name) {
-        this.id = id;
+    private int imageCheck = R.drawable.ic_ellipse_96;
+
+    public Convenient(String _id, String name, String iconImage) {
+        this._id = _id;
         this.name = name;
+        this.iconImage = iconImage;
     }
 
-    public Convenient(long id, String name, int image) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public String get_id() {
+        return _id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getIconImage() {
+        return iconImage;
     }
 
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
+    public int getImageCheck() {
+        return imageCheck;
     }
 }

@@ -1,139 +1,159 @@
 package com.example.bookingapproyaljourney.model.house;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class House {
-    private long id;
-    private String name;
-    private String address;
-    private int image;
-    private String distance;
-    private double price;
-    private int countBedroom;
-    private int countBathroom;
-    private int start;
-    private double lat;
-    private double log;
-//    private Location location;
+    @SerializedName("_id")
+    public String id;
+    @SerializedName("name")
+    public String name;
+    @SerializedName("images")
+    public List<String> images;
+    @SerializedName("price")
+    public int price;
+    @SerializedName("supplement")
+    public List<Convenient> supplement;
+    @SerializedName("nameLocation")
+    public String nameLocation;
+    @SerializedName("location")
+    public Location location;
+    @SerializedName("category")
+    public String idCategory;
+    @SerializedName("user")
+    public String idUser;
+    @SerializedName("legal")
+    public String legal;
+    @SerializedName("content")
+    public String content;
+    @SerializedName("yte")
+    public boolean yte;
+    @SerializedName("bathrooms")
+    public List<Bathroom> bathrooms;
+    @SerializedName("limitPerson")
+    public int limitPerson;
+    @SerializedName("sleepingPlaces")
+    public List<SleepingPlace> sleepingPlaces;
+    @SerializedName("opening")
+    public String opening;
+    @SerializedName("ending")
+    public String ending;
+    @SerializedName("createdAt")
+    public String createdAt;
+    @SerializedName("updatedAt")
+    public String updatedAt;
+    @SerializedName("__v")
+    public int v;
+    @SerializedName("calculated")
+    public double calculated;
 
-    public House() {
-    }
-
-    public House(long id, String name,int start ,String address , double price, double lat, double log) {
+    public House(String id, String name, List<String> images, int price, List<Convenient> supplement, String nameLocation, Location location, String idCategory, String idUser, String legal, String content, boolean yte, List<Bathroom> bathrooms, int limitPerson, List<SleepingPlace> sleepingPlaces, String opening, String ending, String createdAt, String updatedAt, int v, double calculated) {
         this.id = id;
         this.name = name;
-        this.address = address;
+        this.images = images;
         this.price = price;
-        this.start = start;
-        this.lat = lat;
-        this.log = log;
+        this.supplement = supplement;
+        this.nameLocation = nameLocation;
+        this.location = location;
+        this.idCategory = idCategory;
+        this.idUser = idUser;
+        this.legal = legal;
+        this.content = content;
+        this.yte = yte;
+        this.bathrooms = bathrooms;
+        this.limitPerson = limitPerson;
+        this.sleepingPlaces = sleepingPlaces;
+        this.opening = opening;
+        this.ending = ending;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.v = v;
+        this.calculated = calculated;
     }
 
-    public House(long id, String name, String address, int image, String distance, double price, int countBedroom, int countBathroom, int start) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.image = image;
-        this.distance = distance;
-        this.price = price;
-        this.countBedroom = countBedroom;
-        this.countBathroom = countBathroom;
-        this.start = start;
-//        this.location = location;
-    }
-
-    public long getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<String> getImages() {
+        return images;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
-
-    public String getDistance() {
-        return distance;
-    }
-
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }
-
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public List<Convenient> getSupplement() {
+        return supplement;
     }
 
-    public int getCountBedroom() {
-        return countBedroom;
+    public String getNameLocation() {
+        return nameLocation;
     }
 
-    public void setCountBedroom(int countBedroom) {
-        this.countBedroom = countBedroom;
+    public Location getLocation() {
+        return location;
     }
 
-    public int getCountBathroom() {
-        return countBathroom;
+    public String getIdCategory() {
+        return idCategory;
     }
 
-    public void setCountBathroom(int countBathroom) {
-        this.countBathroom = countBathroom;
+    public String getIdUser() {
+        return idUser;
     }
 
-    public int getStart() {
-        return start;
+    public String getLegal() {
+        return legal;
     }
 
-    public void setStart(int start) {
-        this.start = start;
+    public String getContent() {
+        return content;
     }
 
-//    public Location getLocation() {
-//        return location;
-//    }
-//
-//    public void setLocation(Location location) {
-//        this.location = location;
-//    }
-
-
-    public double getLat() {
-        return lat;
+    public boolean isYte() {
+        return yte;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public List<Bathroom> getBathrooms() {
+        return bathrooms;
     }
 
-    public double getLog() {
-        return log;
+    public int getLimitPerson() {
+        return limitPerson;
     }
 
-    public void setLog(double log) {
-        this.log = log;
+    public List<SleepingPlace> getSleepingPlaces() {
+        return sleepingPlaces;
+    }
+
+    public String getOpening() {
+        return opening;
+    }
+
+    public String getEnding() {
+        return ending;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public int getV() {
+        return v;
+    }
+
+    public double getCalculated() {
+        return calculated;
     }
 }

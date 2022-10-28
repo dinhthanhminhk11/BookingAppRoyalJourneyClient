@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -30,8 +31,10 @@ import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.databinding.ActivityNearFromYouMapsBinding;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapterMap;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterMap;
+import com.example.bookingapproyaljourney.view_model.MapActivityNearByFromYouViewModel;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -80,6 +83,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     private View markerView;
     private TextView priceTag;
     private BottomSheetFilterMap bottomSheetFilterMap;
+    private MapActivityNearByFromYouViewModel mapActivityNearByFromYouViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +96,13 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        mapActivityNearByFromYouViewModel = new ViewModelProvider(mapFragment.getActivity()).get(MapActivityNearByFromYouViewModel.class);
         setSupportActionBar(binding.toolBar2);
         getSupportActionBar().setTitle("Near From You");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         binding.toolBar2.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
-        binding.toolBar2                                                       .setNavigationOnClickListener(new View.OnClickListener() {
+        binding.toolBar2.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -110,6 +114,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         binding.filter.setOnClickListener(v -> {
             showDialog();
         });
+
 
     }
 
@@ -147,6 +152,13 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 return false;
             }
         });
+
+        mapActivityNearByFromYouViewModel.getNearestByUserOnMapResultMutableData().observe(this, new Observer<HouseNearestByUserResponse>() {
+            @Override
+            public void onChanged(HouseNearestByUserResponse houseNearestByUserResponse) {
+                initData(houseNearestByUserResponse.getDataMaps());
+            }
+        });
     }
 
     private void getCurrentLocation() {
@@ -182,6 +194,8 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                             getAddress(lati, longi);
                             // vị trí của mình
                             latLngLocationYourSelf = new LatLng(lati, longi);
+                            mapActivityNearByFromYouViewModel.getHouseNearestByUserOnPosition(latLngLocationYourSelf);
+
                             /// get long lat từ địa chỉ
                             // tinh postion đầu tiên của list
 
@@ -192,14 +206,13 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 //                            SphericalUtil.computeDistanceBetween(latLngStart, latLng);
                             showMakerAndText(locationYouSelf);
 
-                            initData();
 //                            controller.getRootDistanceAndDuration(nameLocationYourSelf, data.get(0).getAddress(), distance, time);
 //                            LatLng latLng = getLocationFromAddress(data.get(0).getAddress());
 //                            decimalFormat.setRoundingMode(RoundingMode.UP);
-                            for (House house : data
-                            ) {
-                                drawMakerListDataHouse(house);
-                            }
+//                            for (House house : data
+//                            ) {
+//                                drawMakerListDataHouse(house);
+//                            }
                         } else {
                             binding.progressCircular.setVisibility(View.GONE);
                             binding.contentTime.setVisibility(View.VISIBLE);
@@ -209,30 +222,29 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     }
 
     private void drawMakerListDataHouse(House house) {
-        markerView = this.getLayoutInflater().inflate(R.layout.marker, null);
-        priceTag = (TextView) markerView.findViewById(R.id.priceTag);
-        priceTag.setText("$" + fm.format(house.getPrice()));
-        LatLng latLng = new LatLng(house.getLat(), house.getLog());
-//        iconfactory.setBackground(getResources().getDrawable(R.drawable.marker_background));
-
-        iconGenerator.setContentView(markerView);
-        iconGenerator.setTextAppearance(R.style.iconGenText);
-        markerOptions = new MarkerOptions()
-                .position(latLng)
-                .title(house.getName())
-                .snippet(house.getAddress())
-                .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon("$" + fm.format(house.getPrice()))));
-        currentUser = mMap.addMarker(markerOptions);
-        currentUser.setTag(false);
+//        markerView = this.getLayoutInflater().inflate(R.layout.marker, null);
+//        priceTag = (TextView) markerView.findViewById(R.id.priceTag);
+//        priceTag.setText("$" + fm.format(house.getPrice()));
+//        LatLng latLng = new LatLng(house.getLat(), house.getLog());
+////        iconfactory.setBackground(getResources().getDrawable(R.drawable.marker_background));
+//
+//        iconGenerator.setContentView(markerView);
+//        iconGenerator.setTextAppearance(R.style.iconGenText);
+//        markerOptions = new MarkerOptions()
+//                .position(latLng)
+//                .title(house.getName())
+//                .snippet(house.getAddress())
+//                .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon("$" + fm.format(house.getPrice()))));
+//        currentUser = mMap.addMarker(markerOptions);
+//        currentUser.setTag(false);
     }
 
-    private void initData() {
-        data = new ArrayList<>();
-        data.add(new House(1, "Blandford Hotel", 4, "21-23 P. Nhân Hòa, Thanh Xuân Trung, Thanh Xuân, Hà Nội, Việt Nam", 250, 21.0021109, 105.8061301));
-        data.add(new House(1, "Blandford Hotel", 2, "N2E, số 60,khu, Đ. Lê Văn Lương, Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội, Việt Nam", 250, 21.0030395, 105.7985941));
-        data.add(new House(1, "Blandford Hotel", 1, "N2A, 2A Hoàng Minh Giám, Nhân Chính, Thanh Xuân, Hà Nội, Việt Nam", 210, 21.0036213, 105.7973736));
-        data.add(new House(1, "Blandford Hotel", 3, "B52 P. Nguyễn Thị Định, Trung Hoà, Cầu Giấy, Hà Nội, Việt Nam", 12, 21.0099931, 105.8024565));
-        data.add(new House(1, "Blandford Hotel", 4, "29 Ng. 2 P. Trần Kim Xuyến, Yên Hoà, Cầu Giấy, Hà Nội 100000, Việt Nam", 5, 21.0178902, 105.7954016));
+    private void initData(List<House> data) {
+//        data.add(new House(1, "Blandford Hotel", 4, "21-23 P. Nhân Hòa, Thanh Xuân Trung, Thanh Xuân, Hà Nội, Việt Nam", 250, 21.0021109, 105.8061301));
+//        data.add(new House(1, "Blandford Hotel", 2, "N2E, số 60,khu, Đ. Lê Văn Lương, Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội, Việt Nam", 250, 21.0030395, 105.7985941));
+//        data.add(new House(1, "Blandford Hotel", 1, "N2A, 2A Hoàng Minh Giám, Nhân Chính, Thanh Xuân, Hà Nội, Việt Nam", 210, 21.0036213, 105.7973736));
+//        data.add(new House(1, "Blandford Hotel", 3, "B52 P. Nguyễn Thị Định, Trung Hoà, Cầu Giấy, Hà Nội, Việt Nam", 12, 21.0099931, 105.8024565));
+//        data.add(new House(1, "Blandford Hotel", 4, "29 Ng. 2 P. Trần Kim Xuyến, Yên Hoà, Cầu Giấy, Hà Nội 100000, Việt Nam", 5, 21.0178902, 105.7954016));
         nearFromYouAdapterMap = new NearFromYouAdapterMap(data, new NearFromYouAdapterMap.Callback() {
             @Override
             public void onClickBookMark(House house) {
@@ -241,11 +253,11 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 
             @Override
             public void onDirect(House house) {
-                LatLng latLng = getLocationFromAddress(house.getAddress());
-                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=%s", latLng.latitude, latLng.longitude, house.getAddress());
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(intent);
+//                LatLng latLng = getLocationFromAddress(house.getAddress());
+////                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=%s", latLng.latitude, latLng.longitude, house.getAddress());
+//                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+//                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+//                startActivity(intent);
             }
         });
         binding.recyclerview.setItemAnimator(new DefaultItemAnimator());
@@ -354,15 +366,15 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 
     public void selectCamera(House house) {
 //        LatLng latLng = getLocationFromAddress(house.getAddress());
-        LatLng latLng1 = new LatLng(house.getLat(), house.getLog());
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 13));
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng1)
-                .zoom(15)
-                .bearing(0)
-                .tilt(40)
-                .build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//        LatLng latLng1 = new LatLng(house.getLat(), house.getLog());
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 13));
+//        CameraPosition cameraPosition = new CameraPosition.Builder()
+//                .target(latLng1)
+//                .zoom(15)
+//                .bearing(0)
+//                .tilt(40)
+//                .build();
+//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
     @Override

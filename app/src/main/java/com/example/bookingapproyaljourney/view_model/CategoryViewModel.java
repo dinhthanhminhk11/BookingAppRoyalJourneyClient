@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.repository.CategoryRepository;
-import com.example.bookingapproyaljourney.response.CategoryResponse;
 
 import java.util.List;
 

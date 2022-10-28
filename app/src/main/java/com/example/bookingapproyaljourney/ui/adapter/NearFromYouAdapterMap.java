@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ItemNearFromYouMapBinding;
 import com.example.bookingapproyaljourney.model.house.House;
@@ -34,9 +36,15 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         House item = data.get(position);
         if (holder != null) {
+
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.drawable.img)
+                    .error(R.drawable.img);
+//            Glide.with(holder.itemView.getContext()).load(item.getImages().get(0)).apply(options).into(holder.itemNearFromYouMapBinding.ivAnhKhachSan);
             holder.itemNearFromYouMapBinding.name.setText(item.getName());
-            holder.itemNearFromYouMapBinding.address.setText(item.getAddress());
-            if (item.getStart() == 1) {
+            holder.itemNearFromYouMapBinding.address.setText(item.getNameLocation());
+           /* if (item.getStart() == 1) {
                 holder.itemNearFromYouMapBinding.imageStar2.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar3.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar4.setVisibility(View.INVISIBLE);
@@ -50,17 +58,17 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
                 holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
             } else if (item.getStart() == 4) {
                 holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            }
+            }*/
 
             holder.itemNearFromYouMapBinding.price.setText("$" + item.getPrice());
             holder.itemNearFromYouMapBinding.direct.setOnClickListener(v -> {
                 callback.onDirect(item);
             });
             holder.itemNearFromYouMapBinding.bookmark.setOnClickListener(v -> {
-                if(isClickSpeed){
+                if (isClickSpeed) {
                     holder.itemNearFromYouMapBinding.bookmark.setImageResource(R.drawable.ic_rectangle_1_map);
                     isClickSpeed = false;
-                }else {
+                } else {
                     holder.itemNearFromYouMapBinding.bookmark.setImageResource(R.drawable.ic_bookmarkoutline);
                     isClickSpeed = true;
                 }

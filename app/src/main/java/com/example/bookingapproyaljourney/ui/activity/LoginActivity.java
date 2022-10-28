@@ -63,6 +63,9 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 
+
+        edEmail.setText("admin@gmail.com");
+        edPass.setText("abc123");
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         binding.tvSignUp.setOnClickListener(new View.OnClickListener() {

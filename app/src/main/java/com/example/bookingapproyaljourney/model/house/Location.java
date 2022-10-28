@@ -1,27 +1,25 @@
 package com.example.bookingapproyaljourney.model.house;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class Location {
-    public double log;
-    public double lat;
+    @SerializedName("type")
+    private String type;
+    @SerializedName("coordinates")
+    private List<Double> coordinates;
 
-    public Location(double log, double lat) {
-        this.log = log;
-        this.lat = lat;
+    public Location(String type, List<Double> coordinates) {
+        this.type = type;
+        this.coordinates = coordinates;
     }
 
-    public double getLog() {
-        return log;
+    public String getType() {
+        return type;
     }
 
-    public void setLog(double log) {
-        this.log = log;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
+    public List<Double> getCoordinates() {
+        return coordinates;
     }
 }

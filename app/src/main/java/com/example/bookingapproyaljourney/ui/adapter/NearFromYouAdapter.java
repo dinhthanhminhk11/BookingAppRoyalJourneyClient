@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 
 import androidx.annotation.NonNull;
@@ -49,9 +51,14 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
 
         House house = dataHouse.get(position);
         if (house != null) {
-            holder.imgNearFromYou.setImageLevel(house.getImage());
-            holder.tvAddressNearFromYou.setText(house.getAddress());
-            holder.tvDistance.setText(house.getDistance() + " Km");
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.drawable.img)
+                    .error(R.drawable.img);
+            Glide.with(holder.itemView.getContext()).load(house.getImages().get(0)).apply(options).into(holder.imgNearFromYou);
+
+            holder.tvAddressNearFromYou.setText(house.getNameLocation());
+            holder.tvDistance.setText( " Km");
             holder.tvNameNearFromYou.setText(house.getName());
 
             holder.itemView.setOnClickListener(v -> {
