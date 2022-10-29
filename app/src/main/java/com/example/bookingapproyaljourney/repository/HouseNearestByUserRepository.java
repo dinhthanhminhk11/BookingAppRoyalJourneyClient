@@ -1,6 +1,7 @@
 package com.example.bookingapproyaljourney.repository;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -8,6 +9,7 @@ import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.callback.InterfaceResponseHouseNearestByUser;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
+import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
@@ -63,6 +65,7 @@ public class HouseNearestByUserRepository {
             }
         });
     }
+
 
 
 }

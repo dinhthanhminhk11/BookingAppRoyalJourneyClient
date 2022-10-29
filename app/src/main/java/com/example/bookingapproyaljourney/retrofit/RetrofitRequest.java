@@ -17,4 +17,13 @@ public class RetrofitRequest {
         }
         return retrofit;
     }
+    public static Retrofit getRetrofitInstanceMap() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppConstant.URL_API_GOOGLE_MAP)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
 }

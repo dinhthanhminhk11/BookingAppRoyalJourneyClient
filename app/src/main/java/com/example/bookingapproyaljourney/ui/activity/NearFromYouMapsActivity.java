@@ -33,6 +33,7 @@ import com.example.bookingapproyaljourney.databinding.ActivityNearFromYouMapsBin
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
 import com.example.bookingapproyaljourney.model.house.DataMap;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.repository.MapRepository;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapterMap;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterMap;
@@ -86,6 +87,8 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     private BottomSheetFilterMap bottomSheetFilterMap;
     private MapActivityNearByFromYouViewModel mapActivityNearByFromYouViewModel;
 
+    private MapRepository mapRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +101,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mapActivityNearByFromYouViewModel = new ViewModelProvider(mapFragment.getActivity()).get(MapActivityNearByFromYouViewModel.class);
+        mapRepository = new MapRepository();
         setSupportActionBar(binding.toolBar2);
         getSupportActionBar().setTitle("Near From You");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -158,6 +162,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
             @Override
             public void onChanged(HouseNearestByUserResponse houseNearestByUserResponse) {
                 initData(houseNearestByUserResponse.getDataMaps());
+                mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, houseNearestByUserResponse.getDataMaps().get(0).getData().getNameLocation(), binding.distance, binding.time);
                 for (DataMap house : houseNearestByUserResponse.getDataMaps()
                 ) {
                     drawMakerListDataHouse(house);
@@ -201,7 +206,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                             latLngLocationYourSelf = new LatLng(lati, longi);
                             mapActivityNearByFromYouViewModel.getHouseNearestByUserOnPosition(latLngLocationYourSelf);
                             showMakerAndText(locationYouSelf);
-
                             /// get long lat từ địa chỉ
                             // tinh postion đầu tiên của list
 
@@ -255,7 +259,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                 startActivity(intent);
             }
-        } );
+        });
         binding.recyclerview.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.recyclerview.setAdapter(nearFromYouAdapterMap);
@@ -274,7 +278,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     int position = getCurrentItem();// lấy vị trí recyclerview
                     DataMap dataMap = data.get(position);
-//                    controller.getRootDistanceAndDuration(nameLocationYourSelf, house.getAddress(), distance, time);
+                    mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, dataMap.getData().getNameLocation(), binding.distance, binding.time);
                     selectCamera(dataMap.getData());
                     checkSelectItem = true;
                 }
