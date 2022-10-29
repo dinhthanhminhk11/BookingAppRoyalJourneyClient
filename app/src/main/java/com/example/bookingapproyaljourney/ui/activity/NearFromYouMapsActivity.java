@@ -60,22 +60,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapReadyCallback, BottomSheetFilterMap.Callback {
-
-
     private GoogleMap mMap;
     private ActivityNearFromYouMapsBinding binding;
     private LatLng latLngLocationYourSelf;
     private IconGenerator iconGenerator;
-
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-    private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private NumberFormat fm = new DecimalFormat("#,###");
-
     private Location locationYouSelf;
-
     private ResultReceiver resultReceiver;
     private String nameLocationYourSelf;
-
     private LatLng currentUserLocation, searchPointLocation;
     private Marker currentUser, searchPoint;
     private MarkerOptions markerOptions;
@@ -86,7 +79,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     private TextView priceTag;
     private BottomSheetFilterMap bottomSheetFilterMap;
     private MapActivityNearByFromYouViewModel mapActivityNearByFromYouViewModel;
-
     private MapRepository mapRepository;
 
     @Override
@@ -119,8 +111,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         binding.filter.setOnClickListener(v -> {
             showDialog();
         });
-
-
     }
 
     /**
@@ -162,7 +152,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
             @Override
             public void onChanged(HouseNearestByUserResponse houseNearestByUserResponse) {
                 initData(houseNearestByUserResponse.getDataMaps());
-                mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, houseNearestByUserResponse.getDataMaps().get(0).getData().getNameLocation(), binding.distance, binding.time);
+//                mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, houseNearestByUserResponse.getDataMaps().get(0).getData().getNameLocation(), binding.distance, binding.time);
                 for (DataMap house : houseNearestByUserResponse.getDataMaps()
                 ) {
                     drawMakerListDataHouse(house);
@@ -278,7 +268,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     int position = getCurrentItem();// lấy vị trí recyclerview
                     DataMap dataMap = data.get(position);
-                    mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, dataMap.getData().getNameLocation(), binding.distance, binding.time);
+//                    mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, dataMap.getData().getNameLocation(), binding.distance, binding.time);
                     selectCamera(dataMap.getData());
                     checkSelectItem = true;
                 }
@@ -391,7 +381,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
             super.onReceiveResult(resultCode, resultData);
             if (resultCode == Constants.SUCCESS_RESULT) {
                 nameLocationYourSelf = resultData.getString(Constants.DISTRICT) + resultData.getString(Constants.STATE);
-//                toolBar2.setTitle(resultData.getString(Constants.DISTRICT) + resultData.getString(Constants.STATE));
                 Log.e("Minh", resultData.getString(Constants.DISTRICT));
             } else {
                 Toast.makeText(NearFromYouMapsActivity.this, resultData.getString(Constants.RESULT_DATA_KEY), Toast.LENGTH_SHORT).show();
@@ -405,8 +394,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         bottomSheetFilterMap = new BottomSheetFilterMap(NearFromYouMapsActivity.this, R.style.MaterialDialogSheet, this);
         bottomSheetFilterMap.show();
         bottomSheetFilterMap.setCanceledOnTouchOutside(false);
-
-
     }
 
     @Override
@@ -416,7 +403,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();
             } else {
-                Toast.makeText(this, "Permission is denied!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.askForMapPermission, Toast.LENGTH_SHORT).show();
             }
         }
     }

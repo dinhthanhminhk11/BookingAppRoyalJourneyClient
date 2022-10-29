@@ -7,6 +7,7 @@ import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
+import com.example.bookingapproyaljourney.retrofit.RetrofitRequestMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +17,7 @@ public class MapRepository {
     private ApiRequest apiRequest;
 
     public MapRepository() {
-        this.apiRequest = RetrofitRequest.getRetrofitInstanceMap().create(ApiRequest.class);
+        this.apiRequest = RetrofitRequestMap.getRetrofitInstanceMap().create(ApiRequest.class);
     }
 
     public void getRootDistanceAndDuration(String locationUser, String locationEnd, TextView distanceText, TextView durationText) {
@@ -26,6 +27,7 @@ public class MapRepository {
                 if (response.isSuccessful()) {
                     Root root = response.body();
                     Log.d("ooooooo", response.body().toString());
+                    Log.d("ooooooo", root.getRoutes().get(0).getLegs().get(0).getDistance().getText());
                     distanceText.setText(root.getRoutes().get(0).getLegs().get(0).getDistance().getText());
                     durationText.setText(root.getRoutes().get(0).getLegs().get(0).getDuration().getText());
                 } else {
