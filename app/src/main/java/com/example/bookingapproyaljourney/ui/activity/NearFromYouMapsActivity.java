@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.ui.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -13,6 +14,7 @@ import android.os.Looper;
 import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +78,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     private List<House> data;
     private boolean checkSelectItem = false;
     private View markerView;
+    private RelativeLayout background;
     private TextView priceTag;
     private BottomSheetFilterMap bottomSheetFilterMap;
     private MapActivityNearByFromYouViewModel mapActivityNearByFromYouViewModel;
@@ -98,6 +101,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         getSupportActionBar().setTitle("Near From You");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
         binding.toolBar2.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         binding.toolBar2.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +130,9 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         iconGenerator = new IconGenerator(this);
+        iconGenerator.setBackground(getResources().getDrawable(R.drawable.marker_background));
+        markerView = this.getLayoutInflater().inflate(R.layout.marker, null);
+        priceTag = (TextView) markerView.findViewById(R.id.priceTag);
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -151,12 +158,13 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         mapActivityNearByFromYouViewModel.getNearestByUserOnMapResultMutableData().observe(this, new Observer<HouseNearestByUserResponse>() {
             @Override
             public void onChanged(HouseNearestByUserResponse houseNearestByUserResponse) {
-                initData(houseNearestByUserResponse.getDataMaps());
-//                mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, houseNearestByUserResponse.getDataMaps().get(0).getData().getNameLocation(), binding.distance, binding.time);
                 for (DataMap house : houseNearestByUserResponse.getDataMaps()
                 ) {
                     drawMakerListDataHouse(house);
                 }
+                initData(houseNearestByUserResponse.getDataMaps());
+//                mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, houseNearestByUserResponse.getDataMaps().get(0).getData().getNameLocation(), binding.distance, binding.time);
+
             }
         });
     }
@@ -217,13 +225,10 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     }
 
     private void drawMakerListDataHouse(DataMap house) {
-        markerView = this.getLayoutInflater().inflate(R.layout.marker, null);
-        priceTag = (TextView) markerView.findViewById(R.id.priceTag);
-        priceTag.setText("$" + fm.format(house.getData().getPrice()));
-        LatLng latLng = new LatLng(house.getData().getLocation().getCoordinates().get(1), house.getData().getLocation().getCoordinates().get(0));
-//        iconfactory.setBackground(getResources().getDrawable(R.drawable.marker_background));
 
-        iconGenerator.setContentView(markerView);
+//        priceTag.setText("$" + fm.format(house.getData().getPrice()));
+        LatLng latLng = new LatLng(house.getData().getLocation().getCoordinates().get(1), house.getData().getLocation().getCoordinates().get(0));
+//        iconGenerator.setContentView(markerView);
         iconGenerator.setTextAppearance(R.style.iconGenText);
         markerOptions = new MarkerOptions()
                 .position(latLng)
@@ -254,12 +259,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.recyclerview.setAdapter(nearFromYouAdapterMap);
 
-        binding.recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-        });
 
         binding.recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -271,6 +270,9 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 //                    mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, dataMap.getData().getNameLocation(), binding.distance, binding.time);
                     selectCamera(dataMap.getData());
                     checkSelectItem = true;
+//                    markerView = getLayoutInflater().inflate(R.layout.marker_ver2, null);
+//                    iconGenerator.setContentView(markerView);
+                    iconGenerator.setBackground(getResources().getDrawable(R.drawable.marker_background_ver2));
                 }
             }
         });

@@ -24,6 +24,12 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
+    <style name="iconGenTextBlue">
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
     <style name="MaterialDialogSheet" parent="@android:style/Theme.Dialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
