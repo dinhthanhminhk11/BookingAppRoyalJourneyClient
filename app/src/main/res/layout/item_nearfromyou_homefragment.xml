@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_222dp"
+    android:layout_height="@dimen/_272dp"
+    android:layout_marginRight="@dimen/_24dp"
+    android:background="@color/black"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/_20dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgItemNearFromYou"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_itembesforyou" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:layout_marginBottom="@dimen/_16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNameItemNearFromYou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/DreamsvilleHouse_itemNearFromYou"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAddressItemNearFromYou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_16dp"
+                android:text="@string/JlSultanIskandarMuda_itemNearFromYou"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_marginRight="@dimen/_16dp"
+            android:background="@drawable/background_item_distance_itemnearfromyou"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_10dp"
+            android:paddingVertical="@dimen/_5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_location_itemnearfromyou" />
+
+            <TextView
+                android:id="@+id/tvDistanceItemNearFromYou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_7dp"
+                android:text="@string/km_itemNearFromYou"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

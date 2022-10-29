@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivAnhKhachSan"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="@dimen/_151dp"
+            android:layout_weight="0.5"
+            android:scaleType="centerCrop"
+            android:src="@drawable/anh5" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_alignParentStart="true"
+                android:layout_marginRight="@dimen/_5dp"
+                android:layout_toLeftOf="@+id/contentAction"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sp" />
+
+            <RelativeLayout
+                android:id="@+id/rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/address"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/imageStar1"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:layout_marginRight="@dimen/_7dp"
+                    android:src="@drawable/ic_star_1" />
+
+                <ImageView
+                    android:id="@+id/imageStar2"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:layout_marginRight="@dimen/_7dp"
+                    android:layout_toEndOf="@+id/imageStar1"
+                    android:src="@drawable/ic_star_1" />
+
+                <ImageView
+                    android:id="@+id/imageStar3"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_7dp"
+                    android:layout_toEndOf="@+id/imageStar2"
+                    android:src="@drawable/ic_star_1" />
+
+                <ImageView
+                    android:id="@+id/imageStar4"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:layout_marginRight="@dimen/_7dp"
+                    android:layout_toEndOf="@+id/imageStar3"
+                    android:src="@drawable/ic_star_1" />
+
+                <ImageView
+                    android:id="@+id/imageStar5"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:layout_marginRight="@dimen/_7dp"
+                    android:layout_toEndOf="@+id/imageStar4"
+                    android:src="@drawable/ic_star_1" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_medium"
+                    android:maxLines="1"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_medium"
+                    android:maxLines="1"
+                    android:text="@string/textPerNight"
+                    android:textColor="@color/blue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/bookmark"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:src="@drawable/ic_bookmarkoutline" />
+
+                <ImageView
+                    android:id="@+id/direct"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:src="@drawable/ic_sent_map" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/_20dp"
+    android:background="@color/color_FAFAFA"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_24dp"
+                android:text="@string/location_homeFragment"
+                android:textColor="@color/color_838383"
+                android:textSize="@dimen/_12dp" />
+
+            <Spinner
+                android:id="@+id/listLocationHomFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/bellHomeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="@dimen/_5dp"
+            android:src="@drawable/iconbell_main" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5dp">
+
+        <EditText
+            android:id="@+id/etSearchHomeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_8dp"
+            android:layout_marginRight="@dimen/_8dp"
+            android:layout_weight="1"
+            android:background="@drawable/framesearch_homefragment"
+            android:drawableLeft="@drawable/ic_search_homefragment"
+            android:drawablePadding="@dimen/_10dp"
+            android:hint="@string/titleSearch_homeFragment"
+            android:imeOptions="actionSearch"
+            android:inputType="textCapSentences|textAutoComplete"
+            android:paddingLeft="@dimen/_16dp"
+            android:paddingVertical="@dimen/_15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/color_858585"
+            android:textSize="@dimen/_12dp" />
+
+        <ImageButton
+            android:id="@+id/btnFilterHomeFragment"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="@null"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_filter_homefragment" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listCategoryHomeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20dp"
+                android:overScrollMode="never" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_27dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/NearFromYou_homeFragment"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16dp" />
+
+                <TextView
+                    android:id="@+id/seeMoreNearFromYouHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="@string/SeeMore_homeFragment"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_12dp" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewNearFromYouHomeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24dp"
+                android:overScrollMode="never" />
+
+            <RelativeLayout
+                android:id="@+id/contentBestForYouHomeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_32dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BestForYou_homeFragment"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16dp" />
+
+                <TextView
+                    android:id="@+id/seeMoreBestForYouHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="@string/SeeMore_homeFragment"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_12dp" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewBestForYouHomeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24dp"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

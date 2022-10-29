@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tool_bar2"
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@drawable/background_button_filter"
+    app:elevation="8dp"
+    android:elevation="8dp"
+    android:layout_marginRight="5dp"
+    app:titleTextColor="@color/black"
+    android:theme="@style/ToolbarTheme">
+
+    <!--    app:titleTextAppearance="@style/Toolbar.TitleText"-->
+
+</com.google.android.material.appbar.MaterialToolbar>
