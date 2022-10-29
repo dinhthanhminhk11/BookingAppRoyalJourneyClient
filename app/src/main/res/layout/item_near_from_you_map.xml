@@ -7,7 +7,7 @@
     android:layout_marginVertical="5dp"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp">
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/ivAnhKhachSan"
             android:layout_width="@dimen/_0dp"
-            android:layout_height="@dimen/_151dp"
+            android:layout_height="@dimen/_180dp"
             android:layout_weight="0.5"
             android:scaleType="centerCrop" />
 
@@ -53,48 +53,50 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sp" />
 
+
+
             <RelativeLayout
                 android:id="@+id/rating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/address"
+                android:layout_below="@+id/nameCategory"
                 android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/imageStar1"
-                    android:layout_width="@dimen/_24dp"
-                    android:layout_height="@dimen/_24dp"
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
                     android:layout_marginRight="@dimen/_7dp"
                     android:src="@drawable/ic_star_1" />
 
                 <ImageView
                     android:id="@+id/imageStar2"
-                    android:layout_width="@dimen/_24dp"
-                    android:layout_height="@dimen/_24dp"
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
                     android:layout_marginRight="@dimen/_7dp"
                     android:layout_toEndOf="@+id/imageStar1"
                     android:src="@drawable/ic_star_1" />
 
                 <ImageView
                     android:id="@+id/imageStar3"
-                    android:layout_width="@dimen/_24dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
                     android:layout_marginRight="@dimen/_7dp"
                     android:layout_toEndOf="@+id/imageStar2"
                     android:src="@drawable/ic_star_1" />
 
                 <ImageView
                     android:id="@+id/imageStar4"
-                    android:layout_width="@dimen/_24dp"
-                    android:layout_height="@dimen/_24dp"
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
                     android:layout_marginRight="@dimen/_7dp"
                     android:layout_toEndOf="@+id/imageStar3"
                     android:src="@drawable/ic_star_1" />
 
                 <ImageView
                     android:id="@+id/imageStar5"
-                    android:layout_width="@dimen/_24dp"
-                    android:layout_height="@dimen/_24dp"
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
                     android:layout_marginRight="@dimen/_7dp"
                     android:layout_toEndOf="@+id/imageStar4"
                     android:src="@drawable/ic_star_1" />
@@ -102,10 +104,25 @@
 
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/nameCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/address"
+                android:layout_marginTop="@dimen/_5dp"
+                android:background="@drawable/textview_border"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="1"
+                android:padding="3dp"
+                android:text="Hotel"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_12dp" />
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_below="@+id/rating"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/_10dp"
                 android:orientation="horizontal">
 
                 <TextView

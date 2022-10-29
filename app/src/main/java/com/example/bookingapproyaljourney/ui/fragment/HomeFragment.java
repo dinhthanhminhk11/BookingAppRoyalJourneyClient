@@ -2,16 +2,6 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,16 +13,21 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
-import com.example.bookingapproyaljourney.model.house.Location;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
-import com.example.librarynav.SlidingRootNav;
 
 import java.util.ArrayList;
 import java.util.List;

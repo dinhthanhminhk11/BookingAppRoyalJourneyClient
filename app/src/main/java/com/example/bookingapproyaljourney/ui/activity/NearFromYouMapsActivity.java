@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -30,6 +31,7 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.databinding.ActivityNearFromYouMapsBinding;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
+import com.example.bookingapproyaljourney.model.house.DataMap;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapterMap;
@@ -53,7 +55,6 @@ import com.google.maps.android.ui.IconGenerator;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -157,6 +158,10 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
             @Override
             public void onChanged(HouseNearestByUserResponse houseNearestByUserResponse) {
                 initData(houseNearestByUserResponse.getDataMaps());
+                for (DataMap house : houseNearestByUserResponse.getDataMaps()
+                ) {
+                    drawMakerListDataHouse(house);
+                }
             }
         });
     }
@@ -195,6 +200,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                             // vị trí của mình
                             latLngLocationYourSelf = new LatLng(lati, longi);
                             mapActivityNearByFromYouViewModel.getHouseNearestByUserOnPosition(latLngLocationYourSelf);
+                            showMakerAndText(locationYouSelf);
 
                             /// get long lat từ địa chỉ
                             // tinh postion đầu tiên của list
@@ -204,15 +210,10 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                             //tính quãng đường chim bay
                             // dm chỗ này đéo có tiền đéo tính đc quảng đường thực
 //                            SphericalUtil.computeDistanceBetween(latLngStart, latLng);
-                            showMakerAndText(locationYouSelf);
-
 //                            controller.getRootDistanceAndDuration(nameLocationYourSelf, data.get(0).getAddress(), distance, time);
 //                            LatLng latLng = getLocationFromAddress(data.get(0).getAddress());
 //                            decimalFormat.setRoundingMode(RoundingMode.UP);
-//                            for (House house : data
-//                            ) {
-//                                drawMakerListDataHouse(house);
-//                            }
+
                         } else {
                             binding.progressCircular.setVisibility(View.GONE);
                             binding.contentTime.setVisibility(View.VISIBLE);
@@ -221,30 +222,25 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 }, Looper.getMainLooper());
     }
 
-    private void drawMakerListDataHouse(House house) {
-//        markerView = this.getLayoutInflater().inflate(R.layout.marker, null);
-//        priceTag = (TextView) markerView.findViewById(R.id.priceTag);
-//        priceTag.setText("$" + fm.format(house.getPrice()));
-//        LatLng latLng = new LatLng(house.getLat(), house.getLog());
-////        iconfactory.setBackground(getResources().getDrawable(R.drawable.marker_background));
-//
-//        iconGenerator.setContentView(markerView);
-//        iconGenerator.setTextAppearance(R.style.iconGenText);
-//        markerOptions = new MarkerOptions()
-//                .position(latLng)
-//                .title(house.getName())
-//                .snippet(house.getAddress())
-//                .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon("$" + fm.format(house.getPrice()))));
-//        currentUser = mMap.addMarker(markerOptions);
-//        currentUser.setTag(false);
+    private void drawMakerListDataHouse(DataMap house) {
+        markerView = this.getLayoutInflater().inflate(R.layout.marker, null);
+        priceTag = (TextView) markerView.findViewById(R.id.priceTag);
+        priceTag.setText("$" + fm.format(house.getData().getPrice()));
+        LatLng latLng = new LatLng(house.getData().getLocation().getCoordinates().get(1), house.getData().getLocation().getCoordinates().get(0));
+//        iconfactory.setBackground(getResources().getDrawable(R.drawable.marker_background));
+
+        iconGenerator.setContentView(markerView);
+        iconGenerator.setTextAppearance(R.style.iconGenText);
+        markerOptions = new MarkerOptions()
+                .position(latLng)
+                .title(house.getData().getName())
+                .snippet(house.getData().getNameLocation())
+                .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon("$" + fm.format(house.getData().getPrice()))));
+        currentUser = mMap.addMarker(markerOptions);
+        currentUser.setTag(false);
     }
 
-    private void initData(List<House> data) {
-//        data.add(new House(1, "Blandford Hotel", 4, "21-23 P. Nhân Hòa, Thanh Xuân Trung, Thanh Xuân, Hà Nội, Việt Nam", 250, 21.0021109, 105.8061301));
-//        data.add(new House(1, "Blandford Hotel", 2, "N2E, số 60,khu, Đ. Lê Văn Lương, Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội, Việt Nam", 250, 21.0030395, 105.7985941));
-//        data.add(new House(1, "Blandford Hotel", 1, "N2A, 2A Hoàng Minh Giám, Nhân Chính, Thanh Xuân, Hà Nội, Việt Nam", 210, 21.0036213, 105.7973736));
-//        data.add(new House(1, "Blandford Hotel", 3, "B52 P. Nguyễn Thị Định, Trung Hoà, Cầu Giấy, Hà Nội, Việt Nam", 12, 21.0099931, 105.8024565));
-//        data.add(new House(1, "Blandford Hotel", 4, "29 Ng. 2 P. Trần Kim Xuyến, Yên Hoà, Cầu Giấy, Hà Nội 100000, Việt Nam", 5, 21.0178902, 105.7954016));
+    private void initData(List<DataMap> data) {
         nearFromYouAdapterMap = new NearFromYouAdapterMap(data, new NearFromYouAdapterMap.Callback() {
             @Override
             public void onClickBookMark(House house) {
@@ -253,13 +249,13 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 
             @Override
             public void onDirect(House house) {
-//                LatLng latLng = getLocationFromAddress(house.getAddress());
-////                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=%s", latLng.latitude, latLng.longitude, house.getAddress());
-//                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-//                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-//                startActivity(intent);
+                LatLng latLng = getLocationFromAddress(house.getNameLocation());
+                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=%s", latLng.latitude, latLng.longitude, house.getNameLocation());
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
             }
-        });
+        } );
         binding.recyclerview.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.recyclerview.setAdapter(nearFromYouAdapterMap);
@@ -277,9 +273,9 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     int position = getCurrentItem();// lấy vị trí recyclerview
-                    House house = data.get(position);
+                    DataMap dataMap = data.get(position);
 //                    controller.getRootDistanceAndDuration(nameLocationYourSelf, house.getAddress(), distance, time);
-                    selectCamera(house);
+                    selectCamera(dataMap.getData());
                     checkSelectItem = true;
                 }
             }
@@ -365,16 +361,15 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     }
 
     public void selectCamera(House house) {
-//        LatLng latLng = getLocationFromAddress(house.getAddress());
-//        LatLng latLng1 = new LatLng(house.getLat(), house.getLog());
-//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 13));
-//        CameraPosition cameraPosition = new CameraPosition.Builder()
-//                .target(latLng1)
-//                .zoom(15)
-//                .bearing(0)
-//                .tilt(40)
-//                .build();
-//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        LatLng latLng1 = new LatLng(house.getLocation().getCoordinates().get(1), house.getLocation().getCoordinates().get(0));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 13));
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(latLng1)
+                .zoom(15)
+                .bearing(0)
+                .tilt(40)
+                .build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
     @Override

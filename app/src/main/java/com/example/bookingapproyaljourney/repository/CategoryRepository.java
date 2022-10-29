@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.bookingapproyaljourney.callback.CategoryCallBack;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.api.ApiRequest;
@@ -43,4 +44,24 @@ public class CategoryRepository {
         });
         return data;
     }
+
+    public void getCategoryById(String id, CategoryCallBack categoryCallBack) {
+        apiRequest.getNameCategoryById(id).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()) {
+                    Log.d(AppConstant.TAG, "code ; " + response.code());
+                } else {
+                    categoryCallBack.success(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                categoryCallBack.failure(t);
+            }
+        });
+    }
+
+
 }
