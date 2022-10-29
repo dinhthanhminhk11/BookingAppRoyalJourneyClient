@@ -318,7 +318,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                     .position(myLocation)
                     .title("Your position at here")
                     .snippet("Hello RoyalJourney Company")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
             currentUser = mMap.addMarker(markerOptions);
             currentUser.setTag(false);
         }

@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private MaterialToolbar toolbar;
     private Spinner spinnerNav;
     private ImageView bell;
-
+    private DrawerAdapter adapter;
     private List<String> locations = new ArrayList<>();
 
     @Override
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         screenIcons = loadScreenIcons();
         screenTitles = loadScreenTitles();
 
-        DrawerAdapter adapter = new DrawerAdapter(Arrays.asList(
+        adapter = new DrawerAdapter(Arrays.asList(
                 createItemFor(POS_HOME).setChecked(true),
                 createItemFor(POS_PROFILE),
                 createItemFor(POS_NEARBY),
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     @Override
     protected void onResume() {
         super.onResume();
+        adapter.setSelected(POS_HOME);
         initData();
     }
 
