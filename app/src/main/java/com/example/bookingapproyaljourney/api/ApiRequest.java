@@ -1,11 +1,11 @@
 package com.example.bookingapproyaljourney.api;
 
 import com.example.bookingapproyaljourney.model.house.Category;
-import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
+import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
@@ -43,5 +43,5 @@ public interface ApiRequest {
     );
 
     @GET("listProduct/{id}")
-    Call<House> getDetailProduct(@Path("id") String id);
+    Call<HouseDetailResponse> getDetailProduct(@Path("id") String id);
 }

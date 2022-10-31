@@ -122,9 +122,8 @@ public class DetailProductActivity extends AppCompatActivity {
         GalleryAdapter galleryAdapter = new GalleryAdapter(this, getListGallery());
         rcvGallery.setAdapter(galleryAdapter);
 
-        detailProductViewModel.getHouseById("635a7955d3de0abfd7e69e7f").observe(this, item -> {
-            house = item;
-            Log.e("DUy", house.getContent());
+        detailProductViewModel.getHouseById("635a8734d3de0abfd7e69ed4").observe(this, item -> {
+            Log.e("DUy", item.toString());
         });
     }
 

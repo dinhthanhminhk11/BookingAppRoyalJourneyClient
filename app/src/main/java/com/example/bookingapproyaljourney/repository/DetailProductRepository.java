@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
 import retrofit2.Call;
@@ -20,19 +21,21 @@ public class DetailProductRepository {
         this.apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
 
-    public MutableLiveData<House> getCategory(String idHouse) {
-        final MutableLiveData<House> data = new MutableLiveData<>();
-        apiRequest.getDetailProduct(idHouse).enqueue(new Callback<House>() {
+    public MutableLiveData<HouseDetailResponse> getCategory(String idHouse) {
+        final MutableLiveData<HouseDetailResponse> data = new MutableLiveData<>();
+        apiRequest.getDetailProduct(idHouse).enqueue(new Callback<HouseDetailResponse>() {
             @Override
-            public void onResponse(Call<House> call, Response<House> response) {
+            public void onResponse(Call<HouseDetailResponse> call, Response<HouseDetailResponse> response) {
                 if (!response.isSuccessful()) {
-                    Log.d(AppConstant.TAG, "code ; " + response.code());
+                    Log.d(AppConstant.TAG_ERROR, "code ; " + response.code());
                 } else {
+                    Log.e(AppConstant.TAG, "data " + response.body().getContent());
                     data.setValue(response.body());
                 }
             }
+
             @Override
-            public void onFailure(Call<House> call, Throwable t) {
+            public void onFailure(Call<HouseDetailResponse> call, Throwable t) {
                 Log.d(AppConstant.TAG_ERROR, t.getMessage() + " error");
             }
         });

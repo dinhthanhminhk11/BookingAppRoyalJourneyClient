@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.repository.DetailProductRepository;
+import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 
 public class DetailProductViewModel extends AndroidViewModel {
     private DetailProductRepository detailProductRepository;
@@ -18,7 +19,7 @@ public class DetailProductViewModel extends AndroidViewModel {
         detailProductRepository = new DetailProductRepository();
     }
 
-    public LiveData<House> getHouseById(String id) {
+    public LiveData<HouseDetailResponse> getHouseById(String id) {
         return detailProductRepository.getCategory(id);
     }
 }
