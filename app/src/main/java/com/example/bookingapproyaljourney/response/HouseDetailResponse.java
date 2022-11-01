@@ -5,10 +5,8 @@ import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.Location;
 import com.example.bookingapproyaljourney.model.house.SleepingPlace;
-import com.example.bookingapproyaljourney.model.user.User;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HouseDetailResponse {
