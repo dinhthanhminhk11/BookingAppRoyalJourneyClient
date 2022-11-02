@@ -26,7 +26,7 @@ public class HouseDetailResponse {
     private String nameLocation;
     @SerializedName("category")
     private Category category;
-    @SerializedName("hostResponse")
+    @SerializedName("user")
     private HostResponse hostResponse;
     @SerializedName("legal")
     private String legal;

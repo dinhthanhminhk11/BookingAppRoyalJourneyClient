@@ -48,7 +48,7 @@ public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return convenientTestList == null ? 0 : convenientTestList.size();
+        return convenientTestList == null ? 0 : 5;
     }
 
     public class ViewHodel extends RecyclerView.ViewHolder {

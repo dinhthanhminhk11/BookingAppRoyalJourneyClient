@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,12 +18,16 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.Room;
+import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
@@ -43,8 +48,9 @@ public class DetailProductActivity extends AppCompatActivity {
     private TextView tvNameHotel;
     private TextView tvAddress;
     private TextView tvAmountBedRoom;
-    private TextView tvAmountBedroom;
+    private TextView tvAmountBedroom2;
     private ImageView imgStar1;
+    private TextView ContentHouse;
     private CircleImageView imgManage;
     private TextView NameManage;
     private ImageButton btPhone;
@@ -54,7 +60,10 @@ public class DetailProductActivity extends AppCompatActivity {
     private RecyclerView rcvGallery;
     private ImageView imgStar2;
     private RecyclerView rcvFeedback;
+    private TextView opening;
+    private TextView ending;
     private TextView GiaMoPhong;
+    private TextView legalHouse;
     private Button btnRentNow;
     private MenuItem menuItem;
     FeedbackAdapter feedbackAdapter;
@@ -69,7 +78,6 @@ public class DetailProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailproduct);
 
-
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         contenTOp = (CardView) findViewById(R.id.contenTOp);
         toolBar = (MaterialToolbar) findViewById(R.id.tool_bar);
@@ -77,8 +85,9 @@ public class DetailProductActivity extends AppCompatActivity {
         tvNameHotel = (TextView) findViewById(R.id.tvNameHotel);
         tvAddress = (TextView) findViewById(R.id.tvAddress);
         tvAmountBedRoom = (TextView) findViewById(R.id.tvAmountBedRoom);
-        tvAmountBedroom = (TextView) findViewById(R.id.tvAmountBedroom);
+        tvAmountBedroom2 = (TextView) findViewById(R.id.tvAmountBedroom2);
         imgStar1 = (ImageView) findViewById(R.id.imgStar1);
+        ContentHouse = (TextView) findViewById(R.id.ContentHouse);
         imgManage = (CircleImageView) findViewById(R.id.imgManage);
         NameManage = (TextView) findViewById(R.id.NameManage);
         btPhone = (ImageButton) findViewById(R.id.btPhone);
@@ -88,8 +97,11 @@ public class DetailProductActivity extends AppCompatActivity {
         rcvGallery = (RecyclerView) findViewById(R.id.rcvGallery);
         imgStar2 = (ImageView) findViewById(R.id.imgStar2);
         rcvFeedback = (RecyclerView) findViewById(R.id.rcvFeedback);
+        opening = (TextView) findViewById(R.id.opening);
+        ending = (TextView) findViewById(R.id.ending);
         GiaMoPhong = (TextView) findViewById(R.id.GiaMoPhong);
         btnRentNow = (Button) findViewById(R.id.btnRentNow);
+        legalHouse = (TextView) findViewById(R.id.legalHouse);
 
         setSupportActionBar(toolBar);
         toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
@@ -102,30 +114,60 @@ public class DetailProductActivity extends AppCompatActivity {
         });
         getSupportActionBar().setTitle("");
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
-        rcvConvenient.setHasFixedSize(true);
-        rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        ConvenientAdapter convenientAdapter = new ConvenientAdapter(getListConvenient(), this);
-        rcvConvenient.setAdapter(convenientAdapter);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
 
-        rcvRoom.setHasFixedSize(true);
-        rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        RoomAdapter roomAdapter = new RoomAdapter(this, getListRoom());
-        rcvRoom.setAdapter(roomAdapter);
 
-        rcvFeedback.setHasFixedSize(true);
-        rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        FeedbackAdapter feedbackAdapter = new FeedbackAdapter(this, getListFeedback());
-        rcvFeedback.setAdapter(feedbackAdapter);
 
-        rcvGallery.setHasFixedSize(true);
-        rcvGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        GalleryAdapter galleryAdapter = new GalleryAdapter(this, getListGallery());
-        rcvGallery.setAdapter(galleryAdapter);
 
-        detailProductViewModel.getHouseById("635a8734d3de0abfd7e69ed4").observe(this, item -> {
+//        rcvFeedback.setHasFixedSize(true);
+//        rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//        FeedbackAdapter feedbackAdapter = new FeedbackAdapter(this, getListFeedback());
+//        rcvFeedback.setAdapter(feedbackAdapter);
+
+
+
+        detailProductViewModel.getHouseById("635ab27ed3de0abfd7e69f22").observe(this, item -> {
+            tvAddress.setText(item.getNameLocation());
+            tvNameHotel.setText(item.getName());
+            tvAmountBedRoom.setText(item.getSleepingPlaces().size()+" ");
+            tvAmountBedroom2.setText(item.getBathrooms().size()+ "");
+            ContentHouse.setText(item.getContent());
+            legalHouse.setText(item.getLegal());
+
+            Glide.with(this).load(item.getImages().get(0)).apply(options).into(ivimgHotel);
+
+            rcvGallery.setHasFixedSize(true);
+            rcvGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            GalleryAdapter galleryAdapter = new GalleryAdapter(this, item.getImages());
+            rcvGallery.setAdapter(galleryAdapter);
+
+            rcvRoom.setHasFixedSize(true);
+            rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            RoomAdapter roomAdapter = new RoomAdapter(this, item.getSleepingPlaces());
+            rcvRoom.setAdapter(roomAdapter);
+
+            rcvConvenient.setHasFixedSize(true);
+            rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            ConvenientAdapter convenientAdapter = new ConvenientAdapter(item.getSupplement(), this);
+            rcvConvenient.setAdapter(convenientAdapter);
+
+            Glide.with(this).load(item.getHostResponse().getImage()).apply(options).into(imgManage);
+            NameManage.setText(item.getHostResponse().getName());
+
+            opening.setText(item.getOpening());
+            ending.setText(item.getEnding());
+
+
+
+
             Log.e("DUy", item.toString());
         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -177,11 +219,11 @@ public class DetailProductActivity extends AppCompatActivity {
 
     private List<Gallery> getListGallery() {
         List<Gallery> list = new ArrayList<>();
-        list.add(new Gallery(R.drawable.imagetest, 5));
-        list.add(new Gallery(R.drawable.imagetest, 4));
-        list.add(new Gallery(R.drawable.imagetest, 3));
-        list.add(new Gallery(R.drawable.imagetest, 2));
-        list.add(new Gallery(R.drawable.imagetest, 1));
+//        list.add(new Gallery(R.drawable.imagetest, 5));
+//        list.add(new Gallery(R.drawable.imagetest, 4));
+//        list.add(new Gallery(R.drawable.imagetest, 3));
+//        list.add(new Gallery(R.drawable.imagetest, 2));
+//        list.add(new Gallery(R.drawable.imagetest, 1));
         return list;
     }
 

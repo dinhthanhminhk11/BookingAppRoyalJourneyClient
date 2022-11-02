@@ -11,17 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Room;
+import com.example.bookingapproyaljourney.model.house.SleepingPlace;
 
 
 import java.util.List;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHodel> {
-    private List<Room> roomList;
+    private List<SleepingPlace> roomList;
     private Context context;
 
-    public RoomAdapter(Context context, List<Room> roomList ) {
+    public RoomAdapter(Context context, List<SleepingPlace> roomList ) {
         this.roomList = roomList;
         this.context = context;
     }
@@ -36,13 +39,19 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHodel> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHodel holder, int position) {
-        final Room room = roomList.get(position);
-        if (room == null){
-            return;
-        }
-        holder.room.setImageResource(room.getRoom());
-        holder.room1.setText(room.getRoom1());
-        holder.room2.setText(room.getRoom2());
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
+        Glide.with(holder.itemView.getContext()).load(roomList.get(position).getIconImage()).apply(options).into(holder.room);
+
+//        final Room room = roomList.get(position);
+//        if (room == null){
+//            return;
+//        }
+//        holder.room.setImageResource(room.getRoom());
+        holder.room1.setText(roomList.get(position).getBed());
+        holder.room2.setText(roomList.get(position).getBedroom());
     }
 
     @Override

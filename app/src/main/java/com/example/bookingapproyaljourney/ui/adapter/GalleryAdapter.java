@@ -11,8 +11,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.ui.activity.ImageActivity;
@@ -21,10 +24,10 @@ import com.example.bookingapproyaljourney.ui.activity.ImageActivity;
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHoler> {
-    private List<Gallery> galleryList;
+    private List<String> galleryList;
     private Context context;
 
-    public GalleryAdapter(Context context, List<Gallery> galleryList) {
+    public GalleryAdapter(Context context, List<String> galleryList) {
         this.galleryList = galleryList;
         this.context = context;
     }
@@ -38,17 +41,19 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHole
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {
-        final Gallery gallery = galleryList.get(position);
-        if (gallery == null) {
-            return;
-        }
-        holder.ivimgHotel.setImageResource(galleryList.get(position).getIvimgHotel());
-        holder.layout_Item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickGoToDetail(gallery);
-            }
-        });
+
+
+//        holder.layout_Item.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onClickGoToDetail(gallery);
+//            }
+//        });
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
+        Glide.with(holder.itemView.getContext()).load(galleryList.get(position)).apply(options).into(holder.ivimgHotel);
         if (position == 3) {
             if (galleryList.size() - 4 == 0) {
                 holder.btnAmount.setVisibility(View.GONE);

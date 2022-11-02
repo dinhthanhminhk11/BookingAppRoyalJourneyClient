@@ -39,7 +39,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/imagetest" />
+                         />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                                     android:src="@drawable/ic_bathroom_detailproduct" />
 
                                 <TextView
-                                    android:id="@+id/tvAmountBedroom"
+                                    android:id="@+id/tvAmountBedroom2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -177,6 +177,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/ContentHouse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
@@ -446,13 +447,25 @@
                         android:textSize="@dimen/_16sp" />
 
                     <TextView
+                        android:id="@+id/opening"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5dp"
                         android:layout_marginTop="20dp"
-                        android:text=" 14:00 - 17:00"
+                        android:text=" 14:00"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_14dp" />
+
+                    <TextView
+                        android:id="@+id/ending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:layout_marginTop="20dp"
+                        android:text=" 14:00"
+                        android:textColor="#0A8ED9"
+                        android:textSize="@dimen/_14dp"
+                        />
                 </LinearLayout>
 
                 <TextView
@@ -482,6 +495,7 @@
                     android:textSize="@dimen/_16sp" />
 
                 <TextView
+                    android:id="@+id/legalHouse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
