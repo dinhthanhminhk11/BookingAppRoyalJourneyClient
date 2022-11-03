@@ -66,7 +66,7 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
         holder.itemView.setOnClickListener(v -> {
             row_index = position;
             notifyDataSetChanged();
-
+            updateRecyclerView.callLoading(View.VISIBLE);
             if (position == 0) {
                 // trueyefn list nhà ở all
                 initData(item, position);
@@ -108,6 +108,7 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
             @Override
             public void success(CategoryBestForYouResponse categoryBestForYouResponse) {
                 updateRecyclerView.callbacksBestForYou(position, categoryBestForYouResponse);
+                updateRecyclerView.callLoading(View.GONE);
             }
 
             @Override
@@ -119,6 +120,7 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
             @Override
             public void onResponse(HouseNearestByUserResponse houseNearestByUserResponse) {
                 updateRecyclerView.callbacksNearFromYou(position, houseNearestByUserResponse);
+                updateRecyclerView.callLoading(View.GONE);
             }
 
             @Override

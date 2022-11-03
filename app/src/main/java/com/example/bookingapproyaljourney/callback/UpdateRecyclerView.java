@@ -7,7 +7,9 @@ import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import java.util.List;
 
 public interface UpdateRecyclerView {
-    public void callbacksNearFromYou(int position, HouseNearestByUserResponse houseNearestByUserResponse);
+    void callbacksNearFromYou(int position, HouseNearestByUserResponse houseNearestByUserResponse);
 
-    public void callbacksBestForYou(int position, CategoryBestForYouResponse categoryBestForYouResponse);
+    void callbacksBestForYou(int position, CategoryBestForYouResponse categoryBestForYouResponse);
+
+    void callLoading(int view);
 }

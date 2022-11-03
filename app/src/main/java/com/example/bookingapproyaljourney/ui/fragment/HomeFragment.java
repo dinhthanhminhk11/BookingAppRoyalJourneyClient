@@ -169,5 +169,10 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
         recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
     }
 
+    @Override
+    public void callLoading(int view) {
+        progressBar.setVisibility(view);
+    }
+
 
 }
