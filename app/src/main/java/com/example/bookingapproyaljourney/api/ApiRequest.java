@@ -5,6 +5,7 @@ import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
+import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
@@ -29,8 +30,6 @@ public interface ApiRequest {
     @POST("signup")
     Call<RegisterResponse> getUserRegister(@Body UserRegister userRegister);
 
-    @POST("nearByUserLocationAllCategory")
-    Call<HouseNearestByUserResponse> getHouseNearestByUser(@Body HouseNearestByUser houseNearestByUser);
 
     @GET("getNameCategory/{id}")
     Call<String> getNameCategoryById(@Path("id") String idCategory);
@@ -44,4 +43,14 @@ public interface ApiRequest {
 
     @GET("listProduct/{id}")
     Call<HouseDetailResponse> getDetailProduct(@Path("id") String id);
+
+    @GET("listCategory/{id}")
+    Call<CategoryBestForYouResponse> getHouseByCategory(@Path("id") String id);
+
+    @POST("nearmylocation")
+    Call<HouseNearestByUserResponse> getHouseNearFromYou(@Body HouseNearestByUser houseNearestByUser);
+
+    @POST("nearByUserLocationAllCategory")
+    Call<HouseNearestByUserResponse> getHouseNearestByUser(@Body HouseNearestByUser houseNearestByUser);
+
 }

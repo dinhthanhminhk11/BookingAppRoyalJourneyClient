@@ -1,7 +1,9 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,25 +24,29 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
+import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements CategoryHouseAdapter.UpdateRecyclerView {
-
+public class HomeFragment extends Fragment implements UpdateRecyclerView {
+    private ResultReceiver resultReceiver;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private ProgressBar progressBar;
     private Spinner listLocation;
     private ImageView bell;
     private EditText etSearch;
@@ -59,11 +66,15 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
     private CategoryHouseAdapter categoryHouseAdapter;
     private NearFromYouAdapter nearFromYouAdapter;
     private BestForYouAdapter bestForYouAdapter;
-
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private CategoryViewModel categoryViewModel;
+    private android.location.Location locationYouSelf;
+    private RelativeLayout contentTextNearFromYou;
+    private RelativeLayout contentBestForYouHomeFragment;
+    private LatLng currentUserLocation;
 
-    public HomeFragment() {
-        // Required empty public constructor
+    public HomeFragment(Location locationYouSelf) {
+        this.locationYouSelf=locationYouSelf;
     }
 
 
@@ -99,19 +110,25 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
         etSearch = (EditText) view.findViewById(R.id.etSearchHomeFragment);
         btnFilter = (ImageButton) view.findViewById(R.id.btnFilterHomeFragment);
         listCategory = (RecyclerView) view.findViewById(R.id.listCategoryHomeFragment);
-        contentBestForYou = (RelativeLayout) view.findViewById(R.id.contentBestForYouHomeFragment);
         seeMoreNearFromYou = (TextView) view.findViewById(R.id.seeMoreNearFromYouHomeFragment);
         recyclerviewNearFromYou = (RecyclerView) view.findViewById(R.id.recyclerviewNearFromYouHomeFragment);
         seeMoreBestForYou = (TextView) view.findViewById(R.id.seeMoreBestForYouHomeFragment);
         recyclerviewListBestForYou = (RecyclerView) view.findViewById(R.id.recyclerviewBestForYouHomeFragment);
-
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        contentTextNearFromYou = (RelativeLayout) view.findViewById(R.id.contentTextNearFromYou);
+        contentBestForYouHomeFragment = (RelativeLayout) view.findViewById(R.id.contentBestForYouHomeFragment);
         categoryViewModel = new ViewModelProvider(getActivity()).get(CategoryViewModel.class);
-
+        bestForYouAdapter = new BestForYouAdapter();
+        nearFromYouAdapter = new NearFromYouAdapter(new NearFromYouAdapter.Listerner() {
+            @Override
+            public void onClick(View v, int position) {
+                startActivity(new Intent(getActivity(), DetailProductActivity.class));
+            }
+        });
 
     }
 
     private void initData() {
-//        fake data Location
         locations.add("Hà Nội");
         locations.add("Hải Phòng");
         locations.add("Thái Bình ");
@@ -119,48 +136,38 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
         locations.add("Tp.Hồ Chí Minh");
         ArrayAdapter listAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, locations);
         listLocation.setAdapter(listAdapter);
-
         getListCategory();
-
-//      fake data NearFromYou
-        dataHouse = new ArrayList<>();
-//        dataHouse.add(new House(1, "Hanoi Prime Center", "Ha Noi", 1, "1.5", 15000, 2, 2, 5));
-//        dataHouse.add(new House(2, "Haiphong Prime Center", "Hai Phong", 2, "2.7", 13000, 1, 2, 4));
-//        dataHouse.add(new House(3, "Thaibinh Prime Center", "Thai Binh", 3, "3", 10000, 2, 1, 3));
-//        dataHouse.add(new House(4, "HCM Prime Center", "Tp.Ho Chi Minh", 4, "4.5", 17000, 2, 2, 2));
-//        dataHouse.add(new House(5, "Hungyen Prime Center", "Hung Yen", 5, "4", 12000, 1, 1, 1));
-        nearFromYouAdapter = new NearFromYouAdapter(dataHouse, new NearFromYouAdapter.Listerner() {
-            @Override
-            public void onClick(View v, int position) {
-                startActivity(new Intent(getActivity(), DetailProductActivity.class));
-            }
-        });
-        recyclerviewNearFromYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerviewNearFromYou.setAdapter(nearFromYouAdapter);
-//      fake data BestForYou
-        bestForYouAdapter = new BestForYouAdapter(dataHouse);
-        recyclerviewListBestForYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
-
-
     }
 
     private void getListCategory() {
         categoryViewModel.getListCategory().observe(getActivity(), items -> {
-            categoryHouseAdapter = new CategoryHouseAdapter(this, items);
+            categoryHouseAdapter = new CategoryHouseAdapter(this, items , locationYouSelf);
             listCategory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
             listCategory.setAdapter(categoryHouseAdapter);
         });
     }
 
     @Override
-    public void callbacksNearFromYou(int position, List<House> list) {
-
+    public void callbacksNearFromYou(int position, HouseNearestByUserResponse houseNearestByUserResponse) {
+        if(houseNearestByUserResponse.getDataMaps().size() == 0){
+            contentTextNearFromYou.setVisibility(View.GONE);
+            recyclerviewNearFromYou.setVisibility(View.GONE);
+        }else {
+            contentTextNearFromYou.setVisibility(View.VISIBLE);
+            recyclerviewNearFromYou.setVisibility(View.VISIBLE);
+            nearFromYouAdapter.setDataHouse(houseNearestByUserResponse.getDataMaps());
+            recyclerviewNearFromYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+            recyclerviewNearFromYou.setAdapter(nearFromYouAdapter);
+        }
     }
 
     @Override
-    public void callbacksBestForYou(int position, List<House> list) {
-
+    public void callbacksBestForYou(int position, CategoryBestForYouResponse categoryBestForYouResponse) {
+        bestForYouAdapter.setLayout(contentTextNearFromYou.getVisibility() == View.VISIBLE ? R.layout.item_bestforyou_homefragment : R.layout.item_bestforyou_homefragment);
+        bestForYouAdapter.setDataHouse(categoryBestForYouResponse.getHouses());
+        recyclerviewListBestForYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
     }
+
 
 }
