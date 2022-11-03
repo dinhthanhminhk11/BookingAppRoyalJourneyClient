@@ -33,6 +33,7 @@ import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
+import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapterNotNull;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
@@ -74,6 +75,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
     private RelativeLayout contentTextNearFromYou;
     private RelativeLayout contentBestForYouHomeFragment;
     private LatLng currentUserLocation;
+    private BestForYouAdapterNotNull bestForYouAdapterNotNull;
 
     public HomeFragment(Location locationYouSelf) {
         this.locationYouSelf = locationYouSelf;
@@ -116,16 +118,18 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
         recyclerviewNearFromYou = (RecyclerView) view.findViewById(R.id.recyclerviewNearFromYouHomeFragment);
         seeMoreBestForYou = (TextView) view.findViewById(R.id.seeMoreBestForYouHomeFragment);
         recyclerviewListBestForYou = (RecyclerView) view.findViewById(R.id.recyclerviewBestForYouHomeFragment);
+        recyclerviewListBestForYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         progressBar = (LottieAnimationView) view.findViewById(R.id.progressBar);
         contentTextNearFromYou = (RelativeLayout) view.findViewById(R.id.contentTextNearFromYou);
         contentBestForYouHomeFragment = (RelativeLayout) view.findViewById(R.id.contentBestForYouHomeFragment);
         categoryViewModel = new ViewModelProvider(getActivity()).get(CategoryViewModel.class);
         bestForYouAdapter = new BestForYouAdapter();
+        bestForYouAdapterNotNull = new BestForYouAdapterNotNull();
         nearFromYouAdapter = new NearFromYouAdapter(new NearFromYouAdapter.Listerner() {
             @Override
             public void onClick(House house) {
                 Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-                intent.putExtra(AppConstant.HOUSE_EXTRA , house.getId());
+                intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
                 startActivity(intent);
             }
         });
@@ -167,9 +171,14 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
 
     @Override
     public void callbacksBestForYou(int position, CategoryBestForYouResponse categoryBestForYouResponse) {
-        bestForYouAdapter.setDataHouse(categoryBestForYouResponse.getHouses());
-        recyclerviewListBestForYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
+        if (contentTextNearFromYou.getVisibility() == View.GONE) {
+            bestForYouAdapterNotNull.setDataHouse(categoryBestForYouResponse.getHouses());
+            recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
+        } else {
+            bestForYouAdapter.setDataHouse(categoryBestForYouResponse.getHouses());
+            recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
+        }
+
     }
 
     @Override

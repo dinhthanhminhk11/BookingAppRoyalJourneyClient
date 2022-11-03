@@ -71,6 +71,7 @@
     <string name="distance" >Distance: </string>
     <string name="time" >Time: </string>
     <string name="textPerNight" > /per night</string>
+    <string name="textPerNightVN" > /đêm</string>
     <string name="askForMapPermission" >Xin lỗi bạn phải cấp quyền truy cập vị trí</string>
 
 </resources>
