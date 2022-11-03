@@ -24,9 +24,6 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
     private List<House> data;
     Listernaer mListerner;
     private NumberFormat fm = new DecimalFormat("#,###");
-    private final int TYPE_ITEM_DEFAULT = 0;
-    private final int TYPE_ITEM_IF_NULL = 1;
-
 
     public void setDataHouse(List<House> dataHouse) {
         this.dataHouse = dataHouse;
