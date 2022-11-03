@@ -35,7 +35,7 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
     }
 
     public interface Listerner {
-        public void onClick(View v, int position);
+        public void onClick(House house);
     }
 
     public void setData(List<DataMap> dataHouse) {
@@ -66,7 +66,7 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
             holder.tvNameNearFromYou.setText(house.getData().getName());
 
             holder.itemView.setOnClickListener(v -> {
-                listerner.onClick(v, position);
+                listerner.onClick(dataHouse.get(position).getData());
             });
         }
     }

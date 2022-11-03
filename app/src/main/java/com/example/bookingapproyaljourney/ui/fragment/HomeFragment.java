@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
@@ -75,7 +76,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
     private LatLng currentUserLocation;
 
     public HomeFragment(Location locationYouSelf) {
-        this.locationYouSelf=locationYouSelf;
+        this.locationYouSelf = locationYouSelf;
     }
 
 
@@ -122,8 +123,10 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
         bestForYouAdapter = new BestForYouAdapter();
         nearFromYouAdapter = new NearFromYouAdapter(new NearFromYouAdapter.Listerner() {
             @Override
-            public void onClick(View v, int position) {
-                startActivity(new Intent(getActivity(), DetailProductActivity.class));
+            public void onClick(House house) {
+                Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+                intent.putExtra(AppConstant.HOUSE_EXTRA , house.getId());
+                startActivity(intent);
             }
         });
 
@@ -142,7 +145,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
 
     private void getListCategory() {
         categoryViewModel.getListCategory().observe(getActivity(), items -> {
-            categoryHouseAdapter = new CategoryHouseAdapter(this, items , locationYouSelf);
+            categoryHouseAdapter = new CategoryHouseAdapter(this, items, locationYouSelf);
             listCategory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
             listCategory.setAdapter(categoryHouseAdapter);
         });
@@ -150,10 +153,10 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
 
     @Override
     public void callbacksNearFromYou(int position, HouseNearestByUserResponse houseNearestByUserResponse) {
-        if(houseNearestByUserResponse.getDataMaps().size() == 0){
+        if (houseNearestByUserResponse.getDataMaps().size() == 0) {
             contentTextNearFromYou.setVisibility(View.GONE);
             recyclerviewNearFromYou.setVisibility(View.GONE);
-        }else {
+        } else {
             contentTextNearFromYou.setVisibility(View.VISIBLE);
             recyclerviewNearFromYou.setVisibility(View.VISIBLE);
             nearFromYouAdapter.setDataHouse(houseNearestByUserResponse.getDataMaps());

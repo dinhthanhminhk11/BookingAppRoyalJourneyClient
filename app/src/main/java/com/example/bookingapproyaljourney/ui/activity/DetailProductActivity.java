@@ -1,14 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.telecom.Call;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,22 +10,27 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.Room;
-import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomAdapter;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
-import com.example.bookingapproyaljourney.view_model.MapActivityNearByFromYouViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -72,12 +69,16 @@ public class DetailProductActivity extends AppCompatActivity {
     ConvenientAdapter convenientAdapter;
     private DetailProductViewModel detailProductViewModel;
     private House house;
+    private String idHouse = "";
+    private RequestOptions options;
+    private LottieAnimationView progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailproduct);
 
+        progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         contenTOp = (CardView) findViewById(R.id.contenTOp);
         toolBar = (MaterialToolbar) findViewById(R.id.tool_bar);
@@ -114,26 +115,24 @@ public class DetailProductActivity extends AppCompatActivity {
         });
         getSupportActionBar().setTitle("");
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
-        RequestOptions options = new RequestOptions()
+        options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.img)
                 .error(R.drawable.img);
-
-
-
-
+        idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
+        initData(idHouse);
 //        rcvFeedback.setHasFixedSize(true);
 //        rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 //        FeedbackAdapter feedbackAdapter = new FeedbackAdapter(this, getListFeedback());
 //        rcvFeedback.setAdapter(feedbackAdapter);
+    }
 
-
-
-        detailProductViewModel.getHouseById("635ab27ed3de0abfd7e69f22").observe(this, item -> {
+    private void initData(String id) {
+        detailProductViewModel.getHouseById(id).observe(this, item -> {
             tvAddress.setText(item.getNameLocation());
             tvNameHotel.setText(item.getName());
-            tvAmountBedRoom.setText(item.getSleepingPlaces().size()+" ");
-            tvAmountBedroom2.setText(item.getBathrooms().size()+ "");
+            tvAmountBedRoom.setText(item.getSleepingPlaces().size() + " ");
+            tvAmountBedroom2.setText(item.getBathrooms().size() + "");
             ContentHouse.setText(item.getContent());
             legalHouse.setText(item.getLegal());
 
@@ -159,15 +158,10 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
-
-
-
-
-            Log.e("DUy", item.toString());
+            progressBar.setVisibility(View.GONE);
         });
+
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
