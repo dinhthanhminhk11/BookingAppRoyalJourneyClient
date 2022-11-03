@@ -464,25 +464,8 @@
                         android:layout_marginTop="20dp"
                         android:text=" 14:00"
                         android:textColor="#0A8ED9"
-                        android:textSize="@dimen/_14dp"
-                        />
+                        android:textSize="@dimen/_14dp" />
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="@dimen/_10dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Safe Medical "
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/tin_tuc_detaiproduct" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -535,7 +518,7 @@
                 android:textSize="@dimen/_12dp" />
 
             <TextView
-                android:id="@+id/GiaMoPhong"
+                android:id="@+id/priceRoom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8dp"

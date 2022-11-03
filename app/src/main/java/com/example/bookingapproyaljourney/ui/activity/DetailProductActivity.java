@@ -62,7 +62,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private RecyclerView rcvFeedback;
     private TextView opening;
     private TextView ending;
-    private TextView GiaMoPhong;
+    private TextView priceRoom;
     private TextView legalHouse;
     private Button btnRentNow;
     private MenuItem menuItem;
@@ -99,7 +99,7 @@ public class DetailProductActivity extends AppCompatActivity {
         rcvFeedback = (RecyclerView) findViewById(R.id.rcvFeedback);
         opening = (TextView) findViewById(R.id.opening);
         ending = (TextView) findViewById(R.id.ending);
-        GiaMoPhong = (TextView) findViewById(R.id.GiaMoPhong);
+        priceRoom = (TextView) findViewById(R.id.priceRoom);
         btnRentNow = (Button) findViewById(R.id.btnRentNow);
         legalHouse = (TextView) findViewById(R.id.legalHouse);
 
@@ -159,6 +159,9 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
+            
+
+
 
 
 
