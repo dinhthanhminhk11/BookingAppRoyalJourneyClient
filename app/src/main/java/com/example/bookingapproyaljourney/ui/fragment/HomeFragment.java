@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
 import com.example.bookingapproyaljourney.model.house.Category;
@@ -46,7 +47,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private ProgressBar progressBar;
+    private LottieAnimationView progressBar;
     private Spinner listLocation;
     private ImageView bell;
     private EditText etSearch;
@@ -114,7 +115,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
         recyclerviewNearFromYou = (RecyclerView) view.findViewById(R.id.recyclerviewNearFromYouHomeFragment);
         seeMoreBestForYou = (TextView) view.findViewById(R.id.seeMoreBestForYouHomeFragment);
         recyclerviewListBestForYou = (RecyclerView) view.findViewById(R.id.recyclerviewBestForYouHomeFragment);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar = (LottieAnimationView) view.findViewById(R.id.progressBar);
         contentTextNearFromYou = (RelativeLayout) view.findViewById(R.id.contentTextNearFromYou);
         contentBestForYouHomeFragment = (RelativeLayout) view.findViewById(R.id.contentBestForYouHomeFragment);
         categoryViewModel = new ViewModelProvider(getActivity()).get(CategoryViewModel.class);
