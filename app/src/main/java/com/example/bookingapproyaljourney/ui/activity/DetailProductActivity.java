@@ -1,14 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.telecom.Call;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,23 +10,27 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.Room;
-import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomAdapter;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
-import com.example.bookingapproyaljourney.view_model.MapActivityNearByFromYouViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -63,7 +59,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private RecyclerView rcvFeedback;
     private TextView opening;
     private TextView ending;
-    private TextView priceRoom;
+    private TextView GiaMoPhong;
     private TextView legalHouse;
     private Button btnRentNow;
     private MenuItem menuItem;
@@ -73,12 +69,16 @@ public class DetailProductActivity extends AppCompatActivity {
     ConvenientAdapter convenientAdapter;
     private DetailProductViewModel detailProductViewModel;
     private House house;
+    private String idHouse = "";
+    private RequestOptions options;
+    private LottieAnimationView progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailproduct);
 
+        progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         contenTOp = (CardView) findViewById(R.id.contenTOp);
         toolBar = (MaterialToolbar) findViewById(R.id.tool_bar);
@@ -100,7 +100,7 @@ public class DetailProductActivity extends AppCompatActivity {
         rcvFeedback = (RecyclerView) findViewById(R.id.rcvFeedback);
         opening = (TextView) findViewById(R.id.opening);
         ending = (TextView) findViewById(R.id.ending);
-        priceRoom = (TextView) findViewById(R.id.priceRoom);
+        GiaMoPhong = (TextView) findViewById(R.id.priceRoom);
         btnRentNow = (Button) findViewById(R.id.btnRentNow);
         legalHouse = (TextView) findViewById(R.id.legalHouse);
 
@@ -158,14 +158,11 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
+            GiaMoPhong.setText(item.getPrice() +"Vnd");
             progressBar.setVisibility(View.GONE);
         });
 
-            Log.e("DUy", item.toString());
-        });
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
