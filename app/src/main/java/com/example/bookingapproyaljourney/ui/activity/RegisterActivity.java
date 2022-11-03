@@ -1,27 +1,21 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.GestureDetector;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bookingapproyaljourney.MainActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
 import com.example.bookingapproyaljourney.databinding.ActivityRegisterBinding;
-import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.bookingapproyaljourney.view_model.RegisterViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -74,12 +68,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         binding.btnRegister.setOnClickListener(v -> {
-            String Name =edNameRegister.getText().toString();
+            String Name = edNameRegister.getText().toString();
             String Email = edMailRegister.getText().toString();
             String Password = edPassRegister.getText().toString();
             String CFPassword = edCfPassRegister.getText().toString();
 
-            validateinfo(Name, Email,Password,CFPassword);
+            validateinfo(Name, Email, Password, CFPassword);
         });
 
         viewModel.getLoginResult().observe(this, new Observer<String>() {
@@ -104,36 +98,30 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private Boolean validateinfo(String name, String email, String password, String cfPassword) {
-        if (name.length()==0){
+        if (name.length() == 0) {
             edNameRegister.requestFocus();
             edNameRegister.setError("name");
             return true;
-        }
-        else if (!name.matches("[a-zA-z]+")){
+        } else if (!name.matches("[a-zA-z]+")) {
             edNameRegister.requestFocus();
             edNameRegister.setError("Name2");
             return false;
-        }else if (email.length()==0){
+        } else if (email.length() == 0) {
             edMailRegister.requestFocus();
             edMailRegister.setError("email");
-        }
-        else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+        } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
             edMailRegister.requestFocus();
             edMailRegister.setError("email 2");
             return false;
-        }
-        else if (password.length()<=6){
+        } else if (password.length() <= 6) {
             edPassRegister.requestFocus();
             edPassRegister.setError("phải trên 6 kí tự có chữ số ");
             return false;
-        }
-        else if (cfPassword.length()<=6){
+        } else if (cfPassword.length() <= 6) {
             edCfPassRegister.requestFocus();
             edCfPassRegister.setError("Không trùng khớp");
             return false;
-        }
-
-        else{
+        } else {
             viewModel.register(binding.edNameRegister.getText().toString(), binding.edMailRegister.getText().toString(), binding.edPassRegister.getText().toString(), this.getResources().getString(R.string.RegisterSuccess), this.getResources().getString(R.string.RegisterFailed));
             return true;
         }

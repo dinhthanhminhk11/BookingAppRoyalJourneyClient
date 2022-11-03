@@ -16,3 +16,4 @@ rootProject.name = "BookingAppRoyalJourney"
 include ':app'
 include ':libraryNav'
 include ':libraryCireleImage'
+include ':libraryAutoimageSlider'

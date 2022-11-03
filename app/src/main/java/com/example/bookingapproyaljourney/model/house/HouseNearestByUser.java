@@ -9,7 +9,7 @@ public class HouseNearestByUser {
     private double latitude;
     @SerializedName("dist")
     private int dist;
-    @SerializedName("idCategory")
+    @SerializedName("category")
     private String idCategory;
 
     public HouseNearestByUser(double longitude, double latitude ,int dist) {
@@ -18,12 +18,26 @@ public class HouseNearestByUser {
         this.dist = dist;
     }
 
-    public HouseNearestByUser(double longitude, double latitude,  String idCategory) {
+    public HouseNearestByUser(double longitude, double latitude, int dist, String idCategory) {
         this.longitude = longitude;
         this.latitude = latitude;
-        this.dist = 10000;
+        this.dist = dist;
         this.idCategory = idCategory;
     }
 
+    public double getLongitude() {
+        return longitude;
+    }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public int getDist() {
+        return dist;
+    }
+
+    public String getIdCategory() {
+        return idCategory;
+    }
 }

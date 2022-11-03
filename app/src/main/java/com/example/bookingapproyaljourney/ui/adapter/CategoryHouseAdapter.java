@@ -2,6 +2,8 @@ package com.example.bookingapproyaljourney.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.location.Location;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +13,19 @@ import com.example.bookingapproyaljourney.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bookingapproyaljourney.callback.HouseByCategoryCallback;
+import com.example.bookingapproyaljourney.callback.InterfaceResponseHouseNearestByUser;
+import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
+import com.example.bookingapproyaljourney.repository.CategoryRepository;
+import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
+import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdapter.ViewHolder> {
@@ -24,11 +36,14 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
     public static int index = 1;
     private List<Category> dataCategory;
     private List<House> dataHouse;
+    private CategoryRepository categoryRepository;
+    private Location location;
 
-
-    public CategoryHouseAdapter(UpdateRecyclerView updateRecyclerView, List<Category> dataCategory) {
+    public CategoryHouseAdapter(UpdateRecyclerView updateRecyclerView, List<Category> dataCategory, Location location) {
         this.updateRecyclerView = updateRecyclerView;
         this.dataCategory = dataCategory;
+        this.location = location;
+        categoryRepository = new CategoryRepository();
     }
 
     @NonNull
@@ -44,29 +59,29 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
         holder.nameCategory.setText(item.getName());
 
         if (check) {
-
+            initData(item, position);
             check = false;
         }
 
         holder.itemView.setOnClickListener(v -> {
             row_index = position;
             notifyDataSetChanged();
-
+            updateRecyclerView.callLoading(View.VISIBLE);
             if (position == 0) {
                 // trueyefn list nhà ở all
-
+                initData(item, position);
                 index = 1;
             } else if (position == 1) {
-
+                initData(item, position);
                 index = 2;
             } else if (position == 2) {
-
+                initData(item, position);
                 index = 3;
             } else if (position == 3) {
-
+                initData(item, position);
                 index = 4;
             } else if (position == 4) {
-
+                initData(item, position);
                 index = 5;
             }
         });
@@ -88,6 +103,33 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
         }
     }
 
+    private void initData(Category item, int position) {
+        categoryRepository.getHouseByCategory(item.getId(), new HouseByCategoryCallback() {
+            @Override
+            public void success(CategoryBestForYouResponse categoryBestForYouResponse) {
+                updateRecyclerView.callbacksBestForYou(position, categoryBestForYouResponse);
+                updateRecyclerView.callLoading(View.GONE);
+            }
+
+            @Override
+            public void failure(Throwable t) {
+
+            }
+        });
+        categoryRepository.getHouseNearestByUserAndLocationUser(new HouseNearestByUser(location.getLongitude(), location.getLatitude(), 10000, item.getId()), new InterfaceResponseHouseNearestByUser() {
+            @Override
+            public void onResponse(HouseNearestByUserResponse houseNearestByUserResponse) {
+                updateRecyclerView.callbacksNearFromYou(position, houseNearestByUserResponse);
+                updateRecyclerView.callLoading(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public int getItemCount() {
         return dataCategory == null ? 0 : dataCategory.size();
@@ -102,10 +144,6 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
         }
     }
 
-    public interface UpdateRecyclerView {
-        public void callbacksNearFromYou(int position, List<House> list);
 
-        public void callbacksBestForYou(int position, List<House> list);
-    }
 }
 

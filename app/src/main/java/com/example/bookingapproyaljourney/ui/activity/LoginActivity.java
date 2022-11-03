@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
@@ -33,12 +34,11 @@ public class LoginActivity extends AppCompatActivity {
     private AppCompatButton btnSignIn;
     private TextView textView3;
     private TextView tvSignUp;
-    private ProgressBar progressBar;
+    private LottieAnimationView progressBar;
     private String correct_email = "";
     private String correct_password = "";
 
     private UserLogin userLogin;
-
 
 
     private LoginViewModel loginViewModel;
@@ -60,8 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn = (AppCompatButton) findViewById(R.id.btnSignIn);
         textView3 = (TextView) findViewById(R.id.textView3);
         tvSignUp = (TextView) findViewById(R.id.tvSignUp);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
+        progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
 
 
         edEmail.setText("admin@gmail.com");

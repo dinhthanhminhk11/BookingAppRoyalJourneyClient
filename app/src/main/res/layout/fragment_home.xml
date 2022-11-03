@@ -1,176 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="@dimen/_20dp"
     android:background="@color/color_FAFAFA"
     android:orientation="vertical"
     tools:context=".ui.fragment.HomeFragment">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120dp"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_24dp"
-                android:text="@string/location_homeFragment"
-                android:textColor="@color/color_838383"
-                android:textSize="@dimen/_12dp" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/listLocationHomFragment"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_24dp"
+                    android:text="@string/location_homeFragment"
+                    android:textColor="@color/color_838383"
+                    android:textSize="@dimen/_12dp" />
+
+                <Spinner
+                    android:id="@+id/listLocationHomFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/bellHomeFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_gravity="center_vertical"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="@dimen/_5dp"
+                android:src="@drawable/iconbell_main" />
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/bellHomeFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:padding="@dimen/_5dp"
-            android:src="@drawable/iconbell_main" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:orientation="horizontal"
-        android:padding="@dimen/_5dp">
-
-        <EditText
-            android:id="@+id/etSearchHomeFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/_8dp"
-            android:layout_marginRight="@dimen/_8dp"
-            android:layout_weight="1"
-            android:background="@drawable/framesearch_homefragment"
-            android:drawableLeft="@drawable/ic_search_homefragment"
-            android:drawablePadding="@dimen/_10dp"
-            android:hint="@string/titleSearch_homeFragment"
-            android:imeOptions="actionSearch"
-            android:inputType="textCapSentences|textAutoComplete"
-            android:paddingLeft="@dimen/_16dp"
-            android:paddingVertical="@dimen/_15dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/color_858585"
-            android:textSize="@dimen/_12dp" />
-
-        <ImageButton
-            android:id="@+id/btnFilterHomeFragment"
-            android:layout_width="@dimen/_48dp"
-            android:layout_height="@dimen/_48dp"
-            android:layout_gravity="center_vertical"
-            android:backgroundTint="@null"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_filter_homefragment" />
-
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listCategoryHomeFragment"
+            <EditText
+                android:id="@+id/etSearchHomeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20dp"
-                android:overScrollMode="never" />
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:layout_weight="1"
+                android:background="@drawable/framesearch_homefragment"
+                android:drawableLeft="@drawable/ic_search_homefragment"
+                android:drawablePadding="@dimen/_10dp"
+                android:hint="@string/titleSearch_homeFragment"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapSentences|textAutoComplete"
+                android:paddingLeft="@dimen/_16dp"
+                android:paddingVertical="@dimen/_15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_858585"
+                android:textSize="@dimen/_12dp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_27dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/NearFromYou_homeFragment"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_16dp" />
-
-                <TextView
-                    android:id="@+id/seeMoreNearFromYouHomeFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:text="@string/SeeMore_homeFragment"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/_12dp" />
-
-            </RelativeLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerviewNearFromYouHomeFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_24dp"
-                android:overScrollMode="never" />
-
-            <RelativeLayout
-                android:id="@+id/contentBestForYouHomeFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_32dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/BestForYou_homeFragment"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_16dp" />
-
-                <TextView
-                    android:id="@+id/seeMoreBestForYouHomeFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:text="@string/SeeMore_homeFragment"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/_12dp" />
-
-            </RelativeLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerviewBestForYouHomeFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_24dp"
-                android:overScrollMode="never" />
+            <ImageButton
+                android:id="@+id/btnFilterHomeFragment"
+                android:layout_width="@dimen/_48dp"
+                android:layout_height="@dimen/_48dp"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="@null"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_filter_homefragment" />
 
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listCategoryHomeFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:overScrollMode="never" />
+
+                <RelativeLayout
+                    android:id="@+id/contentTextNearFromYou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_27dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/NearFromYou_homeFragment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16dp" />
+
+                    <TextView
+                        android:id="@+id/seeMoreNearFromYouHomeFragment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="@string/SeeMore_homeFragment"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/_12dp" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerviewNearFromYouHomeFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24dp"
+                    android:overScrollMode="never" />
+
+                <RelativeLayout
+                    android:id="@+id/contentBestForYouHomeFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_32dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BestForYou_homeFragment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16dp" />
+
+                    <TextView
+                        android:id="@+id/seeMoreBestForYouHomeFragment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="@string/SeeMore_homeFragment"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/_12dp" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerviewBestForYouHomeFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24dp"
+                    android:overScrollMode="never" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

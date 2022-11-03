@@ -62,7 +62,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private RecyclerView rcvFeedback;
     private TextView opening;
     private TextView ending;
-    private TextView priceRoom;
+    private TextView GiaMoPhong;
     private TextView legalHouse;
     private Button btnRentNow;
     private MenuItem menuItem;
@@ -114,26 +114,24 @@ public class DetailProductActivity extends AppCompatActivity {
         });
         getSupportActionBar().setTitle("");
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
-        RequestOptions options = new RequestOptions()
+        options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.img)
                 .error(R.drawable.img);
-
-
-
-
+        idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
+        initData(idHouse);
 //        rcvFeedback.setHasFixedSize(true);
 //        rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 //        FeedbackAdapter feedbackAdapter = new FeedbackAdapter(this, getListFeedback());
 //        rcvFeedback.setAdapter(feedbackAdapter);
+    }
 
-
-
-        detailProductViewModel.getHouseById("635ab27ed3de0abfd7e69f22").observe(this, item -> {
+    private void initData(String id) {
+        detailProductViewModel.getHouseById(id).observe(this, item -> {
             tvAddress.setText(item.getNameLocation());
             tvNameHotel.setText(item.getName());
-            tvAmountBedRoom.setText(item.getSleepingPlaces().size()+" ");
-            tvAmountBedroom2.setText(item.getBathrooms().size()+ "");
+            tvAmountBedRoom.setText(item.getSleepingPlaces().size() + " ");
+            tvAmountBedroom2.setText(item.getBathrooms().size() + "");
             ContentHouse.setText(item.getContent());
             legalHouse.setText(item.getLegal());
 
@@ -159,12 +157,8 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
-            
-
-
-
-
-
+            progressBar.setVisibility(View.GONE);
+        });
 
             Log.e("DUy", item.toString());
         });

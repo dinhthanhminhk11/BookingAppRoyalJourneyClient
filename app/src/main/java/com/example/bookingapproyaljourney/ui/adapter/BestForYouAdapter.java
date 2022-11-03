@@ -24,13 +24,19 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
     private List<House> data;
     Listernaer mListerner;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private final int TYPE_ITEM_DEFAULT = 0;
+    private final int TYPE_ITEM_IF_NULL = 1;
+
+
+    public void setDataHouse(List<House> dataHouse) {
+        this.dataHouse = dataHouse;
+    }
 
     public interface Listernaer {
         public void onClickListChinh(View v, int position);
     }
 
-    public BestForYouAdapter(List<House> dataHouse) {
-        this.dataHouse = dataHouse;
+    public BestForYouAdapter() {
     }
 
 
@@ -52,7 +58,7 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
             Glide.with(holder.itemView.getContext()).load(house.getImages().get(0)).apply(options).into(holder.imgBestForYou);
 
             holder.tvNameHouse.setText(house.getName());
-            holder.tvPriceHouse.setText(house.getPrice() + " VND");
+            holder.tvPriceHouse.setText(fm.format(house.getPrice()) + " VND");
             holder.tvCountBedroom.setText(house.getSleepingPlaces().size() + " Bedroom");
             holder.tvCountBathroom.setText(house.getBathrooms().size() + " Bathroom");
 

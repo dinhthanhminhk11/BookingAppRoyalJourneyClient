@@ -13,6 +13,7 @@ import com.example.bookingapproyaljourney.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookingapproyaljourney.model.house.DataMap;
 import com.example.bookingapproyaljourney.model.house.House;
 
 import java.text.DecimalFormat;
@@ -21,20 +22,23 @@ import java.util.List;
 
 public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.ViewHolder> {
 
-    private List<House> dataHouse;
+    private List<DataMap> dataHouse;
     private Listerner listerner;
     private NumberFormat fm = new DecimalFormat("#,###");
 
-    public NearFromYouAdapter(List<House> dataHouse , Listerner listerner) {
+    public void setDataHouse(List<DataMap> dataHouse) {
         this.dataHouse = dataHouse;
+    }
+
+    public NearFromYouAdapter( Listerner listerner ) {
         this.listerner = listerner;
     }
 
     public interface Listerner {
-        public void onClick(View v, int position);
+        public void onClick(House house);
     }
 
-    public void setData(List<House> dataHouse) {
+    public void setData(List<DataMap> dataHouse) {
         this.dataHouse = dataHouse;
     }
 
@@ -49,20 +53,20 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
     @Override
     public void onBindViewHolder(@NonNull NearFromYouAdapter.ViewHolder holder, int position) {
 
-        House house = dataHouse.get(position);
+        DataMap house = dataHouse.get(position);
         if (house != null) {
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.img)
                     .error(R.drawable.img);
-            Glide.with(holder.itemView.getContext()).load(house.getImages().get(0)).apply(options).into(holder.imgNearFromYou);
+            Glide.with(holder.itemView.getContext()).load(house.getData().getImages().get(0)).apply(options).into(holder.imgNearFromYou);
 
-            holder.tvAddressNearFromYou.setText(house.getNameLocation());
-            holder.tvDistance.setText( " Km");
-            holder.tvNameNearFromYou.setText(house.getName());
+            holder.tvAddressNearFromYou.setText(house.getData().getNameLocation());
+            holder.tvDistance.setText(house.getDistance()+ " Km");
+            holder.tvNameNearFromYou.setText(house.getData().getName());
 
             holder.itemView.setOnClickListener(v -> {
-                listerner.onClick(v, position);
+                listerner.onClick(dataHouse.get(position).getData());
             });
         }
     }
