@@ -24,12 +24,9 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
     private List<House> data;
     Listernaer mListerner;
     private NumberFormat fm = new DecimalFormat("#,###");
-    private int layout;
     private final int TYPE_ITEM_DEFAULT = 0;
     private final int TYPE_ITEM_IF_NULL = 1;
-    public void setLayout(int layout) {
-        this.layout = layout;
-    }
+
 
     public void setDataHouse(List<House> dataHouse) {
         this.dataHouse = dataHouse;
@@ -46,7 +43,7 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
     @NonNull
     @Override
     public BestForYouAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bestforyou_homefragment, parent, false);
         return new ViewHolder(view);
     }
 

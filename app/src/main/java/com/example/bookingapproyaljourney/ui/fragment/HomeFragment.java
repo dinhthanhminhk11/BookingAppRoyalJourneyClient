@@ -167,7 +167,6 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
 
     @Override
     public void callbacksBestForYou(int position, CategoryBestForYouResponse categoryBestForYouResponse) {
-        bestForYouAdapter.setLayout(contentTextNearFromYou.getVisibility() == View.VISIBLE ? R.layout.item_bestforyou_homefragment : R.layout.item_bestforyou_homefragment);
         bestForYouAdapter.setDataHouse(categoryBestForYouResponse.getHouses());
         recyclerviewListBestForYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
