@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Image;
 
@@ -17,7 +19,7 @@ import com.example.bookingapproyaljourney.model.house.Image;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
-    private List<Image> imageList;
+    private List<String> imageList;
     Context context;
 
     private int row_index = -1;
@@ -25,7 +27,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private boolean check = true;
 
 
-    public ImageAdapter(List<Image> imageList, Context context) {
+    public ImageAdapter(Context context,List<String> imageList) {
         this.imageList = imageList;
         this.context = context;
     }
@@ -39,7 +41,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.ImgPicture.setImageResource(imageList.get(position).getImagePicture());
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
+        Glide.with(holder.itemView.getContext()).load(imageList.get(position)).apply(options).into(holder.imgPicture);
 
         if(selected){
             if(position == 0){
@@ -65,12 +71,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ImgPicture;
+        private ImageView imgPicture;
         private View imgBackground;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ImgPicture =itemView.findViewById(R.id.ImgPicture);
+            imgPicture =itemView.findViewById(R.id.imgPicture);
             imgBackground = itemView.findViewById(R.id.imgBackground);
         }
     }

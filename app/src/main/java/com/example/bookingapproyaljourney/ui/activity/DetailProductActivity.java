@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
@@ -62,7 +63,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private RecyclerView rcvFeedback;
     private TextView opening;
     private TextView ending;
-    private TextView GiaMoPhong;
+    private TextView priceRoom;
     private TextView legalHouse;
     private Button btnRentNow;
     private MenuItem menuItem;

@@ -14,7 +14,7 @@
         android:background="#FABC03"/>
 
     <ImageView
-        android:id="@+id/ImgPicture"
+        android:id="@+id/imgPicture"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="1dp"
