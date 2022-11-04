@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.ResultReceiver;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,6 +120,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
         seeMoreBestForYou = (TextView) view.findViewById(R.id.seeMoreBestForYouHomeFragment);
         recyclerviewListBestForYou = (RecyclerView) view.findViewById(R.id.recyclerviewBestForYouHomeFragment);
         recyclerviewListBestForYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        recyclerviewListBestForYou.setNestedScrollingEnabled(false);
         progressBar = (LottieAnimationView) view.findViewById(R.id.progressBar);
         contentTextNearFromYou = (RelativeLayout) view.findViewById(R.id.contentTextNearFromYou);
         contentBestForYouHomeFragment = (RelativeLayout) view.findViewById(R.id.contentBestForYouHomeFragment);
@@ -157,10 +159,12 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
 
     @Override
     public void callbacksNearFromYou(int position, HouseNearestByUserResponse houseNearestByUserResponse) {
-        if (houseNearestByUserResponse.getDataMaps().size() == 0) {
+        Log.e("MinhHomeFragment", houseNearestByUserResponse + " fdsf");
+        if (houseNearestByUserResponse.getDataMaps().size() == 0 ) {
             contentTextNearFromYou.setVisibility(View.GONE);
             recyclerviewNearFromYou.setVisibility(View.GONE);
         } else {
+            contentBestForYouHomeFragment.setVisibility(View.VISIBLE);
             contentTextNearFromYou.setVisibility(View.VISIBLE);
             recyclerviewNearFromYou.setVisibility(View.VISIBLE);
             nearFromYouAdapter.setDataHouse(houseNearestByUserResponse.getDataMaps());
@@ -178,7 +182,6 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
             bestForYouAdapter.setDataHouse(categoryBestForYouResponse.getHouses());
             recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
         }
-
     }
 
     @Override
@@ -186,5 +189,12 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
         progressBar.setVisibility(view);
     }
 
-
+    @Override
+    public void callBackNull(CategoryBestForYouResponse categoryBestForYouResponse) {
+        contentTextNearFromYou.setVisibility(View.GONE);
+        recyclerviewNearFromYou.setVisibility(View.GONE);
+        contentBestForYouHomeFragment.setVisibility(View.VISIBLE);
+        bestForYouAdapterNotNull.setDataHouse(categoryBestForYouResponse.getHouses());
+        recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
+    }
 }

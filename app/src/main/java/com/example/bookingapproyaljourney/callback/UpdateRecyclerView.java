@@ -12,4 +12,6 @@ public interface UpdateRecyclerView {
     void callbacksBestForYou(int position, CategoryBestForYouResponse categoryBestForYouResponse);
 
     void callLoading(int view);
+
+    void callBackNull(CategoryBestForYouResponse categoryBestForYouResponse);
 }

@@ -226,7 +226,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();
             } else {
-                Toast.makeText(this, "Permission is denied!", Toast.LENGTH_SHORT).show();
+                adapter.setSelected(POS_HOME);
+                Toast.makeText(this, "Bạn không cho phép truy cập vị trí", Toast.LENGTH_SHORT).show();
             }
         }
     }

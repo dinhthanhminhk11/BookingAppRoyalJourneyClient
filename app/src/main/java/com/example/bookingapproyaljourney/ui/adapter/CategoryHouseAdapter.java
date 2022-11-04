@@ -104,30 +104,50 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
     }
 
     private void initData(Category item, int position) {
-        categoryRepository.getHouseByCategory(item.getId(), new HouseByCategoryCallback() {
-            @Override
-            public void success(CategoryBestForYouResponse categoryBestForYouResponse) {
-                updateRecyclerView.callbacksBestForYou(position, categoryBestForYouResponse);
-                updateRecyclerView.callLoading(View.GONE);
-            }
 
-            @Override
-            public void failure(Throwable t) {
+        if (location != null) {
+            categoryRepository.getHouseNearestByUserAndLocationUser(new HouseNearestByUser(location.getLongitude(), location.getLatitude(), 10000, item.getId()), new InterfaceResponseHouseNearestByUser() {
+                @Override
+                public void onResponse(HouseNearestByUserResponse houseNearestByUserResponse) {
+                    updateRecyclerView.callbacksNearFromYou(position, houseNearestByUserResponse);
+                    updateRecyclerView.callLoading(View.GONE);
+                }
 
-            }
-        });
-        categoryRepository.getHouseNearestByUserAndLocationUser(new HouseNearestByUser(location.getLongitude(), location.getLatitude(), 10000, item.getId()), new InterfaceResponseHouseNearestByUser() {
-            @Override
-            public void onResponse(HouseNearestByUserResponse houseNearestByUserResponse) {
-                updateRecyclerView.callbacksNearFromYou(position, houseNearestByUserResponse);
-                updateRecyclerView.callLoading(View.GONE);
-            }
+                @Override
+                public void onFailure(Throwable t) {
 
-            @Override
-            public void onFailure(Throwable t) {
+                }
 
-            }
-        });
+            });
+
+            categoryRepository.getHouseByCategory(item.getId(), new HouseByCategoryCallback() {
+                @Override
+                public void success(CategoryBestForYouResponse categoryBestForYouResponse) {
+                    updateRecyclerView.callbacksBestForYou(position, categoryBestForYouResponse);
+                    updateRecyclerView.callLoading(View.GONE);
+                }
+
+                @Override
+                public void failure(Throwable t) {
+
+                }
+            });
+        }else {
+            updateRecyclerView.callLoading(View.VISIBLE);
+            categoryRepository.getHouseByCategory(item.getId(), new HouseByCategoryCallback() {
+                @Override
+                public void success(CategoryBestForYouResponse categoryBestForYouResponse) {
+                    updateRecyclerView.callBackNull( categoryBestForYouResponse);
+                    updateRecyclerView.callLoading(View.GONE);
+                }
+
+                @Override
+                public void failure(Throwable t) {
+
+                }
+            });
+        }
+
     }
 
     @Override
