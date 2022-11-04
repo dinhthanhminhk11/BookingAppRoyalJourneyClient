@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -83,6 +85,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     private BottomSheetFilterMap bottomSheetFilterMap;
     private MapActivityNearByFromYouViewModel mapActivityNearByFromYouViewModel;
     private MapRepository mapRepository;
+    private static final Drawable TRANSPARENT_DRAWABLE = new ColorDrawable(Color.TRANSPARENT);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +133,8 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         iconGenerator = new IconGenerator(this);
-        iconGenerator.setBackground(getResources().getDrawable(R.drawable.marker_background));
+        iconGenerator.setBackground(TRANSPARENT_DRAWABLE);
+//        iconGenerator.setBackground(getResources().getDrawable(R.drawable.marker_background));
         markerView = this.getLayoutInflater().inflate(R.layout.marker, null);
         priceTag = (TextView) markerView.findViewById(R.id.priceTag);
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -226,9 +230,9 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 
     private void drawMakerListDataHouse(DataMap house) {
 
-//        priceTag.setText("$" + fm.format(house.getData().getPrice()));
+        priceTag.setText("$" + fm.format(house.getData().getPrice()));
         LatLng latLng = new LatLng(house.getData().getLocation().getCoordinates().get(1), house.getData().getLocation().getCoordinates().get(0));
-//        iconGenerator.setContentView(markerView);
+        iconGenerator.setContentView(markerView);
         iconGenerator.setTextAppearance(R.style.iconGenText);
         markerOptions = new MarkerOptions()
                 .position(latLng)
@@ -305,7 +309,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 13));
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(new LatLng(location.getLatitude(), location.getLongitude()))
-                    .zoom(15)
+                    .zoom(10)
                     .bearing(0)
                     .tilt(40)
                     .build();
