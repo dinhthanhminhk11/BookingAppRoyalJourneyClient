@@ -120,12 +120,20 @@
                 android:overScrollMode="never" />
         </LinearLayout>
 
-
-        <ProgressBar
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/progress_circular"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_height="@dimen/_120dp"
+            android:background="@null"
+            android:backgroundTint="@null"
+            android:backgroundTintMode="@null"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loading.json"
+            app:lottie_loop="true"
+            android:layout_centerInParent="true"
+            />
+
+
     </RelativeLayout>
 
 </FrameLayout>
