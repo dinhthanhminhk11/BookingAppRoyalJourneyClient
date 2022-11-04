@@ -68,10 +68,23 @@
     <string name="RegisterFailed">Email already exists</string>
     <string name="title_activity_near_from_you_maps">NearFromYouMapsActivity</string>
     <string name="api_key_app">AIzaSyDId5Ne9ty3PAl9aMBW4A-_7WcXfH7ngFA</string>
-    <string name="distance" >Distance: </string>
-    <string name="time" >Time: </string>
-    <string name="textPerNight" > /per night</string>
-    <string name="textPerNightVN" > /đêm</string>
-    <string name="askForMapPermission" >Xin lỗi bạn phải cấp quyền truy cập vị trí</string>
+    <string name="distance">Distance: </string>
+    <string name="time">Time: </string>
+    <string name="textPerNight"> /per night</string>
+    <string name="textPerNightVN"> /đêm</string>
+    <string name="askForMapPermission">Xin lỗi bạn phải cấp quyền truy cập vị trí</string>
+    <string name="motadetail">Mô tả</string>
+    <string name="phongdetail">Nơi bạn sẽ ngủ nghỉ</string>
+    <string name="phongtamdetail">Phòng tắm</string>
+    <string name="tienichdetail">Nơi này có những gì cho bạn</string>
+    <string name="anhdetail">Ảnh phòng</string>
+    <string name="mapdetail">Nơi bạn sẽ đến</string>
+    <string name="availabilitystatusdetail">Tình trạng phòng sẵn:</string>
+    <string name="houserulesdetail">Nội quy nhận phòng</string>
+    <string name="Cancellationpolicydetail">Chính sách hủy</string>
+    <string name="pricedetail">Giá</string>
+    <string name="rentnowdetail">Thuê ngay</string>
+    <string name="danhgiadetail">Đánh giá</string>
+
 
 </resources>

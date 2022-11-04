@@ -153,7 +153,8 @@
                     android:layout_marginTop="@dimen/_20dp"
                     android:layout_marginBottom="@dimen/_14dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Description"
+                    android:text="@string/motadetail"
+
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
 
@@ -175,7 +176,7 @@
                         android:layout_marginLeft="@dimen/_10dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="5.0"
-                        android:textColor="@color/black"
+                        android:textColor="#0A8ED9"
                         android:textSize="@dimen/_18dp" />
 
                     <TextView
@@ -183,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="53 feedback"
+                        android:text="@string/danhgiadetail"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_18dp" />
                 </LinearLayout>
@@ -283,7 +284,7 @@
                     android:layout_marginTop="@dimen/_16dp"
                     android:layout_marginBottom="@dimen/_10dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Sleeping place"
+                    android:text="@string/phongdetail"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
 
@@ -299,22 +300,21 @@
                     android:layout_marginTop="@dimen/_16dp"
                     android:layout_marginBottom="@dimen/_16dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Bad room"
+                    android:text="@string/phongtamdetail"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
+                    android:textSize="@dimen/_16sp" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvBathdRoom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    />
+                    android:orientation="vertical" />
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:layout_marginBottom="@dimen/_10dp"
                     android:orientation="horizontal">
 
@@ -323,11 +323,12 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Convenient "
+                        android:text="@string/tienichdetail"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sp" />
 
                     <TextView
+                        android:id="@+id/showMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:foreground="?android:attr/selectableItemBackground"
@@ -349,7 +350,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Gallery"
+                    android:text="@string/anhdetail"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
 
@@ -365,7 +366,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Map"
+                    android:text="@string/mapdetail"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
 
@@ -405,7 +406,7 @@
                         android:layout_marginLeft="@dimen/_10dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="5.0"
-                        android:textColor="@color/black"
+                        android:textColor="#0A8ED9"
                         android:textSize="@dimen/_20dp"
 
                         />
@@ -416,7 +417,7 @@
                         android:layout_marginLeft="@dimen/_10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="53 feedback"
+                        android:text="@string/danhgiadetail"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_20dp" />
 
@@ -446,7 +447,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Availability status:"
+                        android:text="@string/availabilitystatusdetail"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sp" />
 
@@ -471,7 +472,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="House Rules:"
+                        android:text="@string/houserulesdetail"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sp" />
 
@@ -502,7 +503,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="@dimen/_10dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Cancellation Policy"
+                    android:text="@string/Cancellationpolicydetail"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
 
@@ -553,7 +554,7 @@
                 android:layout_marginTop="@dimen/_8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Rp. 2.500.000.000 / Year"
-                android:textColor="@color/black"
+                android:textColor="#0A8ED9"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -568,7 +569,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:paddingHorizontal="@dimen/_24dp"
             android:paddingVertical="@dimen/_12dp"
-            android:text="Rent Now"
+            android:text="@string/rentnowdetail"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sp"

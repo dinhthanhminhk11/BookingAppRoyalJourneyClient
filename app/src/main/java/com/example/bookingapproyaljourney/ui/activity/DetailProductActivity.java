@@ -26,6 +26,7 @@ import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.Room;
+import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
@@ -61,12 +62,14 @@ public class DetailProductActivity extends AppCompatActivity {
     private TextView ending;
     private TextView GiaMoPhong;
     private TextView legalHouse;
+    private RecyclerView rcvBathdRoom;
     private Button btnRentNow;
     private MenuItem menuItem;
     FeedbackAdapter feedbackAdapter;
     RoomAdapter roomAdapter;
     GalleryAdapter galleryAdapter;
     ConvenientAdapter convenientAdapter;
+    BathdRoomAdapter bathdRoomAdapter;
     private DetailProductViewModel detailProductViewModel;
     private House house;
     private String idHouse = "";
@@ -96,6 +99,7 @@ public class DetailProductActivity extends AppCompatActivity {
         rcvRoom = (RecyclerView) findViewById(R.id.rcvRoom);
         rcvConvenient = (RecyclerView) findViewById(R.id.rcvConvenient);
         rcvGallery = (RecyclerView) findViewById(R.id.rcvGallery);
+        rcvBathdRoom = (RecyclerView) findViewById(R.id.rcvBathdRoom);
         imgStar2 = (ImageView) findViewById(R.id.imgStar2);
         rcvFeedback = (RecyclerView) findViewById(R.id.rcvFeedback);
         opening = (TextView) findViewById(R.id.opening);
@@ -131,8 +135,8 @@ public class DetailProductActivity extends AppCompatActivity {
         detailProductViewModel.getHouseById(id).observe(this, item -> {
             tvAddress.setText(item.getNameLocation());
             tvNameHotel.setText(item.getName());
-            tvAmountBedRoom.setText(item.getSleepingPlaces().size() + " ");
-            tvAmountBedroom2.setText(item.getBathrooms().size() + "");
+            tvAmountBedRoom.setText(item.getSleepingPlaces().size() + " Phòng ngủ");
+            tvAmountBedroom2.setText(item.getBathrooms().size() + " Phòng tắm");
             ContentHouse.setText(item.getContent());
             legalHouse.setText(item.getLegal());
 
@@ -148,6 +152,12 @@ public class DetailProductActivity extends AppCompatActivity {
             RoomAdapter roomAdapter = new RoomAdapter(this, item.getSleepingPlaces());
             rcvRoom.setAdapter(roomAdapter);
 
+            rcvBathdRoom.setHasFixedSize(true);
+            rcvBathdRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            BathdRoomAdapter bathdRoomAdapter = new BathdRoomAdapter(item.getBathrooms(),this);
+            rcvBathdRoom.setAdapter(bathdRoomAdapter);
+
+
             rcvConvenient.setHasFixedSize(true);
             rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             ConvenientAdapter convenientAdapter = new ConvenientAdapter(item.getSupplement(), this);
@@ -158,7 +168,7 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
-            GiaMoPhong.setText(item.getPrice() +"Vnd");
+            GiaMoPhong.setText(item.getPrice() +"Vnd/đêm");
             progressBar.setVisibility(View.GONE);
         });
 
