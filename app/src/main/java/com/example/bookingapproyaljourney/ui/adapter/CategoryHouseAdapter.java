@@ -143,7 +143,5 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
             nameCategory = (TextView) itemView.findViewById(R.id.nameCategoryItemCategory);
         }
     }
-
-
 }
 
