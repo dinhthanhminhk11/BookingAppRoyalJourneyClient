@@ -26,14 +26,16 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
     private NumberFormat fm = new DecimalFormat("#,###");
 
     public void setDataHouse(List<House> dataHouse) {
+        notifyDataSetChanged();
         this.dataHouse = dataHouse;
     }
 
     public interface Listernaer {
-        public void onClickListChinh(View v, int position);
+        public void onClickListChinh(House house);
     }
 
-    public BestForYouAdapter() {
+    public BestForYouAdapter(Listernaer listernaer) {
+        this.mListerner = listernaer;
     }
 
 
@@ -60,7 +62,7 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
             holder.tvCountBathroom.setText(house.getBathrooms().size() + " Bathroom");
 
             holder.itemView.setOnClickListener(v -> {
-                mListerner.onClickListChinh(v, position);
+                mListerner.onClickListChinh(house);
             });
         }
     }

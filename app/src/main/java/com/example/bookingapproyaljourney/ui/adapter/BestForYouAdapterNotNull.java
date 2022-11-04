@@ -30,10 +30,17 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
 
     public void setDataHouse(List<House> dataHouse) {
+        notifyDataSetChanged();
         this.dataHouse = dataHouse;
     }
 
-    public BestForYouAdapterNotNull() {
+    private Listernaer listernaer;
+    public BestForYouAdapterNotNull(Listernaer listernaer) {
+        this.listernaer = listernaer;
+    }
+
+    public interface Listernaer{
+        void onClick(House house);
     }
 
     @NonNull
@@ -73,6 +80,9 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
             holder.tvCountBathroom.setText(house.getBathrooms().size() + " bedroom");
             holder.tvCountBathroom.setText(house.getBathrooms().size() + " bathroom");
             holder.tvPerson.setText(house.getLimitPerson() + " người");
+            holder.itemView.setOnClickListener(v->{
+                listernaer.onClick(house);
+            });
         }
     }
 

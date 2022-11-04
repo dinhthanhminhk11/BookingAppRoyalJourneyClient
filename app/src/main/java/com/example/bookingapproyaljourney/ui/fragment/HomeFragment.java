@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements UpdateRecyclerView {
+public class HomeFragment extends Fragment implements UpdateRecyclerView ,BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer{
     private ResultReceiver resultReceiver;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -119,14 +119,19 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
         recyclerviewNearFromYou = (RecyclerView) view.findViewById(R.id.recyclerviewNearFromYouHomeFragment);
         seeMoreBestForYou = (TextView) view.findViewById(R.id.seeMoreBestForYouHomeFragment);
         recyclerviewListBestForYou = (RecyclerView) view.findViewById(R.id.recyclerviewBestForYouHomeFragment);
-        recyclerviewListBestForYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerviewListBestForYou.setNestedScrollingEnabled(false);
         progressBar = (LottieAnimationView) view.findViewById(R.id.progressBar);
         contentTextNearFromYou = (RelativeLayout) view.findViewById(R.id.contentTextNearFromYou);
         contentBestForYouHomeFragment = (RelativeLayout) view.findViewById(R.id.contentBestForYouHomeFragment);
+
+        recyclerviewListBestForYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+
+        recyclerviewListBestForYou.setNestedScrollingEnabled(false);
+        recyclerviewNearFromYou.setNestedScrollingEnabled(false);
+
         categoryViewModel = new ViewModelProvider(getActivity()).get(CategoryViewModel.class);
-        bestForYouAdapter = new BestForYouAdapter();
-        bestForYouAdapterNotNull = new BestForYouAdapterNotNull();
+        bestForYouAdapter = new BestForYouAdapter(this);
+        bestForYouAdapterNotNull = new BestForYouAdapterNotNull(this);
+
         nearFromYouAdapter = new NearFromYouAdapter(new NearFromYouAdapter.Listerner() {
             @Override
             public void onClick(House house) {
@@ -196,5 +201,19 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView {
         contentBestForYouHomeFragment.setVisibility(View.VISIBLE);
         bestForYouAdapterNotNull.setDataHouse(categoryBestForYouResponse.getHouses());
         recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
+    }
+
+    @Override
+    public void onClickListChinh(House house) {
+        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(House house) {
+        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+        intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
+        startActivity(intent);
     }
 }
