@@ -26,8 +26,8 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
     private NumberFormat fm = new DecimalFormat("#,###");
 
     public void setDataHouse(List<House> dataHouse) {
-        notifyDataSetChanged();
         this.dataHouse = dataHouse;
+        notifyDataSetChanged();
     }
 
     public interface Listernaer {

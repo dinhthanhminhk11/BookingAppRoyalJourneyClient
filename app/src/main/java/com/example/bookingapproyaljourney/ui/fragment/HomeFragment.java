@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements UpdateRecyclerView ,BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer{
+public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer {
     private ResultReceiver resultReceiver;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -165,7 +165,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView ,BestFo
     @Override
     public void callbacksNearFromYou(int position, HouseNearestByUserResponse houseNearestByUserResponse) {
         Log.e("MinhHomeFragment", houseNearestByUserResponse + " fdsf");
-        if (houseNearestByUserResponse.getDataMaps().size() == 0 ) {
+        if (houseNearestByUserResponse.getDataMaps().size() == 0) {
             contentTextNearFromYou.setVisibility(View.GONE);
             recyclerviewNearFromYou.setVisibility(View.GONE);
         } else {
@@ -183,7 +183,8 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView ,BestFo
         if (contentTextNearFromYou.getVisibility() == View.GONE) {
             bestForYouAdapterNotNull.setDataHouse(categoryBestForYouResponse.getHouses());
             recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
-        } else {
+        }
+        if (contentTextNearFromYou.getVisibility() == View.VISIBLE) {
             bestForYouAdapter.setDataHouse(categoryBestForYouResponse.getHouses());
             recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
         }
