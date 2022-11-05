@@ -33,7 +33,7 @@ public class FacilitiesAdapter extends RecyclerView.Adapter<FacilitiesAdapter.Vi
         Convenient convenient = data.get(position);
         if (convenient != null) {
             holder.nameConvenient.setText(convenient.getName());
-            holder.checkbox.setImageResource(convenient.getImage());
+            holder.checkbox.setImageResource(convenient.getImageCheck());
         }
 
         holder.itemView.setOnClickListener(v -> {

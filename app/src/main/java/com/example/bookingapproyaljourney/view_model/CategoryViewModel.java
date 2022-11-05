@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.repository.CategoryRepository;
-import com.example.bookingapproyaljourney.response.CategoryResponse;
 
 import java.util.List;
 
@@ -27,5 +26,7 @@ public class CategoryViewModel extends AndroidViewModel {
     public LiveData<List<Category>> getListCategory() {
         return categoryResponseLiveData;
     }
+
+
 
 }

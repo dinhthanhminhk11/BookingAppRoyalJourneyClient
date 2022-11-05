@@ -2,16 +2,6 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,16 +13,21 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
-import com.example.bookingapproyaljourney.model.house.Location;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
-import com.example.librarynav.SlidingRootNav;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,11 +124,11 @@ public class HomeFragment extends Fragment implements CategoryHouseAdapter.Updat
 
 //      fake data NearFromYou
         dataHouse = new ArrayList<>();
-        dataHouse.add(new House(1, "Hanoi Prime Center", "Ha Noi", 1, "1.5", 15000, 2, 2, 5));
-        dataHouse.add(new House(2, "Haiphong Prime Center", "Hai Phong", 2, "2.7", 13000, 1, 2, 4));
-        dataHouse.add(new House(3, "Thaibinh Prime Center", "Thai Binh", 3, "3", 10000, 2, 1, 3));
-        dataHouse.add(new House(4, "HCM Prime Center", "Tp.Ho Chi Minh", 4, "4.5", 17000, 2, 2, 2));
-        dataHouse.add(new House(5, "Hungyen Prime Center", "Hung Yen", 5, "4", 12000, 1, 1, 1));
+//        dataHouse.add(new House(1, "Hanoi Prime Center", "Ha Noi", 1, "1.5", 15000, 2, 2, 5));
+//        dataHouse.add(new House(2, "Haiphong Prime Center", "Hai Phong", 2, "2.7", 13000, 1, 2, 4));
+//        dataHouse.add(new House(3, "Thaibinh Prime Center", "Thai Binh", 3, "3", 10000, 2, 1, 3));
+//        dataHouse.add(new House(4, "HCM Prime Center", "Tp.Ho Chi Minh", 4, "4.5", 17000, 2, 2, 2));
+//        dataHouse.add(new House(5, "Hungyen Prime Center", "Hung Yen", 5, "4", 12000, 1, 1, 1));
         nearFromYouAdapter = new NearFromYouAdapter(dataHouse, new NearFromYouAdapter.Listerner() {
             @Override
             public void onClick(View v, int position) {
