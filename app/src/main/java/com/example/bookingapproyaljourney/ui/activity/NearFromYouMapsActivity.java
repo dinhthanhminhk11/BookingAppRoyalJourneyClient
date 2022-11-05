@@ -154,12 +154,11 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 if (marker.getPosition().latitude == latLngLocationYourSelf.latitude && marker.getPosition().longitude == latLngLocationYourSelf.longitude) {
                     return false;
                 }
-
-                markerView = getLayoutInflater().inflate(R.layout.marker_ver2, null);
-                LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
-                iconGenerator.setContentView(markerView);
-                iconGenerator.setTextAppearance(R.style.iconGenText);
-                marker.setIcon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon()));
+//                markerView = getLayoutInflater().inflate(R.layout.marker_ver2, null);
+//                LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
+//                iconGenerator.setContentView(markerView);
+//                iconGenerator.setTextAppearance(R.style.iconGenText);
+//                marker.setIcon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon()));
                 binding.recyclerview.smoothScrollToPosition(Integer.parseInt(marker.getId().substring(1)) - 1);
                 return false;
             }
@@ -174,7 +173,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 }
                 initData(houseNearestByUserResponse.getDataMaps());
 //                mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, houseNearestByUserResponse.getDataMaps().get(0).getData().getNameLocation(), binding.distance, binding.time);
-
             }
         });
     }
@@ -225,7 +223,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 //                            controller.getRootDistanceAndDuration(nameLocationYourSelf, data.get(0).getAddress(), distance, time);
 //                            LatLng latLng = getLocationFromAddress(data.get(0).getAddress());
 //                            decimalFormat.setRoundingMode(RoundingMode.UP);
-
                         } else {
                             binding.progressCircular.setVisibility(View.GONE);
                             binding.contentTime.setVisibility(View.VISIBLE);
@@ -235,7 +232,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     }
 
     private void drawMakerListDataHouse(DataMap house) {
-
         priceTag.setText("$" + fm.format(house.getData().getPrice()));
         LatLng latLng = new LatLng(house.getData().getLocation().getCoordinates().get(1), house.getData().getLocation().getCoordinates().get(0));
         iconGenerator.setContentView(markerView);
@@ -269,7 +265,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.recyclerview.setAdapter(nearFromYouAdapterMap);
 
-
         binding.recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -280,9 +275,6 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 //                    mapRepository.getRootDistanceAndDuration(nameLocationYourSelf, dataMap.getData().getNameLocation(), binding.distance, binding.time);
                     selectCamera(dataMap.getData());
                     checkSelectItem = true;
-//                    markerView = getLayoutInflater().inflate(R.layout.marker_ver2, null);
-//                    iconGenerator.setContentView(markerView);
-//                    iconGenerator.setBackground(getResources().getDrawable(R.drawable.marker_background_ver2));
                 }
             }
         });
