@@ -132,6 +132,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
         iconGenerator = new IconGenerator(this);
         iconGenerator.setBackground(TRANSPARENT_DRAWABLE);
 //        iconGenerator.setBackground(getResources().getDrawable(R.drawable.marker_background));
