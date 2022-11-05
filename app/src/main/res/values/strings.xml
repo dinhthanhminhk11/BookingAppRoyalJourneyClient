@@ -82,7 +82,7 @@
     <string name="availabilitystatusdetail">Tình trạng phòng sẵn:</string>
     <string name="houserulesdetail">Nội quy nhận phòng</string>
     <string name="Cancellationpolicydetail">Chính sách hủy</string>
-    <string name="pricedetail">Giá</string>
+    <string name="pricedetail">Giá thuê</string>
     <string name="rentnowdetail">Thuê ngay</string>
     <string name="danhgiadetail">Đánh giá</string>
 

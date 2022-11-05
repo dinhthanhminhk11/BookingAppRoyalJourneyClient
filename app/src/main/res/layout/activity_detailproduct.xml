@@ -145,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/contenTOp"
+                android:layout_marginTop="-3dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -294,15 +295,31 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_16dp"
-                    android:layout_marginBottom="@dimen/_16dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/phongtamdetail"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/phongtamdetail"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
+
+                    <TextView
+                        android:id="@+id/showMorebathdroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="Xem Thêm"
+                        android:textColor="#0A8ED9"
+                        android:textSize="@dimen/_16sp" />
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvBathdRoom"
@@ -543,7 +560,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Price"
+                android:text="@string/pricedetail"
                 android:textColor="@color/color_858585"
                 android:textSize="@dimen/_12dp" />
 
@@ -562,7 +579,7 @@
         <Button
             android:id="@+id/btnRentNow"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_60dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/gradiendetailproduct"
             android:fontFamily="@font/poppins_medium"

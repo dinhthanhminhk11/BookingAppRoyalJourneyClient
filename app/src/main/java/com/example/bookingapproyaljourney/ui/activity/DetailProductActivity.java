@@ -1,6 +1,8 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -21,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
@@ -28,12 +32,15 @@ import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.Room;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
+import com.example.bookingapproyaljourney.ui.adapter.ConvenientListAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomAdapter;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +69,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private TextView ending;
     private TextView GiaMoPhong;
     private TextView legalHouse;
+    private TextView showMore;
     private RecyclerView rcvBathdRoom;
     private Button btnRentNow;
     private MenuItem menuItem;
@@ -70,11 +78,13 @@ public class DetailProductActivity extends AppCompatActivity {
     GalleryAdapter galleryAdapter;
     ConvenientAdapter convenientAdapter;
     BathdRoomAdapter bathdRoomAdapter;
+    ConvenientListAdapter convenientListAdapter;
     private DetailProductViewModel detailProductViewModel;
     private House house;
     private String idHouse = "";
     private RequestOptions options;
     private LottieAnimationView progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +117,7 @@ public class DetailProductActivity extends AppCompatActivity {
         GiaMoPhong = (TextView) findViewById(R.id.priceRoom);
         btnRentNow = (Button) findViewById(R.id.btnRentNow);
         legalHouse = (TextView) findViewById(R.id.legalHouse);
-
+        showMore = (TextView) findViewById(R.id.showMore);
         setSupportActionBar(toolBar);
         toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
         toolBar.setBackground(null);
@@ -129,6 +139,19 @@ public class DetailProductActivity extends AppCompatActivity {
 //        rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 //        FeedbackAdapter feedbackAdapter = new FeedbackAdapter(this, getListFeedback());
 //        rcvFeedback.setAdapter(feedbackAdapter);
+        showMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                        DetailProductActivity.this,R.style.BottomSheetDialogTheme
+                );
+                View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                        .inflate(R.layout.item_convenientlist,
+                                (RecyclerView)findViewById(R.id.rcvConvenientList)
+                                );
+
+            }
+        });
     }
 
     private void initData(String id) {
@@ -173,6 +196,7 @@ public class DetailProductActivity extends AppCompatActivity {
         });
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

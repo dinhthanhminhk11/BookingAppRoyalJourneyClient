@@ -4,17 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_border_feedback.xml" value="0.1" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/bottom_sheet_backgroud.xml" value="0.2395" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_baseline_arrow_back_ios_new_24.xml" value="0.2395" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_convenient.xml" value="0.20863616930312098" />
-        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_detailproduct.xml" value="0.264" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_detailproduct.xml" value="0.25" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_image.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_profile.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_register.xml" value="0.20599409033347404" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bathdroom.xml" value="0.20778110303548525" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bathdrooms.xml" value="0.2" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_convenient.xml" value="0.4309090909090909" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_convenientlist.xml" value="0.20514985225833685" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_gallery.xml" value="0.1" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_imager.xml" value="0.2" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_room.xml" value="0.8" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/tool_bar.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/menu/itemboomak.xml" value="0.20863616930312098" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable-v24/gradient_blue.xml" value="0.119" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_blue_activity.xml" value="0.113" />
