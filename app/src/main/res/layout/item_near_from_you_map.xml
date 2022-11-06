@@ -54,7 +54,6 @@
                 android:textSize="@dimen/_12sp" />
 
 
-
             <RelativeLayout
                 android:id="@+id/rating"
                 android:layout_width="match_parent"

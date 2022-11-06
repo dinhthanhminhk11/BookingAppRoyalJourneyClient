@@ -28,12 +28,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void FakeData()
     {
-        dataHouse = new ArrayList<>();
-        dataHouse.add(new House(1, "Ha Noi Prime Center", "Ha Noi", 1, "1.5", 15000, 2, 2, 5));
-        dataHouse.add(new House(2, "Hai Phong Prime Center", "Hai Phong", 2, "2.7", 13000, 1, 2, 4));
-        dataHouse.add(new House(3, "Thai Binh Prime Center", "Thai Binh", 3, "3", 10000, 2, 1, 3));
-        dataHouse.add(new House(4, "HCM Prime Center", "Tp.Ho Chi Minh", 4, "4.5", 17000, 2, 2, 2));
-        dataHouse.add(new House(5, "Hung Yen Prime Center", "Hung Yen", 5, "4", 12000, 1, 1, 1));
+//        dataHouse = new ArrayList<>();
+//        dataHouse.add(new House(1, "Ha Noi Prime Center", "Ha Noi", 1, "1.5", 15000, 2, 2, 5));
+//        dataHouse.add(new House(2, "Hai Phong Prime Center", "Hai Phong", 2, "2.7", 13000, 1, 2, 4));
+//        dataHouse.add(new House(3, "Thai Binh Prime Center", "Thai Binh", 3, "3", 10000, 2, 1, 3));
+//        dataHouse.add(new House(4, "HCM Prime Center", "Tp.Ho Chi Minh", 4, "4.5", 17000, 2, 2, 2));
+//        dataHouse.add(new House(5, "Hung Yen Prime Center", "Hung Yen", 5, "4", 12000, 1, 1, 1));
 
 
         hiredProfileAdapter = new HiredProfileAdapter(dataHouse);

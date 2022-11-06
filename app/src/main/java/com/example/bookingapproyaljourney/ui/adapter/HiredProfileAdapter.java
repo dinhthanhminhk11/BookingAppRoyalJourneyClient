@@ -42,11 +42,11 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
     public void onBindViewHolder(@NonNull HiredProfileAdapter.ViewHolder holder, int position) {
         House house = dataHouse.get(position);
         if (house != null) {
-            holder.imgBestForYou.setImageLevel(house.getImage());
-            holder.tvNameHouse.setText(house.getName());
-            holder.tvPriceHouse.setText(house.getPrice() + " VND");
-            holder.tvCountBedroom.setText(house.getCountBedroom() + " Bedroom");
-            holder.tvCountBathroom.setText(house.getCountBathroom() + " Bathroom");
+//            holder.imgBestForYou.setImageLevel(house.getImage());
+//            holder.tvNameHouse.setText(house.getName());
+//            holder.tvPriceHouse.setText(house.getPrice() + " VND");
+//            holder.tvCountBedroom.setText(house.getCountBedroom() + " Bedroom");
+//            holder.tvCountBathroom.setText(house.getCountBathroom() + " Bathroom");
 
             holder.itemView.setOnClickListener(v -> {
                 mListerner.onClickListChinh(v, position);
