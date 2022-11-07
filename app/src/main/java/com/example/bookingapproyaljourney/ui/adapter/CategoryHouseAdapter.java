@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.ui.adapter;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -120,18 +121,26 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
 
             });
 
-            categoryRepository.getHouseByCategory(item.getId(), new HouseByCategoryCallback() {
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
                 @Override
-                public void success(CategoryBestForYouResponse categoryBestForYouResponse) {
-                    updateRecyclerView.callbacksBestForYou(position, categoryBestForYouResponse);
-                    updateRecyclerView.callLoading(View.GONE);
-                }
+                public void run() {
+                    categoryRepository.getHouseByCategory(item.getId(), new HouseByCategoryCallback() {
+                        @Override
+                        public void success(CategoryBestForYouResponse categoryBestForYouResponse) {
+                            updateRecyclerView.callbacksBestForYou(position, categoryBestForYouResponse);
+                            updateRecyclerView.callLoading(View.GONE);
+                        }
 
-                @Override
-                public void failure(Throwable t) {
+                        @Override
+                        public void failure(Throwable t) {
 
+                        }
+                    });
                 }
-            });
+            }, 200);
+
+
         }else {
             updateRecyclerView.callLoading(View.VISIBLE);
             categoryRepository.getHouseByCategory(item.getId(), new HouseByCategoryCallback() {
