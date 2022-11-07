@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/convenientList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_filter"
-    android:orientation="vertical"
-    android:theme="@style/Theme.MaterialComponents.DayNight">
+    android:background="@drawable/background_filter_ver2"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -51,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/_14dp"
-        android:layout_marginTop="@dimen/_20dp" />
+        android:layout_marginTop="@dimen/_20dp"
+        android:overScrollMode="never" />
 
 </LinearLayout>

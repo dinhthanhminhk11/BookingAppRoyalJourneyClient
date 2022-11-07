@@ -48,9 +48,9 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginHorizontal="@dimen/_24dp"
         android:layout_marginTop="@dimen/_20dp"
+        android:layout_weight="1"
         android:overScrollMode="never">
 
         <LinearLayout
@@ -67,11 +67,11 @@
                 android:textSize="@dimen/_16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:overScrollMode="never"
                 android:id="@+id/recycler_view_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10dp" />
+                android:layout_marginTop="@dimen/_10dp"
+                android:overScrollMode="never" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -195,26 +195,27 @@
                 android:textSize="@dimen/_16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:overScrollMode="never"
                 android:id="@+id/recycler_view_convenient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10dp" />
+                android:layout_marginTop="@dimen/_10dp"
+                android:overScrollMode="never" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
     <Button
-        android:textSize="15dp"
         android:id="@+id/btLogin"
-        android:layout_gravity="bottom|right"
         android:layout_width="@dimen/_200dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|right"
         android:background="@drawable/background_button_filter_show"
         android:foreground="?android:attr/selectableItemBackground"
         android:text="Show Resalts"
         android:textAllCaps="false"
         android:textColor="@color/white"
+        android:textSize="15dp"
         app:backgroundTint="@null" />
 </LinearLayout>
 

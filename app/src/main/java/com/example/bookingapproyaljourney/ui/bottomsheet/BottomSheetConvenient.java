@@ -30,19 +30,20 @@ public class BottomSheetConvenient extends BottomSheetDialog {
     private RecyclerView rcvConvenientList;
     private List<Convenient> data;
     private Context context;
+    private CallBack callBack;
 
-
-    public BottomSheetConvenient(@NonNull Context context, int theme, List<Convenient> data) {
-        super(context);
+    public BottomSheetConvenient(@NonNull Context context, int theme, List<Convenient> data, CallBack callback) {
+        super(context, theme);
         this.data = data;
         this.context = context;
+        this.callBack = callback;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         getWindow().setGravity(Gravity.BOTTOM);
         setContentView(R.layout.item_convenientlist);
         initView();
@@ -57,10 +58,17 @@ public class BottomSheetConvenient extends BottomSheetDialog {
     }
 
     private void initData() {
-//        rcvConvenientList.setHasFixedSize(true);
+        rcvConvenientList.setHasFixedSize(true);
         rcvConvenientList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         ConvenientListAdapter convenientListAdapter = new ConvenientListAdapter(data, context);
         rcvConvenientList.setAdapter(convenientListAdapter);
+        close.setOnClickListener(v -> {
+            callBack.onCLickCLose();
+        });
+    }
+
+    public interface CallBack {
+        void onCLickCLose();
     }
 
 }

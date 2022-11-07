@@ -1,8 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -24,7 +21,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
-import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
@@ -37,12 +33,9 @@ import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
-import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterMap;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,7 +168,7 @@ public class DetailProductActivity extends AppCompatActivity {
 
             rcvBathdRoom.setHasFixedSize(true);
             rcvBathdRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-            BathdRoomAdapter bathdRoomAdapter = new BathdRoomAdapter(item.getBathrooms(),this);
+            BathdRoomAdapter bathdRoomAdapter = new BathdRoomAdapter(item.getBathrooms(), this);
             rcvBathdRoom.setAdapter(bathdRoomAdapter);
 
 
@@ -190,13 +183,19 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
-            GiaMoPhong.setText(item.getPrice() +"Vnd/đêm");
+            GiaMoPhong.setText(item.getPrice() + "Vnd/đêm");
             progressBar.setVisibility(View.GONE);
         });
 
     }
+
     private void showDialog() {
-        bottomSheetConvenient = new BottomSheetConvenient(DetailProductActivity.this, R.style.MaterialDialogSheet,data );
+        bottomSheetConvenient = new BottomSheetConvenient(DetailProductActivity.this, R.style.MaterialDialogSheet, data, new BottomSheetConvenient.CallBack() {
+            @Override
+            public void onCLickCLose() {
+                bottomSheetConvenient.dismiss();
+            }
+        });
         bottomSheetConvenient.show();
         bottomSheetConvenient.setCanceledOnTouchOutside(false);
     }

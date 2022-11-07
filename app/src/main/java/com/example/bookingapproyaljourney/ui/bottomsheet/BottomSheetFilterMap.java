@@ -29,7 +29,7 @@ import com.google.android.material.slider.RangeSlider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BottomSheetFilterMap extends BottomSheetDialog implements View.OnClickListener{
+public class BottomSheetFilterMap extends BottomSheetDialog implements View.OnClickListener {
     private LinearLayout contentLayout;
     private ImageView close;
     private TextView reset;
