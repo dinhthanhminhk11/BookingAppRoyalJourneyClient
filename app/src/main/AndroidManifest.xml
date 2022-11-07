@@ -51,18 +51,20 @@
             android:exported="true"></activity>
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".ui.activity.ForgotActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activity.SplashScreenVer2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.ForgotActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.SplashScreenVer2"
+            android:exported="true">
+
 
         </activity>
         <activity

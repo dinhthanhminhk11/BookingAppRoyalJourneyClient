@@ -8,4 +8,5 @@ public class AppConstant {
     public static final String TAGZZZZZZZZ = "Minh ZZZZZZZZZZZZZZZ";
     public static final String TAG_ERROR = "Retrofit_Error";
     public static final String HOUSE_EXTRA = "house";
+    public static final String SHAREDPREFERENCES  = "USERCLIENT";
 }

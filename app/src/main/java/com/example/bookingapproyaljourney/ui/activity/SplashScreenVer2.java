@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 
 public class SplashScreenVer2 extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class SplashScreenVer2 extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreenVer2.this, LoginActivity.class));
+                startActivity(new Intent(SplashScreenVer2.this, MainActivity.class));
             }
         },3000);
     }
