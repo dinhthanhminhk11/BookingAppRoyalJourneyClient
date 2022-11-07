@@ -66,6 +66,25 @@ public class UserRepository {
         });
     }
 
+    public void getUserByToken(String token , InterfaceResponse interfaceLoginResponse){
+        Call<LoginResponse> loginResponseCall = apiRequest.getUserByToken(token);
+        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful()) {
+                    interfaceLoginResponse.onResponse(response.body());
+                } else {
+                    interfaceLoginResponse.onFailure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
     public interface InterfaceResponse {
         void onResponse(LoginResponse loginResponse);
 

@@ -10,6 +10,8 @@ public class LoginResponse {
     private String message;
     @SerializedName("data")
     private User user;
+    @SerializedName("accessToken")
+    private String token;
 
     public boolean isStatus() {
         return status;
@@ -33,5 +35,9 @@ public class LoginResponse {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getToken() {
+        return token;
     }
 }

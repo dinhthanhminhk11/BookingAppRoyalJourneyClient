@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ActivityRegisterBinding;
 import com.example.bookingapproyaljourney.view_model.RegisterViewModel;
@@ -29,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     private AppCompatButton btnRegister;
     private TextView textView3;
     private TextView tvSignIn;
-    private ProgressBar progressBar;
+    private LottieAnimationView progressBar;
     private String correct_name = "";
     private String correct_email = "";
     private String correct_password = "";
@@ -56,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = (AppCompatButton) findViewById(R.id.btnRegister);
         textView3 = (TextView) findViewById(R.id.textView3);
         tvSignIn = (TextView) findViewById(R.id.tvSignIn);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
 
         viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
 

@@ -46,6 +46,7 @@ public class LoginViewModel extends AndroidViewModel {
                 Log.e("MinhLogin", loginResponse.getUser().getEmail());
                 Log.e("MinhLogin", loginResponse.getMessage());
                 Log.e("MinhLogin", loginResponse.getUser().getId());
+                Log.e("MinhLoginToken", loginResponse.getToken());
             }
 
             @Override
