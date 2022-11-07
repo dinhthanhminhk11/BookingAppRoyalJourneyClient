@@ -4,9 +4,9 @@
     android:id="@+id/bathRoomList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_filter"
+    android:background="@drawable/bottom_sheet_backgroud"
     android:orientation="vertical"
-    android:theme="@style/Theme.MaterialComponents.DayNight">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,10 +26,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_30dp"
+            android:layout_marginLeft="@dimen/_110dp"
             android:layout_toRightOf="@+id/close"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/tienichdetail"
+            android:text="@string/phongtamdetail"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sp" />
 
@@ -51,6 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/_14dp"
-        android:layout_marginTop="@dimen/_20dp" />
+        android:layout_marginTop="@dimen/_20dp"
+        android:overScrollMode="never"
+        />
 
 </LinearLayout>

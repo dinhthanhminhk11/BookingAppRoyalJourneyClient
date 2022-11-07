@@ -17,23 +17,24 @@
             android:src="@drawable/imagetest"
             android:scaleType="centerCrop"
             />
+
         <LinearLayout
-            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/nameBathdRoom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_up_login"
-                android:layout_marginTop="@dimen/_50dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:layout_marginLeft="@dimen/_5dp"
-                />
+                android:layout_marginTop="@dimen/_50dp"
+                android:text="@string/sign_up_login"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
 
         </LinearLayout>

@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.model.house.Bathroom;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
@@ -32,6 +33,7 @@ import com.example.bookingapproyaljourney.ui.adapter.ConvenientListAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomAdapter;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetBathRoom;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.librarycireleimage.CircleImageView;
@@ -65,6 +67,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private TextView GiaMoPhong;
     private TextView legalHouse;
     private TextView showMore;
+    private TextView showMorebathdroom;
     private RecyclerView rcvBathdRoom;
     private Button btnRentNow;
     private MenuItem menuItem;
@@ -80,7 +83,9 @@ public class DetailProductActivity extends AppCompatActivity {
     private RequestOptions options;
     private LottieAnimationView progressBar;
     private BottomSheetConvenient bottomSheetConvenient;
+    private BottomSheetBathRoom bottomSheetBathRoom;
     private List<Convenient> data;
+    private List<Bathroom> dataBathRoom;
 
 
     @Override
@@ -115,6 +120,7 @@ public class DetailProductActivity extends AppCompatActivity {
         btnRentNow = (Button) findViewById(R.id.btnRentNow);
         legalHouse = (TextView) findViewById(R.id.legalHouse);
         showMore = (TextView) findViewById(R.id.showMore);
+        showMorebathdroom = (TextView) findViewById(R.id.showMorebathdroom);
         setSupportActionBar(toolBar);
         toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
         toolBar.setBackground(null);
@@ -143,6 +149,13 @@ public class DetailProductActivity extends AppCompatActivity {
 
             }
         });
+        showMorebathdroom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogBathRoom();
+            }
+        });
+
     }
 
     private void initData(String id) {
@@ -170,6 +183,7 @@ public class DetailProductActivity extends AppCompatActivity {
             rcvBathdRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
             BathdRoomAdapter bathdRoomAdapter = new BathdRoomAdapter(item.getBathrooms(), this);
             rcvBathdRoom.setAdapter(bathdRoomAdapter);
+            dataBathRoom = item.getBathrooms();
 
 
             rcvConvenient.setHasFixedSize(true);
@@ -198,6 +212,16 @@ public class DetailProductActivity extends AppCompatActivity {
         });
         bottomSheetConvenient.show();
         bottomSheetConvenient.setCanceledOnTouchOutside(false);
+    }
+    private void showDialogBathRoom(){
+        bottomSheetBathRoom = new BottomSheetBathRoom(DetailProductActivity.this, R.style.MaterialDialogSheet, dataBathRoom, new BottomSheetBathRoom.CallBack() {
+            @Override
+            public void onCLickCLose() {
+                bottomSheetBathRoom.dismiss();
+            }
+        });
+        bottomSheetBathRoom.show();
+        bottomSheetBathRoom.setCanceledOnTouchOutside(false);
     }
 
     @Override

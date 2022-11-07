@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Bathroom;
 import com.example.bookingapproyaljourney.model.house.Convenient;
+import com.example.bookingapproyaljourney.ui.adapter.BathRoomListAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -29,12 +30,14 @@ public class BottomSheetBathRoom extends BottomSheetDialog {
     private RecyclerView rcvBathdRoomList;
     private List<Bathroom> data;
     private Context context;
+    private CallBack callBack;
 
 
-    public BottomSheetBathRoom(@NonNull Context context, int theme, List<Bathroom> data) {
+    public BottomSheetBathRoom(@NonNull Context context, int theme, List<Bathroom> data, CallBack callback) {
         super(context);
         this.data = data;
         this.context = context;
+        this.callBack = callback;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class BottomSheetBathRoom extends BottomSheetDialog {
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         getWindow().setGravity(Gravity.BOTTOM);
-        setContentView(R.layout.item_convenientlist);
+        setContentView(R.layout.item_bathroomlist);
         initView();
     }
 
@@ -57,8 +60,14 @@ public class BottomSheetBathRoom extends BottomSheetDialog {
 
     private void initData() {
         rcvBathdRoomList.setHasFixedSize(true);
-        rcvBathdRoomList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        BathdRoomAdapter bathdRoomAdapter = new BathdRoomAdapter(data,context);
-        rcvBathdRoomList.setAdapter(bathdRoomAdapter);
+        rcvBathdRoomList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        BathRoomListAdapter bathRoomListAdapter = new BathRoomListAdapter(data,context);
+        rcvBathdRoomList.setAdapter(bathRoomListAdapter);
+        close.setOnClickListener(v -> {
+            callBack.onCLickCLose();
+        });
+    }
+    public interface CallBack {
+        void onCLickCLose();
     }
 }
