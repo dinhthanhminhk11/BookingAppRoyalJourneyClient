@@ -34,6 +34,7 @@ import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
+import com.example.bookingapproyaljourney.ui.fragment.ProfileFragment;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerItem;
 import com.example.bookingapproyaljourney.ui.view.menu.SimpleItem;
@@ -161,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             showFragment(new HomeFragment(locationYouSelf));
         } else if (position == POS_NEARBY) {
             startActivity(new Intent(MainActivity.this, NearFromYouMapsActivity.class));
+        } else if (position == POS_PROFILE) {
+            showFragment(new ProfileFragment());
         }
         slidingRootNav.closeMenu();
 //        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position], slidingRootNav);
