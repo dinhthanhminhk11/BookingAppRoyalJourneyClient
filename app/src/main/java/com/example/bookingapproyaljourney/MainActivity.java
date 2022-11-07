@@ -1,9 +1,14 @@
 package com.example.bookingapproyaljourney;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -13,6 +18,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -29,9 +37,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookingapproyaljourney.callback.CallDialog;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
-import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ProfileFragment;
@@ -82,6 +92,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private List<String> locations = new ArrayList<>();
     private ResultReceiver resultReceiver;
     private Location locationYouSelf;
+    private Button login;
+    private CallDialog callDialog;
+
+    public void setCallDialog(CallDialog callDialog) {
+        this.callDialog = callDialog;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,14 +162,42 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     @Override
     public void onItemSelected(int position) {
         if (position == POS_LOGOUT) {
-            UserClient userClient = UserClient.getInstance();
-            userClient.setEmail("");
-            userClient.setId("");
-            userClient.setName("");
-            userClient.setImage("");
-            userClient.setPhone("");
-            userClient.setAddress("");
-            finish();
+//            UserClient userClient = UserClient.getInstance();
+//            userClient.setEmail("");
+//            userClient.setId("");
+//            userClient.setName("");
+//            userClient.setImage("");
+//            userClient.setPhone("");
+//            userClient.setAddress("");
+//            finish();
+
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dia_log_comfirm_logout);
+            Window window = dialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            if (dialog != null && dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+            login = (Button) dialog.findViewById(R.id.login);
+
+            SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+            if (token == null || token.equals("")) {
+                dialog.show();
+            } else {
+                editor.putString(AppConstant.TOKEN_USER, "");
+                editor.commit();
+                showFragment(new ProfileFragment());
+                Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+            }
+
+            login.setOnClickListener(v -> {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                dialog.dismiss();
+            });
+//            0352145615
+
         } else if (position == POS_HOME) {
             // chỗ này là đoạn show home Frament
             // những cái kia tương tự
@@ -249,8 +293,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             } else {
                 Toast.makeText(MainActivity.this, resultData.getString(Constants.RESULT_DATA_KEY), Toast.LENGTH_SHORT).show();
             }
-//            binding.progressCircular.setVisibility(View.GONE);
-//            binding.contentTime.setVisibility(View.VISIBLE);
         }
     }
 

@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.callback.CallDialog;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
@@ -105,9 +106,9 @@ public class ProfileFragment extends Fragment {
         }else {
             login.setVisibility(View.GONE);
         }
-
-        loginViewModel.getUserByToken(token);
-
+        if(token !=null || !token.equals("")){
+            loginViewModel.getUserByToken(token);
+        }
         loginViewModel.getLoginResultMutableDataToKen().observe(getActivity(), new Observer<LoginResponse>() {
             @Override
             public void onChanged(LoginResponse s) {
@@ -119,11 +120,17 @@ public class ProfileFragment extends Fragment {
         login.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), LoginActivity.class));
         });
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         initData();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 }
