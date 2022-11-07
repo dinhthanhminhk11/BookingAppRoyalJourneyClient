@@ -36,6 +36,8 @@ import com.example.bookingapproyaljourney.ui.adapter.ConvenientListAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomAdapter;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterMap;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -84,6 +86,8 @@ public class DetailProductActivity extends AppCompatActivity {
     private String idHouse = "";
     private RequestOptions options;
     private LottieAnimationView progressBar;
+    private BottomSheetConvenient bottomSheetConvenient;
+    private List<Convenient> data;
 
 
     @Override
@@ -142,13 +146,7 @@ public class DetailProductActivity extends AppCompatActivity {
         showMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
-                        DetailProductActivity.this,R.style.BottomSheetDialogTheme
-                );
-                View bottomSheetView = LayoutInflater.from(getApplicationContext())
-                        .inflate(R.layout.item_convenientlist,
-                                (RecyclerView)findViewById(R.id.rcvConvenientList)
-                                );
+                showDialog();
 
             }
         });
@@ -185,6 +183,7 @@ public class DetailProductActivity extends AppCompatActivity {
             rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             ConvenientAdapter convenientAdapter = new ConvenientAdapter(item.getSupplement(), this);
             rcvConvenient.setAdapter(convenientAdapter);
+            data = item.getSupplement();
 
             Glide.with(this).load(item.getHostResponse().getImage()).apply(options).into(imgManage);
             NameManage.setText(item.getHostResponse().getName());
@@ -196,7 +195,11 @@ public class DetailProductActivity extends AppCompatActivity {
         });
 
     }
-
+    private void showDialog() {
+        bottomSheetConvenient = new BottomSheetConvenient(DetailProductActivity.this, R.style.MaterialDialogSheet,data );
+        bottomSheetConvenient.show();
+        bottomSheetConvenient.setCanceledOnTouchOutside(false);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
