@@ -40,4 +40,14 @@ public class LoginResponse {
     public String getToken() {
         return token;
     }
+
+    @Override
+    public String toString() {
+        return "LoginResponse{" + "\n"+
+                "status=" + status +"\n"+
+                ", message='" + message + '\'' +"\n"+
+                ", user=" + user +"\n"+
+                ", token='" + token + '\'' +"\n"+
+                '}';
+    }
 }

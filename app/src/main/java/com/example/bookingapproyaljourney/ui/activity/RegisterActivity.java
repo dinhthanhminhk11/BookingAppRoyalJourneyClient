@@ -68,6 +68,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        binding.back.setOnClickListener(v->{
+            onBackPressed();
+        });
+
         binding.btnRegister.setOnClickListener(v -> {
             String Name = edNameRegister.getText().toString();
             String Email = edMailRegister.getText().toString();

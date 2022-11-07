@@ -1,17 +1,30 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
+import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +33,8 @@ import com.example.bookingapproyaljourney.R;
  */
 public class ProfileFragment extends Fragment {
     private Button login;
-
+    private TextView checktest;
+    private LoginViewModel loginViewModel;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -75,8 +89,41 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initView(View view) {
-
+        checktest = (TextView) view.findViewById(R.id.checktest);
         login = (Button) view.findViewById(R.id.login);
 
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+    }
+
+    private void initData() {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+        Log.e("MinhToken", token + " text");
+
+        if(token == null || token.equals("")){
+            login.setVisibility(View.VISIBLE);
+        }else {
+            login.setVisibility(View.GONE);
+        }
+
+        loginViewModel.getUserByToken(token);
+
+        loginViewModel.getLoginResultMutableDataToKen().observe(getActivity(), new Observer<LoginResponse>() {
+            @Override
+            public void onChanged(LoginResponse s) {
+                checktest.setText(s.getUser().toString());
+            }
+        });
+
+
+        login.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 }

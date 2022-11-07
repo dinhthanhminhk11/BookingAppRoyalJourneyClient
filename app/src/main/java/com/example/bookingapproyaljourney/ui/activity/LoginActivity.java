@@ -67,6 +67,9 @@ public class LoginActivity extends AppCompatActivity {
         edPass.setText("abc123");
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
+        binding.back.setOnClickListener(v->{
+            onBackPressed();
+        });
         binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 if (s.equals(LoginActivity.this.getResources().getString(R.string.LoginSuccess))) {
                     Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    onBackPressed();
                 } else {
                     Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
                 }
@@ -113,8 +116,5 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(false);
-    }
+
 }
