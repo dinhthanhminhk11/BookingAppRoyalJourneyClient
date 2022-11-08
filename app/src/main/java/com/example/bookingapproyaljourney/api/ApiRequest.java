@@ -11,6 +11,7 @@ import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
+import com.example.bookingapproyaljourney.response.TestResponse;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public interface ApiRequest {
     Call<RegisterResponse> getUserRegister(@Body UserRegister userRegister);
 
     @POST("signup/verify")
-    Call<RegisterResponse> getUserRegisterOTP(@Body Verify verify);
+    Call<TestResponse> getUserRegisterOTP(@Body Verify verify);
 
     @GET("getNameCategory/{id}")
     Call<String> getNameCategoryById(@Path("id") String idCategory);
