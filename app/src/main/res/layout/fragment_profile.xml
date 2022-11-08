@@ -99,7 +99,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/bottom_sheet_profile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="400dp"
             android:layout_marginTop="90dp"
             android:background="@color/purple_700"
             android:orientation="vertical"
@@ -150,7 +150,7 @@
 
                     <TextView
                         android:id="@+id/tvNameUserProfile"
-                        android:layout_width="wrap_content"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:text="Bao Hoang"
@@ -162,7 +162,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="180dp"
                         android:src="@drawable/ic_edit_profile" />
                 </LinearLayout>
 
