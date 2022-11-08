@@ -173,7 +173,7 @@ public class DetailProductActivity extends AppCompatActivity {
             ContentHouse.setText(item.getContent());
             legalHouse.setText(item.getLegal());
             btPhone.setOnClickListener(view -> {
-                HostResponse phone = item.getHostResponse();
+                String phone = item.getHostResponse().getPhone();
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:"+phone  ));
                 startActivity(intent);
