@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -44,8 +45,10 @@ public class ProfileFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    private TextView tvSignUpProfile, content;
+    private TextView tvSignUpProfile, nameUser, emailUser;
     private ImageView imageProfile;
+    private LinearLayout  profileVisialbe;
+    private CoordinatorLayout profileGone;
 
     public ProfileFragment() {
 
@@ -87,8 +90,13 @@ public class ProfileFragment extends Fragment {
         checktest = (TextView) view.findViewById(R.id.checktest);
         login = (AppCompatButton) view.findViewById(R.id.login);
         tvSignUpProfile = view.findViewById(R.id.tvSignUpProfile);
+        nameUser = view.findViewById(R.id.tvNameUserProfile);
+        emailUser = view.findViewById(R.id.tvEmailUserProfile);
         tvSignUpProfile.setPaintFlags(tvSignUpProfile.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        profileGone = view.findViewById(R.id.profileGone);
+        profileVisialbe = view.findViewById(R.id.profileVisiable);
         imageProfile = view.findViewById(R.id.imageProfile);
+
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
     }
@@ -100,8 +108,14 @@ public class ProfileFragment extends Fragment {
 
         if (token == null || token.equals("")) {
             login.setVisibility(View.VISIBLE);
+            profileVisialbe.setVisibility(View.VISIBLE);
+            profileGone.setVisibility(View.GONE);
+
         } else {
             login.setVisibility(View.GONE);
+            profileVisialbe.setVisibility(View.GONE);
+            profileGone.setVisibility(View.VISIBLE);
+
         }
         if (token != null || !token.equals("")) {
             loginViewModel.getUserByToken(token);
@@ -109,7 +123,8 @@ public class ProfileFragment extends Fragment {
         loginViewModel.getLoginResultMutableDataToKen().observe(getActivity(), new Observer<LoginResponse>() {
             @Override
             public void onChanged(LoginResponse s) {
-                checktest.setText(s.getUser().getName());
+                nameUser.setText(s.getUser().getName());
+                emailUser.setText(s.getUser().getEmail());
 
                 RequestOptions options = new RequestOptions()
                         .centerCrop()
