@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,8 @@ import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.Room;
+import com.example.bookingapproyaljourney.response.HostResponse;
+import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientListAdapter;
@@ -71,14 +75,15 @@ public class DetailProductActivity extends AppCompatActivity {
     private RecyclerView rcvBathdRoom;
     private Button btnRentNow;
     private MenuItem menuItem;
-    FeedbackAdapter feedbackAdapter;
-    RoomAdapter roomAdapter;
-    GalleryAdapter galleryAdapter;
-    ConvenientAdapter convenientAdapter;
-    BathdRoomAdapter bathdRoomAdapter;
-    ConvenientListAdapter convenientListAdapter;
+    private FeedbackAdapter feedbackAdapter;
+    private RoomAdapter roomAdapter;
+    private GalleryAdapter galleryAdapter;
+    private ConvenientAdapter convenientAdapter;
+    private BathdRoomAdapter bathdRoomAdapter;
+    private ConvenientListAdapter convenientListAdapter;
     private DetailProductViewModel detailProductViewModel;
     private House house;
+    private HouseDetailResponse houseDetailResponse;
     private String idHouse = "";
     private RequestOptions options;
     private LottieAnimationView progressBar;
@@ -156,6 +161,7 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     private void initData(String id) {
@@ -166,6 +172,12 @@ public class DetailProductActivity extends AppCompatActivity {
             tvAmountBedroom2.setText(item.getBathrooms().size() + " Phòng tắm");
             ContentHouse.setText(item.getContent());
             legalHouse.setText(item.getLegal());
+            btPhone.setOnClickListener(view -> {
+                HostResponse phone = item.getHostResponse();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+phone  ));
+                startActivity(intent);
+            });
 
             Glide.with(this).load(item.getImages().get(0)).apply(options).into(ivimgHotel);
 
