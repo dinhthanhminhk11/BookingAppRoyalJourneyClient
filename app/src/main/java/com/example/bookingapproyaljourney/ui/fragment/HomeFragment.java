@@ -46,8 +46,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer {
     private ResultReceiver resultReceiver;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private LottieAnimationView progressBar;
@@ -82,10 +81,6 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         this.locationYouSelf = locationYouSelf;
     }
 
-
-    // TODO: Rename and change types and number of parameters
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +93,6 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
