@@ -99,11 +99,10 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/bottom_sheet_profile"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginTop="90dp"
+            android:layout_height="match_parent"
             android:background="@color/purple_700"
             android:orientation="vertical"
-            app:behavior_peekHeight="450dp"
+            app:behavior_peekHeight="350dp"
             app:cardCornerRadius="19dp"
             app:layout_anchorGravity="top"
             app:layout_behavior="@string/bottom_sheet_behavior">
@@ -154,6 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:text="Bao Hoang"
+
                         android:textColor="@color/black"
                         android:textSize="30dp"
                         android:textStyle="bold" />
