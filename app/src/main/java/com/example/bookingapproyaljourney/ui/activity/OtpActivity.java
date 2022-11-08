@@ -15,5 +15,15 @@ public class OtpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityOtpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.btnSignIn.setOnClickListener(v -> {
+            onBackPressed();
+        });
+
+        binding.sendAgain.setOnClickListener(v -> {
+
+        });
+
+
     }
 }

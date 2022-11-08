@@ -5,6 +5,7 @@ import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
+import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
@@ -31,6 +32,8 @@ public interface ApiRequest {
     @POST("signup")
     Call<RegisterResponse> getUserRegister(@Body UserRegister userRegister);
 
+    @POST("signup/verify")
+    Call<RegisterResponse> getUserRegisterOTP(@Body Verify verify);
 
     @GET("getNameCategory/{id}")
     Call<String> getNameCategoryById(@Path("id") String idCategory);
