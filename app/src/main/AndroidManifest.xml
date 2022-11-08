@@ -25,10 +25,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.DetailGalleryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.DetailImageHouseActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.OtpActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -56,13 +60,13 @@
             android:exported="true" />
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.activity.ForgotActivity"
             android:exported="true" />
         <activity
             android:name=".ui.activity.SplashScreenVer2"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

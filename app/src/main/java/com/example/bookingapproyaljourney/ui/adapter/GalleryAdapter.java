@@ -18,9 +18,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Gallery;
+import com.example.bookingapproyaljourney.ui.activity.DetailImageHouseActivity;
 import com.example.bookingapproyaljourney.ui.activity.ImageActivity;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHoler> {
@@ -62,12 +64,15 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHole
                 holder.btnAmount.setText("+" + (galleryList.size() - 4));
             }
         }
+        holder.btnAmount.setOnClickListener(view -> {
+            onClickGoToDetail((ArrayList<String>) galleryList);
+        });
     }
 
-    private void onClickGoToDetail(Gallery gallery) {
-        Intent intent = new Intent(context, ImageActivity.class);
+    private void onClickGoToDetail(ArrayList<String> gallery) {
+        Intent intent = new Intent(context, DetailImageHouseActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("", gallery);
+        bundle.putSerializable("IMAGE_GALLERY", gallery);
         intent.putExtras(bundle);
         context.startActivity(intent);
     }

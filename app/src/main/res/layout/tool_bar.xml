@@ -6,7 +6,6 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/white"
     android:elevation="@dimen/_8dp"
-    android:layout_marginHorizontal="@dimen/_8dp"
     app:titleTextColor="@color/black"
     android:theme="@style/ToolbarTheme">
 </com.google.android.material.appbar.MaterialToolbar>
