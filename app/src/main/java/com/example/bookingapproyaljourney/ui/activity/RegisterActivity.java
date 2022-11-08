@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        binding.back.setOnClickListener(v->{
+        binding.back.setOnClickListener(v -> {
             onBackPressed();
         });
 
@@ -78,7 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
             String Password = edPassRegister.getText().toString();
             String CFPassword = edCfPassRegister.getText().toString();
 
-            validateinfo(Name, Email, Password, CFPassword);
+//            validateinfo(Name, Email, Password, CFPassword);
+            startActivity(new Intent(RegisterActivity.this, OtpActivity.class));
         });
 
         viewModel.getLoginResult().observe(this, new Observer<String>() {
