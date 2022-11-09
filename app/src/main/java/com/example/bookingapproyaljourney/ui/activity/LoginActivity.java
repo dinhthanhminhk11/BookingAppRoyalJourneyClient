@@ -122,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
                     intent.putExtra(AppConstant.EMAIL_USER, loginResponse.getUser().getEmail());
+                    intent.putExtra(AppConstant.PASS_USER, binding.edPass.getText().toString());
                     startActivity(intent);
                 }
             }

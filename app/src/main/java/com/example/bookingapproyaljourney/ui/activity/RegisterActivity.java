@@ -64,6 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                    Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, OtpActivity.class);
                     intent.putExtra(AppConstant.EMAIL_USER, binding.edMailRegister.getText().toString());
+                    intent.putExtra(AppConstant.PASS_USER, binding.edCfPassRegister.getText().toString());
                     startActivity(intent);
                 } else {
                     Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
