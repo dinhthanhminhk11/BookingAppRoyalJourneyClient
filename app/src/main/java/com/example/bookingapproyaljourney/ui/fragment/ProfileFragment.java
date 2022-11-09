@@ -21,6 +21,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -28,6 +29,7 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
+import com.example.bookingapproyaljourney.ui.adapter.HiredProfileAdapter;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
 /**
@@ -49,6 +51,8 @@ public class ProfileFragment extends Fragment {
     private ImageView imageProfile;
     private LinearLayout  profileVisialbe;
     private CoordinatorLayout profileGone;
+    private RecyclerView recyclerViewHiredProfile;
+    private HiredProfileAdapter hiredProfileAdapter;
 
     public ProfileFragment() {
 
@@ -96,6 +100,7 @@ public class ProfileFragment extends Fragment {
         profileGone = view.findViewById(R.id.profileGone);
         profileVisialbe = view.findViewById(R.id.profileVisiable);
         imageProfile = view.findViewById(R.id.imageProfile);
+        recyclerViewHiredProfile = view.findViewById(R.id.recycleView_profile);
 
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
