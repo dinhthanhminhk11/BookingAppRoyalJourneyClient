@@ -41,6 +41,7 @@
         android:fontFamily="@font/poppins"
         android:text="@string/help_your_registration"
         android:textColor="@color/black"
+
         android:textSize="@dimen/_13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,6 +98,7 @@
         android:fontFamily="@font/poppins"
         android:hint="@string/enter_pass_registration"
         android:paddingStart="@dimen/_30dp"
+        android:inputType="textPassword"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_13sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,6 +118,7 @@
         android:fontFamily="@font/poppins"
         android:hint="@string/confirm_password_registration"
         android:paddingStart="@dimen/_30dp"
+        android:inputType="textPassword"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_13sp"
         app:layout_constraintBottom_toBottomOf="parent"

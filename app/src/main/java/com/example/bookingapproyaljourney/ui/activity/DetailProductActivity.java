@@ -212,7 +212,7 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
-            GiaMoPhong.setText("$ " + fm.format(item.getPrice())+ " /đêm");
+            GiaMoPhong.setText(fm.format(item.getPrice())+ " Vnd/đêm");
             progressBar.setVisibility(View.GONE);
         });
 
