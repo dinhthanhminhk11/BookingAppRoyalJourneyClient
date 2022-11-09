@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -25,7 +26,7 @@ public class OtpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityOtpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.sendAgain.setPaintFlags(binding.sendAgain.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        binding.sendAgain.setPaintFlags(binding.sendAgain.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         String mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
 
         viewModel = new ViewModelProvider(this).get(VerifyViewModel.class);
@@ -42,8 +43,9 @@ public class OtpActivity extends AppCompatActivity {
             @Override
             public void onChanged(TestResponse testResponse) {
                 if (testResponse.isStatus()) {
+
                     Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    onBackPressed();
+                    startActivity(new Intent(OtpActivity.this, CongratsActivity.class));
                 } else {
                     Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
