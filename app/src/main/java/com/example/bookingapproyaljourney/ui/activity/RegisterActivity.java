@@ -31,11 +31,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        binding.edNameRegister.setText("Minhzzzzzzzzzzzz");
-        binding.edMailRegister.setText("minhdtph13562@fpt.edu.vn");
-        binding.edPassRegister.setText("m01675784487");
-        binding.edCfPassRegister.setText("m01675784487");
         viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
 
         binding.tvSignIn.setOnClickListener(new View.OnClickListener() {
