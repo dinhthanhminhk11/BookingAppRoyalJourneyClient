@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
@@ -167,15 +168,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     @Override
     public void onItemSelected(int position) {
         if (position == POS_LOGOUT) {
-//            UserClient userClient = UserClient.getInstance();
-//            userClient.setEmail("");
-//            userClient.setId("");
-//            userClient.setName("");
-//            userClient.setImage("");
-//            userClient.setPhone("");
-//            userClient.setAddress("");
-//            finish();
-
             final Dialog dialog = new Dialog(this);
             final Dialog dialogLogOut = new Dialog(this);
             dialog.setContentView(R.layout.dia_log_comfirm_logout);
@@ -204,17 +196,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 dialog.show();
             } else {
                 dialogLogOut.show();
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setMessage("Bạn có muốn đăng xuất");
-//                builder.setTitle("RoyalJourney");
-//                builder.setPositiveButton(TextUtils.isEmpty(textPositiveButton) ? LocaleController.getString("OK", R.string.Agree) : textPositiveButton, (dialogInterface, i) -> {
-//                    consumer.accept(new Object());
-//                });
-//                builder.setNegativeButton(TextUtils.isEmpty(textNegativeButton) ? LocaleController.getString("Cancel", R.string.Cancel) : textNegativeButton, null);
-//                editor.putString(AppConstant.TOKEN_USER, "");
-//                editor.commit();
-//                showFragment(new ProfileFragment());
-//                Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
             }
 
             login.setOnClickListener(v -> {
@@ -238,9 +219,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 //            0352145615
 
         } else if (position == POS_HOME) {
-            // chỗ này là đoạn show home Frament
-            // những cái kia tương tự
-            // nếu show ở trong nay thì comment ở cái dưới đi dòng 92 93 ok
             Log.e("testLoaction", " click lcilk");
             showFragment(new HomeFragment(locationYouSelf));
         } else if (position == POS_NEARBY) {
@@ -249,8 +227,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             showFragment(new ProfileFragment());
         }
         slidingRootNav.closeMenu();
-//        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position], slidingRootNav);
-//        showFragment(new HomeFragment());
     }
 
     private void showFragment(Fragment fragment) {
