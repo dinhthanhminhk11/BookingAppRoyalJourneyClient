@@ -1,7 +1,9 @@
 package com.example.bookingapproyaljourney.repository;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.callback.CallSendAgain;
 import com.example.bookingapproyaljourney.callback.CallVerifyRepository;
+import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.LoginResponse;
@@ -56,5 +58,25 @@ public class VerifyRepository {
                 interfaceLoginResponse.onFailure(t);
             }
         });
+    }
+
+    public void sendAgain(Email email , CallSendAgain callSendAgain){
+        Call<TestResponse> testResponseCall = apiRequest.sendAgain(email);
+        testResponseCall.enqueue(new Callback<TestResponse>() {
+            @Override
+            public void onResponse(Call<TestResponse> call, Response<TestResponse> response) {
+                if (response.isSuccessful()) {
+                    callSendAgain.onResponse(response.body());
+                } else {
+                    callSendAgain.onFailure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TestResponse> call, Throwable t) {
+                callSendAgain.onFailure(t);
+            }
+        });
+
     }
 }

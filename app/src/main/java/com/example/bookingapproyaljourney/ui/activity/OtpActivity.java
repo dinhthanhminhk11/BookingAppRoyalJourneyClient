@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityOtpBinding;
+import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
@@ -51,7 +52,7 @@ public class OtpActivity extends AppCompatActivity {
         });
 
         binding.sendAgain.setOnClickListener(v -> {
-
+            viewModel.sendAgain(new Email(mail));
         });
 
         binding.close.setOnClickListener(v -> {
@@ -108,6 +109,13 @@ public class OtpActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                 editor.commit();
+            }
+        });
+
+        viewModel.getSendAgainTestResponse().observe(this, new Observer<TestResponse>() {
+            @Override
+            public void onChanged(TestResponse testResponse) {
+                Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
