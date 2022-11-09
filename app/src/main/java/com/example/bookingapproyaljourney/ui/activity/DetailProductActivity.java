@@ -164,6 +164,14 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         });
 
+        btnRentNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailProductActivity.this, BillActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
