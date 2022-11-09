@@ -101,17 +101,14 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
         });
 
-//        loginViewModel.getLoginResult().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(String s) {
-//                if (s.equals(LoginActivity.this.getResources().getString(R.string.LoginSuccess))) {
-//                    Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
-//                    onBackPressed();
-//                } else {
-//                    Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        loginViewModel.getLoginResult().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (!s.equals(LoginActivity.this.getResources().getString(R.string.LoginSuccess))) {
+                    Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         loginViewModel.getLoginResultMutableDataToKen().observe(this, new Observer<LoginResponse>() {
             @Override

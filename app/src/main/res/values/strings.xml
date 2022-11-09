@@ -63,7 +63,7 @@
     <string name="help_arrays">Trợ giúp</string>
     <string name="logout_arrays">Đăng xuất</string>
     <string name="LoginSuccess">Sign in successfully</string>
-    <string name="LoginFailed">Email or password is incorrect</string>
+    <string name="LoginFailed">Tài khoản hoặc mật khẩu không chính xác</string>
     <string name="RegisterSuccess">Sign up successfully</string>
     <string name="RegisterFailed">Email already exists</string>
     <string name="title_activity_near_from_you_maps">NearFromYouMapsActivity</string>
