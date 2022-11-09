@@ -1,15 +1,24 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityOtpBinding;
 import com.example.bookingapproyaljourney.model.user.Verify;
@@ -22,6 +31,9 @@ public class OtpActivity extends AppCompatActivity {
 
     private ActivityOtpBinding binding;
     private VerifyViewModel viewModel;
+    private ImageView close;
+    private TextView btnCancel;
+    private Button logOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +54,38 @@ public class OtpActivity extends AppCompatActivity {
 
         });
 
+        binding.close.setOnClickListener(v -> {
+            final Dialog dialogLogOut = new Dialog(this);
+            dialogLogOut.setContentView(R.layout.dia_log_comfirm_logout_ver2);
+            Window window2 = dialogLogOut.getWindow();
+            window2.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            if (dialogLogOut != null && dialogLogOut.getWindow() != null) {
+                dialogLogOut.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+
+            close = (ImageView) dialogLogOut.findViewById(R.id.close);
+            btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);
+            btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            logOut = (Button) dialogLogOut.findViewById(R.id.login);
+            logOut.setText("Thoát");
+
+            close.setOnClickListener(v1 -> {
+                dialogLogOut.dismiss();
+            });
+            btnCancel.setOnClickListener(v1 -> {
+                dialogLogOut.dismiss();
+            });
+            logOut.setOnClickListener(v2 -> {
+                onBackPressed();
+            });
+
+        });
+
         viewModel.getmLoginResultMutableData().observe(this, new Observer<TestResponse>() {
             @Override
             public void onChanged(TestResponse testResponse) {
                 if (testResponse.isStatus()) {
-                    viewModel.login(mail ,pass );
+                    viewModel.login(mail, pass);
                     Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(OtpActivity.this, CongratsActivity.class));
                 } else {
