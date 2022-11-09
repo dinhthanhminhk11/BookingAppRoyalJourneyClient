@@ -21,16 +21,22 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.model.house.Convenient;
+import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.adapter.HiredProfileAdapter;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +59,8 @@ public class ProfileFragment extends Fragment {
     private CoordinatorLayout profileGone;
     private RecyclerView recyclerViewHiredProfile;
     private HiredProfileAdapter hiredProfileAdapter;
-
+    private ArrayList<House> listHouse;
+    private List<Convenient> convenientList;
     public ProfileFragment() {
 
     }
@@ -101,9 +108,9 @@ public class ProfileFragment extends Fragment {
         profileVisialbe = view.findViewById(R.id.profileVisiable);
         imageProfile = view.findViewById(R.id.imageProfile);
         recyclerViewHiredProfile = view.findViewById(R.id.recycleView_profile);
-
-
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+//        FakeData();
     }
 
     private void initData() {
@@ -143,6 +150,16 @@ public class ProfileFragment extends Fragment {
         login.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), LoginActivity.class));
         });
+
+    }
+
+    private void FakeData()
+    {
+        listHouse = new ArrayList<>();
+        hiredProfileAdapter = new HiredProfileAdapter(listHouse);
+        recyclerViewHiredProfile.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerViewHiredProfile.setAdapter(hiredProfileAdapter);
+
 
     }
 
