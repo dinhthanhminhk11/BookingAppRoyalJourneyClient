@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 
@@ -16,9 +18,11 @@ import java.util.ArrayList;
 
 public class DetailGalleryAdapter extends RecyclerView.Adapter<DetailGalleryAdapter.MyViewHolder> {
     private ArrayList<String> list;
+    private EventClick  eventClick;
 
-    public DetailGalleryAdapter(ArrayList<String> list) {
+    public DetailGalleryAdapter(ArrayList<String> list, EventClick eventClick) {
         this.list = list;
+        this.eventClick = eventClick;
     }
 
     @NonNull
@@ -35,8 +39,10 @@ public class DetailGalleryAdapter extends RecyclerView.Adapter<DetailGalleryAdap
                 .error(R.drawable.img);
         Glide.with(holder.itemView.getContext())
                 .load(list.get(position))
+                .transform(new CenterCrop(),new RoundedCorners(30))
                 .apply(options)
                 .into(holder.img);
+        holder.itemView.setOnClickListener(v -> eventClick.onClick());
     }
 
     @Override
@@ -51,5 +57,9 @@ public class DetailGalleryAdapter extends RecyclerView.Adapter<DetailGalleryAdap
             super(itemView);
             img = itemView.findViewById(R.id.imgDetailGallery);
         }
+    }
+
+    public interface EventClick {
+        void onClick();
     }
 }
