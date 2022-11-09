@@ -15,6 +15,10 @@ public class User {
     private String phone;
     @SerializedName("address")
     private String address;
+    @SerializedName("otp")
+    private String otp;
+    @SerializedName("active")
+    private boolean active;
 
     public String getId() {
         return id;
@@ -62,6 +66,14 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,8 +20,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
+import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -45,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +65,13 @@ public class LoginActivity extends AppCompatActivity {
         textView3 = (TextView) findViewById(R.id.textView3);
         tvSignUp = (TextView) findViewById(R.id.tvSignUp);
         progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        edEmail.setText("admin@gmail.com");
-        edPass.setText("abc123");
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
-        binding.back.setOnClickListener(v->{
+        binding.back.setOnClickListener(v -> {
             onBackPressed();
         });
         binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
@@ -99,11 +103,26 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.getLoginResult().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (s.equals(LoginActivity.this.getResources().getString(R.string.LoginSuccess))) {
+                if (!s.equals(LoginActivity.this.getResources().getString(R.string.LoginSuccess))) {
                     Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        loginViewModel.getLoginResultMutableDataToKen().observe(this, new Observer<LoginResponse>() {
+            @Override
+            public void onChanged(LoginResponse loginResponse) {
+                if (loginResponse.getUser().isActive()) {
+                    Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
+                    editor.commit();
                     onBackPressed();
                 } else {
-                    Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
+                    intent.putExtra(AppConstant.EMAIL_USER, loginResponse.getUser().getEmail());
+                    intent.putExtra(AppConstant.PASS_USER, binding.edPass.getText().toString());
+                    startActivity(intent);
                 }
             }
         });

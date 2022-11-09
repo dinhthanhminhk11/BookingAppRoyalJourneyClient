@@ -24,8 +24,7 @@ public class LoginViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<String> mLoginResultMutableData = new MutableLiveData<>();
     MutableLiveData<LoginResponse> mLoginResultMutableDataToKen = new MutableLiveData<>();
-    SharedPreferences sharedPreferences = getApplication().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPreferences.edit();
+
     private UserRepository userRepository;
 
     public LoginViewModel(@NonNull Application application) {
@@ -40,7 +39,7 @@ public class LoginViewModel extends AndroidViewModel {
             public void onResponse(LoginResponse loginResponse) {
                 mProgressMutableData.postValue(View.INVISIBLE);
                 mLoginResultMutableData.postValue(loginSuccess);
-
+                mLoginResultMutableDataToKen.postValue(loginResponse);
                 UserClient userClient = UserClient.getInstance();
                 userClient.setEmail(loginResponse.getUser().getEmail());
                 userClient.setId(loginResponse.getUser().getId());
@@ -48,12 +47,13 @@ public class LoginViewModel extends AndroidViewModel {
                 userClient.setImage(loginResponse.getUser().getImage());
                 userClient.setPhone(loginResponse.getUser().getPhone());
                 userClient.setAddress(loginResponse.getUser().getAddress());
-                editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
-                editor.commit();
+
                 Log.e("MinhLogin", loginResponse.getUser().getEmail());
                 Log.e("MinhLogin", loginResponse.getMessage());
                 Log.e("MinhLogin", loginResponse.getUser().getId());
                 Log.e("MinhLoginToken", loginResponse.getToken());
+                Log.e("MinhLoginactive", loginResponse.getUser().isActive() + " sss");
+                Log.e("MinhLoginactive", loginResponse.getUser().getOtp() + " sxxxxxss");
 
             }
 

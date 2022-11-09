@@ -63,7 +63,7 @@
     <string name="help_arrays">Trợ giúp</string>
     <string name="logout_arrays">Đăng xuất</string>
     <string name="LoginSuccess">Sign in successfully</string>
-    <string name="LoginFailed">Email or password is incorrect</string>
+    <string name="LoginFailed">Tài khoản hoặc mật khẩu không chính xác</string>
     <string name="RegisterSuccess">Sign up successfully</string>
     <string name="RegisterFailed">Email already exists</string>
     <string name="title_activity_near_from_you_maps">NearFromYouMapsActivity</string>
@@ -85,6 +85,8 @@
     <string name="pricedetail">Giá thuê</string>
     <string name="rentnowdetail">Thuê ngay</string>
     <string name="danhgiadetail">Đánh giá</string>
+    <string name="Ytedetail">Y tế và an toàn</string>
+    <string name="Y_te_detail">Các biện pháp an toàn trong đại dịch COVID-19 của BookingAppRoyalJourney được áp dụng. Có máy phát hiện khí CO/máy báo khói, Camera an ninh/thiết bị ghi</string>
 
 
 </resources>

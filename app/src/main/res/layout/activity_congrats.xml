@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.CongratsActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_illustration_congrats" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Chúc mừng!"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_33dp"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/_30dp"/>
+
+        <TextView
+            android:layout_marginHorizontal="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_23dp"
+            android:text="RoyalJourney là một cộng đồng nơi tất cả mọi người đều có thể xem bốn bể là nhà"/>
+        <TextView
+            android:layout_marginHorizontal="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_23dp"
+            android:text="Cảm ơn bạn đã sửa dụng dịch vụ của chúng tôi"/>
+    </LinearLayout>
+
+    <Button
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_60dp"
+        android:id="@+id/btnRentNow"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_60dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/gradiendetailproduct"
+        android:fontFamily="@font/poppins_medium"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingHorizontal="@dimen/_24dp"
+        android:paddingVertical="@dimen/_12dp"
+        android:text="Tiếp tục"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        app:backgroundTint="@null" />
+</androidx.constraintlayout.widget.ConstraintLayout>

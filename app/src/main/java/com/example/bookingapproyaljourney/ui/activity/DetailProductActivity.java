@@ -43,6 +43,8 @@ import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +93,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private BottomSheetBathRoom bottomSheetBathRoom;
     private List<Convenient> data;
     private List<Bathroom> dataBathRoom;
+    private NumberFormat fm = new DecimalFormat("#,###");
 
 
     @Override
@@ -209,7 +212,7 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
-            GiaMoPhong.setText(item.getPrice() + "Vnd/đêm");
+            GiaMoPhong.setText("$ " + fm.format(item.getPrice())+ " /đêm");
             progressBar.setVisibility(View.GONE);
         });
 

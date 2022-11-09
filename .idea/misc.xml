@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_detailproduct.xml" value="0.2" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_register.xml" value="0.20599409033347404" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bathroombottomsheet.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bathroomlist.xml" value="0.20863616930312098" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable-v24/gradient_blue.xml" value="0.119" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_blue_activity.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_item_activity.xml" value="0.113" />
