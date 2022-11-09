@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class OtpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityOtpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        binding.sendAgain.setPaintFlags(binding.sendAgain.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         String mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
 
         viewModel = new ViewModelProvider(this).get(VerifyViewModel.class);

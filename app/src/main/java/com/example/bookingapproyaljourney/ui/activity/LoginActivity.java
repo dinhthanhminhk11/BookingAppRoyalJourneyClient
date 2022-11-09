@@ -68,8 +68,8 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        edEmail.setText("admin@gmail.com");
-        edPass.setText("abc123");
+        edEmail.setText("dinhthanhminhk11@gmail.com");
+        edPass.setText("abc1234");
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         binding.back.setOnClickListener(v -> {
