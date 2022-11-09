@@ -53,6 +53,7 @@
             android:textSize="@dimen/_27sp" />
 
         <TextView
+            android:id="@+id/textAlien"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_24dp"
