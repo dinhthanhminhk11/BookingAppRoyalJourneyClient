@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -94,6 +95,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private Location locationYouSelf;
     private Button login;
     private CallDialog callDialog;
+    private ImageView close;
+    private TextView btnCancel;
+    private Button logOut;
+
 
     public void setCallDialog(CallDialog callDialog) {
         this.callDialog = callDialog;
@@ -172,29 +177,63 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 //            finish();
 
             final Dialog dialog = new Dialog(this);
+            final Dialog dialogLogOut = new Dialog(this);
             dialog.setContentView(R.layout.dia_log_comfirm_logout);
+            dialogLogOut.setContentView(R.layout.dia_log_comfirm_logout_ver2);
             Window window = dialog.getWindow();
+            Window window2 = dialogLogOut.getWindow();
+
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             if (dialog != null && dialog.getWindow() != null) {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }
-            login = (Button) dialog.findViewById(R.id.login);
+            window2.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            if (dialogLogOut != null && dialogLogOut.getWindow() != null) {
+                dialogLogOut.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
 
+            login = (Button) dialog.findViewById(R.id.login);
+            close = (ImageView) dialogLogOut.findViewById(R.id.close);
+            btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);
+            btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            logOut = (Button) dialogLogOut.findViewById(R.id.login);
             SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
             if (token == null || token.equals("")) {
                 dialog.show();
             } else {
-                editor.putString(AppConstant.TOKEN_USER, "");
-                editor.commit();
-                showFragment(new ProfileFragment());
-                Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+                dialogLogOut.show();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setMessage("Bạn có muốn đăng xuất");
+//                builder.setTitle("RoyalJourney");
+//                builder.setPositiveButton(TextUtils.isEmpty(textPositiveButton) ? LocaleController.getString("OK", R.string.Agree) : textPositiveButton, (dialogInterface, i) -> {
+//                    consumer.accept(new Object());
+//                });
+//                builder.setNegativeButton(TextUtils.isEmpty(textNegativeButton) ? LocaleController.getString("Cancel", R.string.Cancel) : textNegativeButton, null);
+//                editor.putString(AppConstant.TOKEN_USER, "");
+//                editor.commit();
+//                showFragment(new ProfileFragment());
+//                Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
             }
 
             login.setOnClickListener(v -> {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 dialog.dismiss();
+            });
+
+            logOut.setOnClickListener(v -> {
+                editor.putString(AppConstant.TOKEN_USER, "");
+                editor.commit();
+                showFragment(new ProfileFragment());
+                dialogLogOut.dismiss();
+            });
+
+            btnCancel.setOnClickListener(v -> {
+                dialogLogOut.dismiss();
+            });
+            close.setOnClickListener(v -> {
+                dialogLogOut.dismiss();
             });
 //            0352145615
 
