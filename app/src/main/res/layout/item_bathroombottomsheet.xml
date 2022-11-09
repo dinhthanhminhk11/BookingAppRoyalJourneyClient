@@ -49,10 +49,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nameBathdRoom"
                 android:layout_gravity="center"
-                android:layout_marginTop="14dp"
-                android:textSize="@dimen/_10sp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:lines="8"
                 android:text="Hà nội"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sp" />
 
 
         </RelativeLayout>
