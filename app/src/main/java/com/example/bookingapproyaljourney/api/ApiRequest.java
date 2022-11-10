@@ -40,7 +40,7 @@ public interface ApiRequest {
     @GET("getNameCategory/{id}")
     Call<String> getNameCategoryById(@Path("id") String idCategory);
 
-    @GET("signup/verify/sendAgain")
+    @POST("signup/verify/sendAgain")
     Call<TestResponse> sendAgain(@Body Email email);
 
     @GET("maps/api/directions/json")

@@ -22,6 +22,7 @@ import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
+import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
@@ -120,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
+                    loginViewModel.sendAgain(new Email(loginResponse.getUser().getEmail()));
                     intent.putExtra(AppConstant.EMAIL_USER, loginResponse.getUser().getEmail());
                     intent.putExtra(AppConstant.PASS_USER, binding.edPass.getText().toString());
                     startActivity(intent);

@@ -138,12 +138,13 @@ public class ProfileFragment extends Fragment {
                 nameUser.setText(s.getUser().getName());
                 emailUser.setText(s.getUser().getEmail());
 
-                RequestOptions options = new RequestOptions()
-                        .centerCrop()
-                        .placeholder(R.drawable.img)
-                        .error(R.drawable.img);
-                Glide.with(getActivity()).load(s.getUser().getImage()).apply(options).into(imageProfile);
-
+                if(s.getUser().getImage().equals("")){
+                    RequestOptions options = new RequestOptions()
+                            .centerCrop()
+                            .placeholder(R.drawable.img)
+                            .error(R.drawable.img);
+                    Glide.with(getActivity()).load(s.getUser().getImage()).apply(options).into(imageProfile);
+                }
             }
         });
 

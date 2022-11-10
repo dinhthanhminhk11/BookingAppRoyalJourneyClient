@@ -14,11 +14,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.callback.CallSendAgain;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.repository.UserRepository;
 import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.response.TestResponse;
 
 public class LoginViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
@@ -77,6 +80,22 @@ public class LoginViewModel extends AndroidViewModel {
             @Override
             public void onFailure(Throwable t) {
                 mProgressMutableData.postValue(View.INVISIBLE);
+            }
+        });
+    }
+
+    public void sendAgain(Email email){
+        mProgressMutableData.postValue(View.VISIBLE);
+        userRepository.sendAgain(email, new CallSendAgain() {
+            @Override
+            public void onResponse(TestResponse testResponse) {
+                mProgressMutableData.postValue(View.INVISIBLE);
+//                sendAgainTestResponse.postValue(testResponse);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
             }
         });
     }
