@@ -1,6 +1,4 @@
 <resources>
-
-
     <string name="app_name">BookingAppRoyalJourney</string>
     <string name="login_text">Login To Your Account</string>
     <string name="email">Email</string>

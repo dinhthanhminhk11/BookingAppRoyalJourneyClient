@@ -9,8 +9,6 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.HomeFragment">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -104,82 +102,82 @@
             android:overScrollMode="never" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+
+            <RelativeLayout
+                android:id="@+id/contentTextNearFromYou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/NearFromYou_homeFragment"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16dp" />
+
+                <TextView
+                    android:id="@+id/seeMoreNearFromYouHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="@string/SeeMore_homeFragment"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_12dp" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewNearFromYouHomeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24dp"
+                android:layout_marginBottom="@dimen/_32dp"
+                android:overScrollMode="never" />
+
+            <RelativeLayout
+                android:id="@+id/contentBestForYouHomeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BestForYou_homeFragment"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16dp" />
+
+                <TextView
+                    android:id="@+id/seeMoreBestForYouHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="@string/SeeMore_homeFragment"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_12dp" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewBestForYouHomeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/_24dp"
+                android:overScrollMode="never" />
 
-
-                <RelativeLayout
-                    android:visibility="gone"
-                    android:id="@+id/contentTextNearFromYou"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/NearFromYou_homeFragment"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_16dp" />
-
-                    <TextView
-                        android:id="@+id/seeMoreNearFromYouHomeFragment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:text="@string/SeeMore_homeFragment"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/_12dp" />
-
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerviewNearFromYouHomeFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_24dp"
-                    android:layout_marginBottom="@dimen/_32dp"
-                    android:overScrollMode="never" />
-
-                <RelativeLayout
-                    android:visibility="gone"
-                    android:id="@+id/contentBestForYouHomeFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/BestForYou_homeFragment"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_16dp" />
-
-                    <TextView
-                        android:id="@+id/seeMoreBestForYouHomeFragment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:text="@string/SeeMore_homeFragment"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/_12dp" />
-
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerviewBestForYouHomeFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_24dp"
-                    android:overScrollMode="never" />
-
-            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

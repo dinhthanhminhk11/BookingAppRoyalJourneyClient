@@ -219,7 +219,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 //                            distance.setText(decimalFormat.format(SphericalUtil.computeDistanceBetween(latLngLocationYourSelf, latLng) / 1000) + " km");
 
                             //tính quãng đường chim bay
-                            // dm chỗ này đéo có tiền đéo tính đc quảng đường thực
+                            // dm chỗ này đéo có tiền đéo tính đc quảng đường thực :))
 //                            SphericalUtil.computeDistanceBetween(latLngStart, latLng);
 //                            controller.getRootDistanceAndDuration(nameLocationYourSelf, data.get(0).getAddress(), distance, time);
 //                            LatLng latLng = getLocationFromAddress(data.get(0).getAddress());
