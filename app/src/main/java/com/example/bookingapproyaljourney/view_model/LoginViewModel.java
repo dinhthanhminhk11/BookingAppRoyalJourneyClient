@@ -58,6 +58,7 @@ public class LoginViewModel extends AndroidViewModel {
                 Log.e("MinhLoginactive", loginResponse.getUser().isActive() + " sss");
                 Log.e("MinhLoginactive", loginResponse.getUser().getOtp() + " sxxxxxss");
 
+
             }
 
             @Override

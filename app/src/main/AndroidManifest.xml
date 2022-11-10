@@ -25,7 +25,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".SeeMoreNearFromYouActivity"
+            android:name=".ui.activity.chat_message.ChatMessageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.SeeMoreNearFromYouActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.SeeMoreBestForYouActivity"

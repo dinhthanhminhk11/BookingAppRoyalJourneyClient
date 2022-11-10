@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +28,11 @@ import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
+import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
+
 public class LoginActivity extends AppCompatActivity {
     private ConstraintLayout contentView;
     private ImageView imageView;
@@ -41,15 +47,17 @@ public class LoginActivity extends AppCompatActivity {
     private LottieAnimationView progressBar;
     private String correct_email = "";
     private String correct_password = "";
-
     private UserLogin userLogin;
-
-
     private LoginViewModel loginViewModel;
-
     private ActivityLoginBinding binding;
-
-
+    private Socket mSocket;
+    {
+        try {
+            mSocket = IO.socket(AppConstant.BASE_URL);
+        } catch (URISyntaxException e) {
+            e.getMessage();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                     editor.commit();
                     onBackPressed();
+                    Log.e("vvvvvvvvvvvvvvvvvvvvv", loginResponse.getUser().getId());
                 } else {
                     Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
