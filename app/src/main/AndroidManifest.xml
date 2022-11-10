@@ -25,6 +25,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".SeeMoreNearFromYouActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.SeeMoreBestForYouActivity"
             android:exported="false" />
         <activity

@@ -33,6 +33,8 @@ import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
+import com.example.bookingapproyaljourney.ui.activity.SeeMoreBestForYouActivity;
+import com.example.bookingapproyaljourney.ui.activity.SeeMoreNearFromYouActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapterNotNull;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
@@ -135,6 +137,15 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             }
         });
 
+        seeMoreBestForYou.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), SeeMoreBestForYouActivity.class);
+            startActivity(i);
+        });
+
+        seeMoreNearFromYou.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), SeeMoreNearFromYouActivity.class);
+            startActivity(i);
+        });
     }
 
     private void initData() {
