@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bookingapproyaljourney.R;
 
 
-public class ForgotActivity extends AppCompatActivity implements GestureDetector.OnGestureListener{
+public class ForgotActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private float horizontalAxis1, horizontalAxis2, verticalAxis1, verticalAxis2;
     private static int MIN_DISTANCE = 100;
@@ -35,6 +35,10 @@ public class ForgotActivity extends AppCompatActivity implements GestureDetector
             public void onClick(View view) {
                 startActivity(new Intent(ForgotActivity.this, RegisterActivity.class));
             }
+        });
+
+        btnSend.setOnClickListener(v -> {
+            startActivity(new Intent(ForgotActivity.this, OTPPasswordActivity.class));
         });
     }
 

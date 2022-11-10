@@ -80,7 +80,7 @@ public class OtpActivity extends AppCompatActivity {
             logOut.setOnClickListener(v2 -> {
                 onBackPressed();
             });
-
+            dialogLogOut.show();
         });
 
         viewModel.getmLoginResultMutableData().observe(this, new Observer<TestResponse>() {
