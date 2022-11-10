@@ -158,7 +158,6 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
 
     @Override
     public void callbacksNearFromYou(int position, HouseNearestByUserResponse houseNearestByUserResponse) {
-        Log.e("MinhHomeFragment", houseNearestByUserResponse + " fdsf");
         if (houseNearestByUserResponse.getDataMaps().size() == 0) {
             contentTextNearFromYou.setVisibility(View.GONE);
             recyclerviewNearFromYou.setVisibility(View.GONE);
