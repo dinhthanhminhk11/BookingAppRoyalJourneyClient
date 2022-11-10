@@ -28,6 +28,15 @@
             android:name=".ui.activity.SeeMoreBestForYouActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activity.NewPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.OTPPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.BillActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.CongratsActivity"
             android:exported="false" />
         <activity

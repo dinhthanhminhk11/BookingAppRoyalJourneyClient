@@ -2,14 +2,15 @@ package com.example.bookingapproyaljourney.model.user;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Verify {
+public class Email {
     @SerializedName("email")
     private String email;
-    @SerializedName("otp")
-    private String otp;
 
-    public Verify(String email, String otp) {
+    public Email(String email) {
         this.email = email;
-        this.otp = otp;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

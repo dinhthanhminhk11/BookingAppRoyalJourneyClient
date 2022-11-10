@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.api;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.map.Root;
+import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.Verify;
@@ -39,6 +40,9 @@ public interface ApiRequest {
     @GET("getNameCategory/{id}")
     Call<String> getNameCategoryById(@Path("id") String idCategory);
 
+    @GET("signup/verify/sendAgain")
+    Call<TestResponse> sendAgain(@Body Email email);
+
     @GET("maps/api/directions/json")
     Call<Root> getRoot(
             @Query("origin") String origin,
@@ -60,5 +64,14 @@ public interface ApiRequest {
 
     @GET("getUserByToken")
     Call<LoginResponse> getUserByToken(@Header("x-access-token") String token);
+
+    @POST("checkEmailForgot")
+    Call<TestResponse> checkEmail(@Body Email email);
+
+    @POST("validateUserPass")
+    Call<TestResponse> checkOtpPass(@Body Verify verify);
+
+    @POST("newPass")
+    Call<TestResponse> newPassWord(@Body UserLogin userLogin);
 
 }

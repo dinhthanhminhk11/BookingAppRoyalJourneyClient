@@ -5,35 +5,63 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.databinding.ActivityForgotBinding;
+import com.example.bookingapproyaljourney.model.user.Email;
+import com.example.bookingapproyaljourney.response.TestResponse;
+import com.example.bookingapproyaljourney.view_model.ForgotPassViewModel;
 
 
-public class ForgotActivity extends AppCompatActivity implements GestureDetector.OnGestureListener{
-
+public class ForgotActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
+    private ActivityForgotBinding binding;
     private float horizontalAxis1, horizontalAxis2, verticalAxis1, verticalAxis2;
     private static int MIN_DISTANCE = 100;
     private GestureDetector gestureDetector;
+    private ForgotPassViewModel forgotPassViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot);
-        EditText edEmailForgot = (EditText) findViewById(R.id.edEmailForgot);
-        Button btnSend = (Button) findViewById(R.id.btnSend);
-        TextView tvSignUp = (TextView) findViewById(R.id.tvSignUp);
+        binding = ActivityForgotBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         this.gestureDetector = new GestureDetector(ForgotActivity.this, this);
+        forgotPassViewModel = new ViewModelProvider(this).get(ForgotPassViewModel.class);
 
-        tvSignUp.setOnClickListener(new View.OnClickListener() {
+        binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ForgotActivity.this, RegisterActivity.class));
+            }
+        });
+
+        binding.btnSend.setOnClickListener(v -> {
+            forgotPassViewModel.checkMail(new Email(binding.edEmailForgot.getText().toString()));
+        });
+
+        forgotPassViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TestResponse>() {
+            @Override
+            public void onChanged(TestResponse testResponse) {
+                if (testResponse.isStatus()) {
+                    Intent intent = new Intent(ForgotActivity.this, OTPPasswordActivity.class);
+                    intent.putExtra(AppConstant.EMAIL_USER, binding.edEmailForgot.getText().toString().trim());
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ForgotActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        forgotPassViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.progressBar.setVisibility(integer);
             }
         });
     }
