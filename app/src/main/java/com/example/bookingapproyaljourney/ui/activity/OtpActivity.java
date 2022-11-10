@@ -88,8 +88,6 @@ public class OtpActivity extends AppCompatActivity {
             public void onChanged(TestResponse testResponse) {
                 if (testResponse.isStatus()) {
                     viewModel.login(mail, pass);
-                    Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(OtpActivity.this, CongratsActivity.class));
                 } else {
                     Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -110,6 +108,8 @@ public class OtpActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                 editor.commit();
+                Toast.makeText(OtpActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(OtpActivity.this, CongratsActivity.class));
             }
         });
 
