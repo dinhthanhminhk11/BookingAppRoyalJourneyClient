@@ -55,12 +55,13 @@ public class ProfileFragment extends Fragment {
     private String mParam2;
     private TextView tvSignUpProfile, nameUser, emailUser;
     private ImageView imageProfile;
-    private LinearLayout  profileVisialbe;
+    private LinearLayout profileVisialbe;
     private CoordinatorLayout profileGone;
     private RecyclerView recyclerViewHiredProfile;
     private HiredProfileAdapter hiredProfileAdapter;
     private ArrayList<House> listHouse;
     private List<Convenient> convenientList;
+
     public ProfileFragment() {
 
     }
@@ -103,7 +104,7 @@ public class ProfileFragment extends Fragment {
         tvSignUpProfile = view.findViewById(R.id.tvSignUpProfile);
         nameUser = view.findViewById(R.id.tvNameUserProfile);
         emailUser = view.findViewById(R.id.tvEmailUserProfile);
-        tvSignUpProfile.setPaintFlags(tvSignUpProfile.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        tvSignUpProfile.setPaintFlags(tvSignUpProfile.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         profileGone = view.findViewById(R.id.profileGone);
         profileVisialbe = view.findViewById(R.id.profileVisiable);
         imageProfile = view.findViewById(R.id.imageProfile);
@@ -137,13 +138,11 @@ public class ProfileFragment extends Fragment {
                 nameUser.setText(s.getUser().getName());
                 emailUser.setText(s.getUser().getEmail());
 
-                if(s.getUser().getImage().equals("")){
-                    RequestOptions options = new RequestOptions()
-                            .centerCrop()
-                            .placeholder(R.drawable.img)
-                            .error(R.drawable.img);
-                    Glide.with(getActivity()).load(s.getUser().getImage()).apply(options).into(imageProfile);
-                }
+                RequestOptions options = new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.drawable.img)
+                        .error(R.drawable.img);
+                Glide.with(getActivity()).load(s.getUser().getImage()).apply(options).into(imageProfile);
             }
         });
 
@@ -153,8 +152,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void FakeData()
-    {
+    private void FakeData() {
         listHouse = new ArrayList<>();
         hiredProfileAdapter = new HiredProfileAdapter(listHouse);
         recyclerViewHiredProfile.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
