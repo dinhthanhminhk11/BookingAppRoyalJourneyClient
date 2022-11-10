@@ -65,4 +65,13 @@ public interface ApiRequest {
     @GET("getUserByToken")
     Call<LoginResponse> getUserByToken(@Header("x-access-token") String token);
 
+    @POST("checkEmailForgot")
+    Call<TestResponse> checkEmail(@Body Email email);
+
+    @POST("validateUserPass")
+    Call<TestResponse> checkOtpPass(@Body Verify verify);
+
+    @POST("newPass")
+    Call<TestResponse> newPassWord(@Body UserLogin userLogin);
+
 }
