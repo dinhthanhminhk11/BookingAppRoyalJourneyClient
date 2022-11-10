@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEFFF"
+    tools:context=".ui.activity.chat_message.ChatMessageActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/tool_bar" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_90dp"
+        android:layout_marginStart="@dimen/_14dp"
+        android:layout_marginTop="@dimen/_15dp"
+        android:layout_marginEnd="@dimen/_14dp"
+        android:background="@drawable/background_boss_chat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imgBossChat"
+        android:layout_width="@dimen/_62dp"
+        android:layout_height="@dimen/_62dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/tvNameBossChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_18dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBossChat"
+        app:layout_constraintStart_toEndOf="@+id/imgBossChat"
+        app:layout_constraintTop_toTopOf="@+id/imgBossChat"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <ImageView
+        android:id="@+id/imgOnlineChat"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_marginStart="@dimen/_19dp"
+        android:src="@drawable/ic_online"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBossChat"
+        app:layout_constraintStart_toEndOf="@+id/imgBossChat"
+        app:layout_constraintTop_toTopOf="@+id/imgBossChat"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <TextView
+        android:id="@+id/tvCheckOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        android:alpha="0.4"
+        android:text="Online"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgOnlineChat"
+        app:layout_constraintStart_toEndOf="@+id/imgOnlineChat"
+        app:layout_constraintTop_toTopOf="@+id/imgOnlineChat"
+        app:layout_constraintVertical_bias="0.705" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvChatMessage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/edContentChat"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="14dp"
+        android:layout_margin="@dimen/_10dp"/>
+
+    <EditText
+        android:id="@+id/edContentChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_55dp"
+        android:layout_marginStart="@dimen/_14dp"
+        android:layout_marginEnd="@dimen/_14dp"
+        android:background="@drawable/background_boss_chat"
+        android:paddingStart="@dimen/_25dp"
+        android:paddingEnd="@dimen/_50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.955" />
+
+    <ImageView
+        android:id="@+id/imgSendChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_send_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/edContentChat"
+        app:layout_constraintEnd_toEndOf="@+id/edContentChat"
+        app:layout_constraintTop_toTopOf="@+id/edContentChat"
+        android:layout_marginEnd="@dimen/_25dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
