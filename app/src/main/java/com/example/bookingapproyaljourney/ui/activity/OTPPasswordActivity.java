@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityOtppasswordBinding;
+import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.view_model.OTPPasswordViewModel;
@@ -45,6 +46,11 @@ public class OTPPasswordActivity extends AppCompatActivity {
         binding.textAlien.setText("Nhập mã mà chúng tôi đã gửi qua tin nhắn email " + mail);
 
         binding.sendAgain.setPaintFlags(binding.sendAgain.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        binding.sendAgain.setOnClickListener(v -> {
+            Toast.makeText(this, "Đã Gửi", Toast.LENGTH_SHORT).show();
+            otpPasswordViewModel.checkMail(new Email(mail));
+        });
 
         binding.close.setOnClickListener(v -> {
             final Dialog dialogLogOut = new Dialog(this);

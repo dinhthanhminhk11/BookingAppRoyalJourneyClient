@@ -23,6 +23,7 @@ import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityNewPasswordBinding;
+import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
@@ -55,6 +56,7 @@ public class NewPasswordActivity extends AppCompatActivity {
             newPassViewModel.newPassword(new UserLogin(mail, binding.edCfPass.getText().toString().trim()));
         });
 
+
         newPassViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TestResponse>() {
             @Override
             public void onChanged(TestResponse testResponse) {
@@ -86,10 +88,12 @@ public class NewPasswordActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else {
+                    // gọi thêm hàm xác thực mail ở đây
+                    newPassViewModel.sendAgain(new Email(mail));
                     Toast.makeText(NewPasswordActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(NewPasswordActivity.this, OtpActivity.class);
                     intent.putExtra(AppConstant.EMAIL_USER, loginResponse.getUser().getEmail());
-                    Log.e("MinhEmailLogin" , loginResponse.getUser().getEmail());
+                    Log.e("MinhEmailLogin", loginResponse.getUser().getEmail());
                     intent.putExtra(AppConstant.PASS_USER, binding.edCfPass.getText().toString());
                     startActivity(intent);
                 }
@@ -132,4 +136,6 @@ public class NewPasswordActivity extends AppCompatActivity {
         });
         dialogLogOut.show();
     }
+
+
 }
