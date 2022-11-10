@@ -36,6 +36,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,6 +52,7 @@ import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerItem;
 import com.example.bookingapproyaljourney.ui.view.menu.SimpleItem;
 import com.example.bookingapproyaljourney.ui.view.menu.SpaceItem;
+import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarynav.SlidingRootNav;
 import com.example.librarynav.SlidingRootNavBuilder;
 import com.google.android.gms.location.LocationCallback;
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private ImageView close;
     private TextView btnCancel;
     private Button logOut;
-
+    private LoginViewModel loginViewModel;
 
     public void setCallDialog(CallDialog callDialog) {
         this.callDialog = callDialog;
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         container = (FrameLayout) findViewById(R.id.containerMain);
         toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
         spinnerNav = (Spinner) findViewById(R.id.spinnerLocationMain);
@@ -157,6 +159,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             getCurrentLocation();
         }
 
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+        if (token != null || !token.equals("")) {
+            loginViewModel.getUserByToken(token);
+        }
     }
 
     @Override

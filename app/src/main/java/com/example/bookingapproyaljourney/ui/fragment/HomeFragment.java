@@ -30,6 +30,7 @@ import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
@@ -103,6 +104,8 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         super.onViewCreated(view, savedInstanceState);
         initView(view);
         initData();
+
+        Log.e("MinhIDUser" , UserClient.getInstance().getId() + "dsfdsfd");
     }
 
     private void initView(View view) {

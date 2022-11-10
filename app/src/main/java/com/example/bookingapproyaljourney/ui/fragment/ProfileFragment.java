@@ -127,7 +127,6 @@ public class ProfileFragment extends Fragment {
             login.setVisibility(View.GONE);
             profileVisialbe.setVisibility(View.GONE);
             profileGone.setVisibility(View.VISIBLE);
-
         }
         if (token != null || !token.equals("")) {
             loginViewModel.getUserByToken(token);

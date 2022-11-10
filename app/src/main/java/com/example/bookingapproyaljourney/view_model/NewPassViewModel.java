@@ -22,6 +22,7 @@ import com.example.bookingapproyaljourney.callback.CallSendAgain;
 import com.example.bookingapproyaljourney.callback.CallVerifyRepository;
 import com.example.bookingapproyaljourney.callback.InterfaceResponseChangePassword;
 import com.example.bookingapproyaljourney.model.user.Email;
+import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.repository.ChangePassRepository;
 import com.example.bookingapproyaljourney.response.LoginResponse;
@@ -75,6 +76,14 @@ public class NewPassViewModel extends AndroidViewModel {
             public void onResponseLogin(LoginResponse loginResponse) {
                 mProgressMutableData.postValue(View.INVISIBLE);
                 mLoginResultMutableDataToKen.postValue(loginResponse);
+                UserClient userClient = UserClient.getInstance();
+                userClient.setEmail(loginResponse.getUser().getEmail());
+                userClient.setId(loginResponse.getUser().getId());
+                userClient.setName(loginResponse.getUser().getName());
+                userClient.setImage(loginResponse.getUser().getImage());
+                userClient.setPhone(loginResponse.getUser().getPhone());
+                userClient.setAddress(loginResponse.getUser().getAddress());
+
             }
 
             @Override

@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.ui.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,8 @@ import com.example.bookingapproyaljourney.model.house.Feedback;
 import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.Room;
+import com.example.bookingapproyaljourney.model.user.User;
+import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.HostResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
@@ -172,6 +175,7 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         });
 
+        Log.e("MinhDetail" , UserClient.getInstance().getId() + "id ");
 
     }
 
