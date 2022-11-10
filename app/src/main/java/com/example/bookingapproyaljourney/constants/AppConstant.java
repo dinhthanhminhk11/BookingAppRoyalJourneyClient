@@ -10,6 +10,7 @@ public class AppConstant {
     public static final String HOUSE_EXTRA = "house";
     public static final String SHAREDPREFERENCES_USER  = "USERCLIENT";
     public static final String TOKEN_USER  = "TOKEN_USER";
+    public static final String ID_USER  = "ID_USER";
     public static final String EMAIL_USER  = "EMAIL_USER";
     public static final String PASS_USER  = "PASS_USER";
 }

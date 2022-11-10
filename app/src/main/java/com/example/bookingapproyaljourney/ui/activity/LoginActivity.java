@@ -50,14 +50,6 @@ public class LoginActivity extends AppCompatActivity {
     private UserLogin userLogin;
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
-    private Socket mSocket;
-    {
-        try {
-            mSocket = IO.socket(AppConstant.BASE_URL);
-        } catch (URISyntaxException e) {
-            e.getMessage();
-        }
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,9 +116,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResponse.getUser().isActive()) {
                     Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
+                    editor.putString(AppConstant.ID_USER,loginResponse.getUser().getId());
                     editor.commit();
                     onBackPressed();
-                    Log.e("vvvvvvvvvvvvvvvvvvvvv", loginResponse.getUser().getId());
                 } else {
                     Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);

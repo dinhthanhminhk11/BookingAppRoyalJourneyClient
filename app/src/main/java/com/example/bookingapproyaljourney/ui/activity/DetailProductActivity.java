@@ -34,6 +34,7 @@ import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.HostResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientListAdapter;
@@ -90,6 +91,9 @@ public class DetailProductActivity extends AppCompatActivity {
     private House house;
     private HouseDetailResponse houseDetailResponse;
     private String idHouse = "";
+    private String idBoss = "";
+    private String imgBoss = "";
+    private String nameBoss = "";
     private RequestOptions options;
     private LottieAnimationView progressBar;
     private BottomSheetConvenient bottomSheetConvenient;
@@ -174,13 +178,21 @@ public class DetailProductActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Log.e("MinhDetail" , UserClient.getInstance().getId() + "id ");
+        btMesseger.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ChatMessageActivity.class);
+            intent.putExtra("ID_BOSS",idBoss);
+            intent.putExtra("IMG_BOSS",imgBoss);
+            intent.putExtra("NAME_BOSS",nameBoss);
+            startActivity(intent);
+        });
 
     }
 
     private void initData(String id) {
         detailProductViewModel.getHouseById(id).observe(this, item -> {
+            idBoss = item.getHostResponse().get_id();
+            imgBoss = item.getHostResponse().getImage();
+            nameBoss = item.getHostResponse().getName();
             tvAddress.setText(item.getNameLocation());
             tvNameHotel.setText(item.getName());
             tvAmountBedRoom.setText(item.getSleepingPlaces().size() + " Phòng ngủ");

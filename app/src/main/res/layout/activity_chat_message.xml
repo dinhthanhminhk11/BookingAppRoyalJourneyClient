@@ -43,12 +43,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_18dp"
         android:textColor="@color/black"
-        android:textSize="@dimen/_15sp"
+        android:textSize="@dimen/_16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBossChat"
         app:layout_constraintStart_toEndOf="@+id/imgBossChat"
         app:layout_constraintTop_toTopOf="@+id/imgBossChat"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.15" />
 
     <ImageView
         android:id="@+id/imgOnlineChat"
@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imgBossChat"
         app:layout_constraintStart_toEndOf="@+id/imgBossChat"
         app:layout_constraintTop_toTopOf="@+id/imgBossChat"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintVertical_bias="0.68" />
 
     <TextView
         android:id="@+id/tvCheckOnline"
@@ -70,11 +70,11 @@
         android:alpha="0.4"
         android:text="Online"
         android:textColor="@color/black"
-        android:textSize="@dimen/_14sp"
+        android:textSize="@dimen/_15sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgOnlineChat"
         app:layout_constraintStart_toEndOf="@+id/imgOnlineChat"
         app:layout_constraintTop_toTopOf="@+id/imgOnlineChat"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.65" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvChatMessage"
@@ -95,7 +95,7 @@
         android:layout_marginEnd="@dimen/_14dp"
         android:background="@drawable/background_boss_chat"
         android:paddingStart="@dimen/_25dp"
-        android:paddingEnd="@dimen/_50dp"
+        android:paddingEnd="@dimen/_65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
