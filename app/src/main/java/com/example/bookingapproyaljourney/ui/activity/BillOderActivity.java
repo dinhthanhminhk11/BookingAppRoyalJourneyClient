@@ -7,11 +7,13 @@ import android.view.View;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ActivityBillOderBinding;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
 
 public class BillOderActivity extends AppCompatActivity {
 
     private ActivityBillOderBinding binding;
-
+    private BottomSheetPayment bottomSheetPayment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,5 +28,20 @@ public class BillOderActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        binding.addPayment.setOnClickListener(v->{
+            showDialog();
+        });
+    }
+
+    private void showDialog() {
+        bottomSheetPayment = new BottomSheetPayment(BillOderActivity.this, R.style.MaterialDialogSheet, new BottomSheetPayment.CallBack() {
+            @Override
+            public void onCLickCLose() {
+
+            }
+        });
+        bottomSheetPayment.show();
+        bottomSheetPayment.setCanceledOnTouchOutside(false);
     }
 }
