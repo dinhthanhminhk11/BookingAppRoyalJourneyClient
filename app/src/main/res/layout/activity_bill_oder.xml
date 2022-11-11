@@ -149,6 +149,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/contentPayDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -158,7 +159,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/tvSoDem"
+                        android:id="@+id/payDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -432,10 +433,12 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_20dp"
                 android:paddingVertical="@dimen/_10dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -471,20 +474,21 @@
                         android:textColor="@color/black"
                         app:backgroundTint="@null" />
                 </LinearLayout>
+
                 <EditText
-                    android:visibility="gone"
-                    android:inputType="number"
-                    android:hint="phone"
                     android:id="@+id/edPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:background="@drawable/textview_border_ver2"
+                    android:hint="phone"
+                    android:inputType="number"
                     android:paddingHorizontal="@dimen/_10dp"
-                    android:paddingVertical="@dimen/_8dp"
-                    android:textSize="@dimen/_24dp" />
+                    android:paddingVertical="@dimen/_10dp"
+                    android:textSize="@dimen/_18dp"
+                    android:visibility="gone" />
+
                 <Button
-                    android:visibility="gone"
                     android:id="@+id/btnComfirmPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -495,6 +499,7 @@
                     android:text="Tiếp tục với số điện thoại này"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
+                    android:visibility="gone"
                     app:backgroundTint="@null" />
 
             </LinearLayout>

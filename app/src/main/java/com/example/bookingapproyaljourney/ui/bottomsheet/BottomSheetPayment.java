@@ -26,6 +26,7 @@ public class BottomSheetPayment extends BottomSheetDialog {
 
     public BottomSheetPayment(@NonNull Context context, int theme, CallBack callBack) {
         super(context, theme);
+        this.callBack = callBack;
     }
 
     @Override
