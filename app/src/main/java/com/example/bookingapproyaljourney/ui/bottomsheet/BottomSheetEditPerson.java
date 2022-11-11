@@ -2,6 +2,7 @@ package com.example.bookingapproyaljourney.ui.bottomsheet;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -27,6 +28,8 @@ public class BottomSheetEditPerson extends BottomSheetDialog {
     private ImageView upPersonChildren;
     private TextView btnCancel;
     private Button login;
+    private int countPerson;
+    private int countPersonChildren;
 
     public BottomSheetEditPerson(@NonNull Context context, int theme, CallBack callBack) {
         super(context, theme);
@@ -51,20 +54,93 @@ public class BottomSheetEditPerson extends BottomSheetDialog {
         upPersonChildren = (ImageView) findViewById(R.id.upPersonChildren);
         btnCancel = (TextView) findViewById(R.id.btnCancel);
         login = (Button) findViewById(R.id.login);
+        btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        countPerson = Integer.parseInt(person.getText().toString().trim());
+        countPersonChildren = Integer.parseInt(personChildren.getText().toString().trim());
 
-        close.setOnClickListener(v->{
+        if (countPerson == 0 || countPersonChildren == 0) {
+            downPerson.setAlpha(0.4f);
+            downPersonChildren.setAlpha(0.4f);
+            downPerson.setEnabled(false);
+            downPersonChildren.setEnabled(false);
+        } else {
+            downPerson.setAlpha(1f);
+            downPersonChildren.setAlpha(1f);
+            downPerson.setEnabled(true);
+            downPersonChildren.setEnabled(true);
+        }
+
+        close.setOnClickListener(v -> {
             callBack.onCLickCLose();
         });
 
-        login.setOnClickListener(v->{
-
+        login.setOnClickListener(v -> {
+            int sumPerson = 0;
+            int countPerson = Integer.parseInt(person.getText().toString().trim());
+            int countPersonChildren = Integer.parseInt(personChildren.getText().toString().trim());
+            sumPerson = countPerson + countPersonChildren;
+            callBack.onCLickSum(sumPerson);
+            callBack.onCLickCLose();
         });
 
+        downPerson.setOnClickListener(v -> {
+            countPerson -= 1;
+            person.setText(countPerson + "");
+            if (countPerson == 0) {
+                downPerson.setAlpha(0.4f);
+                downPerson.setEnabled(false);
+            } else {
+                downPerson.setAlpha(1f);
+                downPerson.setEnabled(true);
+            }
+        });
+
+        downPersonChildren.setOnClickListener(v -> {
+            countPersonChildren -= 1;
+            personChildren.setText(countPersonChildren + "");
+            if (countPersonChildren == 0) {
+                downPersonChildren.setAlpha(0.4f);
+                downPersonChildren.setEnabled(false);
+            } else {
+                downPersonChildren.setAlpha(1f);
+                downPersonChildren.setEnabled(true);
+            }
+        });
+
+        upPerson.setOnClickListener(v -> {
+            countPerson += 1;
+            person.setText(countPerson + "");
+            if (countPerson == 0) {
+                downPerson.setAlpha(0.4f);
+                downPerson.setEnabled(false);
+            } else {
+                downPerson.setAlpha(1f);
+                downPerson.setEnabled(true);
+            }
+        });
+
+        upPersonChildren.setOnClickListener(v -> {
+            countPersonChildren += 1;
+            personChildren.setText(countPersonChildren + "");
+            if (countPersonChildren == 0) {
+                downPersonChildren.setAlpha(0.4f);
+                downPersonChildren.setEnabled(false);
+            } else {
+                downPersonChildren.setAlpha(1f);
+                downPersonChildren.setEnabled(true);
+            }
+        });
+
+        btnCancel.setOnClickListener(v->{
+            callBack.onCLickCLose();
+        });
 
 
     }
 
     public interface CallBack {
         void onCLickCLose();
+
+        void onCLickSum(int sum);
     }
 }

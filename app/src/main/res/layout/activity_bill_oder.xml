@@ -646,7 +646,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginVertical="@dimen/_20dp"
-                    android:background="@drawable/bg_buttom"
+                    android:background="@drawable/bg_buttom_black"
                     android:foreground="?attr/selectableItemBackground"
                     android:text="Xác nhận và thanh toán"
                     android:textAllCaps="false"

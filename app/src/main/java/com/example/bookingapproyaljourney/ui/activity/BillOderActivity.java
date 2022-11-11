@@ -1,18 +1,26 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
 import android.graphics.Paint;
+import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ActivityBillOderBinding;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetEditPerson;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
-public class BillOderActivity extends AppCompatActivity {
+public class BillOderActivity extends AppCompatActivity implements BottomSheetEditPerson.CallBack {
 
     private ActivityBillOderBinding binding;
     private BottomSheetPayment bottomSheetPayment;
@@ -27,6 +35,8 @@ public class BillOderActivity extends AppCompatActivity {
         binding.toolBar.setTitle("Xác nhận và thanh toán");
         binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         binding.editPerson.setPaintFlags(binding.editPerson.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        bottomSheetEditPerson = new BottomSheetEditPerson(BillOderActivity.this, R.style.MaterialDialogSheet, this);
+
         binding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +92,55 @@ public class BillOderActivity extends AppCompatActivity {
         binding.editPerson.setOnClickListener(v -> {
             showDiaLogEditPerson();
         });
+
+
+        MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+        builder.setTheme(R.style.ThemeOverlay_App_DatePicker);
+        MaterialDatePicker<Pair<Long, Long>> materialDatePicker = builder
+                .setTitleText("Chọn ngày")
+                .setPositiveButtonText("Lưu")
+                .setNegativeButtonText("không")
+                .build();
+
+
+        binding.contentPayDay.setOnClickListener(v -> {
+            materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
+
+            materialDatePicker.getLifecycle().addObserver(new DefaultLifecycleObserver() {
+                @Override
+                public void onCreate(@NonNull LifecycleOwner owner) {
+                    Log.e("Minh", "onCreate");
+                }
+
+                @Override
+                public void onStart(@NonNull LifecycleOwner owner) {
+                    //in onStart of DialogFragment the View has been created so you can access the materialDatePicker.requireView()
+                    View root = materialDatePicker.requireView();
+                    Log.e("Minh", "onStart");
+                }
+
+                @Override
+                public void onResume(@NonNull LifecycleOwner owner) {
+                    Log.e("Minh", "onResume");
+                }
+
+                @Override
+                public void onDestroy(@NonNull LifecycleOwner owner) {
+                    //remove Lifecycle Observer
+                    materialDatePicker.getLifecycle().removeObserver(this);
+                    Log.e("Minh", "onDestroy");
+                }
+            });
+            materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
+                @Override public void onPositiveButtonClick(Pair<Long,Long> selection) {
+                    Long startDate = selection.first;
+                    Long endDate = selection.second;
+                    Log.e("Minh1", "startDate " + startDate);
+                    Log.e("Minh2", "onDestroy " + endDate);
+                    //Do something...
+                }
+            });
+        });
     }
 
     private void showDialog() {
@@ -96,13 +155,17 @@ public class BillOderActivity extends AppCompatActivity {
     }
 
     private void showDiaLogEditPerson() {
-        bottomSheetEditPerson = new BottomSheetEditPerson(BillOderActivity.this, R.style.MaterialDialogSheet, new BottomSheetEditPerson.CallBack() {
-            @Override
-            public void onCLickCLose() {
-                bottomSheetEditPerson.dismiss();
-            }
-        });
         bottomSheetEditPerson.show();
         bottomSheetEditPerson.setCanceledOnTouchOutside(false);
+    }
+
+    @Override
+    public void onCLickCLose() {
+        bottomSheetEditPerson.dismiss();
+    }
+
+    @Override
+    public void onCLickSum(int sum) {
+        binding.person.setText(sum + " khách");
     }
 }
