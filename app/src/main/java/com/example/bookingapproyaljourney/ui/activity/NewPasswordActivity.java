@@ -11,14 +11,17 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
@@ -39,7 +42,8 @@ public class NewPasswordActivity extends AppCompatActivity {
     private Button login;
     private TextView text;
     private String mail;
-
+    private EditText edPass;
+    private EditText edCfPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +56,10 @@ public class NewPasswordActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         binding.btnSend.setOnClickListener(v -> {
-            // lamf phan check ow day
-            newPassViewModel.newPassword(new UserLogin(mail, binding.edCfPass.getText().toString().trim()));
+            String Password  = binding.edPass.getText().toString();
+            String CFPassword = binding.edCfPass.getText().toString();
+            validateinfo(Password, CFPassword);
+
         });
 
 
@@ -101,6 +107,21 @@ public class NewPasswordActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private Boolean validateinfo(String password, String cfPassword) {
+        if (password.length() <=6){
+            binding.edPass.requestFocus();
+            binding.edPass.setError("Phải trên 6 kí tự, ít nhất chứa 1 chữ số và 1 chứ cái");
+            return false;
+        }else if (cfPassword.length() <= 6){
+            binding.edCfPass.requestFocus();
+            binding.edCfPass.setError("Mật khẩu không trùng khớp");
+            return false;
+        }else {
+            newPassViewModel.newPassword(new UserLogin(mail, binding.edCfPass.getText().toString().trim()));
+        }
+        return null;
     }
 
     private void showDialog() {
