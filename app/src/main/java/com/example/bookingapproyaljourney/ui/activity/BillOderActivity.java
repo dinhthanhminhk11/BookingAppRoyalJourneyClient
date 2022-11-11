@@ -1,7 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
 import android.graphics.Paint;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -16,6 +15,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ActivityBillOderBinding;
+import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetEditPerson;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -146,7 +146,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     long msDiff = endDate - startDate;
                     long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
 
-                    binding.payDay.setText(daysDiff+"");
+                    binding.payDay.setText(daysDiff + "");
 
                     String startDateString = DateFormat.format("EEE, dd-MM", new Date(startDate)).toString();
                     String endDateString = DateFormat.format("EEE, dd-MM", new Date(endDate)).toString();
@@ -156,6 +156,11 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     //Do something...
                 }
             });
+        });
+
+        binding.btnPay.setOnClickListener(v -> {
+            ToastCheck bottomSheetBathRoom = new ToastCheck(BillOderActivity.this, R.style.StyleToast);
+            bottomSheetBathRoom.show();
         });
     }
 
