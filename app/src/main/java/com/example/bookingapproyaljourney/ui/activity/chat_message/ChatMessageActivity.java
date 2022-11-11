@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.chat.MessageSocket;
 import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.ui.adapter.ChatAdapter;
 import com.example.bookingapproyaljourney.view_model.ChatViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.gson.Gson;
@@ -92,11 +94,10 @@ public class ChatMessageActivity extends AppCompatActivity {
             edContentChat.setText("");
         });
 
-        chatViewModel.getContentChatLiveData().observe(this, it->{
-            Log.e("locdetail", it.size()+"" );
+        chatViewModel.getContentChatLiveData(UserClient.getInstance().getId(), id_boss).observe(this, it->{
+            rcvChatMessage.setAdapter(new ChatAdapter(it));
+            rcvChatMessage.setLayoutManager(new LinearLayoutManager(this));
         });
-
-
     }
 
     private final Emitter.Listener onNewMessage = new Emitter.Listener() {

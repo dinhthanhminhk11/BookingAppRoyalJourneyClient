@@ -22,9 +22,9 @@ public class ChatRepository {
         this.apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
 
-    public MutableLiveData<List<Content>> getContentChat(){
+    public MutableLiveData<List<Content>> getContentChat(String sendId, String sendToId){
         final MutableLiveData<List<Content>> data = new MutableLiveData<>();
-        apiRequest.getDataChat().enqueue(new Callback<Data>() {
+        apiRequest.getDataChat(sendId,sendToId).enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
                 data.setValue(response.body().getData());

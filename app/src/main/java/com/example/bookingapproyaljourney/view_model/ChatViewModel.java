@@ -15,12 +15,12 @@ public class ChatViewModel extends AndroidViewModel {
     private ChatRepository chatRepository;
     private LiveData<List<Content>> contentChatLiveData;
 
-    public ChatViewModel(@NonNull Application application) {
+    public ChatViewModel(@NonNull Application application, String sendId, String sendToId) {
         super(application);
         chatRepository = new ChatRepository();
-        contentChatLiveData = chatRepository.getContentChat();
+        contentChatLiveData = chatRepository.getContentChat(sendId,sendToId);
     }
-    public LiveData<List<Content>> getContentChatLiveData() {
+    public LiveData<List<Content>> getContentChatLiveData(String sendId, String sendToId) {
         return contentChatLiveData;
     }
 
