@@ -47,8 +47,6 @@ public class LoginActivity extends AppCompatActivity {
     private LottieAnimationView progressBar;
     private String correct_email = "";
     private String correct_password = "";
-    String email = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    String password ="6";
     private UserLogin userLogin;
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
@@ -91,8 +89,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.btnSignIn.setOnClickListener(v -> {
-
-            loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
+            if (edEmail.getText().toString().isEmpty()){
+                binding.edEmail.requestFocus();
+                binding.edEmail.setError("Xin vui lòng nhập địa chỉ Email");
+            }else if (edPass.getText().toString().isEmpty()){
+                binding.edPass.requestFocus();
+                binding.edPass.setError("Xin vui lòng nhập địa chỉ Password");
+            } else {
+                loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
+            }
         });
 
         loginViewModel.getLoginResult().observe(this, new Observer<String>() {
