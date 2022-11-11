@@ -1,23 +1,23 @@
 package com.example.bookingapproyaljourney.ui.activity.chat_message;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.chat.MessageSocket;
 import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.view_model.ChatViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.gson.Gson;
 
@@ -43,7 +43,7 @@ public class ChatMessageActivity extends AppCompatActivity {
     private RecyclerView rcvChatMessage;
     private EditText edContentChat;
     private ImageView imgSendChat;
-
+    private ChatViewModel chatViewModel;
 
     {
         try {
@@ -64,6 +64,7 @@ public class ChatMessageActivity extends AppCompatActivity {
         rcvChatMessage = (RecyclerView) findViewById(R.id.rcvChatMessage);
         edContentChat = (EditText) findViewById(R.id.edContentChat);
         imgSendChat = (ImageView) findViewById(R.id.imgSendChat);
+        chatViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
         mSocket.connect();
         Intent intent = getIntent();
         String id_boss = intent.getStringExtra("ID_BOSS");
@@ -90,6 +91,11 @@ public class ChatMessageActivity extends AppCompatActivity {
             }
             edContentChat.setText("");
         });
+
+        chatViewModel.getContentChatLiveData().observe(this, it->{
+            Log.e("locdetail", it.size()+"" );
+        });
+
 
     }
 

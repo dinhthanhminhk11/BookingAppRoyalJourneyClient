@@ -1,5 +1,8 @@
 package com.example.bookingapproyaljourney.api;
 
+import com.airbnb.lottie.L;
+import com.example.bookingapproyaljourney.model.chat.Data;
+import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.map.Root;
@@ -73,5 +76,12 @@ public interface ApiRequest {
 
     @POST("newPass")
     Call<TestResponse> newPassWord(@Body UserLogin userLogin);
+
+    //chat
+    @GET("Message/getmsg")
+    Call<Data> getDataChat();
+
+    @POST("Message/addmsg/")
+    Call<Message> addMessage(@Body Message message);
 
 }
