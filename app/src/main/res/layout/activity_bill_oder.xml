@@ -112,6 +112,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/contentPayDayNight"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
@@ -133,7 +135,7 @@
                         android:textColor="@color/color_858585" />
 
                     <TextView
-                        android:id="@+id/tvNgayNhanPhong"
+                        android:id="@+id/startDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Description"
@@ -191,7 +193,7 @@
                         android:textColor="@color/color_858585" />
 
                     <TextView
-                        android:id="@+id/tvNgayTra"
+                        android:id="@+id/endDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|right"
@@ -210,6 +212,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/contentEditPerson"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradientbackground_white"

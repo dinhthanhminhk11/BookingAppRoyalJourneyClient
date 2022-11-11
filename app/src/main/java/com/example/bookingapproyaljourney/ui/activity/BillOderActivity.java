@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.ui.activity;
 import android.graphics.Paint;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -19,6 +20,9 @@ import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetEditPerson;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class BillOderActivity extends AppCompatActivity implements BottomSheetEditPerson.CallBack {
 
@@ -89,7 +93,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             }
         });
 
-        binding.editPerson.setOnClickListener(v -> {
+        binding.contentEditPerson.setOnClickListener(v -> {
             showDiaLogEditPerson();
         });
 
@@ -103,7 +107,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 .build();
 
 
-        binding.contentPayDay.setOnClickListener(v -> {
+        binding.contentPayDayNight.setOnClickListener(v -> {
             materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
 
             materialDatePicker.getLifecycle().addObserver(new DefaultLifecycleObserver() {
@@ -132,11 +136,23 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 }
             });
             materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
-                @Override public void onPositiveButtonClick(Pair<Long,Long> selection) {
+                @Override
+                public void onPositiveButtonClick(Pair<Long, Long> selection) {
                     Long startDate = selection.first;
                     Long endDate = selection.second;
                     Log.e("Minh1", "startDate " + startDate);
                     Log.e("Minh2", "onDestroy " + endDate);
+
+                    long msDiff = endDate - startDate;
+                    long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
+
+                    binding.payDay.setText(daysDiff+"");
+
+                    String startDateString = DateFormat.format("EEE, dd-MM", new Date(startDate)).toString();
+                    String endDateString = DateFormat.format("EEE, dd-MM", new Date(endDate)).toString();
+
+                    binding.startDate.setText(startDateString);
+                    binding.endDate.setText(endDateString);
                     //Do something...
                 }
             });

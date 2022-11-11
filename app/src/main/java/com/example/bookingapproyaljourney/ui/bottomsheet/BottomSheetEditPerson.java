@@ -59,9 +59,7 @@ public class BottomSheetEditPerson extends BottomSheetDialog {
         countPersonChildren = Integer.parseInt(personChildren.getText().toString().trim());
 
         if (countPerson == 0 || countPersonChildren == 0) {
-            downPerson.setAlpha(0.4f);
             downPersonChildren.setAlpha(0.4f);
-            downPerson.setEnabled(false);
             downPersonChildren.setEnabled(false);
         } else {
             downPerson.setAlpha(1f);
