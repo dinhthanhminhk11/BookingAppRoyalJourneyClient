@@ -429,44 +429,74 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
                 android:background="@drawable/gradientbackground_white"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_20dp"
                 android:paddingVertical="@dimen/_10dp">
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
+                    android:orientation="horizontal">
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Số điện thoại"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số điện thoại"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5dp"
+                            android:text="Thêm số điện thoại của bạn" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/addPhone"
+                        android:layout_width="@dimen/_80dp"
+                        android:layout_height="@dimen/_40dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_border_black"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="Thêm"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5dp"
-                        android:text="Thêm số điện thoại của bạn" />
-
+                        app:backgroundTint="@null" />
                 </LinearLayout>
-
+                <EditText
+                    android:visibility="gone"
+                    android:inputType="number"
+                    android:hint="phone"
+                    android:id="@+id/edPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:background="@drawable/textview_border_ver2"
+                    android:paddingHorizontal="@dimen/_10dp"
+                    android:paddingVertical="@dimen/_8dp"
+                    android:textSize="@dimen/_24dp" />
                 <Button
-                    android:id="@+id/addPhone"
-                    android:layout_width="@dimen/_80dp"
-                    android:layout_height="@dimen/_40dp"
+                    android:visibility="gone"
+                    android:id="@+id/btnComfirmPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_20dp"
                     android:background="@drawable/textview_border_black"
                     android:foreground="?attr/selectableItemBackground"
-                    android:text="Thêm"
+                    android:text="Tiếp tục với số điện thoại này"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     app:backgroundTint="@null" />
+
             </LinearLayout>
 
             <LinearLayout
