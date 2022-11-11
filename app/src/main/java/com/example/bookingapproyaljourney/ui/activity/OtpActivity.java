@@ -35,6 +35,7 @@ public class OtpActivity extends AppCompatActivity {
     private ImageView close;
     private TextView btnCancel;
     private Button logOut;
+    private String mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +43,15 @@ public class OtpActivity extends AppCompatActivity {
         binding = ActivityOtpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.sendAgain.setPaintFlags(binding.sendAgain.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        String mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
+        mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
         String pass = getIntent().getStringExtra(AppConstant.PASS_USER);
 
         binding.textAlien.setText("Nhập mã mà chúng tôi đã gửi qua tin nhắn email " + mail);
         viewModel = new ViewModelProvider(this).get(VerifyViewModel.class);
         binding.btnSignIn.setOnClickListener(v -> {
             String otp = binding.otp.getText().toString();
-            viewModel.postVerify(new Verify(mail, otp));
+            validateinfo(otp);
+            
         });
 
         binding.sendAgain.setOnClickListener(v -> {
@@ -119,5 +121,16 @@ public class OtpActivity extends AppCompatActivity {
                 Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private Boolean validateinfo(String otp) {
+        if (otp.length() != 6 ) {
+            binding.otp.requestFocus();
+            binding.otp.setError("Mã OTP gồm có 6 kí tự");
+            return true;
+        }else {
+            viewModel.postVerify(new Verify(mail, otp));
+        }
+        return null;
     }
 }

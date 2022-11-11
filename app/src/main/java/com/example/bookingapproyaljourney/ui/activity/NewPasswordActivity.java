@@ -42,8 +42,7 @@ public class NewPasswordActivity extends AppCompatActivity {
     private Button login;
     private TextView text;
     private String mail;
-    private EditText edPass;
-    private EditText edCfPass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,9 @@ public class OTPPasswordActivity extends AppCompatActivity {
     private TextView btnCancel;
     private Button logOut;
     private OTPPasswordViewModel otpPasswordViewModel;
+    private EditText otp;
+    private String mail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,7 @@ public class OTPPasswordActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         otpPasswordViewModel = new ViewModelProvider(this).get(OTPPasswordViewModel.class);
-
-        String mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
+        mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
 
         binding.textAlien.setText("Nhập mã mà chúng tôi đã gửi qua tin nhắn email " + mail);
 
@@ -79,7 +82,9 @@ public class OTPPasswordActivity extends AppCompatActivity {
         });
 
         binding.btnSignIn.setOnClickListener(v -> {
-            otpPasswordViewModel.postOTP(new Verify(mail, binding.otp.getText().toString().trim()));
+            String otp  = binding.otp.getText().toString();
+            validateinfo(otp);
+
         });
 
         otpPasswordViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
@@ -101,5 +106,16 @@ public class OTPPasswordActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private Boolean validateinfo(String otp) {
+        if (otp.length() != 6 ){
+            binding.otp.requestFocus();
+            binding.otp.setError("Mã OTP gồm có 6 kí tự");
+            return true;
+        }else{
+            otpPasswordViewModel.postOTP(new Verify(mail, binding.otp.getText().toString().trim()));
+        }
+        return null;
     }
 }
