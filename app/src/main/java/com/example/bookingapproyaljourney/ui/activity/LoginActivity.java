@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
     private LottieAnimationView progressBar;
     private String correct_email = "";
     private String correct_password = "";
+    String email = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    String password ="6";
     private UserLogin userLogin;
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
@@ -89,15 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.btnSignIn.setOnClickListener(v -> {
-//            if (TextUtils.isEmpty(edEmail.getText().toString()) || TextUtils.isEmpty(edPass.getText().toString())){
-//                Toast.makeText(LoginActivity.this,"Hãy điền đầy đủ thông tin",Toast.LENGTH_SHORT).show();
-//            }else if (edEmail.getText().toString().equals(correct_email)){
-//                if (edPass.getText().toString().equals(correct_password)){
-//                    Toast.makeText(LoginActivity.this, "Mật khẩu không chính xác ",Toast.LENGTH_SHORT).show();
-//                }
-//            }else {
-//                Toast.makeText(LoginActivity.this,"Mật khẩu hoặc tài khoản không đúng",Toast.LENGTH_SHORT).show();
-//            }
+
             loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
         });
 
