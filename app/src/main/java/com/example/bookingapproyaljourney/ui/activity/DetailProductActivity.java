@@ -1,12 +1,19 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Bathroom;
@@ -178,12 +186,31 @@ public class DetailProductActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_log_comfirm_logout);
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialog.setCancelable(true);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+        Button login = (Button) dialog.findViewById(R.id.login);
+        login.setOnClickListener(v ->{
+            startActivity(new Intent(this, LoginActivity.class));
+            dialog.dismiss();
+        });
         btMesseger.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ChatMessageActivity.class);
-            intent.putExtra("ID_BOSS",idBoss);
-            intent.putExtra("IMG_BOSS",imgBoss);
-            intent.putExtra("NAME_BOSS",nameBoss);
-            startActivity(intent);
+            if(token.equals("")){
+                dialog.show();
+            }else {
+                Intent intent = new Intent(this, ChatMessageActivity.class);
+                intent.putExtra("ID_BOSS",idBoss);
+                intent.putExtra("IMG_BOSS",imgBoss);
+                intent.putExtra("NAME_BOSS",nameBoss);
+                startActivity(intent);
+            }
         });
 
     }

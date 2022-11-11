@@ -78,8 +78,8 @@ public interface ApiRequest {
     Call<TestResponse> newPassWord(@Body UserLogin userLogin);
 
     //chat
-    @GET("Message/getmsg/{sendId}&{sendTo}")
-    Call<Data> getDataChat(@Path("sendId") String sendId, @Path("sendToId") String sendToId);
+    @GET("Message/getmsg/{send}&{sendTo}")
+    Call<Data> getDataChat(@Path("send") String sendId, @Path("sendTo") String sendToId);
 
     @POST("Message/addmsg/")
     Call<Message> addMessage(@Body Message message);

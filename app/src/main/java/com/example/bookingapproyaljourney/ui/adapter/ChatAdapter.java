@@ -19,6 +19,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public ChatAdapter(List<Content> contents) {
         this.listContentsChat = contents;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -35,16 +36,12 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Content content = listContentsChat.get(position);
-        if (!listContentsChat.get(position).getSend().equals(UserClient.getInstance().getId())) {
-            if (holder.getItemViewType() == 0) {
-                chatUserViewHolder chatUserViewHolder = (ChatAdapter.chatUserViewHolder) holder;
-                chatUserViewHolder.tvMessageUser.setText(content.getMessage().getText());
-            } else {
-                chatBossViewHolder chatBossViewHolder = (ChatAdapter.chatBossViewHolder) holder;
-                chatBossViewHolder.tvMessageBoss.setText(content.getMessage().getText());
-            }
+        if (holder.getItemViewType() == 0) {
+            chatUserViewHolder chatUserViewHolder = (ChatAdapter.chatUserViewHolder) holder;
+            chatUserViewHolder.tvMessageUser.setText(content.getMessage().getText());
         } else {
-            return;
+            chatBossViewHolder chatBossViewHolder = (ChatAdapter.chatBossViewHolder) holder;
+            chatBossViewHolder.tvMessageBoss.setText(content.getMessage().getText());
         }
     }
 
@@ -55,14 +52,10 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (!listContentsChat.get(position).getSend().equals(UserClient.getInstance().getId())) {
-            if (listContentsChat.get(position).getSend().equals(UserClient.getInstance().getId())) {
-                return 0;
-            } else {
-                return 1;
-            }
-        }else {
-            return super.getItemViewType(position);
+        if (listContentsChat.get(position).getSend().equals(UserClient.getInstance().getId())) {
+            return 0;
+        } else {
+            return 1;
         }
     }
 

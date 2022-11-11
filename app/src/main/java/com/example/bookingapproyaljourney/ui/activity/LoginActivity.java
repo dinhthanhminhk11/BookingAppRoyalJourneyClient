@@ -117,7 +117,8 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                     editor.putString(AppConstant.ID_USER,loginResponse.getUser().getId());
                     editor.commit();
-                    onBackPressed();
+//                    onBackPressed();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
