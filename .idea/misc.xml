@@ -105,8 +105,22 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_gallery.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_imager.xml" value="0.29683698296836986" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_near_from_you_map.xml" value="0.16799999999999998" />
-        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_chat_message.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/drawable/bg_chat_boss.xml" value="0.201" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/drawable/bg_chat_user.xml" value="0.201" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.201" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_bill_oder.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_chat_message.xml" value="0.4" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_congrats.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_detailproduct.xml" value="0.2" />
         <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/dia_log_comfirm_logout.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/dia_log_comfirm_logout_ver2.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_chat_boss.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_chat_user.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/layout/tool_bar.xml" value="0.25416666666666665" />
+        <entry key="..\:/duantotnghiep/BookingAppRoyalJourneyClient/app/src/main/res/xml/network_socket.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

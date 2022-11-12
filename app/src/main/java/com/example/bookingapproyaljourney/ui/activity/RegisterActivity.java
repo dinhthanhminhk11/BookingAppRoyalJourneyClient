@@ -22,7 +22,6 @@ import com.example.bookingapproyaljourney.view_model.RegisterViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
     private RegisterViewModel viewModel;
-
     private ActivityRegisterBinding binding;
 
     @Override
@@ -79,22 +78,18 @@ public class RegisterActivity extends AppCompatActivity {
     private Boolean validateinfo(String name, String email, String password, String cfPassword) {
         if (name.length() == 0) {
             binding.edNameRegister.requestFocus();
-            binding.edNameRegister.setError("name");
+            binding.edNameRegister.setError("Xin hãy nhập tên");
             return true;
-        } else if (!name.matches("[a-zA-z]+")) {
-            binding.edNameRegister.requestFocus();
-            binding.edNameRegister.setError("Name2");
-            return false;
         } else if (email.length() == 0) {
             binding.edMailRegister.requestFocus();
-            binding.edMailRegister.setError("email");
+            binding.edMailRegister.setError("Xin hãy nhập Email");
         } else if (!email.matches("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$")) {
             binding.edMailRegister.requestFocus();
-            binding.edMailRegister.setError("email 2");
+            binding.edMailRegister.setError("Địa chỉ Email không đúng");
             return false;
         } else if (password.length() <= 6) {
             binding.edPassRegister.requestFocus();
-            binding.edPassRegister.setError("phải trên 6 kí tự có chữ số ");
+            binding.edPassRegister.setError("Phải trên 6 kí tự, ít nhất chứa 1 chữ số và 1 chứ cái ");
             return false;
         } else if (cfPassword.length() <= 6) {
             binding.edCfPassRegister.requestFocus();

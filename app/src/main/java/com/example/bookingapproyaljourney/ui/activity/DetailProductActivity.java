@@ -1,12 +1,19 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Bathroom;
@@ -34,6 +42,7 @@ import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.HostResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientListAdapter;
@@ -90,6 +99,9 @@ public class DetailProductActivity extends AppCompatActivity {
     private House house;
     private HouseDetailResponse houseDetailResponse;
     private String idHouse = "";
+    private String idBoss = "";
+    private String imgBoss = "";
+    private String nameBoss = "";
     private RequestOptions options;
     private LottieAnimationView progressBar;
     private BottomSheetConvenient bottomSheetConvenient;
@@ -170,17 +182,44 @@ public class DetailProductActivity extends AppCompatActivity {
         btnRentNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailProductActivity.this, BillActivity.class);
+                Intent intent = new Intent(DetailProductActivity.this, BillOderActivity.class);
                 startActivity(intent);
             }
         });
-
-        Log.e("MinhDetail" , UserClient.getInstance().getId() + "id ");
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_log_comfirm_logout);
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialog.setCancelable(true);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+        Button login = (Button) dialog.findViewById(R.id.login);
+        login.setOnClickListener(v ->{
+            startActivity(new Intent(this, LoginActivity.class));
+            dialog.dismiss();
+        });
+        btMesseger.setOnClickListener(v -> {
+            if(token.equals("")){
+                dialog.show();
+            }else {
+                Intent intent = new Intent(this, ChatMessageActivity.class);
+                intent.putExtra("ID_BOSS",idBoss);
+                intent.putExtra("IMG_BOSS",imgBoss);
+                intent.putExtra("NAME_BOSS",nameBoss);
+                startActivity(intent);
+            }
+        });
 
     }
 
     private void initData(String id) {
         detailProductViewModel.getHouseById(id).observe(this, item -> {
+            idBoss = item.getHostResponse().get_id();
+            imgBoss = item.getHostResponse().getImage();
+            nameBoss = item.getHostResponse().getName();
             tvAddress.setText(item.getNameLocation());
             tvNameHotel.setText(item.getName());
             tvAmountBedRoom.setText(item.getSleepingPlaces().size() + " Phòng ngủ");
@@ -267,46 +306,4 @@ public class DetailProductActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    private List<Convenient> getListConvenient() {
-        List<Convenient> listconvenient = new ArrayList<>();
-//        listconvenient.add(new Convenient(1,"Kitchen",R.drawable.ic_item_convenien));
-//        listconvenient.add(new Convenient(2,"Kitchen",R.drawable.ic_item_convenien));
-//        listconvenient.add(new Convenient(3,"Kitchen",R.drawable.ic_item_convenien));
-//        listconvenient.add(new Convenient(4,"Kitchen",R.drawable.ic_item_convenien));
-        return listconvenient;
-    }
-
-    private List<Room> getListRoom() {
-        List<Room> listroom = new ArrayList<>();
-//        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
-//        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
-//        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
-//        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
-//        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
-//        listroom.add(new Room(R.drawable.ic_room_detailproduct,"Room1","1 bed big"));
-        return listroom;
-    }
-
-    private List<Feedback> getListFeedback() {
-        List<Feedback> list = new ArrayList<>();
-//        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
-//        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
-//        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
-//        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
-//        list.add(new Feedback("","","","",R.drawable.ic_launcher_background));
-
-        return list;
-    }
-
-    private List<Gallery> getListGallery() {
-        List<Gallery> list = new ArrayList<>();
-//        list.add(new Gallery(R.drawable.imagetest, 5));
-//        list.add(new Gallery(R.drawable.imagetest, 4));
-//        list.add(new Gallery(R.drawable.imagetest, 3));
-//        list.add(new Gallery(R.drawable.imagetest, 2));
-//        list.add(new Gallery(R.drawable.imagetest, 1));
-        return list;
-    }
-
 }

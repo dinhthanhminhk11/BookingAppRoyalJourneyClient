@@ -50,14 +50,6 @@ public class LoginActivity extends AppCompatActivity {
     private UserLogin userLogin;
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
-    private Socket mSocket;
-    {
-        try {
-            mSocket = IO.socket(AppConstant.BASE_URL);
-        } catch (URISyntaxException e) {
-            e.getMessage();
-        }
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,16 +89,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.btnSignIn.setOnClickListener(v -> {
-//            if (TextUtils.isEmpty(edEmail.getText().toString()) || TextUtils.isEmpty(edPass.getText().toString())){
-//                Toast.makeText(LoginActivity.this,"Hãy điền đầy đủ thông tin",Toast.LENGTH_SHORT).show();
-//            }else if (edEmail.getText().toString().equals(correct_email)){
-//                if (edPass.getText().toString().equals(correct_password)){
-//                    Toast.makeText(LoginActivity.this, "Mật khẩu không chính xác ",Toast.LENGTH_SHORT).show();
-//                }
-//            }else {
-//                Toast.makeText(LoginActivity.this,"Mật khẩu hoặc tài khoản không đúng",Toast.LENGTH_SHORT).show();
-//            }
-            loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
+            if (edEmail.getText().toString().isEmpty()){
+                binding.edEmail.requestFocus();
+                binding.edEmail.setError("Xin vui lòng nhập địa chỉ Email");
+            }else if (edPass.getText().toString().isEmpty()){
+                binding.edPass.requestFocus();
+                binding.edPass.setError("Xin vui lòng nhập địa chỉ Password");
+            } else {
+                loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
+            }
         });
 
         loginViewModel.getLoginResult().observe(this, new Observer<String>() {
@@ -124,9 +115,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResponse.getUser().isActive()) {
                     Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
+                    editor.putString(AppConstant.ID_USER,loginResponse.getUser().getId());
                     editor.commit();
-                    onBackPressed();
-                    Log.e("vvvvvvvvvvvvvvvvvvvvv", loginResponse.getUser().getId());
+//                    onBackPressed();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);

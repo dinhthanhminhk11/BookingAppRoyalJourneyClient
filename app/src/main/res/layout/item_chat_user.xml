@@ -12,9 +12,11 @@
         android:minHeight="@dimen/_40dp"
         android:paddingStart="@dimen/_15dp"
         android:paddingEnd="@dimen/_15dp"
-        android:textSize="@dimen/_15sp"
+        android:textSize="@dimen/_16sp"
         android:textColor="@color/white"
-        android:gravity="center"
-        android:background="@drawable/bg_chat_user"/>
+        android:gravity="center_vertical"
+        android:fontFamily="@font/poppins_medium"
+        android:background="@drawable/bg_chat_user"
+        android:layout_margin="@dimen/_3dp"/>
 
 </LinearLayout>

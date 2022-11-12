@@ -6,6 +6,9 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/white"
     android:elevation="@dimen/_8dp"
+    android:fontFamily="@font/poppins_medium"
     app:titleTextColor="@color/black"
-    android:theme="@style/ToolbarTheme">
+    android:theme="@style/ToolbarTheme"
+    android:alpha="0.85"
+    android:textAlignment="center">
 </com.google.android.material.appbar.MaterialToolbar>
