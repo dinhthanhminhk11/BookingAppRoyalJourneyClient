@@ -60,7 +60,7 @@ public class ChatMessageActivity extends AppCompatActivity {
 
     {
         try {
-            mSocket = IO.socket("https://d43d-113-160-5-74.ap.ngrok.io");
+            mSocket = IO.socket("https://e401-113-160-5-74.ap.ngrok.io");
         } catch (URISyntaxException e) {
             e.getMessage();
         }
@@ -141,6 +141,10 @@ public class ChatMessageActivity extends AppCompatActivity {
     };
 
     public void sendChat(){
+        if(edContentChat.getText().toString().isEmpty() || edContentChat.getText().toString().trim().equals("")){
+            edContentChat.setText("");
+            return;
+        }
         DateFormat df = new SimpleDateFormat("HH:mm");
         String date = df.format(Calendar.getInstance().getTime());
         Gson gson = new Gson();

@@ -14,7 +14,7 @@
         android:paddingEnd="@dimen/_15dp"
         android:textSize="@dimen/_16sp"
         android:textColor="@color/black"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:alpha="0.75"
         android:fontFamily="@font/poppins_medium"
         android:background="@drawable/bg_chat_boss"
