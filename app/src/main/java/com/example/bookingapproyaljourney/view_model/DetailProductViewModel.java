@@ -11,8 +11,8 @@ import com.example.bookingapproyaljourney.repository.DetailProductRepository;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 
 public class DetailProductViewModel extends AndroidViewModel {
-    private DetailProductRepository detailProductRepository;
 
+    private DetailProductRepository detailProductRepository;
 
     public DetailProductViewModel(@NonNull Application application) {
         super(application);

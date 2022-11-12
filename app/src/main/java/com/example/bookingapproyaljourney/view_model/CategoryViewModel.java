@@ -22,7 +22,6 @@ public class CategoryViewModel extends AndroidViewModel {
         categoryRepository = new CategoryRepository();
         categoryResponseLiveData = categoryRepository.getCategory();
     }
-
     public LiveData<List<Category>> getListCategory() {
         return categoryResponseLiveData;
     }
