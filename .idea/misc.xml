@@ -28,12 +28,16 @@
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_nearby_white_menu.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_notification_white_menu.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_profile_white_menu.xml" value="0.113" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_room_detailproduct.xml" value="0.123" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_search_homefragment.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_setting_white_menu.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/iconbell_main.xml" value="0.113" />
-        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_edit_profile.xml" value="0.18333333333333332" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_detail_gallery.xml" value="0.184375" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_edit_profile.xml" value="0.12" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_main.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_near_from_you_maps.xml" value="0.1" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_new_password.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_home.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_text.xml" value="0.18333333333333332" />

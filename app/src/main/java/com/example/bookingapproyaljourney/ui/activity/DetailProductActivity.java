@@ -57,7 +57,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetailProductActivity extends AppCompatActivity {
@@ -157,8 +156,8 @@ public class DetailProductActivity extends AppCompatActivity {
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
         options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img);
+                .placeholder(R.drawable.img_bgr_edit_profile)
+                .error(R.drawable.img_bgr_edit_profile);
         idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
         initData(idHouse);
 //        rcvFeedback.setHasFixedSize(true);

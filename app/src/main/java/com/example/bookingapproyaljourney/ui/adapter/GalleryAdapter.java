@@ -11,15 +11,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.ui.activity.DetailImageHouseActivity;
-import com.example.bookingapproyaljourney.ui.activity.ImageActivity;
 
 
 import java.util.ArrayList;
@@ -53,8 +50,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHole
 //        });
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img);
+                .placeholder(R.drawable.img_bgr_edit_profile)
+                .error(R.drawable.img_bgr_edit_profile);
         Glide.with(holder.itemView.getContext()).load(galleryList.get(position)).apply(options).into(holder.ivimgHotel);
         if (position == 3) {
             if (galleryList.size() - 4 == 0) {

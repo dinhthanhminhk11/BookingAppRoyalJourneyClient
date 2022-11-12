@@ -1,6 +1,5 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.model.house.House;
 
 import java.util.ArrayList;
 
@@ -42,8 +40,8 @@ public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img);
+                .placeholder(R.drawable.img_bgr_edit_profile)
+                .error(R.drawable.img_bgr_edit_profile);
         Glide.with(holder.itemView.getContext())
                 .load(image.get(position))
                 .apply(options)

@@ -30,7 +30,7 @@
 
         </activity>
         <activity
-            android:name=".EditProfile"
+            android:name=".ui.activity.EditProfile"
             android:exported="false" />
         <activity
             android:name=".ui.activity.chat_message.ChatMessageActivity"

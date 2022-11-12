@@ -31,7 +31,9 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.ui.activity.EditProfile;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
+import com.example.bookingapproyaljourney.ui.activity.SeeMoreBestForYouActivity;
 import com.example.bookingapproyaljourney.ui.adapter.HiredProfileAdapter;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
@@ -54,7 +56,7 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private TextView tvSignUpProfile, nameUser, emailUser;
-    private ImageView imageProfile;
+    private ImageView imageProfile, editProfile;
     private LinearLayout profileVisialbe;
     private CoordinatorLayout profileGone;
     private RecyclerView recyclerViewHiredProfile;
@@ -109,9 +111,14 @@ public class ProfileFragment extends Fragment {
         profileVisialbe = view.findViewById(R.id.profileVisiable);
         imageProfile = view.findViewById(R.id.imageProfile);
         recyclerViewHiredProfile = view.findViewById(R.id.recycleView_profile);
+        editProfile = view.findViewById(R.id.editProfile);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
-//        FakeData();
+        editProfile.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), EditProfile.class);
+            startActivity(i);
+        });
+
     }
 
     private void initData() {
@@ -140,8 +147,8 @@ public class ProfileFragment extends Fragment {
 
                 RequestOptions options = new RequestOptions()
                         .centerCrop()
-                        .placeholder(R.drawable.img)
-                        .error(R.drawable.img);
+                        .placeholder(R.drawable.img_bgr_edit_profile)
+                        .error(R.drawable.img_bgr_edit_profile);
                 Glide.with(getActivity()).load(s.getUser().getImage()).apply(options).into(imageProfile);
             }
         });
