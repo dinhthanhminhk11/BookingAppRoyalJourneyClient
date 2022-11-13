@@ -50,8 +50,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHole
 //        });
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img_bgr_edit_profile)
-                .error(R.drawable.img_bgr_edit_profile);
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
         Glide.with(holder.itemView.getContext()).load(galleryList.get(position)).apply(options).into(holder.ivimgHotel);
         if (position == 3) {
             if (galleryList.size() - 4 == 0) {

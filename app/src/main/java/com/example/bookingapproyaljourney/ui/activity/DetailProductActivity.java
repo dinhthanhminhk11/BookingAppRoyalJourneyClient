@@ -156,8 +156,8 @@ public class DetailProductActivity extends AppCompatActivity {
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
         options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img_bgr_edit_profile)
-                .error(R.drawable.img_bgr_edit_profile);
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
         idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
         initData(idHouse);
 //        rcvFeedback.setHasFixedSize(true);
