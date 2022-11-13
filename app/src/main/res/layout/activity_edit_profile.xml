@@ -37,15 +37,17 @@
                     android:src="@drawable/img_avt_edit_profile"
                     app:layout_constraintBottom_toBottomOf="@+id/bgrEditProfile"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/bgrEditProfile"
+                    app:layout_constraintVertical_bias="0.25"
                     tools:ignore="MissingConstraints" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="@dimen/_24dp"
+                    android:layout_marginEnd="@dimen/_24dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -56,9 +58,11 @@
                         android:id="@+id/nameEditProfile"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/edittext_edit_profile"
+                        android:drawableStart="@drawable/rename_edit_profile"
+                        android:drawablePadding="20dp"
                         android:elevation="3dp"
                         android:hint="Name"
                         android:inputType="text"
@@ -74,6 +78,8 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/edittext_edit_profile"
+                        android:drawableStart="@drawable/phone_edit_profile"
+                        android:drawablePadding="20dp"
                         android:elevation="3dp"
                         android:hint="Phone"
                         android:inputType="phone"
@@ -89,6 +95,8 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/edittext_edit_profile"
+                        android:drawableStart="@drawable/location_edit_profile"
+                        android:drawablePadding="20dp"
                         android:elevation="3dp"
                         android:hint="Address"
                         android:inputType="textEmailAddress"
@@ -97,17 +105,35 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
-                    <Button
-                        android:id="@+id/button6"
+                    <EditText
+                        android:id="@+id/idCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/edittext_edit_profile"
+                        android:drawableStart="@drawable/id_card_edit_profile"
+                        android:drawablePadding="20dp"
+                        android:elevation="3dp"
+                        android:hint="Citizen identity card"
+                        android:paddingStart="20dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/saveEditProfile"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
-                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/background_btnblue_edit_profile"
+                        android:background="@drawable/background_blue_edit_profile"
                         android:elevation="3dp"
                         android:text="SAVE"
-                        android:textColor="#ffffff"
-                        android:textSize="18sp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_18sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
