@@ -6,6 +6,7 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,8 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     private ActivityBillOderBinding binding;
     private BottomSheetPayment bottomSheetPayment;
     private BottomSheetEditPerson bottomSheetEditPerson;
+
+    private int TYPE_PAYMENT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +72,25 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             binding.contentPayment.setVisibility(View.GONE);
         }
 
+        binding.contentPayOnline.setOnClickListener(v -> {
+            TYPE_PAYMENT = 1;
+            binding.contentPayment.setVisibility(View.VISIBLE);
+            binding.payOffline.setChecked(false);
+            binding.payOnline.setChecked(true);
+        });
+
+        binding.contentPayOffline.setOnClickListener(v -> {
+            TYPE_PAYMENT = 2;
+            binding.contentPayment.setVisibility(View.GONE);
+            binding.payOnline.setChecked(false);
+            binding.payOffline.setChecked(true);
+        });
+
         binding.payOnline.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    TYPE_PAYMENT = 1;
                     binding.contentPayment.setVisibility(View.VISIBLE);
                     binding.payOffline.setChecked(false);
                 } else {
@@ -85,6 +103,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    TYPE_PAYMENT = 2;
                     binding.contentPayment.setVisibility(View.GONE);
                     binding.payOnline.setChecked(false);
                 } else {
@@ -159,8 +178,28 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
         binding.btnPay.setOnClickListener(v -> {
-            ToastCheck bottomSheetBathRoom = new ToastCheck(BillOderActivity.this, R.style.StyleToast);
-            bottomSheetBathRoom.show();
+            if (binding.startDate.getText().toString().equals("")) {
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, this.getString(R.string.dialogstartdate), this.getString(R.string.dialogcontentnomal));
+                return;
+            } else if (binding.person.getText().toString().equals(this.getString(R.string.limitperson))) {
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số lượng khách thuê của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal));
+                return;
+            } else if (binding.textPayment.getText().toString().equals(this.getString(R.string.textpayment)) && TYPE_PAYMENT == 1) {
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm thẻ thanh toán của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal));
+            } else if (binding.phone.getText().toString().equals(this.getString(R.string.nullphone))) {
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số điện thoại của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal));
+                return;
+            } else {
+                if (TYPE_PAYMENT == 1) {
+                    Toast.makeText(this, "thanh toán ONLINE", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "thanh toans offline", Toast.LENGTH_SHORT).show();
+                }
+//                toastCheck.setTitleDiaLog(this.getString(R.string.dialogstartdate));
+//                toastCheck.setContentDiaLog(this.getString(R.string.dialogcontentnomal));
+//                toastCheck.show();
+            }
+
         });
     }
 
@@ -169,6 +208,15 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             @Override
             public void onCLickCLose() {
                 bottomSheetPayment.dismiss();
+            }
+
+            @Override
+            public void onClickPayment() {
+                bottomSheetPayment.dismiss();
+                binding.imageGooglePlay.setVisibility(View.GONE);
+                binding.imagePaypal.setVisibility(View.GONE);
+                binding.imageMatercard.setVisibility(View.GONE);
+                binding.textPayment.setText("Thẻ VISA (VISA card)");
             }
         });
         bottomSheetPayment.show();
@@ -189,4 +237,6 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     public void onCLickSum(int sum) {
         binding.person.setText(sum + " khách");
     }
+
+
 }

@@ -60,12 +60,14 @@ public class BottomSheetPayment extends BottomSheetDialog {
         });
 
         payVisa.setOnClickListener(v -> {
-
+            callBack.onClickPayment();
         });
     }
 
     public interface CallBack {
         void onCLickCLose();
+
+        void onClickPayment();
     }
 
 }

@@ -48,7 +48,7 @@
         android:layout_height="0.5dp"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/color_F6F6F6" />
+        android:background="@color/black" />
 
     <LinearLayout
         android:id="@+id/payGoogle"
@@ -57,7 +57,8 @@
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_10dp"
         android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/_50dp"
@@ -75,20 +76,20 @@
     </LinearLayout>
 
     <View
-
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_10dp"
-        android:background="@color/color_F6F6F6" />
+        android:background="@color/color_F6F6F6"
+        android:visibility="gone" />
 
     <LinearLayout
+        android:layout_marginBottom="@dimen/_20dp"
         android:id="@+id/payVisa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_10dp"
-        android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
         <ImageView
@@ -111,7 +112,8 @@
         android:layout_height="0.5dp"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_10dp"
-        android:background="@color/color_F6F6F6" />
+        android:background="@color/color_F6F6F6"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/payMaterCard"
@@ -120,7 +122,8 @@
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_10dp"
         android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/_50dp"
@@ -142,7 +145,8 @@
         android:layout_height="0.5dp"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_10dp"
-        android:background="@color/color_F6F6F6" />
+        android:background="@color/color_F6F6F6"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/payPayPal"
@@ -151,7 +155,8 @@
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_10dp"
         android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/_50dp"
@@ -173,5 +178,6 @@
         android:layout_height="0.5dp"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_10dp"
-        android:background="@color/color_F6F6F6" />
+        android:background="@color/color_F6F6F6"
+        android:visibility="gone" />
 </LinearLayout>

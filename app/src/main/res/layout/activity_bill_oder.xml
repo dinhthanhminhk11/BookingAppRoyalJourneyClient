@@ -113,11 +113,11 @@
 
             <LinearLayout
                 android:id="@+id/contentPayDayNight"
-                android:foreground="?attr/selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
                 android:background="@drawable/gradientbackground_white"
+                android:foreground="?attr/selectableItemBackground"
                 android:orientation="horizontal"
                 android:paddingHorizontal="@dimen/_20dp"
                 android:paddingVertical="@dimen/_10dp">
@@ -138,7 +138,7 @@
                         android:id="@+id/startDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Description"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
@@ -197,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|right"
-                        android:text="Description"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
@@ -212,11 +212,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:foreground="?attr/selectableItemBackground"
                 android:id="@+id/contentEditPerson"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradientbackground_white"
+                android:foreground="?attr/selectableItemBackground"
                 android:orientation="horizontal"
                 android:paddingHorizontal="@dimen/_20dp"
                 android:paddingVertical="@dimen/_10dp">
@@ -239,7 +239,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5dp"
-                        android:text="4 khách" />
+                        android:text="@string/limitperson" />
 
                 </LinearLayout>
 
@@ -270,6 +270,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/contentPayOnline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -314,6 +315,7 @@
                         android:background="@color/color_858585" />
 
                     <LinearLayout
+                        android:id="@+id/contentPayOffline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20dp"
@@ -378,10 +380,11 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/textPayment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5dp"
-                        android:text="Phương thức thanh toán" />
+                        android:text="@string/textpayment" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -395,18 +398,21 @@
                             android:src="@drawable/ic_visa_logo" />
 
                         <ImageView
+                            android:id="@+id/imageMatercard"
                             android:layout_width="@dimen/_35dp"
                             android:layout_height="@dimen/_25dp"
                             android:layout_marginLeft="@dimen/_10dp"
                             android:src="@drawable/ic_mastercard" />
 
                         <ImageView
+                            android:id="@+id/imagePaypal"
                             android:layout_width="@dimen/_35dp"
                             android:layout_height="@dimen/_25dp"
                             android:layout_marginLeft="@dimen/_10dp"
                             android:src="@drawable/ic_paypal" />
 
                         <ImageView
+                            android:id="@+id/imageGooglePlay"
                             android:layout_width="@dimen/_35dp"
                             android:layout_height="@dimen/_25dp"
                             android:layout_marginLeft="@dimen/_10dp"
@@ -462,7 +468,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5dp"
-                            android:text="Thêm số điện thoại của bạn" />
+                            android:text="@string/nullphone" />
 
                     </LinearLayout>
 

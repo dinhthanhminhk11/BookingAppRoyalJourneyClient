@@ -37,11 +37,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10dp"
-            android:text="Điều này đảm bảo rằng bạn sẽ không bỏ lỡ nội dung cập nhật về chuyến đi" />
+            android:text="@string/dialogcontentnomal" />
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_round_close_24" />
