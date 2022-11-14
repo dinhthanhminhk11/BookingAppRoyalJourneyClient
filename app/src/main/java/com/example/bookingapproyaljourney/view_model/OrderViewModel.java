@@ -7,15 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.bookingapproyaljourney.callback.CallbackListOrderById;
 import com.example.bookingapproyaljourney.callback.InterfaceResponseOrder;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.repository.OrderRepository;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
 
 public class OrderViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<String> stringMutableLiveData = new MutableLiveData<>();
     MutableLiveData<OrderResponse> orderResponseMutableLiveData = new MutableLiveData<>();
+
+    MutableLiveData<ListOrderByIdUser> orderByIdMutableLiveData = new MutableLiveData<>();
 
     private OrderRepository orderRepository;
 
@@ -40,6 +44,22 @@ public class OrderViewModel extends AndroidViewModel {
         });
     }
 
+    public void getOrderByIdUser(String id) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        orderRepository.getListOrderById(id, new CallbackListOrderById() {
+            @Override
+            public void success(ListOrderByIdUser listOrderByIdUser) {
+                orderByIdMutableLiveData.postValue(listOrderByIdUser);
+                mProgressMutableData.postValue(View.GONE);
+            }
+
+            @Override
+            public void failure(Throwable t) {
+                mProgressMutableData.postValue(View.GONE);
+            }
+        });
+    }
+
     public MutableLiveData<Integer> getmProgressMutableData() {
         return mProgressMutableData;
     }
@@ -50,5 +70,9 @@ public class OrderViewModel extends AndroidViewModel {
 
     public MutableLiveData<OrderResponse> getOrderResponseMutableLiveData() {
         return orderResponseMutableLiveData;
+    }
+
+    public MutableLiveData<ListOrderByIdUser> getOrderByIdMutableLiveData() {
+        return orderByIdMutableLiveData;
     }
 }

@@ -17,6 +17,7 @@ import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
 
 import java.util.List;
@@ -95,4 +96,7 @@ public interface ApiRequest {
     @POST("addorder")
     Call<OrderResponse> postOrder(@Body OrderCreate orderCreate);
 
+
+    @GET("listOrderByIdUser/{id}")
+    Call<ListOrderByIdUser> getListOrderByIdUser(@Path("id") String id);
 }
