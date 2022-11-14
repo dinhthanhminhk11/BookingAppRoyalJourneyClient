@@ -248,15 +248,15 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
         binding.btnPay.setOnClickListener(v -> {
             if (binding.startDate.getText().toString().equals("")) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, this.getString(R.string.dialogstartdate), this.getString(R.string.dialogcontentnomal));
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, this.getString(R.string.dialogstartdate), this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 return;
             } else if (binding.person.getText().toString().equals(this.getString(R.string.limitperson))) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số lượng khách thuê của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal));
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số lượng khách thuê của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 return;
             } else if (binding.textPayment.getText().toString().equals(this.getString(R.string.textpayment)) && TYPE_PAYMENT == 1) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm thẻ thanh toán của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal));
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm thẻ thanh toán của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
             } else if (binding.phone.getText().toString().equals(this.getString(R.string.nullphone))) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số điện thoại của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal));
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số điện thoại của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal) , R.drawable.ic_warning_icon_check);
                 return;
             } else {
                 if (TYPE_PAYMENT == 1) {
@@ -287,9 +287,10 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     Intent intent = new Intent(BillOderActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("CheckSuccess" , "1111111111111");
                     startActivity(intent);
                 } else {
-                    ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thất bại", getString(R.string.dialogcontentnomal));
+                    ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thất bại", getString(R.string.dialogcontentnomal ), R.drawable.ic_warning_icon_check);
                 }
             }
         });
@@ -428,7 +429,6 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     personLimitPrivate,
                     phonePrivate
             ));
-            ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thanh toán thành công", this.getString(R.string.dialogcontentnomal));
         }
     }
 
@@ -498,7 +498,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     @Override
     public void onCLickSum(int sum) {
         if (sum > houseDetailResponse.getLimitPerson()) {
-            ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Số lượng khách không được quá cho phép", this.getString(R.string.dialogcontentnomal));
+            ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Số lượng khách không được quá cho phép", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
             return;
         } else {
             personLimitPrivate = sum;

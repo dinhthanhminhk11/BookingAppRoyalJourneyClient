@@ -44,6 +44,7 @@ import com.example.bookingapproyaljourney.callback.CallDialog;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
+import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
@@ -146,6 +147,14 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_LOGOUT)));
         adapter.setListener(this);
 
+        String check = getIntent().getStringExtra("CheckSuccess");
+
+        if (!(check == null)) {
+            if (check.equals("1111111111111")) {
+                ToastCheck toastCheck = new ToastCheck(MainActivity.this, R.style.StyleToast, "Thành công", "Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi , chúc bạn 1 ngày mới tốt lành", R.drawable.ic_complete_order);
+            }
+        }
+
         RecyclerView list = findViewById(R.id.listMenuLeftDrawer);
         list.setNestedScrollingEnabled(false);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -238,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
             showFragment(new ProfileFragment());
-        } else if (position == POS_MESSAGES){
+        } else if (position == POS_MESSAGES) {
             nameAddress.setText("Tin Nhắn");
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
