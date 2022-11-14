@@ -90,6 +90,11 @@
     <string name="nullphone">Thêm số điện thoại của bạn</string>
     <string name="limitperson">Số lượng khách thuê</string>
     <string name="textpayment">Phương thức thanh toán</string>
+    <string name="home">Home</string>
+    <string name="Phone">Phone</string>
+    <string name="Address">Address</string>
+    <string name="Citizen_identity_card">Citizen identity card</string>
+    <string name="SAVE">SAVE</string>
 
 
 </resources>
