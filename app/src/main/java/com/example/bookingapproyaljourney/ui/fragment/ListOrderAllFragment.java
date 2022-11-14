@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,15 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.databinding.FragmentListOrderAllBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
+import com.example.bookingapproyaljourney.response.order.OrderListResponse;
 import com.example.bookingapproyaljourney.ui.adapter.OrderAdapter;
 import com.example.bookingapproyaljourney.view_model.OrderViewModel;
 
-public class ListOrderAllFragment extends Fragment {
+public class ListOrderAllFragment extends Fragment  {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -71,10 +72,18 @@ public class ListOrderAllFragment extends Fragment {
             @Override
             public void onChanged(ListOrderByIdUser listOrderByIdUser) {
                 if (listOrderByIdUser.isMessege()) {
-                    adapter = new OrderAdapter(listOrderByIdUser.getData());
+                    adapter = new OrderAdapter(listOrderByIdUser.getData(), new OrderAdapter.Callback() {
+                        @Override
+                        public void onClick(OrderListResponse orderListResponse) {
+                            Toast.makeText(getActivity(), "Click", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
                     binding.recyclerView.setAdapter(adapter);
                 }
             }
         });
     }
+
+
 }

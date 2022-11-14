@@ -23,11 +23,18 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     private DetailProductRepository detailProductRepository;
     private List<OrderListResponse> data;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private Callback callback;
 
-    public OrderAdapter(List<OrderListResponse> data) {
+    public OrderAdapter(List<OrderListResponse> data, Callback callback) {
         this.data = data;
         detailProductRepository = new DetailProductRepository();
+        this.callback = callback;
     }
+
+    public interface Callback {
+        void onClick(OrderListResponse orderListResponse);
+    }
+
 
     @NonNull
     @Override
@@ -69,6 +76,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 public void failure(Throwable t) {
 
                 }
+            });
+            holder.itemView.setOnClickListener(v -> {
+                callback.onClick(item);
             });
         }
     }
