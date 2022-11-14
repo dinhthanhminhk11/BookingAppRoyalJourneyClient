@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.model.chat.Content;
 import com.example.bookingapproyaljourney.model.chat.Data;
+import com.example.bookingapproyaljourney.model.chat.DataUser;
 import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
@@ -55,35 +56,35 @@ public class ChatRepository {
         });
     }
 
-//    public MutableLiveData<List<Data>> getMsgId(String send){
-//        final MutableLiveData<List<Content>> data = new MutableLiveData<>();
-//        apiRequest.getMsgId(send).enqueue(new Callback<Data>() {
-//            @Override
-//            public void onResponse(Call<Data> call, Response<Data> response) {
-//                if(response.isSuccessful()){
-//                    data.postValue(response.body().getData());
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<Data> call, Throwable t) {
-//                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
-//            }
-//        });
-//        return data;
-//    }
+    public MutableLiveData<List<Content>> getMsgId(String send){
+        final MutableLiveData<List<Content>> data = new MutableLiveData<>();
+        apiRequest.getMsgId(send).enqueue(new Callback<Data>() {
+            @Override
+            public void onResponse(Call<Data> call, Response<Data> response) {
+                if(response.isSuccessful()){
+                    data.postValue(response.body().getData());
+                }
+            }
+            @Override
+            public void onFailure(Call<Data> call, Throwable t) {
+                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
+            }
+        });
+        return data;
+    }
 
     public MutableLiveData<List<User>> getHost(String id){
         final MutableLiveData<List<User>> user = new MutableLiveData<>();
-        apiRequest.getHost(id).enqueue(new Callback<List<User>>() {
+        apiRequest.getHost(id).enqueue(new Callback<DataUser>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<DataUser> call, Response<DataUser> response) {
                 if(response.isSuccessful()){
-                    user.postValue(response.body());
+                    user.postValue(response.body().getData());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<DataUser> call, Throwable t) {
                 Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
             }
         });

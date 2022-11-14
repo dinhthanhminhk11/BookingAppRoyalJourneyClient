@@ -14,15 +14,16 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 
 import java.util.List;
 
 public class HostAdapter extends RecyclerView.Adapter<HostAdapter.MyViewHolder> {
-    private List<UserLogin> listHost;
+    private List<User> listHost;
     private EventClick eventClick;
 
-    public HostAdapter(List<UserLogin> listHost, EventClick eventClick) {
+    public HostAdapter(List<User> listHost, EventClick eventClick) {
         this.listHost = listHost;
         this.eventClick = eventClick;
     }
@@ -35,10 +36,10 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull HostAdapter.MyViewHolder holder, int position) {
-        UserLogin userLogin = listHost.get(position);
-        holder.nameHost.setText(userLogin.getEmail());
-        Glide.with(holder.itemView.getContext()).load(userLogin.getPassword()).transform(new CenterCrop(), new RoundedCorners(20)).into(holder.imgHost);
-        holder.itemView.setOnClickListener(v -> eventClick.onClick());
+        User userLogin = listHost.get(position);
+        holder.nameHost.setText(userLogin.getName());
+        Glide.with(holder.itemView.getContext()).load(userLogin.getImage()).transform(new CenterCrop(), new RoundedCorners(20)).into(holder.imgHost);
+        holder.itemView.setOnClickListener(v -> eventClick.onClick(userLogin));
     }
 
     @Override
@@ -56,6 +57,6 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.MyViewHolder> 
         }
     }
     public interface EventClick {
-        void onClick();
+        void onClick(User user);
     }
 }

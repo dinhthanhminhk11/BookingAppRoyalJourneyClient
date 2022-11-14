@@ -1,8 +1,8 @@
 package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
-    public static final String BASE_URL = "https://4127-113-160-5-74.ap.ngrok.io/api/";
-    public static final String BASE_URL_CHAT = "https://4127-113-160-5-74.ap.ngrok.io";
+    public static final String BASE_URL = "http://192.168.0.108:8080/api/";
+    public static final String BASE_URL_CHAT = "http://192.168.0.108:8080";
     public static String URL_API_GOOGLE_MAP = "https://maps.googleapis.com/";
     public static final String API_KEY = "AIzaSyDId5Ne9ty3PAl9aMBW4A-_7WcXfH7ngFA";
     public static final String TAG = "Minh";

@@ -4,14 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/_90dp"
     android:background="@drawable/background_boss_chat"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginStart="@dimen/_17dp"
+    android:layout_marginEnd="@dimen/_17dp"
+    android:layout_marginTop="@dimen/_20dp">
     <ImageView
         android:id="@+id/imgHost"
         android:layout_width="@dimen/_62dp"
         android:layout_height="@dimen/_62dp"
-        android:src="@drawable/ic_launcher_background"
         android:layout_gravity="center"
-        android:layout_marginStart="8dp"/>
+        android:scaleType="centerCrop"
+        android:layout_marginStart="12dp"/>
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -23,16 +26,20 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:gravity="center_vertical"
             android:textColor="@color/black"
             android:layout_marginTop="15dp"
-            android:textSize="@dimen/_15sp" />
+            android:textSize="@dimen/_17sp"
+            android:alpha="0.8"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/your_order_just_arrived"
+            android:fontFamily="@font/poppins_medium"
             android:textColor="@color/black"
+            android:textSize="@dimen/_14sp"
             android:alpha="0.3"
             android:layout_marginBottom="15dp"
             android:gravity="center_vertical"/>
