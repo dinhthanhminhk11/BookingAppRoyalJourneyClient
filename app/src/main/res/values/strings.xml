@@ -90,6 +90,7 @@
     <string name="nullphone">Thêm số điện thoại của bạn</string>
     <string name="limitperson">Số lượng khách thuê</string>
     <string name="textpayment">Phương thức thanh toán</string>
+    <string name="setting_arrays_travel">Chuyến đi</string>
 
 
 </resources>

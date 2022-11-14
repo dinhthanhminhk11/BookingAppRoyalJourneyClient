@@ -79,9 +79,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private static final int POS_NOTIFICATION = 5;
     private static final int POS_MESSAGES = 6;
 
-    private static final int POS_SETTING = 8;
-    private static final int POS_HELP = 9;
-    private static final int POS_LOGOUT = 10;
+
+    private static final int POS_TRAVEL = 8;
+    private static final int POS_SETTING = 9;
+    private static final int POS_HELP = 10;
+    private static final int POS_LOGOUT = 11;
+
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     public static final int code = 100;
     private String[] screenTitles;
@@ -142,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_NOTIFICATION),
                 createItemFor(POS_MESSAGES),
                 new SpaceItem(48),
+                createItemFor(POS_TRAVEL),
                 createItemFor(POS_SETTING),
                 createItemFor(POS_HELP),
                 createItemFor(POS_LOGOUT)));

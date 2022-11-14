@@ -135,9 +135,13 @@ public class DetailProductActivity extends AppCompatActivity {
         legalHouse = (TextView) findViewById(R.id.legalHouse);
         showMore = (TextView) findViewById(R.id.showMore);
         showMorebathdroom = (TextView) findViewById(R.id.showMorebathdroom);
+
         setSupportActionBar(toolBar);
+
         toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+
         toolBar.setBackground(null);
+
         toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +149,9 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setTitle("");
+
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
+
         options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.img)
