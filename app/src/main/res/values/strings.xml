@@ -91,6 +91,7 @@
     <string name="limitperson">Số lượng khách thuê</string>
     <string name="textpayment">Phương thức thanh toán</string>
     <string name="setting_arrays_travel">Chuyến đi</string>
+    <string name="your_order_just_arrived">Your Order Just Arrived</string>
 
 
 </resources>
