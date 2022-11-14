@@ -27,9 +27,9 @@ public class ChatViewModel extends AndroidViewModel {
     public LiveData<List<Content>> getContentChatLiveData(String sendId, String sendToId) {
         return chatRepository.getContentChat(sendId,sendToId);
     }
-    public LiveData<List<Data>> getMsgId(String send) {
-        return chatRepository.getMsgId(send);
-    }
+//    public LiveData<List<Data>> getMsgId(String send) {
+//        return chatRepository.getMsgId(send);
+//    }
     public LiveData<List<User>> getHost(String id) {
         return chatRepository.getHost(id);
     }
