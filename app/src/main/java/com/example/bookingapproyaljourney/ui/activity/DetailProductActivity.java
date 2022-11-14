@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,18 +28,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Bathroom;
 import com.example.bookingapproyaljourney.model.house.Convenient;
-import com.example.bookingapproyaljourney.model.house.Feedback;
-import com.example.bookingapproyaljourney.model.house.Gallery;
 import com.example.bookingapproyaljourney.model.house.House;
-import com.example.bookingapproyaljourney.model.house.Room;
-import com.example.bookingapproyaljourney.model.user.User;
-import com.example.bookingapproyaljourney.model.user.UserClient;
-import com.example.bookingapproyaljourney.response.HostResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
@@ -178,13 +170,7 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         });
 
-        btnRentNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DetailProductActivity.this, BillOderActivity.class);
-                startActivity(intent);
-            }
-        });
+
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dia_log_comfirm_logout);
         Window window = dialog.getWindow();
@@ -196,22 +182,35 @@ public class DetailProductActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
         Button login = (Button) dialog.findViewById(R.id.login);
-        login.setOnClickListener(v ->{
+        login.setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
             dialog.dismiss();
         });
         btMesseger.setOnClickListener(v -> {
-            if(token.equals("")){
+            if (token.equals("")) {
                 dialog.show();
-            }else {
+            } else {
                 Intent intent = new Intent(this, ChatMessageActivity.class);
-                intent.putExtra("ID_BOSS",idBoss);
-                intent.putExtra("IMG_BOSS",imgBoss);
-                intent.putExtra("NAME_BOSS",nameBoss);
+                intent.putExtra("ID_BOSS", idBoss);
+                intent.putExtra("IMG_BOSS", imgBoss);
+                intent.putExtra("NAME_BOSS", nameBoss);
                 startActivity(intent);
             }
         });
 
+        btnRentNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (token.equals("")) {
+                    dialog.show();
+                } else {
+                    Intent intent = new Intent(DetailProductActivity.this, BillOderActivity.class);
+                    intent.putExtra(AppConstant.HOUSE_EXTRA, idHouse);
+                    startActivity(intent);
+                }
+
+            }
+        });
     }
 
     private void initData(String id) {
@@ -228,7 +227,7 @@ public class DetailProductActivity extends AppCompatActivity {
             btPhone.setOnClickListener(view -> {
                 String phone = item.getHostResponse().getPhone();
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+phone  ));
+                intent.setData(Uri.parse("tel:" + phone));
                 startActivity(intent);
             });
 
@@ -262,7 +261,7 @@ public class DetailProductActivity extends AppCompatActivity {
 
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
-            GiaMoPhong.setText(fm.format(item.getPrice())+ " Vnd/đêm");
+            GiaMoPhong.setText(fm.format(item.getPrice()) + " Vnd/đêm");
             progressBar.setVisibility(View.GONE);
         });
 
@@ -278,7 +277,8 @@ public class DetailProductActivity extends AppCompatActivity {
         bottomSheetConvenient.show();
         bottomSheetConvenient.setCanceledOnTouchOutside(false);
     }
-    private void showDialogBathRoom(){
+
+    private void showDialogBathRoom() {
         bottomSheetBathRoom = new BottomSheetBathRoom(DetailProductActivity.this, R.style.MaterialDialogSheet, dataBathRoom, new BottomSheetBathRoom.CallBack() {
             @Override
             public void onCLickCLose() {
