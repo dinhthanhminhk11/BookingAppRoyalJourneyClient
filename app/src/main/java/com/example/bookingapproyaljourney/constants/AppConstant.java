@@ -1,7 +1,8 @@
 package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
-    public static final String BASE_URL = "https://4127-113-160-5-74.ap.ngrok.io/api/";
+    public static final String BASE_URL = "http://192.168.0.108:8080/api/";
+    public static final String BASE_URL_CHAT = "http://192.168.0.108:8080";
     public static String URL_API_GOOGLE_MAP = "https://maps.googleapis.com/";
     public static final String API_KEY = "AIzaSyDId5Ne9ty3PAl9aMBW4A-_7WcXfH7ngFA";
     public static final String TAG = "Minh";
@@ -13,4 +14,7 @@ public class AppConstant {
     public static final String TOKEN_USER = "TOKEN_USER";
     public static final String EMAIL_USER = "EMAIL_USER";
     public static final String PASS_USER = "PASS_USER";
+    public static final String PUBLISHABLE_KEY = "pk_test_51M3DOuJ0ZIThTDvlxlIGviVn6LfXQ6SE296bV7RaxfNXPiWL8ssvETvF6yNaNde7Cf5OmKFCVGeSxwN3WQANkjRq00AVfSemna";
+    public static final String SECRET_KEY = "sk_test_51M3DOuJ0ZIThTDvlMmDllUF1NS4a0gMBTCQl9kgmYNpDE46J8HR2CWI7Vw0ccr5htsd49nutpHYPeg9LR1BiJpWO00Vs0rRLlF";
+    public static final String URL_PAYMENT = "https://api.stripe.com/v1/";
 }

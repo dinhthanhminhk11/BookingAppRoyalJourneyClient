@@ -61,4 +61,13 @@ dependencies {
     implementation ('io.socket:socket.io-client:2.0.1') {
         exclude group: 'org.json', module: 'json'
     }
+
+    implementation 'com.stripe:stripe-java:20.77.0'
+    implementation 'com.stripe:stripe-android:17.2.0'
+    implementation 'com.android.volley:volley:1.2.1'
+
+    def lifecycle_version = "2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
 }

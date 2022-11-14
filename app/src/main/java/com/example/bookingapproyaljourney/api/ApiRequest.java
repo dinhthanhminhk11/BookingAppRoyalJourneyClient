@@ -1,12 +1,14 @@
 package com.example.bookingapproyaljourney.api;
 
-import com.airbnb.lottie.L;
 import com.example.bookingapproyaljourney.model.chat.Data;
+import com.example.bookingapproyaljourney.model.chat.DataUser;
 import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.map.Root;
+import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.model.user.Email;
+import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.Verify;
@@ -16,6 +18,8 @@ import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
+import com.example.bookingapproyaljourney.response.order.OrderResponse;
 
 import java.util.List;
 
@@ -81,7 +85,19 @@ public interface ApiRequest {
     @GET("Message/getmsg/{send}&{sendTo}")
     Call<Data> getDataChat(@Path("send") String sendId, @Path("sendTo") String sendToId);
 
+    @GET("Message/getMessage/{send}")
+    Call<Data> getMsgId(@Path("send") String send);
+
+    @GET("Message/getHost/{id}")
+    Call<DataUser> getHost(@Path("id") String id);
+
     @POST("Message/addmsg/")
     Call<Message> addMessage(@Body Message message);
 
+    @POST("addorder")
+    Call<OrderResponse> postOrder(@Body OrderCreate orderCreate);
+
+
+    @GET("listOrderByIdUser/{id}")
+    Call<ListOrderByIdUser> getListOrderByIdUser(@Path("id") String id);
 }

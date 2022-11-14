@@ -44,9 +44,12 @@ import com.example.bookingapproyaljourney.callback.CallDialog;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
+import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
+import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
+import com.example.bookingapproyaljourney.ui.fragment.ListOrderAllFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ProfileFragment;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerItem;
@@ -77,9 +80,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private static final int POS_NOTIFICATION = 5;
     private static final int POS_MESSAGES = 6;
 
-    private static final int POS_SETTING = 8;
-    private static final int POS_HELP = 9;
-    private static final int POS_LOGOUT = 10;
+
+    private static final int POS_TRAVEL = 8;
+    private static final int POS_SETTING = 9;
+    private static final int POS_HELP = 10;
+    private static final int POS_LOGOUT = 11;
+
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     public static final int code = 100;
     private String[] screenTitles;
@@ -140,10 +146,19 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_NOTIFICATION),
                 createItemFor(POS_MESSAGES),
                 new SpaceItem(48),
+                createItemFor(POS_TRAVEL),
                 createItemFor(POS_SETTING),
                 createItemFor(POS_HELP),
                 createItemFor(POS_LOGOUT)));
         adapter.setListener(this);
+
+        String check = getIntent().getStringExtra("CheckSuccess");
+
+        if (!(check == null)) {
+            if (check.equals("1111111111111")) {
+                ToastCheck toastCheck = new ToastCheck(MainActivity.this, R.style.StyleToast, "Thành công", "Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi , chúc bạn 1 ngày mới tốt lành", R.drawable.ic_complete_order);
+            }
+        }
 
         RecyclerView list = findViewById(R.id.listMenuLeftDrawer);
         list.setNestedScrollingEnabled(false);
@@ -226,12 +241,27 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 //            0352145615
 
         } else if (position == POS_HOME) {
-            Log.e("testLoaction", " click lcilk");
+//            Log.e("testLoaction", " click lcilk");
+            nameAddress.setVisibility(View.GONE);
+            nameCity.setVisibility(View.VISIBLE);
             showFragment(new HomeFragment(locationYouSelf));
         } else if (position == POS_NEARBY) {
             startActivity(new Intent(MainActivity.this, NearFromYouMapsActivity.class));
         } else if (position == POS_PROFILE) {
+            nameAddress.setText("Hồ Sơ");
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
             showFragment(new ProfileFragment());
+        } else if (position == POS_MESSAGES) {
+            nameAddress.setText("Tin Nhắn");
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
+            showFragment(new ChatFragment());
+        } else if (position == POS_TRAVEL) {
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
+            nameAddress.setText("Đơn hàng của bạn");
+            showFragment(new ListOrderAllFragment());
         }
         slidingRootNav.closeMenu();
     }

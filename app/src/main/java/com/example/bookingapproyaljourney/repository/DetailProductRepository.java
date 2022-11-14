@@ -5,8 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.callback.CallbackHouseById;
 import com.example.bookingapproyaljourney.constants.AppConstant;
-import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
@@ -40,5 +40,24 @@ public class DetailProductRepository {
             }
         });
         return data;
+    }
+
+    public void getProductById(String id, CallbackHouseById callbackHouseById) {
+        apiRequest.getDetailProduct(id).enqueue(new Callback<HouseDetailResponse>() {
+            @Override
+            public void onResponse(Call<HouseDetailResponse> call, Response<HouseDetailResponse> response) {
+                if (!response.isSuccessful()) {
+                    Log.d(AppConstant.TAG_ERROR, "code ; " + response.code());
+                } else {
+                    Log.e(AppConstant.TAG, "data " + response.body().getContent());
+                    callbackHouseById.success(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HouseDetailResponse> call, Throwable t) {
+                callbackHouseById.failure(t);
+            }
+        });
     }
 }

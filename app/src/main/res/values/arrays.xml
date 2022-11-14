@@ -10,6 +10,7 @@
         <item>@string/notification_arrays</item>
         <item>@string/message_arrays</item>
         <item />
+        <item>@string/setting_arrays_travel</item>
         <item>@string/setting_arrays</item>
         <item>@string/help_arrays</item>
         <item>@string/logout_arrays</item>
@@ -24,6 +25,7 @@
         <item>@drawable/ic_notification_white_menu</item>
         <item>@drawable/ic_message_white_menu</item>
         <item>0</item>
+        <item>@drawable/ic_travel_ver2</item>
         <item>@drawable/ic_setting_white_menu</item>
         <item>@drawable/ic_helps_white_menu</item>
         <item>@drawable/ic_logout_white_menu</item>

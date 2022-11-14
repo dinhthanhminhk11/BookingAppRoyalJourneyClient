@@ -85,7 +85,7 @@
     <string name="danhgiadetail">Đánh giá</string>
     <string name="Ytedetail">Y tế và an toàn</string>
     <string name="Y_te_detail">Các biện pháp an toàn trong đại dịch COVID-19 của BookingAppRoyalJourney được áp dụng. Có máy phát hiện khí CO/máy báo khói, Camera an ninh/thiết bị ghi</string>
-    <string name="dialogstartdate" >Thêm ngày bắt đầu của bạn để tiếp tục</string>
+    <string name="dialogstartdate">Thêm ngày bắt đầu của bạn để tiếp tục</string>
     <string name="dialogcontentnomal">Điều này đảm bảo rằng bạn sẽ không bỏ lỡ nội dung cập nhật về chuyến đi</string>
     <string name="nullphone">Thêm số điện thoại của bạn</string>
     <string name="limitperson">Số lượng khách thuê</string>
@@ -95,6 +95,8 @@
     <string name="Address">Address</string>
     <string name="Citizen_identity_card">Citizen identity card</string>
     <string name="SAVE">SAVE</string>
+    <string name="setting_arrays_travel">Chuyến đi</string>
+    <string name="your_order_just_arrived">Your Order Just Arrived</string>
 
 
 </resources>
