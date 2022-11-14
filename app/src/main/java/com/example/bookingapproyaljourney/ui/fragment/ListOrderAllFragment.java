@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.bookingapproyaljourney.databinding.FragmentListOrderAllBindin
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.OrderListResponse;
+import com.example.bookingapproyaljourney.ui.activity.StatusBillActivity;
 import com.example.bookingapproyaljourney.ui.adapter.OrderAdapter;
 import com.example.bookingapproyaljourney.view_model.OrderViewModel;
 
@@ -75,7 +77,9 @@ public class ListOrderAllFragment extends Fragment  {
                     adapter = new OrderAdapter(listOrderByIdUser.getData(), new OrderAdapter.Callback() {
                         @Override
                         public void onClick(OrderListResponse orderListResponse) {
-                            Toast.makeText(getActivity(), "Click", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getActivity().getApplication(), StatusBillActivity.class);
+                            intent.putExtra("OrderListResponse", orderListResponse);
+                            startActivity(intent);
 
                         }
                     });

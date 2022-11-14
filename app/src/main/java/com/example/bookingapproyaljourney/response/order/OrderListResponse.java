@@ -1,6 +1,8 @@
 package com.example.bookingapproyaljourney.response.order;
 
-public class OrderListResponse {
+import java.io.Serializable;
+
+public class OrderListResponse implements Serializable {
     private String idOder;
     private String idHost;
     private String idUser;
