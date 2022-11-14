@@ -7,6 +7,7 @@ import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.model.user.Email;
+import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.Verify;
@@ -81,6 +82,12 @@ public interface ApiRequest {
     //chat
     @GET("Message/getmsg/{send}&{sendTo}")
     Call<Data> getDataChat(@Path("send") String sendId, @Path("sendTo") String sendToId);
+
+    @GET("Message/getMessage/{send}")
+    Call<Data> getMsgId(@Path("send") String send);
+
+    @GET("Message/getHost/{_id}")
+    Call<List<User>> getHost(@Path("_id") String id);
 
     @POST("Message/addmsg/")
     Call<Message> addMessage(@Body Message message);

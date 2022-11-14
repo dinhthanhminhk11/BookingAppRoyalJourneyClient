@@ -20,6 +20,9 @@ public class User {
     @SerializedName("active")
     private boolean active;
 
+    public User() {
+    }
+
     public String getId() {
         return id;
     }

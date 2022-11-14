@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.chat.Content;
 import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.chat.MessageSocket;
@@ -60,7 +61,7 @@ public class ChatMessageActivity extends AppCompatActivity {
 
     {
         try {
-            mSocket = IO.socket("https://e401-113-160-5-74.ap.ngrok.io");
+            mSocket = IO.socket(AppConstant.BASE_URL_CHAT);
         } catch (URISyntaxException e) {
             e.getMessage();
         }

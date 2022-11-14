@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -118,7 +119,6 @@ public class ProfileFragment extends Fragment {
             Intent i = new Intent(getActivity(), EditProfile.class);
             startActivity(i);
         });
-
     }
 
     private void initData() {
