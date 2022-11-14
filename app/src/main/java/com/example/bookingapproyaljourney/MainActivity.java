@@ -46,6 +46,7 @@ import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
+import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ProfileFragment;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
@@ -226,12 +227,22 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 //            0352145615
 
         } else if (position == POS_HOME) {
-            Log.e("testLoaction", " click lcilk");
+//            Log.e("testLoaction", " click lcilk");
+            nameAddress.setVisibility(View.GONE);
+            nameCity.setVisibility(View.VISIBLE);
             showFragment(new HomeFragment(locationYouSelf));
         } else if (position == POS_NEARBY) {
             startActivity(new Intent(MainActivity.this, NearFromYouMapsActivity.class));
         } else if (position == POS_PROFILE) {
+            nameAddress.setText("Hồ Sơ");
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
             showFragment(new ProfileFragment());
+        } else if (position == POS_MESSAGES){
+            nameAddress.setText("Tin Nhắn");
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
+            showFragment(new ChatFragment());
         }
         slidingRootNav.closeMenu();
     }
