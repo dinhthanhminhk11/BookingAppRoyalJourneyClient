@@ -189,31 +189,32 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
     @Override
     public void onItemSelected(int position) {
+        final Dialog dialogLogOut = new Dialog(this);
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_log_comfirm_logout);
+        dialogLogOut.setContentView(R.layout.dia_log_comfirm_logout_ver2);
+        Window window = dialog.getWindow();
+        Window window2 = dialogLogOut.getWindow();
+
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        window2.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialogLogOut.getWindow() != null) {
+            dialogLogOut.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        login = (Button) dialog.findViewById(R.id.login);
+        close = (ImageView) dialogLogOut.findViewById(R.id.close);
+        btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);
+        btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        logOut = (Button) dialogLogOut.findViewById(R.id.login);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+
         if (position == POS_LOGOUT) {
-            final Dialog dialog = new Dialog(this);
-            final Dialog dialogLogOut = new Dialog(this);
-            dialog.setContentView(R.layout.dia_log_comfirm_logout);
-            dialogLogOut.setContentView(R.layout.dia_log_comfirm_logout_ver2);
-            Window window = dialog.getWindow();
-            Window window2 = dialogLogOut.getWindow();
-
-            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            if (dialog != null && dialog.getWindow() != null) {
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
-            window2.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            if (dialogLogOut != null && dialogLogOut.getWindow() != null) {
-                dialogLogOut.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
-
-            login = (Button) dialog.findViewById(R.id.login);
-            close = (ImageView) dialogLogOut.findViewById(R.id.close);
-            btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);
-            btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            logOut = (Button) dialogLogOut.findViewById(R.id.login);
-            SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
             if (token == null || token.equals("")) {
                 dialog.show();
             } else {
@@ -256,7 +257,15 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameAddress.setText("Tin Nhắn");
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
-            showFragment(new ChatFragment());
+            if (token == null || token.equals("")) {
+                dialog.show();
+            } else {
+                showFragment(new ChatFragment());
+            }
+            login.setOnClickListener(v -> {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                dialog.dismiss();
+            });
         } else if (position == POS_TRAVEL) {
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
