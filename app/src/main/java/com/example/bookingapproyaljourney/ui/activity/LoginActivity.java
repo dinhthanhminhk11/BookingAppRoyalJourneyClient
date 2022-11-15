@@ -26,6 +26,7 @@ import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
 import java.net.URISyntaxException;
@@ -97,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                 binding.edPass.setError("Xin vui lòng nhập địa chỉ Password");
             } else {
                 loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
+
             }
         });
 
@@ -105,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 if (!s.equals(LoginActivity.this.getResources().getString(R.string.LoginSuccess))) {
                     Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
+                    Log.e("dua",s);
                 }
             }
         });
@@ -120,7 +123,14 @@ public class LoginActivity extends AppCompatActivity {
 //                    onBackPressed();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
-                    Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
+                    ToastCheck toastCheck = new ToastCheck(LoginActivity.this, R.style.StyleToast,
+//                            this.getString(R.string.dialogstartdate),
+                            "Tài khoản của bạn chưa xác thực email",
+//                            this.getString(R.string.dialogcontentnomal),
+                            "Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn",
+                            R.drawable.ic_warning_icon_check);
+
+//                    Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
                     loginViewModel.sendAgain(new Email(loginResponse.getUser().getEmail()));
                     intent.putExtra(AppConstant.EMAIL_USER, loginResponse.getUser().getEmail());

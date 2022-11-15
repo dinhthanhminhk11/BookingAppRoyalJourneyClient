@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
+import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.bookingapproyaljourney.view_model.VerifyViewModel;
 
@@ -91,7 +93,11 @@ public class OtpActivity extends AppCompatActivity {
                 if (testResponse.isStatus()) {
                     viewModel.login(mail, pass);
                 } else {
-                    Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    ToastCheck toastCheck = new ToastCheck(OtpActivity.this, R.style.StyleToast,
+                            "OTP không chính xác",
+                            "Bạn hãy kiểm tra lại mã OTP chúng tôi đã gửi trong email của bạn",
+                            R.drawable.ic_warning_icon_check);
+                    Log.e("sads",testResponse.getMessage());
                 }
             }
         });
