@@ -47,6 +47,7 @@ import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
+import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ListOrderAllFragment;
@@ -271,6 +272,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameCity.setVisibility(View.GONE);
             nameAddress.setText("Đơn hàng của bạn");
             showFragment(new ListOrderAllFragment());
+        } else if (position == POS_BOOKMARK) {
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
+            nameAddress.setText("Yêu thích");
+            showFragment(new BookmarkFragment());
         }
         slidingRootNav.closeMenu();
     }

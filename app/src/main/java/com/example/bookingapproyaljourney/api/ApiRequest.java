@@ -8,10 +8,10 @@ import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.model.user.Email;
-import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.Verify;
+import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
@@ -100,4 +100,7 @@ public interface ApiRequest {
 
     @GET("listOrderByIdUser/{id}")
     Call<ListOrderByIdUser> getListOrderByIdUser(@Path("id") String id);
+
+    @GET("listBookmarkById/{id}")
+    Call<BookmarkResponse> getListBookMarkByIdUser(@Path("id") String id);
 }
