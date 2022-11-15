@@ -280,6 +280,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameCity.setVisibility(View.GONE);
             nameAddress.setText("Yêu thích");
             showFragment(new BookmarkFragment());
+        }else if (position == POS_HELP){
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
+            nameAddress.setText("Trợ giúp");
+            showFragment(new HelpFragment());
         }
         slidingRootNav.closeMenu();
     }
