@@ -33,7 +33,6 @@ public class ChatViewModel extends AndroidViewModel {
     public LiveData<List<User>> getHost(String id) {
         return chatRepository.getHost(id);
     }
-
     public void insertChat(Message message){
         chatRepository.insertMessage(message);
     }

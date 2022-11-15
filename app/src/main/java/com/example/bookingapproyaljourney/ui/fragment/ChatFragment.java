@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.chat.Content;
 import com.example.bookingapproyaljourney.model.user.User;
@@ -46,6 +47,8 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick{
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_chat, container, false);
         RecyclerView rcvListHost = view.findViewById(R.id.rcvListHost);
+        LottieAnimationView  progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         rcvListHost.setLayoutManager(new LinearLayoutManager(view.getContext()));
         chatViewModel.getMsgId(UserClient.getInstance().getId()).observe(requireActivity(),it ->{
            for (int i=0; i<it.size();i++){
@@ -56,13 +59,11 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick{
             for (int i=0; i<listIdHost.size(); i++){
                 chatViewModel.getHost(listIdHost.get(i)).observe(requireActivity(),item ->{
                     mListHost.add(item.get(0));
+                    progressBar.setVisibility(View.GONE);
                     rcvListHost.setAdapter(new HostAdapter(mListHost,this));
                 });
             }
-
-
         });
-
         return view;
     }
 
