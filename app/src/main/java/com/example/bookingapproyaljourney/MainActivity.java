@@ -45,6 +45,8 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
+import com.example.bookingapproyaljourney.ui.activity.BillOderActivity;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
@@ -273,10 +275,19 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameAddress.setText("Đơn hàng của bạn");
             showFragment(new ListOrderAllFragment());
         } else if (position == POS_BOOKMARK) {
-            nameAddress.setVisibility(View.VISIBLE);
-            nameCity.setVisibility(View.GONE);
-            nameAddress.setText("Yêu thích");
-            showFragment(new BookmarkFragment());
+            if (token.equals("")) {
+                dialog.show();
+            } else {
+                nameAddress.setVisibility(View.VISIBLE);
+                nameCity.setVisibility(View.GONE);
+                nameAddress.setText("Yêu thích");
+                showFragment(new BookmarkFragment());
+            }
+            login.setOnClickListener(v -> {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                dialog.dismiss();
+            });
+
         }
         slidingRootNav.closeMenu();
     }

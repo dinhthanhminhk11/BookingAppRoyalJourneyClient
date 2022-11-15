@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,16 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.CallbackHouseById;
+import com.example.bookingapproyaljourney.callback.CategoryCallBack;
+import com.example.bookingapproyaljourney.callback.InterfacePostBookmark;
 import com.example.bookingapproyaljourney.databinding.ItemBookmarkByUserBinding;
 import com.example.bookingapproyaljourney.model.house.Bookmark;
+import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.repository.BookmarkRepository;
+import com.example.bookingapproyaljourney.repository.CategoryRepository;
 import com.example.bookingapproyaljourney.repository.DetailProductRepository;
+import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 
 import java.text.DecimalFormat;
@@ -26,10 +34,15 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
     private DetailProductRepository detailProductRepository;
     private Callback callback;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private CategoryRepository categoryRepository;
+    private BookmarkRepository bookmarkRepository;
+
     public BookmarkAdapter(List<Bookmark> data, Callback callback) {
         this.data = data;
         this.callback = callback;
         detailProductRepository = new DetailProductRepository();
+        categoryRepository = new CategoryRepository();
+        bookmarkRepository = new BookmarkRepository();
     }
 
     @NonNull
@@ -65,6 +78,17 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                     holder.itemBookmarkByUserBinding.direct.setOnClickListener(v -> {
                         callback.onDirect(houseDetailResponse);
                     });
+                    categoryRepository.getCategoryById(houseDetailResponse.getCategory().getId(), new CategoryCallBack() {
+                        @Override
+                        public void success(String result) {
+                            holder.itemBookmarkByUserBinding.nameCategory.setText(result);
+                        }
+
+                        @Override
+                        public void failure(Throwable t) {
+
+                        }
+                    });
                 }
 
                 @Override
@@ -80,13 +104,38 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
             holder.itemBookmarkByUserBinding.bookmark.setOnClickListener(v -> {
                 if (isClickSpeed) {
+                    bookmarkRepository.addBookMark(new PostIDUserAndIdHouse(UserClient.getInstance().getId(), bookmark.getIdHouse()), new InterfacePostBookmark() {
+                        @Override
+                        public void onResponse(BookmarkResponse bookmarkResponse) {
+                            Log.e("Minh", bookmarkResponse.getData().toString());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+
+                        }
+                    });
                     holder.itemBookmarkByUserBinding.bookmark.setImageResource(R.drawable.ic_rectangle_1_map);
                     isClickSpeed = false;
                 } else {
+                    data.remove(position);
+                    bookmarkRepository.deleteBookmark(UserClient.getInstance().getId(), bookmark.getIdHouse(), new InterfacePostBookmark() {
+                        @Override
+                        public void onResponse(BookmarkResponse bookmarkResponse) {
+                            Log.e("Minh", "Xoá bookmark thành công");
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+
+                        }
+                    });
                     holder.itemBookmarkByUserBinding.bookmark.setImageResource(R.drawable.ic_bookmarkoutline);
                     isClickSpeed = true;
                 }
             });
+
+
         }
 
 
