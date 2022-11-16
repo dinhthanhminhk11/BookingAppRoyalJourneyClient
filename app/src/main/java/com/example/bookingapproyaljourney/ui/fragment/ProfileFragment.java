@@ -41,14 +41,9 @@ import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ProfileFragment extends Fragment {
     private AppCompatButton login;
-    private TextView checktest;
     private LoginViewModel loginViewModel;
 
     private static final String ARG_PARAM1 = "param1";
@@ -102,7 +97,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initView(View view) {
-        checktest = (TextView) view.findViewById(R.id.checktest);
         login = (AppCompatButton) view.findViewById(R.id.login);
         tvSignUpProfile = view.findViewById(R.id.tvSignUpProfile);
         nameUser = view.findViewById(R.id.tvNameUserProfile);

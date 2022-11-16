@@ -33,6 +33,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -55,6 +56,7 @@ import com.example.bookingapproyaljourney.ui.fragment.HelpFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ListOrderAllFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ProfileFragment;
+import com.example.bookingapproyaljourney.ui.fragment.SettingFragment;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerItem;
 import com.example.bookingapproyaljourney.ui.view.menu.SimpleItem;
@@ -129,6 +131,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         nameCity = (TextView) findViewById(R.id.nameCity);
         nameAddress = (TextView) findViewById(R.id.nameAddress);
         resultReceiver = new AddressResultReceiver(new Handler());
+
+//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+//            setTheme(R.style.Theme_BookingAppRoyalJourney_Dark);
+//        }else {
+//            setTheme(R.style.Theme_BookingAppRoyalJourney_Light);
+//        }
 
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withMenuOpened(false)
@@ -285,6 +293,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameCity.setVisibility(View.GONE);
             nameAddress.setText("Trợ giúp");
             showFragment(new HelpFragment());
+        }else if(position == POS_SETTING)
+        {
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
+            nameAddress.setText("Cài đặt");
+            showFragment(new SettingFragment());
         }
         slidingRootNav.closeMenu();
     }
@@ -432,5 +446,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 }, Looper.getMainLooper());
 
     }
+
 
 }
