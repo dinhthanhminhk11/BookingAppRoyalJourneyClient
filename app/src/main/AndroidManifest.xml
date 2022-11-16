@@ -25,11 +25,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.FeedBackActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.StatusBillActivity"
             android:exported="true" />
         <activity
             android:name=".ui.activity.BillOderActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.activity.EditProfile"
             android:exported="false" />

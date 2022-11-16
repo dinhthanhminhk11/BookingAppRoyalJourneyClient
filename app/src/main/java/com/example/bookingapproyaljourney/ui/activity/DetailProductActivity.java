@@ -97,6 +97,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private LottieAnimationView progressBar;
     private BottomSheetConvenient bottomSheetConvenient;
     private BottomSheetBathRoom bottomSheetBathRoom;
+    private TextView btnDanhGia;
     private List<Convenient> data;
     private List<Bathroom> dataBathRoom;
     private NumberFormat fm = new DecimalFormat("#,###");
@@ -135,6 +136,7 @@ public class DetailProductActivity extends AppCompatActivity {
         legalHouse = (TextView) findViewById(R.id.legalHouse);
         showMore = (TextView) findViewById(R.id.showMore);
         showMorebathdroom = (TextView) findViewById(R.id.showMorebathdroom);
+        btnDanhGia = findViewById(R.id.btnDanhGia);
 
         setSupportActionBar(toolBar);
 
@@ -174,6 +176,13 @@ public class DetailProductActivity extends AppCompatActivity {
             public void onClick(View view) {
                 showDialogBathRoom();
             }
+        });
+        btnDanhGia.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FeedBackActivity.class);
+            intent.putExtra("ID_BOSS", idBoss);
+            intent.putExtra("IMG_BOSS", imgBoss);
+            intent.putExtra("NAME_BOSS", nameBoss);
+            startActivity(intent);
         });
 
 
