@@ -89,7 +89,10 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         } else if (password.length() <= 6) {
             binding.edPassRegister.requestFocus();
-            binding.edPassRegister.setError("Phải trên 6 kí tự, ít nhất chứa 1 chữ số và 1 chứ cái ");
+            binding.edPassRegister.setError("Phải trên 6 kí tự ");
+        }else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")){
+            binding.edPassRegister.requestFocus();
+            binding.edPassRegister.setError("ít nhất chứa 1 chữ số và 1 chứ cái ");
             return false;
         } else if (cfPassword.length() <= 6) {
             binding.edCfPassRegister.requestFocus();

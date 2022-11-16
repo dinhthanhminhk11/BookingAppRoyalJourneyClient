@@ -10,11 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.callback.CallbackGetBookmark;
 import com.example.bookingapproyaljourney.callback.CategoryCallBack;
+import com.example.bookingapproyaljourney.callback.InterfacePostBookmark;
 import com.example.bookingapproyaljourney.databinding.ItemNearFromYouMapBinding;
 import com.example.bookingapproyaljourney.model.house.DataMap;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.repository.BookmarkRepository;
 import com.example.bookingapproyaljourney.repository.CategoryRepository;
+import com.example.bookingapproyaljourney.response.BookmarkResponse;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -26,11 +32,13 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
     private boolean isClickSpeed = true;
     private NumberFormat fm = new DecimalFormat("#,###");
     private CategoryRepository categoryRepository;
+    private BookmarkRepository bookmarkRepository;
 
     public NearFromYouAdapterMap(List<DataMap> data, Callback callback) {
         this.data = data;
         this.callback = callback;
         categoryRepository = new CategoryRepository();
+        bookmarkRepository = new BookmarkRepository();
     }
 
     @NonNull
@@ -76,11 +84,55 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
             holder.itemNearFromYouMapBinding.direct.setOnClickListener(v -> {
                 callback.onDirect(item.getData());
             });
+
+            bookmarkRepository.getBookmarkByIdUserAndIdHouse(UserClient.getInstance().getId(), item.getData().getId(), new CallbackGetBookmark() {
+                @Override
+                public void onResponse(BookmarkResponse bookmarkResponse) {
+                    if (bookmarkResponse.getData().size() > 0) {
+                        if (bookmarkResponse.getData().get(0).isCheck()) {
+                            holder.itemNearFromYouMapBinding.bookmark.setImageResource(R.drawable.ic_rectangle_1_map);
+                            isClickSpeed = false;
+                        }
+                    } else {
+                        holder.itemNearFromYouMapBinding.bookmark.setImageResource(R.drawable.ic_bookmarkoutline);
+                        isClickSpeed = true;
+                    }
+                }
+
+                @Override
+                public void onFailure(BookmarkResponse bookmarkResponse) {
+
+                }
+            });
+
+
             holder.itemNearFromYouMapBinding.bookmark.setOnClickListener(v -> {
                 if (isClickSpeed) {
+                    bookmarkRepository.addBookMark(new PostIDUserAndIdHouse(UserClient.getInstance().getId(), item.getData().getId()), new InterfacePostBookmark() {
+                        @Override
+                        public void onResponse(BookmarkResponse bookmarkResponse) {
+                            Log.e("Minh", bookmarkResponse.getData().toString());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+
+                        }
+                    });
                     holder.itemNearFromYouMapBinding.bookmark.setImageResource(R.drawable.ic_rectangle_1_map);
                     isClickSpeed = false;
                 } else {
+                    bookmarkRepository.deleteBookmark(UserClient.getInstance().getId(), item.getData().getId(), new InterfacePostBookmark() {
+                        @Override
+                        public void onResponse(BookmarkResponse bookmarkResponse) {
+                            Log.e("Minh", "Xoá bookmark thành công");
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+
+                        }
+                    });
                     holder.itemNearFromYouMapBinding.bookmark.setImageResource(R.drawable.ic_bookmarkoutline);
                     isClickSpeed = true;
                 }

@@ -5,13 +5,14 @@ import com.example.bookingapproyaljourney.model.chat.DataUser;
 import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
+import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.model.user.Email;
-import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.Verify;
+import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -100,4 +102,16 @@ public interface ApiRequest {
 
     @GET("listOrderByIdUser/{id}")
     Call<ListOrderByIdUser> getListOrderByIdUser(@Path("id") String id);
+
+    @GET("listBookmarkById/{id}")
+    Call<BookmarkResponse> getListBookMarkByIdUser(@Path("id") String id);
+
+    @POST("createBookmark")
+    Call<BookmarkResponse> addBookmark(@Body PostIDUserAndIdHouse postIDUserAndIdHouse);
+
+    @DELETE("deleteBookmark/{idUser}/{idHouse}")
+    Call<BookmarkResponse> deleteBookmark(@Path("idUser") String idUser, @Path("idHouse") String idHouse);
+
+    @GET("getBookmarkByIdUserAndIdHouse/{idUser}/{idHouse}")
+    Call<BookmarkResponse> getBookmarkByIdUserAndIdHouse(@Path("idUser") String idUser, @Path("idHouse") String idHouse);
 }

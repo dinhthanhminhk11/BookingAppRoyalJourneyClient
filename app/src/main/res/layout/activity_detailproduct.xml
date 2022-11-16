@@ -194,20 +194,7 @@
                     android:id="@+id/ContentHouse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/tin_tuc_detaiproduct" />
-
-                <!--                <com.example.libraryreadmoretextview.ReadMoreTextView-->
-                <!--                    android:id="@+id/tvMoto"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="20dp"-->
-                <!--                    android:text="@string/the_3_level"-->
-                <!--                    android:textColor="@color/black"-->
-                <!--                    android:theme="@style/Theme.MaterialComponents"-->
-                <!--                    app:readMoreColor="@color/blue"-->
-                <!--                    app:readMoreMaxLine="3"-->
-                <!--                    app:readMoreText="…Xem Thêm" />-->
+                    android:fontFamily="@font/poppins_medium" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -219,8 +206,7 @@
                         android:id="@+id/imgManage"
                         android:layout_width="@dimen/_40dp"
                         android:layout_height="@dimen/_40dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:layout_gravity="center" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -235,7 +221,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Garry Allen"
+
                             android:textColor="@color/black"
                             android:textSize="@dimen/_16sp" />
 
@@ -394,14 +380,6 @@
                     app:cardCornerRadius="@dimen/_20dp"
                     app:cardElevation="@dimen/_0dp">
 
-                    <!--                    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
-                    <!--                        xmlns:map="http://schemas.android.com/apk/res-auto"-->
-                    <!--                        xmlns:tools="http://schemas.android.com/tools"-->
-                    <!--                        android:id="@+id/mapinfo"-->
-                    <!--                        android:name="com.google.android.gms.maps.SupportMapFragment"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="match_parent"-->
-                    <!--                        tools:context=".ActivityMaintain.InFoKhachSanActivity" />-->
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
@@ -529,7 +507,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@string/huy_phong_detailproduct" />
+                    android:text="" />
 
                 <TextView
                     android:layout_width="wrap_content"

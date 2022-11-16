@@ -35,8 +35,8 @@ public class StatusBillActivity extends AppCompatActivity {
         binding.dateTraPhongStatusBill.setText(orderListResponse.getEndDate());
         binding.timeNhanPhongStatusBill.setText(orderListResponse.getTime());
         binding.timeTraPhongStatusBill.setText(orderListResponse.getTime());
-        binding.nightStatusbill.setText(orderListResponse.getDay());
-        binding.personStatusBill.setText(orderListResponse.getPerson());
+        binding.nightStatusbill.setText(orderListResponse.getDay()+"");
+        binding.personStatusBill.setText(orderListResponse.getPerson()+"");
         binding.tvNameUserStatusBill.setText(orderListResponse.getNameUser());
         binding.tvUserNumberPhoneStatusBill.setText(orderListResponse.getPhone());
     }

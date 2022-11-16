@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.ChatFragment"
-    android:background="#EFEFFF">
+    android:background="#EEEEEE"
+    tools:context=".ui.fragment.BookmarkFragment">
+
+    <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvListHost"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="#EEEEEE"
+        android:overScrollMode="never" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_120dp"
-        android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:background="@null"
         android:backgroundTint="@null"
         android:backgroundTintMode="@null"
@@ -22,5 +29,4 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading.json"
         app:lottie_loop="true" />
-
-</FrameLayout>
+</RelativeLayout>

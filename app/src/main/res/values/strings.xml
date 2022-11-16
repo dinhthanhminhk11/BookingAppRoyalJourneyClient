@@ -68,7 +68,7 @@
     <string name="api_key_app">AIzaSyDId5Ne9ty3PAl9aMBW4A-_7WcXfH7ngFA</string>
     <string name="distance">Distance: </string>
     <string name="time">Time: </string>
-    <string name="textPerNight"> /per night</string>
+    <string name="textPerNight"> /đêm</string>
     <string name="textPerNightVN"> /đêm</string>
     <string name="askForMapPermission">Xin lỗi bạn phải cấp quyền truy cập vị trí</string>
     <string name="motadetail">Mô tả</string>

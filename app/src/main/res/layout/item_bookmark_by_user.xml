@@ -7,7 +7,7 @@
     android:layout_marginVertical="5dp"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="10dp"
-    app:cardElevation="0dp">
+    app:cardElevation="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -169,7 +169,8 @@
                     android:layout_height="@dimen/_24dp"
                     android:layout_marginTop="@dimen/_10dp"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:src="@drawable/ic_sent_map" />
+                    android:src="@drawable/ic_sent_map"
+                    android:visibility="gone" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
