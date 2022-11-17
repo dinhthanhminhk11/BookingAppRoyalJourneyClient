@@ -7,6 +7,8 @@
     android:background="@color/color_ECECEC"
     tools:context=".ui.activity.EditProfile">
 
+    <include layout="@layout/tool_bar" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,32 +22,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <!--                <ImageView-->
-                <!--                    android:id="@+id/bgrEditProfile"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:scaleType="fitXY"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                    app:layout_constraintStart_toStartOf="parent"-->
-                <!--                    app:layout_constraintTop_toTopOf="parent"-->
-                <!--                    app:srcCompat="@drawable/background_top_edit_profile" />-->
-
                 <com.example.librarycireleimage.CircleImageView
-                    android:layout_marginTop="@dimen/_20dp"
                     android:id="@+id/avtEditProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_200dp"
+                    android:layout_height="@dimen/_200dp"
+                    android:layout_marginTop="@dimen/_70dp"
                     android:src="@drawable/img_avt_edit_profile"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
+                <ImageView
+                    android:id="@+id/cameraEditProfile"
+                    android:layout_width="@dimen/_40dp"
+                    android:layout_height="@dimen/_40dp"
+                    android:layout_marginStart="@dimen/_5dp"
+                    android:layout_marginTop="@dimen/_220dp"
+                    android:layout_marginBottom="@dimen/_40dp"
+                    android:src="@drawable/camera_edit_profile"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.524"
+                    app:layout_constraintStart_toStartOf="@+id/avtEditProfile"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
                 <LinearLayout
+                    android:id="@+id/linearLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_24dp"
+                    android:layout_marginTop="@dimen/_20dp"
                     android:layout_marginEnd="@dimen/_24dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +65,6 @@
                         android:id="@+id/nameEditProfile"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_60dp"
-                        android:layout_marginTop="@dimen/_40dp"
                         android:layout_marginBottom="@dimen/_10dp"
                         android:background="@drawable/edittext_edit_profile"
                         android:drawableStart="@drawable/rename_edit_profile"
