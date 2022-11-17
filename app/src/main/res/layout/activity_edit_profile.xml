@@ -24,9 +24,9 @@
 
                 <com.example.librarycireleimage.CircleImageView
                     android:id="@+id/avtEditProfile"
-                    android:layout_width="@dimen/_200dp"
-                    android:layout_height="@dimen/_200dp"
-                    android:layout_marginTop="@dimen/_70dp"
+                    android:layout_width="@dimen/_170dp"
+                    android:layout_height="@dimen/_170dp"
+                    android:layout_marginTop="@dimen/_80dp"
                     android:src="@drawable/img_avt_edit_profile"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +38,15 @@
                     android:layout_width="@dimen/_40dp"
                     android:layout_height="@dimen/_40dp"
                     android:layout_marginStart="@dimen/_5dp"
-                    android:layout_marginTop="@dimen/_220dp"
-                    android:layout_marginBottom="@dimen/_40dp"
+                    android:layout_marginTop="@dimen/_200dp"
+                    android:layout_marginBottom="@dimen/_10dp"
                     android:src="@drawable/camera_edit_profile"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.524"
+                    app:layout_constraintHorizontal_bias="0.453"
                     app:layout_constraintStart_toStartOf="@+id/avtEditProfile"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
                     tools:ignore="MissingConstraints" />
 
                 <LinearLayout
@@ -53,7 +54,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_24dp"
-                    android:layout_marginTop="@dimen/_20dp"
                     android:layout_marginEnd="@dimen/_24dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -61,68 +61,99 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/avtEditProfile">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15dp"
+                        android:textStyle="bold" />
+
                     <EditText
                         android:id="@+id/nameEditProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_60dp"
+                        android:layout_height="@dimen/_50dp"
+                        android:layout_marginTop="@dimen/_10dp"
                         android:layout_marginBottom="@dimen/_10dp"
                         android:background="@drawable/edittext_edit_profile"
                         android:drawableStart="@drawable/rename_edit_profile"
                         android:drawablePadding="@dimen/_20dp"
                         android:elevation="@dimen/_3dp"
-                        android:hint="@string/home"
                         android:inputType="text"
                         android:paddingStart="@dimen/_20dp"
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_18sp"
-                        />
+                        android:textSize="@dimen/_18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:text="@string/Phone"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15dp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/phoneEditProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_60dp"
+                        android:layout_height="@dimen/_50dp"
                         android:layout_marginTop="@dimen/_10dp"
                         android:layout_marginBottom="@dimen/_10dp"
                         android:background="@drawable/edittext_edit_profile"
                         android:drawableStart="@drawable/phone_edit_profile"
                         android:drawablePadding="@dimen/_20dp"
                         android:elevation="@dimen/_3dp"
-                        android:hint="@string/Phone"
                         android:inputType="phone"
                         android:paddingStart="@dimen/_20dp"
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_18sp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:text="@string/Address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15dp"
+                        android:textStyle="bold" />
+
                     <EditText
                         android:id="@+id/addressEditProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_60dp"
+                        android:layout_height="@dimen/_50dp"
                         android:layout_marginTop="@dimen/_10dp"
                         android:layout_marginBottom="@dimen/_10dp"
                         android:background="@drawable/edittext_edit_profile"
                         android:drawableStart="@drawable/location_edit_profile"
                         android:drawablePadding="@dimen/_20dp"
                         android:elevation="@dimen/_3dp"
-                        android:hint="@string/Address"
                         android:inputType="textPostalAddress"
                         android:paddingStart="@dimen/_20dp"
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_18sp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:text="@string/Citizen_identity_card"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15dp"
+                        android:textStyle="bold" />
+
                     <EditText
                         android:id="@+id/idCard"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_60dp"
+                        android:layout_height="@dimen/_50dp"
                         android:layout_marginTop="@dimen/_10dp"
                         android:layout_marginBottom="@dimen/_10dp"
                         android:background="@drawable/edittext_edit_profile"
                         android:drawableStart="@drawable/id_card_edit_profile"
                         android:drawablePadding="@dimen/_20dp"
                         android:elevation="@dimen/_3dp"
-                        android:hint="@string/Citizen_identity_card"
                         android:inputType="number"
                         android:paddingStart="@dimen/_20dp"
                         android:textAlignment="viewStart"
@@ -133,7 +164,7 @@
                         android:id="@+id/saveEditProfile"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_55dp"
-                        android:layout_marginTop="@dimen/_25dp"
+                        android:layout_marginTop="@dimen/_20dp"
                         android:layout_marginBottom="@dimen/_10dp"
                         android:background="@drawable/background_blue_edit_profile"
                         android:elevation="@dimen/_3dp"
