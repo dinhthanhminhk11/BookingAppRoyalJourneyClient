@@ -14,7 +14,6 @@ import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class EditProfile extends AppCompatActivity {
-
     private MaterialToolbar toolBar;
     private CircleImageView avtEditProfile;
     private ImageView cameraEditProfile;
