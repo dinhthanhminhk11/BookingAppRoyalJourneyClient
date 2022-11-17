@@ -17,4 +17,5 @@ public class AppConstant {
     public static final String PUBLISHABLE_KEY = "pk_test_51M3DOuJ0ZIThTDvlxlIGviVn6LfXQ6SE296bV7RaxfNXPiWL8ssvETvF6yNaNde7Cf5OmKFCVGeSxwN3WQANkjRq00AVfSemna";
     public static final String SECRET_KEY = "sk_test_51M3DOuJ0ZIThTDvlMmDllUF1NS4a0gMBTCQl9kgmYNpDE46J8HR2CWI7Vw0ccr5htsd49nutpHYPeg9LR1BiJpWO00Vs0rRLlF";
     public static final String URL_PAYMENT = "https://api.stripe.com/v1/";
+    public static final String ID_ORDER = "ID_ORDER";
 }

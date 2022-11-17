@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -58,15 +59,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             } else if (item.getStatus().equals("Đã xác nhận") && item.isBanking()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
                 holder.itemOrderListBinding.status.setText("Đã thanh toán");
+            } else {
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_pendding);
+                holder.itemOrderListBinding.status.setText(item.getStatus());
             }
-
 
             holder.itemOrderListBinding.countPerson.setText(item.getPerson() + " khách");
             holder.itemOrderListBinding.tvCodeBill.setText(item.getIdOder());
             holder.itemOrderListBinding.time.setText(item.getTime());
             holder.itemOrderListBinding.startDate.setText(item.getStartDate());
             holder.itemOrderListBinding.tvNgayTra.setText(item.getEndDate());
-            holder.itemOrderListBinding.price.setText(item.getPrice() + "VND");
+            holder.itemOrderListBinding.price.setText(fm.format(Integer.parseInt(item.getPrice())) + " VND");
             holder.itemOrderListBinding.TVsoDem.setText(item.getDay() + "");
             detailProductRepository.getProductById(item.getIdProduct(), new CallbackHouseById() {
                 @Override

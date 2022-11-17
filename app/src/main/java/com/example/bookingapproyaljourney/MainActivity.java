@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         } else if (position == POS_TRAVEL) {
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
-            nameAddress.setText("Đơn hàng của bạn");
+            nameAddress.setText("Chuyến đi của bạn");
             showFragment(new ListOrderAllFragment());
         } else if (position == POS_BOOKMARK) {
             if (token == null || token.equals("")) {

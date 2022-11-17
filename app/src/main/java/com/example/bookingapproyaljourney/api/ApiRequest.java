@@ -7,6 +7,7 @@ import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
 import com.example.bookingapproyaljourney.model.map.Root;
+import com.example.bookingapproyaljourney.model.order.OrderBill;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
@@ -114,4 +115,7 @@ public interface ApiRequest {
 
     @GET("getBookmarkByIdUserAndIdHouse/{idUser}/{idHouse}")
     Call<BookmarkResponse> getBookmarkByIdUserAndIdHouse(@Path("idUser") String idUser, @Path("idHouse") String idHouse);
+
+    @GET("getOrderById/{id}")
+    Call<OrderBill> getOrderById(@Path("id") String id);
 }

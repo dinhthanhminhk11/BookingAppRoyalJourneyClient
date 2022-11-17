@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentListOrderAllBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
@@ -82,9 +83,8 @@ public class ListOrderAllFragment extends Fragment {
                         @Override
                         public void onClick(OrderListResponse orderListResponse) {
                             Intent intent = new Intent(getActivity().getApplication(), StatusBillActivity.class);
-                            intent.putExtra("OrderListResponse", orderListResponse);
+                            intent.putExtra(AppConstant.ID_ORDER, orderListResponse.getIdOder());
                             startActivity(intent);
-
                         }
                     });
                     binding.recyclerView.setAdapter(adapter);

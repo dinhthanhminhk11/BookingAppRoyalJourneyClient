@@ -67,7 +67,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     private String idHouse = "";
     private NumberFormat fm = new DecimalFormat("#,###");
     private HouseDetailResponse houseDetailResponse;
-    private double sumAll;
+    private long sumAll;
     private PaymentSheet paymentSheet;
 
     private String customerID;

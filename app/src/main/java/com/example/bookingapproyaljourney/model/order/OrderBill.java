@@ -1,59 +1,51 @@
-package com.example.bookingapproyaljourney.response.order;
+package com.example.bookingapproyaljourney.model.order;
 
-public class OrderListResponse {
-    private String idOder;
-    private String idHost;
-    private String idUser;
-    private String idProduct;
-    private String namePro;
-    private String nameUser;
-    private String dateCreate;
-    private int day;
+public class OrderBill {
+    private String _id;
+    private String IdOder;
+    private String IdHost;
+    private String IdUser;
+    private String IdPro;
     private String price;
+    private int payDay;
     private boolean cashMoney;
     private boolean banking;
     private boolean seem;
+    private String status;
     private String startDate;
     private String endDate;
     private int person;
     private String phone;
-    private String status;
-    private String time;
+    private String createdAt;
+    private String updatedAt;
+    private int __v;
+
+    public String get_id() {
+        return _id;
+    }
 
     public String getIdOder() {
-        return idOder;
+        return IdOder;
     }
 
     public String getIdHost() {
-        return idHost;
+        return IdHost;
     }
 
     public String getIdUser() {
-        return idUser;
+        return IdUser;
     }
 
-    public String getIdProduct() {
-        return idProduct;
-    }
-
-    public String getNamePro() {
-        return namePro;
-    }
-
-    public String getNameUser() {
-        return nameUser;
-    }
-
-    public String getDateCreate() {
-        return dateCreate;
-    }
-
-    public int getDay() {
-        return day;
+    public String getIdPro() {
+        return IdPro;
     }
 
     public String getPrice() {
         return price;
+    }
+
+    public int getPayDay() {
+        return payDay;
     }
 
     public boolean isCashMoney() {
@@ -66,6 +58,10 @@ public class OrderListResponse {
 
     public boolean isSeem() {
         return seem;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public String getStartDate() {
@@ -84,11 +80,15 @@ public class OrderListResponse {
         return phone;
     }
 
-    public String getStatus() {
-        return status;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public String getTime() {
-        return time;
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public int get__v() {
+        return __v;
     }
 }
