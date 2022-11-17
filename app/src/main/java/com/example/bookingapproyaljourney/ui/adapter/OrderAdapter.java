@@ -46,13 +46,27 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder holder, int position) {
         OrderListResponse item = data.get(position);
         if (item != null) {
+
+            if (item.getStatus().equals("Đã xác nhận") && !item.isBanking()) {
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
+                holder.itemOrderListBinding.status.setText(item.getStatus());
+
+            } else if (item.getStatus().equals("Chủ đã huỷ")) {
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
+                holder.itemOrderListBinding.status.setText(item.getStatus());
+
+            } else if (item.getStatus().equals("Đã xác nhận") && item.isBanking()) {
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
+                holder.itemOrderListBinding.status.setText("Đã thanh toán");
+            }
+
+
             holder.itemOrderListBinding.countPerson.setText(item.getPerson() + " khách");
             holder.itemOrderListBinding.tvCodeBill.setText(item.getIdOder());
             holder.itemOrderListBinding.time.setText(item.getTime());
             holder.itemOrderListBinding.startDate.setText(item.getStartDate());
             holder.itemOrderListBinding.tvNgayTra.setText(item.getEndDate());
             holder.itemOrderListBinding.price.setText(item.getPrice() + "VND");
-            holder.itemOrderListBinding.status.setText(item.getStatus());
             holder.itemOrderListBinding.TVsoDem.setText(item.getDay() + "");
             detailProductRepository.getProductById(item.getIdProduct(), new CallbackHouseById() {
                 @Override
