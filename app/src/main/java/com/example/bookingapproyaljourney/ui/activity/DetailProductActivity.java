@@ -1,10 +1,12 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +36,7 @@ import com.example.bookingapproyaljourney.model.house.Bathroom;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
@@ -44,6 +47,7 @@ import com.example.bookingapproyaljourney.ui.adapter.RoomAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetBathRoom;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
+import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -87,9 +91,11 @@ public class DetailProductActivity extends AppCompatActivity {
     private BathdRoomAdapter bathdRoomAdapter;
     private ConvenientListAdapter convenientListAdapter;
     private DetailProductViewModel detailProductViewModel;
+    private FeedbackViewModel feedbackViewModel;
     private House house;
     private HouseDetailResponse houseDetailResponse;
     private String idHouse = "";
+    private String id_house = "";
     private String idBoss = "";
     private String imgBoss = "";
     private String nameBoss = "";
@@ -100,9 +106,11 @@ public class DetailProductActivity extends AppCompatActivity {
     private TextView btnDanhGia;
     private List<Convenient> data;
     private List<Bathroom> dataBathRoom;
+    private TextView countSao;
     private NumberFormat fm = new DecimalFormat("#,###");
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +145,8 @@ public class DetailProductActivity extends AppCompatActivity {
         showMore = (TextView) findViewById(R.id.showMore);
         showMorebathdroom = (TextView) findViewById(R.id.showMorebathdroom);
         btnDanhGia = findViewById(R.id.btnDanhGia);
+        countSao = findViewById(R.id.tvCountSao);
+        TextView tvSao = findViewById(R.id.tvSao);
 
         setSupportActionBar(toolBar);
 
@@ -153,17 +163,46 @@ public class DetailProductActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
+        feedbackViewModel = new ViewModelProvider(this).get(FeedbackViewModel.class);
 
         options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.img)
                 .error(R.drawable.img);
         idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
+        boolean checkFeedBack = getIntent().getBooleanExtra("CHECK_FEEDBACK", false);
+        if (checkFeedBack) {
+            new ToastCheck(this, R.style.StyleToast, "Thành công", "Phản hồi của bạn đã được lưu lại , chúc bạn 1 ngày tốt lành", R.drawable.ic_complete_order);
+        }
         initData(idHouse);
-//        rcvFeedback.setHasFixedSize(true);
-//        rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//        FeedbackAdapter feedbackAdapter = new FeedbackAdapter(this, getListFeedback());
-//        rcvFeedback.setAdapter(feedbackAdapter);
+        btnDanhGia.setPaintFlags(btnDanhGia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        rcvFeedback.setHasFixedSize(true);
+        rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        feedbackViewModel.getFeedbackId(idHouse).observe(this, it ->{
+            FeedbackAdapter feedbackAdapter = new FeedbackAdapter(it);
+            rcvFeedback.setAdapter(feedbackAdapter);
+            if(it.size()>0){
+                btnDanhGia.setText(it.size()+" Đánh giá");
+                float total = 0;
+                for(int i=0; i<it.size(); i++){
+                    total = total+it.get(i).getSao();
+                }
+                float average = total/it.size();
+                DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                if(average % 1 ==0){
+                    countSao.setText(decimalFormat.format(average)+".0");
+                    tvSao.setText(decimalFormat.format(average)+".0");
+                }else {
+                    countSao.setText(decimalFormat.format(average));
+                    tvSao.setText(decimalFormat.format(average));
+                }
+            } else{
+                btnDanhGia.setText("Đánh giá");
+                tvSao.setText("5.0");
+                countSao.setText("5.0");
+            }
+
+        });
         showMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,6 +219,7 @@ public class DetailProductActivity extends AppCompatActivity {
         btnDanhGia.setOnClickListener(v -> {
             Intent intent = new Intent(this, FeedBackActivity.class);
             intent.putExtra("ID_BOSS", idBoss);
+            intent.putExtra("ID_HOUSE", id_house);
             intent.putExtra("IMG_BOSS", imgBoss);
             intent.putExtra("NAME_BOSS", nameBoss);
             startActivity(intent);
@@ -231,6 +271,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private void initData(String id) {
         detailProductViewModel.getHouseById(id).observe(this, item -> {
             idBoss = item.getHostResponse().get_id();
+            id_house = item.get_id();
             imgBoss = item.getHostResponse().getImage();
             nameBoss = item.getHostResponse().getName();
             tvAddress.setText(item.getNameLocation());

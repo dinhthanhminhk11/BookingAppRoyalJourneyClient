@@ -7,7 +7,9 @@
     android:orientation="horizontal"
     android:layout_marginStart="@dimen/_17dp"
     android:layout_marginEnd="@dimen/_17dp"
-    android:layout_marginTop="@dimen/_20dp">
+    android:layout_marginTop="@dimen/_20dp"
+    android:clickable="true"
+    android:focusable="true">
     <ImageView
         android:id="@+id/imgHost"
         android:layout_width="@dimen/_62dp"

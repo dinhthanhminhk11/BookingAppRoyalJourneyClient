@@ -3,6 +3,8 @@ package com.example.bookingapproyaljourney.api;
 import com.example.bookingapproyaljourney.model.chat.Data;
 import com.example.bookingapproyaljourney.model.chat.DataUser;
 import com.example.bookingapproyaljourney.model.chat.Message;
+import com.example.bookingapproyaljourney.model.feedback.DataFeedBack;
+import com.example.bookingapproyaljourney.model.feedback.FeedBack;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
@@ -118,4 +120,11 @@ public interface ApiRequest {
 
     @GET("getOrderById/{id}")
     Call<OrderBill> getOrderById(@Path("id") String id);
+
+    // FeedBack
+    @POST("createFeedBack")
+    Call<FeedBack> createFeedBack(@Body FeedBack feedBack);
+
+    @GET("listFeedBack/{idHouse}")
+    Call<DataFeedBack> getFeedBack(@Path("idHouse") String idHouse);
 }

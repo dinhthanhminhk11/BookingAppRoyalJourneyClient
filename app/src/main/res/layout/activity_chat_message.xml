@@ -95,7 +95,7 @@
         android:minHeight="@dimen/_50dp"
         android:layout_marginStart="@dimen/_14dp"
         android:layout_marginEnd="@dimen/_14dp"
-        android:background="@drawable/background_boss_chat"
+        android:background="@drawable/bg_edittext_chat"
         android:paddingStart="@dimen/_25dp"
         android:paddingEnd="@dimen/_65dp"
         android:fontFamily="@font/poppins_medium"
