@@ -240,7 +240,7 @@
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_done"
+                android:background="@drawable/background_pendding"
                 android:gravity="right"
                 android:padding="5dp"
                 android:text="Thành Công"

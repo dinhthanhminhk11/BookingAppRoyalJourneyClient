@@ -256,7 +256,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             } else if (binding.textPayment.getText().toString().equals(this.getString(R.string.textpayment)) && TYPE_PAYMENT == 1) {
                 ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm thẻ thanh toán của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
             } else if (binding.phone.getText().toString().equals(this.getString(R.string.nullphone))) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số điện thoại của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal) , R.drawable.ic_warning_icon_check);
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số điện thoại của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 return;
             } else {
                 if (TYPE_PAYMENT == 1) {
@@ -287,10 +287,10 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     Intent intent = new Intent(BillOderActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("CheckSuccess" , "1111111111111");
+                    intent.putExtra("CheckSuccess", "1111111111111");
                     startActivity(intent);
                 } else {
-                    ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thất bại", getString(R.string.dialogcontentnomal ), R.drawable.ic_warning_icon_check);
+                    ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thất bại", getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 }
             }
         });
@@ -322,8 +322,6 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             binding.priceAll.setText("$" + fm.format(item.getPrice()));
             sumAll = item.getPrice();
         });
-
-
 
 
     }
@@ -446,7 +444,6 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 binding.imagePaypal.setVisibility(View.GONE);
                 binding.imageMatercard.setVisibility(View.GONE);
                 binding.textPayment.setText("Thẻ VISA (VISA card)");
-
 
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST,
