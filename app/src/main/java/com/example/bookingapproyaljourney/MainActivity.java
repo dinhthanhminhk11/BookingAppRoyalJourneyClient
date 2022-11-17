@@ -276,10 +276,18 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 dialog.dismiss();
             });
         } else if (position == POS_TRAVEL) {
-            nameAddress.setVisibility(View.VISIBLE);
-            nameCity.setVisibility(View.GONE);
-            nameAddress.setText("Chuyến đi của bạn");
-            showFragment(new ListOrderAllFragment());
+            if (token == null || token.equals("")) {
+                dialog.show();
+            } else {
+                nameAddress.setVisibility(View.VISIBLE);
+                nameCity.setVisibility(View.GONE);
+                nameAddress.setText("Chuyến đi của bạn");
+                showFragment(new ListOrderAllFragment());
+            }
+            login.setOnClickListener(v -> {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                dialog.dismiss();
+            });
         } else if (position == POS_BOOKMARK) {
             if (token == null || token.equals("")) {
                 dialog.show();
