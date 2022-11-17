@@ -75,7 +75,8 @@
                         android:paddingStart="@dimen/_20dp"
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_18sp" />
+                        android:textSize="@dimen/_18sp"
+                        />
 
                     <EditText
                         android:id="@+id/phoneEditProfile"
