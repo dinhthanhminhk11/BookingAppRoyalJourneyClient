@@ -4,7 +4,9 @@ import com.example.bookingapproyaljourney.model.chat.Data;
 import com.example.bookingapproyaljourney.model.chat.DataUser;
 import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.feedback.DataFeedBack;
+import com.example.bookingapproyaljourney.model.feedback.DataId;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
+import com.example.bookingapproyaljourney.model.feedback.ListIdUser;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
@@ -127,4 +129,11 @@ public interface ApiRequest {
 
     @GET("listFeedBack/{idHouse}")
     Call<DataFeedBack> getFeedBack(@Path("idHouse") String idHouse);
+
+    @GET("listIdUserFeedBack/{idHouse}")
+    Call<DataId> getListUserFeedback(@Path("idHouse") String idHouse);
+
+    @POST("updateFeedBackUser")
+    Call<FeedBack> updateUser(@Body FeedBack feedBack);
+
 }

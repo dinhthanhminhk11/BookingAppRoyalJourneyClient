@@ -11,6 +11,7 @@ import com.example.bookingapproyaljourney.callback.InterfaceResponseFeedBack;
 import com.example.bookingapproyaljourney.model.chat.Content;
 import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
+import com.example.bookingapproyaljourney.model.feedback.ListIdUser;
 import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.repository.ChatRepository;
 import com.example.bookingapproyaljourney.repository.FeedBackRepository;
@@ -29,7 +30,7 @@ public class FeedbackViewModel extends AndroidViewModel {
         feedBackRepository.insertFeedback(feedBack, new InterfaceResponseFeedBack() {
             @Override
             public void onResponse(FeedBack feedBack) {
-                Log.e("zzzzzzzzzzzzz", "thanh cong" );
+
             }
 
             @Override
@@ -41,6 +42,12 @@ public class FeedbackViewModel extends AndroidViewModel {
 
     public LiveData<List<FeedBack>> getFeedbackId(String idHouse){
         return feedBackRepository.getFeedbackId(idHouse);
+    }
+    public LiveData<List<ListIdUser>> getListId(String idHouse){
+        return feedBackRepository.getListIdUser(idHouse);
+    }
+    public void updateFeedback(FeedBack feedBack){
+        feedBackRepository.updateFeedback(feedBack);
     }
 
 }

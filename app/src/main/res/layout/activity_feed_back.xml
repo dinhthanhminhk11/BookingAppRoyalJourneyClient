@@ -162,6 +162,7 @@
         android:padding="@dimen/_10dp"
         android:textSize="@dimen/_16sp"
         android:gravity="top"
+        android:inputType="textCapSentences"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/view5"

@@ -5,6 +5,8 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,43 +41,65 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        if(feedbackList.size()==0){
+            return;
+        }
         FeedBack feedBack = feedbackList.get(position);
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
         Calendar calendar = Calendar.getInstance();
         long time = calendar.getTimeInMillis();
         String date = format.format(time);
-        holder.tvCountFeedback.setVisibility(View.GONE);
-        holder.tvName.setText(feedBack.getName());
-        Glide.with(holder.itemView.getContext()).load(feedBack.getImgUser()).placeholder(R.drawable.img_contact).into(holder.imgFeedback);
+        holder.tvNameUser.setText(feedBack.getName());
+        Glide.with(holder.itemView.getContext()).load(feedBack.getImgUser()).placeholder(R.drawable.img_contact).into(holder.imgUser);
+        if(feedBack.getSao()==1) holder.imgStar1.setImageResource(R.drawable.ic_star_click);
+        if(feedBack.getSao()==2) {
+            holder.imgStar1.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar2.setImageResource(R.drawable.ic_star_click);
+        }
+        if(feedBack.getSao()==3){
+            holder.imgStar1.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar2.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar3.setImageResource(R.drawable.ic_star_click);
+        }
+        if(feedBack.getSao()==4){
+            holder.imgStar1.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar2.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar3.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar4.setImageResource(R.drawable.ic_star_click);
+        }
+        if(feedBack.getSao()==5){
+            holder.imgStar1.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar2.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar3.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar4.setImageResource(R.drawable.ic_star_click);
+            holder.imgStar5.setImageResource(R.drawable.ic_star_click);
+        }
         try {
             Date b = format.parse(date);
             String txtTime =
                     (String) DateUtils.getRelativeTimeSpanString(
                             Long.parseLong(feedBack.getTime()), b.getTime(), 60000,
                             ((int) DateUtils.MINUTE_IN_MILLIS));
-            holder.tvDate.setText(txtTime);
+            holder.tvTime.setText(txtTime);
             holder.tvContent.setText(feedBack.getTextUser());
-            holder.tvCountFeedback.setText("Hiển thị tất cả " + feedbackList.size() + " đánh giá");
-            holder.tvCountFeedback.setPaintFlags(holder.tvCountFeedback.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            holder.tvShowFeedback.setText("Hiển thị tất cả " + feedbackList.size() + " đánh giá");
+            holder.tvShowFeedback.setPaintFlags(holder.tvShowFeedback.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         if (position == feedbackList.size()-1 && position!=0) {
-                holder.tvCountFeedback.setVisibility(View.VISIBLE);
-                holder.imgFeedback.setVisibility(View.GONE);
-                holder.tvName.setVisibility(View.GONE);
-                holder.tvDate.setVisibility(View.GONE);
+                holder.tvShowFeedback.setVisibility(View.VISIBLE);
+                holder.lnDetail.setVisibility(View.GONE);
+                holder.lnSao.setVisibility(View.GONE);
                 holder.tvContent.setVisibility(View.GONE);
         }
         if (position == 4) {
             if (feedbackList.size() - 5 == 0) {
-                holder.tvCountFeedback.setVisibility(View.GONE);
+                holder.tvShowFeedback.setVisibility(View.VISIBLE);
             } else {
-
-                holder.tvCountFeedback.setVisibility(View.VISIBLE);
-                holder.imgFeedback.setVisibility(View.GONE);
-                holder.tvName.setVisibility(View.GONE);
-                holder.tvDate.setVisibility(View.GONE);
+                holder.tvShowFeedback.setVisibility(View.VISIBLE);
+                holder.lnDetail.setVisibility(View.GONE);
+                holder.lnSao.setVisibility(View.GONE);
                 holder.tvContent.setVisibility(View.GONE);
             }
         }
@@ -83,24 +107,37 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return feedbackList.size();
+        return Math.min(feedbackList.size(), 5);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private CircleImageView imgFeedback;
-        private TextView tvName;
-        private TextView tvDate;
+        private LinearLayout lnDetail;
+        private CircleImageView imgUser;
+        private TextView tvNameUser;
+        private TextView tvTime;
+        private LinearLayout lnSao;
+        private ImageView imgStar1;
+        private ImageView imgStar2;
+        private ImageView imgStar3;
+        private ImageView imgStar4;
+        private ImageView imgStar5;
         private TextView tvContent;
-        private TextView tvCountFeedback;
-
+        private TextView tvShowFeedback;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imgFeedback = itemView.findViewById(R.id.imgFeedback);
-            tvName = itemView.findViewById(R.id.tvNameFeedback);
-            tvDate = itemView.findViewById(R.id.tvDateFeedBack);
-            tvContent = itemView.findViewById(R.id.tvContentFeedback);
-            tvCountFeedback = itemView.findViewById(R.id.tvCountFeedback);
+            lnDetail = itemView.findViewById(R.id.lnDetail);
+            imgUser = itemView.findViewById(R.id.imgUser);
+            tvNameUser = itemView.findViewById(R.id.tvNameUser);
+            tvTime = itemView.findViewById(R.id.tvTime);
+            lnSao = itemView.findViewById(R.id.lnSao);
+            imgStar1 = itemView.findViewById(R.id.imgStar1);
+            imgStar2 = itemView.findViewById(R.id.imgStar2);
+            imgStar3 = itemView.findViewById(R.id.imgStar3);
+            imgStar4 = itemView.findViewById(R.id.imgStar4);
+            imgStar5 = itemView.findViewById(R.id.imgStar5);
+            tvContent = itemView.findViewById(R.id.tvContent);
+            tvShowFeedback = itemView.findViewById(R.id.tvShowFeedback);
 
         }
     }

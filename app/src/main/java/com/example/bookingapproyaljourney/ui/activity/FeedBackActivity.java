@@ -2,12 +2,12 @@ package com.example.bookingapproyaljourney.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
-import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityFeedBackBinding;
@@ -22,6 +22,7 @@ public class FeedBackActivity extends AppCompatActivity {
     private ActivityFeedBackBinding binding;
     private int sao = 0;
     private String id_boss = "";
+    private Boolean check = false;
     private FeedbackViewModel feedbackViewModel;
 
     @Override
@@ -82,18 +83,35 @@ public class FeedBackActivity extends AppCompatActivity {
         long time = calendar.getTimeInMillis();
         binding.btnSubmit.setOnClickListener(v -> {
             String text = binding.edComment.getText().toString();
-            FeedBack feedBack = new FeedBack(id_House, UserClient.getInstance().getId(),UserClient.getInstance().getImage(), UserClient.getInstance().getName(),sao, Long.toString(time), text, "");
-            if(sao == 0){
+            if (sao == 0) {
                 new ToastCheck(this, R.style.StyleToast, "Bạn cho chúng tôi bao nhiêu sao", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
-            }else if(text.isEmpty() || text.trim().equals("")){
+                return;
+            }if (text.isEmpty() || text.trim().equals("")) {
                 new ToastCheck(this, R.style.StyleToast, "Hãy đóng góp ý kiến của bạn", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
-            }else {
-                feedbackViewModel.insertFeedback(feedBack);
-                Intent intent1 = new Intent(this, DetailProductActivity.class);
-                intent1.putExtra(AppConstant.HOUSE_EXTRA, id_House);
-                intent1.putExtra("CHECK_FEEDBACK",true);
-                startActivity(intent1);
+                return;
             }
+            FeedBack feedBack = new FeedBack(id_House, UserClient.getInstance().getId(), UserClient.getInstance().getImage(), UserClient.getInstance().getName(), sao, Long.toString(time), text, "");
+            feedbackViewModel.getListId(id_House).observe(this, it -> {
+                for (int i = 0; i < it.size(); i++) {
+                    if (UserClient.getInstance().getId().equals(it.get(i).getIdUser())) {
+                        check = true;
+                    }
+                }
+                if (check) {
+                    feedbackViewModel.updateFeedback(feedBack);
+                    Intent intent1 = new Intent(this, DetailProductActivity.class);
+                    intent1.putExtra(AppConstant.HOUSE_EXTRA, id_House);
+                    intent1.putExtra("CHECK_FEEDBACK", true);
+                    startActivity(intent1);
+                } else {
+                    feedbackViewModel.insertFeedback(feedBack);
+                    Intent intent1 = new Intent(this, DetailProductActivity.class);
+                    intent1.putExtra(AppConstant.HOUSE_EXTRA, id_House);
+                    intent1.putExtra("CHECK_FEEDBACK", true);
+                    startActivity(intent1);
+                }
+            });
         });
+
     }
 }
