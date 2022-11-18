@@ -1,7 +1,9 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -49,6 +51,7 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +69,8 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     private DetailProductViewModel detailProductViewModel;
     private String idHouse = "";
     private NumberFormat fm = new DecimalFormat("#,###");
+    @SuppressLint("NewApi")
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private HouseDetailResponse houseDetailResponse;
     private long sumAll;
     private PaymentSheet paymentSheet;
@@ -79,6 +84,11 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     private String endDateStringPrivate;
     private int personLimitPrivate;
     private String phonePrivate;
+
+    private String checkStartDate;
+    private String checkEndDate;
+    private String checkStartDateResponse;
+    private String checkEndDateResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,54 +204,63 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             materialDatePicker.getLifecycle().addObserver(new DefaultLifecycleObserver() {
                 @Override
                 public void onCreate(@NonNull LifecycleOwner owner) {
-                    Log.e("Minh", "onCreate");
                 }
 
                 @Override
                 public void onStart(@NonNull LifecycleOwner owner) {
-                    //in onStart of DialogFragment the View has been created so you can access the materialDatePicker.requireView()
                     View root = materialDatePicker.requireView();
-                    Log.e("Minh", "onStart");
                 }
 
                 @Override
                 public void onResume(@NonNull LifecycleOwner owner) {
-                    Log.e("Minh", "onResume");
+
                 }
 
                 @Override
                 public void onDestroy(@NonNull LifecycleOwner owner) {
-                    //remove Lifecycle Observer
                     materialDatePicker.getLifecycle().removeObserver(this);
-                    Log.e("Minh", "onDestroy");
                 }
             });
             materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
+                @SuppressLint("NewApi")
                 @Override
                 public void onPositiveButtonClick(Pair<Long, Long> selection) {
                     Long startDate = selection.first;
                     Long endDate = selection.second;
-                    Log.e("Minh1", "startDate " + startDate);
-                    Log.e("Minh2", "onDestroy " + endDate);
-
-                    long msDiff = endDate - startDate;
-                    long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
-                    payday = Integer.parseInt(String.valueOf(daysDiff));
-                    binding.payDay.setText(daysDiff + "");
 
                     String startDateString = DateFormat.format("EEE, dd-MM", new Date(startDate)).toString();
                     String endDateString = DateFormat.format("EEE, dd-MM", new Date(endDate)).toString();
 
-                    startDateStringPrivate = startDateString;
-                    endDateStringPrivate = endDateString;
+                    checkStartDate = DateFormat.format("dd/MM/yyyy", new Date(startDate)).toString();
+                    checkEndDate = DateFormat.format("dd/MM/yyyy", new Date(endDate)).toString();
 
-                    binding.startDate.setText(startDateString);
-                    binding.endDate.setText(endDateString);
-                    sumAll = houseDetailResponse.getPrice() * daysDiff;
-                    binding.priceAndCount.setText("$" + fm.format(houseDetailResponse.getPrice()) + " x " + daysDiff + " đêm");
-                    binding.sumPrice.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
-                    binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
-                    //Do something...
+                    try {
+                        if (sdf.parse(checkStartDate).before((sdf.parse(checkStartDateResponse)))) {
+                            ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Chủ nhà chỉ cho phép nhận phòng từ ngày " + checkStartDateResponse, BillOderActivity.this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                            return;
+                        } else if (sdf.parse(checkEndDate).after((sdf.parse(checkEndDateResponse)))) {
+                            ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Chủ nhà chỉ cho phép trả phòng vào ngày " + checkEndDateResponse, BillOderActivity.this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                            return;
+                        } else {
+
+                            long msDiff = endDate - startDate;
+                            long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
+                            payday = Integer.parseInt(String.valueOf(daysDiff));
+                            binding.payDay.setText(daysDiff + "");
+
+                            startDateStringPrivate = startDateString;
+                            endDateStringPrivate = endDateString;
+
+                            binding.startDate.setText(startDateString);
+                            binding.endDate.setText(endDateString);
+                            sumAll = houseDetailResponse.getPrice() * daysDiff;
+                            binding.priceAndCount.setText("$" + fm.format(houseDetailResponse.getPrice()) + " x " + daysDiff + " đêm");
+                            binding.sumPrice.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
+                            binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         });
@@ -320,7 +339,10 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             binding.priceAndCount.setText("$" + fm.format(item.getPrice()) + " x 1 đêm");
             binding.sumPrice.setText("$" + fm.format(item.getPrice()));
             binding.priceAll.setText("$" + fm.format(item.getPrice()));
+            binding.startDateAndEndDate.setText(item.getStartDate() + " - " + item.getEndDate());
             sumAll = item.getPrice();
+            checkStartDateResponse = item.getStartDate();
+            checkEndDateResponse = item.getEndDate();
         });
 
 

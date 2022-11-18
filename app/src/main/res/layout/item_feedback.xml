@@ -34,6 +34,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:maxLines="1"
                     android:id="@+id/tvNameFeedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

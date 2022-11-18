@@ -104,6 +104,8 @@ public class DetailProductActivity extends AppCompatActivity {
     private BottomSheetConvenient bottomSheetConvenient;
     private BottomSheetBathRoom bottomSheetBathRoom;
     private TextView btnDanhGia;
+    private TextView statusHouse;
+    private TextView startDateAndEndDate;
     private List<Convenient> data;
     private List<Bathroom> dataBathRoom;
     private TextView countSao;
@@ -145,6 +147,8 @@ public class DetailProductActivity extends AppCompatActivity {
         showMore = (TextView) findViewById(R.id.showMore);
         showMorebathdroom = (TextView) findViewById(R.id.showMorebathdroom);
         btnDanhGia = findViewById(R.id.btnDanhGia);
+        statusHouse = findViewById(R.id.statusHouse);
+        startDateAndEndDate = findViewById(R.id.startDateAndEndDate);
         countSao = findViewById(R.id.tvCountSao);
         TextView tvSao = findViewById(R.id.tvSao);
 
@@ -178,25 +182,25 @@ public class DetailProductActivity extends AppCompatActivity {
         btnDanhGia.setPaintFlags(btnDanhGia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         rcvFeedback.setHasFixedSize(true);
         rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        feedbackViewModel.getFeedbackId(idHouse).observe(this, it ->{
+        feedbackViewModel.getFeedbackId(idHouse).observe(this, it -> {
             FeedbackAdapter feedbackAdapter = new FeedbackAdapter(it);
             rcvFeedback.setAdapter(feedbackAdapter);
-            if(it.size()>0){
-                btnDanhGia.setText(it.size()+" Đánh giá");
+            if (it.size() > 0) {
+                btnDanhGia.setText(it.size() + " Đánh giá");
                 float total = 0;
-                for(int i=0; i<it.size(); i++){
-                    total = total+it.get(i).getSao();
+                for (int i = 0; i < it.size(); i++) {
+                    total = total + it.get(i).getSao();
                 }
-                float average = total/it.size();
+                float average = total / it.size();
                 DecimalFormat decimalFormat = new DecimalFormat("#.#");
-                if(average % 1 ==0){
-                    countSao.setText(decimalFormat.format(average)+".0");
-                    tvSao.setText(decimalFormat.format(average)+".0");
-                }else {
+                if (average % 1 == 0) {
+                    countSao.setText(decimalFormat.format(average) + ".0");
+                    tvSao.setText(decimalFormat.format(average) + ".0");
+                } else {
                     countSao.setText(decimalFormat.format(average));
                     tvSao.setText(decimalFormat.format(average));
                 }
-            } else{
+            } else {
                 btnDanhGia.setText("Đánh giá");
                 tvSao.setText("5.0");
                 countSao.setText("5.0");
@@ -280,6 +284,12 @@ public class DetailProductActivity extends AppCompatActivity {
             tvAmountBedroom2.setText(item.getBathrooms().size() + " Phòng tắm");
             ContentHouse.setText(item.getContent());
             legalHouse.setText(item.getLegal());
+            startDateAndEndDate.setText(item.getStartDate() + " - " + item.getEndDate());
+            if (item.isStillEmpty()) {
+                statusHouse.setText("Hết Phòng");
+            } else {
+                statusHouse.setText("Còn Phòng");
+            }
             btPhone.setOnClickListener(view -> {
                 String phone = item.getHostResponse().getPhone();
                 Intent intent = new Intent(Intent.ACTION_DIAL);

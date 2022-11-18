@@ -50,6 +50,12 @@ public class HouseDetailResponse {
     private String updatedAt;
     @SerializedName("__v")
     private int __v;
+    @SerializedName("endDate")
+    private String endDate;
+    @SerializedName("startDate")
+    private String startDate;
+    @SerializedName("isStillEmpty")
+    private boolean isStillEmpty;
 
     public Location getLocation() {
         return location;
@@ -129,5 +135,17 @@ public class HouseDetailResponse {
 
     public int get__v() {
         return __v;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public boolean isStillEmpty() {
+        return isStillEmpty;
     }
 }

@@ -1,6 +1,5 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 

@@ -393,26 +393,26 @@
                         android:id="@+id/imgStar2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                       android:layout_marginTop="5dp"
+                        android:layout_marginTop="5dp"
                         android:src="@drawable/ic_star_detailproduct" />
 
                     <TextView
                         android:id="@+id/tvCountSao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/_5dp"
                         android:fontFamily="@font/poppins_medium"
                         android:textColor="#0A8ED9"
-                        android:layout_gravity="center"
                         android:textSize="@dimen/_20sp" />
 
                     <TextView
                         android:id="@+id/btnDanhGia"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_12dp"
                         android:layout_weight="1"
-                        android:layout_gravity="center"
                         android:fontFamily="@font/poppins_medium"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_20sp" />
@@ -421,8 +421,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Xem Thêm"
                         android:gravity="center"
+                        android:text="Xem Thêm"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_16dp" />
                 </LinearLayout>
@@ -448,12 +448,12 @@
                         android:textSize="@dimen/_16sp" />
 
                     <TextView
+                        android:id="@+id/statusHouse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5dp"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="rooms"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_14dp" />
                 </LinearLayout>
@@ -492,6 +492,25 @@
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_14dp" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Nhận phòng từ ngày: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <TextView
+                    android:id="@+id/startDateAndEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="#0A8ED9"
+                    android:textSize="@dimen/_16dp" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -29,7 +29,7 @@ public class DetailProductRepository {
                 if (!response.isSuccessful()) {
                     Log.d(AppConstant.TAG_ERROR, "code ; " + response.code());
                 } else {
-                    Log.e(AppConstant.TAG, "data " + response.body().getContent());
+                    Log.e(AppConstant.TAG, "data " + response.body().getStartDate() + " dsfsdf");
                     data.setValue(response.body());
                 }
             }
