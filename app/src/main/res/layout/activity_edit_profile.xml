@@ -86,6 +86,7 @@
                     android:layout_height="@dimen/_54dp"
                     android:background="@color/white"
                     android:hint="@string/Ten"
+                    app:boxStrokeColor="@color/black"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -106,6 +107,7 @@
                     android:layout_marginTop="@dimen/_20dp"
                     android:background="@color/white"
                     android:hint="@string/Sdt_editprofile"
+                    app:boxStrokeColor="@color/black"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -126,6 +128,7 @@
                     android:layout_marginTop="@dimen/_20dp"
                     android:background="@color/white"
                     android:hint="@string/cccd"
+                    app:boxStrokeColor="@color/black"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -145,6 +148,7 @@
                     android:layout_marginTop="@dimen/_20dp"
                     android:background="@color/white"
                     android:hint="@string/dia_chi"
+                    app:boxStrokeColor="@color/black"
                     app:hintTextColor="@color/color_555555"
                     app:startIconDrawable="@drawable/ic_subtract_edit_profile">
 
