@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -12,16 +13,19 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.bookingapproyaljourney.R;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class EditProfile extends AppCompatActivity {
     private MaterialToolbar toolBar;
     private CircleImageView avtEditProfile;
     private ImageView cameraEditProfile;
-    private LinearLayout linearLayout3;
-    private EditText nameEditProfile;
-    private EditText phoneEditProfile;
-    private EditText addressEditProfile;
-    private EditText idCard;
+    private TextView titleNameEditProfile;
+    private TextView titleEmailEditProfile;
+    private TextInputEditText nameEditProfile;
+    private TextInputEditText phoneEditProfile;
+    private TextInputEditText cccdEditProfile;
+    private TextInputEditText locationEditProfile;
+    private ImageView imageView3;
     private AppCompatButton saveEditProfile;
 
     @Override
@@ -32,15 +36,17 @@ public class EditProfile extends AppCompatActivity {
         toolBar = (MaterialToolbar) findViewById(R.id.tool_bar);
         avtEditProfile = (CircleImageView) findViewById(R.id.avtEditProfile);
         cameraEditProfile = (ImageView) findViewById(R.id.cameraEditProfile);
-        linearLayout3 = (LinearLayout) findViewById(R.id.linearLayout3);
-        nameEditProfile = (EditText) findViewById(R.id.nameEditProfile);
-        phoneEditProfile = (EditText) findViewById(R.id.phoneEditProfile);
-        addressEditProfile = (EditText) findViewById(R.id.addressEditProfile);
-        idCard = (EditText) findViewById(R.id.idCard);
+        titleNameEditProfile = (TextView) findViewById(R.id.titleNameEditProfile);
+        titleEmailEditProfile = (TextView) findViewById(R.id.titleEmailEditProfile);
+        nameEditProfile = (TextInputEditText) findViewById(R.id.nameEditProfile);
+        phoneEditProfile = (TextInputEditText) findViewById(R.id.phoneEditProfile);
+        cccdEditProfile = (TextInputEditText) findViewById(R.id.cccdEditProfile);
+        locationEditProfile = (TextInputEditText) findViewById(R.id.locationEditProfile);
+        imageView3 = (ImageView) findViewById(R.id.imageView3);
         saveEditProfile = (AppCompatButton) findViewById(R.id.saveEditProfile);
 
-        toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
-        toolBar.setTitle("Edit Profile");
+        toolBar.setNavigationIcon(R.drawable.ic_exit_edit_profile);
+        toolBar.setTitle("Chỉnh sửa hồ sơ");
         toolBar.setPadding(15, 0, 0, 0);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

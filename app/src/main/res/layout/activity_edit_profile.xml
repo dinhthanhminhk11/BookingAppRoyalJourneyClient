@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_ECECEC"
+    android:background="@color/_F9F9F9"
+    android:orientation="vertical"
     tools:context=".ui.activity.EditProfile">
 
     <include layout="@layout/tool_bar" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,160 +26,163 @@
 
                 <com.example.librarycireleimage.CircleImageView
                     android:id="@+id/avtEditProfile"
-                    android:layout_width="@dimen/_170dp"
-                    android:layout_height="@dimen/_170dp"
-                    android:layout_marginTop="@dimen/_80dp"
+                    android:layout_width="@dimen/_78dp"
+                    android:layout_height="@dimen/_78dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_40dp"
                     android:src="@drawable/img_avt_edit_profile"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <ImageView
-                    android:id="@+id/cameraEditProfile"
-                    android:layout_width="@dimen/_40dp"
-                    android:layout_height="@dimen/_40dp"
-                    android:layout_marginStart="@dimen/_5dp"
-                    android:layout_marginTop="@dimen/_200dp"
-                    android:layout_marginBottom="@dimen/_10dp"
-                    android:src="@drawable/camera_edit_profile"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.453"
-                    app:layout_constraintStart_toStartOf="@+id/avtEditProfile"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:ignore="MissingConstraints" />
-
-                <LinearLayout
-                    android:id="@+id/linearLayout3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_24dp"
-                    android:layout_marginEnd="@dimen/_24dp"
-                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/avtEditProfile">
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_15dp"
-                        android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/cameraEditProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_camera_edit_profile"
+                    app:layout_constraintBottom_toBottomOf="@+id/avtEditProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.551"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
-                    <EditText
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/titleNameEditProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_18dp"
+                android:text="Đinh Thanh Minh"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/titleEmailEditProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:text="dinhthanhminhk11@gmail.com"
+                android:textColor="@color/_ABABAB"
+                android:textSize="@dimen/_13dp"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_40dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_54dp"
+                    android:background="@color/white"
+                    android:hint="@string/Ten"
+                    app:hintTextColor="@color/color_555555">
+
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nameEditProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50dp"
-                        android:layout_marginTop="@dimen/_10dp"
-                        android:layout_marginBottom="@dimen/_10dp"
-                        android:background="@drawable/edittext_edit_profile"
-                        android:drawableStart="@drawable/rename_edit_profile"
-                        android:drawablePadding="@dimen/_20dp"
-                        android:elevation="@dimen/_3dp"
-                        android:inputType="text"
-                        android:paddingStart="@dimen/_20dp"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5dp"
-                        android:text="@string/Phone"
+                        android:background="@color/white"
+                        android:inputType="text"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15dp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_13dp" />
 
-                    <EditText
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:background="@color/white"
+                    android:hint="@string/Sdt_editprofile"
+                    app:hintTextColor="@color/color_555555">
+
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/phoneEditProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50dp"
-                        android:layout_marginTop="@dimen/_10dp"
-                        android:layout_marginBottom="@dimen/_10dp"
-                        android:background="@drawable/edittext_edit_profile"
-                        android:drawableStart="@drawable/phone_edit_profile"
-                        android:drawablePadding="@dimen/_20dp"
-                        android:elevation="@dimen/_3dp"
+                        android:layout_height="@dimen/_54dp"
+                        android:background="@color/white"
                         android:inputType="phone"
-                        android:paddingStart="@dimen/_20dp"
-                        android:textAlignment="viewStart"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_18sp" />
+                        android:textSize="@dimen/_13dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5dp"
-                        android:text="@string/Address"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_15dp"
-                        android:textStyle="bold" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/addressEditProfile"
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_54dp"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:background="@color/white"
+                    android:hint="@string/cccd"
+                    app:hintTextColor="@color/color_555555">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cccdEditProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50dp"
-                        android:layout_marginTop="@dimen/_10dp"
-                        android:layout_marginBottom="@dimen/_10dp"
-                        android:background="@drawable/edittext_edit_profile"
-                        android:drawableStart="@drawable/location_edit_profile"
-                        android:drawablePadding="@dimen/_20dp"
-                        android:elevation="@dimen/_3dp"
-                        android:inputType="textPostalAddress"
-                        android:paddingStart="@dimen/_20dp"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5dp"
-                        android:text="@string/Citizen_identity_card"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_15dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/idCard"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50dp"
-                        android:layout_marginTop="@dimen/_10dp"
-                        android:layout_marginBottom="@dimen/_10dp"
-                        android:background="@drawable/edittext_edit_profile"
-                        android:drawableStart="@drawable/id_card_edit_profile"
-                        android:drawablePadding="@dimen/_20dp"
-                        android:elevation="@dimen/_3dp"
+                        android:background="@color/white"
                         android:inputType="number"
-                        android:paddingStart="@dimen/_20dp"
-                        android:textAlignment="viewStart"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_18sp" />
+                        android:textSize="@dimen/_13dp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/saveEditProfile"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_54dp"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:background="@color/white"
+                    android:hint="@string/dia_chi"
+                    app:hintTextColor="@color/color_555555"
+                    app:startIconDrawable="@drawable/ic_subtract_edit_profile">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/locationEditProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_55dp"
-                        android:layout_marginTop="@dimen/_20dp"
-                        android:layout_marginBottom="@dimen/_10dp"
-                        android:background="@drawable/background_blue_edit_profile"
-                        android:elevation="@dimen/_3dp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="@string/SAVE"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_18sp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13dp" />
 
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_45dp"
+                    android:layout_marginTop="-50dp"
+                    android:src="@drawable/ic_line_edit_profile" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/saveEditProfile"
+                    android:layout_width="@dimen/_260dp"
+                    android:layout_height="@dimen/_55dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_108dp"
+                    android:background="@drawable/background_blue_edit_profile"
+                    android:elevation="@dimen/_3dp"
+                    android:gravity="center"
+                    android:text="@string/Thay_doi"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

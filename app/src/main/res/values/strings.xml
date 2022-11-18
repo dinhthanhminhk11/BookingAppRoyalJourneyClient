@@ -101,6 +101,11 @@
     <string name="feedBackHd">Đánh giá của bạn giúp chúng tôi hoàn thiện hơn</string>
     <string name="submit_feedback">Lưu Đánh Giá</string>
     <string name="hint_comment">Đánh giá của bạn...</string>
+    <string name="Ten">Tên</string>
+    <string name="Sdt_editprofile">Số điện thoại</string>
+    <string name="cccd">CCCD</string>
+    <string name="dia_chi">Địa chỉ</string>
+    <string name="Thay_doi">Thay đổi</string>
 
 
 </resources>
