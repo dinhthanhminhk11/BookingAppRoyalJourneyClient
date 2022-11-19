@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -84,6 +85,10 @@ public class StatusBillActivity extends AppCompatActivity {
                 binding.tvTimeNhanPhong.setText(houseDetailResponse.getOpening());
                 binding.tvTimeTra.setText(houseDetailResponse.getEnding());
             }
+        });
+
+        binding.btnPay.setOnClickListener(v -> {
+            startActivity(new Intent(StatusBillActivity.this, CancelBookingActivity.class));
         });
 
     }
