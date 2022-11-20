@@ -73,6 +73,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private HouseDetailResponse houseDetailResponse;
     private long sumAll;
+    private long sumAllPercent;
     private PaymentSheet paymentSheet;
 
     private String customerID;
@@ -89,6 +90,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     private String checkEndDate;
     private String checkStartDateResponse;
     private String checkEndDateResponse;
+    private long daysDiff = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +140,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             binding.btnComfirmPhone.setVisibility(View.GONE);
         });
 
-        if (binding.payOnline.isChecked()) {
+        if (binding.payOnline.isChecked() || binding.payOfflinePercent.isChecked()) {
             binding.contentPayment.setVisibility(View.VISIBLE);
         } else {
             binding.contentPayment.setVisibility(View.GONE);
@@ -148,14 +150,45 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             TYPE_PAYMENT = 1;
             binding.contentPayment.setVisibility(View.VISIBLE);
             binding.payOffline.setChecked(false);
+            binding.payOfflinePercent.setChecked(false);
             binding.payOnline.setChecked(true);
+            binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
         });
 
         binding.contentPayOffline.setOnClickListener(v -> {
             TYPE_PAYMENT = 2;
             binding.contentPayment.setVisibility(View.GONE);
             binding.payOnline.setChecked(false);
+            binding.payOfflinePercent.setChecked(false);
             binding.payOffline.setChecked(true);
+            binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
+        });
+
+        binding.contentPayOnlinePercent.setOnClickListener(v -> {
+            TYPE_PAYMENT = 3;
+            binding.contentPayment.setVisibility(View.VISIBLE);
+            binding.payOnline.setChecked(false);
+            binding.payOfflinePercent.setChecked(true);
+            binding.payOffline.setChecked(false);
+            sumAllPercent = (long) (sumAll * 0.32);
+            binding.priceAll.setText("$" + fm.format(sumAllPercent));
+        });
+
+        binding.payOfflinePercent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    TYPE_PAYMENT = 3;
+                    binding.contentPayment.setVisibility(View.VISIBLE);
+                    binding.payOnline.setChecked(false);
+                    binding.payOffline.setChecked(false);
+                    sumAllPercent = (long) (sumAll * 0.32);
+                    binding.priceAll.setText("$" + fm.format(sumAllPercent));
+
+                } else {
+
+                }
+            }
         });
 
         binding.payOnline.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -163,8 +196,10 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     TYPE_PAYMENT = 1;
+                    binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
                     binding.contentPayment.setVisibility(View.VISIBLE);
                     binding.payOffline.setChecked(false);
+                    binding.payOfflinePercent.setChecked(false);
                 } else {
 
                 }
@@ -176,8 +211,10 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     TYPE_PAYMENT = 2;
+                    binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
                     binding.contentPayment.setVisibility(View.GONE);
                     binding.payOnline.setChecked(false);
+                    binding.payOfflinePercent.setChecked(false);
                 } else {
 
                 }
@@ -244,7 +281,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         } else {
 
                             long msDiff = endDate - startDate;
-                            long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
+                            daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
                             payday = Integer.parseInt(String.valueOf(daysDiff));
                             binding.payDay.setText(daysDiff + "");
 
@@ -253,10 +290,18 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
                             binding.startDate.setText(startDateString);
                             binding.endDate.setText(endDateString);
-                            sumAll = houseDetailResponse.getPrice() * daysDiff;
-                            binding.priceAndCount.setText("$" + fm.format(houseDetailResponse.getPrice()) + " x " + daysDiff + " đêm");
-                            binding.sumPrice.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
-                            binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
+
+                            if (TYPE_PAYMENT == 1 || TYPE_PAYMENT == 2) {
+                                sumAll = houseDetailResponse.getPrice() * daysDiff;
+                                binding.priceAndCount.setText("$" + fm.format(houseDetailResponse.getPrice()) + " x " + daysDiff + " đêm");
+                                binding.sumPrice.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
+                                binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
+                            } else if (TYPE_PAYMENT == 3) {
+                                binding.priceAndCount.setText("$" + fm.format(houseDetailResponse.getPrice()) + " x " + daysDiff + " đêm");
+                                binding.sumPrice.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
+                                sumAllPercent = (long) (sumAll * 0.32);
+                                binding.priceAll.setText("$" + fm.format(sumAllPercent * daysDiff));
+                            }
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -358,7 +403,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                             JSONObject object = new JSONObject(response);
                             EpericalKey = object.getString("id");
                             Log.e("MinhEpericalKey", EpericalKey);
-                            getClientSeretEpericalKey(customerID, EpericalKey);
+                            getClientSeretEpericalKey(customerID, TYPE_PAYMENT);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -390,7 +435,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         requestQueue.add(stringRequest);
     }
 
-    private void getClientSeretEpericalKey(String customerID, String epericalKey) {
+    private void getClientSeretEpericalKey(String customerID, int type_pay) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 "https://api.stripe.com/v1/payment_intents",
                 new Response.Listener<String>() {
@@ -422,7 +467,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("customer", customerID);
-                params.put("amount", "1000000");
+                params.put("amount", String.valueOf(sumAll));
                 params.put("currency", "VND");
                 params.put("automatic_payment_methods[enabled]", "true");
                 return params;
