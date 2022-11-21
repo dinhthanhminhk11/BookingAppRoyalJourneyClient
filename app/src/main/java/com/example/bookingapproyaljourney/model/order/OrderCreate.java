@@ -27,12 +27,17 @@ public class OrderCreate {
     private int person;
     @SerializedName("phone")
     private String phone;
+    @SerializedName("isBackingPercent")
+    private boolean isBackingPercent;
+    @SerializedName("pricePercent")
+    private String pricePercent;
 
-    public OrderCreate(String idOder, String idHost, String idPro, String idUser, int payDay, String price, boolean cashMoney, boolean banking, String startDate, String endDate, int person, String phone) {
-        IdOder = idOder;
-        IdHost = idHost;
-        IdPro = idPro;
-        IdUser = idUser;
+
+    public OrderCreate(String idOder, String idHost, String idPro, String idUser, int payDay, String price, String pricePercent, boolean cashMoney, boolean banking, boolean isBackingPercent, String startDate, String endDate, int person, String phone) {
+        this.IdOder = idOder;
+        this.IdHost = idHost;
+        this.IdPro = idPro;
+        this.IdUser = idUser;
         this.payDay = payDay;
         this.price = price;
         this.cashMoney = cashMoney;
@@ -41,6 +46,8 @@ public class OrderCreate {
         this.endDate = endDate;
         this.person = person;
         this.phone = phone;
+        this.isBackingPercent = isBackingPercent;
+        this.pricePercent = pricePercent;
     }
 
     public String getIdOder() {
@@ -89,5 +96,13 @@ public class OrderCreate {
 
     public String getPhone() {
         return phone;
+    }
+
+    public boolean isBackingPercent() {
+        return isBackingPercent;
+    }
+
+    public String getPricePercent() {
+        return pricePercent;
     }
 }

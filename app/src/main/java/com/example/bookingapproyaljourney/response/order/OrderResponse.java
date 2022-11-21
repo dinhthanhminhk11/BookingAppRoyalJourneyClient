@@ -17,8 +17,10 @@ public class OrderResponse {
     private String status;
     private String date;
     private String time;
+    private boolean isBackingPercent;
+    private String pricePercent;
 
-    public OrderResponse(boolean messege, String idBill, String idPro, String idUser, String idHost, String price, int payDay, boolean cashMoney, boolean banking, String startDate, String endDate, int person, String phone, String status, String date, String time) {
+    public OrderResponse(boolean messege, String idBill, String idPro, String idUser, String idHost, String price, String pricePercent, int payDay, boolean cashMoney, boolean banking, boolean isBackingPercent, String startDate, String endDate, int person, String phone, String status, String date, String time) {
         this.messege = messege;
         this.idBill = idBill;
         this.idPro = idPro;
@@ -35,6 +37,8 @@ public class OrderResponse {
         this.status = status;
         this.date = date;
         this.time = time;
+        this.isBackingPercent = isBackingPercent;
+        this.pricePercent = pricePercent;
     }
 
     public boolean isMessege() {
@@ -99,5 +103,13 @@ public class OrderResponse {
 
     public String getTime() {
         return time;
+    }
+
+    public boolean isBackingPercent() {
+        return isBackingPercent;
+    }
+
+    public String getPricePercent() {
+        return pricePercent;
     }
 }

@@ -75,6 +75,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     private long sumAll;
     private long sumAllPercent;
     private PaymentSheet paymentSheet;
+    private PaymentSheet paymentSheet2;
 
     private String customerID;
     private String EpericalKey;
@@ -109,10 +110,16 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
         idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
 
+        Log.e("IdUser", UserClient.getInstance().getId());
+
         PaymentConfiguration.init(BillOderActivity.this, AppConstant.PUBLISHABLE_KEY);
 
         paymentSheet = new PaymentSheet(this, paymentSheetResult -> {
             onPaymentResult(paymentSheetResult);
+        });
+
+        paymentSheet2 = new PaymentSheet(this, paymentSheetResult -> {
+            onPaymentResult2(paymentSheetResult);
         });
 
         initData(idHouse);
@@ -325,7 +332,10 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             } else {
                 if (TYPE_PAYMENT == 1) {
                     paymentSheet.presentWithPaymentIntent(ClientSecret, new PaymentSheet.Configuration("ABC Company", new PaymentSheet.CustomerConfiguration(customerID, EpericalKey)));
+                } else if (TYPE_PAYMENT == 3) {
+                    paymentSheet2.presentWithPaymentIntent(ClientSecret, new PaymentSheet.Configuration("ABC Company", new PaymentSheet.CustomerConfiguration(customerID, EpericalKey)));
                 } else {
+
                     orderViewModel.postOrder(new OrderCreate(
                             "RJ" + random,
                             houseDetailResponse.getHostResponse().get_id(),
@@ -333,7 +343,9 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                             UserClient.getInstance().getId(),
                             payday,
                             String.valueOf(sumAll),
+                            "",
                             true,
+                            false,
                             false,
                             startDateStringPrivate,
                             endDateStringPrivate,
@@ -487,6 +499,29 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     UserClient.getInstance().getId(),
                     payday,
                     String.valueOf(sumAll),
+                    "",
+                    false,
+                    true,
+                    false,
+                    startDateStringPrivate,
+                    endDateStringPrivate,
+                    personLimitPrivate,
+                    phonePrivate
+            ));
+        }
+    }
+
+    private void onPaymentResult2(PaymentSheetResult paymentSheetResult) {
+        if (paymentSheetResult instanceof PaymentSheetResult.Completed) {
+            orderViewModel.postOrder(new OrderCreate(
+                    "RJ" + random,
+                    houseDetailResponse.getHostResponse().get_id(),
+                    houseDetailResponse.get_id(),
+                    UserClient.getInstance().getId(),
+                    payday,
+                    String.valueOf(sumAll),
+                    String.valueOf(sumAllPercent),
+                    false,
                     false,
                     true,
                     startDateStringPrivate,
