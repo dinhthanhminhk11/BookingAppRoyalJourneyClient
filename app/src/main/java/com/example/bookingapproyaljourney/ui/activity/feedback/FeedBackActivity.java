@@ -1,4 +1,4 @@
-package com.example.bookingapproyaljourney.ui.activity;
+package com.example.bookingapproyaljourney.ui.activity.feedback;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import com.example.bookingapproyaljourney.databinding.ActivityFeedBackBinding;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 
 import java.util.Calendar;

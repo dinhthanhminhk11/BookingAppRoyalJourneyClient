@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_feedback_list_scene"
+    tools:context=".ui.activity.feedback.FeedbackListActivity">
+
+    <ImageView
+        android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_24dp"
+        android:layout_marginTop="@dimen/_15dp"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Đánh giá"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/_24dp"
+        android:layout_height="@dimen/_24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/ic_star_detailproduct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBack" />
+
+    <TextView
+        android:id="@+id/tvDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:alpha="0.8"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <EditText
+        android:id="@+id/edSearch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_55dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_15dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:background="@drawable/bg_search"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/_10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_vertical"
+        android:hint="@string/search"
+        android:paddingStart="@dimen/_15dp"
+        android:singleLine="true"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetail" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvListFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_15dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnFeedback"
+        app:layout_constraintTop_toBottomOf="@+id/edSearch" />
+
+    <TextView
+        android:id="@+id/btnFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_55dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:background="@drawable/button_feedback"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="@string/comment_feedback"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120dp"
+        android:layout_gravity="center"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rcvListFeedback"
+        app:layout_constraintEnd_toEndOf="@+id/rcvListFeedback"
+        app:layout_constraintTop_toTopOf="@+id/rcvListFeedback"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

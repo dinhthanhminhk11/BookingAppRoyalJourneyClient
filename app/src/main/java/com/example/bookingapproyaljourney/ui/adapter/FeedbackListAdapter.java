@@ -25,19 +25,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHolder> {
+public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapter.ViewHolder> {
     private List<FeedBack> feedbackList;
-    private EventClick eventClick;
 
-    public FeedbackAdapter(List<FeedBack> feedbackList, EventClick eventClick) {
+    public FeedbackListAdapter(List<FeedBack> feedbackList) {
         this.feedbackList = feedbackList;
-        this.eventClick = eventClick;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_feedback, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_feedback, parent, false);
         return new ViewHolder(view);
     }
 
@@ -51,8 +49,8 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
         Calendar calendar = Calendar.getInstance();
         long time = calendar.getTimeInMillis();
         String date = format.format(time);
-        holder.tvNameUser.setText(feedBack.getName());
-        Glide.with(holder.itemView.getContext()).load(feedBack.getImgUser()).placeholder(R.drawable.img_contact).into(holder.imgUser);
+        holder.tvName.setText(feedBack.getName());
+        Glide.with(holder.itemView.getContext()).load(feedBack.getImgUser()).placeholder(R.drawable.img_contact).into(holder.imgUserFeedback);
         if(feedBack.getSao()==1) holder.imgStar1.setImageResource(R.drawable.ic_star_click);
         if(feedBack.getSao()==2) {
             holder.imgStar1.setImageResource(R.drawable.ic_star_click);
@@ -82,71 +80,41 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
                     (String) DateUtils.getRelativeTimeSpanString(
                             Long.parseLong(feedBack.getTime()), b.getTime(), 60000,
                             ((int) DateUtils.MINUTE_IN_MILLIS));
-            holder.tvTime.setText(txtTime);
-            holder.tvContent.setText(feedBack.getTextUser());
-            holder.tvShowFeedback.setText("Hiển thị tất cả " + feedbackList.size() + " đánh giá");
-            holder.tvShowFeedback.setPaintFlags(holder.tvShowFeedback.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            holder.tvDate.setText(txtTime);
+            holder.tvFeedback.setText(feedBack.getTextUser());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if (position == feedbackList.size()-1 && position!=0) {
-                holder.tvShowFeedback.setVisibility(View.VISIBLE);
-                holder.lnDetail.setVisibility(View.GONE);
-                holder.lnSao.setVisibility(View.GONE);
-                holder.tvContent.setVisibility(View.GONE);
-        }
-        if (position == 4) {
-            if (feedbackList.size() - 5 == 0) {
-                holder.tvShowFeedback.setVisibility(View.VISIBLE);
-            } else {
-                holder.tvShowFeedback.setVisibility(View.VISIBLE);
-                holder.lnDetail.setVisibility(View.GONE);
-                holder.lnSao.setVisibility(View.GONE);
-                holder.tvContent.setVisibility(View.GONE);
-            }
-        }
-        holder.tvShowFeedback.setOnClickListener(v ->{
-            eventClick.onClick();
-        });
     }
 
     @Override
     public int getItemCount() {
-        return Math.min(feedbackList.size(), 5);
+        return feedbackList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private LinearLayout lnDetail;
-        private CircleImageView imgUser;
-        private TextView tvNameUser;
-        private TextView tvTime;
-        private LinearLayout lnSao;
+        private CircleImageView imgUserFeedback;
+        private TextView tvName;
+        private LinearLayout linearLayout;
         private ImageView imgStar1;
         private ImageView imgStar2;
         private ImageView imgStar3;
         private ImageView imgStar4;
         private ImageView imgStar5;
-        private TextView tvContent;
-        private TextView tvShowFeedback;
+        private TextView tvDate;
+        private TextView tvFeedback;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            lnDetail = itemView.findViewById(R.id.lnDetail);
-            imgUser = itemView.findViewById(R.id.imgUser);
-            tvNameUser = itemView.findViewById(R.id.tvNameUser);
-            tvTime = itemView.findViewById(R.id.tvTime);
-            lnSao = itemView.findViewById(R.id.lnSao);
+            imgUserFeedback = itemView.findViewById(R.id.imgUserFeedback);
+            tvName = itemView.findViewById(R.id.tvName);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
             imgStar1 = itemView.findViewById(R.id.imgStar1);
             imgStar2 = itemView.findViewById(R.id.imgStar2);
             imgStar3 = itemView.findViewById(R.id.imgStar3);
             imgStar4 = itemView.findViewById(R.id.imgStar4);
             imgStar5 = itemView.findViewById(R.id.imgStar5);
-            tvContent = itemView.findViewById(R.id.tvContent);
-            tvShowFeedback = itemView.findViewById(R.id.tvShowFeedback);
-
+            tvDate = itemView.findViewById(R.id.tvDate);
+            tvFeedback = itemView.findViewById(R.id.tvFeedback);
         }
-    }
-    public interface EventClick {
-        void onClick();
     }
 }

@@ -43,6 +43,9 @@ public class FeedbackViewModel extends AndroidViewModel {
     public LiveData<List<FeedBack>> getFeedbackId(String idHouse){
         return feedBackRepository.getFeedbackId(idHouse);
     }
+    public LiveData<List<FeedBack>> getFeedbackTk(String idHouse, String tk){
+        return feedBackRepository.getFeedbackTk(idHouse,tk);
+    }
     public LiveData<List<ListIdUser>> getListId(String idHouse){
         return feedBackRepository.getListIdUser(idHouse);
     }

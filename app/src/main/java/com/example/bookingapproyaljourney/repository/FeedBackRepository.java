@@ -95,4 +95,21 @@ public class FeedBackRepository {
         return list;
     }
 
+    public MutableLiveData<List<FeedBack>> getFeedbackTk(String idHouse,String tk) {
+        final MutableLiveData<List<FeedBack>> dataFeedback = new MutableLiveData<>();
+        apiRequest.getFeedbackTk(idHouse, tk).enqueue(new Callback<DataFeedBack>() {
+            @Override
+            public void onResponse(Call<DataFeedBack> call, Response<DataFeedBack> response) {
+                if(response.isSuccessful()){
+                    dataFeedback.postValue(response.body().getData());
+                }
+            }
+            @Override
+            public void onFailure(Call<DataFeedBack> call, Throwable t) {
+                Log.e("zzzzzzzzzzzzzzzz", t.getMessage() );
+            }
+        });
+        return dataFeedback;
+    }
+
 }

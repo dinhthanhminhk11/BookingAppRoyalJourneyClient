@@ -39,6 +39,8 @@ import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
+import com.example.bookingapproyaljourney.ui.activity.feedback.FeedBackActivity;
+import com.example.bookingapproyaljourney.ui.activity.feedback.FeedbackListActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientListAdapter;
@@ -56,7 +58,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-public class DetailProductActivity extends AppCompatActivity {
+public class DetailProductActivity extends AppCompatActivity implements FeedbackAdapter.EventClick {
     private ScrollView scrollView;
     private CardView contenTOp;
     private MaterialToolbar toolBar;
@@ -152,6 +154,7 @@ public class DetailProductActivity extends AppCompatActivity {
         startDateAndEndDate = findViewById(R.id.startDateAndEndDate);
         countSao = findViewById(R.id.tvCountSao);
         TextView tvSao = findViewById(R.id.tvSao);
+        TextView btnShowFeedback = findViewById(R.id.btnShowFeedback);
 
         setSupportActionBar(toolBar);
 
@@ -184,7 +187,7 @@ public class DetailProductActivity extends AppCompatActivity {
         rcvFeedback.setHasFixedSize(true);
         rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         feedbackViewModel.getFeedbackId(idHouse).observe(this, it -> {
-            FeedbackAdapter feedbackAdapter = new FeedbackAdapter(it);
+            FeedbackAdapter feedbackAdapter = new FeedbackAdapter(it, this);
             rcvFeedback.setAdapter(feedbackAdapter);
             if (it.size() > 0) {
                 btnDanhGia.setText(it.size() + " Đánh giá");
@@ -221,14 +224,19 @@ public class DetailProductActivity extends AppCompatActivity {
                 showDialogBathRoom();
             }
         });
-        btnDanhGia.setOnClickListener(v -> {
-            Intent intent = new Intent(this, FeedBackActivity.class);
+
+        btnShowFeedback.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FeedbackListActivity.class);
             intent.putExtra("ID_BOSS", idBoss);
             intent.putExtra("ID_HOUSE", id_house);
             intent.putExtra("IMG_BOSS", imgBoss);
             intent.putExtra("NAME_BOSS", nameBoss);
             startActivity(intent);
         });
+
+
+
+
 
 
         final Dialog dialog = new Dialog(this);
@@ -376,5 +384,15 @@ public class DetailProductActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(DetailProductActivity.this, MainActivity.class));
+    }
+
+    @Override
+    public void onClick() {
+        Intent intent = new Intent(this, FeedbackListActivity.class);
+        intent.putExtra("ID_BOSS", idBoss);
+        intent.putExtra("ID_HOUSE", id_house);
+        intent.putExtra("IMG_BOSS", imgBoss);
+        intent.putExtra("NAME_BOSS", nameBoss);
+        startActivity(intent);
     }
 }

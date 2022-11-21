@@ -106,6 +106,8 @@
     <string name="cccd">CCCD</string>
     <string name="dia_chi">Địa chỉ</string>
     <string name="Thay_doi">Thay đổi</string>
+    <string name="comment_feedback">Viết Đánh Giá</string>
+    <string name="search">Tìm kiếm</string>
 
 
 </resources>

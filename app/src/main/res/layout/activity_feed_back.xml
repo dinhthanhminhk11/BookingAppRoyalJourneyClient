@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.FeedBackActivity"
+    tools:context=".ui.activity.feedback.FeedBackActivity"
     android:background="#EEEEEE">
 
     <ImageButton
@@ -154,7 +154,8 @@
     <EditText
         android:id="@+id/edComment"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_150dp"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_150dp"
         android:layout_marginTop="@dimen/_35dp"
         android:layout_marginStart="@dimen/_15dp"
         android:layout_marginEnd="@dimen/_15dp"
@@ -162,7 +163,7 @@
         android:padding="@dimen/_10dp"
         android:textSize="@dimen/_16sp"
         android:gravity="top"
-        android:inputType="textCapSentences"
+        android:lines="5"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/view5"

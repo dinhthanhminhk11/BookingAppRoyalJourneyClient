@@ -136,4 +136,7 @@ public interface ApiRequest {
     @POST("updateFeedBackUser")
     Call<FeedBack> updateUser(@Body FeedBack feedBack);
 
+    @GET("searchFeedBack/{idHouse}&{tk}")
+    Call<DataFeedBack> getFeedbackTk(@Path("idHouse") String idHouse, @Path("tk") String tk);
+
 }
