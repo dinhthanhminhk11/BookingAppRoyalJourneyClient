@@ -9,6 +9,7 @@ import com.example.bookingapproyaljourney.databinding.ActivityCancelBookingBindi
 public class CancelBookingActivity extends AppCompatActivity {
 
     private ActivityCancelBookingBinding binding;
+    private String dateCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +17,9 @@ public class CancelBookingActivity extends AppCompatActivity {
         binding = ActivityCancelBookingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        dateCancel = getIntent().getStringExtra("dateCancel");
+
+        binding.textView8.setText("Hủy trước ngày " + dateCancel + " để được hoàn lại tiền , nếu bạn hủy sau ngày " + dateCancel +" sẽ không hoàn lại tiền");
         binding.imgBackFB.setOnClickListener(v -> {
             onBackPressed();
         });

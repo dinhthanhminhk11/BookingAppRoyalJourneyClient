@@ -26,6 +26,7 @@ public class StatusBillActivity extends AppCompatActivity {
     private String idOrder;
     private StatusOrderViewModel statusOrderViewModel;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private String dateCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,14 @@ public class StatusBillActivity extends AppCompatActivity {
                 binding.phone.setText(orderResponse.getPhone() + "");
                 binding.payDay.setText(orderResponse.getPayDay() + "");
                 binding.priceAll.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
+                binding.sumPrice.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
                 if (orderResponse.isBanking()) {
                     binding.textPayment.setText("Thanh toán bằng Thẻ VISA (VISA card) (Đã thanh toán)");
+                    binding.imageMatercard.setVisibility(View.GONE);
+                    binding.imagePaypal.setVisibility(View.GONE);
+                    binding.imageGooglePlay.setVisibility(View.GONE);
+                } else if (orderResponse.isBackingPercent()) {
+                    binding.textPayment.setText("Thanh toán bằng Thẻ VISA (VISA card) (Đã thanh toán 1 phần)");
                     binding.imageMatercard.setVisibility(View.GONE);
                     binding.imagePaypal.setVisibility(View.GONE);
                     binding.imageGooglePlay.setVisibility(View.GONE);
@@ -74,6 +81,21 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.imageGooglePlay.setVisibility(View.GONE);
                     binding.imageVISA.setVisibility(View.GONE);
                 }
+
+                if (orderResponse.getStatus().equals("Chủ đã huỷ") && orderResponse.isBanking()) {
+                    binding.btnPay.setVisibility(View.GONE);
+                    binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.textConfirm.setText("Do chủ nhà đã từ chối yêu cầu của bạn lên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà : " + orderResponse.getReasonHost());
+                } else if (orderResponse.getStatus().equals("Chủ đã huỷ") && orderResponse.isBackingPercent()) {
+                    binding.btnPay.setVisibility(View.GONE);
+                    binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.textConfirm.setText("Do chủ nhà đã từ chối yêu cầu của bạn lên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà : " + orderResponse.getReasonHost());
+                } else if (orderResponse.getStatus().equals("Chủ đã huỷ") && orderResponse.isCashMoney()) {
+                    binding.btnPay.setVisibility(View.GONE);
+                    binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.textConfirm.setText("Chủ nhà đã từ chối yêu cầu của bạn lí do là vì: " + orderResponse.getReasonHost());
+                }
+
             }
         });
 
@@ -84,11 +106,15 @@ public class StatusBillActivity extends AppCompatActivity {
                 binding.priceAndCount.setText(fm.format(houseDetailResponse.getPrice()) + " x " + binding.payDay.getText().toString() + " đêm");
                 binding.tvTimeNhanPhong.setText(houseDetailResponse.getOpening());
                 binding.tvTimeTra.setText(houseDetailResponse.getEnding());
+                binding.contentCancel.setText("Nếu bạn hủy trước ngày " + houseDetailResponse.getCancellatioDate() + " bạn sẽ được hoàn lại một phần tiền");
+                dateCancel = houseDetailResponse.getCancellatioDate();
             }
         });
 
         binding.btnPay.setOnClickListener(v -> {
-            startActivity(new Intent(StatusBillActivity.this, CancelBookingActivity.class));
+            Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
+            intent.putExtra("dateCancel", dateCancel);
+            startActivity(intent);
         });
 
     }

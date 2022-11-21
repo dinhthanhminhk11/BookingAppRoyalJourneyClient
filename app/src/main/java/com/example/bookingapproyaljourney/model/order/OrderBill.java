@@ -10,6 +10,7 @@ public class OrderBill {
     private int payDay;
     private boolean cashMoney;
     private boolean banking;
+    private boolean isBackingPercent;
     private boolean seem;
     private String status;
     private String startDate;
@@ -19,6 +20,16 @@ public class OrderBill {
     private String createdAt;
     private String updatedAt;
     private int __v;
+    private String reasonHost;
+    private String reasonUser;
+
+    public String getReasonHost() {
+        return reasonHost;
+    }
+
+    public String getReasonUser() {
+        return reasonUser;
+    }
 
     public String get_id() {
         return _id;
@@ -90,5 +101,9 @@ public class OrderBill {
 
     public int get__v() {
         return __v;
+    }
+
+    public boolean isBackingPercent() {
+        return isBackingPercent;
     }
 }

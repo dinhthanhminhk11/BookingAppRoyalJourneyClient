@@ -480,6 +480,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/contentCancelLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
@@ -489,6 +490,7 @@
                 android:paddingVertical="@dimen/_10dp">
 
                 <TextView
+                    android:id="@+id/titleCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Chính xác huỷ"
@@ -497,6 +499,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/contentCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5dp"
@@ -517,7 +520,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5dp"
-                    android:text="Đặt phòng của bạn là dặt phòng với MyVnTour được sử lí bời công ti đối tác của chúng tôi . khi hoàn tất đặt phòng này bạn đồng ý với điều kiện đặt phòng , diều khoản chung và chính sách bảo mật .Vai trò của MyVnTour chỉ đơn thuần là nhà cung cấp nền tảng kết nối giữa khách hàng và công ty du lịch có liên quan.Bạn sẽ không được nhận hỗ trọ từ bộ phần dịch vụ khách hàng của MyVnTour cho đặt phòng này" />
+                    android:text="Đặt phòng của bạn là đặt phòng với RoyalJourney được sử lí bời công ti đối tác của chúng tôi . khi hoàn tất đặt phòng này bạn đồng ý với điều kiện đặt phòng , diều khoản chung và chính sách bảo mật .Vai trò của RoyalJourney chỉ đơn thuần là nhà cung cấp nền tảng kết nối giữa khách hàng và công ty du lịch có liên quan.Bạn sẽ không được nhận hỗ trọ từ bộ phần dịch vụ khách hàng của RoyalJourney cho đặt phòng này" />
 
                 <Button
                     android:id="@+id/btnPay"

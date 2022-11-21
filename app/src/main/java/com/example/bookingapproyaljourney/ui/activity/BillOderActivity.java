@@ -331,9 +331,9 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 return;
             } else {
                 if (TYPE_PAYMENT == 1) {
-                    paymentSheet.presentWithPaymentIntent(ClientSecret, new PaymentSheet.Configuration("ABC Company", new PaymentSheet.CustomerConfiguration(customerID, EpericalKey)));
+                    paymentSheet.presentWithPaymentIntent(ClientSecret, new PaymentSheet.Configuration("RoyalJourney Company", new PaymentSheet.CustomerConfiguration(customerID, EpericalKey)));
                 } else if (TYPE_PAYMENT == 3) {
-                    paymentSheet2.presentWithPaymentIntent(ClientSecret, new PaymentSheet.Configuration("ABC Company", new PaymentSheet.CustomerConfiguration(customerID, EpericalKey)));
+                    paymentSheet2.presentWithPaymentIntent(ClientSecret, new PaymentSheet.Configuration("RoyalJourney Company", new PaymentSheet.CustomerConfiguration(customerID, EpericalKey)));
                 } else {
 
                     orderViewModel.postOrder(new OrderCreate(

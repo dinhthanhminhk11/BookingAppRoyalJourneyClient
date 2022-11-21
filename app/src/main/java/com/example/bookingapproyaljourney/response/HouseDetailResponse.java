@@ -56,7 +56,8 @@ public class HouseDetailResponse {
     private String startDate;
     @SerializedName("isStillEmpty")
     private boolean isStillEmpty;
-
+    @SerializedName("cancellatioDate")
+    private String cancellatioDate;
     public Location getLocation() {
         return location;
     }
@@ -147,5 +148,9 @@ public class HouseDetailResponse {
 
     public boolean isStillEmpty() {
         return isStillEmpty;
+    }
+
+    public String getCancellatioDate() {
+        return cancellatioDate;
     }
 }
