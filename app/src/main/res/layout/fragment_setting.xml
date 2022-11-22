@@ -10,15 +10,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
-        android:textStyle="bold"
-        android:textSize="40dp"
-        android:textColor="@color/black"
-        android:layout_margin="15dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Account"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -44,6 +35,7 @@
             android:layout_width="200dp"
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <TextView
@@ -65,6 +57,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_button_infor_setting"
             android:layout_gravity="center"/>
@@ -90,15 +83,16 @@
         android:layout_height="wrap_content">
 
         <com.example.librarycireleimage.CircleImageView
-            android:layout_width="60dp"
+            android:layout_width="40dp"
             android:scaleType="centerCrop"
-            android:layout_height="60dp"
-            android:src="@drawable/imagetest"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_internet_language_settings"
             />
 
             <TextView
                 android:layout_width="140dp"
-                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:layout_gravity="center"
@@ -128,16 +122,17 @@
         android:layout_height="wrap_content">
 
         <com.example.librarycireleimage.CircleImageView
-            android:layout_width="60dp"
+            android:layout_width="40dp"
             android:scaleType="centerCrop"
-            android:layout_height="60dp"
-            android:src="@drawable/imagetest"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_notification_settings"
             />
 
         <TextView
             android:layout_width="240dp"
-            android:layout_marginLeft="25dp"
             android:textColor="@color/black"
+            android:layout_weight="1"
             android:textSize="20dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
@@ -153,35 +148,7 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
 
-        <com.example.librarycireleimage.CircleImageView
-            android:layout_width="60dp"
-            android:scaleType="centerCrop"
-            android:layout_height="60dp"
-            android:src="@drawable/imagetest"
-            />
-
-        <TextView
-            android:layout_width="240dp"
-            android:layout_marginLeft="25dp"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:text="Darkmode"/>
-
-       <androidx.appcompat.widget.SwitchCompat
-           android:layout_width="wrap_content"
-           android:id="@+id/switchDarkmodeSetting"
-           android:layout_height="wrap_content"/>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -192,22 +159,21 @@
         android:layout_height="wrap_content">
 
         <com.example.librarycireleimage.CircleImageView
-            android:layout_width="60dp"
+            android:layout_width="40dp"
             android:scaleType="centerCrop"
-            android:layout_height="60dp"
-            android:src="@drawable/imagetest"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_help_settings"
             />
 
         <TextView
             android:layout_width="240dp"
-            android:layout_marginLeft="25dp"
+            android:layout_weight="1"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:text="Help"/>
-
-
 
         <ImageView
             android:layout_width="wrap_content"
@@ -215,11 +181,4 @@
             android:src="@drawable/ic_button_infor_setting"
             android:layout_gravity="center"/>
     </LinearLayout>
-
-
-
-
-
-
-
 </LinearLayout>
