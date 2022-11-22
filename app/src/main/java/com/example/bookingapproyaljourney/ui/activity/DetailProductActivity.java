@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -203,6 +204,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
                     countSao.setText(decimalFormat.format(average));
                     tvSao.setText(decimalFormat.format(average));
                 }
+                feedbackViewModel.updateSaoProduct(id_house, Double.valueOf(decimalFormat.format(average)));
             } else {
                 btnDanhGia.setText("Đánh giá");
                 tvSao.setText("5.0");

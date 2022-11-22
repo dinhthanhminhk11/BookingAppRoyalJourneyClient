@@ -48,6 +48,11 @@ public class House {
     public int v;
     @SerializedName("calculated")
     public double calculated;
+    public Double sao;
+
+    public Double getSao() {
+        return sao;
+    }
 
     public House(String id, String name, List<String> images, int price, List<Convenient> supplement, String nameLocation, Location location, String idCategory, String idUser, String legal, String content, boolean yte, List<Bathroom> bathrooms, int limitPerson, List<SleepingPlace> sleepingPlaces, String opening, String ending, String createdAt, String updatedAt, int v, double calculated) {
         this.id = id;

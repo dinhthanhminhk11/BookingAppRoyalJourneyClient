@@ -25,6 +25,7 @@
             motion:layout_constraintTop_toBottomOf="@+id/edSearch"
             android:layout_marginStart="@dimen/_10dp"
             android:layout_marginTop="@dimen/_10dp"
+            android:overScrollMode="never"
             android:id="@+id/rcvListFeedback" />
         <Constraint
             android:layout_width="match_parent"
@@ -65,6 +66,7 @@
             motion:layout_constraintTop_toBottomOf="@+id/edSearch"
             android:layout_marginStart="@dimen/_10dp"
             android:layout_marginTop="0dp"
+            android:overScrollMode="never"
             android:id="@+id/rcvListFeedback" />
         <Constraint
             motion:layout_constraintStart_toEndOf="@+id/imageView4"

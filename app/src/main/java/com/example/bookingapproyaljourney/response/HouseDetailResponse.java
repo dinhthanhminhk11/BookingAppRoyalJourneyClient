@@ -58,6 +58,12 @@ public class HouseDetailResponse {
     private boolean isStillEmpty;
     @SerializedName("cancellatioDate")
     private String cancellatioDate;
+    private Double sao;
+
+    public Double getSao() {
+        return sao;
+    }
+
     public Location getLocation() {
         return location;
     }

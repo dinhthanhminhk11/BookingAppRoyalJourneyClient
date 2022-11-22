@@ -144,4 +144,8 @@ public interface ApiRequest {
     @PATCH("updateOrderById")
     Call<OrderStatusResponse> editOrderByUser(@Body OrderRequest orderRequest);
 
+    // update sao
+    @GET("updateSao/{id}&{sao}")
+    Call<HouseDetailResponse> updateSaoProduct(@Path("id") String id, @Path("sao") Double sao);
+
 }

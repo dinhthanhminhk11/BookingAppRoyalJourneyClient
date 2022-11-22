@@ -10,9 +10,10 @@ import com.example.bookingapproyaljourney.model.feedback.DataFeedBack;
 import com.example.bookingapproyaljourney.model.feedback.DataId;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
 import com.example.bookingapproyaljourney.model.feedback.ListIdUser;
+import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,6 +27,19 @@ public class FeedBackRepository {
         this.apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
 
+    public void updateSao(String id, Double sao){
+        apiRequest.updateSaoProduct(id,sao).enqueue(new Callback<HouseDetailResponse>() {
+            @Override
+            public void onResponse(Call<HouseDetailResponse> call, Response<HouseDetailResponse> response) {
+                Log.e("zzzzzzzzzz", "updateTrue" );
+            }
+
+            @Override
+            public void onFailure(Call<HouseDetailResponse> call, Throwable t) {
+                Log.e("zzzzzzzzzz", t.getMessage() );
+            }
+        });
+    }
 
     public void insertFeedback(FeedBack feedBack, InterfaceResponseFeedBack interfaceResponseFeedBack) {
         apiRequest.createFeedBack(feedBack).enqueue(new Callback<FeedBack>() {
@@ -49,7 +63,6 @@ public class FeedBackRepository {
        apiRequest.updateUser(feedBack).enqueue(new Callback<FeedBack>() {
            @Override
            public void onResponse(Call<FeedBack> call, Response<FeedBack> response) {
-
            }
 
            @Override
@@ -111,5 +124,4 @@ public class FeedBackRepository {
         });
         return dataFeedback;
     }
-
 }

@@ -80,6 +80,7 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
             holder.tvCountBathroom.setText(house.getBathrooms().size() + " bedroom");
             holder.tvCountBathroom.setText(house.getBathrooms().size() + " bathroom");
             holder.tvPerson.setText(house.getLimitPerson() + " người");
+            holder.tvStart.setText(house.getSao()+"");
             holder.itemView.setOnClickListener(v->{
                 listernaer.onClick(house);
             });

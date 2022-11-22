@@ -53,4 +53,8 @@ public class FeedbackViewModel extends AndroidViewModel {
         feedBackRepository.updateFeedback(feedBack);
     }
 
+    public void updateSaoProduct(String id, Double sao){
+        feedBackRepository.updateSao(id, sao);
+    }
+
 }
