@@ -89,6 +89,8 @@
         android:layout_weight="1"
         android:layout_margin="10dp"
         android:textSize="@dimen/_14sp"
+        android:ellipsize="end"
+        android:maxLines="3"
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_medium"
         android:alpha="0.7" />

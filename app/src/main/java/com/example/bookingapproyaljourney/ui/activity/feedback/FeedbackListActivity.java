@@ -1,17 +1,27 @@
 package com.example.bookingapproyaljourney.ui.activity.feedback;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ActivityFeedbackListBinding;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackListAdapter;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 
@@ -30,6 +40,18 @@ public class FeedbackListActivity extends AppCompatActivity {
         binding = ActivityFeedbackListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         feedbackViewModel = new ViewModelProvider(this).get(FeedbackViewModel.class);
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_log_comfirm_logout);
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        Button login = dialog.findViewById(R.id.login);
+        login.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            dialog.dismiss();
+        });
         Intent intent = getIntent();
         id_boss = intent.getStringExtra("ID_BOSS");
         name_boss = intent.getStringExtra("NAME_BOSS");
@@ -58,14 +80,17 @@ public class FeedbackListActivity extends AppCompatActivity {
                 }
             }
         });
-
         binding.btnFeedback.setOnClickListener(v -> {
-            Intent intent1 = new Intent(this, FeedBackActivity.class);
-            intent1.putExtra("ID_BOSS", id_boss);
-            intent1.putExtra("ID_HOUSE", id_House);
-            intent1.putExtra("IMG_BOSS", img_boss);
-            intent1.putExtra("NAME_BOSS", name_boss);
-            startActivity(intent1);
+            if(UserClient.getInstance().getId()==null){
+                dialog.show();
+            }else {
+                Intent intent1 = new Intent(this, FeedBackActivity.class);
+                intent1.putExtra("ID_BOSS", id_boss);
+                intent1.putExtra("ID_HOUSE", id_House);
+                intent1.putExtra("IMG_BOSS", img_boss);
+                intent1.putExtra("NAME_BOSS", name_boss);
+                startActivity(intent1);
+            }
         });
         binding.imgBack.setOnClickListener(v -> onBackPressed());
         binding.edSearch.addTextChangedListener(new TextWatcher() {
@@ -88,4 +113,5 @@ public class FeedbackListActivity extends AppCompatActivity {
             }
         });
     }
+
 }

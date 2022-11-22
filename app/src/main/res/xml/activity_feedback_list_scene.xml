@@ -64,7 +64,7 @@
             android:layout_marginEnd="@dimen/_10dp"
             motion:layout_constraintTop_toBottomOf="@+id/edSearch"
             android:layout_marginStart="@dimen/_10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:id="@+id/rcvListFeedback" />
         <Constraint
             motion:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -85,15 +85,17 @@
             android:layout_marginStart="@dimen/_16dp"
             android:layout_marginTop="@dimen/_15dp"
             android:id="@+id/edSearch"
-            android:alpha="0" />
+            android:alpha="0"
+            android:visibility="gone" />
         <Constraint
             android:layout_width="@dimen/_24dp"
             android:layout_height="@dimen/_24dp"
             motion:layout_constraintTop_toBottomOf="@+id/imgBack"
             android:layout_marginStart="24dp"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="-100dp"
+            android:layout_marginTop="0dp"
             android:id="@+id/imageView4"
-            android:alpha="0" />
+            android:alpha="0"
+            android:visibility="gone" />
     </ConstraintSet>
 </MotionScene>
