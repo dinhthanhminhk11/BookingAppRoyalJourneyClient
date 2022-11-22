@@ -20,6 +20,8 @@ public class User {
     private String otp;
     @SerializedName("active")
     private boolean active;
+    @SerializedName("countBooking")
+    private int countBooking;
 
     public User() {
     }
@@ -86,6 +88,10 @@ public class User {
 
     public boolean isActive() {
         return active;
+    }
+
+    public int getCountBooking() {
+        return countBooking;
     }
 
     @Override

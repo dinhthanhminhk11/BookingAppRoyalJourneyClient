@@ -132,7 +132,12 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
         binding.addPayment.setOnClickListener(v -> {
-            showDialog();
+            if (binding.startDate.getText().toString().equals("")) {
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, this.getString(R.string.dialogstartdate), this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                return;
+            }else {
+                showDialog();
+            }
         });
 
         binding.addPhone.setOnClickListener(v -> {
@@ -163,6 +168,10 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
         binding.contentPayOffline.setOnClickListener(v -> {
+            if (UserClient.getInstance().getCountBooking() < 5) {
+                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Xin lỗi bạn chưa đủ uy tín", "Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này", R.drawable.ic_warning_icon_check);
+                return;
+            }
             TYPE_PAYMENT = 2;
             binding.contentPayment.setVisibility(View.GONE);
             binding.payOnline.setChecked(false);
@@ -217,11 +226,17 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    if (UserClient.getInstance().getCountBooking() < 5) {
+                        ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Xin lỗi bạn chưa đủ uy tín", "Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này", R.drawable.ic_warning_icon_check);
+                        binding.payOffline.setChecked(false);
+                        return;
+                    }
                     TYPE_PAYMENT = 2;
                     binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
                     binding.contentPayment.setVisibility(View.GONE);
                     binding.payOnline.setChecked(false);
                     binding.payOfflinePercent.setChecked(false);
+                    binding.textCancel.setText("Huỷ trước ngày " + houseDetailResponse.getCancellatioDate() + " để được hoàn lại một phần tiền");
                 } else {
 
                 }

@@ -3,12 +3,10 @@ package com.example.bookingapproyaljourney.ui.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,11 +27,6 @@ import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
-import java.net.URISyntaxException;
-
-import io.socket.client.IO;
-import io.socket.client.Socket;
-
 public class LoginActivity extends AppCompatActivity {
     private ConstraintLayout contentView;
     private ImageView imageView;
@@ -51,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private UserLogin userLogin;
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,10 +84,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.btnSignIn.setOnClickListener(v -> {
-            if (edEmail.getText().toString().isEmpty()){
+            if (edEmail.getText().toString().isEmpty()) {
                 binding.edEmail.requestFocus();
                 binding.edEmail.setError("Xin vui lòng nhập địa chỉ Email");
-            }else if (edPass.getText().toString().isEmpty()){
+            } else if (edPass.getText().toString().isEmpty()) {
                 binding.edPass.requestFocus();
                 binding.edPass.setError("Xin vui lòng nhập địa chỉ Password");
             } else {
@@ -107,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 if (!s.equals(LoginActivity.this.getResources().getString(R.string.LoginSuccess))) {
                     Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
-                    Log.e("dua",s);
+                    Log.e("dua", s);
                 }
             }
         });
@@ -118,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResponse.getUser().isActive()) {
                     Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
-                    editor.putString(AppConstant.ID_USER,loginResponse.getUser().getId());
+                    editor.putString(AppConstant.ID_USER, loginResponse.getUser().getId());
                     editor.commit();
 //                    onBackPressed();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));

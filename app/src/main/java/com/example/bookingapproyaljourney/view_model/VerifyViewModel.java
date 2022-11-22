@@ -68,6 +68,7 @@ public class VerifyViewModel extends AndroidViewModel {
                 userClient.setImage(loginResponse.getUser().getImage());
                 userClient.setPhone(loginResponse.getUser().getPhone());
                 userClient.setAddress(loginResponse.getUser().getAddress());
+                userClient.setCountBooking(loginResponse.getUser().getCountBooking());
             }
 
             @Override

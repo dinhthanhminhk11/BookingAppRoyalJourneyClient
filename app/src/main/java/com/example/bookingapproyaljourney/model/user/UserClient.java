@@ -9,7 +9,7 @@ public class UserClient {
     private String image;
     private String phone;
     private String address;
-
+    private int countBooking;
     private static UserClient instance = null;
 
     protected UserClient() {}
@@ -71,5 +71,13 @@ public class UserClient {
 
     public static void setInstance(UserClient instance) {
         UserClient.instance = instance;
+    }
+
+    public void setCountBooking(int countBooking) {
+        this.countBooking = countBooking;
+    }
+
+    public int getCountBooking() {
+        return countBooking;
     }
 }

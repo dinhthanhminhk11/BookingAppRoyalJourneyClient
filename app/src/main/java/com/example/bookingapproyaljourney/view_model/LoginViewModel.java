@@ -1,10 +1,6 @@
 package com.example.bookingapproyaljourney.view_model;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.app.Application;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 
@@ -13,9 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
-import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
@@ -50,7 +44,7 @@ public class LoginViewModel extends AndroidViewModel {
                 userClient.setImage(loginResponse.getUser().getImage());
                 userClient.setPhone(loginResponse.getUser().getPhone());
                 userClient.setAddress(loginResponse.getUser().getAddress());
-
+                userClient.setCountBooking(loginResponse.getUser().getCountBooking());
                 Log.e("MinhLogin", loginResponse.getUser().getEmail());
                 Log.e("MinhLogin", loginResponse.getMessage());
                 Log.e("MinhLogin", loginResponse.getUser().getId());
@@ -83,6 +77,7 @@ public class LoginViewModel extends AndroidViewModel {
                 userClient.setImage(loginResponse.getUser().getImage());
                 userClient.setPhone(loginResponse.getUser().getPhone());
                 userClient.setAddress(loginResponse.getUser().getAddress());
+                userClient.setCountBooking(loginResponse.getUser().getCountBooking());
             }
 
             @Override
@@ -92,7 +87,7 @@ public class LoginViewModel extends AndroidViewModel {
         });
     }
 
-    public void sendAgain(Email email){
+    public void sendAgain(Email email) {
         mProgressMutableData.postValue(View.VISIBLE);
         userRepository.sendAgain(email, new CallSendAgain() {
             @Override
