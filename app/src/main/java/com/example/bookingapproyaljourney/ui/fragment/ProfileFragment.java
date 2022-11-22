@@ -141,8 +141,8 @@ public class ProfileFragment extends Fragment {
 
                 RequestOptions options = new RequestOptions()
                         .centerCrop()
-                        .placeholder(R.drawable.img_bgr_edit_profile)
-                        .error(R.drawable.img_bgr_edit_profile);
+                        .placeholder(R.drawable.img)
+                        .error(R.drawable.img);
                 Glide.with(getActivity()).load(s.getUser().getImage()).apply(options).into(imageProfile);
             }
         });

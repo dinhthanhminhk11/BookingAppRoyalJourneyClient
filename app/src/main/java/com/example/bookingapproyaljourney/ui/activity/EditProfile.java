@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,8 +11,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -27,6 +36,8 @@ public class EditProfile extends AppCompatActivity {
     private TextInputEditText locationEditProfile;
     private ImageView imageView3;
     private AppCompatButton saveEditProfile;
+
+    private LoginViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +63,29 @@ public class EditProfile extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolBar.setNavigationOnClickListener(v -> onBackPressed());
 
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+        initData();
+
     }
+
+    private void initData() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+        loginViewModel.getUserByToken(token);
+        loginViewModel.getLoginResultMutableDataToKen().observe(this, new Observer<LoginResponse>() {
+            @Override
+            public void onChanged(LoginResponse s) {
+                titleNameEditProfile.setText(s.getUser().getName());
+                titleEmailEditProfile.setText(s.getUser().getEmail());
+                nameEditProfile.setText(s.getUser().getName());
+                phoneEditProfile.setText(s.getUser().getPhone());
+                locationEditProfile.setText(s.getUser().getAddress());
+            }
+        });
+
+
+    }
+
+
 }
