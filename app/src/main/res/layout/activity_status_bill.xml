@@ -534,7 +534,19 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     app:backgroundTint="@null" />
-
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/btnDelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_20dp"
+                    android:background="@drawable/bg_buttom_black"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:text="Xoá"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@null" />
             </LinearLayout>
 
         </LinearLayout>

@@ -1,9 +1,11 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,7 +29,10 @@ public class StatusBillActivity extends AppCompatActivity {
     private StatusOrderViewModel statusOrderViewModel;
     private NumberFormat fm = new DecimalFormat("#,###");
     private String dateCancel;
+    private boolean checkIsBacking;
+    private String imageHost;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +69,7 @@ public class StatusBillActivity extends AppCompatActivity {
                 binding.payDay.setText(orderResponse.getPayDay() + "");
                 binding.priceAll.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
                 binding.sumPrice.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
+                checkIsBacking = orderResponse.isCashMoney();
                 if (orderResponse.isBanking()) {
                     binding.textPayment.setText("Thanh toán bằng Thẻ VISA (VISA card) (Đã thanh toán)");
                     binding.imageMatercard.setVisibility(View.GONE);
@@ -75,6 +81,7 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.imagePaypal.setVisibility(View.GONE);
                     binding.imageGooglePlay.setVisibility(View.GONE);
                 } else {
+                    binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.textPayment.setText("Thanh toán sau khi hoàn tất thủ tục trả phòng");
                     binding.imageMatercard.setVisibility(View.GONE);
                     binding.imagePaypal.setVisibility(View.GONE);
@@ -94,6 +101,15 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.textConfirm.setText("Chủ nhà đã từ chối yêu cầu của bạn lí do là vì: " + orderResponse.getReasonHost());
+                } else if (orderResponse.getStatus().equals("Khách huỷ") && orderResponse.isCancellationDate()) {
+                    binding.btnPay.setVisibility(View.GONE);
+                    binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ phòng của bạn");
+                    binding.btnDelete.setVisibility(View.VISIBLE);
+                } else if (orderResponse.getStatus().equals("Khách huỷ") && !orderResponse.isCancellationDate()) {
+                    binding.btnPay.setVisibility(View.GONE);
+                    binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ của bạn sẽ có người gọi đến để xác nhận cho bạn");
                 }
 
             }
@@ -108,13 +124,21 @@ public class StatusBillActivity extends AppCompatActivity {
                 binding.tvTimeTra.setText(houseDetailResponse.getEnding());
                 binding.contentCancel.setText("Nếu bạn hủy trước ngày " + houseDetailResponse.getCancellatioDate() + " bạn sẽ được hoàn lại một phần tiền");
                 dateCancel = houseDetailResponse.getCancellatioDate();
+                imageHost = houseDetailResponse.getHostResponse().getImage();
             }
         });
 
         binding.btnPay.setOnClickListener(v -> {
             Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
+            intent.putExtra("imageHost", imageHost);
             intent.putExtra("dateCancel", dateCancel);
+            intent.putExtra("idOrder", idOrder);
+            intent.putExtra("checkIsbacking", String.valueOf(checkIsBacking));
             startActivity(intent);
+        });
+
+        binding.btnDelete.setOnClickListener(v -> {
+
         });
 
     }

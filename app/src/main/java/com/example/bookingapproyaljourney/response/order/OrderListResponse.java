@@ -19,7 +19,8 @@ public class OrderListResponse {
     private String phone;
     private String status;
     private String time;
-
+    private boolean isCancellationDate;
+    private boolean isBackingPercent;
     public String getIdOder() {
         return idOder;
     }
@@ -90,5 +91,13 @@ public class OrderListResponse {
 
     public String getTime() {
         return time;
+    }
+
+    public boolean isCancellationDate() {
+        return isCancellationDate;
+    }
+
+    public boolean isBackingPercent() {
+        return isBackingPercent;
     }
 }

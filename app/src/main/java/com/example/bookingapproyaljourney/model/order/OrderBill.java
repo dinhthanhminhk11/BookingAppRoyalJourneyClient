@@ -22,7 +22,7 @@ public class OrderBill {
     private int __v;
     private String reasonHost;
     private String reasonUser;
-
+    private boolean isCancellationDate;
     public String getReasonHost() {
         return reasonHost;
     }
@@ -105,5 +105,9 @@ public class OrderBill {
 
     public boolean isBackingPercent() {
         return isBackingPercent;
+    }
+
+    public boolean isCancellationDate() {
+        return isCancellationDate;
     }
 }

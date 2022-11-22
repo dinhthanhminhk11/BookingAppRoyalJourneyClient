@@ -4,6 +4,7 @@ package com.example.bookingapproyaljourney.repository;
 import android.util.Log;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.callback.CallbackEditOrderByUser;
 import com.example.bookingapproyaljourney.callback.CallbackHouseById;
 import com.example.bookingapproyaljourney.callback.CallbackListOrderById;
 import com.example.bookingapproyaljourney.callback.CallbackOrderById;
@@ -13,7 +14,9 @@ import com.example.bookingapproyaljourney.model.order.OrderBill;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
+import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
+import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
 import retrofit2.Call;
@@ -99,6 +102,24 @@ public class OrderRepository {
             @Override
             public void onFailure(Call<HouseDetailResponse> call, Throwable t) {
                 callbackHouseById.failure(t);
+            }
+        });
+    }
+
+    public void editOrderByUser(OrderRequest orderRequest, CallbackEditOrderByUser callbackEditOrderByUser) {
+        apiRequest.editOrderByUser(orderRequest).enqueue(new Callback<OrderStatusResponse>() {
+            @Override
+            public void onResponse(Call<OrderStatusResponse> call, Response<OrderStatusResponse> response) {
+                if (response.isSuccessful()) {
+                    callbackEditOrderByUser.success(response.body());
+                } else {
+                    callbackEditOrderByUser.failure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OrderStatusResponse> call, Throwable t) {
+                callbackEditOrderByUser.failure(t);
             }
         });
     }

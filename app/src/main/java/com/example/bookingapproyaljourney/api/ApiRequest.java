@@ -6,7 +6,6 @@ import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.feedback.DataFeedBack;
 import com.example.bookingapproyaljourney.model.feedback.DataId;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
-import com.example.bookingapproyaljourney.model.feedback.ListIdUser;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
@@ -25,7 +24,9 @@ import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
+import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
+import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -138,5 +140,8 @@ public interface ApiRequest {
 
     @GET("searchFeedBack/{idHouse}&{tk}")
     Call<DataFeedBack> getFeedbackTk(@Path("idHouse") String idHouse, @Path("tk") String tk);
+
+    @PATCH("updateOrderById")
+    Call<OrderStatusResponse> editOrderByUser(@Body OrderRequest orderRequest);
 
 }

@@ -47,7 +47,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         OrderListResponse item = data.get(position);
         if (item != null) {
 
-            if (item.getStatus().equals("Đã xác nhận") && !item.isBanking()) {
+            if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && item.isBackingPercent()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
 
@@ -58,7 +58,18 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             } else if (item.getStatus().equals("Đã xác nhận") && item.isBanking()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
                 holder.itemOrderListBinding.status.setText("Đã thanh toán");
-            } else {
+            }else if(item.getStatus().equals("Khách huỷ") && !item.isCancellationDate()){
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
+                holder.itemOrderListBinding.status.setText("Đang chờ huỷ");
+            }else if(item.getStatus().equals("Khách huỷ") && item.isCancellationDate()){
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
+                holder.itemOrderListBinding.status.setText("Đã huỷ phòng");
+            }else if(item.getStatus().equals("Đã xác nhận") && item.isBackingPercent()){
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
+                holder.itemOrderListBinding.status.setText("Đã đặt cọc");
+            }
+
+            else {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_pendding);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
             }

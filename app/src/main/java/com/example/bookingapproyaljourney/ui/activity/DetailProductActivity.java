@@ -39,7 +39,6 @@ import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
-import com.example.bookingapproyaljourney.ui.activity.feedback.FeedBackActivity;
 import com.example.bookingapproyaljourney.ui.activity.feedback.FeedbackListActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
@@ -113,7 +112,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
     private List<Bathroom> dataBathRoom;
     private TextView countSao;
     private NumberFormat fm = new DecimalFormat("#,###");
-
+    private boolean isStillEmpty;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -235,10 +234,6 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         });
 
 
-
-
-
-
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dia_log_comfirm_logout);
         Window window = dialog.getWindow();
@@ -271,6 +266,8 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
             public void onClick(View view) {
                 if (token.equals("")) {
                     dialog.show();
+                } else if (isStillEmpty) {
+                    ToastCheck toastCheck = new ToastCheck(DetailProductActivity.this, R.style.StyleToast, "Đã hết phòng", DetailProductActivity.this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 } else {
                     Intent intent = new Intent(DetailProductActivity.this, BillOderActivity.class);
                     intent.putExtra(AppConstant.HOUSE_EXTRA, idHouse);
@@ -294,6 +291,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
             ContentHouse.setText(item.getContent());
             legalHouse.setText(item.getLegal());
             startDateAndEndDate.setText(item.getStartDate() + " - " + item.getEndDate());
+            isStillEmpty = item.isStillEmpty();
             if (item.isStillEmpty()) {
                 statusHouse.setText("Hết Phòng");
             } else {
