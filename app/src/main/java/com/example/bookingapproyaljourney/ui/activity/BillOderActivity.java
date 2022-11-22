@@ -141,15 +141,19 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
         binding.addPhone.setOnClickListener(v -> {
+
             binding.edPhone.setVisibility(View.VISIBLE);
             binding.btnComfirmPhone.setVisibility(View.VISIBLE);
+
         });
 
         binding.btnComfirmPhone.setOnClickListener(v -> {
+            String phone = binding.edPhone.getText().toString();
             phonePrivate = binding.edPhone.getText().toString();
-            binding.phone.setText(binding.edPhone.getText().toString().trim());
-            binding.edPhone.setVisibility(View.GONE);
-            binding.btnComfirmPhone.setVisibility(View.GONE);
+
+//            binding.edPhone.setVisibility(View.GONE);
+//            binding.btnComfirmPhone.setVisibility(View.GONE);
+            validateinfo(phone);
         });
 
         if (binding.payOnline.isChecked() || binding.payOfflinePercent.isChecked()) {
@@ -394,6 +398,23 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
 
+    }
+
+    private boolean validateinfo(String phone) {
+        if (phone.length() == 0){
+            binding.edPhone.requestFocus();
+            binding.edPhone.setError("xin nhãy nhập số điện thoại");
+        }else if (!phone.matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")){
+            binding.edPhone.requestFocus();
+            binding.edPhone.setError("Xin hãy sử dụng số điện thoại khu vực việt nam");
+            return false;
+        }else {
+            binding.phone.setText(binding.edPhone.getText().toString().trim());
+            binding.edPhone.setVisibility(View.GONE);
+            binding.btnComfirmPhone.setVisibility(View.GONE);
+            return true;
+        }
+        return true;
     }
 
     private void initData(String idHouse) {
