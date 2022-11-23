@@ -232,6 +232,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
 
+        Log.e("MInhToken" , token + " token");
         if (position == POS_LOGOUT) {
             if (token == null || token.equals("")) {
                 dialog.show();

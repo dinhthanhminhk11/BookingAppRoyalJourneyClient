@@ -38,6 +38,7 @@ public class CancelBookingActivity extends AppCompatActivity {
     private ActivityCancelBookingBinding binding;
     private String dateCancel;
     private boolean checkBanking;
+    private boolean checkSeem;
     private String imageHost;
     private CancelBookingViewModel cancelBookingViewModel;
     private String idOrder;
@@ -57,6 +58,7 @@ public class CancelBookingActivity extends AppCompatActivity {
 
         dateCancel = getIntent().getStringExtra("dateCancel");
         checkBanking = Boolean.parseBoolean(getIntent().getStringExtra("checkIsbacking"));
+        checkSeem = Boolean.parseBoolean(getIntent().getStringExtra("checkSeem"));
         imageHost = getIntent().getStringExtra("imageHost");
         idOrder = getIntent().getStringExtra("idOrder");
 
@@ -114,6 +116,8 @@ public class CancelBookingActivity extends AppCompatActivity {
             dialogLogOut.show();
         });
 
+        Log.e("MInhCheckSeem", String.valueOf(checkSeem));
+
         login.setOnClickListener(v -> {
             dialogLogOut.cancel();
             cancelBookingViewModel.updateOrderByUser(new OrderRequest(
@@ -122,7 +126,6 @@ public class CancelBookingActivity extends AppCompatActivity {
                     binding.edComment.getText().toString(),
                     currentDate
             ));
-            dialogLogOut.cancel();
         });
 
         close.setOnClickListener(v -> {

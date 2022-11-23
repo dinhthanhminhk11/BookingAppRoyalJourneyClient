@@ -40,6 +40,22 @@ public class CancelBookingViewModel extends AndroidViewModel {
         });
     }
 
+    public void editOrderByUserUpdateOrderByIdNotSeem(OrderRequest orderRequest) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        orderRepository.editOrderByUserUpdateOrderByIdNotSeem(orderRequest, new CallbackEditOrderByUser() {
+            @Override
+            public void success(OrderStatusResponse orderStatusResponse) {
+                mProgressMutableData.postValue(View.GONE);
+                orderStatusResponseMutableLiveData.postValue(orderStatusResponse);
+            }
+
+            @Override
+            public void failure(Throwable t) {
+                mProgressMutableData.postValue(View.GONE);
+            }
+        });
+    }
+
     public MutableLiveData<Integer> getmProgressMutableData() {
         return mProgressMutableData;
     }

@@ -123,4 +123,22 @@ public class OrderRepository {
             }
         });
     }
+
+    public void editOrderByUserUpdateOrderByIdNotSeem(OrderRequest orderRequest, CallbackEditOrderByUser callbackEditOrderByUser) {
+        apiRequest.editOrderByUserUpdateOrderByIdNotSeem(orderRequest).enqueue(new Callback<OrderStatusResponse>() {
+            @Override
+            public void onResponse(Call<OrderStatusResponse> call, Response<OrderStatusResponse> response) {
+                if (response.isSuccessful()) {
+                    callbackEditOrderByUser.success(response.body());
+                } else {
+                    callbackEditOrderByUser.failure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OrderStatusResponse> call, Throwable t) {
+                callbackEditOrderByUser.failure(t);
+            }
+        });
+    }
 }

@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -47,7 +48,7 @@ public class StatusBillActivity extends AppCompatActivity {
     private TextView text;
     private TextView btnCancel;
     private Button login;
-
+    private boolean checkSeem;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +104,7 @@ public class StatusBillActivity extends AppCompatActivity {
         statusOrderViewModel.getOrderResponseMutableLiveData().observe(this, new Observer<OrderBill>() {
             @Override
             public void onChanged(OrderBill orderResponse) {
+                checkSeem = orderResponse.isSeem();
                 statusOrderViewModel.getDetailHouseById(orderResponse.getIdPro());
                 binding.startDate.setText(orderResponse.getStartDate());
                 binding.endDate.setText(orderResponse.getEndDate());
@@ -158,12 +160,24 @@ public class StatusBillActivity extends AppCompatActivity {
         });
 
         login.setOnClickListener(v -> {
-            statusOrderViewModel.updateOrderByUser(new OrderRequest(
-                    idOrder,
-                    "Đã xác nhận",
-                    "",
-                    ""
-            ));
+
+            if(!checkSeem){
+                statusOrderViewModel.updateOrderByUser(new OrderRequest(
+                        idOrder,
+                        "Đã xác nhận",
+                        "",
+                        ""
+                ));
+            }else {
+                statusOrderViewModel.editOrderByUserUpdateOrderByIdNotSeem(new OrderRequest(
+                        idOrder,
+                        "Đang chờ",
+                        "",
+                        ""
+                ));
+            }
+
+
             dialogLogOut.cancel();
         });
 
@@ -199,12 +213,15 @@ public class StatusBillActivity extends AppCompatActivity {
             }
         });
 
+        Log.e("MInhCheckSeem" , String.valueOf(checkSeem));
+
         binding.btnPay.setOnClickListener(v -> {
             Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
             intent.putExtra("imageHost", imageHost);
             intent.putExtra("dateCancel", dateCancel);
             intent.putExtra("idOrder", idOrder);
             intent.putExtra("checkIsbacking", String.valueOf(checkIsBacking));
+            intent.putExtra("checkSeem", String.valueOf(checkSeem));
             startActivity(intent);
         });
 

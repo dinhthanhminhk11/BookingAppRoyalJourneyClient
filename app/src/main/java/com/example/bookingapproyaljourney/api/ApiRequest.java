@@ -148,4 +148,6 @@ public interface ApiRequest {
     @GET("updateSao/{id}&{sao}")
     Call<HouseDetailResponse> updateSaoProduct(@Path("id") String id, @Path("sao") Double sao);
 
+    @PATCH("updateOrderByIdNotSeem")
+    Call<OrderStatusResponse> editOrderByUserUpdateOrderByIdNotSeem(@Body OrderRequest orderRequest);
 }
