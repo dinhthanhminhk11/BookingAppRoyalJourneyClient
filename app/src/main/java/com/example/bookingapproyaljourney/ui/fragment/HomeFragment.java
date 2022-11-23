@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -12,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,6 +41,9 @@ import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapterNotNull;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetBathRoom;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterHome;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterMap;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -105,7 +109,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         initView(view);
         initData();
 
-        Log.e("MinhIDUser" , UserClient.getInstance().getId() + "dsfdsfd");
+        Log.e("MinhIDUser", UserClient.getInstance().getId() + "dsfdsfd");
     }
 
     private void initView(View view) {
@@ -138,6 +142,9 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
                 startActivity(intent);
             }
+        });
+        btnFilter.setOnClickListener(v->{
+            showDialog();
         });
 
         seeMoreBestForYou.setOnClickListener(v -> {
@@ -223,5 +230,11 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
         intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
         startActivity(intent);
+    }
+
+    private void showDialog() {
+        BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(requireContext(), R.style.MaterialDialogSheet);
+        bottomSheetFilterHome.show();
+        bottomSheetFilterHome.setCanceledOnTouchOutside(false);
     }
 }

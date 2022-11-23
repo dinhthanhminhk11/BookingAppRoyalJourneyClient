@@ -204,7 +204,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
                     countSao.setText(decimalFormat.format(average));
                     tvSao.setText(decimalFormat.format(average));
                 }
-                feedbackViewModel.updateSaoProduct(id_house, Double.valueOf(decimalFormat.format(average)));
+                feedbackViewModel.updateSaoProduct(id_house, (double) average);
             } else {
                 btnDanhGia.setText("Đánh giá");
                 tvSao.setText("5.0");
