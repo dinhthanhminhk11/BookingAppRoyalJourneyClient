@@ -7,17 +7,20 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.bookingapproyaljourney.callback.CallbackEditOrderByUser;
 import com.example.bookingapproyaljourney.callback.CallbackHouseById;
 import com.example.bookingapproyaljourney.callback.CallbackOrderById;
 import com.example.bookingapproyaljourney.model.order.OrderBill;
 import com.example.bookingapproyaljourney.repository.OrderRepository;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.response.order.OrderRequest;
+import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 
 public class StatusOrderViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<OrderBill> orderResponseMutableLiveData = new MutableLiveData<>();
     MutableLiveData<HouseDetailResponse> houseDetailResponseMutableLiveData = new MutableLiveData<>();
-
+    MutableLiveData<OrderStatusResponse> orderStatusResponseMutableLiveData = new MutableLiveData<>();
     private OrderRepository orderRepository;
 
     public StatusOrderViewModel(@NonNull Application application) {
@@ -57,6 +60,22 @@ public class StatusOrderViewModel extends AndroidViewModel {
         });
     }
 
+    public void updateOrderByUser(OrderRequest orderRequest) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        orderRepository.editOrderByUser(orderRequest, new CallbackEditOrderByUser() {
+            @Override
+            public void success(OrderStatusResponse orderStatusResponse) {
+                mProgressMutableData.postValue(View.GONE);
+                orderStatusResponseMutableLiveData.postValue(orderStatusResponse);
+            }
+
+            @Override
+            public void failure(Throwable t) {
+                mProgressMutableData.postValue(View.GONE);
+            }
+        });
+    }
+
     public MutableLiveData<Integer> getmProgressMutableData() {
         return mProgressMutableData;
     }
@@ -67,5 +86,9 @@ public class StatusOrderViewModel extends AndroidViewModel {
 
     public MutableLiveData<HouseDetailResponse> getHouseDetailResponseMutableLiveData() {
         return houseDetailResponseMutableLiveData;
+    }
+
+    public MutableLiveData<OrderStatusResponse> getOrderStatusResponseMutableLiveData() {
+        return orderStatusResponseMutableLiveData;
     }
 }

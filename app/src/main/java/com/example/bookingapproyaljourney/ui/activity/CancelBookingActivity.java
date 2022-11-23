@@ -101,7 +101,6 @@ public class CancelBookingActivity extends AppCompatActivity {
             dialogLogOut.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
-
         close = (ImageView) dialogLogOut.findViewById(R.id.close);
         text = (TextView) dialogLogOut.findViewById(R.id.text);
         btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);

@@ -1,7 +1,5 @@
 package com.example.bookingapproyaljourney.model.user;
 
-import com.google.gson.annotations.SerializedName;
-
 public class UserClient {
     private String id;
     private String name;
@@ -12,7 +10,8 @@ public class UserClient {
     private int countBooking;
     private static UserClient instance = null;
 
-    protected UserClient() {}
+    protected UserClient() {
+    }
 
     public static UserClient getInstance() {
         if (instance == null) {

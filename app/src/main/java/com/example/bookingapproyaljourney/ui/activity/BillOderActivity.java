@@ -172,7 +172,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
         binding.contentPayOffline.setOnClickListener(v -> {
-            if (UserClient.getInstance().getCountBooking() < 5) {
+            if (UserClient.getInstance().getCountBooking() < 4) {
                 ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Xin lỗi bạn chưa đủ uy tín", "Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này", R.drawable.ic_warning_icon_check);
                 return;
             }
@@ -230,7 +230,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    if (UserClient.getInstance().getCountBooking() < 5) {
+                    if (UserClient.getInstance().getCountBooking() < 4) {
                         ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Xin lỗi bạn chưa đủ uy tín", "Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này", R.drawable.ic_warning_icon_check);
                         binding.payOffline.setChecked(false);
                         return;

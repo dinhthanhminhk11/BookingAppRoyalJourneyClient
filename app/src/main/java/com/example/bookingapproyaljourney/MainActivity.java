@@ -44,6 +44,7 @@ import com.example.bookingapproyaljourney.callback.CallDialog;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
+import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
@@ -168,6 +169,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 ToastCheck toastCheck = new ToastCheck(MainActivity.this, R.style.StyleToast, "Thành công", "Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi , chúc bạn một ngày mới tốt lành", R.drawable.ic_complete_order);
             } else if (check.equals("CancelBookingActivity")) {
                 ToastCheck toastCheck = new ToastCheck(MainActivity.this, R.style.StyleToast, "Thành công", "Chủ nhà đã tiếp nhận yêu cầu của bạn , sẽ có người gọi cho bạn để xác nhận", R.drawable.ic_complete_order);
+            }else if (check.equals("CancelBookingActivityByAccess")){
+                ToastCheck toastCheck = new ToastCheck(MainActivity.this, R.style.StyleToast, "Thông báo", "Đã huỷ yêu cầu", R.drawable.ic_complete_order);
             }
         }
 
@@ -190,6 +193,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         if (token != null || !token.equals("")) {
             loginViewModel.getUserByToken(token);
         }
+
+        Log.e("CountBooking" , UserClient.getInstance().getCountBooking() + " sfd ");
+
+
     }
 
     @Override

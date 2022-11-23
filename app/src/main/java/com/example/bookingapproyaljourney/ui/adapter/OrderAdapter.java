@@ -50,7 +50,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && item.isBackingPercent()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
-
             } else if (item.getStatus().equals("Chủ đã huỷ")) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
@@ -67,6 +66,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             }else if(item.getStatus().equals("Đã xác nhận") && item.isBackingPercent()){
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
                 holder.itemOrderListBinding.status.setText("Đã đặt cọc");
+            }else  if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && !item.isBackingPercent()) {
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
+                holder.itemOrderListBinding.status.setText(item.getStatus());
             }
 
             else {
