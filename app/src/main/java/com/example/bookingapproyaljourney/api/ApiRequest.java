@@ -150,4 +150,8 @@ public interface ApiRequest {
 
     @PATCH("updateOrderByIdNotSeem")
     Call<OrderStatusResponse> editOrderByUserUpdateOrderByIdNotSeem(@Body OrderRequest orderRequest);
+
+    @DELETE("deleteOrderById/{id}")
+    Call<OrderStatusResponse> deleteOrderById(@Path("id") String id);
+
 }

@@ -158,8 +158,6 @@ public class ProfileFragment extends Fragment {
         hiredProfileAdapter = new HiredProfileAdapter(listHouse);
         recyclerViewHiredProfile.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewHiredProfile.setAdapter(hiredProfileAdapter);
-
-
     }
 
     @Override

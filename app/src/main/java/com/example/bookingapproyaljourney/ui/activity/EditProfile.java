@@ -66,7 +66,6 @@ public class EditProfile extends AppCompatActivity {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         initData();
-
     }
 
     private void initData() {
@@ -83,9 +82,5 @@ public class EditProfile extends AppCompatActivity {
                 locationEditProfile.setText(s.getUser().getAddress());
             }
         });
-
-
     }
-
-
 }

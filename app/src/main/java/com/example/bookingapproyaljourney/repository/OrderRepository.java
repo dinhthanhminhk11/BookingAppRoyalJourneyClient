@@ -4,6 +4,7 @@ package com.example.bookingapproyaljourney.repository;
 import android.util.Log;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.callback.CallbackDeleteOrder;
 import com.example.bookingapproyaljourney.callback.CallbackEditOrderByUser;
 import com.example.bookingapproyaljourney.callback.CallbackHouseById;
 import com.example.bookingapproyaljourney.callback.CallbackListOrderById;
@@ -138,6 +139,24 @@ public class OrderRepository {
             @Override
             public void onFailure(Call<OrderStatusResponse> call, Throwable t) {
                 callbackEditOrderByUser.failure(t);
+            }
+        });
+    }
+
+    public void deleteOrderById(String id, CallbackDeleteOrder callbackDeleteOrder) {
+        apiRequest.deleteOrderById(id).enqueue(new Callback<OrderStatusResponse>() {
+            @Override
+            public void onResponse(Call<OrderStatusResponse> call, Response<OrderStatusResponse> response) {
+                if (response.isSuccessful()) {
+                    callbackDeleteOrder.onResponse(response.body());
+                } else {
+                    callbackDeleteOrder.onFailure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OrderStatusResponse> call, Throwable t) {
+                callbackDeleteOrder.onFailure(t);
             }
         });
     }

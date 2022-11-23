@@ -49,6 +49,7 @@ public class StatusBillActivity extends AppCompatActivity {
     private TextView btnCancel;
     private Button login;
     private boolean checkSeem;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,15 +161,14 @@ public class StatusBillActivity extends AppCompatActivity {
         });
 
         login.setOnClickListener(v -> {
-
-            if(!checkSeem){
+            if (!checkSeem) {
                 statusOrderViewModel.updateOrderByUser(new OrderRequest(
                         idOrder,
                         "Đã xác nhận",
                         "",
                         ""
                 ));
-            }else {
+            } else {
                 statusOrderViewModel.editOrderByUserUpdateOrderByIdNotSeem(new OrderRequest(
                         idOrder,
                         "Đang chờ",
@@ -176,8 +176,6 @@ public class StatusBillActivity extends AppCompatActivity {
                         ""
                 ));
             }
-
-
             dialogLogOut.cancel();
         });
 
@@ -213,7 +211,7 @@ public class StatusBillActivity extends AppCompatActivity {
             }
         });
 
-        Log.e("MInhCheckSeem" , String.valueOf(checkSeem));
+        Log.e("MInhCheckSeem", String.valueOf(checkSeem));
 
         binding.btnPay.setOnClickListener(v -> {
             Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
@@ -226,7 +224,22 @@ public class StatusBillActivity extends AppCompatActivity {
         });
 
         binding.btnDelete.setOnClickListener(v -> {
+            statusOrderViewModel.deleteOrderById(idOrder);
+        });
 
+        statusOrderViewModel.getDeleteOrderResponse().observe(this, new Observer<OrderStatusResponse>() {
+            @Override
+            public void onChanged(OrderStatusResponse orderStatusResponse) {
+                if(orderStatusResponse.isMessege()){
+                    Intent intent = new Intent(StatusBillActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("CheckSuccess", "deleteOrderResponse");
+                    startActivity(intent);
+                }else {
+
+                }
+            }
         });
 
     }

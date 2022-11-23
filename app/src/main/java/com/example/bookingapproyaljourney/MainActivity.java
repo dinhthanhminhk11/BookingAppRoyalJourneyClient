@@ -171,6 +171,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 ToastCheck toastCheck = new ToastCheck(MainActivity.this, R.style.StyleToast, "Thành công", "Chủ nhà đã tiếp nhận yêu cầu của bạn , sẽ có người gọi cho bạn để xác nhận", R.drawable.ic_complete_order);
             }else if (check.equals("CancelBookingActivityByAccess")){
                 ToastCheck toastCheck = new ToastCheck(MainActivity.this, R.style.StyleToast, "Thông báo", "Đã huỷ yêu cầu", R.drawable.ic_complete_order);
+            } else if(check.equals("deleteOrderResponse")){
+                ToastCheck toastCheck = new ToastCheck(MainActivity.this, R.style.StyleToast, "Thông báo", "Xóa thành công", R.drawable.ic_complete_order);
             }
         }
 
