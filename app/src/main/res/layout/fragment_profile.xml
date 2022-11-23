@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="3dp"
-                        android:text="Member"
+                        android:text="Thành viên"
                         android:textColor="#FEAD1D"
                         android:textSize="15dp" />
                 </androidx.cardview.widget.CardView>
@@ -218,7 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:text="Hired"
+                        android:text="thuê"
                         android:textColor="@color/black"
                         android:textSize="15dp"
                         android:textStyle="bold" />

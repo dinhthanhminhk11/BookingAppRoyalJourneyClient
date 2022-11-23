@@ -18,7 +18,7 @@
         android:background="@drawable/vekhungnhap1"
         android:drawableLeft="@drawable/ic_baseline_search_24"
         android:drawablePadding="12dp"
-        android:hint="Tap to search"
+        android:hint="Nhấn để tìm kiếm"
         android:paddingLeft="16dp"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
