@@ -4,4 +4,5 @@
     <color name="default_title_color">#ffffff</color>
     <color name="default_message_color">#ffffff</color>
     <color name="default_action_color">#26a69a</color>
+    <color name="blue">#03A9F4</color>
 </resources>

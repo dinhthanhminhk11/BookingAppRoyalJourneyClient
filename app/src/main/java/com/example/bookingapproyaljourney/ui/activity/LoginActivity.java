@@ -92,7 +92,6 @@ public class LoginActivity extends AppCompatActivity {
                 binding.edPass.setError("Xin vui lòng nhập địa chỉ Password");
             } else {
                 loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
-
             }
         });
 
@@ -110,12 +109,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(LoginResponse loginResponse) {
                 if (loginResponse.getUser().isActive()) {
-                    Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                     editor.putString(AppConstant.ID_USER, loginResponse.getUser().getId());
                     editor.commit();
-//                    onBackPressed();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("CheckSuccess", "LoginResultSuccess");
+                    startActivity(intent);
                 } else {
                     ToastCheck toastCheck = new ToastCheck(LoginActivity.this, R.style.StyleToast,
 //                            this.getString(R.string.dialogstartdate),

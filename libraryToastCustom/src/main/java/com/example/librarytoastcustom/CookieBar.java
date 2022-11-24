@@ -175,6 +175,11 @@ public class CookieBar {
             return this;
         }
 
+        public Builder setBackgroundRes(int backgroundRes){
+            params.backgroundRes = backgroundRes;
+            return this;
+        }
+
         public Builder setActionColor(@ColorRes int actionColor) {
             params.actionColor = actionColor;
             return this;
@@ -283,6 +288,7 @@ public class CookieBar {
         public boolean enableAutoDismiss = true;
         public int iconResId;
         public int backgroundColor;
+        public int backgroundRes;
         public int titleColor;
         public int messageColor;
         public int actionColor;

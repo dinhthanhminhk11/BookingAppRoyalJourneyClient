@@ -1,7 +1,5 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
-import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -41,10 +39,9 @@ import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapterNotNull;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
-import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetBathRoom;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterHome;
-import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterMap;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
+import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -143,7 +140,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 startActivity(intent);
             }
         });
-        btnFilter.setOnClickListener(v->{
+        btnFilter.setOnClickListener(v -> {
             showDialog();
         });
 

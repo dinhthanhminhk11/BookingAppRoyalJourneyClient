@@ -122,7 +122,7 @@ public class Cookie extends LinearLayout implements View.OnTouchListener{
         int messageColor = ThemeResolver.getColor(context, R.attr.cookieMessageColor, Color.WHITE);
         int actionColor = ThemeResolver.getColor(context, R.attr.cookieActionColor, Color.WHITE);
         int backgroundColor = ThemeResolver.getColor(context, R.attr.cookieBackgroundColor,
-                ContextCompat.getColor(context, R.color.default_bg_color));
+                ContextCompat.getColor(context, R.color.blue));
 
         titleTextView.setTextColor(titleColor);
         messageTextView.setTextColor(messageColor);
@@ -193,6 +193,10 @@ public class Cookie extends LinearLayout implements View.OnTouchListener{
         if (params.backgroundColor != 0) {
             layoutCookie
                     .setBackgroundColor(ContextCompat.getColor(getContext(), params.backgroundColor));
+        }
+
+        if(params.backgroundRes !=0){
+            layoutCookie.setBackgroundResource(params.backgroundRes);
         }
 
         int defaultPadding = getContext().getResources().getDimensionPixelSize(R.dimen.default_padding);
