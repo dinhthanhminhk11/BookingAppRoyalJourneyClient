@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BookingAppRoyalJourney</string>
+    <string name="app_name">RoyalJourney</string>
     <string name="login_text">Login To Your Account</string>
     <string name="email">Email</string>
     <string name="password">Password</string>

@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -44,7 +46,6 @@ import com.example.bookingapproyaljourney.callback.CallDialog;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
-import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
@@ -66,7 +67,10 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -244,8 +248,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             loginViewModel.getUserByToken(token);
         }
 
-        Log.e("CountBooking", UserClient.getInstance().getCountBooking() + " sfd ");
-
+        getTokenDeviceFireBase();
 
     }
 
@@ -520,5 +523,18 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
     }
 
-
+    public void getTokenDeviceFireBase() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+                        String token = task.getResult();
+                        Log.d("MinhtokenFirebase", token);
+                    }
+                });
+    }
 }
