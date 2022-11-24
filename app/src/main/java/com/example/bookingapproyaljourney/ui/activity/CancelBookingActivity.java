@@ -119,7 +119,9 @@ public class CancelBookingActivity extends AppCompatActivity {
         Log.e("MInhCheckSeem", String.valueOf(checkSeem));
 
         login.setOnClickListener(v -> {
+
             dialogLogOut.cancel();
+
             cancelBookingViewModel.updateOrderByUser(new OrderRequest(
                     idOrder,
                     "Khách huỷ",

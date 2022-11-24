@@ -49,6 +49,11 @@ public class StatusBillActivity extends AppCompatActivity {
     private TextView btnCancel;
     private Button login;
     private boolean checkSeem;
+    private boolean isSuccess;
+    private String textReasonUser;
+
+    public StatusBillActivity() {
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -106,6 +111,9 @@ public class StatusBillActivity extends AppCompatActivity {
             @Override
             public void onChanged(OrderBill orderResponse) {
                 checkSeem = orderResponse.isSeem();
+                isSuccess = orderResponse.isSuccess();
+                Log.e("MinhSeem", String.valueOf(orderResponse.isSuccess()));
+                textReasonUser = orderResponse.getReasonUser();
                 statusOrderViewModel.getDetailHouseById(orderResponse.getIdPro());
                 binding.startDate.setText(orderResponse.getStartDate());
                 binding.endDate.setText(orderResponse.getEndDate());
@@ -161,7 +169,7 @@ public class StatusBillActivity extends AppCompatActivity {
         });
 
         login.setOnClickListener(v -> {
-            if (!checkSeem) {
+            if (isSuccess) {
                 statusOrderViewModel.updateOrderByUser(new OrderRequest(
                         idOrder,
                         "Đã xác nhận",
@@ -211,7 +219,6 @@ public class StatusBillActivity extends AppCompatActivity {
             }
         });
 
-        Log.e("MInhCheckSeem", String.valueOf(checkSeem));
 
         binding.btnPay.setOnClickListener(v -> {
             Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
@@ -230,13 +237,13 @@ public class StatusBillActivity extends AppCompatActivity {
         statusOrderViewModel.getDeleteOrderResponse().observe(this, new Observer<OrderStatusResponse>() {
             @Override
             public void onChanged(OrderStatusResponse orderStatusResponse) {
-                if(orderStatusResponse.isMessege()){
+                if (orderStatusResponse.isMessege()) {
                     Intent intent = new Intent(StatusBillActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("CheckSuccess", "deleteOrderResponse");
                     startActivity(intent);
-                }else {
+                } else {
 
                 }
             }

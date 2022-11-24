@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney.model.order;
 
+import com.google.gson.annotations.SerializedName;
+
 public class OrderBill {
     private String _id;
     private String IdOder;
@@ -11,6 +13,7 @@ public class OrderBill {
     private boolean cashMoney;
     private boolean banking;
     private boolean isBackingPercent;
+    @SerializedName("seem")
     private boolean seem;
     private String status;
     private String startDate;
@@ -23,6 +26,7 @@ public class OrderBill {
     private String reasonHost;
     private String reasonUser;
     private boolean isCancellationDate;
+    private boolean isSuccess;
     public String getReasonHost() {
         return reasonHost;
     }
@@ -109,5 +113,9 @@ public class OrderBill {
 
     public boolean isCancellationDate() {
         return isCancellationDate;
+    }
+
+    public boolean isSuccess() {
+        return isSuccess;
     }
 }
