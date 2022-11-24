@@ -26,8 +26,8 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ActivityCancelBookingBinding;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
-import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.view_model.CancelBookingViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 import java.util.Date;
 import java.util.Locale;
@@ -86,9 +86,27 @@ public class CancelBookingActivity extends AppCompatActivity {
 
         try {
             if ((sdf.parse(dateCancel).before((sdf.parse(currentDate)))) && !checkBanking) {
-                ToastCheck toastCheck = new ToastCheck(CancelBookingActivity.this, R.style.StyleToast, "Thông báo", "Đã quá hạn huỷ bạn sẽ không nhận được khoản tiền nào trong ngày hôm nay", R.drawable.ic_warning_icon_check);
+                CookieBar.build(this)
+                        .setTitle("Thông báo")
+                        .setMessage("Đã quá hạn huỷ bạn sẽ không nhận được khoản tiền nào trong ngày hôm nay")
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
             } else if (currentDate.equals(dateCancel) && !checkBanking) {
-                ToastCheck toastCheck = new ToastCheck(CancelBookingActivity.this, R.style.StyleToast, "Thông báo", "Hôm nay là hạn cuối để bạn huỷ phòng", R.drawable.ic_warning_icon_check);
+                CookieBar.build(this)
+                        .setTitle("Thông báo")
+                        .setMessage("Hôm nay là hạn cuối để bạn huỷ phòng")
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
             }
         } catch (Exception e) {
 

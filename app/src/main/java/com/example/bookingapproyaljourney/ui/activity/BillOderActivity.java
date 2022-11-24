@@ -41,6 +41,7 @@ import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetEditPerson;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.bookingapproyaljourney.view_model.OrderViewModel;
+import com.example.librarytoastcustom.CookieBar;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.stripe.android.PaymentConfiguration;
@@ -133,7 +134,16 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
         binding.addPayment.setOnClickListener(v -> {
             if (binding.startDate.getText().toString().equals("")) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, this.getString(R.string.dialogstartdate), this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                CookieBar.build(this)
+                        .setTitle(this.getString(R.string.dialogstartdate))
+                        .setMessage(this.getString(R.string.dialogcontentnomal))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
                 return;
             } else {
                 showDialog();
@@ -173,7 +183,16 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
         binding.contentPayOffline.setOnClickListener(v -> {
             if (UserClient.getInstance().getCountBooking() < 4) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Xin lỗi bạn chưa đủ uy tín", "Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này", R.drawable.ic_warning_icon_check);
+                CookieBar.build(BillOderActivity.this)
+                        .setTitle("Xin lỗi bạn chưa đủ uy tín")
+                        .setMessage("Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này")
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
                 return;
             }
             TYPE_PAYMENT = 2;
@@ -231,7 +250,16 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (UserClient.getInstance().getCountBooking() < 4) {
-                        ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Xin lỗi bạn chưa đủ uy tín", "Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này", R.drawable.ic_warning_icon_check);
+                        CookieBar.build(BillOderActivity.this)
+                                .setTitle("Xin lỗi bạn chưa đủ uy tín")
+                                .setMessage("Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này")
+                                .setIcon(R.drawable.ic_warning_icon_check)
+                                .setTitleColor(R.color.black)
+                                .setMessageColor(R.color.black)
+                                .setDuration(3000)
+                                .setBackgroundRes(R.drawable.background_toast)
+                                .setCookiePosition(CookieBar.BOTTOM)
+                                .show();
                         binding.payOffline.setChecked(false);
                         return;
                     }
@@ -299,10 +327,28 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
                     try {
                         if (sdf.parse(checkStartDate).before((sdf.parse(checkStartDateResponse)))) {
-                            ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Chủ nhà chỉ cho phép nhận phòng từ ngày " + checkStartDateResponse, BillOderActivity.this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                            CookieBar.build(BillOderActivity.this)
+                                    .setTitle("Chủ nhà chỉ cho phép nhận phòng từ ngày " + checkStartDateResponse)
+                                    .setMessage(BillOderActivity.this.getString(R.string.dialogcontentnomal))
+                                    .setIcon(R.drawable.ic_warning_icon_check)
+                                    .setTitleColor(R.color.black)
+                                    .setMessageColor(R.color.black)
+                                    .setDuration(5000)
+                                    .setBackgroundRes(R.drawable.background_toast)
+                                    .setCookiePosition(CookieBar.BOTTOM)
+                                    .show();
                             return;
                         } else if (sdf.parse(checkEndDate).after((sdf.parse(checkEndDateResponse)))) {
-                            ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Chủ nhà chỉ cho phép trả phòng vào ngày " + checkEndDateResponse, BillOderActivity.this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                            CookieBar.build(BillOderActivity.this)
+                                    .setTitle("Chủ nhà chỉ cho phép trả phòng vào ngày " + checkEndDateResponse)
+                                    .setMessage(BillOderActivity.this.getString(R.string.dialogcontentnomal))
+                                    .setIcon(R.drawable.ic_warning_icon_check)
+                                    .setTitleColor(R.color.black)
+                                    .setMessageColor(R.color.black)
+                                    .setDuration(5000)
+                                    .setBackgroundRes(R.drawable.background_toast)
+                                    .setCookiePosition(CookieBar.BOTTOM)
+                                    .show();
                             return;
                         } else {
 
@@ -338,15 +384,51 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
         binding.btnPay.setOnClickListener(v -> {
             if (binding.startDate.getText().toString().equals("")) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, this.getString(R.string.dialogstartdate), this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                CookieBar.build(this)
+                        .setTitle(this.getString(R.string.dialogstartdate))
+                        .setMessage(this.getString(R.string.dialogcontentnomal))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
                 return;
             } else if (binding.person.getText().toString().equals(this.getString(R.string.limitperson))) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số lượng khách thuê của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                CookieBar.build(this)
+                        .setTitle("Thêm số lượng khách thuê của bạn để tiếp tục")
+                        .setMessage(this.getString(R.string.dialogcontentnomal))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
                 return;
             } else if (binding.textPayment.getText().toString().equals(this.getString(R.string.textpayment)) && TYPE_PAYMENT == 1) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm thẻ thanh toán của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                CookieBar.build(this)
+                        .setTitle("Thêm thẻ thanh toán của bạn để tiếp tục")
+                        .setMessage(this.getString(R.string.dialogcontentnomal))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
             } else if (binding.phone.getText().toString().equals(this.getString(R.string.nullphone))) {
-                ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thêm số điện thoại của bạn để tiếp tục", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                CookieBar.build(this)
+                        .setTitle("Thêm số điện thoại của bạn để tiếp tục")
+                        .setMessage(this.getString(R.string.dialogcontentnomal))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
                 return;
             } else {
                 if (TYPE_PAYMENT == 1) {
@@ -633,7 +715,16 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     @Override
     public void onCLickSum(int sum) {
         if (sum > houseDetailResponse.getLimitPerson()) {
-            ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Số lượng khách không được quá cho phép", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+            CookieBar.build(this)
+                    .setTitle("Số lượng khách không được quá cho phép")
+                    .setMessage(this.getString(R.string.dialogcontentnomal))
+                    .setIcon(R.drawable.ic_warning_icon_check)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(5000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
             return;
         } else {
             personLimitPrivate = sum;

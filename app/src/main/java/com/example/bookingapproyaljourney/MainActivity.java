@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(5000)
+                        .setDuration(3000)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(5000)
+                        .setDuration(3000)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(5000)
+                        .setDuration(3000)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
