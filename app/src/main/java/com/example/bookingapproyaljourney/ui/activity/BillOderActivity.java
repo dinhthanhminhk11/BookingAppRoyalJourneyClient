@@ -135,7 +135,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             if (binding.startDate.getText().toString().equals("")) {
                 ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, this.getString(R.string.dialogstartdate), this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 return;
-            }else {
+            } else {
                 showDialog();
             }
         });
@@ -401,14 +401,14 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     }
 
     private boolean validateinfo(String phone) {
-        if (phone.length() == 0){
+        if (phone.length() == 0) {
             binding.edPhone.requestFocus();
             binding.edPhone.setError("xin nhãy nhập số điện thoại");
-        }else if (!phone.matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")){
+        } else if (!phone.matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
             binding.edPhone.requestFocus();
             binding.edPhone.setError("Xin hãy sử dụng số điện thoại khu vực việt nam");
             return false;
-        }else {
+        } else {
             binding.phone.setText(binding.edPhone.getText().toString().trim());
             binding.edPhone.setVisibility(View.GONE);
             binding.btnComfirmPhone.setVisibility(View.GONE);

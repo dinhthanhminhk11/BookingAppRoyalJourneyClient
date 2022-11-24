@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private TextView btnCancel;
     private Button logOut;
     private LoginViewModel loginViewModel;
-
     public void setCallDialog(CallDialog callDialog) {
         this.callDialog = callDialog;
     }
