@@ -47,8 +47,8 @@ public class LoaiAdapter extends RecyclerView.Adapter<LoaiAdapter.MyViewHolder> 
                 check[0] = false;
             } else{
                 holder.bgLoai.setBackgroundResource(R.drawable.bg_loai);
-                holder.imgIcon.setAlpha(0.7f);
-                holder.tvNameLoai.setAlpha(0.7f);
+                holder.imgIcon.setAlpha(0.6f);
+                holder.tvNameLoai.setAlpha(0.6f);
                 eventClick.deleteOnClick(loai);
                 check[0] = true;
             }

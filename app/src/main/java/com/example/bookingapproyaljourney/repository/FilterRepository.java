@@ -11,6 +11,7 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
 import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
+import com.example.bookingapproyaljourney.response.order.ListFilterResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
 import retrofit2.Call;
@@ -26,14 +27,14 @@ public class FilterRepository {
 
 
     public void getListFilter(String startPrice, String endPrice, String sao, String idCategory, CallbackFilter callbackFilter) {
-       apiRequest.getListFilter(startPrice,endPrice,sao,idCategory).enqueue(new Callback<CategoryBestForYouResponse>() {
+       apiRequest.getListFilter(startPrice,endPrice,sao,idCategory).enqueue(new Callback<ListFilterResponse>() {
            @Override
-           public void onResponse(Call<CategoryBestForYouResponse> call, Response<CategoryBestForYouResponse> response) {
+           public void onResponse(Call<ListFilterResponse> call, Response<ListFilterResponse> response) {
                callbackFilter.onResponse(response.body());
            }
 
            @Override
-           public void onFailure(Call<CategoryBestForYouResponse> call, Throwable t) {
+           public void onFailure(Call<ListFilterResponse> call, Throwable t) {
                 callbackFilter.onFailure(t);
            }
        });

@@ -24,6 +24,7 @@ import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
+import com.example.bookingapproyaljourney.response.order.ListFilterResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
@@ -157,7 +158,7 @@ public interface ApiRequest {
 
     // filter
     @GET("listFilterProduct/{startPrice}&{endPrice}&{sao}&{idCategory}")
-    Call<CategoryBestForYouResponse> getListFilter(
+    Call<ListFilterResponse> getListFilter(
             @Path("startPrice") String startPrice,
             @Path("endPrice") String endPrice,
             @Path("sao") String sao,

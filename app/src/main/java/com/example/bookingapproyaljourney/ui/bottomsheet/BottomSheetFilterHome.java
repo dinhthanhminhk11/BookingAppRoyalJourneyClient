@@ -38,6 +38,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Callback;
+
 public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnClickListener, LoaiAdapter.EventClick {
     private LinearLayout contentLayout;
     private ImageView imgCancel;
@@ -56,16 +58,18 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
     private Button btnFilter;
     private Context context;
     private NumberFormat fm = new DecimalFormat("#,###");
-    private int giaBd = 250000;
-    private int giaKt = 14000000;
+    private int giaBd = 120000;
+    private int giaKt = 5000000;
     private int sao = 5;
     private List<String> idList = new ArrayList<>();
+    private EventClick eventClick;
+    private String tk = "63437724ee6dd920372f306a,6343772cee6dd920372f306c,63437732ee6dd920372f306e,63437738ee6dd920372f3070,63437740ee6dd920372f3072";
 
 
-
-    public BottomSheetFilterHome(@NonNull Context context, int theme) {
+    public BottomSheetFilterHome(@NonNull Context context, int theme, EventClick eventClick) {
         super(context, theme);
         this.context = context;
+        this.eventClick = eventClick;
     }
 
     @Override
@@ -100,8 +104,8 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
     }
 
     private void initData() {
-        starPrice.setText("250.000 đ");
-        endPrice.setText("14.000.000 đ");
+        starPrice.setText("120.000 đ");
+        endPrice.setText("5.000.000 đ");
         rangeFilter.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
             @Override
             public void onStartTrackingTouch(@NonNull RangeSlider slider) {
@@ -198,7 +202,8 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
         } else if (id == R.id.imgCancel) {
             cancel();
         } else if (id == R.id.btnFilter) {
-            Log.e("zzzzzzzzzzzz", giaBd + "---" + giaKt+"---"+sao +"---"+(idList.toString().substring(1,idList.toString().length() - 1)).replace(" ",""));
+            String idCategory = idList.size()>0 ? (idList.toString().substring(1,idList.toString().length() - 1)).replace(" ",""): tk;
+            eventClick.onCLickFilter(giaBd+"",giaKt+"",sao+"",idCategory);
             dismiss();
         }
     }
@@ -211,5 +216,9 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
     @Override
     public void deleteOnClick(Loai loai) {
         idList.remove(loai.getId());
+    }
+
+    public interface EventClick {
+        void onCLickFilter(String giaBd, String giaKt, String sao, String idLoai);
     }
 }

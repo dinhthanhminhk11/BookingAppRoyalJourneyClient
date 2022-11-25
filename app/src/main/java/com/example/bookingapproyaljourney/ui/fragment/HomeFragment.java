@@ -41,6 +41,7 @@ import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterHome;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
+import com.example.bookingapproyaljourney.view_model.FilterViewModel;
 import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -48,7 +49,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer {
+public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer,BottomSheetFilterHome.EventClick {
     private ResultReceiver resultReceiver;
 
     private static final String ARG_PARAM1 = "param1";
@@ -80,6 +81,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     private RelativeLayout contentBestForYouHomeFragment;
     private LatLng currentUserLocation;
     private BestForYouAdapterNotNull bestForYouAdapterNotNull;
+    private FilterViewModel filterViewModel;
 
     public HomeFragment(Location locationYouSelf) {
         this.locationYouSelf = locationYouSelf;
@@ -127,7 +129,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
 
         recyclerviewListBestForYou.setNestedScrollingEnabled(false);
         recyclerviewNearFromYou.setNestedScrollingEnabled(false);
-
+        filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
         categoryViewModel = new ViewModelProvider(getActivity()).get(CategoryViewModel.class);
         bestForYouAdapter = new BestForYouAdapter(this);
         bestForYouAdapterNotNull = new BestForYouAdapterNotNull(this);
@@ -230,8 +232,26 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     }
 
     private void showDialog() {
-        BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(requireContext(), R.style.MaterialDialogSheet);
+        BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(requireContext(), R.style.MaterialDialogSheet,this);
         bottomSheetFilterHome.show();
         bottomSheetFilterHome.setCanceledOnTouchOutside(false);
+    }
+
+    @Override
+    public void onCLickFilter(String giaBd, String giaKt, String sao, String idLoai) {
+        progressBar.setVisibility(View.VISIBLE);
+        contentTextNearFromYou.setVisibility(View.GONE);
+        contentBestForYouHomeFragment.setVisibility(View.GONE);
+        listCategory.setVisibility(View.GONE);
+        recyclerviewNearFromYou.setVisibility(View.GONE);
+        filterViewModel.filterLiveData(giaBd,giaKt,sao,idLoai).observe(getActivity(), it ->{
+            if(it.getHouses().size()==0){
+                progressBar.setVisibility(View.GONE);
+            }
+            bestForYouAdapterNotNull.setDataHouse(it.getHouses());
+            recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
+            progressBar.setVisibility(View.GONE);
+        });
+
     }
 }
