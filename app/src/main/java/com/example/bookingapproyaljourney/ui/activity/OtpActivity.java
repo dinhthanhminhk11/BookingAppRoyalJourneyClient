@@ -29,6 +29,7 @@ import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.bookingapproyaljourney.view_model.VerifyViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 public class OtpActivity extends AppCompatActivity {
 
@@ -93,11 +94,21 @@ public class OtpActivity extends AppCompatActivity {
                 if (testResponse.isStatus()) {
                     viewModel.login(mail, pass);
                 } else {
-                    ToastCheck toastCheck = new ToastCheck(OtpActivity.this, R.style.StyleToast,
-                            "OTP không chính xác",
-                            "Bạn hãy kiểm tra lại mã OTP chúng tôi đã gửi trong email của bạn",
-                            R.drawable.ic_warning_icon_check);
-                    Log.e("sads",testResponse.getMessage());
+                    CookieBar.build(OtpActivity.this)
+                            .setTitle("OTP không chính xác")
+                            .setMessage("Bạn hãy kiểm tra lại mã OTP chúng tôi đã gửi trong email của bạn")
+                            .setIcon(R.drawable.ic_warning_icon_check)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
+//                    ToastCheck toastCheck = new ToastCheck(OtpActivity.this, R.style.StyleToast,
+//                            "OTP không chính xác",
+//                            "Bạn hãy kiểm tra lại mã OTP chúng tôi đã gửi trong email của bạn",
+//                            R.drawable.ic_warning_icon_check);
+//                    Log.e("sads",testResponse.getMessage());
                 }
             }
         });
@@ -127,6 +138,21 @@ public class OtpActivity extends AppCompatActivity {
                 Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        String check = getIntent().getStringExtra("CheckSuccess");
+        if (!(check == null)){
+            if (check.equals("LoginActivity")){
+                CookieBar.build(OtpActivity.this)
+                        .setTitle("Tài khoản của bạn chưa xác thực email")
+                        .setMessage("Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn")
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+            }
+        }
     }
 
     private Boolean validateinfo(String otp) {

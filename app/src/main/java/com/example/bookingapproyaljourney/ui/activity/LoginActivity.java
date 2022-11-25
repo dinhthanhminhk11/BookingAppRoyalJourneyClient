@@ -26,6 +26,7 @@ import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 public class LoginActivity extends AppCompatActivity {
     private ConstraintLayout contentView;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private UserLogin userLogin;
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+    private String checkStartDateResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,12 +120,22 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("CheckSuccess", "LoginResultSuccess");
                     startActivity(intent);
                 } else {
-                    ToastCheck toastCheck = new ToastCheck(LoginActivity.this, R.style.StyleToast,
-//                            this.getString(R.string.dialogstartdate),
-                            "Tài khoản của bạn chưa xác thực email",
-//                            this.getString(R.string.dialogcontentnomal),
-                            "Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn",
-                            R.drawable.ic_warning_icon_check);
+                    CookieBar.build(LoginActivity.this)
+                            .setTitle("Tài khoản của bạn chưa xác thực email")
+                            .setMessage("Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn")
+                            .setIcon(R.drawable.ic_warning_icon_check)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
+//                    ToastCheck toastCheck = new ToastCheck(LoginActivity.this, R.style.StyleToast,
+////                            this.getString(R.string.dialogstartdate),
+//                            "Tài khoản của bạn chưa xác thực email",
+////                            this.getString(R.string.dialogcontentnomal),
+//                            "Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn",
+//                            R.drawable.ic_warning_icon_check);
 
 //                    Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
