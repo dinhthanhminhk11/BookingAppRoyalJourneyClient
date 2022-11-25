@@ -33,8 +33,7 @@ public class MyFirebaseService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // handle a notification payload.
-        if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getTitle());
+        if (remoteMessage.getData() != null) {
             sendNotification(remoteMessage);
         }
     }
@@ -50,11 +49,26 @@ public class MyFirebaseService extends FirebaseMessagingService {
     }
 
     private void sendNotification(RemoteMessage remoteMessage) {
+        String idOder = (String) remoteMessage.getData().get("idOder");
+        String image = (String) remoteMessage.getData().get("image");
+        String title = (String) remoteMessage.getData().get("title");
+        String body = (String) remoteMessage.getData().get("body");
 
-        Intent acceptIntent = createIntent();
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
+        Log.e("MinhNoti" , title);
+        Log.e("MinhNoti" , body);
+        Intent acceptIntent = createIntent(idOder);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            pendingIntent = PendingIntent.getActivity
+                    (this, 0, acceptIntent, PendingIntent.FLAG_MUTABLE);
+        }
+        else
+        {
+            pendingIntent = PendingIntent.getActivity
+                    (this, 0, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
+        }
 
-        String name = (String) remoteMessage.getData().get("text");
 
         String channelId = getString(R.string.project_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -63,22 +77,21 @@ public class MyFirebaseService extends FirebaseMessagingService {
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.ic_icon_logo_app)
                         .setColor(getResources().getColor(R.color.blue))
-                        .setLargeIcon(getBitmapFromURL("https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-6/301570226_821753485488801_359795053301422296_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=174925&_nc_ohc=P_yzIwHd75YAX-Lwhfs&_nc_ht=scontent.fhan14-1.fna&oh=00_AfAPWdELdPYV-2toWKTikvdLyAPtLsDbyVEVTm7HvVaSWA&oe=63842B84"))
-                        .setContentTitle(remoteMessage.getNotification().getTitle())
-//                        .setContentTitle(name)
-                        .setContentText(remoteMessage.getNotification().getBody())
+                        .setLargeIcon(getBitmapFromURL(image))
+                        .setContentTitle(title)
+                        .setContentText(body)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent)
                         .setDefaults(Notification.DEFAULT_ALL)
-                        .setPriority(NotificationManager.IMPORTANCE_HIGH);
+                        .setPriority(NotificationCompat.PRIORITY_HIGH);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         // Since android Oreo notification channel is needed.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     channelId,
                     "Channel human readable title",
-                    NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager.IMPORTANCE_HIGH);
 
             notificationManager.createNotificationChannel(channel);
         }
@@ -95,15 +108,14 @@ public class MyFirebaseService extends FirebaseMessagingService {
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
             return myBitmap;
         } catch (IOException e) {
-            // Log exception
             return null;
         }
     }
 
-    private Intent createIntent() {
+    private Intent createIntent(String idOrder) {
         Intent intent = new Intent(this, StatusBillActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(AppConstant.ID_ORDER, "RJ2019382");
+        intent.putExtra(AppConstant.ID_ORDER, idOrder);
         return intent;
     }
 }

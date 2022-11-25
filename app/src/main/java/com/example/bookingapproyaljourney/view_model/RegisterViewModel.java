@@ -25,9 +25,9 @@ public class RegisterViewModel extends AndroidViewModel {
         userRepository = new UserRepository();
     }
 
-    public void register(String fullName, String email, String password, String registerSuccess, String registerFailed) {
+    public void register(String fullName, String email, String password, String registerSuccess, String registerFailed,String tokenDevice) {
         mProgressMutableData.postValue(View.VISIBLE);
-        userRepository.getUserRegister(new UserRegister(fullName, email, password), new UserRepository.InterfaceResponseRegister() {
+        userRepository.getUserRegister(new UserRegister(fullName, email, password, tokenDevice), new UserRepository.InterfaceResponseRegister() {
             @Override
             public void onFailureRegister(Throwable t) {
                 mProgressMutableData.postValue(View.INVISIBLE);
@@ -42,7 +42,6 @@ public class RegisterViewModel extends AndroidViewModel {
                 Log.e("MinhRegister", registerResponse.getEmail());
                 Log.e("MinhRegister", registerResponse.getMessage());
                 Log.e("MinhRegister", registerResponse.getStatus());
-
             }
         });
     }

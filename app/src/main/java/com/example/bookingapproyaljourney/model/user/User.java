@@ -22,7 +22,8 @@ public class User {
     private boolean active;
     @SerializedName("countBooking")
     private int countBooking;
-
+    @SerializedName("tokenDevice")
+    private String tokenDevice;
     public User() {
     }
 
@@ -92,6 +93,26 @@ public class User {
 
     public int getCountBooking() {
         return countBooking;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setCountBooking(int countBooking) {
+        this.countBooking = countBooking;
+    }
+
+    public String getTokenDevice() {
+        return tokenDevice;
+    }
+
+    public void setTokenDevice(String tokenDevice) {
+        this.tokenDevice = tokenDevice;
     }
 
     @Override

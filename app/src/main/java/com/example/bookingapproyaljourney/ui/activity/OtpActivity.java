@@ -116,7 +116,7 @@ public class OtpActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                 editor.commit();
-                Toast.makeText(OtpActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(OtpActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(OtpActivity.this, CongratsActivity.class));
             }
         });

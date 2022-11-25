@@ -1,7 +1,5 @@
 package com.example.bookingapproyaljourney;
 
-import static android.content.ContentValues.TAG;
-
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -116,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private TextView btnCancel;
     private Button logOut;
     private LoginViewModel loginViewModel;
+    private String token1 = "";
 
     public void setCallDialog(CallDialog callDialog) {
         this.callDialog = callDialog;
@@ -133,6 +132,20 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         nameCity = (TextView) findViewById(R.id.nameCity);
         nameAddress = (TextView) findViewById(R.id.nameAddress);
         resultReceiver = new AddressResultReceiver(new Handler());
+
+
+
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            return;
+//                        }
+//                        token1 = task.getResult();
+//                    }
+//                });
+
 
 //        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
 //            setTheme(R.style.Theme_BookingAppRoyalJourney_Dark);
@@ -248,7 +261,9 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             loginViewModel.getUserByToken(token);
         }
 
-        getTokenDeviceFireBase();
+//        new Handler().postDelayed( () -> {
+//            Log.d("MinhtokenFirebase", token1.toString());
+//        } , 1000);
 
     }
 
@@ -520,21 +535,5 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         }
                     }
                 }, Looper.getMainLooper());
-
-    }
-
-    public void getTokenDeviceFireBase() {
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-                        String token = task.getResult();
-                        Log.d("MinhtokenFirebase", token);
-                    }
-                });
     }
 }
