@@ -18,6 +18,7 @@ import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
+import com.example.bookingapproyaljourney.response.CategoryResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
@@ -153,5 +154,14 @@ public interface ApiRequest {
 
     @DELETE("deleteOrderById/{id}")
     Call<OrderStatusResponse> deleteOrderById(@Path("id") String id);
+
+    // filter
+    @GET("listFilterProduct/{startPrice}&{endPrice}&{sao}&{idCategory}")
+    Call<CategoryBestForYouResponse> getListFilter(
+            @Path("startPrice") String startPrice,
+            @Path("endPrice") String endPrice,
+            @Path("sao") String sao,
+            @Path("idCategory") String idCategory
+    );
 
 }

@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.Convenient;
+import com.example.bookingapproyaljourney.model.house.Loai;
 import com.example.bookingapproyaljourney.ui.adapter.FacilitiesAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.LoaiAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.SortedByAdapter;
@@ -37,7 +38,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnClickListener {
+public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnClickListener, LoaiAdapter.EventClick {
     private LinearLayout contentLayout;
     private ImageView imgCancel;
     private TextView tvReset;
@@ -56,8 +57,10 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
     private Context context;
     private NumberFormat fm = new DecimalFormat("#,###");
     private int giaBd = 250000;
-    private int giaKt=14000000;
+    private int giaKt = 14000000;
     private int sao = 5;
+    private List<String> idList = new ArrayList<>();
+
 
 
     public BottomSheetFilterHome(@NonNull Context context, int theme) {
@@ -108,17 +111,17 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             @Override
             public void onStopTrackingTouch(@NonNull RangeSlider slider) {
                 giaBd = (int) slider.getValues().get(0).floatValue();
-                giaKt= (int) slider.getValues().get(1).floatValue();
+                giaKt = (int) slider.getValues().get(1).floatValue();
             }
         });
-        List<Category> list = new ArrayList<>();
-        list.add(new Category(R.drawable.house+"", "Nhà Ở"));
-        list.add(new Category(R.drawable.resort+"", "Chung Cư"));
-        list.add(new Category(R.drawable.hotels+"", "Khách Sạn"));
-        list.add(new Category(R.drawable.villa+"", "Villa"));
-        list.add(new Category(R.drawable.cabin+"", "Nhà Tranh"));
-        rcvLoaiPhong.setAdapter(new LoaiAdapter(list));
-        rcvLoaiPhong.setLayoutManager(new GridLayoutManager(context,2));
+        List<Loai> list = new ArrayList<>();
+        list.add(new Loai("63437724ee6dd920372f306a", "Nhà Ở", R.drawable.house + ""));
+        list.add(new Loai("6343772cee6dd920372f306c", "Chung Cư", R.drawable.resort + ""));
+        list.add(new Loai("63437732ee6dd920372f306e", "Khách Sạn", R.drawable.hotels + ""));
+        list.add(new Loai("63437738ee6dd920372f3070", "Villa", R.drawable.villa + ""));
+        list.add(new Loai("63437740ee6dd920372f3072", "Nhà Tranh", R.drawable.cabin + ""));
+        rcvLoaiPhong.setAdapter(new LoaiAdapter(list, this));
+        rcvLoaiPhong.setLayoutManager(new GridLayoutManager(context, 2));
 
     }
 
@@ -135,8 +138,8 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             @SuppressLint("SetTextI18n")
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
-                starPrice.setText(fm.format(slider.getValues().get(0).floatValue()) +" đ");
-                endPrice.setText(fm.format(slider.getValues().get(1).floatValue()) +" đ");
+                starPrice.setText(fm.format(slider.getValues().get(0).floatValue()) + " đ");
+                endPrice.setText(fm.format(slider.getValues().get(1).floatValue()) + " đ");
             }
         });
     }
@@ -152,7 +155,7 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             imgStar4.setImageResource(R.drawable.ic_star_aphal);
             imgStar5.setImageResource(R.drawable.ic_star_aphal);
             tvCountStart.setText("1.0+");
-            sao =1;
+            sao = 1;
         } else if (id == R.id.imgStar2) {
             imgStar1.setImageResource(R.drawable.ic_star_1);
             imgStar2.setImageResource(R.drawable.ic_star_1);
@@ -160,7 +163,7 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             imgStar4.setImageResource(R.drawable.ic_star_aphal);
             imgStar5.setImageResource(R.drawable.ic_star_aphal);
             tvCountStart.setText("2.0+");
-            sao =2;
+            sao = 2;
         } else if (id == R.id.imgStar3) {
             imgStar1.setImageResource(R.drawable.ic_star_1);
             imgStar2.setImageResource(R.drawable.ic_star_1);
@@ -168,7 +171,7 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             imgStar4.setImageResource(R.drawable.ic_star_aphal);
             imgStar5.setImageResource(R.drawable.ic_star_aphal);
             tvCountStart.setText("3.0+");
-            sao =3;
+            sao = 3;
         } else if (id == R.id.imgStar4) {
             imgStar1.setImageResource(R.drawable.ic_star_1);
             imgStar2.setImageResource(R.drawable.ic_star_1);
@@ -176,7 +179,7 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             imgStar4.setImageResource(R.drawable.ic_star_1);
             imgStar5.setImageResource(R.drawable.ic_star_aphal);
             tvCountStart.setText("4.0+");
-            sao =4;
+            sao = 4;
         } else if (id == R.id.imgStar5) {
             imgStar1.setImageResource(R.drawable.ic_star_1);
             imgStar2.setImageResource(R.drawable.ic_star_1);
@@ -184,15 +187,29 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             imgStar4.setImageResource(R.drawable.ic_star_1);
             imgStar5.setImageResource(R.drawable.ic_star_1);
             tvCountStart.setText("5.0+");
-            sao =5;
-        }else if (id == R.id.tvReset){
+            sao = 5;
+        } else if (id == R.id.tvReset) {
             onCreate(null);
-        }
-        else if (id == R.id.imgCancel) {
+            giaBd = 250000;
+            giaKt = 14000000;
+            sao = 5;
+            idList.clear();
+
+        } else if (id == R.id.imgCancel) {
             cancel();
-        }else if (id == R.id.btnFilter){
-            Log.e("zzzzzzzzzzzz", giaBd +"---"+giaKt );
+        } else if (id == R.id.btnFilter) {
+            Log.e("zzzzzzzzzzzz", giaBd + "---" + giaKt+"---"+sao +"---"+(idList.toString().substring(1,idList.toString().length() - 1)).replace(" ",""));
+            dismiss();
         }
     }
 
+    @Override
+    public void onClick(Loai loai) {
+        idList.add(loai.getId());
+    }
+
+    @Override
+    public void deleteOnClick(Loai loai) {
+        idList.remove(loai.getId());
+    }
 }
