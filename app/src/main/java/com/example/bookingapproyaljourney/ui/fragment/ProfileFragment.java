@@ -143,7 +143,7 @@ public class ProfileFragment extends Fragment {
                         .centerCrop()
                         .placeholder(R.drawable.img)
                         .error(R.drawable.img);
-                Glide.with(getActivity()).load(s.getUser().getImage()).apply(options).into(imageProfile);
+                Glide.with(getContext()).load(s.getUser().getImage()).apply(options).into(imageProfile);
             }
         });
 

@@ -1,7 +1,15 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +21,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentListOrderAllBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
@@ -32,8 +41,10 @@ public class ListOrderAllFragment extends Fragment {
     private OrderViewModel orderViewModel;
     private FragmentListOrderAllBinding binding;
     private OrderAdapter adapter;
+    private CallbackOrderClick callbackOrderClick;
 
-    public ListOrderAllFragment() {
+    public ListOrderAllFragment(CallbackOrderClick callbackOrderClick) {
+       this.callbackOrderClick = callbackOrderClick;
     }
 
     @Override
@@ -60,6 +71,13 @@ public class ListOrderAllFragment extends Fragment {
     }
 
     private void initView(View view) {
+        Spannable wordtoSpan = new SpannableString("Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp");
+
+//        wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wordtoSpan.setSpan(new UnderlineSpan(), 53, 80,  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        wordtoSpan.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        binding.textHelps.setText(wordtoSpan);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.getOrderByIdUser(UserClient.getInstance().getId());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
@@ -90,6 +108,14 @@ public class ListOrderAllFragment extends Fragment {
                     binding.recyclerView.setAdapter(adapter);
                 }
             }
+        });
+
+        binding.btnSearch.setOnClickListener(v -> {
+            callbackOrderClick.clickHome();
+        });
+
+        binding.textHelps.setOnClickListener(v -> {
+            callbackOrderClick.clickHelps();
         });
     }
 

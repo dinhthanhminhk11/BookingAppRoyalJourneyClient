@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:lines="3"
-            android:text="Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây?Truy cập Trung tâm trợ giúp"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="15dp" />
 

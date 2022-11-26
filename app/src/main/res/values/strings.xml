@@ -40,9 +40,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="location_homeFragment">Location</string>
     <string name="titleSearch_homeFragment">Địa chỉ tìm kiếm, hoặc gần bạn</string>
-    <string name="NearFromYou_homeFragment">Near from you</string>
-    <string name="SeeMore_homeFragment">See more</string>
-    <string name="BestForYou_homeFragment">Best for you</string>
+    <string name="NearFromYou_homeFragment">Gần bạn nhất</string>
+    <string name="SeeMore_homeFragment">Xem thêm</string>
+    <string name="BestForYou_homeFragment">Tốt cho bạn</string>
     <string name="Vuotsangphaishowmenu_fragmentText">Vuốt sang phải để show menu</string>
     <string name="OrchadHouse_itemBestforyou">Orchad House</string>
     <string name="Rp_itemBestForYou">Rp. 25000</string>

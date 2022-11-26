@@ -41,6 +41,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.callback.CallDialog;
+import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
@@ -76,7 +77,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener, CallbackOrderClick {
 
     private static final int POS_HOME = 0;
     private static final int POS_PROFILE = 1;
@@ -360,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 nameAddress.setVisibility(View.VISIBLE);
                 nameCity.setVisibility(View.GONE);
                 nameAddress.setText("Chuyến đi của bạn");
-                showFragment(new ListOrderAllFragment());
+                showFragment(new ListOrderAllFragment(this));
             }
             login.setOnClickListener(v -> {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -457,6 +458,16 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 Toast.makeText(this, "Bạn không cho phép truy cập vị trí", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void clickHome() {
+        adapter.setSelected(POS_HOME);
+    }
+
+    @Override
+    public void clickHelps() {
+        adapter.setSelected(POS_HELP);
     }
 
     private class AddressResultReceiver extends ResultReceiver {
