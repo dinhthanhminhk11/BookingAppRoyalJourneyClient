@@ -10,9 +10,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
+import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
+import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.repository.UserRepository;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
@@ -34,7 +36,7 @@ public class LoginViewModel extends AndroidViewModel {
         userRepository.getUser(new UserLogin(username, password), new UserRepository.InterfaceResponse() {
             @Override
             public void onResponse(LoginResponse loginResponse) {
-                mProgressMutableData.postValue(View.INVISIBLE);
+                mProgressMutableData.postValue(View.GONE);
                 mLoginResultMutableData.postValue(loginSuccess);
                 mLoginResultMutableDataToKen.postValue(loginResponse);
                 UserClient userClient = UserClient.getInstance();
@@ -57,7 +59,7 @@ public class LoginViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Throwable t) {
-                mProgressMutableData.postValue(View.INVISIBLE);
+                mProgressMutableData.postValue(View.GONE);
                 mLoginResultMutableData.postValue(loginFail);
             }
         });
@@ -68,7 +70,7 @@ public class LoginViewModel extends AndroidViewModel {
         userRepository.getUserByToken(token, new UserRepository.InterfaceResponse() {
             @Override
             public void onResponse(LoginResponse loginResponse) {
-                mProgressMutableData.postValue(View.INVISIBLE);
+                mProgressMutableData.postValue(View.GONE);
                 mLoginResultMutableDataToKen.postValue(loginResponse);
                 UserClient userClient = UserClient.getInstance();
                 userClient.setEmail(loginResponse.getUser().getEmail());
@@ -92,8 +94,23 @@ public class LoginViewModel extends AndroidViewModel {
         userRepository.sendAgain(email, new CallSendAgain() {
             @Override
             public void onResponse(TestResponse testResponse) {
-                mProgressMutableData.postValue(View.INVISIBLE);
+                mProgressMutableData.postValue(View.GONE);
 //                sendAgainTestResponse.postValue(testResponse);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+    }
+
+    public void updateTokenDevice(UserRequestTokenDevice userRequestTokenDevice){
+        mProgressMutableData.postValue(View.VISIBLE);
+        userRepository.updateTokenDevice(userRequestTokenDevice, new CallbackTokenDevice() {
+            @Override
+            public void onResponse(TestResponse testResponse) {
+                mProgressMutableData.postValue(View.GONE);
             }
 
             @Override

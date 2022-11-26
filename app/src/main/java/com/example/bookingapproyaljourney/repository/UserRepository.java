@@ -1,21 +1,16 @@
 package com.example.bookingapproyaljourney.repository;
 
-import android.util.Log;
-
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
-import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Email;
-import com.example.bookingapproyaljourney.model.user.User;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
+import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -69,7 +64,7 @@ public class UserRepository {
         });
     }
 
-    public void getUserByToken(String token , InterfaceResponse interfaceLoginResponse){
+    public void getUserByToken(String token, InterfaceResponse interfaceLoginResponse) {
         Call<LoginResponse> loginResponseCall = apiRequest.getUserByToken(token);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
@@ -101,7 +96,7 @@ public class UserRepository {
         void onResponseRegister(RegisterResponse registerResponse);
     }
 
-    public void sendAgain(Email email , CallSendAgain callSendAgain){
+    public void sendAgain(Email email, CallSendAgain callSendAgain) {
         Call<TestResponse> testResponseCall = apiRequest.sendAgain(email);
         testResponseCall.enqueue(new Callback<TestResponse>() {
             @Override
@@ -118,6 +113,23 @@ public class UserRepository {
                 callSendAgain.onFailure(t);
             }
         });
+    }
 
+    public void updateTokenDevice(UserRequestTokenDevice userRequestTokenDevice, CallbackTokenDevice callbackTokenDevice) {
+        apiRequest.updateTokenDevice(userRequestTokenDevice).enqueue(new Callback<TestResponse>() {
+            @Override
+            public void onResponse(Call<TestResponse> call, Response<TestResponse> response) {
+                if (response.isSuccessful()) {
+                    callbackTokenDevice.onResponse(response.body());
+                } else {
+                    callbackTokenDevice.onFailure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TestResponse> call, Throwable t) {
+                callbackTokenDevice.onFailure(t);
+            }
+        });
     }
 }

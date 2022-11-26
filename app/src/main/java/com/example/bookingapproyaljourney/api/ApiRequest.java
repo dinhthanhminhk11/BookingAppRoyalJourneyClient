@@ -15,10 +15,10 @@ import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
+import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
-import com.example.bookingapproyaljourney.response.CategoryResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
@@ -164,5 +164,8 @@ public interface ApiRequest {
             @Path("sao") String sao,
             @Path("idCategory") String idCategory
     );
+
+    @POST("updateCheckTokenDevice")
+    Call<TestResponse> updateTokenDevice(@Body UserRequestTokenDevice userRequestTokenDevice);
 
 }

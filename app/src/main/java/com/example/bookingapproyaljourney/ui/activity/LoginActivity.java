@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -23,10 +24,13 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
+import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.response.LoginResponse;
-import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarytoastcustom.CookieBar;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class LoginActivity extends AppCompatActivity {
     private ConstraintLayout contentView;
@@ -46,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
     private String checkStartDateResponse;
+    private String tokenDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +68,25 @@ public class LoginActivity extends AppCompatActivity {
         textView3 = (TextView) findViewById(R.id.textView3);
         tvSignUp = (TextView) findViewById(R.id.tvSignUp);
         progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
+
         SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+                        String token = task.getResult();
+                        tokenDevice = token;
+                        Log.d("MinhtokenFirebase", token);
+                    }
+                });
 
         binding.back.setOnClickListener(v -> {
             onBackPressed();
@@ -111,15 +130,22 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(LoginResponse loginResponse) {
                 if (loginResponse.getUser().isActive()) {
+                    Log.e("MinhCooking", loginResponse.getUser().getId().toString());
+
+                    if (!loginResponse.getUser().getTokenDevice().equals(tokenDevice)) {
+                        loginViewModel.updateTokenDevice(new UserRequestTokenDevice(loginResponse.getUser().get_id(), tokenDevice));
+                    }
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                     editor.putString(AppConstant.ID_USER, loginResponse.getUser().getId());
                     editor.commit();
+
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("CheckSuccess", "LoginResultSuccess");
                     startActivity(intent);
                 } else {
+
                     CookieBar.build(LoginActivity.this)
                             .setTitle("Tài khoản của bạn chưa xác thực email")
                             .setMessage("Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn")
