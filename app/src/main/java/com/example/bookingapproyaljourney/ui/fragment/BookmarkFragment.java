@@ -1,6 +1,11 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +90,14 @@ public class BookmarkFragment extends Fragment {
     }
 
     private void initView() {
+        Spannable wordtoSpan = new SpannableString("Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp");
+
+//        wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wordtoSpan.setSpan(new UnderlineSpan(), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        wordtoSpan.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        binding.textHelps.setText(wordtoSpan);
+
         bookmarkViewModel = new ViewModelProvider(this).get(BookmarkViewModel.class);
         bookmarkViewModel.getListBookmarkById(UserClient.getInstance().getId());
 
@@ -92,6 +105,11 @@ public class BookmarkFragment extends Fragment {
         bookmarkViewModel.getBookmarkResponseMutableLiveData().observe(getActivity(), new Observer<BookmarkResponse>() {
             @Override
             public void onChanged(BookmarkResponse bookmarkResponse) {
+                if (bookmarkResponse.getData().size() > 0) {
+                    binding.contentNullList.setVisibility(View.GONE);
+                } else {
+                    binding.contentNullList.setVisibility(View.VISIBLE);
+                }
                 bookmarkAdapter = new BookmarkAdapter(bookmarkResponse.getData(), new BookmarkAdapter.Callback() {
                     @Override
                     public void onLoading(Integer integer) {
