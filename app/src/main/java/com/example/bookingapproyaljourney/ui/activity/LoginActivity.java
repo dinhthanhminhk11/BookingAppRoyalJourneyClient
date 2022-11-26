@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("MinhCooking", loginResponse.getUser().getId().toString());
 
                     if (!loginResponse.getUser().getTokenDevice().equals(tokenDevice)) {
-                        loginViewModel.updateTokenDevice(new UserRequestTokenDevice(loginResponse.getUser().get_id(), tokenDevice));
+                        loginViewModel.updateTokenDevice(new UserRequestTokenDevice(loginResponse.getUser().getId(), tokenDevice));
                     }
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                     editor.putString(AppConstant.ID_USER, loginResponse.getUser().getId());
