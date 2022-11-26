@@ -61,7 +61,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:4.1.0'
 
     // socket
-    implementation ('io.socket:socket.io-client:2.0.1') {
+    implementation('io.socket:socket.io-client:2.0.1') {
         exclude group: 'org.json', module: 'json'
     }
 
@@ -72,5 +72,14 @@ dependencies {
     def lifecycle_version = "2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+// picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+// cloudinary
+    implementation 'com.cloudinary:cloudinary-android:2.2.0'
+// circle ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+// image picker
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
 
 }
