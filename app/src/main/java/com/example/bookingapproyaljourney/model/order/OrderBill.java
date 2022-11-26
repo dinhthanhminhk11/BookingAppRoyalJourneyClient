@@ -27,6 +27,7 @@ public class OrderBill {
     private String reasonUser;
     private boolean isCancellationDate;
     private boolean isSuccess;
+    private boolean checkedOut;
     public String getReasonHost() {
         return reasonHost;
     }
@@ -117,5 +118,9 @@ public class OrderBill {
 
     public boolean isSuccess() {
         return isSuccess;
+    }
+
+    public boolean isCheckedOut() {
+        return checkedOut;
     }
 }

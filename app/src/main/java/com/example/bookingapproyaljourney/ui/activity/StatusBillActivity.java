@@ -164,6 +164,12 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.cancelRequest.setVisibility(View.VISIBLE);
                     binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ của bạn sẽ có người gọi đến để xác nhận cho bạn");
+                } else if(orderResponse.getStatus().equals("Đã trả phòng") && orderResponse.isCheckedOut()){
+                    binding.btnPay.setVisibility(View.GONE);
+                    binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.textConfirm.setText("Bạn đã trả phòng cảm ơn bạn đã sửa dụng dịch vụ của chúng tôi");
+                    binding.btnDelete.setVisibility(View.GONE);
+                    binding.btnFeedback.setVisibility(View.VISIBLE);
                 }
             }
         });

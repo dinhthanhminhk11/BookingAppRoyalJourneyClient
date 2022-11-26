@@ -21,6 +21,7 @@ public class OrderListResponse {
     private String time;
     private boolean isCancellationDate;
     private boolean isBackingPercent;
+    private boolean checkedOut;
     public String getIdOder() {
         return idOder;
     }
@@ -99,5 +100,9 @@ public class OrderListResponse {
 
     public boolean isBackingPercent() {
         return isBackingPercent;
+    }
+
+    public boolean isCheckedOut() {
+        return checkedOut;
     }
 }

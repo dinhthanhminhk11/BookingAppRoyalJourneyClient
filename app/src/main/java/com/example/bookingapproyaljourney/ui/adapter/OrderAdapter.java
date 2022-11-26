@@ -69,8 +69,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             }else  if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && !item.isBackingPercent()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
+            }else if(item.getStatus().equals("Đã trả phòng") && item.isCheckedOut()){
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_checkout);
+                holder.itemOrderListBinding.status.setText(item.getStatus());
             }
-
             else {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_pendding);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
