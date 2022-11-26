@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/libraryAutoimageSlider" />
             <option value="$PROJECT_DIR$/libraryCireleImage" />
+            <option value="$PROJECT_DIR$/libraryImagePicker" />
             <option value="$PROJECT_DIR$/libraryNav" />
             <option value="$PROJECT_DIR$/libraryToastCustom" />
           </set>
