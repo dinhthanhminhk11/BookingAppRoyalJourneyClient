@@ -24,7 +24,7 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarycireleimage.CircleImageView;
-import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.example.libraryimagepicker.ImagePicker;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -152,11 +152,15 @@ public class EditProfile extends AppCompatActivity {
 
     //  put dia chi clouldy
     private void initCongif() {
-        Map config = new HashMap();
-        config.put("cloud_name", "dphlpcxrq");
-        config.put("api_key", "234574664596899");
-        config.put("api_secret", "qRHVXqdqyJHBvv4nhZWMQBv1oe0");
-        MediaManager.init(this, config);
+        try {
+            Map config = new HashMap();
+            config.put("cloud_name", "dphlpcxrq");
+            config.put("api_key", "234574664596899");
+            config.put("api_secret", "qRHVXqdqyJHBvv4nhZWMQBv1oe0");
+            MediaManager.init(this, config);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

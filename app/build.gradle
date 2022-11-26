@@ -42,10 +42,10 @@ dependencies {
     implementation project(path: ':libraryNav')
     implementation project(path: ':libraryNav')
     implementation project(path: ':libraryAutoimageSlider')
+    implementation project(path: ':libraryImagePicker')
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation project(path: ':libraryToastCustom')
     implementation 'com.google.firebase:firebase-messaging:23.1.0'
-    implementation project(path: ':libraryImagePicker')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -76,7 +76,6 @@ dependencies {
 
 // cloudinary
     implementation 'com.cloudinary:cloudinary-android:2.2.0'
-// image picker
-    implementation 'com.github.dhaval2404:imagepicker:2.1'
-
+//// image picker
+//    implementation 'com.github.dhaval2404:imagepicker:2.1'
 }
