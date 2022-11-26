@@ -184,8 +184,8 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         binding.contentPayOffline.setOnClickListener(v -> {
             if (UserClient.getInstance().getCountBooking() < 4) {
                 CookieBar.build(BillOderActivity.this)
-                        .setTitle("Xin lỗi bạn chưa đủ uy tín")
-                        .setMessage("Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này")
+                        .setTitle(this.getString(R.string.BillOder_add_uy_tin))
+                        .setMessage(this.getString(R.string.BillOder_add_uy_tin_5))
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -251,8 +251,8 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 if (isChecked) {
                     if (UserClient.getInstance().getCountBooking() < 4) {
                         CookieBar.build(BillOderActivity.this)
-                                .setTitle("Xin lỗi bạn chưa đủ uy tín")
-                                .setMessage("Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này")
+                                .setTitle(BillOderActivity.this.getString(R.string.BillOder_add_uy_tin))
+                                .setMessage(BillOderActivity.this.getString(R.string.BillOder_add_uy_tin_5))
                                 .setIcon(R.drawable.ic_warning_icon_check)
                                 .setTitleColor(R.color.black)
                                 .setMessageColor(R.color.black)
@@ -268,7 +268,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     binding.contentPayment.setVisibility(View.GONE);
                     binding.payOnline.setChecked(false);
                     binding.payOfflinePercent.setChecked(false);
-                    binding.textCancel.setText("Huỷ trước ngày " + houseDetailResponse.getCancellatioDate() + " để được hoàn lại một phần tiền");
+                    binding.textCancel.setText(BillOderActivity.this.getString(R.string.Billoder_date_cancel) + houseDetailResponse.getCancellatioDate() + BillOderActivity.this.getString(R.string.Billoder_date_cancel_1));
                 } else {
 
                 }
@@ -328,7 +328,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     try {
                         if (sdf.parse(checkStartDate).before((sdf.parse(checkStartDateResponse)))) {
                             CookieBar.build(BillOderActivity.this)
-                                    .setTitle("Chủ nhà chỉ cho phép nhận phòng từ ngày " + checkStartDateResponse)
+                                    .setTitle(BillOderActivity.this.getString(R.string.BillOder_host_received_date) + checkStartDateResponse)
                                     .setMessage(BillOderActivity.this.getString(R.string.dialogcontentnomal))
                                     .setIcon(R.drawable.ic_warning_icon_check)
                                     .setTitleColor(R.color.black)
@@ -340,7 +340,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                             return;
                         } else if (sdf.parse(checkEndDate).after((sdf.parse(checkEndDateResponse)))) {
                             CookieBar.build(BillOderActivity.this)
-                                    .setTitle("Chủ nhà chỉ cho phép trả phòng vào ngày " + checkEndDateResponse)
+                                    .setTitle(BillOderActivity.this.getString(R.string.BillOder_add_pay_day) + checkEndDateResponse)
                                     .setMessage(BillOderActivity.this.getString(R.string.dialogcontentnomal))
                                     .setIcon(R.drawable.ic_warning_icon_check)
                                     .setTitleColor(R.color.black)
@@ -397,7 +397,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 return;
             } else if (binding.person.getText().toString().equals(this.getString(R.string.limitperson))) {
                 CookieBar.build(this)
-                        .setTitle("Thêm số lượng khách thuê của bạn để tiếp tục")
+                        .setTitle(this.getString(R.string.BillOder_add_amount))
                         .setMessage(this.getString(R.string.dialogcontentnomal))
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
@@ -409,7 +409,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 return;
             } else if (binding.textPayment.getText().toString().equals(this.getString(R.string.textpayment)) && TYPE_PAYMENT == 1) {
                 CookieBar.build(this)
-                        .setTitle("Thêm thẻ thanh toán của bạn để tiếp tục")
+                        .setTitle(this.getString(R.string.BillOder_add_card))
                         .setMessage(this.getString(R.string.dialogcontentnomal))
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
@@ -420,7 +420,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         .show();
             } else if (binding.phone.getText().toString().equals(this.getString(R.string.nullphone))) {
                 CookieBar.build(this)
-                        .setTitle("Thêm số điện thoại của bạn để tiếp tục")
+                        .setTitle(this.getString(R.string.BillOder_add_phone_number))
                         .setMessage(this.getString(R.string.dialogcontentnomal))
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
@@ -485,10 +485,10 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     private boolean validateinfo(String phone) {
         if (phone.length() == 0) {
             binding.edPhone.requestFocus();
-            binding.edPhone.setError("xin nhãy nhập số điện thoại");
+            binding.edPhone.setError(this.getString(R.string.BillOder_add_phone_number_check));
         } else if (!phone.matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
             binding.edPhone.requestFocus();
-            binding.edPhone.setError("Xin hãy sử dụng số điện thoại khu vực việt nam");
+            binding.edPhone.setError(this.getString(R.string.BillOder_add_phone_number_check_1));
             return false;
         } else {
             binding.phone.setText(binding.edPhone.getText().toString().trim());
@@ -716,7 +716,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     public void onCLickSum(int sum) {
         if (sum > houseDetailResponse.getLimitPerson()) {
             CookieBar.build(this)
-                    .setTitle("Số lượng khách không được quá cho phép")
+                    .setTitle(this.getString(R.string.BillOder_host_received_max))
                     .setMessage(this.getString(R.string.dialogcontentnomal))
                     .setIcon(R.drawable.ic_warning_icon_check)
                     .setTitleColor(R.color.black)

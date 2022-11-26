@@ -107,7 +107,29 @@
     <string name="dia_chi">Địa chỉ</string>
     <string name="Thay_doi">Thay đổi</string>
     <string name="comment_feedback">Viết Đánh Giá</string>
-    <string name="search">Tìm kiếm</string>
+    <string name="BillOder_add_amount">Thêm số lượng khách thuê của bạn để tiếp tục</string>
+    <string name="BillOder_add_uy_tin">Xin lỗi bạn chưa đủ uy tín</string>
+    <string name="BillOder_add_uy_tin_5">Bạn phải đặt phòng thành công ít nhất 5 lần thì mới sử dụng được chức năng này</string>
+    <string name="BillOder_host_received_date">Chủ nhà chỉ cho phép nhận phòng từ ngày</string>
+    <string name="BillOder_add_pay_day">Chủ nhà chỉ cho phép trả phòng từ ngày</string>
+    <string name="BillOder_add_card">Thêm thẻ thanh toán của bạn để tiếp tục</string>
+    <string name="BillOder_add_phone_number">Thêm số điện thoại của bạn để tiếp tục</string>
+    <string name="BillOder_add_phone_number_check">Xin nhãy nhập số điện thoại</string>
+    <string name="BillOder_BillOder_add_amount">Chủ nhà chỉ cho phép trả phòng vào ngày</string>
+    <string name="BillOder_host_received_max">Số lượng khách không được quá cho phép</string>
+    <string name="BillOder_add_phone_number_check_1">Xin hãy nhập số điện thoại khu vực việt nam</string>
+    <string name="Successfully">Thành công</string>
+    <string name="Successfully_feedback">Phản hồi của bạn đã được lưu lại , chúc bạn 1 ngày tốt lành</string>
+
+    <string name="out_of_room">Đã hết phòng</string>
+
+    <string name="Billoder_date_cancel">Huỷ trước ngày</string>
+    <string name="Billoder_date_cancel_1">để được hoàn lại một phần tiền</string>
+
+    <string name="Ly_do_huy">Hãy cho chúng tôi biết lí do bạn huỷ, ý kiển của bạn sẽ giúp chúng tôi hoàn thiện hơn</string>
+    <string name="Date_cancel">để được hoàn lại tiền , nếu bạn hủy sau ngày</string>
+    <string name="Date_cancel_1">sẽ không hoàn lại tiền</string>
+
 
 
 </resources>

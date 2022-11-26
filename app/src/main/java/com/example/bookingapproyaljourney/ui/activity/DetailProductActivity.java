@@ -52,6 +52,7 @@ import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.librarycireleimage.CircleImageView;
+import com.example.librarytoastcustom.CookieBar;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.text.DecimalFormat;
@@ -180,7 +181,17 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
         boolean checkFeedBack = getIntent().getBooleanExtra("CHECK_FEEDBACK", false);
         if (checkFeedBack) {
-            new ToastCheck(this, R.style.StyleToast, "Thành công", "Phản hồi của bạn đã được lưu lại , chúc bạn 1 ngày tốt lành", R.drawable.ic_complete_order);
+            CookieBar.build(DetailProductActivity.this)
+                    .setTitle(this.getString(R.string.Successfully))
+                    .setMessage(this.getString(R.string.Successfully_feedback))
+                    .setIcon(R.drawable.ic_complete_order)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
+//            new ToastCheck(this, R.style.StyleToast, "Thành công", "Phản hồi của bạn đã được lưu lại , chúc bạn 1 ngày tốt lành", R.drawable.ic_complete_order);
         }
         initData(idHouse);
         btnDanhGia.setPaintFlags(btnDanhGia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -269,7 +280,17 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
                 if (token.equals("")) {
                     dialog.show();
                 } else if (isStillEmpty) {
-                    ToastCheck toastCheck = new ToastCheck(DetailProductActivity.this, R.style.StyleToast, "Đã hết phòng", DetailProductActivity.this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                    CookieBar.build(DetailProductActivity.this)
+                            .setTitle("Đã hết phòng")
+                            .setMessage(DetailProductActivity.this.getString(R.string.dialogcontentnomal))
+                            .setIcon(R.drawable.ic_warning_icon_check)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
+//                    ToastCheck toastCheck = new ToastCheck(DetailProductActivity.this, R.style.StyleToast, "Đã hết phòng", DetailProductActivity.this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 } else {
                     Intent intent = new Intent(DetailProductActivity.this, BillOderActivity.class);
                     intent.putExtra(AppConstant.HOUSE_EXTRA, idHouse);

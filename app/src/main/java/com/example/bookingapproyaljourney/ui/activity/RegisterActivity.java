@@ -117,7 +117,8 @@ public class RegisterActivity extends AppCompatActivity {
             binding.edCfPassRegister.setError("Không trùng khớp");
             return false;
         } else {
-            viewModel.register(binding.edNameRegister.getText().toString(), binding.edMailRegister.getText().toString(), binding.edPassRegister.getText().toString(), this.getResources().getString(R.string.RegisterSuccess), this.getResources().getString(R.string.RegisterFailed), tokenDeviceValidate);
+            viewModel.register(binding.edNameRegister.getText().toString(), binding.edMailRegister.getText().toString(),
+                    binding.edPassRegister.getText().toString(), this.getResources().getString(R.string.RegisterSuccess), this.getResources().getString(R.string.RegisterFailed), tokenDeviceValidate);
             return true;
         }
         return null;

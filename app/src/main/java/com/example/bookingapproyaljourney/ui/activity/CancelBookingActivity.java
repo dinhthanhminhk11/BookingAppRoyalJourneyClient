@@ -70,9 +70,9 @@ public class CancelBookingActivity extends AppCompatActivity {
         Glide.with(this).load(imageHost).apply(options).into(binding.imgBoss);
 
         if (checkBanking) {
-            binding.textView8.setText("Hãy cho chúng tôi biết lí do bạn huỷ, ý kiển của bạn sẽ giúp chúng tôi hoàn thiện hơn");
+            binding.textView8.setText(this.getString(R.string.Ly_do_huy));
         } else {
-            binding.textView8.setText("Hủy trước ngày " + dateCancel + " để được hoàn lại tiền , nếu bạn hủy sau ngày " + dateCancel + " sẽ không hoàn lại tiền");
+            binding.textView8.setText(this.getString(R.string.Billoder_date_cancel) + dateCancel + this.getString(R.string.Date_cancel) + dateCancel + this.getString(R.string.Date_cancel_1));
         }
 
         cancelBookingViewModel = new ViewModelProvider(this).get(CancelBookingViewModel.class);
