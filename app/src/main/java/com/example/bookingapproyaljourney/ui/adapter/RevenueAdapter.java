@@ -25,13 +25,13 @@ public class RevenueAdapter extends BaseExpandableListAdapter implements Filtera
         this.context = context;
         this.title = title;
         this.toppic = toppic;
-        this.listTemp = listTemp;
+        this.listTemp = title;
     }
 
 
     @Override
     public int getGroupCount() {
-        return title.size();
+        return title == null ? 0 : title.size();
     }
 
     @Override
