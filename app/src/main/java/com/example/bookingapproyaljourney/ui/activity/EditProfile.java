@@ -93,7 +93,10 @@ public class EditProfile extends AppCompatActivity {
 //        ban du lieu len clouldy
         saveEditProfile.setOnClickListener(v -> {
             Log.d(TAG, "button click");
-
+            if(imagePath == null){
+                onBackPressed();
+                return;
+            }
             MediaManager.get().upload(imagePath).callback(new UploadCallback() {
 
                 @Override

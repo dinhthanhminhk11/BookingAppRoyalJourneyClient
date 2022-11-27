@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.databinding.FragmentBookmarkBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.BookmarkResponse;
@@ -24,12 +25,7 @@ import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.adapter.BookmarkAdapter;
 import com.example.bookingapproyaljourney.view_model.BookmarkViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BookmarkFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class BookmarkFragment extends Fragment {
+public class BookmarkFragment extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,28 +39,22 @@ public class BookmarkFragment extends Fragment {
     private FragmentBookmarkBinding binding;
     private BookmarkViewModel bookmarkViewModel;
     private BookmarkAdapter bookmarkAdapter;
+    private CallbackOrderClick callbackOrderClick;
 
-    public BookmarkFragment() {
-        // Required empty public constructor
+    public BookmarkFragment(CallbackOrderClick callbackOrderClick) {
+        this.callbackOrderClick = callbackOrderClick;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BookmarkFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BookmarkFragment newInstance(String param1, String param2) {
-        BookmarkFragment fragment = new BookmarkFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+
+//    public static BookmarkFragment newInstance(String param1, String param2) {
+//        BookmarkFragment fragment = new BookmarkFragment(this);
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,7 +90,8 @@ public class BookmarkFragment extends Fragment {
 
         bookmarkViewModel = new ViewModelProvider(this).get(BookmarkViewModel.class);
         bookmarkViewModel.getListBookmarkById(UserClient.getInstance().getId());
-
+        binding.btnSearch.setOnClickListener(v -> callbackOrderClick.clickHome());
+        binding.textHelps.setOnClickListener(v -> callbackOrderClick.clickHelps());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         bookmarkViewModel.getBookmarkResponseMutableLiveData().observe(getActivity(), new Observer<BookmarkResponse>() {
             @Override

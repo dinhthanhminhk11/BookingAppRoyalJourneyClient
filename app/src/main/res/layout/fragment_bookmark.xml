@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:lines="3"
-            android:text="Trong qua trình tìm kiếm , hãy nhấn vào biểu tượng hình lưu trữ để lưu các chỗ ở yêu thích hoặc những điều nên trải nhiệm vào danh sách Yếu thích"
+            android:text="Trong quá trình tìm kiếm , hãy nhấn vào biểu tượng hình lưu trữ để lưu các chỗ ở yêu thích hoặc những điều nên trải nhiệm vào danh sách Yếu thích"
             android:textSize="15dp" />
 
         <Button

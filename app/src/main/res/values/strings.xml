@@ -130,6 +130,8 @@
     <string name="Date_cancel">để được hoàn lại tiền , nếu bạn hủy sau ngày</string>
     <string name="Date_cancel_1">sẽ không hoàn lại tiền</string>
     <string name="search">Tìm kiếm</string>
+    <string name="null_title">Không có kết quả tìm kiếm phù hợp</string>
+    <string name="null_content">Hãy thử thay đổi bộ lọc và tìm lại nhé?</string>
 
 
 </resources>

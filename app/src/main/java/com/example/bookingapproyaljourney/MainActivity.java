@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             if (token == null || token.equals("")) {
                 dialog.show();
             } else {
-                showFragment(new ChatFragment());
+                showFragment(new ChatFragment(this));
             }
             login.setOnClickListener(v -> {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -370,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 nameAddress.setVisibility(View.VISIBLE);
                 nameCity.setVisibility(View.GONE);
                 nameAddress.setText("Yêu thích");
-                showFragment(new BookmarkFragment());
+                showFragment(new BookmarkFragment(this));
             }
             login.setOnClickListener(v -> {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));

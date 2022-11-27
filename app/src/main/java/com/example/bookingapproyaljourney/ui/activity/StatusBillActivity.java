@@ -29,6 +29,9 @@ import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.order.OrderListResponse;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
+import com.example.bookingapproyaljourney.ui.activity.feedback.FeedBackActivity;
+import com.example.bookingapproyaljourney.ui.activity.feedback.FeedbackListActivity;
+import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.bookingapproyaljourney.view_model.StatusOrderViewModel;
 
 import java.text.DecimalFormat;
@@ -40,6 +43,7 @@ public class StatusBillActivity extends AppCompatActivity {
     private OrderListResponse orderListResponse;
     private String idOrder;
     private StatusOrderViewModel statusOrderViewModel;
+    private DetailProductViewModel detailProductViewModel;
     private NumberFormat fm = new DecimalFormat("#,###");
     private String dateCancel;
     private boolean checkIsBacking;
@@ -51,6 +55,10 @@ public class StatusBillActivity extends AppCompatActivity {
     private boolean checkSeem;
     private boolean isSuccess;
     private String textReasonUser;
+    private String img_boss="";
+    private String id_boss ="";
+    private String id_House="";
+    private String name_boss ="";
 
     public StatusBillActivity() {
     }
@@ -61,6 +69,7 @@ public class StatusBillActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityStatusBillBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
         binding.toolBar.setTitle("Chi tiết chuyến đi của bạn");
         binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         idOrder = getIntent().getStringExtra(AppConstant.ID_ORDER);
@@ -99,6 +108,14 @@ public class StatusBillActivity extends AppCompatActivity {
             dialogLogOut.cancel();
         });
 
+        binding.btnFeedback.setOnClickListener(v -> {
+            Intent intent1 = new Intent(this, FeedBackActivity.class);
+            intent1.putExtra("ID_BOSS", id_boss);
+            intent1.putExtra("ID_HOUSE", id_House);
+            intent1.putExtra("IMG_BOSS", img_boss);
+            intent1.putExtra("NAME_BOSS", name_boss);
+            startActivity(intent1);
+        });
 
         statusOrderViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
             @Override
@@ -110,6 +127,12 @@ public class StatusBillActivity extends AppCompatActivity {
         statusOrderViewModel.getOrderResponseMutableLiveData().observe(this, new Observer<OrderBill>() {
             @Override
             public void onChanged(OrderBill orderResponse) {
+                detailProductViewModel.getHouseById(orderResponse.getIdPro()).observe(StatusBillActivity.this, it -> {
+                    name_boss = it.getHostResponse().getName();
+                    img_boss = it.getHostResponse().getImage();
+                });
+                id_boss = orderResponse.getIdHost();
+                id_House = orderResponse.getIdPro();
                 checkSeem = orderResponse.isSeem();
                 isSuccess = orderResponse.isSuccess();
                 Log.e("MinhSeem", String.valueOf(orderResponse.isSuccess()));

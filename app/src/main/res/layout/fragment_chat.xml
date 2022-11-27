@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.ChatFragment"
-    android:background="#EFEFFF">
+    android:background="#EEEEEE">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvListHost"
         android:layout_width="match_parent"
@@ -22,5 +22,61 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading.json"
         app:lottie_loop="true" />
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/contentNullList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="Chưa có cuộc trò chuyện nào?"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/contentProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lines="3"
+            android:text="Trong quá trình xem phòng , hãy nhấn vào biểu tượng tin nhắn để có thể trao đổi thêm với chủ nhà "
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_20dp"
+            android:background="@drawable/textview_border_black"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="Bắt đầu tìm kiếm"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:backgroundTint="@null" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/color_858585" />
+
+        <TextView
+            android:id="@+id/textHelps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lines="3"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+    </LinearLayout>
 
 </FrameLayout>

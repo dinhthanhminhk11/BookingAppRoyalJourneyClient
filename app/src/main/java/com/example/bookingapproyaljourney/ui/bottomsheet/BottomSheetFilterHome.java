@@ -101,7 +101,10 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
         btnFilter = (Button) findViewById(R.id.btnFilter);
         initOnClick();
         initData();
+        List<String> a = new ArrayList<>();
     }
+
+
 
     private void initData() {
         starPrice.setText("120.000 đ");

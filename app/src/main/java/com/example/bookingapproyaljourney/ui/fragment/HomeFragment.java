@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
 import com.example.bookingapproyaljourney.constants.AppConstant;
@@ -66,6 +67,12 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     private TextView seeMoreBestForYou;
     private RecyclerView recyclerviewListBestForYou;
     // TODO: Rename and change types of parameters
+    private TextView tvShowNull;
+    private View viewShowNull;
+    private TextView tvContentNull;
+    private TextView tvContentNull2;
+    private TextView btnShowNull;
+
     private String mParam1;
     private String mParam2;
     private List<String> locations = new ArrayList<>();
@@ -112,6 +119,12 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     }
 
     private void initView(View view) {
+        tvShowNull = (TextView) view.findViewById(R.id.tvShowNull);
+        viewShowNull = (View) view.findViewById(R.id.viewShowNull);
+        tvContentNull = (TextView) view.findViewById(R.id.tvContentNull);
+        tvContentNull2 = (TextView) view.findViewById(R.id.tvContentNull2);
+        btnShowNull = (TextView) view.findViewById(R.id.btnShowNull);
+
         listLocation = (Spinner) view.findViewById(R.id.listLocationHomFragment);
         bell = (ImageView) view.findViewById(R.id.bellMain);
         etSearch = (EditText) view.findViewById(R.id.etSearchHomeFragment);
@@ -154,6 +167,9 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         seeMoreNearFromYou.setOnClickListener(v -> {
             Intent i = new Intent(getActivity(), SeeMoreNearFromYouActivity.class);
             startActivity(i);
+        });
+        btnShowNull.setOnClickListener(v -> {
+           startActivity(new Intent(getActivity(), MainActivity.class));
         });
     }
 
@@ -247,10 +263,23 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         filterViewModel.filterLiveData(giaBd,giaKt,sao,idLoai).observe(getActivity(), it ->{
             if(it.getHouses().size()==0){
                 progressBar.setVisibility(View.GONE);
+                tvShowNull.setVisibility(View.VISIBLE);
+                tvContentNull.setVisibility(View.VISIBLE);
+                viewShowNull.setVisibility(View.VISIBLE);
+                tvContentNull2.setVisibility(View.VISIBLE);
+                btnShowNull.setVisibility(View.VISIBLE);
+                recyclerviewListBestForYou.setVisibility(View.GONE);
+            }else {
+                recyclerviewListBestForYou.setVisibility(View.VISIBLE);
+                bestForYouAdapterNotNull.setDataHouse(it.getHouses());
+                recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
+                progressBar.setVisibility(View.GONE);
+                tvShowNull.setVisibility(View.GONE);
+                tvContentNull.setVisibility(View.GONE);
+                viewShowNull.setVisibility(View.GONE);
+                tvContentNull2.setVisibility(View.GONE);
+                btnShowNull.setVisibility(View.GONE);
             }
-            bestForYouAdapterNotNull.setDataHouse(it.getHouses());
-            recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
-            progressBar.setVisibility(View.GONE);
         });
 
     }
