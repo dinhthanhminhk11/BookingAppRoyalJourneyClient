@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.constants.AppConstant;
@@ -77,6 +78,14 @@ public class ListOrderAllFragment extends Fragment {
         binding.textHelps.setText(wordtoSpan);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.getOrderByIdUser(UserClient.getInstance().getId());
+
+        binding.reLoad.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                orderViewModel.getOrderByIdUser(UserClient.getInstance().getId());
+                binding.reLoad.setRefreshing(false);
+            }
+        });
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         orderViewModel.getmProgressMutableData().observe(getActivity(), new Observer<Integer>() {
             @Override

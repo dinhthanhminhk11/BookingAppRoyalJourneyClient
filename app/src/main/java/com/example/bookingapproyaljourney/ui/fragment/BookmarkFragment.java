@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.databinding.FragmentBookmarkBinding;
@@ -82,14 +83,22 @@ public class BookmarkFragment extends Fragment{
     private void initView() {
         Spannable wordtoSpan = new SpannableString("Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp");
 
-//        wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         wordtoSpan.setSpan(new UnderlineSpan(), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        wordtoSpan.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         binding.textHelps.setText(wordtoSpan);
 
         bookmarkViewModel = new ViewModelProvider(this).get(BookmarkViewModel.class);
         bookmarkViewModel.getListBookmarkById(UserClient.getInstance().getId());
+
+        binding.reLoad.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                bookmarkViewModel.getListBookmarkById(UserClient.getInstance().getId());
+                binding.reLoad.setRefreshing(false);
+            }
+        });
+
         binding.btnSearch.setOnClickListener(v -> callbackOrderClick.clickHome());
         binding.textHelps.setOnClickListener(v -> callbackOrderClick.clickHelps());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));

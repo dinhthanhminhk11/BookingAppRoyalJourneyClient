@@ -43,14 +43,13 @@ import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterHome;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
 import com.example.bookingapproyaljourney.view_model.FilterViewModel;
-import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer,BottomSheetFilterHome.EventClick {
+public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer, BottomSheetFilterHome.EventClick {
     private ResultReceiver resultReceiver;
 
     private static final String ARG_PARAM1 = "param1";
@@ -169,7 +168,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             startActivity(i);
         });
         btnShowNull.setOnClickListener(v -> {
-           startActivity(new Intent(getActivity(), MainActivity.class));
+            startActivity(new Intent(getActivity(), MainActivity.class));
         });
     }
 
@@ -248,7 +247,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     }
 
     private void showDialog() {
-        BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(requireContext(), R.style.MaterialDialogSheet,this);
+        BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(requireContext(), R.style.MaterialDialogSheet, this);
         bottomSheetFilterHome.show();
         bottomSheetFilterHome.setCanceledOnTouchOutside(false);
     }
@@ -260,8 +259,8 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         contentBestForYouHomeFragment.setVisibility(View.GONE);
         listCategory.setVisibility(View.GONE);
         recyclerviewNearFromYou.setVisibility(View.GONE);
-        filterViewModel.filterLiveData(giaBd,giaKt,sao,idLoai).observe(getActivity(), it ->{
-            if(it.getHouses().size()==0){
+        filterViewModel.filterLiveData(giaBd, giaKt, sao, idLoai).observe(getActivity(), it -> {
+            if (it.getHouses().size() == 0) {
                 progressBar.setVisibility(View.GONE);
                 tvShowNull.setVisibility(View.VISIBLE);
                 tvContentNull.setVisibility(View.VISIBLE);
@@ -269,7 +268,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 tvContentNull2.setVisibility(View.VISIBLE);
                 btnShowNull.setVisibility(View.VISIBLE);
                 recyclerviewListBestForYou.setVisibility(View.GONE);
-            }else {
+            } else {
                 recyclerviewListBestForYou.setVisibility(View.VISIBLE);
                 bestForYouAdapterNotNull.setDataHouse(it.getHouses());
                 recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentNotificationBinding;
@@ -76,6 +77,15 @@ public class NotificationFragment extends Fragment {
         notificationViewModel = new ViewModelProvider(this).get(NotificationViewModel.class);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         notificationViewModel.getListNotification(UserClient.getInstance().getId());
+
+        binding.reLoad.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                notificationViewModel.getListNotification(UserClient.getInstance().getId());
+                binding.reLoad.setRefreshing(false);
+            }
+        });
+
         notificationViewModel.getNotiResponseMutableLiveData().observe(getActivity(), new Observer<NotiResponse>() {
             @Override
             public void onChanged(NotiResponse notiResponse) {

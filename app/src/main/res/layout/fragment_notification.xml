@@ -7,14 +7,20 @@
     android:background="@color/white"
     tools:context=".ui.fragment.NotificationFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/reLoad"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/_10dp"
-        android:layout_marginTop="@dimen/_10dp"
-        android:overScrollMode="never"
-        />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:overScrollMode="never" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
@@ -30,13 +36,13 @@
         app:lottie_loop="true" />
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/contentNullList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15dp"
         android:layout_marginTop="@dimen/_10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
