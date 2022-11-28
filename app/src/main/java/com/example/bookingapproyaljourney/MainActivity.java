@@ -1,5 +1,12 @@
 package com.example.bookingapproyaljourney;
 
+import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivity;
+import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivityByAccess;
+import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
+import static com.example.bookingapproyaljourney.constants.AppConstant.LoginResultSuccess;
+import static com.example.bookingapproyaljourney.constants.AppConstant.deleteOrderResponse;
+import static com.example.bookingapproyaljourney.constants.AppConstant.text1111111111111;
+
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -52,6 +59,7 @@ import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HelpFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ListOrderAllFragment;
+import com.example.bookingapproyaljourney.ui.fragment.NotificationFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ProfileFragment;
 import com.example.bookingapproyaljourney.ui.fragment.SettingFragment;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
@@ -131,25 +139,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         nameAddress = (TextView) findViewById(R.id.nameAddress);
         resultReceiver = new AddressResultReceiver(new Handler());
 
-
-//        FirebaseMessaging.getInstance().getToken()
-//                .addOnCompleteListener(new OnCompleteListener<String>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<String> task) {
-//                        if (!task.isSuccessful()) {
-//                            return;
-//                        }
-//                        token1 = task.getResult();
-//                    }
-//                });
-
-
-//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-//            setTheme(R.style.Theme_BookingAppRoyalJourney_Dark);
-//        }else {
-//            setTheme(R.style.Theme_BookingAppRoyalJourney_Light);
-//        }
-
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withMenuOpened(false)
                 .withToolbarMenuToggle(toolbar)
@@ -176,14 +165,13 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_LOGOUT)));
         adapter.setListener(this);
 
-        String check = getIntent().getStringExtra("CheckSuccess");
-
+        String check = getIntent().getStringExtra(CheckSuccess);
 
         if (!(check == null)) {
-            if (check.equals("1111111111111")) {
+            if (check.equals(text1111111111111)) {
                 CookieBar.build(this)
-                        .setTitle("Thành công")
-                        .setMessage("Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi , chúc bạn một ngày mới tốt lành")
+                        .setTitle(R.string.Successfully)
+                        .setMessage(R.string.textcheck111)
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -191,10 +179,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
-            } else if (check.equals("CancelBookingActivity")) {
+            } else if (check.equals(CancelBookingActivity)) {
                 CookieBar.build(this)
-                        .setTitle("Thành công")
-                        .setMessage("Chủ nhà đã tiếp nhận yêu cầu của bạn , sẽ có người gọi cho bạn để xác nhận")
+                        .setTitle(R.string.Successfully)
+                        .setMessage(R.string.textCheckCancelBookingActivity)
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -202,10 +190,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
-            } else if (check.equals("CancelBookingActivityByAccess")) {
+            } else if (check.equals(CancelBookingActivityByAccess)) {
                 CookieBar.build(this)
-                        .setTitle("Thành công")
-                        .setMessage("Đã huỷ yêu cầu")
+                        .setTitle(R.string.Successfully)
+                        .setMessage(R.string.Request_canceled)
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -213,10 +201,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
-            } else if (check.equals("deleteOrderResponse")) {
+            } else if (check.equals(deleteOrderResponse)) {
                 CookieBar.build(this)
-                        .setTitle("Thành công")
-                        .setMessage("Xóa thành công")
+                        .setTitle(R.string.Successfully)
+                        .setMessage(R.string.Delete_successfully)
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -224,10 +212,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
-            } else if (check.equals("LoginResultSuccess")) {
+            } else if (check.equals(LoginResultSuccess)) {
                 CookieBar.build(this)
-                        .setTitle("Thông báo")
-                        .setMessage("Đăng nhập thành công")
+                        .setTitle(R.string.Notify)
+                        .setMessage(R.string.Logged_in_successfully)
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -257,18 +245,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         if (token != null || !token.equals("")) {
             loginViewModel.getUserByToken(token);
         }
-
-//        new Handler().postDelayed( () -> {
-//            Log.d("MinhtokenFirebase", token1.toString());
-//        } , 1000);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
     }
-
 
     @Override
     public void onItemSelected(int position) {
@@ -323,22 +305,19 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             close.setOnClickListener(v -> {
                 dialogLogOut.dismiss();
             });
-//            0352145615
-
         } else if (position == POS_HOME) {
-//            Log.e("testLoaction", " click lcilk");
             nameAddress.setVisibility(View.GONE);
             nameCity.setVisibility(View.VISIBLE);
             showFragment(new HomeFragment(locationYouSelf));
         } else if (position == POS_NEARBY) {
             startActivity(new Intent(MainActivity.this, NearFromYouMapsActivity.class));
         } else if (position == POS_PROFILE) {
-            nameAddress.setText("Hồ Sơ");
+            nameAddress.setText(R.string.File);
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
             showFragment(new ProfileFragment());
         } else if (position == POS_MESSAGES) {
-            nameAddress.setText("Tin Nhắn");
+            nameAddress.setText(R.string.Message);
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
             if (token == null || token.equals("")) {
@@ -356,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             } else {
                 nameAddress.setVisibility(View.VISIBLE);
                 nameCity.setVisibility(View.GONE);
-                nameAddress.setText("Chuyến đi của bạn");
+                nameAddress.setText(R.string.Your_trip);
                 showFragment(new ListOrderAllFragment(this));
             }
             login.setOnClickListener(v -> {
@@ -369,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             } else {
                 nameAddress.setVisibility(View.VISIBLE);
                 nameCity.setVisibility(View.GONE);
-                nameAddress.setText("Yêu thích");
+                nameAddress.setText(R.string.Favourite);
                 showFragment(new BookmarkFragment(this));
             }
             login.setOnClickListener(v -> {
@@ -380,13 +359,18 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         } else if (position == POS_HELP) {
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
-            nameAddress.setText("Trợ giúp");
+            nameAddress.setText(R.string.Help);
             showFragment(new HelpFragment());
         } else if (position == POS_SETTING) {
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
-            nameAddress.setText("Cài đặt");
+            nameAddress.setText(R.string.Setting);
             showFragment(new SettingFragment());
+        } else if(position == POS_NOTIFICATION){
+            nameAddress.setVisibility(View.VISIBLE);
+            nameCity.setVisibility(View.GONE);
+            nameAddress.setText(R.string.Notify);
+            showFragment(new NotificationFragment());
         }
         slidingRootNav.closeMenu();
     }
@@ -435,7 +419,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         moveTaskToBack(false);
     }
 
-
     private void fetchAddressFromLocation(Location locationYouSelf) {
         Intent intent = new Intent(this, FetchAddressIntentServices.class);
         intent.putExtra(Constants.RECEVIER, resultReceiver);
@@ -451,7 +434,17 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 getCurrentLocation();
             } else {
                 adapter.setSelected(POS_HOME);
-                Toast.makeText(this, "Bạn không cho phép truy cập vị trí", Toast.LENGTH_SHORT).show();
+                CookieBar.build(this)
+                        .setTitle(R.string.Notify)
+                        .setMessage(R.string.You_do_not_allow_location_access)
+                        .setIcon(R.drawable.ic_icon_logo_app)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -508,7 +501,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
     private void getCurrentLocation() {
-//        progressBar.setVisibility(View.VISIBLE);
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(3000);
@@ -537,7 +529,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                             getAddress(lati, longi);
                             adapter.setSelected(POS_HOME);
                         } else {
-//                            progressBar.setVisibility(View.GONE);
 
                         }
                     }

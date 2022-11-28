@@ -161,4 +161,21 @@
     <string name="textCancelation_policy">Kế hoạch của bạn đã thay đổi và bây giờ bạn cần huỷ đặt phòng của mình. Không thành vấn đề. Bạn có thể vào mục. Chuyến đi để huỷ</string>
     <string name="text_comfirm_status_bill">Đặt phòng của bạn là đặt phòng với RoyalJourney được sử lí bời công ti đối tác của chúng tôi . khi hoàn tất đặt phòng này bạn đồng ý với điều kiện đặt phòng , diều khoản chung và chính sách bảo mật .Vai trò của RoyalJourney chỉ đơn thuần là nhà cung cấp nền tảng kết nối giữa khách hàng và công ty du lịch có liên quan.Bạn sẽ không được nhận hỗ trọ từ bộ phần dịch vụ khách hàng của RoyalJourney cho đặt phòng này</string>
 
+
+    <string name="Your_trip">Chuyến đi của bạn</string>
+    <string name="File">Hồ Sơ</string>
+    <string name="Message">Tin Nhắn</string>
+    <string name="Favourite">Yêu thích</string>
+    <string name="You_do_not_allow_location_access">Bạn không cho phép truy cập vị trí</string>
+    <string name="Notify">Thông báo</string>
+    <string name="Help">Trợ giúp</string>
+    <string name="Setting">Cài đặt</string>
+    <string name="Logged_in_successfully">Đăng nhập thành công</string>
+    <string name="Delete_successfully">Xóa thành công</string>
+    <string name="Request_canceled">Đã huỷ yêu cầu</string>
+    <string name="textCheckCancelBookingActivity">Chủ nhà đã tiếp nhận yêu cầu của bạn , sẽ có người gọi cho bạn để xác nhận</string>
+    <string name="textcheck111">Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi , chúc bạn một ngày mới tốt lành</string>
+    <string name="You_have_no_notifications">Bạn không có thông báo</string>
+    <string name="text_notification">Các thông báo cho phép bạn nhanh chóng cập nhật thông tin và hành động khi cần thiết trên các đặt phòng hiện tại và sắp tới</string>
+
 </resources>

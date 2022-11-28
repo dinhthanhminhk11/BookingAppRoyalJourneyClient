@@ -22,6 +22,7 @@ import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.response.NotiResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.response.order.ListFilterResponse;
@@ -168,4 +169,6 @@ public interface ApiRequest {
     @POST("updateCheckTokenDevice")
     Call<TestResponse> updateTokenDevice(@Body UserRequestTokenDevice userRequestTokenDevice);
 
+    @GET("listNotificationByUser/{id}")
+    Call<NotiResponse> getListNotification(@Path("id") String id);
 }

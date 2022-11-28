@@ -19,4 +19,10 @@ public class AppConstant {
     public static final String SECRET_KEY = "sk_test_51M3DOuJ0ZIThTDvlMmDllUF1NS4a0gMBTCQl9kgmYNpDE46J8HR2CWI7Vw0ccr5htsd49nutpHYPeg9LR1BiJpWO00Vs0rRLlF";
     public static final String URL_PAYMENT = "https://api.stripe.com/v1/";
     public static final String ID_ORDER = "ID_ORDER";
+    public static final String CheckSuccess = "CheckSuccess";
+    public static final String text1111111111111 = "1111111111111";
+    public static final String CancelBookingActivity = "CancelBookingActivity";
+    public static final String CancelBookingActivityByAccess = "CancelBookingActivityByAccess";
+    public static final String deleteOrderResponse = "deleteOrderResponse";
+    public static final String LoginResultSuccess = "LoginResultSuccess";
 }
