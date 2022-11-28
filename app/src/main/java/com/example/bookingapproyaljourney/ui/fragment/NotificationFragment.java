@@ -18,6 +18,7 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentNotificationBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.NotiResponse;
+import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.ui.activity.StatusBillActivity;
 import com.example.bookingapproyaljourney.ui.adapter.NotificationAdapter;
 import com.example.bookingapproyaljourney.view_model.NotificationViewModel;
@@ -38,6 +39,7 @@ public class NotificationFragment extends Fragment {
     private String mParam2;
     private NotificationAdapter notificationAdapter;
     private NotificationViewModel notificationViewModel;
+    private String idOrder;
 
     public NotificationFragment() {
     }
@@ -97,10 +99,8 @@ public class NotificationFragment extends Fragment {
                 notificationAdapter = new NotificationAdapter(notiResponse.getData(), new NotificationAdapter.Callback() {
                     @Override
                     public void onClick(String id) {
-                        Intent intent = new Intent(getContext(), StatusBillActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.putExtra(AppConstant.ID_ORDER, id);
-                        startActivity(intent);
+                        idOrder = id;
+                        notificationViewModel.updateNotiSeen(id);
                     }
                 });
                 binding.recyclerView.setAdapter(notificationAdapter);
@@ -111,6 +111,18 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onChanged(Integer integer) {
                 binding.progressBar.setVisibility(integer);
+            }
+        });
+
+        notificationViewModel.getTestResponseMutableLiveData().observe(getActivity(), new Observer<TestResponse>() {
+            @Override
+            public void onChanged(TestResponse testResponse) {
+                if (testResponse.isStatus()) {
+                    Intent intent = new Intent(getContext(), StatusBillActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra(AppConstant.ID_ORDER, idOrder);
+                    startActivity(intent);
+                }
             }
         });
     }

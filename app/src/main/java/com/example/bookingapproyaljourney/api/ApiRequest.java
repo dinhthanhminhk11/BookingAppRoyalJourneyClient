@@ -174,4 +174,7 @@ public interface ApiRequest {
 
     @GET("listSearchProduct/{nameLocation}")
     Call<ListFilterResponse> getListSearch(@Path("nameLocation") String nameLocation);
+
+    @PATCH("updateNotiSeen/{id}")
+    Call<TestResponse> updateNotiSeen(@Path("id") String id);
 }
