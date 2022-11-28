@@ -47,7 +47,6 @@
                         android:layout_marginTop="20dp"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="Description"
                         android:textColor="@color/black"
                         android:textSize="18dp"
                         android:textStyle="bold" />
@@ -103,7 +102,6 @@
                         android:layout_marginTop="10dp"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="Nhận phòng từ ngày"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -152,7 +150,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nhận Phòng"
+                        android:text="@string/open_time_status_bill"
                         android:textColor="@color/color_858585" />
 
                     <TextView
@@ -167,7 +165,6 @@
                         android:id="@+id/tvTimeNhanPhong"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="12:00"
                         android:textColor="@color/color_858585" />
                 </LinearLayout>
 
@@ -210,7 +207,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|right"
-                        android:text="Trả Phòng"
+                        android:text="@string/close_time_status_bill"
                         android:textColor="@color/color_858585" />
 
                     <TextView
@@ -227,7 +224,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|right"
-                        android:text="14:00"
                         android:textColor="@color/color_858585" />
                 </LinearLayout>
             </LinearLayout>
@@ -251,7 +247,7 @@
                         android:id="@+id/personLimitHouse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Khách"
+                        android:text="@string/guest"
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -272,7 +268,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="Chỉnh sửa"
+                    android:text="@string/edit_person"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -374,11 +370,13 @@
                             android:buttonTint="@color/black"
                             android:gravity="center" />
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
                         android:layout_marginTop="20dp"
                         android:background="@color/color_858585" />
+
                     <LinearLayout
                         android:id="@+id/contentPayOnlinePercent"
                         android:layout_width="match_parent"
@@ -677,10 +675,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/contentCancellationPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
                 android:background="@drawable/gradientbackground_white"
+                android:foreground="?attr/selectableItemBackground"
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_20dp"
                 android:paddingVertical="@dimen/_10dp">

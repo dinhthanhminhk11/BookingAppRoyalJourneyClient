@@ -4,9 +4,15 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +31,16 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityStatusBillBinding;
 import com.example.bookingapproyaljourney.model.order.OrderBill;
+import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.order.OrderListResponse;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 import com.example.bookingapproyaljourney.ui.activity.feedback.FeedBackActivity;
-import com.example.bookingapproyaljourney.ui.activity.feedback.FeedbackListActivity;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetCancellationPolicy;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.bookingapproyaljourney.view_model.StatusOrderViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -55,11 +63,12 @@ public class StatusBillActivity extends AppCompatActivity {
     private boolean checkSeem;
     private boolean isSuccess;
     private String textReasonUser;
-    private String img_boss="";
-    private String id_boss ="";
-    private String id_House="";
-    private String name_boss ="";
-
+    private String img_boss = "";
+    private String id_boss = "";
+    private String id_House = "";
+    private String name_boss = "";
+    private BottomSheetCancellationPolicy bottomSheetCancellationPolicy;
+    private HouseDetailResponse houseDetailResponse1;
     public StatusBillActivity() {
     }
 
@@ -187,7 +196,7 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.cancelRequest.setVisibility(View.VISIBLE);
                     binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ của bạn sẽ có người gọi đến để xác nhận cho bạn");
-                } else if(orderResponse.getStatus().equals("Đã trả phòng") && orderResponse.isCheckedOut()){
+                } else if (orderResponse.getStatus().equals("Đã trả phòng") && orderResponse.isCheckedOut()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.textConfirm.setText("Bạn đã trả phòng cảm ơn bạn đã sửa dụng dịch vụ của chúng tôi");
@@ -223,11 +232,26 @@ public class StatusBillActivity extends AppCompatActivity {
         statusOrderViewModel.getHouseDetailResponseMutableLiveData().observe(StatusBillActivity.this, new Observer<HouseDetailResponse>() {
             @Override
             public void onChanged(HouseDetailResponse houseDetailResponse) {
+                houseDetailResponse1 = houseDetailResponse;
                 binding.nameHouse.setText(houseDetailResponse.getName());
                 binding.priceAndCount.setText(fm.format(houseDetailResponse.getPrice()) + " x " + binding.payDay.getText().toString() + " đêm");
                 binding.tvTimeNhanPhong.setText(houseDetailResponse.getOpening());
                 binding.tvTimeTra.setText(houseDetailResponse.getEnding());
-                binding.contentCancel.setText("Nếu bạn hủy trước ngày " + houseDetailResponse.getCancellatioDate() + " bạn sẽ được hoàn lại một phần tiền");
+
+                String textCancel = "Nếu bạn hủy trước ngày " + houseDetailResponse.getCancellatioDate() + " bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm";
+
+                Spannable wordtoSpan = new SpannableString(textCancel);
+
+                wordtoSpan.setSpan(new UnderlineSpan(), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                wordtoSpan.setSpan(new UnderlineSpan(), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                binding.contentCancel.setText(wordtoSpan);
+
                 dateCancel = houseDetailResponse.getCancellatioDate();
                 imageHost = houseDetailResponse.getHostResponse().getImage();
             }
@@ -250,6 +274,20 @@ public class StatusBillActivity extends AppCompatActivity {
 
 
         binding.btnPay.setOnClickListener(v -> {
+            if (UserClient.getInstance().getCountBooking() < -5) {
+                CookieBar.build(this)
+                        .setTitle("Uy tín của bạn đang rất thấp")
+                        .setMessage("Bằng việc huỷ phòng quá nhiều nên bạn sẽ không được tiếp tục huỷ phòng")
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+                return;
+            }
+
             Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
             intent.putExtra("imageHost", imageHost);
             intent.putExtra("dateCancel", dateCancel);
@@ -257,6 +295,22 @@ public class StatusBillActivity extends AppCompatActivity {
             intent.putExtra("checkIsbacking", String.valueOf(checkIsBacking));
             intent.putExtra("checkSeem", String.valueOf(checkSeem));
             startActivity(intent);
+        });
+
+        binding.contentCancelLayout.setOnClickListener(v -> {
+            bottomSheetCancellationPolicy = new BottomSheetCancellationPolicy(this, R.style.MaterialDialogSheet, new BottomSheetCancellationPolicy.CallbackOnClickBottomSheetCancellationPolicy() {
+                @Override
+                public void onclickBtn() {
+                    startActivity(new Intent(StatusBillActivity.this, CancellationPolicyActivity.class));
+                }
+
+                @Override
+                public void onClose() {
+                    bottomSheetCancellationPolicy.dismiss();
+                }
+            }, houseDetailResponse1);
+            bottomSheetCancellationPolicy.show();
+            bottomSheetCancellationPolicy.setCanceledOnTouchOutside(false);
         });
 
         binding.btnDelete.setOnClickListener(v -> {

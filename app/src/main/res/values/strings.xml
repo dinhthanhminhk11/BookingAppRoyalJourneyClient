@@ -133,5 +133,32 @@
     <string name="null_title">Không có kết quả tìm kiếm phù hợp</string>
     <string name="null_content">Hãy thử thay đổi bộ lọc và tìm lại nhé?</string>
 
+    <string name="search_fragment_helps">Nhấn để tìm kiếm</string>
+    <string name="text_search_fragment_helps">Bạn không tìm thấy câu trả lời cho mình?</string>
+    <string name="text_contact">Liên hệ chúng tôi</string>
+    <string name="cancel_status_bill">Huỷ</string>
+    <string name="open_time_status_bill">Nhận Phòng</string>
+    <string name="close_time_status_bill">Trả Phòng</string>
+    <string name="guest">Khách</string>
+    <string name="option_payment">Thanh toán bằng</string>
+    <string name="option_phone">Số điện thoại</string>
+    <string name="info_bill">Chi tiết giá</string>
+    <string name="service_charge">Phí dịch vụ</string>
+    <string name="sum">Tổng</string>
+    <string name="Exactly_cancel">Chính sách huỷ</string>
+    <string name="continue_phone">Tiếp tục với số điện thoại này</string>
+    <string name="edit_person">Chỉnh sửa</string>
+    <string name="tvContact">Bạn cũng có thể <u><b>gửi phản hồi cho chúng tôi</b></u></string>
+    <string name="text6">Để bắt đầu, vui lòng trả lời một số câu hỏi để chúng tôi có thể kết nối với bạn với bộ phận phù hợp</string>
+    <string name="text4">Trong trường hợp khách sạn không lấy phí hủy phòng thì RoyalRourney sẽ nhanh chóng thanh toán và hoàn lại 100% phí.</string>
+    <string name="text5">Đối với một số trường hợp đã đặt cọc trước trong việc đặt phòng khách sạn sẽ không được hoàn lại tiền nếu bạn vi phạm chính sách đặt/hủy phòng của RoyalRourney.</string>
+    <string name="step1">1. Nhấn vào <b>Menu</b> ≡ rồi chọn <b>Chuyến đi</b> rồi chọn chuyến đi mà bạn muốn huỷ</string>
+    <string name="step2">2. Kiểm tra kĩ lại thông tin của bạn 1 lần nữa rồi nhấn <b>Huỷ</b></string>
+    <string name="text3">Đặt phòng của bạn bị ảnh hưởng do trường hợp khẩn cấp hoặc thiên tai? Bạn có thể dủ điều kiện được hoàn tiền. Nếu bạn cần huỷ do tình hình dịch COVID_19</string>
+    <string name="text1">Bạn có thể tìm thấy thông tin huỷ trên trang phòng cho thuê và trong quá trình đặt phòng - trước khi thanh toán</string>
+    <string name="text2">Bạn luôn có thể tìm thấy chính sách huỷ và các tuỳ chọn trong mục <b>Chuyến đi</b> chỉ cần nhấp hoặc nhấn vào chi tiết chuyến đi là bạn sẽ thấy <b>Chính sách huỷ</b> của mình.Ngày và giờ mà chúng tôi hiển thị cho chính sách huỷ là theo múi h của địa phương của phòng. Thời gian huỷ để nhận tiền hoàn lại được tính từ giờ nhận phòng của phòng cho thuê theo múi giờ địa phương, hoặc nếu mục cho thuê không ghi rõ giờ nhận phòng</string>
+    <string name="textCancelation_policy2">Nếu bạn gặp phải một vấn để nào đó trong thời gian ở, bạn có thể yêu cầu Chủ nhà khắc phục vấn đề đó, yếu cầu hoàn tiền một phần hoặc yêu cầu hoàn tiền đầy đủ. Bạn cần gửi yêu trong vòng 24 giờ kể từ thời điểm phát hiện vấn đề, Còn chủ nhà sẽ có 1 giờ để trả lời. Nếu chủ nhà từ chối hoặc không phản hồi, bạn có thể yêu cầu RoyalRourney can thiệp để giúp giải quyết</string>
+    <string name="textCancelation_policy">Kế hoạch của bạn đã thay đổi và bây giờ bạn cần huỷ đặt phòng của mình. Không thành vấn đề. Bạn có thể vào mục. Chuyến đi để huỷ</string>
+    <string name="text_comfirm_status_bill">Đặt phòng của bạn là đặt phòng với RoyalJourney được sử lí bời công ti đối tác của chúng tôi . khi hoàn tất đặt phòng này bạn đồng ý với điều kiện đặt phòng , diều khoản chung và chính sách bảo mật .Vai trò của RoyalJourney chỉ đơn thuần là nhà cung cấp nền tảng kết nối giữa khách hàng và công ty du lịch có liên quan.Bạn sẽ không được nhận hỗ trọ từ bộ phần dịch vụ khách hàng của RoyalJourney cho đặt phòng này</string>
 
 </resources>

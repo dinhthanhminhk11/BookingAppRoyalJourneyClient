@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.HelpFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginHorizontal="10dp"
+    tools:context=".ui.fragment.HelpFragment">
 
     <EditText
-        android:layout_margin="8dp"
-        android:imeOptions="actionSearch"
-        android:inputType="textCapSentences|textAutoComplete"
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvghichu"
+        android:layout_margin="@dimen/_8dp"
         android:background="@drawable/vekhungnhap1"
         android:drawableLeft="@drawable/ic_baseline_search_24"
-        android:drawablePadding="12dp"
-        android:hint="Nhấn để tìm kiếm"
-        android:paddingLeft="16dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
+        android:drawablePadding="@dimen/_12dp"
+        android:hint="@string/search_fragment_helps"
+        android:imeOptions="actionSearch"
+        android:inputType="textCapSentences|textAutoComplete"
+        android:paddingLeft="@dimen/_16dp"
+        android:paddingTop="@dimen/_12dp"
+        android:paddingBottom="@dimen/_12dp"
         android:textColor="@color/black"
         android:textColorHint="@color/color_6F6F6F"
-        android:textSize="18dp" />
+        android:textSize="@dimen/_18dp" />
 
 
     <ExpandableListView
         android:id="@+id/list_support"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_8dp"
         android:layout_weight="1"
-        android:layout_margin="8dp" />
+        android:overScrollMode="never" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bạn không tìm thấy câu trả lời cho mình?"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginBottom="@dimen/_5dp"
         android:gravity="center"
-        android:textSize="17dp"
-        android:textColor="@color/black"/>
+        android:text="@string/text_search_fragment_helps"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_17dp" />
+
     <TextView
         android:id="@+id/ed_lienHe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue"
-        android:text="Liên hệ chúng tôi"
+        android:layout_marginBottom="@dimen/_15dp"
         android:gravity="center"
-        android:textSize="15dp"
-        android:layout_marginBottom="15dp"/>
-
+        android:text="@string/text_contact"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_15dp" />
 
 
 </LinearLayout>
