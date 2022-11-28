@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.databinding.ActivityNearFromYouMapsBinding;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
@@ -248,6 +249,13 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=%s", latLng.latitude, latLng.longitude, house.getNameLocation());
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
                 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
+            }
+
+            @Override
+            public void clickItem(String id) {
+                Intent intent = new Intent(NearFromYouMapsActivity.this, DetailProductActivity.class);
+                intent.putExtra(AppConstant.HOUSE_EXTRA, id);
                 startActivity(intent);
             }
         });

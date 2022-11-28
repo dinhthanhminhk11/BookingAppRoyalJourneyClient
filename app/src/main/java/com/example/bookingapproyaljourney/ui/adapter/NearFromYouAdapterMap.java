@@ -150,6 +150,10 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
                 }
             });
 
+            holder.itemNearFromYouMapBinding.linearLayout.setOnClickListener(v->{
+                callback.clickItem(item.getData().getId());
+            });
+
         }
     }
 
@@ -172,5 +176,8 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
         void onClickBookMark(House house);
 
         void onDirect(House house);
+
+        void clickItem(String id);
+
     }
 }
