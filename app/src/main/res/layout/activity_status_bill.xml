@@ -49,13 +49,13 @@
                         android:maxLines="2"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="@dimen/_18sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/_10dp"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -101,12 +101,12 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="@dimen/_15dp">
 
                     <ImageView
                         android:id="@+id/imageHouse"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="@dimen/_100dp"
+                        android:layout_height="@dimen/_100dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/anh5" />
                 </androidx.cardview.widget.CardView>
@@ -132,7 +132,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nhận Phòng"
+                        android:text="@string/open_time_status_bill"
                         android:textColor="@color/color_858585" />
 
                     <TextView
@@ -159,7 +159,7 @@
                     android:background="@drawable/background_night"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:padding="@dimen/_5dp">
 
                     <TextView
                         android:id="@+id/payDay"
@@ -168,7 +168,7 @@
                         android:layout_gravity="center"
                         android:text="0"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/_16dp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -190,7 +190,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|right"
-                        android:text="Trả Phòng"
+                        android:text="@string/close_time_status_bill"
                         android:textColor="@color/color_858585" />
 
                     <TextView
@@ -200,7 +200,7 @@
                         android:layout_gravity="center|right"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="@dimen/_16dp" />
 
                     <TextView
                         android:id="@+id/tvTimeTra"
@@ -231,9 +231,9 @@
                         android:id="@+id/personLimitHouse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Khách"
+                        android:text="@string/guest"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/_16dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -265,9 +265,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thanh toán bằng"
+                        android:text="@string/option_payment"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/_16dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -338,9 +338,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Số điện thoại"
+                            android:text="@string/option_phone"
                             android:textColor="@color/black"
-                            android:textSize="16dp"
+                            android:textSize="@dimen/_16dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -374,7 +374,7 @@
                     android:layout_marginVertical="@dimen/_20dp"
                     android:background="@drawable/textview_border_black"
                     android:foreground="?attr/selectableItemBackground"
-                    android:text="Tiếp tục với số điện thoại này"
+                    android:text="@string/continue_phone"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:visibility="gone"
@@ -394,7 +394,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Chi tiết giá"
+                    android:text="@string/info_bill"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -420,7 +420,6 @@
                         android:layout_marginTop="@dimen/_5dp"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="$6.110.000"
                         android:textSize="@dimen/_17sp" />
                 </LinearLayout>
 
@@ -434,7 +433,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5dp"
-                        android:text="Phí dịch vụ"
+                        android:text="@string/service_charge"
                         android:textSize="@dimen/_17sp" />
 
                     <TextView
@@ -460,7 +459,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5dp"
-                        android:text="Tổng"
+                        android:text="@string/sum"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_17sp"
                         android:textStyle="bold" />
@@ -485,6 +484,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
                 android:background="@drawable/gradientbackground_white"
+                android:foreground="?attr/selectableItemBackground"
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_20dp"
                 android:paddingVertical="@dimen/_10dp">
@@ -493,9 +493,9 @@
                     android:id="@+id/titleCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Chính xác huỷ"
+                    android:text="@string/Exactly_cancel"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/_16dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -520,7 +520,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5dp"
-                    android:text="Đặt phòng của bạn là đặt phòng với RoyalJourney được sử lí bời công ti đối tác của chúng tôi . khi hoàn tất đặt phòng này bạn đồng ý với điều kiện đặt phòng , diều khoản chung và chính sách bảo mật .Vai trò của RoyalJourney chỉ đơn thuần là nhà cung cấp nền tảng kết nối giữa khách hàng và công ty du lịch có liên quan.Bạn sẽ không được nhận hỗ trọ từ bộ phần dịch vụ khách hàng của RoyalJourney cho đặt phòng này" />
+                    android:text="@string/text_comfirm_status_bill" />
 
                 <Button
                     android:id="@+id/btnPay"
@@ -530,12 +530,12 @@
                     android:layout_marginVertical="@dimen/_20dp"
                     android:background="@drawable/bg_buttom_red"
                     android:foreground="?attr/selectableItemBackground"
-                    android:text="Huỷ"
+                    android:text="@string/cancel_status_bill"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     app:backgroundTint="@null" />
+
                 <Button
-                    android:visibility="gone"
                     android:id="@+id/btnDelete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -546,9 +546,10 @@
                     android:text="Xoá"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    app:backgroundTint="@null" />
-                <Button
                     android:visibility="gone"
+                    app:backgroundTint="@null" />
+
+                <Button
                     android:id="@+id/cancel_request"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -559,9 +560,10 @@
                     android:text="Huỷ yêu cầu"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    app:backgroundTint="@null" />
-                <Button
                     android:visibility="gone"
+                    app:backgroundTint="@null" />
+
+                <Button
                     android:id="@+id/btnFeedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -572,6 +574,7 @@
                     android:text="Đánh giá"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    android:visibility="gone"
                     app:backgroundTint="@null" />
             </LinearLayout>
 

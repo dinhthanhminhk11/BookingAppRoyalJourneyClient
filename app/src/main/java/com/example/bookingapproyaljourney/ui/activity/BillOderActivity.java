@@ -2,10 +2,17 @@ package com.example.bookingapproyaljourney.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.format.DateFormat;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -37,6 +44,7 @@ import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetCancellationPolicy;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetEditPerson;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
@@ -77,7 +85,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     private long sumAllPercent;
     private PaymentSheet paymentSheet;
     private PaymentSheet paymentSheet2;
-
+    private BottomSheetCancellationPolicy bottomSheetCancellationPolicy;
     private String customerID;
     private String EpericalKey;
     private String ClientSecret;
@@ -457,6 +465,22 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             }
         });
 
+        binding.contentCancellationPolicy.setOnClickListener(v -> {
+             bottomSheetCancellationPolicy = new BottomSheetCancellationPolicy(this, R.style.MaterialDialogSheet, new BottomSheetCancellationPolicy.CallbackOnClickBottomSheetCancellationPolicy() {
+                @Override
+                public void onclickBtn() {
+                    startActivity(new Intent(BillOderActivity.this, CancellationPolicyActivity.class));
+                }
+
+                @Override
+                public void onClose() {
+                    bottomSheetCancellationPolicy.dismiss();
+                }
+            } ,houseDetailResponse);
+            bottomSheetCancellationPolicy.show();
+            bottomSheetCancellationPolicy.setCanceledOnTouchOutside(false);
+        });
+
         orderViewModel.getOrderResponseMutableLiveData().observe(this, new Observer<OrderResponse>() {
             @Override
             public void onChanged(OrderResponse orderResponse) {
@@ -518,6 +542,20 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             sumAll = item.getPrice();
             checkStartDateResponse = item.getStartDate();
             checkEndDateResponse = item.getEndDate();
+
+            String textCancel = "Nếu bạn hủy trước ngày " + houseDetailResponse.getCancellatioDate() + " bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm";
+
+            Spannable wordtoSpan = new SpannableString(textCancel);
+
+            wordtoSpan.setSpan(new UnderlineSpan(), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            wordtoSpan.setSpan(new UnderlineSpan(), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            binding.textCancel.setText(wordtoSpan);
         });
 
 

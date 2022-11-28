@@ -166,7 +166,8 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailProductActivity.this, MainActivity.class));
+                finish();
+//                startActivity(new Intent(DetailProductActivity.this, MainActivity.class));
             }
         });
         getSupportActionBar().setTitle("");

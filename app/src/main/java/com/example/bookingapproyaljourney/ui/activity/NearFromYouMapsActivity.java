@@ -193,7 +193,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                             double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
                             Log.e("Minh", String.format("Latitude : %s\n Longitude: %s", lati, longi));
                             binding.progressCircular.setVisibility(View.GONE);
-                            binding.contentTime.setVisibility(View.VISIBLE);
+//                            binding.contentTime.setVisibility(View.VISIBLE);
                             locationYouSelf = new Location("LocationYouSef");
                             locationYouSelf.setLongitude(longi);
                             locationYouSelf.setLatitude(lati);
@@ -215,7 +215,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 //                            decimalFormat.setRoundingMode(RoundingMode.UP);
                         } else {
                             binding.progressCircular.setVisibility(View.GONE);
-                            binding.contentTime.setVisibility(View.VISIBLE);
+//                            binding.contentTime.setVisibility(View.VISIBLE);
                         }
                     }
                 }, Looper.getMainLooper());
@@ -380,7 +380,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                 Toast.makeText(NearFromYouMapsActivity.this, resultData.getString(Constants.RESULT_DATA_KEY), Toast.LENGTH_SHORT).show();
             }
             binding.progressCircular.setVisibility(View.GONE);
-            binding.contentTime.setVisibility(View.VISIBLE);
+//            binding.contentTime.setVisibility(View.VISIBLE);
         }
     }
 
