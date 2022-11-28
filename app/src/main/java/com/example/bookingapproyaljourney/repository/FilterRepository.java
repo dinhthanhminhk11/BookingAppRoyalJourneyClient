@@ -40,4 +40,18 @@ public class FilterRepository {
        });
     }
 
+    public void getListSearch(String nameLocation, CallbackFilter callbackFilter){
+        apiRequest.getListSearch(nameLocation).enqueue(new Callback<ListFilterResponse>() {
+            @Override
+            public void onResponse(Call<ListFilterResponse> call, Response<ListFilterResponse> response) {
+                callbackFilter.onResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ListFilterResponse> call, Throwable t) {
+                callbackFilter.onFailure(t);
+            }
+        });
+    }
+
 }

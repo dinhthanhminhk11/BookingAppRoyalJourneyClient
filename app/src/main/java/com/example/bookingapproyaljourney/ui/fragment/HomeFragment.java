@@ -1,13 +1,17 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -170,6 +174,24 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         btnShowNull.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), MainActivity.class));
         });
+
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (textView.getText().toString().isEmpty() || textView.getText().toString().trim().equals("")) {
+                        in.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
+                        etSearch.setText("");
+                        return false;
+                    }
+                    in.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
+                    search(textView.getText().toString().trim());
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void initData() {
@@ -267,6 +289,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 viewShowNull.setVisibility(View.VISIBLE);
                 tvContentNull2.setVisibility(View.VISIBLE);
                 btnShowNull.setVisibility(View.VISIBLE);
+                btnShowNull.setText("Xóa bộ lọc");
                 recyclerviewListBestForYou.setVisibility(View.GONE);
             } else {
                 recyclerviewListBestForYou.setVisibility(View.VISIBLE);
@@ -281,5 +304,36 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             }
         });
 
+    }
+
+    void search(String tk) {
+        progressBar.setVisibility(View.VISIBLE);
+        contentTextNearFromYou.setVisibility(View.GONE);
+        contentBestForYouHomeFragment.setVisibility(View.GONE);
+        recyclerviewNearFromYou.setVisibility(View.GONE);
+        listCategory.setVisibility(View.GONE);
+        filterViewModel.listSearchLiveData(tk).observe(getActivity(), it -> {
+            if (it.getHouses().size() == 0) {
+                progressBar.setVisibility(View.GONE);
+                tvShowNull.setVisibility(View.VISIBLE);
+                tvContentNull.setVisibility(View.VISIBLE);
+                viewShowNull.setVisibility(View.VISIBLE);
+                tvContentNull2.setVisibility(View.VISIBLE);
+                btnShowNull.setVisibility(View.VISIBLE);
+                btnShowNull.setText("Xóa tìm kiếm");
+                tvContentNull.setText("Hãy thử thay đổi địa chỉ tìm kiếm và tìm lại nhé");
+                recyclerviewListBestForYou.setVisibility(View.GONE);
+            } else {
+                recyclerviewListBestForYou.setVisibility(View.VISIBLE);
+                bestForYouAdapterNotNull.setDataHouse(it.getHouses());
+                recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
+                progressBar.setVisibility(View.GONE);
+                tvShowNull.setVisibility(View.GONE);
+                tvContentNull.setVisibility(View.GONE);
+                viewShowNull.setVisibility(View.GONE);
+                tvContentNull2.setVisibility(View.GONE);
+                btnShowNull.setVisibility(View.GONE);
+            }
+        });
     }
 }

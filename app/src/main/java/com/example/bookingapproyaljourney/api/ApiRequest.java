@@ -171,4 +171,7 @@ public interface ApiRequest {
 
     @GET("listNotificationByUser/{id}")
     Call<NotiResponse> getListNotification(@Path("id") String id);
+
+    @GET("listSearchProduct/{nameLocation}")
+    Call<ListFilterResponse> getListSearch(@Path("nameLocation") String nameLocation);
 }
