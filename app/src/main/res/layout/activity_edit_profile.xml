@@ -86,7 +86,8 @@
                     android:layout_height="@dimen/_54dp"
                     android:background="@color/white"
                     android:hint="@string/Ten"
-                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeColor="@color/_171717"
+                    app:boxStrokeWidth="0.01dp"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -107,7 +108,8 @@
                     android:layout_marginTop="@dimen/_20dp"
                     android:background="@color/white"
                     android:hint="@string/Sdt_editprofile"
-                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeColor="@color/_171717"
+                    app:boxStrokeWidth="0.01dp"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -128,7 +130,8 @@
                     android:layout_marginTop="@dimen/_20dp"
                     android:background="@color/white"
                     android:hint="@string/cccd"
-                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeColor="@color/_171717"
+                    app:boxStrokeWidth="0.01dp"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -148,7 +151,8 @@
                     android:layout_marginTop="@dimen/_20dp"
                     android:background="@color/white"
                     android:hint="@string/dia_chi"
-                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeColor="@color/_171717"
+                    app:boxStrokeWidth="0.01dp"
                     app:hintTextColor="@color/color_555555"
                     app:startIconDrawable="@drawable/ic_subtract_edit_profile">
 
@@ -164,12 +168,19 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
-                    android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_45dp"
-                    android:layout_marginTop="-50dp"
+                    android:layout_marginTop="-49dp"
                     android:src="@drawable/ic_line_edit_profile" />
+
+                <ImageView
+                    android:id="@+id/iconLocalEditProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12dp"
+                    android:layout_marginTop="-32dp"
+                    android:src="@drawable/ic_subtract_edit_profile" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/saveEditProfile"

@@ -35,13 +35,13 @@ public class EditProfile extends AppCompatActivity {
     private MaterialToolbar toolBar;
     private CircleImageView avtEditProfile;
     private ImageView cameraEditProfile;
+    private ImageView iconLocalEditProfile;
     private TextView titleNameEditProfile;
     private TextView titleEmailEditProfile;
     private TextInputEditText nameEditProfile;
     private TextInputEditText phoneEditProfile;
     private TextInputEditText cccdEditProfile;
     private TextInputEditText locationEditProfile;
-    private ImageView imageView3;
     private AppCompatButton saveEditProfile;
 
     private LoginViewModel loginViewModel;
@@ -57,13 +57,13 @@ public class EditProfile extends AppCompatActivity {
         toolBar = (MaterialToolbar) findViewById(R.id.tool_bar);
         avtEditProfile = (CircleImageView) findViewById(R.id.avtEditProfile);
         cameraEditProfile = (ImageView) findViewById(R.id.cameraEditProfile);
+        iconLocalEditProfile = (ImageView) findViewById(R.id.iconLocalEditProfile);
         titleNameEditProfile = (TextView) findViewById(R.id.titleNameEditProfile);
         titleEmailEditProfile = (TextView) findViewById(R.id.titleEmailEditProfile);
         nameEditProfile = (TextInputEditText) findViewById(R.id.nameEditProfile);
         phoneEditProfile = (TextInputEditText) findViewById(R.id.phoneEditProfile);
         cccdEditProfile = (TextInputEditText) findViewById(R.id.cccdEditProfile);
         locationEditProfile = (TextInputEditText) findViewById(R.id.locationEditProfile);
-        imageView3 = (ImageView) findViewById(R.id.imageView3);
         saveEditProfile = (AppCompatButton) findViewById(R.id.saveEditProfile);
 
         toolBar.setNavigationIcon(R.drawable.ic_exit_edit_profile);
