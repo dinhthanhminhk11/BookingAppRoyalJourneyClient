@@ -81,13 +81,11 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_54dp"
                     android:background="@color/white"
                     android:hint="@string/Ten"
                     app:boxStrokeColor="@color/_171717"
-                    app:boxStrokeWidth="0.01dp"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -109,7 +107,6 @@
                     android:background="@color/white"
                     android:hint="@string/Sdt_editprofile"
                     app:boxStrokeColor="@color/_171717"
-                    app:boxStrokeWidth="0.01dp"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -131,7 +128,6 @@
                     android:background="@color/white"
                     android:hint="@string/cccd"
                     app:boxStrokeColor="@color/_171717"
-                    app:boxStrokeWidth="0.01dp"
                     app:hintTextColor="@color/color_555555">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -152,7 +148,6 @@
                     android:background="@color/white"
                     android:hint="@string/dia_chi"
                     app:boxStrokeColor="@color/_171717"
-                    app:boxStrokeWidth="0.01dp"
                     app:hintTextColor="@color/color_555555"
                     app:startIconDrawable="@drawable/ic_subtract_edit_profile">
 
@@ -196,6 +191,18 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14dp"
                     android:textStyle="bold" />
+
+<!--                <com.airbnb.lottie.LottieAnimationView-->
+<!--                    android:id="@+id/progressBarEdiProfile"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="@dimen/_120dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:backgroundTint="@null"-->
+<!--                    android:backgroundTintMode="@null"-->
+<!--                    android:visibility="visible"-->
+<!--                    app:lottie_autoPlay="true"-->
+<!--                    app:lottie_fileName="loading.json"-->
+<!--                    app:lottie_loop="true" />-->
 
             </LinearLayout>
         </LinearLayout>

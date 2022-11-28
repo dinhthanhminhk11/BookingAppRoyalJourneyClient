@@ -203,11 +203,10 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
                             latLngLocationYourSelf = new LatLng(lati, longi);
                             mapActivityNearByFromYouViewModel.getHouseNearestByUserOnPosition(latLngLocationYourSelf);
                             showMakerAndText(locationYouSelf);
+
                             /// get long lat từ địa chỉ
                             // tinh postion đầu tiên của list
-
 //                            distance.setText(decimalFormat.format(SphericalUtil.computeDistanceBetween(latLngLocationYourSelf, latLng) / 1000) + " km");
-
                             //tính quãng đường chim bay
                             // dm chỗ này đéo có tiền đéo tính đc quảng đường thực :))
 //                            SphericalUtil.computeDistanceBetween(latLngStart, latLng);

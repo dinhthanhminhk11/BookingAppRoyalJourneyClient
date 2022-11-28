@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_edit_profile.xml" value="0.6666666666666666" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_chat_message.xml" value="0.12590579710144928" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_login.xml" value="0.14266304347826086" />
+        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_near_from_you_maps.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/libraryImagePicker/src/main/res/layout/activity_image_picker.xml" value="0.13405797101449277" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/libraryImagePicker/src/main/res/layout/dialog_choose_app.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_item_activity.xml" value="0.319" />

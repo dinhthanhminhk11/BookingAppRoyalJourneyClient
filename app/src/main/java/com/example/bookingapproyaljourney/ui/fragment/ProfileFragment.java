@@ -61,9 +61,7 @@ public class ProfileFragment extends Fragment {
     private List<Convenient> convenientList;
 
     public ProfileFragment() {
-
     }
-
 
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
@@ -92,7 +90,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initView(view);
     }
 
