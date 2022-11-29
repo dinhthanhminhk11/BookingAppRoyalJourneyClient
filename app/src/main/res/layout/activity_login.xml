@@ -68,25 +68,39 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.13" />
 
-    <EditText
-        android:id="@+id/edPass"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_51dp"
-        android:layout_marginStart="@dimen/_25dp"
-        android:layout_marginEnd="@dimen/_25dp"
-        android:background="@drawable/bg_edittext"
-        android:fontFamily="@font/poppins"
-        android:hint="@string/enter_pass_login"
-        android:inputType="textPassword"
-        android:paddingStart="@dimen/_30dp"
-        android:textColorHint="@color/hint_color"
-        android:textSize="@dimen/_13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edEmail"
-        app:layout_constraintVertical_bias="0.094" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:passwordToggleEnabled="true"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@+id/edEmail">
+
+        <EditText
+            android:padding="@dimen/_10dp"
+            android:id="@+id/edPass"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_51dp"
+            android:layout_marginStart="@dimen/_25dp"
+            android:layout_marginEnd="@dimen/_25dp"
+            android:background="@drawable/bg_edittext"
+            android:fontFamily="@font/poppins"
+            android:inputType="textPassword"
+            android:hint="@string/enter_pass_login"
+            android:paddingStart="@dimen/_30dp"
+            android:textColorHint="@color/hint_color"
+            android:textSize="@dimen/_13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edEmail"
+            app:layout_constraintVertical_bias="0.094" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/tvForgotPass"
@@ -99,7 +113,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edPass"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:layout_constraintVertical_bias="0.12" />
 
     <androidx.appcompat.widget.AppCompatButton
