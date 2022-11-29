@@ -87,7 +87,7 @@ public class EditProfile extends AppCompatActivity {
 //        progressBarEdiProfile = (LottieAnimationView) findViewById(R.id.progressBarEdiProfile);
 
         toolBar.setNavigationIcon(R.drawable.ic_exit_edit_profile);
-        toolBar.setTitle("Chỉnh sửa hồ sơ");
+        toolBar.setTitle(this.getString(R.string.edit_profile));
         toolBar.setPadding(15, 0, 0, 0);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

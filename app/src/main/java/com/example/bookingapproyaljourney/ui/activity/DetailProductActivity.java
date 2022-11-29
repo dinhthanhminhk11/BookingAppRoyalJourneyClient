@@ -282,7 +282,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
                     dialog.show();
                 } else if (isStillEmpty) {
                     CookieBar.build(DetailProductActivity.this)
-                            .setTitle("Đã hết phòng")
+                            .setTitle(DetailProductActivity.this.getString(R.string.out_of_room))
                             .setMessage(DetailProductActivity.this.getString(R.string.dialogcontentnomal))
                             .setIcon(R.drawable.ic_warning_icon_check)
                             .setTitleColor(R.color.black)

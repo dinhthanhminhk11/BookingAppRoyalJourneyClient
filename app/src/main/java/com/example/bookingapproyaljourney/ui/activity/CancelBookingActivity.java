@@ -87,8 +87,8 @@ public class CancelBookingActivity extends AppCompatActivity {
         try {
             if ((sdf.parse(dateCancel).before((sdf.parse(currentDate)))) && !checkBanking) {
                 CookieBar.build(this)
-                        .setTitle("Thông báo")
-                        .setMessage("Đã quá hạn huỷ bạn sẽ không nhận được khoản tiền nào trong ngày hôm nay")
+                        .setTitle(this.getString(R.string.Notify))
+                        .setMessage(this.getString(R.string.expired))
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -98,8 +98,8 @@ public class CancelBookingActivity extends AppCompatActivity {
                         .show();
             } else if (currentDate.equals(dateCancel) && !checkBanking) {
                 CookieBar.build(this)
-                        .setTitle("Thông báo")
-                        .setMessage("Hôm nay là hạn cuối để bạn huỷ phòng")
+                        .setTitle(this.getString(R.string.Notify))
+                        .setMessage(this.getString(R.string.dealine_date))
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -126,8 +126,8 @@ public class CancelBookingActivity extends AppCompatActivity {
         btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);
         login = (Button) dialogLogOut.findViewById(R.id.login);
 
-        text.setText("Bạn có chắc muốn huỷ phòng");
-        login.setText("Xác nhận");
+        text.setText(this.getString(R.string.cancel_room));
+        login.setText(this.getString(R.string.Confirm));
 
 
         binding.btnSubmit.setOnClickListener(v -> {

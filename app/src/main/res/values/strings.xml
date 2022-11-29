@@ -153,7 +153,7 @@
     <string name="text4">Trong trường hợp khách sạn không lấy phí hủy phòng thì RoyalRourney sẽ nhanh chóng thanh toán và hoàn lại 100% phí.</string>
     <string name="text5">Đối với một số trường hợp đã đặt cọc trước trong việc đặt phòng khách sạn sẽ không được hoàn lại tiền nếu bạn vi phạm chính sách đặt/hủy phòng của RoyalRourney.</string>
     <string name="step1">1. Nhấn vào <b>Menu</b> ≡ rồi chọn <b>Chuyến đi</b> rồi chọn chuyến đi mà bạn muốn huỷ</string>
-    <string name="step2">2. Kiểm tra kĩ lại thông tin của bạn 1 lần nữa rồi nhấn <b>Huỷ</b></string>
+    <string name="step2">2. Kiểm tra kĩ lại ddatin của bạn 1 lần nữa rồi nhấn <b>Huỷ</b></string>
     <string name="text3">Đặt phòng của bạn bị ảnh hưởng do trường hợp khẩn cấp hoặc thiên tai? Bạn có thể dủ điều kiện được hoàn tiền. Nếu bạn cần huỷ do tình hình dịch COVID_19</string>
     <string name="text1">Bạn có thể tìm thấy thông tin huỷ trên trang phòng cho thuê và trong quá trình đặt phòng - trước khi thanh toán</string>
     <string name="text2">Bạn luôn có thể tìm thấy chính sách huỷ và các tuỳ chọn trong mục <b>Chuyến đi</b> chỉ cần nhấp hoặc nhấn vào chi tiết chuyến đi là bạn sẽ thấy <b>Chính sách huỷ</b> của mình.Ngày và giờ mà chúng tôi hiển thị cho chính sách huỷ là theo múi h của địa phương của phòng. Thời gian huỷ để nhận tiền hoàn lại được tính từ giờ nhận phòng của phòng cho thuê theo múi giờ địa phương, hoặc nếu mục cho thuê không ghi rõ giờ nhận phòng</string>
@@ -177,5 +177,24 @@
     <string name="textcheck111">Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi , chúc bạn một ngày mới tốt lành</string>
     <string name="You_have_no_notifications">Bạn không có thông báo</string>
     <string name="text_notification">Các thông báo cho phép bạn nhanh chóng cập nhật thông tin và hành động khi cần thiết trên các đặt phòng hiện tại và sắp tới</string>
+    <string name="expired">Đã quá hạn huỷ bạn sẽ không nhận được khoản tiền nào trong ngày hôm nay</string>
+    <string name="dealine_date">Hôm nay là hạn cuối để bạn huỷ phòng</string>
+    <string name="cancel_room">Bạn có chắc muốn huỷ phòng</string>
+    <string name="Confirm">Xác nhận</string>
+    <string name="edit_profile">Chỉnh sửa hồ sơ</string>
+    <string name="import_email">Xin vui lòng nhập địa chỉ Email</string>
+    <string name="import_passwosrd">Xin vui lòng nhập địa chỉ Password</string>
+    <string name="accuracy_email">Tài khoản của bạn chưa xác thực email</string>
+    <string name="security_otp">Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn</string>
+    <string name="otp_is_incorrect">OTP không chính xác</string>
+    <string name="check_otp">Bạn hãy kiểm tra lại mã OTP chúng tôi đã gửi trong email của bạn</string>
+    <string name="letter_otp">Mã OTP gồm có 6 kí tự</string>
+    <string name="insert_code">\"Nhập mã mà chúng tôi đã gửi qua tin nhắn email \"</string>
+    <string name="trip_details">Chi tiết chuyến đi của bạn</string>
+    <string name="card_visa">Thanh toán bằng Thẻ VISA (VISA card) (Đã thanh toán)</string>
+    <string name="card_visa1">Thanh toán bằng Thẻ VISA (VISA card) (Đã thanh toán 1 phần)</string>
+    <string name="paying_later">Thanh toán sau khi hoàn tất thủ tục trả phòng</string>
+    <string name="refuse_the_landlord">\"Do chủ nhà đã từ chối yêu cầu của bạn lên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà : \"</string>
+    <string name="owner_canceled">Chủ đã huỷ</string>
 
 </resources>

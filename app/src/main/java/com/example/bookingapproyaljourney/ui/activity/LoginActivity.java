@@ -107,10 +107,10 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnSignIn.setOnClickListener(v -> {
             if (edEmail.getText().toString().isEmpty()) {
                 binding.edEmail.requestFocus();
-                binding.edEmail.setError("Xin vui lòng nhập địa chỉ Email");
+                binding.edEmail.setError(this.getString(R.string.import_email));
             } else if (edPass.getText().toString().isEmpty()) {
                 binding.edPass.requestFocus();
-                binding.edPass.setError("Xin vui lòng nhập địa chỉ Password");
+                binding.edPass.setError(this.getString(R.string.import_passwosrd));
             } else {
                 loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
             }
@@ -147,8 +147,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
 
                     CookieBar.build(LoginActivity.this)
-                            .setTitle("Tài khoản của bạn chưa xác thực email")
-                            .setMessage("Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn")
+                            .setTitle(LoginActivity.this.getString(R.string.accuracy_email))
+                            .setMessage(LoginActivity.this.getString(R.string.security_otp))
                             .setIcon(R.drawable.ic_warning_icon_check)
                             .setTitleColor(R.color.black)
                             .setMessageColor(R.color.black)

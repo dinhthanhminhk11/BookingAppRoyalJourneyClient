@@ -46,7 +46,7 @@ public class OTPPasswordActivity extends AppCompatActivity {
         otpPasswordViewModel = new ViewModelProvider(this).get(OTPPasswordViewModel.class);
         mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
 
-        binding.textAlien.setText("Nhập mã mà chúng tôi đã gửi qua tin nhắn email " + mail);
+        binding.textAlien.setText(this.getString(R.string.insert_code) + mail);
 
         binding.sendAgain.setPaintFlags(binding.sendAgain.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
@@ -111,7 +111,7 @@ public class OTPPasswordActivity extends AppCompatActivity {
     private Boolean validateinfo(String otp) {
         if (otp.length() != 6 ){
             binding.otp.requestFocus();
-            binding.otp.setError("Mã OTP gồm có 6 kí tự");
+            binding.otp.setError(this.getString(R.string.letter_otp));
             return true;
         }else{
             otpPasswordViewModel.postOTP(new Verify(mail, binding.otp.getText().toString().trim()));

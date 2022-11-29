@@ -79,7 +79,7 @@ public class StatusBillActivity extends AppCompatActivity {
         binding = ActivityStatusBillBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
-        binding.toolBar.setTitle("Chi tiết chuyến đi của bạn");
+        binding.toolBar.setTitle(this.getString(R.string.trip_details));
         binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         idOrder = getIntent().getStringExtra(AppConstant.ID_ORDER);
         binding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -106,8 +106,8 @@ public class StatusBillActivity extends AppCompatActivity {
         btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         login = (Button) dialogLogOut.findViewById(R.id.login);
 
-        text.setText("Bạn có chắc muốn huỷ yêu cầu");
-        login.setText("Xác nhận");
+        text.setText(this.getString(R.string.trip_details));
+        login.setText(this.getString(R.string.Confirm));
 
         close.setOnClickListener(v -> {
             dialogLogOut.cancel();
@@ -156,33 +156,33 @@ public class StatusBillActivity extends AppCompatActivity {
                 binding.sumPrice.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
                 checkIsBacking = orderResponse.isCashMoney();
                 if (orderResponse.isBanking()) {
-                    binding.textPayment.setText("Thanh toán bằng Thẻ VISA (VISA card) (Đã thanh toán)");
+                    binding.textPayment.setText(StatusBillActivity.this.getString(R.string.card_visa));
                     binding.imageMatercard.setVisibility(View.GONE);
                     binding.imagePaypal.setVisibility(View.GONE);
                     binding.imageGooglePlay.setVisibility(View.GONE);
                 } else if (orderResponse.isBackingPercent()) {
-                    binding.textPayment.setText("Thanh toán bằng Thẻ VISA (VISA card) (Đã thanh toán 1 phần)");
+                    binding.textPayment.setText(StatusBillActivity.this.getString(R.string.card_visa1));
                     binding.imageMatercard.setVisibility(View.GONE);
                     binding.imagePaypal.setVisibility(View.GONE);
                     binding.imageGooglePlay.setVisibility(View.GONE);
                 } else {
                     binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.textPayment.setText("Thanh toán sau khi hoàn tất thủ tục trả phòng");
+                    binding.textPayment.setText(StatusBillActivity.this.getString(R.string.paying_later));
                     binding.imageMatercard.setVisibility(View.GONE);
                     binding.imagePaypal.setVisibility(View.GONE);
                     binding.imageGooglePlay.setVisibility(View.GONE);
                     binding.imageVISA.setVisibility(View.GONE);
                 }
 
-                if (orderResponse.getStatus().equals("Chủ đã huỷ") && orderResponse.isBanking()) {
+                if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isBanking()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.textConfirm.setText("Do chủ nhà đã từ chối yêu cầu của bạn lên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà : " + orderResponse.getReasonHost());
-                } else if (orderResponse.getStatus().equals("Chủ đã huỷ") && orderResponse.isBackingPercent()) {
+                    binding.textConfirm.setText(StatusBillActivity.this.getString(R.string.refuse_the_landlord) + orderResponse.getReasonHost());
+                } else if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isBackingPercent()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.textConfirm.setText("Do chủ nhà đã từ chối yêu cầu của bạn nên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà : " + orderResponse.getReasonHost());
-                } else if (orderResponse.getStatus().equals("Chủ đã huỷ") && orderResponse.isCashMoney()) {
+                } else if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isCashMoney()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.textConfirm.setText("Chủ nhà đã từ chối yêu cầu của bạn lí do là vì: " + orderResponse.getReasonHost());

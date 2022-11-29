@@ -95,8 +95,8 @@ public class OtpActivity extends AppCompatActivity {
                     viewModel.login(mail, pass);
                 } else {
                     CookieBar.build(OtpActivity.this)
-                            .setTitle("OTP không chính xác")
-                            .setMessage("Bạn hãy kiểm tra lại mã OTP chúng tôi đã gửi trong email của bạn")
+                            .setTitle(OtpActivity.this.getString(R.string.otp_is_incorrect))
+                            .setMessage(OtpActivity.this.getString(R.string.check_otp))
                             .setIcon(R.drawable.ic_warning_icon_check)
                             .setTitleColor(R.color.black)
                             .setMessageColor(R.color.black)
@@ -142,8 +142,8 @@ public class OtpActivity extends AppCompatActivity {
         if (!(check == null)){
             if (check.equals("LoginActivity")){
                 CookieBar.build(OtpActivity.this)
-                        .setTitle("Tài khoản của bạn chưa xác thực email")
-                        .setMessage("Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn")
+                        .setTitle(OtpActivity.this.getString(R.string.accuracy_email))
+                        .setMessage(OtpActivity.this.getString(R.string.security_otp))
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -158,7 +158,7 @@ public class OtpActivity extends AppCompatActivity {
     private Boolean validateinfo(String otp) {
         if (otp.length() != 6 ) {
             binding.otp.requestFocus();
-            binding.otp.setError("Mã OTP gồm có 6 kí tự");
+            binding.otp.setError(this.getString(R.string.letter_otp));
             return true;
         }else {
             viewModel.postVerify(new Verify(mail, otp));

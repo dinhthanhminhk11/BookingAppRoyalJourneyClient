@@ -84,7 +84,6 @@ public class NewPasswordActivity extends AppCompatActivity {
             @Override
             public void onChanged(LoginResponse loginResponse) {
                 if (loginResponse.getUser().isActive()) {
-
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                     editor.commit();
                     Toast.makeText(NewPasswordActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
