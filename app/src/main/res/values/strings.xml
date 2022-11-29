@@ -197,4 +197,18 @@
     <string name="refuse_the_landlord">\"Do chủ nhà đã từ chối yêu cầu của bạn lên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà : \"</string>
     <string name="owner_canceled">Chủ đã huỷ</string>
 
+
+    <string name="enterMail">Xin vui lòng nhập địa chỉ Email</string>
+    <string name="enterPass">Xin vui lòng nhập địa chỉ Password</string>
+    <string name="titleConfrimMail">Tài khoản của bạn chưa xác thực email</string>
+    <string name="contentConfrimMail">Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn</string>
+    <string name="textOTP">Mã OTP gồm có 6 kí tự</string>
+    <string name="enterCodeOTP">Nhập mã mà chúng tôi đã gửi qua tin nhắn email </string>
+    <string name="out">Thoát</string>
+    <string name="OTPFail">OTP không chính xác</string>
+    <string name="SEND">Đã Gửi</string>
+    <string name="OTPFailContent">Bạn hãy kiểm tra lại mã OTP chúng tôi đã gửi trong email của bạn</string>
+    <string name="textCheckNewPass">Phải trên 6 kí tự, ít nhất chứa 1 chữ số và 1 chứ cái</string>
+    <string name="textCheckNewPass2">Mật khẩu không trùng khớp</string>
+    <string name="changePassWhyLogin">Đổi mật khẩu thành công, bạn có muốn đăng nhập ?</string>
 </resources>

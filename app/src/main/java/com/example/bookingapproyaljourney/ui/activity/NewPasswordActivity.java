@@ -11,17 +11,14 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
@@ -31,6 +28,7 @@ import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.view_model.NewPassViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 public class NewPasswordActivity extends AppCompatActivity {
 
@@ -55,7 +53,7 @@ public class NewPasswordActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         binding.btnSend.setOnClickListener(v -> {
-            String Password  = binding.edPass.getText().toString();
+            String Password = binding.edPass.getText().toString();
             String CFPassword = binding.edCfPass.getText().toString();
             validateinfo(Password, CFPassword);
 
@@ -94,7 +92,17 @@ public class NewPasswordActivity extends AppCompatActivity {
                 } else {
                     // gọi thêm hàm xác thực mail ở đây
                     newPassViewModel.sendAgain(new Email(mail));
-                    Toast.makeText(NewPasswordActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
+
+                    CookieBar.build(NewPasswordActivity.this)
+                            .setTitle(R.string.Notify)
+                            .setMessage(R.string.titleConfrimMail)
+                            .setIcon(R.drawable.ic_warning_icon_check)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
                     Intent intent = new Intent(NewPasswordActivity.this, OtpActivity.class);
                     intent.putExtra(AppConstant.EMAIL_USER, loginResponse.getUser().getEmail());
                     Log.e("MinhEmailLogin", loginResponse.getUser().getEmail());
@@ -108,15 +116,15 @@ public class NewPasswordActivity extends AppCompatActivity {
     }
 
     private Boolean validateinfo(String password, String cfPassword) {
-        if (password.length() <=6){
+        if (password.length() <= 6) {
             binding.edPass.requestFocus();
-            binding.edPass.setError("Phải trên 6 kí tự, ít nhất chứa 1 chữ số và 1 chứ cái");
+            binding.edPass.setError(getString(R.string.textCheckNewPass));
             return false;
-        }else if (cfPassword.length() <= 6){
+        } else if (cfPassword.length() <= 6) {
             binding.edCfPass.requestFocus();
-            binding.edCfPass.setError("Mật khẩu không trùng khớp");
+            binding.edCfPass.setError(getString(R.string.textCheckNewPass2));
             return false;
-        }else {
+        } else {
             newPassViewModel.newPassword(new UserLogin(mail, binding.edCfPass.getText().toString().trim()));
         }
         return null;
@@ -136,8 +144,8 @@ public class NewPasswordActivity extends AppCompatActivity {
         text = (TextView) dialogLogOut.findViewById(R.id.text);
         btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         login = (Button) dialogLogOut.findViewById(R.id.login);
-        login.setText("Đăng nhập");
-        text.setText("Đổi mật khẩu thành công, bạn có muốn đăng nhập ?");
+        login.setText(R.string.sign_in_login);
+        text.setText(R.string.changePassWhyLogin);
         close.setOnClickListener(v1 -> {
             Intent intent = new Intent(NewPasswordActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -155,6 +163,4 @@ public class NewPasswordActivity extends AppCompatActivity {
         });
         dialogLogOut.show();
     }
-
-
 }

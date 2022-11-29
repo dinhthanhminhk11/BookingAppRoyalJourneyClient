@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
+import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
@@ -31,6 +34,8 @@ import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class LoginActivity extends AppCompatActivity {
     private ConstraintLayout contentView;
@@ -107,22 +112,28 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnSignIn.setOnClickListener(v -> {
             if (edEmail.getText().toString().isEmpty()) {
                 binding.edEmail.requestFocus();
-                binding.edEmail.setError(this.getString(R.string.import_email));
+                binding.edEmail.setError(getString(R.string.enterMail));
             } else if (edPass.getText().toString().isEmpty()) {
                 binding.edPass.requestFocus();
-                binding.edPass.setError(this.getString(R.string.import_passwosrd));
+                binding.edPass.setError(getString(R.string.enterPass));
             } else {
-                loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString(), this.getResources().getString(R.string.LoginSuccess), this.getResources().getString(R.string.LoginFailed));
+                loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString());
             }
         });
 
         loginViewModel.getLoginResult().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (!s.equals(LoginActivity.this.getResources().getString(R.string.LoginSuccess))) {
-                    Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
-                    Log.e("dua", s);
-                }
+                CookieBar.build(LoginActivity.this)
+                        .setTitle(R.string.Notify)
+                        .setMessage(s)
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
             }
         });
 
@@ -142,28 +153,10 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("CheckSuccess", "LoginResultSuccess");
+                    intent.putExtra(CheckSuccess, AppConstant.LoginResultSuccess);
                     startActivity(intent);
                 } else {
-
-                    CookieBar.build(LoginActivity.this)
-                            .setTitle(LoginActivity.this.getString(R.string.accuracy_email))
-                            .setMessage(LoginActivity.this.getString(R.string.security_otp))
-                            .setIcon(R.drawable.ic_warning_icon_check)
-                            .setTitleColor(R.color.black)
-                            .setMessageColor(R.color.black)
-                            .setDuration(3000)
-                            .setBackgroundRes(R.drawable.background_toast)
-                            .setCookiePosition(CookieBar.BOTTOM)
-                            .show();
-//                    ToastCheck toastCheck = new ToastCheck(LoginActivity.this, R.style.StyleToast,
-////                            this.getString(R.string.dialogstartdate),
-//                            "Tài khoản của bạn chưa xác thực email",
-////                            this.getString(R.string.dialogcontentnomal),
-//                            "Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn",
-//                            R.drawable.ic_warning_icon_check);
-
-//                    Toast.makeText(LoginActivity.this, "Tài khoản của bạn chưa xác thực email", Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_CONFIRM_ACCOUNT));
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
                     loginViewModel.sendAgain(new Email(loginResponse.getUser().getEmail()));
                     intent.putExtra(AppConstant.EMAIL_USER, loginResponse.getUser().getEmail());

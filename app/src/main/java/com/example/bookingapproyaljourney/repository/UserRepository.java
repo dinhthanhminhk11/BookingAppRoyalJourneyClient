@@ -34,7 +34,11 @@ public class UserRepository {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful()) {
-                    interfaceLoginResponse.onResponse(response.body());
+                    if (response.body().isStatus()) {
+                        interfaceLoginResponse.onResponse(response.body());
+                    } else {
+                        interfaceLoginResponse.onResponseFailure(response.body());
+                    }
                 } else {
                     interfaceLoginResponse.onFailure(new Throwable(response.message()));
                 }
@@ -88,6 +92,8 @@ public class UserRepository {
     public interface InterfaceResponse {
         void onResponse(LoginResponse loginResponse);
 
+        void onResponseFailure(LoginResponse loginResponse);
+
         void onFailure(Throwable t);
 
     }
@@ -135,7 +141,7 @@ public class UserRepository {
         });
     }
 
-    public void getCountNotificationByUser(String id , CallbackCountResponse callbackCountResponse){
+    public void getCountNotificationByUser(String id, CallbackCountResponse callbackCountResponse) {
         apiRequest.getCountNotification(id).enqueue(new Callback<CountNotiResponse>() {
             @Override
             public void onResponse(Call<CountNotiResponse> call, Response<CountNotiResponse> response) {

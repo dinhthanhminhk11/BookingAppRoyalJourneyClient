@@ -34,13 +34,12 @@ public class LoginViewModel extends AndroidViewModel {
         userRepository = new UserRepository();
     }
 
-    public void login(String username, String password, String loginSuccess, String loginFail) {
+    public void login(String username, String password) {
         mProgressMutableData.postValue(View.VISIBLE);
         userRepository.getUser(new UserLogin(username, password), new UserRepository.InterfaceResponse() {
             @Override
             public void onResponse(LoginResponse loginResponse) {
                 mProgressMutableData.postValue(View.GONE);
-                mLoginResultMutableData.postValue(loginSuccess);
                 mLoginResultMutableDataToKen.postValue(loginResponse);
                 UserClient userClient = UserClient.getInstance();
                 userClient.setEmail(loginResponse.getUser().getEmail());
@@ -50,20 +49,17 @@ public class LoginViewModel extends AndroidViewModel {
                 userClient.setPhone(loginResponse.getUser().getPhone());
                 userClient.setAddress(loginResponse.getUser().getAddress());
                 userClient.setCountBooking(loginResponse.getUser().getCountBooking());
-                Log.e("MinhLogin", loginResponse.getUser().getEmail());
-                Log.e("MinhLogin", loginResponse.getMessage());
-                Log.e("MinhLogin", loginResponse.getUser().getId());
-                Log.e("MinhLoginToken", loginResponse.getToken());
-                Log.e("MinhLoginactive", loginResponse.getUser().isActive() + " sss");
-                Log.e("MinhLoginactive", loginResponse.getUser().getOtp() + " sxxxxxss");
-
-
             }
 
             @Override
             public void onFailure(Throwable t) {
                 mProgressMutableData.postValue(View.GONE);
-                mLoginResultMutableData.postValue(loginFail);
+            }
+
+            @Override
+            public void onResponseFailure(LoginResponse loginResponse) {
+                mProgressMutableData.postValue(View.GONE);
+                mLoginResultMutableData.postValue(loginResponse.getMessage());
             }
         });
     }
@@ -88,6 +84,11 @@ public class LoginViewModel extends AndroidViewModel {
             @Override
             public void onFailure(Throwable t) {
                 mProgressMutableData.postValue(View.INVISIBLE);
+            }
+
+            @Override
+            public void onResponseFailure(LoginResponse loginResponse) {
+
             }
         });
     }

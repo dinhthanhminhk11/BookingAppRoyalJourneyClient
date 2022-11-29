@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
@@ -22,14 +22,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityOtpBinding;
+import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
-import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
-import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.bookingapproyaljourney.view_model.VerifyViewModel;
 import com.example.librarytoastcustom.CookieBar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class OtpActivity extends AppCompatActivity {
 
@@ -49,15 +52,24 @@ public class OtpActivity extends AppCompatActivity {
         mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
         String pass = getIntent().getStringExtra(AppConstant.PASS_USER);
 
-        binding.textAlien.setText("Nhập mã mà chúng tôi đã gửi qua tin nhắn email " + mail);
+        binding.textAlien.setText(R.string.enterCodeOTP + mail);
         viewModel = new ViewModelProvider(this).get(VerifyViewModel.class);
         binding.btnSignIn.setOnClickListener(v -> {
             String otp = binding.otp.getText().toString();
             validateinfo(otp);
-            
         });
 
         binding.sendAgain.setOnClickListener(v -> {
+            CookieBar.build(this)
+                    .setTitle(R.string.Notify)
+                    .setMessage(R.string.SEND)
+                    .setIcon(R.drawable.ic_complete_order)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
             viewModel.sendAgain(new Email(mail));
         });
 
@@ -74,7 +86,7 @@ public class OtpActivity extends AppCompatActivity {
             btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);
             btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             logOut = (Button) dialogLogOut.findViewById(R.id.login);
-            logOut.setText("Thoát");
+            logOut.setText(R.string.out);
 
             close.setOnClickListener(v1 -> {
                 dialogLogOut.dismiss();
@@ -95,8 +107,8 @@ public class OtpActivity extends AppCompatActivity {
                     viewModel.login(mail, pass);
                 } else {
                     CookieBar.build(OtpActivity.this)
-                            .setTitle(OtpActivity.this.getString(R.string.otp_is_incorrect))
-                            .setMessage(OtpActivity.this.getString(R.string.check_otp))
+                            .setTitle(R.string.OTPFail)
+                            .setMessage(R.string.OTPFailContent)
                             .setIcon(R.drawable.ic_warning_icon_check)
                             .setTitleColor(R.color.black)
                             .setMessageColor(R.color.black)
@@ -104,11 +116,6 @@ public class OtpActivity extends AppCompatActivity {
                             .setBackgroundRes(R.drawable.background_toast)
                             .setCookiePosition(CookieBar.BOTTOM)
                             .show();
-//                    ToastCheck toastCheck = new ToastCheck(OtpActivity.this, R.style.StyleToast,
-//                            "OTP không chính xác",
-//                            "Bạn hãy kiểm tra lại mã OTP chúng tôi đã gửi trong email của bạn",
-//                            R.drawable.ic_warning_icon_check);
-//                    Log.e("sads",testResponse.getMessage());
                 }
             }
         });
@@ -138,12 +145,12 @@ public class OtpActivity extends AppCompatActivity {
                 Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        String check = getIntent().getStringExtra("CheckSuccess");
-        if (!(check == null)){
-            if (check.equals("LoginActivity")){
+        String check = getIntent().getStringExtra(AppConstant.CheckSuccess);
+        if (!(check == null)) {
+            if (check.equals(AppConstant.LoginActivity)) {
                 CookieBar.build(OtpActivity.this)
-                        .setTitle(OtpActivity.this.getString(R.string.accuracy_email))
-                        .setMessage(OtpActivity.this.getString(R.string.security_otp))
+                        .setTitle(R.string.titleConfrimMail)
+                        .setMessage(R.string.contentConfrimMail)
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -156,13 +163,48 @@ public class OtpActivity extends AppCompatActivity {
     }
 
     private Boolean validateinfo(String otp) {
-        if (otp.length() != 6 ) {
+        if (otp.length() != 6) {
             binding.otp.requestFocus();
-            binding.otp.setError(this.getString(R.string.letter_otp));
+            binding.otp.setError(getString(R.string.textOTP));
             return true;
-        }else {
+        } else {
             viewModel.postVerify(new Verify(mail, otp));
         }
         return null;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(KeyEvent event) {
+        if (event.getIdEven() == AppConstant.CHECK_EVENT_CONFIRM_ACCOUNT) {
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    CookieBar.build(OtpActivity.this)
+                            .setTitle(R.string.titleConfrimMail)
+                            .setMessage(getString(R.string.contentConfrimMail))
+                            .setIcon(R.drawable.ic_warning_icon_check)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
+                }
+            }, 1000);
+
+        }
     }
 }

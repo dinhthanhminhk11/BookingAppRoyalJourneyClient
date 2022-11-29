@@ -33,6 +33,7 @@ import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.activity.EditProfile;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
+import com.example.bookingapproyaljourney.ui.activity.RegisterActivity;
 import com.example.bookingapproyaljourney.ui.adapter.HiredProfileAdapter;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
@@ -110,6 +111,10 @@ public class ProfileFragment extends Fragment {
         editProfile.setOnClickListener(v -> {
             Intent i = new Intent(getActivity(), EditProfile.class);
             startActivity(i);
+        });
+
+        tvSignUpProfile.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), RegisterActivity.class));
         });
     }
 

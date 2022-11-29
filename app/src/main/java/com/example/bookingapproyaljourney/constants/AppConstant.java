@@ -25,5 +25,7 @@ public class AppConstant {
     public static final String CancelBookingActivityByAccess = "CancelBookingActivityByAccess";
     public static final String deleteOrderResponse = "deleteOrderResponse";
     public static final String LoginResultSuccess = "LoginResultSuccess";
+    public static final String LoginActivity = "LoginActivity";
     public static final int CHECK_EVENT_CLICK_NOTIFICATION = 1;
+    public static final int CHECK_EVENT_CONFIRM_ACCOUNT = 2;
 }

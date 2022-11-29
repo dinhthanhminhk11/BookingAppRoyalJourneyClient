@@ -25,6 +25,7 @@ import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.view_model.OTPPasswordViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 public class OTPPasswordActivity extends AppCompatActivity {
 
@@ -46,12 +47,21 @@ public class OTPPasswordActivity extends AppCompatActivity {
         otpPasswordViewModel = new ViewModelProvider(this).get(OTPPasswordViewModel.class);
         mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
 
-        binding.textAlien.setText(this.getString(R.string.insert_code) + mail);
+        binding.textAlien.setText(R.string.enterCodeOTP + mail);
 
         binding.sendAgain.setPaintFlags(binding.sendAgain.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         binding.sendAgain.setOnClickListener(v -> {
-            Toast.makeText(this, "Đã Gửi", Toast.LENGTH_SHORT).show();
+            CookieBar.build(this)
+                    .setTitle(R.string.Notify)
+                    .setMessage(R.string.SEND)
+                    .setIcon(R.drawable.ic_complete_order)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
             otpPasswordViewModel.checkMail(new Email(mail));
         });
 
@@ -67,7 +77,7 @@ public class OTPPasswordActivity extends AppCompatActivity {
             btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);
             btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             logOut = (Button) dialogLogOut.findViewById(R.id.login);
-            logOut.setText("Thoát");
+            logOut.setText(R.string.out);
 
             close.setOnClickListener(v1 -> {
                 dialogLogOut.dismiss();
@@ -82,7 +92,7 @@ public class OTPPasswordActivity extends AppCompatActivity {
         });
 
         binding.btnSignIn.setOnClickListener(v -> {
-            String otp  = binding.otp.getText().toString();
+            String otp = binding.otp.getText().toString();
             validateinfo(otp);
 
         });
@@ -109,11 +119,11 @@ public class OTPPasswordActivity extends AppCompatActivity {
     }
 
     private Boolean validateinfo(String otp) {
-        if (otp.length() != 6 ){
+        if (otp.length() != 6) {
             binding.otp.requestFocus();
-            binding.otp.setError(this.getString(R.string.letter_otp));
+            binding.otp.setError(getString(R.string.textOTP));
             return true;
-        }else{
+        } else {
             otpPasswordViewModel.postOTP(new Verify(mail, binding.otp.getText().toString().trim()));
         }
         return null;
