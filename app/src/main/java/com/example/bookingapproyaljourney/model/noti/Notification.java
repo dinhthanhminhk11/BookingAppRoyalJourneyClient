@@ -1,7 +1,10 @@
 package com.example.bookingapproyaljourney.model.noti;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Notification {
-    private String _id;
+    @SerializedName("_id")
+    private String id;
     private String idOder;
     private String idUser;
     private String title;
@@ -12,8 +15,8 @@ public class Notification {
     private boolean isSeem;
     private int __v;
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
     public String getIdUser() {

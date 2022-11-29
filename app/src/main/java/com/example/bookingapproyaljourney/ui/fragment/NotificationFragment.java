@@ -16,12 +16,18 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentNotificationBinding;
+import com.example.bookingapproyaljourney.event.KeyEvent;
+import com.example.bookingapproyaljourney.model.noti.Notification;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.NotiResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.ui.activity.StatusBillActivity;
 import com.example.bookingapproyaljourney.ui.adapter.NotificationAdapter;
 import com.example.bookingapproyaljourney.view_model.NotificationViewModel;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -98,9 +104,16 @@ public class NotificationFragment extends Fragment {
                 }
                 notificationAdapter = new NotificationAdapter(notiResponse.getData(), new NotificationAdapter.Callback() {
                     @Override
-                    public void onClick(String id) {
-                        idOrder = id;
-                        notificationViewModel.updateNotiSeen(id);
+                    public void onClick(Notification notification) {
+                        idOrder = notification.getIdOder();
+                        if (notification.isSeem()) {
+                            notificationViewModel.updateNotiSeen(notification.getId());
+                        } else {
+                            Intent intent = new Intent(getContext(), StatusBillActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.putExtra(AppConstant.ID_ORDER, idOrder);
+                            startActivity(intent);
+                        }
                     }
                 });
                 binding.recyclerView.setAdapter(notificationAdapter);
@@ -118,6 +131,7 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onChanged(TestResponse testResponse) {
                 if (testResponse.isStatus()) {
+                    EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_CLICK_NOTIFICATION));
                     Intent intent = new Intent(getContext(), StatusBillActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra(AppConstant.ID_ORDER, idOrder);
@@ -125,5 +139,23 @@ public class NotificationFragment extends Fragment {
                 }
             }
         });
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(KeyEvent event) {
+        if (event.getIdEven() == AppConstant.CHECK_EVENT_CLICK_NOTIFICATION) {
+            notificationViewModel.getListNotification(UserClient.getInstance().getId());
+        }
     }
 }

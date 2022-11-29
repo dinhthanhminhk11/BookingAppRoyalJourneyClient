@@ -10,12 +10,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
+import com.example.bookingapproyaljourney.callback.CallbackCountResponse;
 import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.repository.UserRepository;
+import com.example.bookingapproyaljourney.response.CountNotiResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 
@@ -23,6 +25,7 @@ public class LoginViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<String> mLoginResultMutableData = new MutableLiveData<>();
     MutableLiveData<LoginResponse> mLoginResultMutableDataToKen = new MutableLiveData<>();
+    MutableLiveData<CountNotiResponse> countNotiResponseMutableLiveData = new MutableLiveData<>();
 
     private UserRepository userRepository;
 
@@ -105,7 +108,7 @@ public class LoginViewModel extends AndroidViewModel {
         });
     }
 
-    public void updateTokenDevice(UserRequestTokenDevice userRequestTokenDevice){
+    public void updateTokenDevice(UserRequestTokenDevice userRequestTokenDevice) {
         mProgressMutableData.postValue(View.VISIBLE);
         userRepository.updateTokenDevice(userRequestTokenDevice, new CallbackTokenDevice() {
             @Override
@@ -120,6 +123,22 @@ public class LoginViewModel extends AndroidViewModel {
         });
     }
 
+    public void getCountNotificationByUser(String id) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        userRepository.getCountNotificationByUser(id, new CallbackCountResponse() {
+            @Override
+            public void onResponse(CountNotiResponse countNotiResponse) {
+                countNotiResponseMutableLiveData.postValue(countNotiResponse);
+                mProgressMutableData.postValue(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                mProgressMutableData.postValue(View.GONE);
+            }
+        });
+    }
+
     public LiveData<String> getLoginResult() {
         return mLoginResultMutableData;
     }
@@ -130,5 +149,9 @@ public class LoginViewModel extends AndroidViewModel {
 
     public MutableLiveData<LoginResponse> getLoginResultMutableDataToKen() {
         return mLoginResultMutableDataToKen;
+    }
+
+    public MutableLiveData<CountNotiResponse> getCountNotiResponseMutableLiveData() {
+        return countNotiResponseMutableLiveData;
     }
 }

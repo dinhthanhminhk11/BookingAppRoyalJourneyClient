@@ -45,7 +45,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.binding.dateAndTime.setText(notification.getDate() + " " + notification.getTime());
             holder.binding.title.setText(notification.getTitle());
             holder.itemView.setOnClickListener(v -> {
-                callback.onClick(notification.getIdOder());
+                callback.onClick(notification);
             });
 
             if (notification.isSeem()) {
@@ -71,6 +71,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public interface Callback {
-        void onClick(String id);
+        void onClick(Notification notification);
     }
 }

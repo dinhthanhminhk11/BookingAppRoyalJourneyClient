@@ -15,12 +15,14 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.ui.activity.StatusBillActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +34,7 @@ public class MyFirebaseService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // handle a notification payload.
+        EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_CLICK_NOTIFICATION));
         if (remoteMessage.getData() != null) {
             sendNotification(remoteMessage);
         }
@@ -54,17 +56,16 @@ public class MyFirebaseService extends FirebaseMessagingService {
         String title = (String) remoteMessage.getData().get("title");
         String body = (String) remoteMessage.getData().get("body");
 
-        Log.e("MinhNoti" , title);
-        Log.e("MinhNoti" , body);
+        Log.e("MinhNoti", title);
+        Log.e("MinhNoti", body);
         Intent acceptIntent = createIntent(idOder);
 //        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
         PendingIntent pendingIntent = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+
             pendingIntent = PendingIntent.getActivity
                     (this, 0, acceptIntent, PendingIntent.FLAG_MUTABLE);
-        }
-        else
-        {
+        } else {
             pendingIntent = PendingIntent.getActivity
                     (this, 0, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
         }

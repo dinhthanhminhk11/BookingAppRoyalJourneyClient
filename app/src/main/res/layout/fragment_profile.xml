@@ -1,235 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.fragment.ProfileFragment">
 
     <LinearLayout
-        android:id="@+id/profileVisiable"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/checktest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Hồ sơ của bạn"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/contentProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="10dp"
-            android:lines="2"
-            android:text="Đăng nhập để bắt đầu lập kế hoạch cho chuyến đi tiếp theo của bạn."
-            android:textSize="20dp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="@dimen/_20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="@dimen/_25dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_buttom"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/sign_in_login"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_18sp" />
-
         <LinearLayout
-            android:id="@+id/siginProfileLayout"
+            android:id="@+id/profileVisiable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/checktest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bạn chưa có tài khoản?"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/tvSignUpProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="Đăng ký"
+                android:layout_margin="15dp"
+                android:text="Hồ sơ của bạn"
                 android:textColor="@color/black"
-                android:textStyle="bold"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
-                />
+            <TextView
+                android:id="@+id/contentProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="10dp"
+                android:lines="2"
+                android:text="Đăng nhập để bắt đầu lập kế hoạch cho chuyến đi tiếp theo của bạn."
+                android:textSize="20dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/_20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/_25dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_buttom"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/sign_in_login"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sp" />
+
+            <LinearLayout
+                android:id="@+id/siginProfileLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bạn chưa có tài khoản?"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvSignUpProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Đăng ký"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
 
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/profileGone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/profileGone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageProfile"
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription,MissingConstraints" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/bottom_sheet_profile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/purple_700"
-            android:orientation="vertical"
-            app:behavior_peekHeight="350dp"
-            app:cardCornerRadius="19dp"
-            app:layout_anchorGravity="top"
-            app:layout_behavior="@string/bottom_sheet_behavior">
+                <ImageView
+                    android:id="@+id/imageProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription,MissingConstraints" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_baseline_profile"
-
-                />
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/bottom_sheet_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="vertical">
+                android:background="@color/purple_700"
+                android:orientation="vertical"
+                app:behavior_peekHeight="350dp"
+                app:cardCornerRadius="19dp"
+                app:layout_anchorGravity="top"
+                app:layout_behavior="@string/bottom_sheet_behavior">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="5dp"
-                    app:cardBackgroundColor="#FEF6ED"
-                    app:cardCornerRadius="19dp">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_baseline_profile"
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="3dp"
-                        android:text="Thành viên"
-                        android:textColor="#FEAD1D"
-                        android:textSize="15dp" />
-                </androidx.cardview.widget.CardView>
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvNameUserProfile"
-                        android:layout_width="350dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:layout_weight="1"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_27sp"
-                        android:textStyle="bold" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="5dp"
+                        app:cardBackgroundColor="#FEF6ED"
+                        app:cardCornerRadius="19dp">
 
-                    <ImageView
-                        android:id="@+id/editProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="@dimen/_20dp"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:src="@drawable/ic_edit_profile" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tvEmailUserProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:text=""
-                    android:textSize="@dimen/_14sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:elevation="@dimen/_3dp"
-                    android:visibility="gone"
-                    app:cardCornerRadius="19dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="3dp"
+                            android:text="Thành viên"
+                            android:textColor="#FEAD1D"
+                            android:textSize="15dp" />
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
+                        <TextView
+                            android:id="@+id/tvNameUserProfile"
+                            android:layout_width="350dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_27sp"
+                            android:textStyle="bold" />
+
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:src="@drawable/ic_voucher_profile" />
+                            android:id="@+id/editProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="@dimen/_20dp"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:src="@drawable/ic_edit_profile" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvEmailUserProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text=""
+                        android:textSize="@dimen/_14sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:elevation="@dimen/_3dp"
+                        android:visibility="gone"
+                        app:cardCornerRadius="19dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="5dp"
+                                android:src="@drawable/ic_voucher_profile" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="20dp"
+                                android:text="You have 3 voucher"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="20dp"
-                            android:text="You have 3 voucher"
+                            android:layout_margin="3dp"
+                            android:text="thuê"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
+                            android:textSize="15dp"
                             android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycleView_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:text="thuê"
-                        android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycleView_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
                 </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120dp"
+        android:background="@null"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
+
+</RelativeLayout>

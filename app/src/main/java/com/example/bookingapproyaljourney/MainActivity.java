@@ -43,6 +43,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,7 +52,11 @@ import com.example.bookingapproyaljourney.callback.CallDialog;
 import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
+import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.response.CountNotiResponse;
+import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
@@ -75,6 +80,10 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.appbar.MaterialToolbar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -108,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private MaterialToolbar toolbar;
     private Spinner spinnerNav;
     private ImageView bell;
+    private ImageView dotCheck;
     private TextView nameCity;
     private TextView nameAddress;
     private DrawerAdapter adapter;
@@ -135,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
         spinnerNav = (Spinner) findViewById(R.id.spinnerLocationMain);
         bell = (ImageView) findViewById(R.id.bellMain);
+        dotCheck = (ImageView) findViewById(R.id.dotCheck);
         nameCity = (TextView) findViewById(R.id.nameCity);
         nameAddress = (TextView) findViewById(R.id.nameAddress);
         resultReceiver = new AddressResultReceiver(new Handler());
@@ -245,6 +256,32 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         if (token != null || !token.equals("")) {
             loginViewModel.getUserByToken(token);
         }
+
+        bell.setOnClickListener(v -> {
+            adapter.setSelected(POS_NOTIFICATION);
+        });
+
+        loginViewModel.getLoginResultMutableDataToKen().observe(this, new Observer<LoginResponse>() {
+            @Override
+            public void onChanged(LoginResponse loginResponse) {
+                if (loginResponse.isStatus()) {
+                    loginViewModel.getCountNotificationByUser(UserClient.getInstance().getId());
+                }
+            }
+        });
+
+        loginViewModel.getCountNotiResponseMutableLiveData().observe(this, new Observer<CountNotiResponse>() {
+            @Override
+            public void onChanged(CountNotiResponse countNotiResponse) {
+                if (countNotiResponse.getSize() > 0) {
+                    dotCheck.setVisibility(View.VISIBLE);
+                } else {
+                    dotCheck.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -355,7 +392,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 dialog.dismiss();
             });
-
         } else if (position == POS_HELP) {
             nameAddress.setVisibility(View.VISIBLE);
             nameCity.setVisibility(View.GONE);
@@ -366,11 +402,20 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameCity.setVisibility(View.GONE);
             nameAddress.setText(R.string.Setting);
             showFragment(new SettingFragment());
-        } else if(position == POS_NOTIFICATION){
-            nameAddress.setVisibility(View.VISIBLE);
-            nameCity.setVisibility(View.GONE);
-            nameAddress.setText(R.string.Notify);
-            showFragment(new NotificationFragment());
+        } else if (position == POS_NOTIFICATION) {
+            if (token == null || token.equals("")) {
+                dialog.show();
+            } else {
+                nameAddress.setVisibility(View.VISIBLE);
+                nameCity.setVisibility(View.GONE);
+                nameAddress.setText(R.string.Notify);
+                showFragment(new NotificationFragment());
+            }
+            login.setOnClickListener(v -> {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                dialog.dismiss();
+            });
+
         }
         slidingRootNav.closeMenu();
     }
@@ -534,4 +579,26 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                     }
                 }, Looper.getMainLooper());
     }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(KeyEvent event) {
+        if (event.getIdEven() == AppConstant.CHECK_EVENT_CLICK_NOTIFICATION) {
+            loginViewModel.getCountNotificationByUser(UserClient.getInstance().getId());
+        }
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+
 }

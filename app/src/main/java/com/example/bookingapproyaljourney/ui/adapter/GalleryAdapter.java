@@ -61,7 +61,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHole
                 holder.btnAmount.setText("+" + (galleryList.size() - 4));
             }
         }
-        holder.btnAmount.setOnClickListener(view -> {
+        holder.itemView.setOnClickListener(view -> {
             onClickGoToDetail((ArrayList<String>) galleryList);
         });
     }

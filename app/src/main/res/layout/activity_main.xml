@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_FAFAFA"
+        android:background="@color/white"
         app:navigationIconTint="@color/black">
 
         <LinearLayout
@@ -30,15 +30,15 @@
                 android:textSize="@dimen/_18sp" />
 
             <TextView
-                android:visibility="gone"
+                android:id="@+id/nameAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18sp"
-                android:gravity="center"
-                android:id="@+id/nameAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:visibility="gone" />
         </LinearLayout>
 
         <Spinner
@@ -48,13 +48,29 @@
             android:layout_gravity="center"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/bellMain"
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginRight="@dimen/_20dp"
-            android:src="@drawable/iconbell_main" />
+            android:layout_marginRight="@dimen/_20dp">
+
+            <ImageView
+                android:id="@+id/bellMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:src="@drawable/iconbell_main" />
+
+            <ImageView
+                android:id="@+id/dotCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_dot_red"
+                android:visibility="gone" />
+        </FrameLayout>
+
+
     </com.google.android.material.appbar.MaterialToolbar>
 
     <FrameLayout
@@ -62,6 +78,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_0dp"
         android:layout_weight="1"
-        android:background="@color/color_FAFAFA" />
+        android:background="@color/white" />
 
 </LinearLayout>

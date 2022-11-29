@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     private LottieAnimationView progressBar;
     private Spinner listLocation;
     private ImageView bell;
+    private ImageView dotCheck;
     private EditText etSearch;
     private ImageButton btnFilter;
     private RecyclerView listCategory;
@@ -130,6 +131,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
 
         listLocation = (Spinner) view.findViewById(R.id.listLocationHomFragment);
         bell = (ImageView) view.findViewById(R.id.bellMain);
+        dotCheck = (ImageView) view.findViewById(R.id.dotCheck);
         etSearch = (EditText) view.findViewById(R.id.etSearchHomeFragment);
         btnFilter = (ImageButton) view.findViewById(R.id.btnFilterHomeFragment);
         listCategory = (RecyclerView) view.findViewById(R.id.listCategoryHomeFragment);

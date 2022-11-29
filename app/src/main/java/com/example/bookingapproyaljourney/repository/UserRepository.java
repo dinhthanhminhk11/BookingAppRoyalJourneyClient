@@ -2,11 +2,13 @@ package com.example.bookingapproyaljourney.repository;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
+import com.example.bookingapproyaljourney.callback.CallbackCountResponse;
 import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
+import com.example.bookingapproyaljourney.response.CountNotiResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
@@ -129,6 +131,24 @@ public class UserRepository {
             @Override
             public void onFailure(Call<TestResponse> call, Throwable t) {
                 callbackTokenDevice.onFailure(t);
+            }
+        });
+    }
+
+    public void getCountNotificationByUser(String id , CallbackCountResponse callbackCountResponse){
+        apiRequest.getCountNotification(id).enqueue(new Callback<CountNotiResponse>() {
+            @Override
+            public void onResponse(Call<CountNotiResponse> call, Response<CountNotiResponse> response) {
+                if (response.isSuccessful()) {
+                    callbackCountResponse.onResponse(response.body());
+                } else {
+                    callbackCountResponse.onFailure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CountNotiResponse> call, Throwable t) {
+                callbackCountResponse.onFailure(t);
             }
         });
     }

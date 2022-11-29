@@ -19,6 +19,7 @@ import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Verify;
 import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
+import com.example.bookingapproyaljourney.response.CountNotiResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
@@ -177,4 +178,7 @@ public interface ApiRequest {
 
     @PATCH("updateNotiSeen/{id}")
     Call<TestResponse> updateNotiSeen(@Path("id") String id);
+
+    @GET("listNotibyUserIdNotSeem/{id}")
+    Call<CountNotiResponse> getCountNotification(@Path("id") String id);
 }

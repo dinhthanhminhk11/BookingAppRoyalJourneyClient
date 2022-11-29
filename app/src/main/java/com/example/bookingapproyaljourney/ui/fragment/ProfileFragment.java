@@ -9,11 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
@@ -34,7 +33,6 @@ import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.activity.EditProfile;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
-import com.example.bookingapproyaljourney.ui.activity.SeeMoreBestForYouActivity;
 import com.example.bookingapproyaljourney.ui.adapter.HiredProfileAdapter;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 
@@ -59,6 +57,8 @@ public class ProfileFragment extends Fragment {
     private HiredProfileAdapter hiredProfileAdapter;
     private ArrayList<House> listHouse;
     private List<Convenient> convenientList;
+    private LottieAnimationView progressBar;
+
 
     public ProfileFragment() {
     }
@@ -94,6 +94,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initView(View view) {
+        progressBar = (LottieAnimationView) view.findViewById(R.id.progressBar);
         login = (AppCompatButton) view.findViewById(R.id.login);
         tvSignUpProfile = view.findViewById(R.id.tvSignUpProfile);
         nameUser = view.findViewById(R.id.tvNameUserProfile);
@@ -146,6 +147,13 @@ public class ProfileFragment extends Fragment {
 
         login.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), LoginActivity.class));
+        });
+
+        loginViewModel.getProgress().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                progressBar.setVisibility(integer);
+            }
         });
 
     }

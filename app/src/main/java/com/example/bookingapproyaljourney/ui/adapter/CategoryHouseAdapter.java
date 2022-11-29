@@ -90,15 +90,15 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
         if (selected) {
             if (position == 0) {
                 holder.itemView.setBackgroundResource(R.drawable.gradient_blue);
-                holder.nameCategory.setTextColor(Color.parseColor("#FAFAFA"));
+                holder.nameCategory.setTextColor(Color.parseColor("#FFFFFFFF"));
             }
             selected = false;
         } else {
             if (row_index == position) {
                 holder.itemView.setBackgroundResource(R.drawable.gradient_blue);
-                holder.nameCategory.setTextColor(Color.parseColor("#FAFAFA"));
+                holder.nameCategory.setTextColor(Color.parseColor("#FFFFFFFF"));
             } else {
-                holder.itemView.setBackgroundColor(Color.parseColor("#FAFAFA"));
+                holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
                 holder.nameCategory.setTextColor(Color.parseColor("#858585"));
             }
         }

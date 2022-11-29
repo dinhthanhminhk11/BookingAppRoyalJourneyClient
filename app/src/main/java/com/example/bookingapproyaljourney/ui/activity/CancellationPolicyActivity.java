@@ -27,6 +27,7 @@ public class CancellationPolicyActivity extends AppCompatActivity {
             }
         });
 
-
+        binding.btnContact.setOnClickListener(v->{
+        });
     }
 }
