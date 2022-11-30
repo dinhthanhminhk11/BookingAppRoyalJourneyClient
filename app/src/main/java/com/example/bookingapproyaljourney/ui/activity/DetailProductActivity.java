@@ -1,15 +1,20 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,8 +26,11 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,16 +65,27 @@ import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.example.librarytoastcustom.CookieBar;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-public class DetailProductActivity extends AppCompatActivity implements FeedbackAdapter.EventClick {
+public class DetailProductActivity extends AppCompatActivity implements FeedbackAdapter.EventClick, OnMapReadyCallback {
     private ScrollView scrollView;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private CardView contenTOp;
     private MaterialToolbar toolBar;
+    private Location locationYouSelf;
     private ImageView ivimgHotel;
     private TextView tvNameHotel;
     private TextView tvAddress;
@@ -121,12 +140,21 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
     private boolean isStillEmpty;
     private BookmarkRepository bookmarkRepository;
     private boolean isClickSpeed = true;
+    private GoogleMap mMap;
+    private ResultReceiver resultReceiver;
+    private LatLng latLngLocationYourSelf;
+    private MarkerOptions markerOptions;
+    private Marker currentUser, searchPoint;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailproduct);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapinfo);
+        mapFragment.getMapAsync(this);
 
         progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
@@ -253,7 +281,6 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
             startActivity(intent);
         });
 
-
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dia_log_comfirm_logout);
         Window window = dialog.getWindow();
@@ -365,6 +392,16 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
             opening.setText(item.getOpening());
             ending.setText(item.getEnding());
             GiaMoPhong.setText(fm.format(item.getPrice()) + " Vnd/đêm");
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    showMakerAndText(item);
+                }
+            }, 2000);
+
+
             progressBar.setVisibility(View.GONE);
         });
 
@@ -469,5 +506,40 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         intent.putExtra("IMG_BOSS", imgBoss);
         intent.putExtra("NAME_BOSS", nameBoss);
         startActivity(intent);
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        mMap = googleMap;
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(DetailProductActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            mMap.setMyLocationEnabled(true);
+        }
+    }
+
+    private void showMakerAndText(HouseDetailResponse houseDetailResponse) {
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(houseDetailResponse.getLocation().getCoordinates().get(1), houseDetailResponse.getLocation().getCoordinates().get(0)), 13));
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(new LatLng(houseDetailResponse.getLocation().getCoordinates().get(1), houseDetailResponse.getLocation().getCoordinates().get(0)))
+                .zoom(10)
+                .bearing(0)
+                .tilt(40)
+                .build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+        // vẽ maker
+        LatLng myLocation = new LatLng(houseDetailResponse.getLocation().getCoordinates().get(1), houseDetailResponse.getLocation().getCoordinates().get(0));
+        markerOptions = new MarkerOptions()
+                .position(myLocation)
+                .title(houseDetailResponse.getName())
+                .snippet(houseDetailResponse.getNameLocation())
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+        currentUser = mMap.addMarker(markerOptions);
+        currentUser.setTag(false);
     }
 }

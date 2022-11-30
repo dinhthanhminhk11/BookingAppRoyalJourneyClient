@@ -69,6 +69,7 @@ public class StatusBillActivity extends AppCompatActivity {
     private String name_boss = "";
     private BottomSheetCancellationPolicy bottomSheetCancellationPolicy;
     private HouseDetailResponse houseDetailResponse1;
+
     public StatusBillActivity() {
     }
 
@@ -177,25 +178,34 @@ public class StatusBillActivity extends AppCompatActivity {
                 if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isBanking()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.btnFeedback.setVisibility(View.GONE);
+
                     binding.textConfirm.setText(StatusBillActivity.this.getString(R.string.refuse_the_landlord) + orderResponse.getReasonHost());
                 } else if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isBackingPercent()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.btnFeedback.setVisibility(View.GONE);
+
                     binding.textConfirm.setText("Do chủ nhà đã từ chối yêu cầu của bạn nên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà : " + orderResponse.getReasonHost());
                 } else if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isCashMoney()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
+                    binding.btnFeedback.setVisibility(View.GONE);
+
                     binding.textConfirm.setText("Chủ nhà đã từ chối yêu cầu của bạn lí do là vì: " + orderResponse.getReasonHost());
                 } else if (orderResponse.getStatus().equals("Khách huỷ") && orderResponse.isCancellationDate()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ phòng của bạn");
                     binding.btnDelete.setVisibility(View.VISIBLE);
+                    binding.btnFeedback.setVisibility(View.GONE);
+
                 } else if (orderResponse.getStatus().equals("Khách huỷ") && !orderResponse.isCancellationDate()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.cancelRequest.setVisibility(View.VISIBLE);
                     binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ của bạn sẽ có người gọi đến để xác nhận cho bạn");
+                    binding.btnFeedback.setVisibility(View.GONE);
                 } else if (orderResponse.getStatus().equals("Đã trả phòng") && orderResponse.isCheckedOut()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
