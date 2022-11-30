@@ -66,7 +66,7 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
         progressBar.setVisibility(View.VISIBLE);
         rcvListHost.setLayoutManager(new LinearLayoutManager(view.getContext()));
         btnSearch.setOnClickListener(v -> callbackOrderClick.clickHome());
-        Spannable wordtoSpan = new SpannableString("Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp");
+        Spannable wordtoSpan = new SpannableString(getString(R.string.question_bookmard));
         wordtoSpan.setSpan(new UnderlineSpan(), 53, 80,  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textHelps.setText(wordtoSpan);

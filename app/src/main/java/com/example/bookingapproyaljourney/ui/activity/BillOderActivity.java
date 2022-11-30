@@ -108,7 +108,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         binding = ActivityBillOderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.toolBar.setTitle("Xác nhận và thanh toán");
+        binding.toolBar.setTitle(R.string.Confirmation_and_payment);
         binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         binding.editPerson.setPaintFlags(binding.editPerson.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
@@ -492,7 +492,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     intent.putExtra("CheckSuccess", "1111111111111");
                     startActivity(intent);
                 } else {
-                    ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, "Thất bại", getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                    ToastCheck toastCheck = new ToastCheck(BillOderActivity.this, R.style.StyleToast, getString(R.string.failure), getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 }
             }
         });
@@ -544,7 +544,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             checkStartDateResponse = item.getStartDate();
             checkEndDateResponse = item.getEndDate();
 
-            String textCancel = "Nếu bạn hủy trước ngày " + houseDetailResponse.getCancellatioDate() + " bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm";
+            String textCancel = getString(R.string.Cancel_before_date) + houseDetailResponse.getCancellatioDate() + getString(R.string.Cancel_before_date1);
 
             Spannable wordtoSpan = new SpannableString(textCancel);
 

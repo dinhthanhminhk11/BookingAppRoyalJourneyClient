@@ -223,4 +223,45 @@
     <string name="LanguageSetting">Ngôn ngữ</string>
     <string name="NotificationsSetting">Thông báo</string>
     <string name="HelpSetting">Trợ giúp</string>
+    <string name="question_bookmard">Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp</string>
+    <string name="question_help1">Các câu hỏi thường gặp</string>
+    <string name="question_help2">Thông tin chung</string>
+    <string name="question_help3">Tìm khách sạn</string>
+    <string name="question_help4">Đặt phòng khách sạn</string>
+    <string name="question_help5">Giá phòng khách sạn</string>
+    <string name="question_help6">Bảo hiểm du lịch</string>
+    <string name="question_help7"><![CDATA[Hủy đặt chỗ, đổi phòng & hoàn tiền]]></string>
+    <string name="question_help8">Tiện nghi khách sạn</string>
+    <string name="question_help9">Yêu cầu đặc biệt</string>
+    <string name="question_help10">Chính sách khách sạn</string>
+
+    <string name="question_help11">Cách hủy phòng và hoàn tiền cho đặt phòng khách sạn</string>
+    <string name="question_help12">Làm thế nào tôi có thể gửi lại vé điện tử của mình</string>
+    <string name="question_help13">Cách đặt khách sạn</string>
+    <string name="question_help14">Làm cách nào để kiểm tra trạng thái hoàn tiền của tôi</string>
+    <string name="question_help21">Quan hệ đối tác của MyVntour với khách sạn</string>
+    <string name="question_help22">Cách đăng ký nơi lưu trú của tôi trên MyVntour</string>
+    <string name="question_help31">Làm thế nào để tôi tìm được khách sạn ưng ý nhất cho điểm đến của mình</string>
+    <string name="question_help32">Tìm khách sạn trong một khu vực nhất định</string>
+    <string name="question_help33">Không hoàn tiền và miễn phí đặt phòng nghĩa là gì</string>
+    <string name="question_help41">Cách đặt khách sạn</string>
+    <string name="question_help42">Cách đổi lịch đặt phòng khách sạn của tôi</string>
+    <string name="question_help51">Giá phòng khách sạn bao gồm những gì</string>
+    <string name="question_help61">Giá phòng đã bao gồm phí bảo hiểm du lịch chưa?</string>
+    <string name="question_help71">Cách hủy phòng và hoàn tiền cho đặt phòng khách sạn</string>
+    <string name="question_help72">Làm thế nào tôi có thể gửi lại vé điện tử của mình</string>
+    <string name="question_help73">Làm cách nào để kiểm tra trạng thái hoàn tiền của tôi</string>
+    <string name="question_help81">Tôi có thể xem tiện nghi của khách sạn như thế nào?</string>
+    <string name="question_help91">Đặt phòng cho hút thuốc</string>
+    <string name="question_help92">Yêu cầu giường phụ</string>
+    <string name="question_help93">Nhận phòng trễ</string>
+    <string name="question_help101">Chính sách vệ sinh ở khách sạn có đảm bảo tiêu chuẩn</string>
+    <string name="Confirmation_and_payment">Xác nhận và thanh toán</string>
+
+    <string name="failure">Thất bại</string>
+    <string name="Cancel_before_date">\"Nếu bạn hủy trước ngày \"</string>
+    <string name="Cancel_before_date1">\" bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm\"</string>
+    <string name="Bedroom">\" Phòng ngủ\"</string>
+
+
 </resources>
