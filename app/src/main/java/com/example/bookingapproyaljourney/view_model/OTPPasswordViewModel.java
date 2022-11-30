@@ -18,6 +18,7 @@ public class OTPPasswordViewModel extends AndroidViewModel {
 
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<TestResponse> testResponseMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<TestResponse> testResponseMutableLiveData2 = new MutableLiveData<>();
 
     public OTPPasswordViewModel(@NonNull Application application) {
         super(application);
@@ -54,7 +55,7 @@ public class OTPPasswordViewModel extends AndroidViewModel {
             @Override
             public void onResponseCheckMail(TestResponse testResponse) {
                 mProgressMutableData.postValue(View.GONE);
-                testResponseMutableLiveData.postValue(testResponse);
+                testResponseMutableLiveData2.postValue(testResponse);
             }
 
             @Override
@@ -62,5 +63,9 @@ public class OTPPasswordViewModel extends AndroidViewModel {
                 mProgressMutableData.postValue(View.GONE);
             }
         });
+    }
+
+    public MutableLiveData<TestResponse> getTestResponseMutableLiveData2() {
+        return testResponseMutableLiveData2;
     }
 }
