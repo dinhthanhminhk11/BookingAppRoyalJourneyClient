@@ -5,17 +5,18 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityForgotBinding;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.view_model.ForgotPassViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 
 public class ForgotActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
@@ -53,7 +54,16 @@ public class ForgotActivity extends AppCompatActivity implements GestureDetector
                     intent.putExtra(AppConstant.EMAIL_USER, binding.edEmailForgot.getText().toString().trim());
                     startActivity(intent);
                 } else {
-                    Toast.makeText(ForgotActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    CookieBar.build(ForgotActivity.this)
+                            .setTitle(R.string.Notify)
+                            .setMessage(testResponse.getMessage())
+                            .setIcon(R.drawable.ic_warning_icon_check)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
                 }
             }
         });
