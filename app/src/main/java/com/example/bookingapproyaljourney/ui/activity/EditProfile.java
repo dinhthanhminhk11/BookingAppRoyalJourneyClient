@@ -35,6 +35,7 @@ import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.example.libraryimagepicker.ImagePicker;
+import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -171,7 +172,17 @@ public class EditProfile extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();
             } else {
-                Toast.makeText(this, "Bạn đã từ chối cấp quyền vị trí", Toast.LENGTH_SHORT).show();
+                CookieBar.build(this)
+                        .setTitle(R.string.Notify)
+                        .setMessage(R.string.You_do_not_allow_location_access)
+                        .setIcon(R.drawable.ic_icon_logo_app)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             }
         }
     }
