@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_itembesforyou" />
+             />
 
 
     </androidx.cardview.widget.CardView>
@@ -34,7 +34,6 @@
             android:id="@+id/tvNameHouseItemBestforyou"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/OrchadHouse_itemBestforyou"
             android:textColor="@color/black"
             android:textSize="@dimen/_16dp"
             android:textStyle="bold" />
@@ -44,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8dp"
-            android:text="@string/Rp_itemBestForYou"
             android:textColor="@color/blue"
             android:textSize="@dimen/_12dp" />
 
@@ -72,7 +70,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_12dp"
-                    android:text="@string/Bedroom_itemBestforyou"
                     android:textColor="@color/color_858585"
                     android:textSize="@dimen/_12dp" />
             </LinearLayout>
@@ -95,7 +92,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_12dp"
-                    android:text="@string/Bathroom_itemBestforyou"
                     android:textColor="@color/color_858585"
                     android:textSize="12dp" />
             </LinearLayout>

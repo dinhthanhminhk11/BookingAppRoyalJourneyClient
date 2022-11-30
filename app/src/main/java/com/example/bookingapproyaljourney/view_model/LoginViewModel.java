@@ -1,7 +1,6 @@
 package com.example.bookingapproyaljourney.view_model;
 
 import android.app.Application;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -11,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
 import com.example.bookingapproyaljourney.callback.CallbackCountResponse;
+import com.example.bookingapproyaljourney.callback.CallbackListOrderAccessById;
 import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserClient;
@@ -20,12 +20,15 @@ import com.example.bookingapproyaljourney.repository.UserRepository;
 import com.example.bookingapproyaljourney.response.CountNotiResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 
 public class LoginViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<String> mLoginResultMutableData = new MutableLiveData<>();
     MutableLiveData<LoginResponse> mLoginResultMutableDataToKen = new MutableLiveData<>();
     MutableLiveData<CountNotiResponse> countNotiResponseMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<ListOrderByIdUser2> listOrderByIdUserMutableLiveData = new MutableLiveData<>();
 
     private UserRepository userRepository;
 
@@ -140,6 +143,22 @@ public class LoginViewModel extends AndroidViewModel {
         });
     }
 
+    public void getListOrderAccessById(String id) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        userRepository.getListOrderAccessById(id, new CallbackListOrderAccessById() {
+            @Override
+            public void success(ListOrderByIdUser2 listOrderByIdUser) {
+                listOrderByIdUserMutableLiveData.postValue(listOrderByIdUser);
+                mProgressMutableData.postValue(View.GONE);
+            }
+
+            @Override
+            public void failure(Throwable t) {
+                mProgressMutableData.postValue(View.GONE);
+            }
+        });
+    }
+
     public LiveData<String> getLoginResult() {
         return mLoginResultMutableData;
     }
@@ -154,5 +173,9 @@ public class LoginViewModel extends AndroidViewModel {
 
     public MutableLiveData<CountNotiResponse> getCountNotiResponseMutableLiveData() {
         return countNotiResponseMutableLiveData;
+    }
+
+    public LiveData<ListOrderByIdUser2> getListOrderByIdUserMutableLiveData() {
+        return listOrderByIdUserMutableLiveData;
     }
 }

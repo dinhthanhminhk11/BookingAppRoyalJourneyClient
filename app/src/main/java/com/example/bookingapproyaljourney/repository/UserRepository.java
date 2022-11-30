@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.repository;
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
 import com.example.bookingapproyaljourney.callback.CallbackCountResponse;
+import com.example.bookingapproyaljourney.callback.CallbackListOrderAccessById;
 import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
@@ -12,6 +13,8 @@ import com.example.bookingapproyaljourney.response.CountNotiResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
 import retrofit2.Call;
@@ -161,6 +164,24 @@ public class UserRepository {
             @Override
             public void onFailure(Call<CountNotiResponse> call, Throwable t) {
                 callbackCountResponse.onFailure(t);
+            }
+        });
+    }
+
+    public void getListOrderAccessById(String id, CallbackListOrderAccessById callbackListOrderAccessById) {
+        apiRequest.getListProductAccessById(id).enqueue(new Callback<ListOrderByIdUser2>() {
+            @Override
+            public void onResponse(Call<ListOrderByIdUser2> call, Response<ListOrderByIdUser2> response) {
+                if (response.isSuccessful()) {
+                    callbackListOrderAccessById.success(response.body());
+                } else {
+                    callbackListOrderAccessById.failure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ListOrderByIdUser2> call, Throwable t) {
+                callbackListOrderAccessById.failure(t);
             }
         });
     }

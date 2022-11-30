@@ -30,7 +30,11 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.activity.EditProfile;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.RegisterActivity;
@@ -136,9 +140,11 @@ public class ProfileFragment extends Fragment {
         if (token != null || !token.equals("")) {
             loginViewModel.getUserByToken(token);
         }
+
         loginViewModel.getLoginResultMutableDataToKen().observe(getActivity(), new Observer<LoginResponse>() {
             @Override
             public void onChanged(LoginResponse s) {
+                loginViewModel.getListOrderAccessById(s.getUser().getId());
                 nameUser.setText(s.getUser().getName());
                 emailUser.setText(s.getUser().getEmail());
 
@@ -147,6 +153,22 @@ public class ProfileFragment extends Fragment {
                         .placeholder(R.drawable.img)
                         .error(R.drawable.img);
                 Glide.with(getContext()).load(s.getUser().getImage()).apply(options).into(imageProfile);
+            }
+        });
+
+        loginViewModel.getListOrderByIdUserMutableLiveData().observe(this, new Observer<ListOrderByIdUser2>() {
+            @Override
+            public void onChanged(ListOrderByIdUser2 listOrderByIdUser) {
+                hiredProfileAdapter = new HiredProfileAdapter(listOrderByIdUser.getData(), new HiredProfileAdapter.Listernaer() {
+                    @Override
+                    public void onClickListChinh(HouseDetailResponse houseDetailResponse) {
+                        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+                        intent.putExtra(AppConstant.HOUSE_EXTRA, houseDetailResponse.get_id());
+                        startActivity(intent);
+                    }
+                });
+                recyclerViewHiredProfile.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                recyclerViewHiredProfile.setAdapter(hiredProfileAdapter);
             }
         });
 
@@ -163,12 +185,6 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void FakeData() {
-        listHouse = new ArrayList<>();
-        hiredProfileAdapter = new HiredProfileAdapter(listHouse);
-        recyclerViewHiredProfile.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerViewHiredProfile.setAdapter(hiredProfileAdapter);
-    }
 
     @Override
     public void onResume() {

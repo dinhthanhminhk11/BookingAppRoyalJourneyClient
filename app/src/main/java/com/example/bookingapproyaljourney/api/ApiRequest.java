@@ -28,6 +28,7 @@ import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.response.order.ListFilterResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
@@ -181,4 +182,7 @@ public interface ApiRequest {
 
     @GET("listNotibyUserIdNotSeem/{id}")
     Call<CountNotiResponse> getCountNotification(@Path("id") String id);
+
+    @GET("listProductAccessByUserId/{id}")
+    Call<ListOrderByIdUser2> getListProductAccessById(@Path("id") String id);
 }

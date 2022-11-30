@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,24 +13,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.callback.CallbackHouseById;
+import com.example.bookingapproyaljourney.repository.DetailProductRepository;
+import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.response.order.OrderListResponse;
+import com.example.bookingapproyaljourney.response.order.OrderListResponse2;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapter.ViewHolder>{
-    private List<House> dataHouse;
-    private List<House> data;
-    BestForYouAdapter.Listernaer mListerner;
+public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapter.ViewHolder> {
+    private List<OrderListResponse2> dataHouse;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private DetailProductRepository detailProductRepository;
+    private Listernaer listernaer;
 
     public interface Listernaer {
-        public void onClickListChinh(View v, int position);
+        void onClickListChinh(HouseDetailResponse houseDetailResponse);
     }
 
-    public HiredProfileAdapter(List<House> dataHouse) {
+    public HiredProfileAdapter(List<OrderListResponse2> dataHouse, Listernaer listernaer) {
         this.dataHouse = dataHouse;
+        detailProductRepository = new DetailProductRepository();
+        this.listernaer = listernaer;
     }
 
 
@@ -42,20 +49,30 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
 
     @Override
     public void onBindViewHolder(@NonNull HiredProfileAdapter.ViewHolder holder, int position) {
-        House house = dataHouse.get(position);
-        if (house != null) {
-            RequestOptions options = new RequestOptions()
-                    .centerCrop()
-                    .placeholder(R.drawable.img)
-                    .error(R.drawable.img);
-            Glide.with(holder.itemView.getContext()).load(house.getImages().get(0)).apply(options).into(holder.imgBestForYou);
-            holder.tvNameHouse.setText(house.getName());
-            holder.tvPriceHouse.setText(fm.format(house.getPrice()) + " VND");
-            holder.tvCountBedroom.setText(house.getSleepingPlaces().size() + " Bedroom");
-            holder.tvCountBathroom.setText(house.getBathrooms().size() + " Bathroom");
+        OrderListResponse2 orderListResponse = dataHouse.get(position);
+        if (orderListResponse != null) {
+            detailProductRepository.getProductById(orderListResponse.getIdPro(), new CallbackHouseById() {
+                @Override
+                public void success(HouseDetailResponse houseDetailResponse) {
+                    RequestOptions options = new RequestOptions()
+                            .centerCrop()
+                            .placeholder(R.drawable.img)
+                            .error(R.drawable.img);
+                    Glide.with(holder.itemView.getContext()).load(houseDetailResponse.getImages().get(0)).apply(options).into(holder.imgBestForYou);
+                    holder.tvNameHouse.setText(houseDetailResponse.getName());
+                    holder.tvPriceHouse.setText(fm.format(houseDetailResponse.getPrice()) + " VND");
+                    holder.tvCountBedroom.setText(houseDetailResponse.getSleepingPlaces().size() + " Phòng ngủ");
+                    holder.tvCountBathroom.setText(houseDetailResponse.getBathrooms().size() + " Phòng tắm");
 
-            holder.itemView.setOnClickListener(v -> {
-                mListerner.onClickListChinh(house);
+                    holder.itemView.setOnClickListener(v -> {
+                        listernaer.onClickListChinh(houseDetailResponse);
+                    });
+                }
+
+                @Override
+                public void failure(Throwable t) {
+
+                }
             });
         }
     }
