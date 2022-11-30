@@ -211,4 +211,9 @@
     <string name="textCheckNewPass">Phải trên 6 kí tự, ít nhất chứa 1 chữ số và 1 chứ cái</string>
     <string name="textCheckNewPass2">Mật khẩu không trùng khớp</string>
     <string name="changePassWhyLogin">Đổi mật khẩu thành công, bạn có muốn đăng nhập ?</string>
+    <string name="enterName">Xin hãy nhập tên</string>
+    <string name="enterMailFaild">Địa chỉ Email không đúng</string>
+    <string name="textCheck1Register">Phải trên 6 kí tự</string>
+    <string name="textCheck2Register">ít nhất chứa 1 chữ số và 1 chứ cái</string>
+    <string name="textCheck3Register">Không trùng khớp</string>
 </resources>

@@ -57,7 +57,11 @@ public class UserRepository {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 if (response.isSuccessful()) {
-                    interfaceResponse.onResponseRegister(response.body());
+                    if (response.body().isStatus()) {
+                        interfaceResponse.onResponseRegister(response.body());
+                    } else {
+                        interfaceResponse.onResponseRegisterFailed(response.body());
+                    }
                 } else {
                     interfaceResponse.onFailureRegister(new Throwable(response.message()));
                 }
@@ -102,6 +106,8 @@ public class UserRepository {
         void onFailureRegister(Throwable t);
 
         void onResponseRegister(RegisterResponse registerResponse);
+
+        void onResponseRegisterFailed(RegisterResponse registerResponse);
     }
 
     public void sendAgain(Email email, CallSendAgain callSendAgain) {

@@ -1,7 +1,6 @@
 package com.example.bookingapproyaljourney.view_model;
 
 import android.app.Application;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,7 @@ import com.example.bookingapproyaljourney.response.RegisterResponse;
 
 public class RegisterViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
-    MutableLiveData<String> mRegisterResultMutableData = new MutableLiveData<>();
+    MutableLiveData<RegisterResponse> registerResponseMutableLiveData = new MutableLiveData<>();
 
     private UserRepository userRepository;
 
@@ -25,29 +24,30 @@ public class RegisterViewModel extends AndroidViewModel {
         userRepository = new UserRepository();
     }
 
-    public void register(String fullName, String email, String password, String registerSuccess, String registerFailed,String tokenDevice) {
+    public void register(String fullName, String email, String password,  String tokenDevice) {
         mProgressMutableData.postValue(View.VISIBLE);
         userRepository.getUserRegister(new UserRegister(fullName, email, password, tokenDevice), new UserRepository.InterfaceResponseRegister() {
             @Override
             public void onFailureRegister(Throwable t) {
-                mProgressMutableData.postValue(View.INVISIBLE);
-                mRegisterResultMutableData.postValue(registerFailed);
+                mProgressMutableData.postValue(View.GONE);
             }
 
             @Override
             public void onResponseRegister(RegisterResponse registerResponse) {
-                mProgressMutableData.postValue(View.INVISIBLE);
-                mRegisterResultMutableData.postValue(registerSuccess);
+                mProgressMutableData.postValue(View.GONE);
+                registerResponseMutableLiveData.postValue(registerResponse);
+            }
 
-                Log.e("MinhRegister", registerResponse.getEmail());
-                Log.e("MinhRegister", registerResponse.getMessage());
-                Log.e("MinhRegister", registerResponse.getStatus());
+            @Override
+            public void onResponseRegisterFailed(RegisterResponse registerResponse) {
+                registerResponseMutableLiveData.postValue(registerResponse);
+                mProgressMutableData.postValue(View.GONE);
             }
         });
     }
 
-    public LiveData<String> getLoginResult() {
-        return mRegisterResultMutableData;
+    public LiveData<RegisterResponse> getLoginResult() {
+        return registerResponseMutableLiveData;
     }
 
     public LiveData<Integer> getProgress() {

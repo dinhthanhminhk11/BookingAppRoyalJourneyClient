@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityRegisterBinding;
+import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.view_model.RegisterViewModel;
+import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -66,25 +67,46 @@ public class RegisterActivity extends AppCompatActivity {
             String Email = binding.edMailRegister.getText().toString();
             String Password = binding.edPassRegister.getText().toString();
             String CFPassword = binding.edCfPassRegister.getText().toString();
-            validateinfo(Name, Email, Password, CFPassword , tokenDevice.toString());
+            validateinfo(Name, Email, Password, CFPassword, tokenDevice.toString());
         });
 
-        viewModel.getLoginResult().observe(this, new Observer<String>() {
+        viewModel.getLoginResult().observe(this, new Observer<RegisterResponse>() {
             @Override
-            public void onChanged(String s) {
-                if (s.equals(RegisterActivity.this.getResources().getString(R.string.RegisterSuccess))) {
-//                    Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
+            public void onChanged(RegisterResponse registerResponse) {
+                if (registerResponse.isStatus()) {
                     Intent intent = new Intent(RegisterActivity.this, OtpActivity.class);
                     intent.putExtra(AppConstant.EMAIL_USER, binding.edMailRegister.getText().toString());
                     intent.putExtra(AppConstant.PASS_USER, binding.edCfPassRegister.getText().toString());
                     startActivity(intent);
                 } else {
-                    Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
+                    CookieBar.build(RegisterActivity.this)
+                            .setTitle(R.string.Notify)
+                            .setMessage(registerResponse.getMessage())
+                            .setIcon(R.drawable.ic_warning_icon_check)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
                 }
-
             }
         });
-
+//        viewModel.getLoginResult().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(String s) {
+//                if (s.equals(RegisterActivity.this.getResources().getString(R.string.RegisterSuccess))) {
+////                    Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(RegisterActivity.this, OtpActivity.class);
+//                    intent.putExtra(AppConstant.EMAIL_USER, binding.edMailRegister.getText().toString());
+//                    intent.putExtra(AppConstant.PASS_USER, binding.edCfPassRegister.getText().toString());
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
         viewModel.getProgress().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
@@ -93,32 +115,32 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private Boolean validateinfo(String name, String email, String password, String cfPassword ,String tokenDeviceValidate) {
+    private Boolean validateinfo(String name, String email, String password, String cfPassword, String tokenDeviceValidate) {
         if (name.length() == 0) {
             binding.edNameRegister.requestFocus();
-            binding.edNameRegister.setError("Xin hãy nhập tên");
+            binding.edNameRegister.setError(getString(R.string.enterName));
             return true;
         } else if (email.length() == 0) {
             binding.edMailRegister.requestFocus();
-            binding.edMailRegister.setError("Xin hãy nhập Email");
+            binding.edMailRegister.setError(getString(R.string.enterMail));
         } else if (!email.matches("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$")) {
             binding.edMailRegister.requestFocus();
-            binding.edMailRegister.setError("Địa chỉ Email không đúng");
+            binding.edMailRegister.setError(getString(R.string.enterMailFaild));
             return false;
         } else if (password.length() <= 6) {
             binding.edPassRegister.requestFocus();
-            binding.edPassRegister.setError("Phải trên 6 kí tự ");
+            binding.edPassRegister.setError(getString(R.string.textCheck1Register));
         } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")) {
             binding.edPassRegister.requestFocus();
-            binding.edPassRegister.setError("ít nhất chứa 1 chữ số và 1 chứ cái ");
+            binding.edPassRegister.setError(getString(R.string.textCheck2Register));
             return false;
         } else if (cfPassword.length() <= 6) {
             binding.edCfPassRegister.requestFocus();
-            binding.edCfPassRegister.setError("Không trùng khớp");
+            binding.edCfPassRegister.setError(getString(R.string.textCheck3Register));
             return false;
         } else {
             viewModel.register(binding.edNameRegister.getText().toString(), binding.edMailRegister.getText().toString(),
-                    binding.edPassRegister.getText().toString(), this.getResources().getString(R.string.RegisterSuccess), this.getResources().getString(R.string.RegisterFailed), tokenDeviceValidate);
+                    binding.edPassRegister.getText().toString(), tokenDeviceValidate);
             return true;
         }
         return null;
