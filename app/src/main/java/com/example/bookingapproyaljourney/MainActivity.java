@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private LoginViewModel loginViewModel;
     private String token1 = "";
     private SharedPrefs sharedPreferences;
+    String languageCode = "en";
 
     public void setCallDialog(CallDialog callDialog) {
         this.callDialog = callDialog;
@@ -142,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        String languageCode = "en";
         Context context = LanguageConfig.ChangeLanguage(newBase, languageCode);
         super.attachBaseContext(context);
     }
@@ -595,6 +595,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     public void onMessageEvent(KeyEvent event) {
         if (event.getIdEven() == AppConstant.CHECK_EVENT_CLICK_NOTIFICATION) {
             loginViewModel.getCountNotificationByUser(UserClient.getInstance().getId());
+        }else  if(event.getIdEven() == 10){
+            languageCode = "vi";
+
+        }else  if(event.getIdEven() == 11){
+            languageCode = "en";
         }
     }
 

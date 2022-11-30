@@ -1,6 +1,8 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -16,7 +18,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.event.KeyEvent;
+import com.example.bookingapproyaljourney.utils.LanguageConfig;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Locale;
 
@@ -32,6 +40,7 @@ public class SettingFragment extends Fragment {
 
     private Spinner spinnerLanguage;
     public static final String[] languages = {"Tiếng Việt", "English"};
+    public int idLang = 10;
 
     public SettingFragment() {
     }
@@ -65,6 +74,7 @@ public class SettingFragment extends Fragment {
 
     }
 
+
     SwitchCompat compat;
 
     @Override
@@ -74,17 +84,18 @@ public class SettingFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLanguage.setAdapter(adapter);
-        spinnerLanguage.setSelection(0);
+        spinnerLanguage.setSelection(1);
         spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 String select = adapterView.getItemAtPosition(i).toString();
-                if (select.equals("English"))
-                {
-
-                }
-                else if (select.equals("Tiếng Việt")) {
-
+                if (select.equals("English")) {
+                    idLang = 11;
+                    EventBus.getDefault().postSticky(new KeyEvent(idLang));
+                } else if (select.equals("Tiếng Việt")) {
+                    idLang = 10;
+                    EventBus.getDefault().postSticky(new KeyEvent(idLang));
                 }
             }
 
@@ -95,15 +106,7 @@ public class SettingFragment extends Fragment {
         });
     }
 
-    public void SetLocal(Activity activity, String langCode)
-    {
-        Locale locale = new Locale(langCode);
-        locale.setDefault(locale);
-        Resources resources= activity.getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(locale);
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
 
-    }
+
 
 }
