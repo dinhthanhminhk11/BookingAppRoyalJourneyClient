@@ -8,6 +8,7 @@ android {
     compileSdk 32
 
     defaultConfig {
+        resConfigs("en", "en-rUS")
         applicationId "com.example.bookingapproyaljourney"
         minSdk 21
         targetSdk 32

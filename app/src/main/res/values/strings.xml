@@ -216,4 +216,11 @@
     <string name="textCheck1Register">Phải trên 6 kí tự</string>
     <string name="textCheck2Register">ít nhất chứa 1 chữ số và 1 chứ cái</string>
     <string name="textCheck3Register">Không trùng khớp</string>
+
+
+    <string name="AccSetting">Tài Khoản</string>
+    <string name="Settings">Cài đặt</string>
+    <string name="LanguageSetting">Ngôn ngữ</string>
+    <string name="NotificationsSetting">Thông báo</string>
+    <string name="HelpSetting">Trợ giúp</string>
 </resources>
