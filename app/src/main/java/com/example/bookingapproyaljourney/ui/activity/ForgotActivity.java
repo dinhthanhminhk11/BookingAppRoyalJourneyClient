@@ -43,7 +43,9 @@ public class ForgotActivity extends AppCompatActivity implements GestureDetector
         });
 
         binding.btnSend.setOnClickListener(v -> {
-            forgotPassViewModel.checkMail(new Email(binding.edEmailForgot.getText().toString()));
+            String Email = binding.edEmailForgot.getText().toString();
+            validateinfo(Email);
+
         });
 
         forgotPassViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TestResponse>() {
@@ -74,6 +76,20 @@ public class ForgotActivity extends AppCompatActivity implements GestureDetector
                 binding.progressBar.setVisibility(integer);
             }
         });
+    }
+
+    private boolean validateinfo(String email) {
+        if (email.length() == 0){
+            binding.edEmailForgot.requestFocus();
+            binding.edEmailForgot.setError(getString(R.string.enterMail));
+        }else if (!email.matches("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$")){
+            binding.edEmailForgot.requestFocus();
+            binding.edEmailForgot.setError(getString(R.string.enterMailFaild));
+            return false;
+        }else {
+            forgotPassViewModel.checkMail(new Email(binding.edEmailForgot.getText().toString()));
+        }
+        return true;
     }
 
     @Override
