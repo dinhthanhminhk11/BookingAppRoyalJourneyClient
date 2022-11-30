@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,12 +32,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.callback.CallbackGetBookmark;
+import com.example.bookingapproyaljourney.callback.InterfacePostBookmark;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Bathroom;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.repository.BookmarkRepository;
+import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
-import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
 import com.example.bookingapproyaljourney.ui.activity.feedback.FeedbackListActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BathdRoomAdapter;
@@ -115,6 +119,8 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
     private TextView countSao;
     private NumberFormat fm = new DecimalFormat("#,###");
     private boolean isStillEmpty;
+    private BookmarkRepository bookmarkRepository;
+    private boolean isClickSpeed = true;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -174,7 +180,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
         feedbackViewModel = new ViewModelProvider(this).get(FeedbackViewModel.class);
-
+        bookmarkRepository = new BookmarkRepository();
         options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.img)
@@ -388,9 +394,29 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.itemboomak, menu);
         menuItem = menu.findItem(R.id.iconbookmak);
+
+        bookmarkRepository.getBookmarkByIdUserAndIdHouse(UserClient.getInstance().getId(), idHouse, new CallbackGetBookmark() {
+            @Override
+            public void onResponse(BookmarkResponse bookmarkResponse) {
+                if (bookmarkResponse.getData().size() > 0) {
+                    if (bookmarkResponse.getData().get(0).isCheck()) {
+                        menuItem.setIcon(R.drawable.ic_baseline_bookmark_24_white_full);
+                        isClickSpeed = false;
+                    }
+                } else {
+                    menuItem.setIcon(R.drawable.ic_baseline_bookmark_border_24_menu_toolbar);
+                    isClickSpeed = true;
+                }
+            }
+
+            @Override
+            public void onFailure(BookmarkResponse bookmarkResponse) {
+
+            }
+        });
+
         return true;
     }
 
@@ -398,6 +424,33 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.iconbookmak) {
+            if (isClickSpeed) {
+                bookmarkRepository.addBookMark(new PostIDUserAndIdHouse(UserClient.getInstance().getId(), idHouse), new InterfacePostBookmark() {
+                    @Override
+                    public void onResponse(BookmarkResponse bookmarkResponse) {
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
+                item.setIcon(R.drawable.ic_baseline_bookmark_24_white_full);
+                isClickSpeed = false;
+            } else {
+                bookmarkRepository.deleteBookmark(UserClient.getInstance().getId(), idHouse, new InterfacePostBookmark() {
+                    @Override
+                    public void onResponse(BookmarkResponse bookmarkResponse) {
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
+                menuItem.setIcon(R.drawable.ic_baseline_bookmark_border_24_menu_toolbar);
+                isClickSpeed = true;
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
