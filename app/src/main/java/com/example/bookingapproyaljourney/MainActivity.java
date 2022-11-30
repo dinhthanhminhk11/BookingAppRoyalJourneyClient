@@ -71,6 +71,8 @@ import com.example.bookingapproyaljourney.ui.view.menu.DrawerAdapter;
 import com.example.bookingapproyaljourney.ui.view.menu.DrawerItem;
 import com.example.bookingapproyaljourney.ui.view.menu.SimpleItem;
 import com.example.bookingapproyaljourney.ui.view.menu.SpaceItem;
+import com.example.bookingapproyaljourney.utils.LanguageConfig;
+import com.example.bookingapproyaljourney.utils.SharedPrefs;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarynav.SlidingRootNav;
 import com.example.librarynav.SlidingRootNavBuilder;
@@ -131,9 +133,18 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private Button logOut;
     private LoginViewModel loginViewModel;
     private String token1 = "";
+    private SharedPrefs sharedPreferences;
 
     public void setCallDialog(CallDialog callDialog) {
         this.callDialog = callDialog;
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        String languageCode = "en";
+        Context context = LanguageConfig.ChangeLanguage(newBase, languageCode);
+        super.attachBaseContext(context);
     }
 
     @Override

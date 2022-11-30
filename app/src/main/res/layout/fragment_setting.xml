@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Account"
+        android:text="@string/AccSetting"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:layout_margin="15dp"
@@ -66,7 +66,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="@string/Settings"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:layout_margin="15dp"
@@ -95,17 +95,19 @@
                 android:layout_width="140dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:text="Language"/>
+                android:text="@string/LanguageSetting"/>
 
-            <TextView
-                android:layout_width="100dp"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
-                android:text="English"/>
+        <Spinner
+            android:id="@+id/spinnerLanguage"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="English"
+            android:textSize="15dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -136,9 +138,10 @@
             android:textColor="@color/black"
             android:layout_weight="1"
             android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:text="Notifications"/>
+            android:text="@string/NotificationsSetting"/>
 
 
 
@@ -173,7 +176,8 @@
             android:textSize="20dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:text="Help"/>
+            android:textStyle="bold"
+            android:text="@string/HelpSetting"/>
 
         <ImageView
             android:layout_width="wrap_content"
