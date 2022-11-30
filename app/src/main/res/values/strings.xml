@@ -203,7 +203,7 @@
     <string name="titleConfrimMail">Tài khoản của bạn chưa xác thực email</string>
     <string name="contentConfrimMail">Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn</string>
     <string name="textOTP">Mã OTP gồm có 6 kí tự</string>
-    <string name="enterCodeOTP">Nhập mã mà chúng tôi đã gửi qua tin nhắn email </string>
+    <string name="enterCodeOTP">"Nhập mã mà chúng tôi đã gửi qua tin nhắn email "</string>
     <string name="out">Thoát</string>
     <string name="OTPFail">OTP không chính xác</string>
     <string name="SEND">Đã Gửi</string>
@@ -261,7 +261,7 @@
     <string name="failure">Thất bại</string>
     <string name="Cancel_before_date">\"Nếu bạn hủy trước ngày \"</string>
     <string name="Cancel_before_date1">\" bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm\"</string>
-    <string name="Bedroom">\" Phòng ngủ\"</string>
+    <string name="Bedroom"> Phòng ngủ</string>
 
 
 </resources>

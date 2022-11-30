@@ -195,7 +195,7 @@
     <string name="titleConfrimMail">" Your account has not verified email"</string>
     <string name="contentConfrimMail">Security by authentication via OTP code is considered a safe form of security</string>
     <string name="textOTP">OTP code consists of 6 characters</string>
-    <string name="enterCodeOTP">Enter the code we sent via email message</string>
+    <string name="enterCodeOTP">"Enter the code we sent via email message "</string>
     <string name="out">Exit</string>
     <string name="OTPFail">OTP is incorrect</string>
     <string name="SEND">Sent</string>
@@ -251,7 +251,7 @@
     <string name="failure">Failure</string>
     <string name="Cancel_before_date">\"If you cancel before the date \"</string>
     <string name="Cancel_before_date1">\" you will get a partial refund. Looking for more information\"</string>
-    <string name="Bedroom">\" Bedroom\"</string>
+    <string name="Bedroom">" Bedroom"</string>
 
 
 </resources>

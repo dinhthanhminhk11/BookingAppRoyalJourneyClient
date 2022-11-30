@@ -52,7 +52,7 @@ public class OtpActivity extends AppCompatActivity {
         mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
         String pass = getIntent().getStringExtra(AppConstant.PASS_USER);
 
-        binding.textAlien.setText(R.string.enterCodeOTP + mail);
+        binding.textAlien.setText(this.getString(R.string.enterCodeOTP) + mail);
         viewModel = new ViewModelProvider(this).get(VerifyViewModel.class);
         binding.btnSignIn.setOnClickListener(v -> {
             String otp = binding.otp.getText().toString();
