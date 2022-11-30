@@ -21,8 +21,6 @@
         android:orientation="vertical">
 
 
-
-
         <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
@@ -44,6 +42,7 @@
                 app:cardCornerRadius="19dp"
                 app:layout_anchorGravity="top"
                 app:layout_behavior="@string/bottom_sheet_behavior">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -51,21 +50,23 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_baseline_profile"
-                        />
+                        android:src="@drawable/ic_baseline_profile" />
+
                     <TextView
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_18dp"
+                        android:id="@+id/textCountHouse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Hơn 1000 nhà ở"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_18dp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -78,14 +79,16 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
                             android:text="Hired"
+                            android:visibility="invisible"
                             android:textColor="@color/black"
                             android:textSize="15dp"
                             android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleView_profile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:id="@+id/recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -105,6 +108,7 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading.json"
         app:lottie_loop="true" />
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tool_bar2"
         android:layout_width="match_parent"

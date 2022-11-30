@@ -148,7 +148,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(5000)
+                        .setDuration(5000).setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -197,7 +197,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(3000)
+                        .setDuration(3000).setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -264,7 +264,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                                 .setIcon(R.drawable.ic_warning_icon_check)
                                 .setTitleColor(R.color.black)
                                 .setMessageColor(R.color.black)
-                                .setDuration(3000)
+                                .setDuration(3000).setSwipeToDismiss(false)
                                 .setBackgroundRes(R.drawable.background_toast)
                                 .setCookiePosition(CookieBar.BOTTOM)
                                 .show();
@@ -342,6 +342,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                                     .setTitleColor(R.color.black)
                                     .setMessageColor(R.color.black)
                                     .setDuration(5000)
+                                    .setSwipeToDismiss(false)
                                     .setBackgroundRes(R.drawable.background_toast)
                                     .setCookiePosition(CookieBar.BOTTOM)
                                     .show();
@@ -353,7 +354,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                                     .setIcon(R.drawable.ic_warning_icon_check)
                                     .setTitleColor(R.color.black)
                                     .setMessageColor(R.color.black)
-                                    .setDuration(5000)
+                                    .setDuration(5000).setSwipeToDismiss(false)
                                     .setBackgroundRes(R.drawable.background_toast)
                                     .setCookiePosition(CookieBar.BOTTOM)
                                     .show();
@@ -398,7 +399,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(5000)
+                        .setDuration(5000).setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -410,7 +411,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(5000)
+                        .setDuration(5000).setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -422,7 +423,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(5000)
+                        .setDuration(5000).setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -433,7 +434,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
-                        .setDuration(5000)
+                        .setDuration(5000).setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -466,7 +467,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
         binding.contentCancellationPolicy.setOnClickListener(v -> {
-             bottomSheetCancellationPolicy = new BottomSheetCancellationPolicy(this, R.style.MaterialDialogSheet, new BottomSheetCancellationPolicy.CallbackOnClickBottomSheetCancellationPolicy() {
+            bottomSheetCancellationPolicy = new BottomSheetCancellationPolicy(this, R.style.MaterialDialogSheet, new BottomSheetCancellationPolicy.CallbackOnClickBottomSheetCancellationPolicy() {
                 @Override
                 public void onclickBtn() {
                     startActivity(new Intent(BillOderActivity.this, CancellationPolicyActivity.class));
@@ -476,7 +477,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 public void onClose() {
                     bottomSheetCancellationPolicy.dismiss();
                 }
-            } ,houseDetailResponse);
+            }, houseDetailResponse);
             bottomSheetCancellationPolicy.show();
             bottomSheetCancellationPolicy.setCanceledOnTouchOutside(false);
         });
@@ -759,7 +760,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     .setIcon(R.drawable.ic_warning_icon_check)
                     .setTitleColor(R.color.black)
                     .setMessageColor(R.color.black)
-                    .setDuration(5000)
+                    .setDuration(5000).setSwipeToDismiss(false)
                     .setBackgroundRes(R.drawable.background_toast)
                     .setCookiePosition(CookieBar.BOTTOM)
                     .show();

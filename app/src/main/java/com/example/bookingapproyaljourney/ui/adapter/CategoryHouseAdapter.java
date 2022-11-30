@@ -18,12 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookingapproyaljourney.callback.HouseByCategoryCallback;
 import com.example.bookingapproyaljourney.callback.InterfaceResponseHouseNearestByUser;
 import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
+import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.repository.CategoryRepository;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -60,6 +64,7 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
         holder.nameCategory.setText(item.getName());
 
         if (check) {
+            EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_HOUSE));
             initData(item, position);
             check = false;
         }
@@ -71,17 +76,22 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
             if (position == 0) {
                 // trueyefn list nhà ở all
                 initData(item, position);
+                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_HOUSE));
                 index = 1;
             } else if (position == 1) {
+                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_APARTMENT));
                 initData(item, position);
                 index = 2;
             } else if (position == 2) {
+                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_HOTEL));
                 initData(item, position);
                 index = 3;
             } else if (position == 3) {
+                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_VILLA));
                 initData(item, position);
                 index = 4;
             } else if (position == 4) {
+                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_COTTAGE));
                 initData(item, position);
                 index = 5;
             }
