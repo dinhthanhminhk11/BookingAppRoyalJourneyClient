@@ -615,6 +615,4 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         EventBus.getDefault().unregister(this);
         super.onStop();
     }
-
-
 }

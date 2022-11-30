@@ -195,7 +195,7 @@
     <string name="titleConfrimMail">" Your account has not verified email"</string>
     <string name="contentConfrimMail">Security by authentication via OTP code is considered a safe form of security</string>
     <string name="textOTP">OTP code consists of 6 characters</string>
-    <string name="enterCodeOTP">Enter the code we sent via email message</string>
+    <string name="enterCodeOTP">"Enter the code we sent via email message "</string>
     <string name="out">Exit</string>
     <string name="OTPFail">OTP is incorrect</string>
     <string name="SEND">Sent</string>
@@ -213,5 +213,45 @@
     <string name="HelpSetting">" Help"</string>
     <string name="LanguageSetting">Language</string>
     <string name="NotificationsSetting">" Notification"</string>
+
+    <string name="question_bookmard">Can\'t find your reservation/reservation here? Visit the Support Center</string>
+    <string name="question_help1">frequently asked Questions</string>
+    <string name="question_help2">General information</string>
+    <string name="question_help3">Find a hotel</string>
+    <string name="question_help4">Book hotel room</string>
+    <string name="question_help5">Hotel prices</string>
+    <string name="question_help6">Travel insurance</string>
+    <string name="question_help7"><![CDATA[Cancellation, room change & refund]]></string>
+    <string name="question_help8">Hotel Amenities</string>
+    <string name="question_help9">Special requirements</string>
+    <string name="question_help10">Hotel Policy</string>
+
+    <string name="question_help11">How to cancel and refund a hotel reservation</string>
+    <string name="question_help12">How can I resend my e-ticket?</string>
+    <string name="question_help13">How to book a hotel?</string>
+    <string name="question_help14">How do I check my refund status</string>
+    <string name="question_help21">RoyalJourney partnership with hotels</string>
+    <string name="question_help22">How to register my property on RoyalJourney</string>
+    <string name="question_help31">How do I find the best hotel for my destination?</string>
+    <string name="question_help32">Find hotels in a certain area</string>
+    <string name="question_help33">What does no refund and free booking mean</string>
+    <string name="question_help41">How to book a hotel?</string>
+    <string name="question_help42">How to reschedule my hotel reservation</string>
+    <string name="question_help51">What does the hotel room rate include?</string>
+    <string name="question_help61">Does the room rate include travel insurance?</string>
+    <string name="question_help71">How to cancel and refund a hotel reservation</string>
+    <string name="question_help72">How can I resend my e-ticket?</string>
+    <string name="question_help73">How do I check my refund status</string>
+    <string name="question_help81">How can I view hotel amenities?</string>
+    <string name="question_help91">Book a smoking room</string>
+    <string name="question_help92">Request an extra bed</string>
+    <string name="question_help93">Late check-in</string>
+    <string name="question_help101">The hotel\'s hygiene policy is up to standard</string>
+    <string name="Confirmation_and_payment">Confirmation and payment</string>
+    <string name="failure">Failure</string>
+    <string name="Cancel_before_date">\"If you cancel before the date \"</string>
+    <string name="Cancel_before_date1">\" you will get a partial refund. Looking for more information\"</string>
+    <string name="Bedroom">" Bedroom"</string>
+
 
 </resources>

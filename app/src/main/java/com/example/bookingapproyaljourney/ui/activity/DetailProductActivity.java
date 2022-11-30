@@ -343,8 +343,8 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
             nameBoss = item.getHostResponse().getName();
             tvAddress.setText(item.getNameLocation());
             tvNameHotel.setText(item.getName());
-            tvAmountBedRoom.setText(item.getSleepingPlaces().size() + " Phòng ngủ");
-            tvAmountBedroom2.setText(item.getBathrooms().size() + " Phòng tắm");
+            tvAmountBedRoom.setText(item.getSleepingPlaces().size() + getString(R.string.Bedroom));
+            tvAmountBedroom2.setText(item.getBathrooms().size() + getString(R.string.phongtamdetail));
             ContentHouse.setText(item.getContent());
             legalHouse.setText(item.getLegal());
             startDateAndEndDate.setText(item.getStartDate() + " - " + item.getEndDate());

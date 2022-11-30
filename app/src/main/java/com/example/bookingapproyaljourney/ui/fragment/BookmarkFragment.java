@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.databinding.FragmentBookmarkBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
@@ -81,7 +82,7 @@ public class BookmarkFragment extends Fragment{
     }
 
     private void initView() {
-        Spannable wordtoSpan = new SpannableString("Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp");
+        Spannable wordtoSpan = new SpannableString(getString(R.string.question_bookmard));
 
         wordtoSpan.setSpan(new UnderlineSpan(), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

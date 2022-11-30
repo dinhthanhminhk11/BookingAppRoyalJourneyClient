@@ -28,4 +28,12 @@ public class AppConstant {
     public static final String LoginActivity = "LoginActivity";
     public static final int CHECK_EVENT_CLICK_NOTIFICATION = 1;
     public static final int CHECK_EVENT_CONFIRM_ACCOUNT = 2;
+
+    public static final int CHECK_EVENT_HOUSE = 3;
+    public static final int CHECK_EVENT_APARTMENT = 4;
+    public static final int CHECK_EVENT_HOTEL = 5;
+    public static final int CHECK_EVENT_VILLA = 6;
+    public static final int CHECK_EVENT_COTTAGE = 7;
+
+
 }

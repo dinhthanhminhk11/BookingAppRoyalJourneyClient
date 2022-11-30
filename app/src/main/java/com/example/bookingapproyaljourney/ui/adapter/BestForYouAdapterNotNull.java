@@ -84,6 +84,9 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
             holder.itemView.setOnClickListener(v->{
                 listernaer.onClick(house);
             });
+            holder.btnDat.setOnClickListener(v->{
+                listernaer.onClick(house);
+            });
         }
     }
 

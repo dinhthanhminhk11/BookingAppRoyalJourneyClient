@@ -118,9 +118,13 @@ public class NewPasswordActivity extends AppCompatActivity {
     private Boolean validateinfo(String password, String cfPassword) {
         if (password.length() <= 6) {
             binding.edPass.requestFocus();
-            binding.edPass.setError(getString(R.string.textCheckNewPass));
+            binding.edPass.setError(getString(R.string.textCheck1Register));
+
+        }else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")){
+            binding.edPass.requestFocus();
+            binding.edPass.setError(getString(R.string.textCheck2Register));
             return false;
-        } else if (cfPassword.length() <= 6) {
+        }else if (cfPassword.length() <= 6) {
             binding.edCfPass.requestFocus();
             binding.edCfPass.setError(getString(R.string.textCheckNewPass2));
             return false;
