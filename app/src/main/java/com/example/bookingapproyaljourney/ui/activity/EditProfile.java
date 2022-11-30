@@ -9,6 +9,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -47,6 +49,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class EditProfile extends AppCompatActivity {
+    private static final int REQUES_PERMISSION_CODE = 10;
     private MaterialToolbar toolBar;
     private CircleImageView avtEditProfile;
     private ImageView cameraEditProfile;
@@ -147,8 +150,30 @@ public class EditProfile extends AppCompatActivity {
 
 // lay vi tri người dùng
         iconLocalEditProfile.setOnClickListener(view -> {
-            getCurrentLocation();
+//            phien ban < android 6, khong can xin quyen
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                return;
+            }
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation();
+            } else {
+                String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+                requestPermissions(permissions, REQUES_PERMISSION_CODE);
+            }
+
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUES_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation();
+            } else {
+                Toast.makeText(this, "Bạn đã từ chối cấp quyền vị trí", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     // get data user
@@ -167,6 +192,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
     }
+
 
     //  set img cho circleAvt
     @Override
