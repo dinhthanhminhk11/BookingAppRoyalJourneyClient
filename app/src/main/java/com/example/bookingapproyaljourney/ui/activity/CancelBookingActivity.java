@@ -1,8 +1,12 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
@@ -23,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityCancelBookingBinding;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
@@ -48,7 +53,9 @@ public class CancelBookingActivity extends AppCompatActivity {
     private Button login;
     private String currentDate;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+    SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_CHECK_CANCEL, Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    @SuppressLint("StringFormatInvalid")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +79,7 @@ public class CancelBookingActivity extends AppCompatActivity {
         if (checkBanking) {
             binding.textView8.setText(this.getString(R.string.Ly_do_huy));
         } else {
-            binding.textView8.setText(this.getString(R.string.Billoder_date_cancel) + dateCancel + this.getString(R.string.Date_cancel) + dateCancel + this.getString(R.string.Date_cancel_1));
+            binding.textView8.setText(String.format(getResources().getString(R.string.Billoder_date_cancel), dateCancel, dateCancel));
         }
 
         cancelBookingViewModel = new ViewModelProvider(this).get(CancelBookingViewModel.class);
@@ -93,6 +100,7 @@ public class CancelBookingActivity extends AppCompatActivity {
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
                         .setDuration(5000)
+                        .setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -104,6 +112,7 @@ public class CancelBookingActivity extends AppCompatActivity {
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
                         .setDuration(5000)
+                        .setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
@@ -125,7 +134,7 @@ public class CancelBookingActivity extends AppCompatActivity {
         text = (TextView) dialogLogOut.findViewById(R.id.text);
         btnCancel = (TextView) dialogLogOut.findViewById(R.id.btnCancel);
         login = (Button) dialogLogOut.findViewById(R.id.login);
-
+        btnCancel.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         text.setText(this.getString(R.string.cancel_room));
         login.setText(this.getString(R.string.Confirm));
 
@@ -137,6 +146,9 @@ public class CancelBookingActivity extends AppCompatActivity {
         Log.e("MInhCheckSeem", String.valueOf(checkSeem));
 
         login.setOnClickListener(v -> {
+
+            editor.putInt(AppConstant.TOKEN_CANCEL, 1);
+            editor.commit();
 
             dialogLogOut.cancel();
 

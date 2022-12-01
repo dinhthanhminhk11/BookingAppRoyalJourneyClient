@@ -16,8 +16,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 
-
-
 import java.util.List;
 
 public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.ViewHodel> {
@@ -48,7 +46,7 @@ public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return convenientTestList == null ? 0 : 5;
+        return convenientTestList.size() < 5 ? convenientTestList.size() : 5;
     }
 
     public class ViewHodel extends RecyclerView.ViewHolder {

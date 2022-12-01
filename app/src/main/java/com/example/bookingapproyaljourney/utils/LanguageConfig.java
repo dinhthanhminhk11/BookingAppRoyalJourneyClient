@@ -28,13 +28,13 @@ public class LanguageConfig {
             }else {
                 configuration.locale = locale;
             }
-
             if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1){
                 context = context.createConfigurationContext(configuration);
             }else {
                 context.getResources().updateConfiguration(configuration, context.getResources().getDisplayMetrics());
             }
         }
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
 
         return new ContextWrapper(context);
     }

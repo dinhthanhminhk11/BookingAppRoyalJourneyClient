@@ -134,11 +134,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                     isClickSpeed = true;
                 }
             });
-
-
         }
-
-
     }
 
     @Override
