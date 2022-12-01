@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -20,14 +21,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentBookmarkBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BookmarkAdapter;
 import com.example.bookingapproyaljourney.view_model.BookmarkViewModel;
 
-public class BookmarkFragment extends Fragment{
+public class BookmarkFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +49,6 @@ public class BookmarkFragment extends Fragment{
     public BookmarkFragment(CallbackOrderClick callbackOrderClick) {
         this.callbackOrderClick = callbackOrderClick;
     }
-
 
 
 //    public static BookmarkFragment newInstance(String param1, String param2) {
@@ -82,7 +84,7 @@ public class BookmarkFragment extends Fragment{
     }
 
     private void initView() {
-        Spannable wordtoSpan = new SpannableString(getString(R.string.question_bookmard));
+        Spannable wordtoSpan = new SpannableString("Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp");
 
         wordtoSpan.setSpan(new UnderlineSpan(), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -120,6 +122,13 @@ public class BookmarkFragment extends Fragment{
                     @Override
                     public void onDirect(HouseDetailResponse houseDetailResponse) {
 
+                    }
+
+                    @Override
+                    public void onClick(String id) {
+                        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+                        intent.putExtra(AppConstant.HOUSE_EXTRA, id);
+                        startActivity(intent);
                     }
                 });
                 binding.recyclerView.setAdapter(bookmarkAdapter);

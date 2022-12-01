@@ -2,6 +2,7 @@ package com.example.bookingapproyaljourney.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -362,6 +363,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         } else {
 
                             long msDiff = endDate - startDate;
+
                             daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
                             payday = Integer.parseInt(String.valueOf(daysDiff));
                             binding.payDay.setText(daysDiff + "");
@@ -524,6 +526,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         return true;
     }
 
+    @SuppressLint("StringFormatInvalid")
     private void initData(String idHouse) {
         detailProductViewModel.getHouseById(idHouse).observe(this, item -> {
             houseDetailResponse = item;
@@ -543,8 +546,9 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             sumAll = item.getPrice();
             checkStartDateResponse = item.getStartDate();
             checkEndDateResponse = item.getEndDate();
+            Resources res = getResources();
 
-            String textCancel = getString(R.string.Cancel_before_date) + houseDetailResponse.getCancellatioDate() + getString(R.string.Cancel_before_date1);
+            String textCancel = String.format(getResources().getString(R.string.Cancel_before_date), houseDetailResponse.getCancellatioDate());
 
             Spannable wordtoSpan = new SpannableString(textCancel);
 

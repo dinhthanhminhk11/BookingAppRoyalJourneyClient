@@ -11,9 +11,9 @@ import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.response.CountNotiResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.response.ProfileUserResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
-import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
@@ -185,4 +185,23 @@ public class UserRepository {
             }
         });
     }
+
+    public void updateInfoUser(ProfileUserResponse profileUserResponse, CallbackTokenDevice callbackTokenDevice) {
+        apiRequest.updateInfoUser(profileUserResponse).enqueue(new Callback<TestResponse>() {
+            @Override
+            public void onResponse(Call<TestResponse> call, Response<TestResponse> response) {
+                if (response.isSuccessful()) {
+                    callbackTokenDevice.onResponse(response.body());
+                } else {
+                    callbackTokenDevice.onFailure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TestResponse> call, Throwable t) {
+                callbackTokenDevice.onFailure(t);
+            }
+        });
+    }
+
 }

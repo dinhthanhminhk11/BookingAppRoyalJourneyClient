@@ -47,7 +47,7 @@ public class OTPPasswordActivity extends AppCompatActivity {
         otpPasswordViewModel = new ViewModelProvider(this).get(OTPPasswordViewModel.class);
         mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
 
-        binding.textAlien.setText(R.string.enterCodeOTP + mail);
+        binding.textAlien.setText(this.getString(R.string.enterCodeOTP) + mail);
 
         binding.sendAgain.setPaintFlags(binding.sendAgain.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 

@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -73,6 +74,7 @@ public class StatusBillActivity extends AppCompatActivity {
     public StatusBillActivity() {
     }
 
+    @SuppressLint("StringFormatInvalid")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,13 +199,13 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ phòng của bạn");
-                    binding.btnDelete.setVisibility(View.VISIBLE);
+                    binding.btnDelete.setVisibility(View.GONE);
                     binding.btnFeedback.setVisibility(View.GONE);
 
                 } else if (orderResponse.getStatus().equals("Khách huỷ") && !orderResponse.isCancellationDate()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.cancelRequest.setVisibility(View.VISIBLE);
+                    binding.cancelRequest.setVisibility(View.GONE);
                     binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ của bạn sẽ có người gọi đến để xác nhận cho bạn");
                     binding.btnFeedback.setVisibility(View.GONE);
                 } else if (orderResponse.getStatus().equals("Đã trả phòng") && orderResponse.isCheckedOut()) {
@@ -248,7 +250,7 @@ public class StatusBillActivity extends AppCompatActivity {
                 binding.tvTimeNhanPhong.setText(houseDetailResponse.getOpening());
                 binding.tvTimeTra.setText(houseDetailResponse.getEnding());
 
-                String textCancel = "Nếu bạn hủy trước ngày " + houseDetailResponse.getCancellatioDate() + " bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm";
+                String textCancel = String.format(getResources().getString(R.string.Cancel_before_date), houseDetailResponse.getCancellatioDate());
 
                 Spannable wordtoSpan = new SpannableString(textCancel);
 
@@ -282,7 +284,6 @@ public class StatusBillActivity extends AppCompatActivity {
             }
         });
 
-
         binding.btnPay.setOnClickListener(v -> {
             if (UserClient.getInstance().getCountBooking() < -5) {
                 CookieBar.build(this)
@@ -292,6 +293,7 @@ public class StatusBillActivity extends AppCompatActivity {
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
                         .setDuration(3000)
+                        .setSwipeToDismiss(false)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();

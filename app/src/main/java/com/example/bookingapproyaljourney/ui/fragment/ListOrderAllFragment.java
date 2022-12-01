@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentListOrderAllBinding;
@@ -69,7 +70,7 @@ public class ListOrderAllFragment extends Fragment {
     }
 
     private void initView(View view) {
-        Spannable wordtoSpan = new SpannableString("Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp");
+        Spannable wordtoSpan = new SpannableString(this.getString(R.string.question_bookmard));
 
 //        wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         wordtoSpan.setSpan(new UnderlineSpan(), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

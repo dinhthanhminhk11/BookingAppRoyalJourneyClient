@@ -197,11 +197,11 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     }
 
     private void initData() {
-        locations.add("Hà Nội");
-        locations.add("Hải Phòng");
-        locations.add("Thái Bình ");
-        locations.add("Hưng Yên");
-        locations.add("Tp.Hồ Chí Minh");
+        locations.add(getString(R.string.Hanoi));
+        locations.add(getString(R.string.Hai_Phong));
+        locations.add(getString(R.string.Thai_binh));
+        locations.add(getString(R.string.Hung_yen));
+        locations.add(getString(R.string.Tp_Ho_Chi_Minh));
         ArrayAdapter listAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, locations);
         listLocation.setAdapter(listAdapter);
         getListCategory();
@@ -291,7 +291,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 viewShowNull.setVisibility(View.VISIBLE);
                 tvContentNull2.setVisibility(View.VISIBLE);
                 btnShowNull.setVisibility(View.VISIBLE);
-                btnShowNull.setText("Xóa bộ lọc");
+                btnShowNull.setText(R.string.Clean_the_filter);
                 recyclerviewListBestForYou.setVisibility(View.GONE);
             } else {
                 recyclerviewListBestForYou.setVisibility(View.VISIBLE);
@@ -322,8 +322,8 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 viewShowNull.setVisibility(View.VISIBLE);
                 tvContentNull2.setVisibility(View.VISIBLE);
                 btnShowNull.setVisibility(View.VISIBLE);
-                btnShowNull.setText("Xóa tìm kiếm");
-                tvContentNull.setText("Hãy thử thay đổi địa chỉ tìm kiếm và tìm lại nhé");
+                btnShowNull.setText(R.string.delete_search);
+                tvContentNull.setText(R.string.Change_Location);
                 recyclerviewListBestForYou.setVisibility(View.GONE);
             } else {
                 recyclerviewListBestForYou.setVisibility(View.VISIBLE);
