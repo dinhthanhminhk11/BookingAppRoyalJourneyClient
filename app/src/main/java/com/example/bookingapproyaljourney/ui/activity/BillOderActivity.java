@@ -363,6 +363,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                         } else {
 
                             long msDiff = endDate - startDate;
+
                             daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
                             payday = Integer.parseInt(String.valueOf(daysDiff));
                             binding.payDay.setText(daysDiff + "");

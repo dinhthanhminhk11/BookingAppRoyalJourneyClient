@@ -60,6 +60,11 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                 @Override
                 public void success(HouseDetailResponse houseDetailResponse) {
                     callback.onLoading(View.GONE);
+
+                    holder.itemView.setOnClickListener(v -> {
+                        callback.onClick(bookmark.getIdHouse());
+                    });
+
                     holder.itemBookmarkByUserBinding.address.setText(houseDetailResponse.getNameLocation());
                     holder.itemBookmarkByUserBinding.name.setText(houseDetailResponse.getName());
 
@@ -67,8 +72,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                             .centerCrop()
                             .placeholder(R.drawable.img)
                             .error(R.drawable.img);
-                    Glide.with(
-                                    holder.itemBookmarkByUserBinding.ivAnhKhachSan.getContext()).
+                    Glide.with(holder.itemBookmarkByUserBinding.ivAnhKhachSan.getContext()).
                             load(houseDetailResponse.getImages().get(0)).
                             apply(options).
                             dontAnimate().
@@ -155,5 +159,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
         void onLoading(Integer integer);
 
         void onDirect(HouseDetailResponse houseDetailResponse);
+
+        void onClick(String id);
     }
 }
