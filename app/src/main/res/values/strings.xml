@@ -259,9 +259,17 @@
     <string name="Confirmation_and_payment">Xác nhận và thanh toán</string>
 
     <string name="failure">Thất bại</string>
-    <string name="Cancel_before_date">\"Nếu bạn hủy trước ngày \"</string>
-    <string name="Cancel_before_date1">\" bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm\"</string>
+    <string name="Cancel_before_date">Nếu bạn hủy trước ngày</string>
+    <string name="Cancel_before_date1">bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm</string>
     <string name="Bedroom"> Phòng ngủ</string>
+    <string name="Hanoi">Hà Nội</string>
+    <string name="Hai_Phong">Hải Phòng</string>
+    <string name="Thai_binh">Thái Bình </string>
+    <string name="Hung_yen">Hưng Yên</string>
+    <string name="Tp_Ho_Chi_Minh">Tp.Hồ Chí Minh</string>
+    <string name="Clean_the_filter">Xóa bộ lọc</string>
+    <string name="delete_search">Xóa tìm kiếm</string>
+    <string name="Change_Location">Hãy thử thay đổi địa chỉ tìm kiếm và tìm lại nhé</string>
 
 
 </resources>

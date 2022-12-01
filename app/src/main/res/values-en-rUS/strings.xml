@@ -249,9 +249,17 @@
     <string name="question_help101">The hotel\'s hygiene policy is up to standard</string>
     <string name="Confirmation_and_payment">Confirmation and payment</string>
     <string name="failure">Failure</string>
-    <string name="Cancel_before_date">\"If you cancel before the date \"</string>
-    <string name="Cancel_before_date1">\" you will get a partial refund. Looking for more information\"</string>
+    <string name="Cancel_before_date">If you cancel before the date</string>
+    <string name="Cancel_before_date1">you will get a partial refund. Looking for more information</string>
     <string name="Bedroom">" Bedroom"</string>
+    <string name="Hanoi">Ha Noi</string>
+    <string name="Hai_Phong">Hai Phong</string>
+    <string name="Thai_binh">Thai Binh</string>
+    <string name="Hung_yen">Hung Yen</string>
+    <string name="Tp_Ho_Chi_Minh">TP. Ho Chi Minh</string>
+    <string name="Clean_the_filter">Clear filter</string>
+    <string name="delete_search">Clear search</string>
+    <string name="Change_Location">Try changing the search address and find it again</string>
 
 
 </resources>
