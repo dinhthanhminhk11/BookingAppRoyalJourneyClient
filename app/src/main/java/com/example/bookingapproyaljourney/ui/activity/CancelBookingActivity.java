@@ -53,8 +53,6 @@ public class CancelBookingActivity extends AppCompatActivity {
     private Button login;
     private String currentDate;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_CHECK_CANCEL, Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPreferences.edit();
     @SuppressLint("StringFormatInvalid")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -147,8 +145,6 @@ public class CancelBookingActivity extends AppCompatActivity {
 
         login.setOnClickListener(v -> {
 
-            editor.putInt(AppConstant.TOKEN_CANCEL, 1);
-            editor.commit();
 
             dialogLogOut.cancel();
 

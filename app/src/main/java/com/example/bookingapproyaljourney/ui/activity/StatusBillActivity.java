@@ -2,9 +2,7 @@ package com.example.bookingapproyaljourney.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -201,7 +199,7 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ phòng của bạn");
-                    binding.btnDelete.setVisibility(View.VISIBLE);
+                    binding.btnDelete.setVisibility(View.GONE);
                     binding.btnFeedback.setVisibility(View.GONE);
 
                 } else if (orderResponse.getStatus().equals("Khách huỷ") && !orderResponse.isCancellationDate()) {
