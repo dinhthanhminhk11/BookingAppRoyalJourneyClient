@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class SharedPrefs {
     String LOCALE_KEY = "locale";
-    String setback_locale ="en";
+    String setback_locale ="vi";
     String database_name = "database";
     Context context;
     SharedPreferences.Editor editor;

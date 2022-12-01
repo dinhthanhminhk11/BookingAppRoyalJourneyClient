@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private Button logOut;
     private LoginViewModel loginViewModel;
     private String token1 = "";
-    private String languageCode = "";
+    private String languageCode = "vi";
     private Context context;
     private Resources resources;
     public static MainActivity instance;
