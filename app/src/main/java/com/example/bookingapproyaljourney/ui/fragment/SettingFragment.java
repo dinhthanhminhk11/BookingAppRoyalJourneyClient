@@ -39,7 +39,7 @@ public class SettingFragment extends Fragment {
 
 
     private Spinner spinnerLanguage;
-    public static final String[] languages = {"Tiếng Việt", "English"};
+    public static final String[] languages = {"Choose","Tiếng Việt", "English"};
     public int idLang = 10;
 
     public SettingFragment() {
@@ -84,7 +84,7 @@ public class SettingFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLanguage.setAdapter(adapter);
-        spinnerLanguage.setSelection(1);
+        spinnerLanguage.setSelection(0);
         spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -93,9 +93,11 @@ public class SettingFragment extends Fragment {
                 if (select.equals("English")) {
                     idLang = 11;
                     EventBus.getDefault().postSticky(new KeyEvent(idLang));
+                    MainActivity.instance.RestartMain();
                 } else if (select.equals("Tiếng Việt")) {
                     idLang = 10;
                     EventBus.getDefault().postSticky(new KeyEvent(idLang));
+                    MainActivity.instance.RestartMain();
                 }
             }
 
@@ -104,6 +106,8 @@ public class SettingFragment extends Fragment {
 
             }
         });
+
+
     }
 
 

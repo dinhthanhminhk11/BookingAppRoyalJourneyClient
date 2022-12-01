@@ -34,6 +34,7 @@ public class LanguageConfig {
                 context.getResources().updateConfiguration(configuration, context.getResources().getDisplayMetrics());
             }
         }
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
 
         return new ContextWrapper(context);
     }

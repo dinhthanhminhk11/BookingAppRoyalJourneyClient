@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -133,23 +136,36 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private Button logOut;
     private LoginViewModel loginViewModel;
     private String token1 = "";
-    private SharedPrefs sharedPreferences;
-    String languageCode = "en";
+    private String languageCode = "";
+    private Context context;
+    private Resources resources;
+    public static MainActivity instance;
+    SharedPrefs sharedPreferences;
 
     public void setCallDialog(CallDialog callDialog) {
         this.callDialog = callDialog;
     }
 
+    public void RestartMain() {
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(0, 1);
+    }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
+        sharedPreferences = new SharedPrefs(newBase);
+        String languageCode = sharedPreferences.getLocale();
         Context context = LanguageConfig.ChangeLanguage(newBase, languageCode);
         super.attachBaseContext(context);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
         setContentView(R.layout.activity_main);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         container = (FrameLayout) findViewById(R.id.containerMain);
@@ -595,11 +611,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     public void onMessageEvent(KeyEvent event) {
         if (event.getIdEven() == AppConstant.CHECK_EVENT_CLICK_NOTIFICATION) {
             loginViewModel.getCountNotificationByUser(UserClient.getInstance().getId());
-        }else  if(event.getIdEven() == 10){
-            languageCode = "vi";
-
-        }else  if(event.getIdEven() == 11){
+        } else if (event.getIdEven() == 10) {
+            sharedPreferences.setLocale("vi");
+        } else if (event.getIdEven() == 11) {
             languageCode = "en";
+            sharedPreferences.setLocale("en");
         }
     }
 
