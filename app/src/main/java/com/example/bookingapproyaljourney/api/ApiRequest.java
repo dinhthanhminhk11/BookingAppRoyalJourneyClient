@@ -24,6 +24,7 @@ import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.NotiResponse;
+import com.example.bookingapproyaljourney.response.ProfileUserResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.response.order.ListFilterResponse;
@@ -185,4 +186,7 @@ public interface ApiRequest {
 
     @GET("listProductAccessByUserId/{id}")
     Call<ListOrderByIdUser2> getListProductAccessById(@Path("id") String id);
+
+    @PATCH("updateInfoUser/{id}")
+    Call<TestResponse> updateInfoUser(@Body ProfileUserResponse profileUserResponse);
 }
