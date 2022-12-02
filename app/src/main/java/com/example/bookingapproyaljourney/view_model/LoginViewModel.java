@@ -24,7 +24,7 @@ import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 
 public class LoginViewModel extends AndroidViewModel {
-    MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
+    MutableLiveData<Integer>  mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<String> mLoginResultMutableData = new MutableLiveData<>();
     MutableLiveData<LoginResponse> mLoginResultMutableDataToKen = new MutableLiveData<>();
     MutableLiveData<CountNotiResponse> countNotiResponseMutableLiveData = new MutableLiveData<>();
