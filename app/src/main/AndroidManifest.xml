@@ -49,7 +49,7 @@
             android:name=".ui.activity.BillOderActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.activity.EditProfile"
+            android:name=".ui.activity.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.chat_message.ChatMessageActivity"

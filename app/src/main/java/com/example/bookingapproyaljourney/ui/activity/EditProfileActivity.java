@@ -32,6 +32,8 @@ import com.cloudinary.android.callback.UploadCallback;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.response.LoginResponse;
+import com.example.bookingapproyaljourney.response.ProfileUserResponse;
+import com.example.bookingapproyaljourney.view_model.EditProfileViewModel;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarycireleimage.CircleImageView;
 import com.example.libraryimagepicker.ImagePicker;
@@ -49,7 +51,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
     private static final int REQUES_PERMISSION_CODE = 10;
     private MaterialToolbar toolBar;
     private CircleImageView avtEditProfile;
@@ -63,14 +65,12 @@ public class EditProfile extends AppCompatActivity {
     private TextInputEditText locationEditProfile;
     private AppCompatButton saveEditProfile;
 //    private LottieAnimationView progressBarEdiProfile;
-
     private LoginViewModel loginViewModel;
-
     private Location locationYouSelf;
     private String nameLocationYourSelf;
-
     private Uri imagePath;
     private static final String TAG = "Upload ###";
+    private EditProfileViewModel editProfileViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +106,7 @@ public class EditProfile extends AppCompatActivity {
         cameraEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImagePicker.with(EditProfile.this)
+                ImagePicker.with(EditProfileActivity.this)
                         .crop()
                         .compress(1024)
                         .maxResultSize(1080, 1080)
@@ -147,6 +147,12 @@ public class EditProfile extends AppCompatActivity {
                     Log.d(TAG, "onStart " + error);
                 }
             }).dispatch();
+
+//            editProfileViewModel.updateProfileUser(new ProfileUserResponse(
+//
+//            ))
+//            ;
+
         });
 
 // lay vi tri người dùng
@@ -238,7 +244,7 @@ public class EditProfile extends AppCompatActivity {
             return;
         }
 
-        LocationServices.getFusedLocationProviderClient(EditProfile.this)
+        LocationServices.getFusedLocationProviderClient(EditProfileActivity.this)
                 .requestLocationUpdates(locationRequest, new LocationCallback() {
 
                     @Override
@@ -265,7 +271,7 @@ public class EditProfile extends AppCompatActivity {
 
     //  truyen vao vi tri nguoi dung
     private void getAddress(double lati, double longi) {
-        Geocoder geocoder = new Geocoder(EditProfile.this, Locale.getDefault());
+        Geocoder geocoder = new Geocoder(EditProfileActivity.this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(lati, longi, 1);
             Address obj = addresses.get(0);

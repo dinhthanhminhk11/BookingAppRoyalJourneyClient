@@ -32,10 +32,9 @@ import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
-import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
-import com.example.bookingapproyaljourney.ui.activity.EditProfile;
+import com.example.bookingapproyaljourney.ui.activity.EditProfileActivity;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.RegisterActivity;
 import com.example.bookingapproyaljourney.ui.adapter.HiredProfileAdapter;
@@ -113,7 +112,7 @@ public class ProfileFragment extends Fragment {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         editProfile.setOnClickListener(v -> {
-            Intent i = new Intent(getActivity(), EditProfile.class);
+            Intent i = new Intent(getActivity(), EditProfileActivity.class);
             startActivity(i);
         });
 

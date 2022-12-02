@@ -13,7 +13,6 @@ import com.example.bookingapproyaljourney.response.ProfileUserResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 
 public class EditProfileViewModel extends AndroidViewModel {
-
     private UserRepository userRepository;
 
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
@@ -24,7 +23,7 @@ public class EditProfileViewModel extends AndroidViewModel {
         userRepository = new UserRepository();
     }
 
-    public void updateOrderByUser(ProfileUserResponse profileUserResponse) {
+    public void updateProfileUser(ProfileUserResponse profileUserResponse) {
         mProgressMutableData.postValue(View.VISIBLE);
         userRepository.updateInfoUser(profileUserResponse, new CallbackTokenDevice() {
             @Override
@@ -37,7 +36,6 @@ public class EditProfileViewModel extends AndroidViewModel {
             public void onFailure(Throwable t) {
                 mProgressMutableData.postValue(View.GONE);
             }
-
 
         });
     }
