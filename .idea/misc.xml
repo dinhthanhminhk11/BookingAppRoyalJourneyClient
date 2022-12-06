@@ -47,7 +47,6 @@
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_search_homefragment.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_setting_white_menu.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/iconbell_main.xml" value="0.113" />
-        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_edit_profile.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_main.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_home.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_text.xml" value="0.18333333333333332" />
@@ -133,12 +132,16 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_star_1.xml" value="0.164" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/drawable/image_house_bill_item.xml" value="0.164" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_bill.xml" value="0.2" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_change_password.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_login.xml" value="0.29683698296836986" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_main.xml" value="0.29683698296836986" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_new_password.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_otp.xml" value="0.29683698296836986" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_profile.xml" value="0.136" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_register.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_home.xml" value="0.29683698296836986" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_setting.xml" value="0.2" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_status_bill.xml" value="0.176" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_text.xml" value="0.1140625" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bestforyou_homefragment.xml" value="0.264" />

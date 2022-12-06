@@ -210,9 +210,14 @@
     <string name="textCheck3Register">No match</string>
     <string name="AccSetting">Account</string>
     <string name="Settings">Setting</string>
-    <string name="HelpSetting">" Help"</string>
+    <string name="ChangePassSetting">Change password</string>
+    <string name="DarkmodeSetting">Dark mode</string>
+    <string name="LightmodeSetting">Light mode</string>
     <string name="LanguageSetting">Language</string>
-    <string name="NotificationsSetting">" Notification"</string>
+    <string name="OldPassSettings">Old password</string>
+    <string name="NewPassSettings">New password</string>
+    <string name="RePassSettings">Re-enter the password</string>
+    <string name="TitleRePassSettings">Enter your information correctly</string>
 
     <string name="question_bookmard">Can\'t find your reservation/reservation here? Visit the Support Center</string>
     <string name="question_help1">frequently asked Questions</string>

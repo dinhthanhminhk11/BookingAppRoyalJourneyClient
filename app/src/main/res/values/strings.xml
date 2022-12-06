@@ -221,8 +221,16 @@
     <string name="AccSetting">Tài Khoản</string>
     <string name="Settings">Cài đặt</string>
     <string name="LanguageSetting">Ngôn ngữ</string>
-    <string name="NotificationsSetting">Thông báo</string>
-    <string name="HelpSetting">Trợ giúp</string>
+    <string name="DarkmodeSetting">Dark mode</string>
+    <string name="LightmodeSetting">Light mode</string>
+    <string name="ChangePassSetting">Đổi mật khẩu</string>
+    <string name="OldPassSettings">Mật khẩu cũ</string>
+    <string name="NewPassSettings">Mật khẩu mới</string>
+    <string name="RePassSettings">Nhập lại khẩu mới</string>
+    <string name="TitleRePassSettings">Nhập chính xác thông tin của bạn</string>
+
+
+
     <string name="question_bookmard">Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp</string>
     <string name="question_help1">Các câu hỏi thường gặp</string>
     <string name="question_help2">Thông tin chung</string>
