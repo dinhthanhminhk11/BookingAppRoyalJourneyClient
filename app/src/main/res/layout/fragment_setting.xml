@@ -28,8 +28,9 @@
 
             <TextView
                 android:layout_width="140dp"
+
                 android:layout_weight="1"
-                android:textColor="@color/black"
+                android:textColor="?attr/text_color"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_gravity="center"
@@ -66,7 +67,7 @@
         <TextView
             android:layout_width="240dp"
             android:id="@+id/tvModeSettings"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:layout_weight="1"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -106,7 +107,7 @@
         <TextView
             android:layout_width="240dp"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="?attr/text_color"
             android:textSize="20dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"

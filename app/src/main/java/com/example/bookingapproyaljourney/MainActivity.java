@@ -43,6 +43,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -152,6 +153,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         overridePendingTransition(0, 1);
     }
 
+    public void UpdateTheme() {
+
+    }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -159,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         String languageCode = sharedPreferences.getLocale();
         Context context = LanguageConfig.ChangeLanguage(newBase, languageCode);
         super.attachBaseContext(context);
+
     }
 
 
@@ -166,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
+
         setContentView(R.layout.activity_main);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         container = (FrameLayout) findViewById(R.id.containerMain);
@@ -176,7 +183,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         nameCity = (TextView) findViewById(R.id.nameCity);
         nameAddress = (TextView) findViewById(R.id.nameAddress);
         resultReceiver = new AddressResultReceiver(new Handler());
-
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.Theme_BookingAppRoyalJourney_Dark);
+        }else {
+            setTheme(R.style.Theme_BookingAppRoyalJourney_Light);
+        }
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withMenuOpened(false)
                 .withToolbarMenuToggle(toolbar)
