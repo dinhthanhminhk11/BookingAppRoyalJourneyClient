@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/background_color"
     android:orientation="vertical"
     tools:context=".ui.fragment.SettingFragment">
@@ -37,10 +38,10 @@
 
         <Spinner
             android:id="@+id/spinnerLanguage"
-            android:layout_width="100dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:text="English"
             android:textSize="15dp" />
     </LinearLayout>
@@ -78,6 +79,8 @@
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:thumb="@drawable/thumb_selector_settings"
+            app:track="@drawable/track_selector"
             android:src="@drawable/ic_button_infor_setting"
             android:id="@+id/switchModeSettings"
             android:layout_gravity="center"/>
