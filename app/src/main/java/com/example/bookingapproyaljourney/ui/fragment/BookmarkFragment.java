@@ -84,12 +84,7 @@ public class BookmarkFragment extends Fragment {
     }
 
     private void initView() {
-        Spannable wordtoSpan = new SpannableString("Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? Truy cập Trung tâm trợ giúp");
-
-        wordtoSpan.setSpan(new UnderlineSpan(), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        binding.textHelps.setText(wordtoSpan);
+        binding.textHelps.setText(R.string.textBookmark);
 
         bookmarkViewModel = new ViewModelProvider(this).get(BookmarkViewModel.class);
         bookmarkViewModel.getListBookmarkById(UserClient.getInstance().getId());

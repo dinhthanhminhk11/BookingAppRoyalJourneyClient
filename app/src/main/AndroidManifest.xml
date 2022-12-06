@@ -29,6 +29,9 @@
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.MedicalActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.ChangePasswordActivity"
             android:exported="false" />
         <activity

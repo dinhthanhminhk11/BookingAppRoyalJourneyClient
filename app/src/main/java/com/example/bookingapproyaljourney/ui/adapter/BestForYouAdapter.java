@@ -58,8 +58,8 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
 
             holder.tvNameHouse.setText(house.getName());
             holder.tvPriceHouse.setText(fm.format(house.getPrice()) + " VND");
-            holder.tvCountBedroom.setText(house.getSleepingPlaces().size() + " Bedroom");
-            holder.tvCountBathroom.setText(house.getBathrooms().size() + " Bathroom");
+            holder.tvCountBedroom.setText(house.getSleepingPlaces().size() +  " " + holder.tvCountBedroom.getContext().getString(R.string.textBest1));
+            holder.tvCountBathroom.setText(house.getBathrooms().size() + " " + holder.tvCountBedroom.getContext().getString(R.string.textBest2));
 
             holder.itemView.setOnClickListener(v -> {
                 mListerner.onClickListChinh(house);

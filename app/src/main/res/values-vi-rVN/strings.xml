@@ -221,6 +221,40 @@
     <string name="AccSetting">Tài Khoản</string>
     <string name="Settings">Cài đặt</string>
     <string name="LanguageSetting">Ngôn ngữ</string>
+    <string name="NotificationsSetting">Thông báo</string>
+    <string name="HelpSetting">Trợ giúp</string>
+    <string name="textBookmark1">Tạo danh sách yêu thích đầu tiên</string>
+    <string name="textBookmark3">Bắt đầu tìm kiếm</string>
+    <string name="textChat1">Chưa có cuộc trò chuyện nào?</string>
+    <string name="textChat2">Trong quá trình xem phòng , hãy nhấn vào biểu tượng tin nhắn để có thể trao đổi thêm với chủ nhà </string>
+
+    <string name="textBookmark">Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? <u><b>Truy cập Trung tâm trợ giúp</b></u></string>
+    <string name="textBookmark2">Trong quá trình tìm kiếm , hãy nhấn vào biểu tượng hình lưu trữ để lưu các chỗ ở yêu thích hoặc những điều nên trải nhiệm vào danh sách Yếu thích</string>
+    <string name="textListOrder">Đã đến lúc phủi bụi hành lí và bắt đầu chuẩn bị cho chuyến phiêu lưu tiếp theo của bạn rồi</string>
+    <string name="textListOrder1">Chưa có chuyến đi nào được đặt... vẫn chưa!</string>
+    <string name="textHoso">Hồ sơ của bạn</string>
+    <string name="textHoso1">Đăng nhập để bắt đầu lập kế hoạch cho chuyến đi tiếp theo của bạn.</string>
+    <string name="textHoso2">Đã thuê</string>
+    <string name="textLogout1">Bạn chưa đăng nhập.</string>
+    <string name="textLogout2">Bạn có chắc chắn đăng xuất không ?</string>
+    <string name="Bedroom"> Phòng ngủ</string>
+    <string name="textBest1"> Phòng ngủ</string>
+    <string name="textBest2"> Phòng tắm</string>
+    <string name="textBest3">người</string>
+    <string name="textBest4">Gần bạn nhất</string>
+    <string name="textBest5">Có hơn</string>
+    <string name="textBest6">chỗ ở quanh đây</string>
+    <string name="textBest7">Tốt nhất cho bạn</string>
+    <string name="textBest8">Xác nhận thay đổi mật khẩu</string>
+    <string name="textBest9">Bạn chưa nhận được mã?</string>
+    <string name="textBest10">Gửi lại</string>
+    <string name="textBest11">Tiếp tục</string>
+    <string name="textBest12">Xác nhận email của bạn</string>
+    <string name="textBest13">Chúc mừng!</string>
+    <string name="textBest14">RoyalJourney là một cộng đồng nơi tất cả mọi người đều có thể xem bốn bể là nhà</string>
+    <string name="textBest15">Cảm ơn bạn đã sửa dụng dịch vụ của chúng tôi</string>
+
+
     <string name="DarkmodeSetting">Dark mode</string>
     <string name="LightmodeSetting">Light mode</string>
     <string name="ChangePassSetting">Đổi mật khẩu</string>
@@ -229,4 +263,5 @@
     <string name="NewPassSettings">Mật khẩu mới</string>
     <string name="RePassSettings">Nhập lại khẩu mới</string>
     <string name="TitleRePassSettings">Nhập chính xác thông tin của bạn</string>
+
 </resources>

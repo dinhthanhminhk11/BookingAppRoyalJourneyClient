@@ -35,11 +35,12 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
     }
 
     private Listernaer listernaer;
+
     public BestForYouAdapterNotNull(Listernaer listernaer) {
         this.listernaer = listernaer;
     }
 
-    public interface Listernaer{
+    public interface Listernaer {
         void onClick(House house);
     }
 
@@ -77,14 +78,14 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
                     dontAnimate().
                     into(holder.imageConvenient);
             holder.tvNameConvenient.setText(house.getSupplement().get(0).getName());
-            holder.tvCountBathroom.setText(house.getBathrooms().size() + " bedroom");
-            holder.tvCountBathroom.setText(house.getBathrooms().size() + " bathroom");
-            holder.tvPerson.setText(house.getLimitPerson() + " người");
-            holder.tvStart.setText(house.getSao()+"");
-            holder.itemView.setOnClickListener(v->{
+            holder.tvAmountBedRoom.setText(house.getBathrooms().size() + " " + holder.tvCountBathroom.getContext().getString(R.string.textBest1));
+            holder.tvCountBathroom.setText(house.getBathrooms().size() + " " + holder.tvCountBathroom.getContext().getString(R.string.textBest2));
+            holder.tvPerson.setText(house.getLimitPerson() + " " + holder.tvCountBathroom.getContext().getString(R.string.textBest3));
+            holder.tvStart.setText(house.getSao() + "");
+            holder.itemView.setOnClickListener(v -> {
                 listernaer.onClick(house);
             });
-            holder.btnDat.setOnClickListener(v->{
+            holder.btnDat.setOnClickListener(v -> {
                 listernaer.onClick(house);
             });
         }

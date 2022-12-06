@@ -1,6 +1,5 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.CallbackHouseById;
 import com.example.bookingapproyaljourney.repository.DetailProductRepository;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
-import com.example.bookingapproyaljourney.response.order.OrderListResponse;
 import com.example.bookingapproyaljourney.response.order.OrderListResponse2;
 
 import java.text.DecimalFormat;
@@ -61,8 +59,8 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
                     Glide.with(holder.itemView.getContext()).load(houseDetailResponse.getImages().get(0)).apply(options).into(holder.imgBestForYou);
                     holder.tvNameHouse.setText(houseDetailResponse.getName());
                     holder.tvPriceHouse.setText(fm.format(houseDetailResponse.getPrice()) + " VND");
-                    holder.tvCountBedroom.setText(houseDetailResponse.getSleepingPlaces().size() + " Phòng ngủ");
-                    holder.tvCountBathroom.setText(houseDetailResponse.getBathrooms().size() + " Phòng tắm");
+                    holder.tvCountBedroom.setText(houseDetailResponse.getSleepingPlaces().size() + " " + holder.tvCountBedroom.getContext().getString(R.string.textBest1));
+                    holder.tvCountBathroom.setText(houseDetailResponse.getBathrooms().size() + " " + holder.tvCountBedroom.getContext().getString( R.string.textBest2));
 
                     holder.itemView.setOnClickListener(v -> {
                         listernaer.onClickListChinh(houseDetailResponse);

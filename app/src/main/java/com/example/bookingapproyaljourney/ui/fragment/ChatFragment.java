@@ -66,10 +66,10 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
         progressBar.setVisibility(View.VISIBLE);
         rcvListHost.setLayoutManager(new LinearLayoutManager(view.getContext()));
         btnSearch.setOnClickListener(v -> callbackOrderClick.clickHome());
-        Spannable wordtoSpan = new SpannableString(getString(R.string.question_bookmard));
-        wordtoSpan.setSpan(new UnderlineSpan(), 53, 80,  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textHelps.setText(wordtoSpan);
+//        Spannable wordtoSpan = new SpannableString(getString(R.string.question_bookmard));
+//        wordtoSpan.setSpan(new UnderlineSpan(), 53, 80,  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textHelps.setText(R.string.textBookmark);
         textHelps.setOnClickListener(v-> callbackOrderClick.clickHelps() );
         chatViewModel.getMsgId(UserClient.getInstance().getId()).observe(requireActivity(), it -> {
             if (it.size() == 0) {

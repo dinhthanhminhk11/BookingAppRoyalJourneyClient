@@ -104,7 +104,7 @@ public class SeeMoreNearFromYouActivity extends AppCompatActivity implements OnM
     private void initView() {
         mapRepository = new MapRepository();
         setSupportActionBar(binding.toolBar2);
-        getSupportActionBar().setTitle("Near From You");
+        getSupportActionBar().setTitle(R.string.textBest4);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         resultReceiver = new AddressResultReceiver(new Handler());
@@ -343,7 +343,7 @@ public class SeeMoreNearFromYouActivity extends AppCompatActivity implements OnM
     }
 
     private void initData(List<DataMap> data) {
-        binding.textCountHouse.setText("Có hơn " + data.size() + " chỗ ở quanh đây");
+        binding.textCountHouse.setText(this.getString(R.string.textBest5)+" " + data.size() + " " + this.getString(R.string.textBest6));
         nearFromYouAdapterMap = new NearFromYouAdapterMap(data, new NearFromYouAdapterMap.Callback() {
             @Override
             public void onClickBookMark(House house) {

@@ -1,12 +1,7 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,13 +65,13 @@ public class ListOrderAllFragment extends Fragment {
     }
 
     private void initView(View view) {
-        Spannable wordtoSpan = new SpannableString(this.getString(R.string.question_bookmard));
-
-//        wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        wordtoSpan.setSpan(new UnderlineSpan(), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        Spannable wordtoSpan = new SpannableString(this.getString(R.string.question_bookmard));
+//
+////        wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        wordtoSpan.setSpan(new UnderlineSpan(), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 //        wordtoSpan.setPaintFlags(btnCancel.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        binding.textHelps.setText(wordtoSpan);
+        binding.textHelps.setText(R.string.textBookmark);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.getOrderByIdUser(UserClient.getInstance().getId());
 

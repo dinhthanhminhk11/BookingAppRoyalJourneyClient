@@ -51,7 +51,7 @@
     <string name="DreamsvilleHouse_itemNearFromYou">Dreamsville House</string>
     <string name="JlSultanIskandarMuda_itemNearFromYou">Jl. Sultan Iskandar Muda</string>
     <string name="km_itemNearFromYou">1.8 km</string>
-    <string name="home_arrays">Khám phá</string>
+    <string name="home_arrays">Home</string>
     <string name="profile_arrays">Profile</string>
     <string name="nearby_arrays">" Near me"</string>
     <string name="bookmark_arrays">Bookmark</string>
@@ -265,6 +265,36 @@
     <string name="Clean_the_filter">Clear filter</string>
     <string name="delete_search">Clear search</string>
     <string name="Change_Location">Try changing the search address and find it again</string>
+
+    <string name="textChat2">During the viewing of a room, tap the message icon to communicate further with the host </string>
+    <string name="textChat1">No chat yet?</string>
+    <string name="textBookmark">Cant find your reservation/reservation here? <u><b>Visit the Help Center</b></u></string>
+    <string name="textBookmark1">Create favorites list first</string>
+    <string name="textBookmark2">During the search , tap the archive icon to save your favorite accommodations or experiences to your Favorites list</string>
+    <string name="textBookmark3">Start Search</string>
+    <string name="textListOrder">Time to dust off your luggage and start preparing for your next adventure</string>
+    <string name="textListOrder1">No trips booked yet... not yet!</string>
+    <string name="textHoso">Your Profile</string>
+    <string name="textHoso2">Rented</string>
+    <string name="textHoso1">Log in to start planning your next trip.</string>
+    <string name="textLogout1">You are not logged in.</string>
+
+    <string name="textLogout2">Are you sure to log out ?</string>
+    <string name="textBest1"> Bedroom</string>
+    <string name="textBest2"> Bathroom</string>
+    <string name="textBest3">person</string>
+    <string name="textBest4">Near From You</string>
+    <string name="textBest5">More than</string>
+    <string name="textBest6">place to stay</string>
+    <string name="textBest7">Best for you</string>
+    <string name="textBest8">Confirm Password Change</string>
+    <string name="textBest9">Didnt receive the code?</string>
+    <string name="textBest10">Resend</string>
+    <string name="textBest11">Continue</string>
+    <string name="textBest12">Verify your email</string>
+    <string name="textBest13">Congratulations!</string>
+    <string name="textBest14">RoyalJourney is a community where all four tanks can be home</string>
+    <string name="textBest15">Thank you for using our service</string>
 
 
 </resources>
