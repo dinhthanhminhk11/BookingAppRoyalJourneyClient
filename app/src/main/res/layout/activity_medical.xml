@@ -48,7 +48,7 @@
                 android:layout_gravity="center"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/soap"/>
+                android:src="@drawable/soapss"/>
             <TextView
                 android:textStyle="italic"
                 android:textAlignment="center"
@@ -56,8 +56,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="
-Khách sạn này đang thực hiện các biện pháp sau đây để bảo vệ sức khỏe và sự an toàn của cả khách và nhân viên"/>
+                android:text="@string/soap1"/>
             <LinearLayout
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/tvChinhsSach"
@@ -84,7 +83,7 @@ Khách sạn này đang thực hiện các biện pháp sau đây để bảo v�
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="Tiêu chuẩn an toàn mới"
+                            android:text="@string/soapcontext"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -92,8 +91,7 @@ Khách sạn này đang thực hiện các biện pháp sau đây để bảo v�
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="
-Áp dụng các tiêu chuẩn giảm thiểu nguy cơ lây nhiễm theo yêu cầu của các cơ quan bên ngoài"
+                            android:text="@string/soap2"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -117,8 +115,7 @@ Khách sạn này đang thực hiện các biện pháp sau đây để bảo v�
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="
-Khử trùng thường xuyên"
+                            android:text="@string/soapcontext1"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -126,7 +123,7 @@ Khử trùng thường xuyên"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="Thường xuyên khử trùng phòng (hoặc toàn bộ nơi ở)"
+                            android:text="@string/soap3"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -150,7 +147,7 @@ Khử trùng thường xuyên"
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="Giữa khoảng cách an toàn"
+                            android:text="@string/soapcontext3"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -158,7 +155,7 @@ Khử trùng thường xuyên"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="Chúng tôi đang thực hiện các biện pháp để giúp khách và nhân viên giữ khoảng cách an toàn"
+                            android:text="@string/soap4"
                             />
                     </LinearLayout>
 
@@ -186,7 +183,7 @@ Khử trùng thường xuyên"
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="Bác sĩ tại chỗ"
+                            android:text="@string/soapcontext4"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -194,8 +191,7 @@ Khử trùng thường xuyên"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="
-Có bác sĩ túc trực để nhanh chóng hỗ trợ khách và nhân viên"
+                            android:text="@string/soap5"
                             />
                     </LinearLayout>
 
@@ -221,7 +217,7 @@ Có bác sĩ túc trực để nhanh chóng hỗ trợ khách và nhân viên"
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="Cung cấp nước rửa tay"
+                            android:text="@string/soapcontext5"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -229,7 +225,7 @@ Có bác sĩ túc trực để nhanh chóng hỗ trợ khách và nhân viên"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="Cung cấp nước rửa tay ở cả khu vực chung và phòng khách"
+                            android:text="@string/soap6"
                             />
                     </LinearLayout>
 
@@ -255,8 +251,7 @@ Có bác sĩ túc trực để nhanh chóng hỗ trợ khách và nhân viên"
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="
-Kiểm tra nhiệt độ"
+                            android:text="@string/soapcontext6"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -264,7 +259,7 @@ Kiểm tra nhiệt độ"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="Các tiêu chuẩn an toàn của chỗ nghỉ này bao gồm kiểm tra nhiệt độ của khách và nhân viên"
+                            android:text="@string/soap7"
                             />
                     </LinearLayout>
 
@@ -289,7 +284,7 @@ Kiểm tra nhiệt độ"
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="Thanh toán không dùng tiền mặt"
+                            android:text="@string/soapcontext7"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -297,7 +292,7 @@ Kiểm tra nhiệt độ"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="Du khách có thể sử dụng các phương thức thanh toán không dùng tiền mặt"
+                            android:text="@string/soap8"
                             />
                     </LinearLayout>
 
@@ -322,7 +317,7 @@ Kiểm tra nhiệt độ"
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="Nhận / trả phòng trực tuyến"
+                            android:text="@string/soapcontext8"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -330,7 +325,7 @@ Kiểm tra nhiệt độ"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="Nhận / trả phòng trực tuyến"
+                            android:text="@string/soap9"
                             />
                     </LinearLayout>
 
@@ -356,7 +351,7 @@ Kiểm tra nhiệt độ"
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="Trong phòng ăn"
+                            android:text="@string/soapcontext9"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -364,8 +359,7 @@ Kiểm tra nhiệt độ"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="
-Có thể giao đồ ăn từ khu ẩm thực trong khuôn viên đến tận phòng của khách"
+                            android:text="@string/soap10"
                             />
                     </LinearLayout>
 
@@ -390,7 +384,7 @@ Có thể giao đồ ăn từ khu ẩm thực trong khuôn viên đến tận ph
                             android:layout_height="wrap_content"
                             android:textSize="16dp"
                             android:textColor="@color/black"
-                            android:text="Quy trình phản hồi nhanh chóng"
+                            android:text="@string/soapcontext10"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -398,7 +392,7 @@ Có thể giao đồ ăn từ khu ẩm thực trong khuôn viên đến tận ph
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:text="Nhân viên được đào tạo về cách phản ứng nếu một trường hợp được báo cáo"
+                            android:text="@string/soap11"
                             />
                     </LinearLayout>
 
@@ -414,8 +408,7 @@ Có thể giao đồ ăn từ khu ẩm thực trong khuôn viên đến tận ph
                     android:textSize="13dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="
-Thông tin về các biện pháp an toàn được Bộ An toàn Vệ sinh Việt Nam chứng nhận"/>
+                    android:text="@string/soap12"/>
 
             </LinearLayout>
         </LinearLayout>
