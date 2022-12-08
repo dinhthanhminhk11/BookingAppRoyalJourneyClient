@@ -51,7 +51,7 @@
     <string name="DreamsvilleHouse_itemNearFromYou">Dreamsville House</string>
     <string name="JlSultanIskandarMuda_itemNearFromYou">Jl. Sultan Iskandar Muda</string>
     <string name="km_itemNearFromYou">1.8 km</string>
-    <string name="home_arrays">Khám phá</string>
+    <string name="home_arrays">Home</string>
     <string name="profile_arrays">Profile</string>
     <string name="nearby_arrays">" Near me"</string>
     <string name="bookmark_arrays">Bookmark</string>
@@ -210,9 +210,14 @@
     <string name="textCheck3Register">No match</string>
     <string name="AccSetting">Account</string>
     <string name="Settings">Setting</string>
-    <string name="HelpSetting">" Help"</string>
+    <string name="ChangePassSetting">Change password</string>
+    <string name="DarkmodeSetting">Dark mode</string>
+    <string name="LightmodeSetting">Light mode</string>
     <string name="LanguageSetting">Language</string>
-    <string name="NotificationsSetting">" Notification"</string>
+    <string name="OldPassSettings">Old password</string>
+    <string name="NewPassSettings">New password</string>
+    <string name="RePassSettings">Re-enter the password</string>
+    <string name="TitleRePassSettings">Enter your information correctly</string>
 
     <string name="question_bookmard">Can\'t find your reservation/reservation here? Visit the Support Center</string>
     <string name="question_help1">frequently asked Questions</string>
@@ -260,6 +265,58 @@
     <string name="Clean_the_filter">Clear filter</string>
     <string name="delete_search">Clear search</string>
     <string name="Change_Location">Try changing the search address and find it again</string>
+
+    <string name="textChat2">During the viewing of a room, tap the message icon to communicate further with the host </string>
+    <string name="textChat1">No chat yet?</string>
+    <string name="textBookmark">Cant find your reservation/reservation here? <u><b>Visit the Help Center</b></u></string>
+    <string name="textBookmark1">Create favorites list first</string>
+    <string name="textBookmark2">During the search , tap the archive icon to save your favorite accommodations or experiences to your Favorites list</string>
+    <string name="textBookmark3">Start Search</string>
+    <string name="textListOrder">Time to dust off your luggage and start preparing for your next adventure</string>
+    <string name="textListOrder1">No trips booked yet... not yet!</string>
+    <string name="textHoso">Your Profile</string>
+    <string name="textHoso2">Rented</string>
+    <string name="textHoso1">Log in to start planning your next trip.</string>
+    <string name="textLogout1">You are not logged in.</string>
+
+    <string name="textLogout2">Are you sure to log out ?</string>
+    <string name="textBest1"> Bedroom</string>
+    <string name="textBest2"> Bathroom</string>
+    <string name="textBest3">person</string>
+    <string name="textBest4">Near From You</string>
+    <string name="textBest5">More than</string>
+    <string name="textBest6">place to stay</string>
+    <string name="textBest7">Best for you</string>
+    <string name="textBest8">Confirm Password Change</string>
+    <string name="textBest9">Didnt receive the code?</string>
+    <string name="textBest10">Resend</string>
+    <string name="textBest11">Continue</string>
+    <string name="textBest12">Verify your email</string>
+    <string name="textBest13">Congratulations!</string>
+    <string name="textBest14">RoyalJourney is a community where all four tanks can be home</string>
+    <string name="textBest15">Thank you for using our service</string>
+    <string name="soap1">Khách sạn này đang thực hiện các biện pháp sau đây để bảo vệ sức khỏe và sự an toàn của cả khách và nhân viên</string>
+    <string name="soapcontext">Tiêu chuẩn an toàn mới</string>
+    <string name="soap2">Áp dụng các tiêu chuẩn giảm thiểu nguy cơ lây nhiễm theo yêu cầu của các cơ quan bên ngoài</string>
+    <string name="soapcontext1">Khử trùng thường xuyên</string>
+    <string name="soap3">Thường xuyên khử trùng phòng (hoặc toàn bộ nơi ở)</string>
+    <string name="soapcontext3">Giữa khoảng cách an toàn</string>
+    <string name="soap4">Chúng tôi đang thực hiện các biện pháp để giúp khách và nhân viên giữ khoảng cách an toàn</string>
+    <string name="soapcontext4">Bác sĩ tại chỗ</string>
+    <string name="soap5">Có bác sĩ túc trực để nhanh chóng hỗ trợ khách và nhân viên</string>
+    <string name="soapcontext5">Cung cấp nước rửa tay</string>
+    <string name="soap6">Cung cấp nước rửa tay ở cả khu vực chung và phòng khách</string>
+    <string name="soapcontext6">Kiểm tra nhiệt độ</string>
+    <string name="soap7">Các tiêu chuẩn an toàn của chỗ nghỉ này bao gồm kiểm tra nhiệt độ của khách và nhân viên</string>
+    <string name="soapcontext7">Thanh toán không dùng tiền mặt</string>
+    <string name="soap8">Du khách có thể sử dụng các phương thức thanh toán không dùng tiền mặt</string>
+    <string name="soapcontext8">Nhận / trả phòng trực tuyến</string>
+    <string name="soap9">Nhận / trả phòng trực tuyến</string>
+    <string name="soapcontext9">Trong phòng ăn</string>
+    <string name="soap10">Có thể giao đồ ăn từ khu ẩm thực trong khuôn viên đến tận phòng của khách</string>
+    <string name="soapcontext10">Quy trình phản hồi nhanh chóng</string>
+    <string name="soap11">Nhân viên được đào tạo về cách phản ứng nếu một trường hợp được báo cáo</string>
+    <string name="soap12">Thông tin về các biện pháp an toàn được Bộ An toàn Vệ sinh Việt Nam chứng nhận</string>
 
 
 </resources>

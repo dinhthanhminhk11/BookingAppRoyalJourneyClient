@@ -136,6 +136,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
     private List<Convenient> data;
     private List<Bathroom> dataBathRoom;
     private TextView countSao;
+    private TextView showMedical;
     private NumberFormat fm = new DecimalFormat("#,###");
     private boolean isStillEmpty;
     private BookmarkRepository bookmarkRepository;
@@ -190,6 +191,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         countSao = findViewById(R.id.tvCountSao);
         TextView tvSao = findViewById(R.id.tvSao);
         TextView btnShowFeedback = findViewById(R.id.btnShowFeedback);
+        showMedical = findViewById(R.id.showMedical);
 
         setSupportActionBar(toolBar);
 
@@ -265,6 +267,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
             }
         });
+
         showMorebathdroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -307,7 +310,12 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
                 startActivity(intent);
             }
         });
-
+        showMedical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DetailProductActivity.this , MedicalActivity.class));
+            }
+        });
         btnRentNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

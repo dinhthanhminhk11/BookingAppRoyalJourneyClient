@@ -29,10 +29,14 @@
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.MedicalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.CancellationPolicyActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ui.activity.feedback.FeedbackListActivity"
             android:exported="false" />

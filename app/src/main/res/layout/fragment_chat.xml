@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:text="Chưa có cuộc trò chuyện nào?"
+            android:text="@string/textChat1"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:lines="3"
-            android:text="Trong quá trình xem phòng , hãy nhấn vào biểu tượng tin nhắn để có thể trao đổi thêm với chủ nhà "
+            android:text="@string/textChat2"
             android:textSize="16sp" />
 
         <Button
@@ -56,7 +56,7 @@
             android:layout_marginVertical="@dimen/_20dp"
             android:background="@drawable/textview_border_black"
             android:foreground="?attr/selectableItemBackground"
-            android:text="Bắt đầu tìm kiếm"
+            android:text="@string/textBookmark3"
             android:textAllCaps="false"
             android:textColor="@color/black"
             app:backgroundTint="@null" />

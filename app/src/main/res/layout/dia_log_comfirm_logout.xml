@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_20dp"
-        android:text="Bạn chưa đăng nhập."
+        android:text="@string/textLogout1"
         android:textColor="#66727C"
         android:textSize="@dimen/_18sp" />
 
@@ -34,5 +34,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_30dp"
-        android:text="Đăng nhập" />
+        android:text="@string/sign_in_login" />
 </LinearLayout>

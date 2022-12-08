@@ -223,4 +223,67 @@
     <string name="LanguageSetting">Ngôn ngữ</string>
     <string name="NotificationsSetting">Thông báo</string>
     <string name="HelpSetting">Trợ giúp</string>
+    <string name="textBookmark1">Tạo danh sách yêu thích đầu tiên</string>
+    <string name="textBookmark3">Bắt đầu tìm kiếm</string>
+    <string name="textChat1">Chưa có cuộc trò chuyện nào?</string>
+    <string name="textChat2">Trong quá trình xem phòng , hãy nhấn vào biểu tượng tin nhắn để có thể trao đổi thêm với chủ nhà </string>
+
+    <string name="textBookmark">Bạn không tìm thấy đặt phòng/đặt chỗ của mình ở đây? <u><b>Truy cập Trung tâm trợ giúp</b></u></string>
+    <string name="textBookmark2">Trong quá trình tìm kiếm , hãy nhấn vào biểu tượng hình lưu trữ để lưu các chỗ ở yêu thích hoặc những điều nên trải nhiệm vào danh sách Yếu thích</string>
+    <string name="textListOrder">Đã đến lúc phủi bụi hành lí và bắt đầu chuẩn bị cho chuyến phiêu lưu tiếp theo của bạn rồi</string>
+    <string name="textListOrder1">Chưa có chuyến đi nào được đặt... vẫn chưa!</string>
+    <string name="textHoso">Hồ sơ của bạn</string>
+    <string name="textHoso1">Đăng nhập để bắt đầu lập kế hoạch cho chuyến đi tiếp theo của bạn.</string>
+    <string name="textHoso2">Đã thuê</string>
+    <string name="textLogout1">Bạn chưa đăng nhập.</string>
+    <string name="textLogout2">Bạn có chắc chắn đăng xuất không ?</string>
+    <string name="Bedroom"> Phòng ngủ</string>
+    <string name="textBest1"> Phòng ngủ</string>
+    <string name="textBest2"> Phòng tắm</string>
+    <string name="textBest3">người</string>
+    <string name="textBest4">Gần bạn nhất</string>
+    <string name="textBest5">Có hơn</string>
+    <string name="textBest6">chỗ ở quanh đây</string>
+    <string name="textBest7">Tốt nhất cho bạn</string>
+    <string name="textBest8">Xác nhận thay đổi mật khẩu</string>
+    <string name="textBest9">Bạn chưa nhận được mã?</string>
+    <string name="textBest10">Gửi lại</string>
+    <string name="textBest11">Tiếp tục</string>
+    <string name="textBest12">Xác nhận email của bạn</string>
+    <string name="textBest13">Chúc mừng!</string>
+    <string name="textBest14">RoyalJourney là một cộng đồng nơi tất cả mọi người đều có thể xem bốn bể là nhà</string>
+    <string name="textBest15">Cảm ơn bạn đã sửa dụng dịch vụ của chúng tôi</string>
+
+
+    <string name="DarkmodeSetting">Dark mode</string>
+    <string name="LightmodeSetting">Light mode</string>
+    <string name="ChangePassSetting">Đổi mật khẩu</string>
+
+    <string name="OldPassSettings">Mật khẩu cũ</string>
+    <string name="NewPassSettings">Mật khẩu mới</string>
+    <string name="RePassSettings">Nhập lại khẩu mới</string>
+    <string name="TitleRePassSettings">Nhập chính xác thông tin của bạn</string>
+    <string name="soap1">Khách sạn này đang thực hiện các biện pháp sau đây để bảo vệ sức khỏe và sự an toàn của cả khách và nhân viên</string>
+    <string name="soapcontext">Tiêu chuẩn an toàn mới</string>
+    <string name="soap2">Áp dụng các tiêu chuẩn giảm thiểu nguy cơ lây nhiễm theo yêu cầu của các cơ quan bên ngoài</string>
+    <string name="soapcontext1">Khử trùng thường xuyên</string>
+    <string name="soap3">Thường xuyên khử trùng phòng (hoặc toàn bộ nơi ở)</string>
+    <string name="soapcontext3">Giữa khoảng cách an toàn</string>
+    <string name="soap4">Chúng tôi đang thực hiện các biện pháp để giúp khách và nhân viên giữ khoảng cách an toàn</string>
+    <string name="soapcontext4">Bác sĩ tại chỗ</string>
+    <string name="soap5">Có bác sĩ túc trực để nhanh chóng hỗ trợ khách và nhân viên</string>
+    <string name="soapcontext5">Cung cấp nước rửa tay</string>
+    <string name="soap6">Cung cấp nước rửa tay ở cả khu vực chung và phòng khách</string>
+    <string name="soapcontext6">Kiểm tra nhiệt độ</string>
+    <string name="soap7">Các tiêu chuẩn an toàn của chỗ nghỉ này bao gồm kiểm tra nhiệt độ của khách và nhân viên</string>
+    <string name="soapcontext7">Thanh toán không dùng tiền mặt</string>
+    <string name="soap8">Du khách có thể sử dụng các phương thức thanh toán không dùng tiền mặt</string>
+    <string name="soapcontext8">Nhận / trả phòng trực tuyến</string>
+    <string name="soap9">Nhận / trả phòng trực tuyến</string>
+    <string name="soapcontext9">Trong phòng ăn</string>
+    <string name="soap10">Có thể giao đồ ăn từ khu ẩm thực trong khuôn viên đến tận phòng của khách</string>
+    <string name="soapcontext10">Quy trình phản hồi nhanh chóng</string>
+    <string name="soap11">Nhân viên được đào tạo về cách phản ứng nếu một trường hợp được báo cáo</string>
+    <string name="soap12">Thông tin về các biện pháp an toàn được Bộ An toàn Vệ sinh Việt Nam chứng nhận</string>
+
 </resources>

@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:text="Chưa có chuyến đi nào được đặt... vẫn chưa!"
+            android:text="@string/textListOrder"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:lines="3"
-            android:text="Đã đến lúc phủi bụi hành lí và bắt đầu chuẩn bị cho chuyến phiêu lưu tiếp theo của bạn rồi"
+            android:text="@string/textListOrder"
             android:textSize="15dp" />
 
         <Button
@@ -70,7 +70,7 @@
             android:layout_marginVertical="@dimen/_20dp"
             android:background="@drawable/textview_border_black"
             android:foreground="?attr/selectableItemBackground"
-            android:text="Bắt đầu tìm kiếm"
+            android:text="@string/textBookmark3"
             android:textAllCaps="false"
             android:textColor="@color/black"
             app:backgroundTint="@null" />
