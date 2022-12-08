@@ -31,8 +31,9 @@ import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
 import com.example.bookingapproyaljourney.response.LoginResponse;
-import com.example.bookingapproyaljourney.response.ProfileUserResponse;
+import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.view_model.EditProfileViewModel;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarycireleimage.CircleImageView;
@@ -57,6 +58,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private CircleImageView avtEditProfile;
     private ImageView cameraEditProfile;
     private ImageView iconLocalEditProfile;
+    private String idUser = "";
+    private String linkImageAvt = "";
     private TextView titleNameEditProfile;
     private TextView titleEmailEditProfile;
     private TextInputEditText nameEditProfile;
@@ -64,7 +67,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private TextInputEditText cccdEditProfile;
     private TextInputEditText locationEditProfile;
     private AppCompatButton saveEditProfile;
-//    private LottieAnimationView progressBarEdiProfile;
+    //    private LottieAnimationView progressBarEdiProfile;
     private LoginViewModel loginViewModel;
     private Location locationYouSelf;
     private String nameLocationYourSelf;
@@ -98,6 +101,7 @@ public class EditProfileActivity extends AppCompatActivity {
         toolBar.setNavigationOnClickListener(v -> onBackPressed());
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        editProfileViewModel = new ViewModelProvider(this).get(EditProfileViewModel.class);
 
         initData();
         initCongif();
@@ -134,7 +138,16 @@ public class EditProfileActivity extends AppCompatActivity {
                 // tra ve link img cloudy
                 @Override
                 public void onSuccess(String requestId, Map resultData) {
-//                    tvURL.setText(resultData.get("url").toString());
+                    linkImageAvt = resultData.get("url").toString();
+
+                    editProfileViewModel.updateProfileUser(new UserEditProfileRequest(
+                            idUser,
+                            nameEditProfile.getText().toString(),
+                            phoneEditProfile.getText().toString(),
+                            cccdEditProfile.getText().toString(),
+                            locationEditProfile.getText().toString(),
+                            linkImageAvt
+                    ));
                 }
 
                 @Override
@@ -148,10 +161,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }).dispatch();
 
-//            editProfileViewModel.updateProfileUser(new ProfileUserResponse(
-//
-//            ))
-//            ;
 
         });
 
@@ -169,6 +178,36 @@ public class EditProfileActivity extends AppCompatActivity {
             }
 
         });
+
+        editProfileViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TestResponse>() {
+            @Override
+            public void onChanged(TestResponse testResponse) {
+                if (testResponse.isStatus()) {
+                    CookieBar.build(EditProfileActivity.this)
+                            .setTitle(R.string.Notify)
+                            .setMessage("Chỉnh sửa thông tin thành công !")
+                            .setIcon(R.drawable.ic_complete_order)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
+                    onBackPressed();
+                } else {
+                    CookieBar.build(EditProfileActivity.this)
+                            .setTitle(R.string.Notify)
+                            .setMessage("Chỉnh sửa thông tin thất bại \n Vui lòng thử lại !")
+                            .setIcon(R.drawable.ic_complete_order)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
+                }
+            }
+        });
     }
 
     @Override
@@ -181,14 +220,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 CookieBar.build(this)
                         .setTitle(R.string.Notify)
                         .setMessage(R.string.You_do_not_allow_location_access)
-                        .setIcon(R.drawable.ic_icon_logo_app)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
                         .setDuration(3000)
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -201,6 +238,7 @@ public class EditProfileActivity extends AppCompatActivity {
         loginViewModel.getLoginResultMutableDataToKen().observe(this, new Observer<LoginResponse>() {
             @Override
             public void onChanged(LoginResponse s) {
+                idUser = s.getUser().getId();
                 titleNameEditProfile.setText(s.getUser().getName());
                 titleEmailEditProfile.setText(s.getUser().getEmail());
                 nameEditProfile.setText(s.getUser().getName());
@@ -243,7 +281,6 @@ public class EditProfileActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-
         LocationServices.getFusedLocationProviderClient(EditProfileActivity.this)
                 .requestLocationUpdates(locationRequest, new LocationCallback() {
 
@@ -256,7 +293,6 @@ public class EditProfileActivity extends AppCompatActivity {
                             int latestlocIndex = locationResult.getLocations().size() - 1;
                             double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
                             double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
-
 //                            progressBarEdiProfile.setVisibility(View.GONE);
                             locationYouSelf = new Location("LocationYouSef");
                             locationYouSelf.setLongitude(longi);

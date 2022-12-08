@@ -13,6 +13,7 @@ import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.order.OrderBill;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.model.user.Email;
+import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
@@ -24,7 +25,6 @@ import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.NotiResponse;
-import com.example.bookingapproyaljourney.response.ProfileUserResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.response.order.ListFilterResponse;
@@ -187,6 +187,8 @@ public interface ApiRequest {
     @GET("listProductAccessByUserId/{id}")
     Call<ListOrderByIdUser2> getListProductAccessById(@Path("id") String id);
 
-    @PATCH("updateInfoUser/{id}")
-    Call<TestResponse> updateInfoUser(@Body ProfileUserResponse profileUserResponse);
+    @PATCH("updateInfoUser")
+    Call<TestResponse> updateInfoUser(@Body UserEditProfileRequest userEditProfileRequest);
+
+
 }

@@ -1,17 +1,18 @@
 package com.example.bookingapproyaljourney.repository;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.callback.CallBackEditProfile;
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
 import com.example.bookingapproyaljourney.callback.CallbackCountResponse;
 import com.example.bookingapproyaljourney.callback.CallbackListOrderAccessById;
 import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Email;
+import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.response.CountNotiResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
-import com.example.bookingapproyaljourney.response.ProfileUserResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
@@ -22,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserRepository {
-
 
     private ApiRequest apiRequest;
 
@@ -186,20 +186,20 @@ public class UserRepository {
         });
     }
 
-    public void updateInfoUser(ProfileUserResponse profileUserResponse, CallbackTokenDevice callbackTokenDevice) {
-        apiRequest.updateInfoUser(profileUserResponse).enqueue(new Callback<TestResponse>() {
+    public void updateInfoUser(UserEditProfileRequest userEditProfileRequest, CallBackEditProfile callBackEditProfile) {
+        apiRequest.updateInfoUser(userEditProfileRequest).enqueue(new Callback<TestResponse>() {
             @Override
             public void onResponse(Call<TestResponse> call, Response<TestResponse> response) {
                 if (response.isSuccessful()) {
-                    callbackTokenDevice.onResponse(response.body());
+                    callBackEditProfile.onResponse(response.body());
                 } else {
-                    callbackTokenDevice.onFailure(new Throwable(response.message()));
+                    callBackEditProfile.onFailure(new Throwable(response.message()));
                 }
             }
 
             @Override
             public void onFailure(Call<TestResponse> call, Throwable t) {
-                callbackTokenDevice.onFailure(t);
+                callBackEditProfile.onFailure(t);
             }
         });
     }

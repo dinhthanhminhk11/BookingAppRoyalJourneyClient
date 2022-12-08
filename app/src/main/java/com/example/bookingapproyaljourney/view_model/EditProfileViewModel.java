@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
+import com.example.bookingapproyaljourney.callback.CallBackEditProfile;
+import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
 import com.example.bookingapproyaljourney.repository.UserRepository;
-import com.example.bookingapproyaljourney.response.ProfileUserResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 
 public class EditProfileViewModel extends AndroidViewModel {
@@ -23,9 +23,9 @@ public class EditProfileViewModel extends AndroidViewModel {
         userRepository = new UserRepository();
     }
 
-    public void updateProfileUser(ProfileUserResponse profileUserResponse) {
+    public void updateProfileUser(UserEditProfileRequest userEditProfileRequest) {
         mProgressMutableData.postValue(View.VISIBLE);
-        userRepository.updateInfoUser(profileUserResponse, new CallbackTokenDevice() {
+        userRepository.updateInfoUser(userEditProfileRequest, new CallBackEditProfile() {
             @Override
             public void onResponse(TestResponse testResponse) {
                 mProgressMutableData.postValue(View.GONE);
@@ -36,9 +36,14 @@ public class EditProfileViewModel extends AndroidViewModel {
             public void onFailure(Throwable t) {
                 mProgressMutableData.postValue(View.GONE);
             }
-
         });
     }
 
+    public MutableLiveData<Integer> getmProgressMutableData() {
+        return mProgressMutableData;
+    }
 
+    public MutableLiveData<TestResponse> getTestResponseMutableLiveData() {
+        return testResponseMutableLiveData;
+    }
 }
