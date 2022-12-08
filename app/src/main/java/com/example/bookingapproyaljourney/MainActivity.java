@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private static final int POS_NOTIFICATION = 5;
     private static final int POS_MESSAGES = 6;
 
-
     private static final int POS_TRAVEL = 8;
     private static final int POS_SETTING = 9;
     private static final int POS_HELP = 10;
@@ -164,9 +163,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         String languageCode = sharedPreferences.getLocale();
         Context context = LanguageConfig.ChangeLanguage(newBase, languageCode);
         super.attachBaseContext(context);
-
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,11 +180,13 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         nameCity = (TextView) findViewById(R.id.nameCity);
         nameAddress = (TextView) findViewById(R.id.nameAddress);
         resultReceiver = new AddressResultReceiver(new Handler());
+
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             setTheme(R.style.Theme_BookingAppRoyalJourney_Dark);
         }else {
             setTheme(R.style.Theme_BookingAppRoyalJourney_Light);
         }
+
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withMenuOpened(false)
                 .withToolbarMenuToggle(toolbar)

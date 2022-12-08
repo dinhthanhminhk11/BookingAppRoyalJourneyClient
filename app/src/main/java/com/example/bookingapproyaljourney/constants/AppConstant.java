@@ -38,5 +38,7 @@ public class AppConstant {
     public static final int CHECK_EVENT_VILLA = 6;
     public static final int CHECK_EVENT_COTTAGE = 7;
 
+    public static final String SAVE_THEME = "ThemeMode";
+
 
 }

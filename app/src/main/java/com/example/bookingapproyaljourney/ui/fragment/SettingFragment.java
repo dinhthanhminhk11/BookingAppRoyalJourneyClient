@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,10 +38,14 @@ public class SettingFragment extends Fragment {
     private Spinner spinnerLanguage;
     private ImageView imgChangePass;
     private SwitchCompat switchMode;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private boolean isDark;
 
     public static final String[] languages = {"Choose Language", "Tiếng Việt", "English"};
     public int idLang = 10;
     public int idTheme = 13;
+
     public static SettingFragment newInstance(String param1, String param2) {
         SettingFragment fragment = new SettingFragment();
         Bundle args = new Bundle();
@@ -75,23 +78,23 @@ public class SettingFragment extends Fragment {
         imgChangePass = view.findViewById(R.id.changePassSettings);
         switchMode = view.findViewById(R.id.switchModeSettings);
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-           switchMode.setChecked(true);
-        }else {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            switchMode.setChecked(true);
+        } else {
             switchMode.setChecked(false);
         }
 
         switchMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(switchMode.isChecked()){
+                if (switchMode.isChecked()) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
-                }else {
+                } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
                 }
             }
+
         });
 
         imgChangePass.setOnClickListener(new View.OnClickListener() {
