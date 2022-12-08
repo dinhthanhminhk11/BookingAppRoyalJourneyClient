@@ -13,8 +13,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -24,12 +22,10 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -318,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
     @Override
     protected void onResume() {
-        h2.postDelayed(r2,30000);
+        h2.postDelayed(r2, 30000);
         super.onResume();
     }
 
@@ -625,7 +621,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         }
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
@@ -638,13 +633,9 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         super.onStop();
     }
 
-
     public final boolean isInternetOn() {
-        // get Connectivity Manager object to check connection
-        ConnectivityManager connec =
-                (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+        ConnectivityManager connec = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
-        // Check for network connections
         if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
@@ -654,19 +645,17 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         } else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
                         connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
-            Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.NotConnectNetwork, Toast.LENGTH_LONG).show();
             return false;
         }
         return false;
     }
 
-
-   private Runnable r2 = new Runnable() {
+    private Runnable r2 = new Runnable() {
         @Override
         public void run() {
-            //Your Toast
             isInternetOn();
-            h2.postDelayed(r2, 20000);
+            h2.postDelayed(r2, 10000);
         }
     };
 }

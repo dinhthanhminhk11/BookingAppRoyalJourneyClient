@@ -317,6 +317,7 @@
     <string name="soapcontext10">Quick response process</string>
     <string name="soap11">Staff trained on how to react if a case is reported</string>
     <string name="soap12">Information about safety measures certified by the Ministry of Safety and Hygiene of Vietnam</string>
+    <string name="NotConnectNetwork">No internet connection</string>
 
 
 </resources>
