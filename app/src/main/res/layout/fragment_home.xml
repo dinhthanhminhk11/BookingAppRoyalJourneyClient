@@ -7,6 +7,7 @@
     android:layout_marginHorizontal="@dimen/_20dp"
     android:background="@color/white"
     android:orientation="vertical"
+    android:id="@+id/backgroundContent"
     tools:context=".ui.fragment.HomeFragment">
 
     <LinearLayout
@@ -122,6 +123,7 @@
                     android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/titleNearBy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/NearFromYou_homeFragment"
@@ -156,6 +158,7 @@
                     android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/titleBestYou"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/BestForYou_homeFragment"

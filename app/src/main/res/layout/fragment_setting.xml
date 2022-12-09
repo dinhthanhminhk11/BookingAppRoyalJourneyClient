@@ -1,124 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/background_color"
     android:orientation="vertical"
     tools:context=".ui.fragment.SettingFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        tools:ignore="UselessParent">
 
-        <com.example.librarycireleimage.CircleImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
+        <LinearLayout
+            android:id="@+id/contentItemChildLang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_internet_language_settings"
-            />
+            android:background="@drawable/background_setting_item"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10dp"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/icon_lang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/textview_border_setting_xam"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_internet_language_settings_ver3"
+                    tools:ignore="ContentDescription" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchCompatLangular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_button_infor_setting"
+                    android:thumb="@drawable/thumb_selector_settings"
+                    app:track="@drawable/track_selector" />
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/title_lang"
                 android:layout_width="140dp"
-
-                android:layout_weight="1"
-                android:textColor="?attr/text_color"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:text="@string/LanguageSetting"/>
+                android:layout_marginHorizontal="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_20dp"
+                android:layout_weight="1"
+                android:text="@string/LanguageSetting"
+                android:textColor="?attr/text_color"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/spinnerLanguage"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/content_lang"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_weight="1"
+                android:text="@string/LanguageSetting"
+                android:textColor="?attr/text_color"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentItemChildTheme"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="English"
-            android:textSize="15dp" />
+            android:background="@drawable/background_setting_item"
+            android:orientation="vertical"
+            android:padding="10dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15dp"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/icon_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/textview_border_setting_xam"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_group_moon_setting"
+                    tools:ignore="ContentDescription" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchComparTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_button_infor_setting"
+                    android:thumb="@drawable/thumb_selector_settings"
+                    app:track="@drawable/track_selector" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title_theme"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20dp"
+                android:layout_weight="1"
+                android:text="Theme"
+                android:textColor="?attr/text_color"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/content_theme"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_weight="1"
+                android:text="Light"
+                android:textColor="?attr/text_color"
+                android:textSize="14dp" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/contentChangePass"
         android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/background_setting_item"
+        android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
-        android:layout_height="wrap_content">
-
-        <com.example.librarycireleimage.CircleImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:layout_weight="1"
-            android:src="@drawable/ic_notification_settings"
-            />
-
-        <TextView
-            android:layout_width="240dp"
-            android:id="@+id/tvModeSettings"
-            android:textColor="?attr/text_color"
-            android:layout_weight="1"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:text="@string/DarkmodeSetting"/>
-
-
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:thumb="@drawable/thumb_selector_settings"
-            app:track="@drawable/track_selector"
-            android:src="@drawable/ic_button_infor_setting"
-            android:id="@+id/switchModeSettings"
-            android:layout_gravity="center"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-
-        <com.example.librarycireleimage.CircleImageView
-            android:layout_width="25dp"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center"
-            android:layout_height="25dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_help_settings"
-            />
-
-        <TextView
-            android:layout_width="240dp"
-            android:layout_weight="1"
-            android:textColor="?attr/text_color"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/ChangePassSetting"/>
+        android:paddingVertical="10dp"
+        android:paddingLeft="10dp">
 
         <ImageView
-            android:id="@+id/changePassSettings"
+            android:id="@+id/icon_changepass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_button_infor_setting"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/ic_icon_change_pass_setting" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_change_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:text="@string/ChangePassSetting"
+                android:textColor="?attr/text_color"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/content_change_pass_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:text="@string/LanguageSetting2"
+                android:textColor="?attr/text_color"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/icon_changePass_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_button_infor_setting" />
     </LinearLayout>
 </LinearLayout>

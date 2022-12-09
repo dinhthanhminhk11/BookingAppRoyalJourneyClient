@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_centerVertical="true"
         android:id="@+id/listMenuLeftDrawer"
         android:layout_width="@dimen/_240dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>

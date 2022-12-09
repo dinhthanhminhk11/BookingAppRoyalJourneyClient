@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.BookingAppRoyalJourney_Light" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -20,6 +20,7 @@
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">@color/black</item>
     </style>
+
     <style name="iconGenText">
         <item name="android:textSize">14sp</item>
         <item name="android:padding">10dp</item>
@@ -41,6 +42,7 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowAnimationStyle">@style/PopupAnimation</item>
     </style>
+
     <style name="StyleToast" parent="@android:style/Theme.Dialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -50,13 +52,16 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowAnimationStyle">@style/PopupAnimation</item>
     </style>
-    <style name="PopupAnimation" parent="android:Animation" mce_bogus="1">
+
+    <style name="PopupAnimation" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/popup_in</item>
         <item name="android:windowExitAnimation">@anim/popup_out</item>
     </style>
+
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
     </style>
+
     <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
     </style>
@@ -64,7 +69,8 @@
     <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
 
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent
+        </item>
         <item name="colorPrimary">@color/black</item>
         <item name="colorOnSurface">@color/black</item>
     </style>
@@ -89,5 +95,11 @@
     <style name="BUTTON">
         <item name="android:background">@android:color/holo_blue_dark</item>
         <item name="android:textColor">#FFF</item>
+    </style>
+
+    <style name="BrandedSwitch.control" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#e6e600</item>
+        <item name="colorSwitchThumbNormal">#cc0000</item>
     </style>
 </resources>

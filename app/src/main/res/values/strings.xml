@@ -221,6 +221,7 @@
     <string name="AccSetting">Tài Khoản</string>
     <string name="Settings">Cài đặt</string>
     <string name="LanguageSetting">Ngôn ngữ</string>
+    <string name="LanguageSetting2">Thay đổi mật khẩu của bạn</string>
     <string name="DarkmodeSetting">Dark mode</string>
     <string name="LightmodeSetting">Light mode</string>
     <string name="ChangePassSetting">Đổi mật khẩu</string>

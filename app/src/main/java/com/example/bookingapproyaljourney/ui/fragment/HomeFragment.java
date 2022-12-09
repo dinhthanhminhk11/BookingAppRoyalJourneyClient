@@ -2,6 +2,7 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.ResultReceiver;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,6 +51,10 @@ import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
 import com.example.bookingapproyaljourney.view_model.FilterViewModel;
 import com.google.android.gms.maps.model.LatLng;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +74,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     private RelativeLayout contentBestForYou;
     private TextView seeMoreNearFromYou;
     private RecyclerView recyclerviewNearFromYou;
-    private TextView seeMoreBestForYou;
+    private TextView seeMoreBestForYou, titleBestYou, titleNearBy;
     private RecyclerView recyclerviewListBestForYou;
     // TODO: Rename and change types of parameters
     private TextView tvShowNull;
@@ -93,6 +99,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     private LatLng currentUserLocation;
     private BestForYouAdapterNotNull bestForYouAdapterNotNull;
     private FilterViewModel filterViewModel;
+    private ConstraintLayout backgroundContent;
 
     public HomeFragment(Location locationYouSelf) {
         this.locationYouSelf = locationYouSelf;
@@ -123,7 +130,12 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     }
 
     private void initView(View view) {
+        backgroundContent = (ConstraintLayout) view.findViewById(R.id.backgroundContent);
+
+
         tvShowNull = (TextView) view.findViewById(R.id.tvShowNull);
+        titleNearBy = (TextView) view.findViewById(R.id.titleNearBy);
+        titleBestYou = (TextView) view.findViewById(R.id.titleBestYou);
         viewShowNull = (View) view.findViewById(R.id.viewShowNull);
         tvContentNull = (TextView) view.findViewById(R.id.tvContentNull);
         tvContentNull2 = (TextView) view.findViewById(R.id.tvContentNull2);
@@ -337,5 +349,36 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 btnShowNull.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(com.example.bookingapproyaljourney.event.KeyEvent event) {
+        if (event.getIdEven() == AppConstant.SAVE_THEME_DARK) {
+            backgroundContent.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            etSearch.setBackgroundResource(R.drawable.framesearch_homefragment_dark);
+
+            etSearch.setTextColor(Color.WHITE);
+            titleNearBy.setTextColor(Color.WHITE);
+            titleBestYou.setTextColor(Color.WHITE);
+        } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
+            backgroundContent.setBackgroundColor((this.getResources().getColor(R.color.white)));
+            etSearch.setBackgroundResource(R.drawable.framesearch_homefragment);
+
+            etSearch.setTextColor(Color.BLACK);
+            titleNearBy.setTextColor(Color.BLACK);
+            titleBestYou.setTextColor(Color.BLACK);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
     }
 }

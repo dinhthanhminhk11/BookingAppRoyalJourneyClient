@@ -4,17 +4,15 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.bookingapproyaljourney.R;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.HouseByCategoryCallback;
 import com.example.bookingapproyaljourney.callback.InterfaceResponseHouseNearestByUser;
 import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
@@ -29,8 +27,6 @@ import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.List;
 
 public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdapter.ViewHolder> {
@@ -108,7 +104,7 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
                 holder.itemView.setBackgroundResource(R.drawable.gradient_blue);
                 holder.nameCategory.setTextColor(Color.parseColor("#FFFFFFFF"));
             } else {
-                holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+                holder.itemView.setBackgroundColor(Color.TRANSPARENT);
                 holder.nameCategory.setTextColor(Color.parseColor("#858585"));
             }
         }
@@ -151,12 +147,12 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
             }, 200);
 
 
-        }else {
+        } else {
             updateRecyclerView.callLoading(View.VISIBLE);
             categoryRepository.getHouseByCategory(item.getId(), new HouseByCategoryCallback() {
                 @Override
                 public void success(CategoryBestForYouResponse categoryBestForYouResponse) {
-                    updateRecyclerView.callBackNull( categoryBestForYouResponse);
+                    updateRecyclerView.callBackNull(categoryBestForYouResponse);
                     updateRecyclerView.callLoading(View.GONE);
                 }
 

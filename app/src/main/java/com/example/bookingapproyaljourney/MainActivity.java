@@ -17,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -265,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
-            }else  if (check.equals(ChangePasswordResultSuccess)){
+            } else if (check.equals(ChangePasswordResultSuccess)) {
                 adapter.setSelected(POS_SETTING);
                 CookieBar.build(this)
                         .setTitle(R.string.Notify)
@@ -631,6 +632,20 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         } else if (event.getIdEven() == 11) {
             languageCode = "en";
             sharedPreferences.setLocale("en");
+        } else if (event.getIdEven() == AppConstant.SAVE_THEME_DARK) {
+            toolbar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            container.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            bell.setColorFilter(getResources().getColor(R.color.white));
+            nameAddress.setTextColor(getResources().getColor(R.color.white));
+            nameCity.setTextColor(getResources().getColor(R.color.white));
+            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
+            toolbar.setBackgroundColor(this.getResources().getColor(R.color.white));
+            container.setBackgroundColor(this.getResources().getColor(R.color.white));
+            bell.setColorFilter(getResources().getColor(R.color.black));
+            nameAddress.setTextColor(getResources().getColor(R.color.black));
+            nameCity.setTextColor(getResources().getColor(R.color.black));
+            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
         }
     }
 
