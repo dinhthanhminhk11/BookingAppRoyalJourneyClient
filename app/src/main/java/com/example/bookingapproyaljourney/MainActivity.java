@@ -2,6 +2,7 @@ package com.example.bookingapproyaljourney;
 
 import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivity;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivityByAccess;
+import static com.example.bookingapproyaljourney.constants.AppConstant.ChangePasswordResultSuccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.LoginResultSuccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.deleteOrderResponse;
@@ -257,6 +258,18 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 CookieBar.build(this)
                         .setTitle(R.string.Notify)
                         .setMessage(R.string.Logged_in_successfully)
+                        .setIcon(R.drawable.ic_complete_order)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+            }else  if (check.equals(ChangePasswordResultSuccess)){
+                adapter.setSelected(POS_SETTING);
+                CookieBar.build(this)
+                        .setTitle(R.string.Notify)
+                        .setMessage(R.string.ChangePasswordSuccess)
                         .setIcon(R.drawable.ic_complete_order)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)

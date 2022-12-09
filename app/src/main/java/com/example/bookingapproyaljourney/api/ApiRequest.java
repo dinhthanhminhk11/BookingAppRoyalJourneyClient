@@ -12,6 +12,7 @@ import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.order.OrderBill;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
+import com.example.bookingapproyaljourney.model.user.ChangePasswordRequest;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
@@ -189,6 +190,11 @@ public interface ApiRequest {
 
     @PATCH("updateInfoUser")
     Call<TestResponse> updateInfoUser(@Body UserEditProfileRequest userEditProfileRequest);
+
+    @PATCH("updatePassword")
+    Call<TestResponse> changePassword(@Body ChangePasswordRequest changePasswordRequest);
+
+
 
 
 }

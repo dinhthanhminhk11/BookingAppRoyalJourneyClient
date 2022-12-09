@@ -317,7 +317,13 @@
     <string name="soapcontext10">Quick response process</string>
     <string name="soap11">Staff trained on how to react if a case is reported</string>
     <string name="soap12">Information about safety measures certified by the Ministry of Safety and Hygiene of Vietnam</string>
+
     <string name="NotConnectNetwork">No internet connection</string>
+    <string name="ChangePasswordSuccess">Change password successfully</string>
+    <string name="RePassNotMatch">Password does not match</string>
+    <string name="OldPassIsEmpty">Enter your old password</string>
+    <string name="NewPassIsEmpty">Enter your new password</string>
+    <string name="RePassIsEmpty">Re-enter the new password</string>
 
 
 </resources>

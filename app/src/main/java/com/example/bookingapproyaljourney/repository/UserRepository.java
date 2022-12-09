@@ -3,9 +3,11 @@ package com.example.bookingapproyaljourney.repository;
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.callback.CallBackEditProfile;
 import com.example.bookingapproyaljourney.callback.CallSendAgain;
+import com.example.bookingapproyaljourney.callback.CallbackChangePassword;
 import com.example.bookingapproyaljourney.callback.CallbackCountResponse;
 import com.example.bookingapproyaljourney.callback.CallbackListOrderAccessById;
 import com.example.bookingapproyaljourney.callback.CallbackTokenDevice;
+import com.example.bookingapproyaljourney.model.user.ChangePasswordRequest;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
@@ -200,6 +202,25 @@ public class UserRepository {
             @Override
             public void onFailure(Call<TestResponse> call, Throwable t) {
                 callBackEditProfile.onFailure(t);
+            }
+        });
+    }
+
+    public  void ChangePassword(ChangePasswordRequest changePasswordRequest, CallbackChangePassword callbackChangePassword)
+    {
+        apiRequest.changePassword(changePasswordRequest).enqueue(new Callback<TestResponse>() {
+            @Override
+            public void onResponse(Call<TestResponse> call, Response<TestResponse> response) {
+                if (response.isSuccessful()) {
+                    callbackChangePassword.onResponse(response.body());
+                } else {
+                    callbackChangePassword.onFailure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TestResponse> call, Throwable t) {
+                callbackChangePassword.onFailure(t);
             }
         });
     }

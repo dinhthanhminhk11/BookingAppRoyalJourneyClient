@@ -130,6 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (password.length() <= 6) {
             binding.edPassRegister.requestFocus();
             binding.edPassRegister.setError(getString(R.string.textCheck1Register));
+
         } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")) {
             binding.edPassRegister.requestFocus();
             binding.edPassRegister.setError(getString(R.string.textCheck2Register));

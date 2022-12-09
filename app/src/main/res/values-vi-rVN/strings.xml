@@ -287,5 +287,10 @@
     <string name="soap12">Thông tin về các biện pháp an toàn được Bộ An toàn Vệ sinh Việt Nam chứng nhận</string>
 
     <string name="NotConnectNetwork">Không có kết nối internet</string>
+    <string name="ChangePasswordSuccess">Đổi mật khẩu thành công</string>
+    <string name="RePassNotMatch">Mật khẩu không trùng khớp</string>
+    <string name="OldPassIsEmpty">Nhập mật khẩu cũ</string>
+    <string name="NewPassIsEmpty">Nhập mật khẩu mới</string>
+    <string name="RePassIsEmpty">Nhập lại mật khẩu mới</string>
 
 </resources>
