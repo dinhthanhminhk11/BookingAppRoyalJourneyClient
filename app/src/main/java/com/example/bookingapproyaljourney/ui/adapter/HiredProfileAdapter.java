@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,22 +27,33 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
     private NumberFormat fm = new DecimalFormat("#,###");
     private DetailProductRepository detailProductRepository;
     private Listernaer listernaer;
-
+    private int color = Color.BLACK;
+    private int colorBlack = Color.BLACK;
     public interface Listernaer {
         void onClickListChinh(HouseDetailResponse houseDetailResponse);
     }
 
-    public HiredProfileAdapter(List<OrderListResponse2> dataHouse, Listernaer listernaer) {
-        this.dataHouse = dataHouse;
+    public HiredProfileAdapter() {
         detailProductRepository = new DetailProductRepository();
+    }
+
+    public void setDataHouse(List<OrderListResponse2> dataHouse) {
+        this.dataHouse = dataHouse;
+    }
+
+    public void setListernaer(Listernaer listernaer) {
         this.listernaer = listernaer;
     }
 
+    public void setColor(int color, int colorBlack) {
+        this.color = color;
+        this.colorBlack = colorBlack;
+    }
 
     @NonNull
     @Override
     public HiredProfileAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bestforyou_homefragment, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bestforyou_hired, parent, false);
         return new HiredProfileAdapter.ViewHolder(view);
     }
 
@@ -60,8 +72,11 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
                     holder.tvNameHouse.setText(houseDetailResponse.getName());
                     holder.tvPriceHouse.setText(fm.format(houseDetailResponse.getPrice()) + " VND");
                     holder.tvCountBedroom.setText(houseDetailResponse.getSleepingPlaces().size() + " " + holder.tvCountBedroom.getContext().getString(R.string.textBest1));
-                    holder.tvCountBathroom.setText(houseDetailResponse.getBathrooms().size() + " " + holder.tvCountBedroom.getContext().getString( R.string.textBest2));
+                    holder.tvCountBathroom.setText(houseDetailResponse.getBathrooms().size() + " " + holder.tvCountBedroom.getContext().getString(R.string.textBest2));
 
+                    holder.tvNameHouse.setTextColor(colorBlack);
+                    holder.tvCountBedroom.setTextColor(color);
+                    holder.tvCountBathroom.setTextColor(color);
                     holder.itemView.setOnClickListener(v -> {
                         listernaer.onClickListChinh(houseDetailResponse);
                     });

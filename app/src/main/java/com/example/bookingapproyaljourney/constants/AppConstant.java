@@ -12,6 +12,7 @@ public class AppConstant {
     public static final String TAG_ERROR = "Retrofit_Error";
     public static final String HOUSE_EXTRA = "house";
     public static final String SHAREDPREFERENCES_USER = "USERCLIENT";
+    public static final String SHAREDPREFERENCES_USER_THEME = "SHAREDPREFERENCES_USER_THEME";
     public static final String TOKEN_CANCEL = "TOKEN_CANCEL";
     public static final String SHAREDPREFERENCES_CHECK_CANCEL = "SHAREDPREFERENCES_CHECK_CANCEL";
     public static final String ID_USER = "ID_USER";
@@ -40,6 +41,9 @@ public class AppConstant {
 
     public static final int SAVE_THEME_LIGHT = 8;
     public static final int SAVE_THEME_DARK = 9;
+
+    public static final int POS_DARK = 1;
+    public static final int POS_LIGHT = 2;
     public static final String ChangePasswordResultSuccess = "ChangePasswordResultSuccess";
 
 

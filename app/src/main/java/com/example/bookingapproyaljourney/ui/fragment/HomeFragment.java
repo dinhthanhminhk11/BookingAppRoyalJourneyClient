@@ -1,7 +1,10 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -172,6 +175,16 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 startActivity(intent);
             }
         });
+
+        SharedPreferences sharedPreferencesTheme = getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
         btnFilter.setOnClickListener(v -> {
             showDialog();
         });
@@ -354,19 +367,9 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(com.example.bookingapproyaljourney.event.KeyEvent event) {
         if (event.getIdEven() == AppConstant.SAVE_THEME_DARK) {
-            backgroundContent.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
-            etSearch.setBackgroundResource(R.drawable.framesearch_homefragment_dark);
-
-            etSearch.setTextColor(Color.WHITE);
-            titleNearBy.setTextColor(Color.WHITE);
-            titleBestYou.setTextColor(Color.WHITE);
+            changeTheme(1);
         } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
-            backgroundContent.setBackgroundColor((this.getResources().getColor(R.color.white)));
-            etSearch.setBackgroundResource(R.drawable.framesearch_homefragment);
-
-            etSearch.setTextColor(Color.BLACK);
-            titleNearBy.setTextColor(Color.BLACK);
-            titleBestYou.setTextColor(Color.BLACK);
+            changeTheme(2);
         }
     }
 
@@ -380,5 +383,27 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     public void onStop() {
         EventBus.getDefault().unregister(this);
         super.onStop();
+    }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            backgroundContent.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            etSearch.setBackgroundResource(R.drawable.framesearch_homefragment_dark);
+
+            etSearch.setTextColor(Color.WHITE);
+            titleNearBy.setTextColor(Color.WHITE);
+            titleBestYou.setTextColor(Color.WHITE);
+
+            bestForYouAdapter.setColor(Color.WHITE, Color.WHITE);
+        } else {
+            backgroundContent.setBackgroundColor((this.getResources().getColor(R.color.white)));
+            etSearch.setBackgroundResource(R.drawable.framesearch_homefragment);
+
+            etSearch.setTextColor(Color.BLACK);
+            titleNearBy.setTextColor(Color.BLACK);
+            titleBestYou.setTextColor(Color.BLACK);
+
+            bestForYouAdapter.setColor(getContext().getResources().getColor(R.color.color_858585), Color.BLACK);
+        }
     }
 }

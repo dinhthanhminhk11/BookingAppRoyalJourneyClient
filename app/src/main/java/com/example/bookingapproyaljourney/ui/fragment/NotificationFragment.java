@@ -1,6 +1,10 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentNotificationBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
@@ -82,6 +87,16 @@ public class NotificationFragment extends Fragment {
     }
 
     private void initView() {
+        notificationAdapter = new NotificationAdapter();
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferences.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
         notificationViewModel = new ViewModelProvider(this).get(NotificationViewModel.class);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         notificationViewModel.getListNotification(UserClient.getInstance().getId());
@@ -102,7 +117,8 @@ public class NotificationFragment extends Fragment {
                 } else {
                     binding.contentNullList.setVisibility(View.VISIBLE);
                 }
-                notificationAdapter = new NotificationAdapter(notiResponse.getData(), new NotificationAdapter.Callback() {
+                notificationAdapter.setData(notiResponse.getData());
+                notificationAdapter.setCallback(new NotificationAdapter.Callback() {
                     @Override
                     public void onClick(Notification notification) {
                         idOrder = notification.getIdOder();
@@ -140,6 +156,7 @@ public class NotificationFragment extends Fragment {
             }
         });
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -156,6 +173,26 @@ public class NotificationFragment extends Fragment {
     public void onMessageEvent(KeyEvent event) {
         if (event.getIdEven() == AppConstant.CHECK_EVENT_CLICK_NOTIFICATION) {
             notificationViewModel.getListNotification(UserClient.getInstance().getId());
+        } else if (event.getIdEven() == AppConstant.SAVE_THEME_DARK) {
+            changeTheme(1);
+        } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
+            changeTheme(2);
+        }
+    }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentBackground.setBackgroundColor(getContext().getResources().getColor(R.color.dark_212332));
+            binding.titleText.setTextColor(Color.WHITE);
+            binding.contentProfile.setTextColor(Color.WHITE);
+            notificationAdapter.setColor(Color.WHITE ,R.drawable.background_not_seem_dark , R.drawable.background_seem_dark );
+//            bookmarkAdapter.setColor(Color.WHITE, this.getResources().getColor(R.color.dark_282A37));
+        } else {
+            binding.contentBackground.setBackgroundColor(getContext().getResources().getColor(R.color.white));
+            binding.titleText.setTextColor(Color.BLACK);
+            binding.contentProfile.setTextColor(Color.BLACK);
+            notificationAdapter.setColor(Color.BLACK ,R.drawable.background_not_seem , R.drawable.background_seem );
+//            bookmarkAdapter.setColor(Color.BLACK, Color.WHITE);
         }
     }
 }

@@ -1,20 +1,28 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentSettingBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
+import com.example.bookingapproyaljourney.ui.custom.RippleAnimation;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -36,6 +44,7 @@ public class SettingFragment extends Fragment {
     public int idLang = 10;
     public int idTheme = 13;
     private FragmentSettingBinding binding;
+
 
     public static SettingFragment newInstance(String param1, String param2) {
         SettingFragment fragment = new SettingFragment();
@@ -67,24 +76,9 @@ public class SettingFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            binding.switchComparTheme.setChecked(true);
-        } else {
-            binding.switchComparTheme.setChecked(false);
-        }
+        intView();
 
-        binding.switchComparTheme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (binding.switchComparTheme.isChecked()) {
-                    EventBus.getDefault().postSticky(new KeyEvent(AppConstant.SAVE_THEME_DARK));
-                    changeTheme(1);
-                } else {
-                    EventBus.getDefault().postSticky(new KeyEvent(AppConstant.SAVE_THEME_LIGHT));
-                    changeTheme(2);
-                }
-            }
-        });
+
 //
 //        imgChangePass.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -121,8 +115,71 @@ public class SettingFragment extends Fragment {
 //        });
     }
 
+    private void intView() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        int theme = sharedPreferences.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            binding.switchComparTheme.setChecked(true);
+        } else {
+            binding.switchComparTheme.setChecked(false);
+        }
+
+        if (binding.switchComparTheme.isChecked()) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
+        binding.switchComparTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.switchComparTheme.isChecked()) {
+//                    try {
+//                        int[] pos = (int[]) args[2];
+//                        int w = binding.contentBackground.getMeasuredWidth();
+//                        int h = binding.contentBackground.getMeasuredHeight();
+//                        Bitmap bitmap = Bitmap.createBitmap(binding.contentBackground.getMeasuredWidth(), binding.contentBackground.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+//                        Canvas canvas = new Canvas(bitmap);
+//                        binding.contentBackground.draw(canvas);
+////                        themeSwitchImageView.setImageBitmap(bitmap);
+////                        themeSwitchImageView.setVisibility(View.VISIBLE);
+//                        float finalRadius = (float) Math.max(Math.sqrt((w - pos[0]) * (w - pos[0]) + (h - pos[1]) * (h - pos[1])), Math.sqrt(pos[0] * pos[0] + (h - pos[1]) * (h - pos[1])));
+//                        Animator anim = ViewAnimationUtils.createCircularReveal(binding.contentBackground, pos[0], pos[1], 0, finalRadius);
+//                        anim.setDuration(400);
+////                        anim.setInterpolator(CubicBezierInterpolator.EASE_IN_OUT_QUAD);
+//                        anim.addListener(new AnimatorListenerAdapter() {
+//                            @Override
+//                            public void onAnimationEnd(Animator animation) {
+////                                themeSwitchImageView.setImageDrawable(null);
+////                                themeSwitchImageView.setVisibility(View.GONE);
+//                            }
+//                        });
+//                        anim.start();
+////                        instant = true;
+//                    } catch (Throwable ignore) {
+//
+//                    }
+                    editor.putInt(AppConstant.SHAREDPREFERENCES_USER_THEME, AppConstant.POS_DARK);
+                    editor.commit();
+                    RippleAnimation.create(view).setDuration(500).start();
+                    changeTheme(1);
+                } else {
+                    editor.putInt(AppConstant.SHAREDPREFERENCES_USER_THEME, AppConstant.POS_LIGHT);
+                    editor.commit();
+                    RippleAnimation.create(view).setDuration(500).start();
+                    changeTheme(2);
+                }
+            }
+        });
+    }
+
     private void changeTheme(int idTheme) {
         if (idTheme == 1) {
+            EventBus.getDefault().postSticky(new KeyEvent(AppConstant.SAVE_THEME_DARK));
+
             binding.contentTheme.setText("Dark");
             binding.contentBackground.setBackgroundColor(getContext().getResources().getColor(R.color.dark_212332));
             binding.contentItemChildTheme.setBackgroundResource(R.drawable.background_setting_item_dark);
@@ -144,6 +201,8 @@ public class SettingFragment extends Fragment {
             binding.iconTheme.setBackgroundResource(R.drawable.textview_border_setting_white);
             binding.iconLang.setBackgroundResource(R.drawable.textview_border_setting_white);
         } else {
+            EventBus.getDefault().postSticky(new KeyEvent(AppConstant.SAVE_THEME_LIGHT));
+
             binding.contentTheme.setText("Light");
             binding.contentBackground.setBackgroundColor(getContext().getResources().getColor(R.color.white));
             binding.contentItemChildTheme.setBackgroundResource(R.drawable.background_setting_item);
