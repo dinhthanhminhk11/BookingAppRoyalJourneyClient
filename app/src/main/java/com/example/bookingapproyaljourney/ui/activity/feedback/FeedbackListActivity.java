@@ -80,18 +80,6 @@ public class FeedbackListActivity extends AppCompatActivity {
                 }
             }
         });
-        binding.btnFeedback.setOnClickListener(v -> {
-            if(UserClient.getInstance().getId()==null){
-                dialog.show();
-            }else {
-                Intent intent1 = new Intent(this, FeedBackActivity.class);
-                intent1.putExtra("ID_BOSS", id_boss);
-                intent1.putExtra("ID_HOUSE", id_House);
-                intent1.putExtra("IMG_BOSS", img_boss);
-                intent1.putExtra("NAME_BOSS", name_boss);
-                startActivity(intent1);
-            }
-        });
         binding.imgBack.setOnClickListener(v -> onBackPressed());
         binding.edSearch.addTextChangedListener(new TextWatcher() {
             @Override

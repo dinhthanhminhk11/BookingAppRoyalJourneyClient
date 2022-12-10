@@ -5,16 +5,18 @@ public class FeedBack{
     private String idUser;
     private String imgUser;
     private String name;
+    private String email;
     private int sao;
     private String time;
     private String textUser;
     private String textHost;
 
-    public FeedBack(String idHouse, String idUser, String imgUser, String name, int sao, String time, String textUser, String textHost) {
+    public FeedBack(String idHouse, String idUser, String imgUser, String name, String email, int sao, String time, String textUser, String textHost) {
         this.idHouse = idHouse;
         this.idUser = idUser;
         this.imgUser = imgUser;
         this.name = name;
+        this.email = email;
         this.sao = sao;
         this.time = time;
         this.textUser = textUser;
@@ -35,6 +37,30 @@ public class FeedBack{
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
+    }
+
+    public String getImgUser() {
+        return imgUser;
+    }
+
+    public void setImgUser(String imgUser) {
+        this.imgUser = imgUser;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getSao() {
@@ -67,21 +93,5 @@ public class FeedBack{
 
     public void setTextHost(String textHost) {
         this.textHost = textHost;
-    }
-
-    public String getImgUser() {
-        return imgUser;
-    }
-
-    public void setImgUser(String imgUser) {
-        this.imgUser = imgUser;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

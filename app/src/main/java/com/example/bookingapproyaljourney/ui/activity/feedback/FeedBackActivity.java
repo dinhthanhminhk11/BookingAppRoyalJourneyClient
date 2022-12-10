@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.ui.activity.feedback;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -91,7 +92,8 @@ public class FeedBackActivity extends AppCompatActivity {
                 new ToastCheck(this, R.style.StyleToast, "Hãy đóng góp ý kiến của bạn", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
                 return;
             }
-            FeedBack feedBack = new FeedBack(id_House, UserClient.getInstance().getId(), UserClient.getInstance().getImage(), UserClient.getInstance().getName(), sao, Long.toString(time), text, "");
+            FeedBack feedBack = new FeedBack(id_House, UserClient.getInstance().getId(), UserClient.getInstance().getImage(), UserClient.getInstance().getName(),
+                    UserClient.getInstance().getEmail(), sao, Long.toString(time), text, "");
             feedbackViewModel.getListId(id_House).observe(this, it -> {
                 for (int i = 0; i < it.size(); i++) {
                     if (UserClient.getInstance().getId().equals(it.get(i).getIdUser())) {

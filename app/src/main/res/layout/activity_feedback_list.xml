@@ -77,30 +77,10 @@
         android:id="@+id/rcvListFeedback"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_10dp"
         android:layout_marginTop="@dimen/_10dp"
-        android:layout_marginEnd="@dimen/_10dp"
-        android:layout_marginBottom="@dimen/_15dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnFeedback"
-        app:layout_constraintTop_toBottomOf="@+id/edSearch"
-        android:overScrollMode="never"/>
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@+id/edSearch" />
 
-    <TextView
-        android:id="@+id/btnFeedback"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_55dp"
-        android:layout_marginStart="@dimen/_16dp"
-        android:layout_marginEnd="@dimen/_16dp"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:background="@drawable/button_feedback"
-        android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
-        android:text="@string/comment_feedback"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
