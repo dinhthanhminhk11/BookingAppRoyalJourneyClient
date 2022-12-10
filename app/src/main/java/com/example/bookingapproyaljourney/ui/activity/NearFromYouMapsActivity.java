@@ -2,8 +2,10 @@ package com.example.bookingapproyaljourney.ui.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -35,6 +37,7 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.databinding.ActivityNearFromYouMapsBinding;
+import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
 import com.example.bookingapproyaljourney.model.house.DataMap;
 import com.example.bookingapproyaljourney.model.house.House;
@@ -54,9 +57,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.ui.IconGenerator;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -94,7 +102,7 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 
         binding = ActivityNearFromYouMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        nearFromYouAdapterMap = new NearFromYouAdapterMap();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -129,6 +137,8 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
 //        iconGenerator.setBackground(getResources().getDrawable(R.drawable.marker_background));
         markerView = this.getLayoutInflater().inflate(R.layout.marker, null);
         priceTag = (TextView) markerView.findViewById(R.id.priceTag);
+
+
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -138,6 +148,15 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
         } else {
             mMap.setMyLocationEnabled(true);
             getCurrentLocation();// hàm lấy vị trí chỗ mình đang đứng
+        }
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
         }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -237,7 +256,8 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
     }
 
     private void initData(List<DataMap> data) {
-        nearFromYouAdapterMap = new NearFromYouAdapterMap(data, new NearFromYouAdapterMap.Callback() {
+        nearFromYouAdapterMap.setData(data);
+        nearFromYouAdapterMap.setCallback(new NearFromYouAdapterMap.Callback() {
             @Override
             public void onClickBookMark(House house) {
 
@@ -407,6 +427,45 @@ public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapR
             } else {
                 Toast.makeText(this, R.string.askForMapPermission, Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(KeyEvent event) {
+        if (event.getIdEven() == AppConstant.SAVE_THEME_DARK) {
+            changeTheme(1);
+        } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
+            changeTheme(2);
+        }
+    }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.toolBar2.setBackgroundResource(R.drawable.background_button_filter_dark);
+            binding.toolBar2.setTitleTextColor(Color.WHITE);
+            binding.toolBar2.setSubtitleTextColor(Color.WHITE);
+            binding.toolBar2.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            nearFromYouAdapterMap.setColor(Color.WHITE, this.getResources().getColor(R.color.dark_282A37));
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json));
+        } else {
+            binding.toolBar2.setBackgroundResource(R.drawable.background_button_filter);
+            binding.toolBar2.setTitleTextColor(Color.BLACK);
+            binding.toolBar2.setSubtitleTextColor(Color.BLACK);
+            binding.toolBar2.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            nearFromYouAdapterMap.setColor(Color.BLACK, Color.WHITE);
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         }
     }
 }

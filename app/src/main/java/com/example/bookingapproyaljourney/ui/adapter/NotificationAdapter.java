@@ -1,6 +1,7 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -18,10 +19,25 @@ import java.util.List;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
     private List<Notification> data;
     private Callback callback;
+    private int color = Color.BLACK;
+    private int backgroundNotSeem = R.drawable.background_not_seem;
+    private int backgroundSeem = R.drawable.background_seem;
 
-    public NotificationAdapter(List<Notification> data, Callback callback) {
+    public NotificationAdapter() {
+    }
+
+    public void setData(List<Notification> data) {
         this.data = data;
+    }
+
+    public void setCallback(Callback callback) {
         this.callback = callback;
+    }
+
+    public void setColor(int color, int backgroundNotSeem, int backgroundSeem) {
+        this.color = color;
+        this.backgroundNotSeem = backgroundNotSeem;
+        this.backgroundSeem = backgroundSeem;
     }
 
     @NonNull
@@ -41,6 +57,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     .error(R.drawable.img);
             Glide.with(holder.itemView.getContext()).load(notification.getImageHoust()).apply(options).into(holder.binding.image);
 
+            holder.binding.content.setTextColor(color);
+            holder.binding.title.setTextColor(color);
+
             holder.binding.content.setText(notification.getContent());
             holder.binding.dateAndTime.setText(notification.getDate() + " " + notification.getTime());
             holder.binding.title.setText(notification.getTitle());
@@ -49,9 +68,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
 
             if (notification.isSeem()) {
-                holder.itemView.setBackgroundResource(R.drawable.background_not_seem);
+                holder.itemView.setBackgroundResource(backgroundNotSeem);
             } else {
-                holder.itemView.setBackgroundResource(R.drawable.background_seem);
+                holder.itemView.setBackgroundResource(backgroundSeem);
             }
         }
     }

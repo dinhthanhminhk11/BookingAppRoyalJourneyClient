@@ -74,7 +74,6 @@
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_search_homefragment.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_setting_white_menu.xml" value="0.113" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/iconbell_main.xml" value="0.113" />
-        <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_edit_profile.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_main.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_home.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_text.xml" value="0.18333333333333332" />
@@ -83,12 +82,22 @@
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_nearfromyou_homefragment.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_option.xml" value="0.184375" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/layout/menu_left_drawer.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_bottomsheet_seemore.xml" value="0.206" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_button_filter.xml" value="0.323" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_button_filter_dark.xml" value="0.206" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_button_filter_show.xml" value="0.3235" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_card_profile.xml" value="0.206" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_card_profile_white.xml" value="0.206" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_filter.xml" value="0.3675" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_item_activity.xml" value="0.319" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_item_sortedby.xml" value="0.297" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_item_sortedby_no_selected.xml" value="0.297" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_not_seem.xml" value="0.306" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_not_seem_dark.xml" value="0.306" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_seem.xml" value="0.206" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_seem_dark.xml" value="0.306" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_setting_item.xml" value="0.206" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_setting_item_dark.xml" value="0.206" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/background_toast.xml" value="0.135" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/bg_edittext.xml" value="0.26" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/bg_shape.xml" value="0.3235" />
@@ -96,6 +105,7 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/ic_baseline_arrow_back_ios_new_24.xml" value="0.3235" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/ic_baseline_bookmark_24_white_full.xml" value="0.2045" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/ic_baseline_bookmark_border_24_menu_toolbar.xml" value="0.3235" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/ic_bookmarkoutline.xml" value="0.206" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/ic_complete_order.xml" value="0.2685" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/ic_edit_profile.xml" value="0.2685" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/drawable/ic_ellipse_96.xml" value="0.297" />
@@ -136,10 +146,13 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_filter_map.xml" value="0.29322916666666665" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_list_order_all.xml" value="0.21077383497221033" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_notification.xml" value="0.3142368533561351" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_bestforyou_hired.xml" value="0.3180846515604959" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_bestforyou_homefragment.xml" value="0.5" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_bestforyou_homefragment_not_null.xml" value="0.3180846515604959" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_bookmark_by_user.xml" value="0.21077383497221033" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_layout_notification.xml" value="0.3142368533561351" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_near_from_you_map.xml" value="0.5618631732168851" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_option.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_sorted_by.xml" value="0.29322916666666665" />

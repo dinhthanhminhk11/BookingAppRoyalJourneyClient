@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,12 +38,26 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
     private CategoryRepository categoryRepository;
     private BookmarkRepository bookmarkRepository;
 
-    public BookmarkAdapter(List<Bookmark> data, Callback callback) {
-        this.data = data;
-        this.callback = callback;
+    private int color = Color.BLACK;
+    private int background = Color.WHITE;
+
+    public BookmarkAdapter() {
         detailProductRepository = new DetailProductRepository();
         categoryRepository = new CategoryRepository();
         bookmarkRepository = new BookmarkRepository();
+    }
+
+    public void setData(List<Bookmark> data) {
+        this.data = data;
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
+    public void setColor(int color, int background) {
+        this.color = color;
+        this.background = background;
     }
 
     @NonNull
@@ -64,6 +79,10 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                     holder.itemView.setOnClickListener(v -> {
                         callback.onClick(bookmark.getIdHouse());
                     });
+
+                    holder.itemBookmarkByUserBinding.name.setTextColor(color);
+                    holder.itemBookmarkByUserBinding.address.setTextColor(color);
+                    holder.itemBookmarkByUserBinding.contentCard.setCardBackgroundColor(background);
 
                     holder.itemBookmarkByUserBinding.address.setText(houseDetailResponse.getNameLocation());
                     holder.itemBookmarkByUserBinding.name.setText(houseDetailResponse.getName());

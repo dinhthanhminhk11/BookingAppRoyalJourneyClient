@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -33,12 +34,26 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
     private NumberFormat fm = new DecimalFormat("#,###");
     private CategoryRepository categoryRepository;
     private BookmarkRepository bookmarkRepository;
+    private int color = Color.BLACK;
+    private int background = Color.WHITE;
 
-    public NearFromYouAdapterMap(List<DataMap> data, Callback callback) {
-        this.data = data;
-        this.callback = callback;
+    public NearFromYouAdapterMap() {
         categoryRepository = new CategoryRepository();
         bookmarkRepository = new BookmarkRepository();
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
+    public void setData(List<DataMap> data) {
+        this.data = data;
+    }
+
+
+    public void setColor(int color, int background) {
+        this.color = color;
+        this.background = background;
     }
 
     @NonNull
@@ -52,7 +67,6 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DataMap item = data.get(position);
         if (holder != null) {
-            Log.e("Minh", "link " + item.getData().getImages().get(0));
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.img)
@@ -65,6 +79,10 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
                     into(holder.itemNearFromYouMapBinding.ivAnhKhachSan);
             holder.itemNearFromYouMapBinding.name.setText(item.getData().getName());
             holder.itemNearFromYouMapBinding.address.setText(item.getData().getNameLocation());
+
+            holder.itemNearFromYouMapBinding.name.setTextColor(color);
+            holder.itemNearFromYouMapBinding.address.setTextColor(color);
+            holder.itemNearFromYouMapBinding.contentCard.setCardBackgroundColor(background);
            /* if (item.getStart() == 1) {
                 holder.itemNearFromYouMapBinding.imageStar2.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar3.setVisibility(View.INVISIBLE);
@@ -150,7 +168,7 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
                 }
             });
 
-            holder.itemNearFromYouMapBinding.linearLayout.setOnClickListener(v->{
+            holder.itemNearFromYouMapBinding.linearLayout.setOnClickListener(v -> {
                 callback.clickItem(item.getData().getId());
             });
 

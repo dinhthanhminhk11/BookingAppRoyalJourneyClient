@@ -165,6 +165,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         super.onCreate(savedInstanceState);
         instance = this;
 
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+
+
         setContentView(R.layout.activity_main);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         container = (FrameLayout) findViewById(R.id.containerMain);
@@ -175,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         nameCity = (TextView) findViewById(R.id.nameCity);
         nameAddress = (TextView) findViewById(R.id.nameAddress);
         resultReceiver = new AddressResultReceiver(new Handler());
+
+
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.Theme_BookingAppRoyalJourney_Dark);
@@ -207,6 +214,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 createItemFor(POS_HELP),
                 createItemFor(POS_LOGOUT)));
         adapter.setListener(this);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
 
         String check = getIntent().getStringExtra(CheckSuccess);
 
@@ -633,19 +646,9 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             languageCode = "en";
             sharedPreferences.setLocale("en");
         } else if (event.getIdEven() == AppConstant.SAVE_THEME_DARK) {
-            toolbar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
-            container.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
-            bell.setColorFilter(getResources().getColor(R.color.white));
-            nameAddress.setTextColor(getResources().getColor(R.color.white));
-            nameCity.setTextColor(getResources().getColor(R.color.white));
-            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            changeTheme(1);
         } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
-            toolbar.setBackgroundColor(this.getResources().getColor(R.color.white));
-            container.setBackgroundColor(this.getResources().getColor(R.color.white));
-            bell.setColorFilter(getResources().getColor(R.color.black));
-            nameAddress.setTextColor(getResources().getColor(R.color.black));
-            nameCity.setTextColor(getResources().getColor(R.color.black));
-            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            changeTheme(2);
         }
     }
 
@@ -686,4 +689,22 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             h2.postDelayed(r2, 10000);
         }
     };
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            toolbar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            container.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            bell.setColorFilter(getResources().getColor(R.color.white));
+            nameAddress.setTextColor(getResources().getColor(R.color.white));
+            nameCity.setTextColor(getResources().getColor(R.color.white));
+            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        } else {
+            toolbar.setBackgroundColor(this.getResources().getColor(R.color.white));
+            container.setBackgroundColor(this.getResources().getColor(R.color.white));
+            bell.setColorFilter(getResources().getColor(R.color.black));
+            nameAddress.setTextColor(getResources().getColor(R.color.black));
+            nameCity.setTextColor(getResources().getColor(R.color.black));
+            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+        }
+    }
 }
