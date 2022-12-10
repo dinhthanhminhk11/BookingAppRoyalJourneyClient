@@ -38,8 +38,8 @@ public class BathdRoomAdapter extends RecyclerView.Adapter<BathdRoomAdapter.View
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img);
+                .placeholder(R.drawable.soap)
+                .error(R.drawable.soap);
         Glide.with(context).load(bathroomList.get(position).getIconImage()).apply(options).into(holder.imgBathdRoom);
         holder.nameBathdRoom.setText(bathroomList.get(position).getName());
 //        holder.contentBathdRoom.setText(bathroomList.get(position).getContent());

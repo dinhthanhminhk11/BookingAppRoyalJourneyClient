@@ -41,8 +41,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHodel> {
     public void onBindViewHolder(@NonNull ViewHodel holder, int position) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img);
+                .placeholder(R.drawable.soap)
+                .error(R.drawable.soap);
         Glide.with(holder.itemView.getContext()).load(roomList.get(position).getIconImage()).apply(options).into(holder.room);
 
 //        final Room room = roomList.get(position);

@@ -325,4 +325,7 @@
     <string name="NewPassIsEmpty">Enter your new password</string>
     <string name="RePassIsEmpty">Re-enter the new password</string>
     <string name="LanguageSetting2">Change your password</string>
+    <string name="owner_detail">Owner</string>
+    <string name="see_more">Xem Thêm</string>
+    <string name="check_in">Nhận phòng từ ngày:</string>
 </resources>

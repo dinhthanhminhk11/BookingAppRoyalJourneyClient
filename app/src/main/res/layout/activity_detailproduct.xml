@@ -67,7 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Dreamsville House"
+
                             android:textColor="@color/white"
                             android:textSize="@dimen/_20dp"
                             android:textStyle="bold" />
@@ -78,7 +78,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8dp"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Jl. Sultan Iskandar Muda"
+
                             android:textColor="@color/white"
                             android:textSize="@dimen/_12dp" />
 
@@ -106,7 +106,7 @@
                                     android:layout_gravity="center"
                                     android:layout_marginLeft="@dimen/_8dp"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:text="6 Bedroom"
+
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_12dp" />
                             </LinearLayout>
@@ -129,7 +129,7 @@
                                     android:layout_gravity="center"
                                     android:layout_marginLeft="@dimen/_8dp"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:text="6 Bedroom"
+
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_12dp" />
                             </LinearLayout>
@@ -231,7 +231,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_4dp"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Owner"
+                            android:text="@string/owner_detail"
                             android:textColor="@color/color_858585"
                             android:textSize="@dimen/_12sp" />
                     </LinearLayout>
@@ -303,7 +303,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:text="Xem Thêm"
+                        android:text="@string/see_more"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_16sp" />
                 </LinearLayout>
@@ -336,7 +336,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:text="Xem Thêm"
+                        android:text="@string/see_more"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_16sp" />
                 </LinearLayout>
@@ -430,7 +430,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center"
-                        android:text="Xem Thêm"
+                        android:text="@string/see_more"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_16dp" />
                 </LinearLayout>
@@ -486,7 +486,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5dp"
                         android:layout_marginTop="20dp"
-                        android:text=" 14:00"
+
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_14dp" />
 
@@ -496,7 +496,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5dp"
                         android:layout_marginTop="20dp"
-                        android:text=" 14:00"
+
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_14dp" />
                 </LinearLayout>
@@ -506,7 +506,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Nhận phòng từ ngày: "
+                    android:text="@string/check_in"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
 
@@ -567,7 +567,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:text="Xem Thêm"
+                        android:text="@string/see_more"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_16sp" />
                 </LinearLayout>
@@ -616,7 +616,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Rp. 2.500.000.000 / Year"
+
                 android:textColor="#0A8ED9"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold" />

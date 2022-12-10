@@ -38,8 +38,8 @@ public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHodel holder, int position) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img);
+                .placeholder(R.drawable.soap)
+                .error(R.drawable.soap);
         Glide.with(context).load(convenientTestList.get(position).getIconImage()).apply(options).into(holder.imgConvenien);
         holder.tvConvenien.setText(convenientTestList.get(position).getName());
     }

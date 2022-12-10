@@ -48,7 +48,8 @@
                 android:layout_gravity="center"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/soapss"/>
+                android:src="@drawable/soap"
+                />
             <TextView
                 android:textStyle="italic"
                 android:textAlignment="center"

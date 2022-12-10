@@ -336,9 +336,9 @@
     <string name="OldPassIsEmpty">Nhập mật khẩu cũ</string>
     <string name="NewPassIsEmpty">Nhập mật khẩu mới</string>
     <string name="RePassIsEmpty">Nhập lại mật khẩu mới</string>
-
-
-
+    <string name="owner_detail">Owner</string>
+    <string name="see_more">Xem Thêm</string>
+    <string name="check_in">Nhận phòng từ ngày:</string>
 
 
 </resources>

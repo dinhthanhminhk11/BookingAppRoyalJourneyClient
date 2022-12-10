@@ -213,8 +213,8 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         bookmarkRepository = new BookmarkRepository();
         options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img);
+                .placeholder(R.drawable.soap)
+                .error(R.drawable.soap);
         idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
         boolean checkFeedBack = getIntent().getBooleanExtra("CHECK_FEEDBACK", false);
         if (checkFeedBack) {

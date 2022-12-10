@@ -52,8 +52,8 @@ public class BestForYouAdapter extends RecyclerView.Adapter<BestForYouAdapter.Vi
         if (house != null) {
             RequestOptions options = new RequestOptions()
                     .centerCrop()
-                    .placeholder(R.drawable.img)
-                    .error(R.drawable.img);
+                    .placeholder(R.drawable.soap)
+                    .error(R.drawable.soap);
             Glide.with(holder.itemView.getContext()).load(house.getImages().get(0)).apply(options).into(holder.imgBestForYou);
 
             holder.tvNameHouse.setText(house.getName());

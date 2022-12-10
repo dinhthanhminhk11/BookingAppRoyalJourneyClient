@@ -98,7 +98,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
                     android:scaleType="centerCrop"
-                    tools:ignore="ContentDescription,MissingConstraints" />
+                    tools:ignore="ContentDescription,MissingConstraints"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

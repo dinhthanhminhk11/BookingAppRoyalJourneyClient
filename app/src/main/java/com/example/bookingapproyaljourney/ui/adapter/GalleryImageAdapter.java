@@ -40,8 +40,8 @@ public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.img)
-                .error(R.drawable.img);
+                .placeholder(R.drawable.soap)
+                .error(R.drawable.soap);
         Glide.with(holder.itemView.getContext())
                 .load(image.get(position))
                 .apply(options)
