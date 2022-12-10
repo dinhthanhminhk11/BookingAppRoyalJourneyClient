@@ -668,6 +668,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         super.onStop();
     }
 
+    @Override
+    protected void onPause() {
+        h2.removeCallbacks(r2);
+        super.onPause();
+    }
+
     public final boolean isInternetOn() {
         ConnectivityManager connec = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
