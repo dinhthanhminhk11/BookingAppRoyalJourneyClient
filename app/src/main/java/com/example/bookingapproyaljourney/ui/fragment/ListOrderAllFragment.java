@@ -82,6 +82,7 @@ public class ListOrderAllFragment extends Fragment {
                 binding.reLoad.setRefreshing(false);
             }
         });
+
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         orderViewModel.getmProgressMutableData().observe(getActivity(), new Observer<Integer>() {
             @Override

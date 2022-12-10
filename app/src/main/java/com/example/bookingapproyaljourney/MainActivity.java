@@ -702,7 +702,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameAddress.setTextColor(getResources().getColor(R.color.white));
             nameCity.setTextColor(getResources().getColor(R.color.white));
             toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-            contentBackgroundMenu.setBackgroundColor(getResources().getColor(R.color.dark_282A37));
+            contentBackgroundMenu.setBackgroundColor(getResources().getColor(R.color.dark_1E202D));
         } else {
             toolbar.setBackgroundColor(this.getResources().getColor(R.color.white));
             container.setBackgroundColor(this.getResources().getColor(R.color.white));
