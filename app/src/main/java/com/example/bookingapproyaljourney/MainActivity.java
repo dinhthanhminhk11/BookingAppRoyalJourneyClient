@@ -35,6 +35,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -140,6 +141,9 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private Context context;
     public static MainActivity instance;
     private Handler h2 = new Handler();
+
+    private RelativeLayout contentBackgroundMenu;
+
     SharedPrefs sharedPreferences;
 
     public void setCallDialog(CallDialog callDialog) {
@@ -169,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
 
 
-
         setContentView(R.layout.activity_main);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         container = (FrameLayout) findViewById(R.id.containerMain);
@@ -180,7 +183,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         nameCity = (TextView) findViewById(R.id.nameCity);
         nameAddress = (TextView) findViewById(R.id.nameAddress);
         resultReceiver = new AddressResultReceiver(new Handler());
-
 
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
@@ -196,6 +198,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 .withSavedState(savedInstanceState)
                 .withMenuLayout(R.layout.menu_left_drawer)
                 .inject();
+
+        contentBackgroundMenu = (RelativeLayout) findViewById(R.id.contentBackgroundMenu);
 
         screenIcons = loadScreenIcons();
         screenTitles = loadScreenTitles();
@@ -487,7 +491,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         return new SimpleItem(screenIcons[position], screenTitles[position])
                 .withIconTint(color(R.color.white))
                 .withTextTint(color(R.color.white))
-                .withBackground(R.drawable.background_blue_activity)
+                .withBackground(Color.TRANSPARENT)
                 .withSelectedIconTint(color(R.color.blue))
                 .withSelectedTextTint(color(R.color.blue))
                 .withSelectedBackGroundTint(R.drawable.background_select_white_activity);
@@ -698,6 +702,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameAddress.setTextColor(getResources().getColor(R.color.white));
             nameCity.setTextColor(getResources().getColor(R.color.white));
             toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            contentBackgroundMenu.setBackgroundColor(getResources().getColor(R.color.dark_282A37));
         } else {
             toolbar.setBackgroundColor(this.getResources().getColor(R.color.white));
             container.setBackgroundColor(this.getResources().getColor(R.color.white));
@@ -705,6 +710,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             nameAddress.setTextColor(getResources().getColor(R.color.black));
             nameCity.setTextColor(getResources().getColor(R.color.black));
             toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            contentBackgroundMenu.setBackgroundColor(getResources().getColor(R.color.blue));
         }
     }
 }
