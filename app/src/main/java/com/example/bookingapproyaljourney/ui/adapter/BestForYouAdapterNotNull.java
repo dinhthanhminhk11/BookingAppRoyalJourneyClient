@@ -70,8 +70,8 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
             holder.tvTenPhong.setText(house.getName());
             RequestOptions options = new RequestOptions()
                     .centerCrop()
-                    .placeholder(R.drawable.soap)
-                    .error(R.drawable.soap);
+                    .placeholder(R.drawable.img)
+                    .error(R.drawable.img);
             Glide.with(holder.itemView.getContext()).
                     load(house.getSupplement().get(0).getIconImage()).
                     apply(options).

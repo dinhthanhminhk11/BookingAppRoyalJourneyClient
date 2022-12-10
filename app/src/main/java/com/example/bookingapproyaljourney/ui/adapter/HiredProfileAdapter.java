@@ -54,8 +54,8 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
                 public void success(HouseDetailResponse houseDetailResponse) {
                     RequestOptions options = new RequestOptions()
                             .centerCrop()
-                            .placeholder(R.drawable.soap)
-                            .error(R.drawable.soap);
+                            .placeholder(R.drawable.img)
+                            .error(R.drawable.img);
                     Glide.with(holder.itemView.getContext()).load(houseDetailResponse.getImages().get(0)).apply(options).into(holder.imgBestForYou);
                     holder.tvNameHouse.setText(houseDetailResponse.getName());
                     holder.tvPriceHouse.setText(fm.format(houseDetailResponse.getPrice()) + " VND");

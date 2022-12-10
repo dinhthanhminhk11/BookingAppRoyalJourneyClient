@@ -52,8 +52,8 @@ public class ImageActivity extends AppCompatActivity {
             rcvImage.setAdapter(imageAdapter);
             RequestOptions options = new RequestOptions()
                     .centerCrop()
-                    .placeholder(R.drawable.soap)
-                    .error(R.drawable.soap);
+                    .placeholder(R.drawable.img)
+                    .error(R.drawable.img);
 
         });
     }

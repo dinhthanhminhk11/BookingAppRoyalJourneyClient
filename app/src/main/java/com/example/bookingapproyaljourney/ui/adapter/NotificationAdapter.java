@@ -37,8 +37,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         if (notification != null) {
             RequestOptions options = new RequestOptions()
                     .centerCrop()
-                    .placeholder(R.drawable.soap)
-                    .error(R.drawable.soap);
+                    .placeholder(R.drawable.img)
+                    .error(R.drawable.img);
             Glide.with(holder.itemView.getContext()).load(notification.getImageHoust()).apply(options).into(holder.binding.image);
 
             holder.binding.content.setText(notification.getContent());

@@ -43,8 +43,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.soap)
-                .error(R.drawable.soap);
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
         Glide.with(holder.itemView.getContext()).load(imageList.get(position)).apply(options).into(holder.imgPicture);
 
         if(selected){

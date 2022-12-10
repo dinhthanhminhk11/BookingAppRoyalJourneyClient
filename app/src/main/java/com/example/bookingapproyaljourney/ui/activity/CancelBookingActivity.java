@@ -70,8 +70,8 @@ public class CancelBookingActivity extends AppCompatActivity {
         Log.e("MinhCheck", String.valueOf(checkBanking));
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.soap)
-                .error(R.drawable.soap);
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
         Glide.with(this).load(imageHost).apply(options).into(binding.imgBoss);
 
         if (checkBanking) {

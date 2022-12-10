@@ -30,8 +30,8 @@ public class ImageAutoSliderAdapter extends SliderViewAdapter<ImageAutoSliderAda
     public void onBindViewHolder(Holder viewHolder, int position) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.soap)
-                .error(R.drawable.soap);
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
         Glide.with(viewHolder.itemView.getContext()).
                 load(list.get(position)).
                 apply(options).

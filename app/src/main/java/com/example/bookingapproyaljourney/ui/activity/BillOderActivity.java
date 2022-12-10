@@ -532,8 +532,8 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             houseDetailResponse = item;
             RequestOptions options = new RequestOptions()
                     .centerCrop()
-                    .placeholder(R.drawable.soap)
-                    .error(R.drawable.soap);
+                    .placeholder(R.drawable.img)
+                    .error(R.drawable.img);
             Glide.with(this).load(item.getImages().get(0)).apply(options).into(binding.imageHouse);
             binding.nameHouse.setText(item.getName());
             binding.tvTimeNhanPhong.setText(item.getOpening());

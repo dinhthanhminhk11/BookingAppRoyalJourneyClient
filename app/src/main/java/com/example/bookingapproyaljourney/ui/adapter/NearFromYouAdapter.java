@@ -57,8 +57,8 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
         if (house != null) {
             RequestOptions options = new RequestOptions()
                     .centerCrop()
-                    .placeholder(R.drawable.soap)
-                    .error(R.drawable.soap);
+                    .placeholder(R.drawable.img)
+                    .error(R.drawable.img);
             Glide.with(holder.itemView.getContext()).load(house.getData().getImages().get(0)).apply(options).into(holder.imgNearFromYou);
 
             holder.tvAddressNearFromYou.setText(house.getData().getNameLocation());
