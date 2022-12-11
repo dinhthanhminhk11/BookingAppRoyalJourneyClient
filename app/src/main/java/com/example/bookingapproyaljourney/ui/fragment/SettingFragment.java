@@ -200,6 +200,12 @@ public class SettingFragment extends Fragment {
 
             binding.iconTheme.setBackgroundResource(R.drawable.textview_border_setting_white);
             binding.iconLang.setBackgroundResource(R.drawable.textview_border_setting_white);
+
+            binding.contentByRoyal.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.titleRoyal.setTextColor(getContext().getResources().getColor(R.color.white));
+            binding.contentRoyal.setTextColor(getContext().getResources().getColor(R.color.white));
+            binding.iconRoyal.setColorFilter(getResources().getColor(R.color.white));
+            binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.white));
         } else {
             EventBus.getDefault().postSticky(new KeyEvent(AppConstant.SAVE_THEME_LIGHT));
 
@@ -223,6 +229,12 @@ public class SettingFragment extends Fragment {
 
             binding.iconTheme.setBackgroundResource(R.drawable.textview_border_setting_xam);
             binding.iconLang.setBackgroundResource(R.drawable.textview_border_setting_xam);
+
+            binding.contentByRoyal.setBackgroundResource(R.drawable.background_setting_item);
+            binding.titleRoyal.setTextColor(getContext().getResources().getColor(R.color.black));
+            binding.contentRoyal.setTextColor(getContext().getResources().getColor(R.color.black));
+            binding.iconRoyal.setColorFilter(getResources().getColor(R.color.black));
+            binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.black));
         }
     }
 }
