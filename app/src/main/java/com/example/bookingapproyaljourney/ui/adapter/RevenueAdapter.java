@@ -21,12 +21,23 @@ public class RevenueAdapter extends BaseExpandableListAdapter implements Filtera
     HashMap<String, List<String>> toppic;
     List<String> listTemp;
     private int color;
+    private Callback callback;
+
     public RevenueAdapter(Context context, List<String> title, HashMap<String, List<String>> toppic) {
         this.context = context;
         this.title = title;
         this.toppic = toppic;
         this.listTemp = title;
     }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
+    public interface Callback {
+        void onCLick(int position);
+    }
+
 
     public void setColor(int color) {
         this.color = color;
@@ -78,6 +89,7 @@ public class RevenueAdapter extends BaseExpandableListAdapter implements Filtera
         TextView textView = convertView.findViewById(R.id.tv_group);
         textView.setText(group);
         textView.setTextColor(color);
+
         return convertView;
     }
 
@@ -91,7 +103,9 @@ public class RevenueAdapter extends BaseExpandableListAdapter implements Filtera
 
         TextView textView = convertView.findViewById(R.id.tv_child);
         textView.setText(topic);
-
+        textView.setOnClickListener(v -> {
+            callback.onCLick(groupPosition);
+        });
         return convertView;
     }
 

@@ -9,6 +9,7 @@ import static com.example.bookingapproyaljourney.constants.AppConstant.deleteOrd
 import static com.example.bookingapproyaljourney.constants.AppConstant.text1111111111111;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +33,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -64,6 +67,7 @@ import com.example.bookingapproyaljourney.response.CountNotiResponse;
 import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
+import com.example.bookingapproyaljourney.ui.custom.LighterHelper;
 import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HelpFragment;
@@ -79,6 +83,13 @@ import com.example.bookingapproyaljourney.ui.view.menu.SpaceItem;
 import com.example.bookingapproyaljourney.utils.LanguageConfig;
 import com.example.bookingapproyaljourney.utils.SharedPrefs;
 import com.example.bookingapproyaljourney.view_model.LoginViewModel;
+import com.example.hightlight.Lighter;
+import com.example.hightlight.interfaces.OnLighterListener;
+import com.example.hightlight.parameter.Direction;
+import com.example.hightlight.parameter.LighterParameter;
+import com.example.hightlight.parameter.MarginOffset;
+import com.example.hightlight.shape.CircleShape;
+import com.example.hightlight.shape.RectShape;
 import com.example.librarynav.SlidingRootNav;
 import com.example.librarynav.SlidingRootNavBuilder;
 import com.example.librarytoastcustom.CookieBar;
@@ -653,6 +664,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             changeTheme(1);
         } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
             changeTheme(2);
+        } else if (event.getIdEven() == AppConstant.BY_USER_NEW) {
+            adapter.setSelected(POS_HOME);
         }
     }
 
@@ -718,5 +731,66 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
             contentBackgroundMenu.setBackgroundColor(getResources().getColor(R.color.blue));
         }
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void showGuide() {
+        TranslateAnimation translateAnimation = new TranslateAnimation(-500, 0, 0, 0);
+        translateAnimation.setDuration(500);
+        translateAnimation.setInterpolator(new BounceInterpolator());
+
+        CircleShape circleShape = new CircleShape(25);
+        circleShape.setPaint(LighterHelper.getDashPaint()); //set custom paint
+
+
+        RectShape rectShape = new RectShape();
+        rectShape.setPaint(LighterHelper.getDiscretePaint());
+
+        Lighter.with(this)
+                .setBackgroundColor(0xB3000000)
+                .addHighlight(new LighterParameter.Builder()
+                        .setHighlightedViewId(R.id.nameCity)
+                        .setTipLayoutId(R.layout.layout_tip_1)
+                        .setLighterShape(circleShape)
+                        .setTipViewRelativeDirection(Direction.RIGHT)
+                        .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+                        .setTipViewRelativeOffset(new MarginOffset(30, 0, 80, 0))
+                        .build())
+//                .addHighlight(new LighterParameter.Builder()
+//                        .setHighlightedViewId(R.id.layout_balance)
+//                        .setTipLayoutId(R.layout.layout_tip_2)
+//                        .setLighterShape(rectShape)
+//                        .setTipViewRelativeDirection(Direction.TOP)
+//                        .setShapeXOffset(10)
+//                        .setShapeYOffset(10)
+//                        .setTipViewDisplayAnimation(translateAnimation)
+//                        .setTipViewRelativeOffset(new MarginOffset(0, 10, 0, 20))
+//                        .build())
+//                .addHighlight(new LighterParameter.Builder()
+//                        .setHighlightedViewId(R.id.btn_highlight2)
+//                        .setTipView(LighterHelper.createCommonTipView(this, R.drawable.icon_tip_4, "向左移动"))
+//                        .setLighterShape(rectShape)
+//                        .setTipViewRelativeDirection(Direction.LEFT)
+//                        .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+//                        .setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0))
+//                        .build())
+//                .addHighlight(new LighterParameter.Builder()
+//                                .setHighlightedViewId(R.id.btn_highlight1)
+//                                .setTipLayoutId(R.layout.layout_tip_3)
+//                                .setLighterShape(new RectShape(0, 0, 25))
+//                                .setTipViewRelativeDirection(Direction.TOP)
+//                                .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+//                                .setTipViewRelativeOffset(new MarginOffset(100, 10, 0, 20))
+//                                .build(),
+//
+//                        new LighterParameter.Builder()
+//                                .setHighlightedViewId(R.id.btn_highlight3)
+//                                .setTipLayoutId(R.layout.layout_tip_1)
+//                                .setLighterShape(new OvalShape())
+//                                .setTipViewRelativeDirection(Direction.BOTTOM)
+//                                .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+//                                .setTipViewRelativeOffset(new MarginOffset(300, 0, 0, 0))
+//                                .build())
+                .show();
     }
 }

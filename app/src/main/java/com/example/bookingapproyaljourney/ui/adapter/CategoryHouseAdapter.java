@@ -58,7 +58,9 @@ public class CategoryHouseAdapter extends RecyclerView.Adapter<CategoryHouseAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Category item = dataCategory.get(position);
         holder.nameCategory.setText(item.getName());
-
+        if(position ==0){
+            updateRecyclerView.callBackVIew(holder.itemView);
+        }
         if (check) {
             EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_HOUSE));
             initData(item, position);

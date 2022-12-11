@@ -52,6 +52,9 @@ import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterHome;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
 import com.example.bookingapproyaljourney.view_model.FilterViewModel;
+import com.example.hightlight.Lighter;
+import com.example.hightlight.parameter.Direction;
+import com.example.hightlight.parameter.LighterParameter;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.greenrobot.eventbus.EventBus;
@@ -64,7 +67,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer, BottomSheetFilterHome.EventClick {
     private ResultReceiver resultReceiver;
-
+    private View view;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private LottieAnimationView progressBar;
@@ -283,6 +286,11 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     }
 
     @Override
+    public void callBackVIew(View view) {
+        this.view = view;
+    }
+
+    @Override
     public void onClickListChinh(House house) {
         Intent intent = new Intent(getActivity(), DetailProductActivity.class);
         intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
@@ -371,7 +379,20 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             changeTheme(1);
         } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
             changeTheme(2);
+        } else if (event.getIdEven() == AppConstant.BY_USER_NEW) {
+//            showGuide(view);
         }
+    }
+
+    private void showGuide(View highlightedView) {
+
+        Lighter.with((ViewGroup) backgroundContent)
+                .addHighlight(new LighterParameter.Builder()
+                        .setHighlightedView(highlightedView)
+                        .setTipLayoutId(R.layout.layout_tip_5)
+                        .setTipViewRelativeDirection(Direction.TOP)
+                        .build())
+                .show();
     }
 
     @Override
@@ -406,7 +427,8 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             titleBestYou.setTextColor(Color.BLACK);
 
             bestForYouAdapter.setColor(getContext().getResources().getColor(R.color.color_858585), Color.BLACK);
-            bestForYouAdapterNotNull.setColor( Color.BLACK,getContext().getResources().getColor(R.color.color_858585));
+            bestForYouAdapterNotNull.setColor(Color.BLACK, getContext().getResources().getColor(R.color.color_858585));
         }
     }
+
 }

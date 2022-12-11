@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,8 +21,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.ui.adapter.RevenueAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,7 +102,12 @@ public class HelpFragment extends Fragment {
 
 
         setAdapter = new RevenueAdapter(getContext(), Title, topics);
-
+        setAdapter.setCallback(new RevenueAdapter.Callback() {
+            @Override
+            public void onCLick(int position) {
+                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.BY_USER_NEW));
+            }
+        });
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
         int theme = sharedPreferences.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
 
@@ -145,7 +154,6 @@ public class HelpFragment extends Fragment {
     public void fillData() {
         Title = new ArrayList<>();
         topics = new HashMap<>();
-
         Title.add(getString(R.string.question_help1));
         Title.add(getString(R.string.question_help2));
         Title.add(getString(R.string.question_help3));

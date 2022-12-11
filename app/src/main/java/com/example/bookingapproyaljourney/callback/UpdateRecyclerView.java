@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney.callback;
 
+import android.view.View;
+
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
@@ -14,4 +16,6 @@ public interface UpdateRecyclerView {
     void callLoading(int view);
 
     void callBackNull(CategoryBestForYouResponse categoryBestForYouResponse);
+
+    void callBackVIew(View view);
 }
