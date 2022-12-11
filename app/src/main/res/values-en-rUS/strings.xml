@@ -328,4 +328,8 @@
     <string name="owner_detail">Owner</string>
     <string name="see_more">Xem Thêm</string>
     <string name="check_in">Nhận phòng từ ngày:</string>
+
+
+    <string name="byRoyal">About us</string>
+    <string name="infoRoyal">Information about us</string>
 </resources>

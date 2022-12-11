@@ -222,9 +222,11 @@
     <string name="Settings">Cài đặt</string>
     <string name="LanguageSetting">Ngôn ngữ</string>
     <string name="LanguageSetting2">Thay đổi mật khẩu của bạn</string>
+    <string name="infoRoyal">Những thông tin về chúng tôi</string>
     <string name="DarkmodeSetting">Dark mode</string>
     <string name="LightmodeSetting">Light mode</string>
     <string name="ChangePassSetting">Đổi mật khẩu</string>
+    <string name="byRoyal">Về chúng tôi</string>
     <string name="OldPassSettings">Mật khẩu cũ</string>
     <string name="NewPassSettings">Mật khẩu mới</string>
     <string name="RePassSettings">Nhập lại khẩu mới</string>
