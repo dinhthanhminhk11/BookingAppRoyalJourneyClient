@@ -113,7 +113,6 @@ public interface ApiRequest {
     @POST("addorder")
     Call<OrderResponse> postOrder(@Body OrderCreate orderCreate);
 
-
     @GET("listOrderByIdUser/{id}")
     Call<ListOrderByIdUser> getListOrderByIdUser(@Path("id") String id);
 
@@ -193,8 +192,4 @@ public interface ApiRequest {
 
     @PATCH("updatePassword")
     Call<TestResponse> changePassword(@Body ChangePasswordRequest changePasswordRequest);
-
-
-
-
 }

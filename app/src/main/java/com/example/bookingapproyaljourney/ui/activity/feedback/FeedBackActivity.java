@@ -1,6 +1,9 @@
 package com.example.bookingapproyaljourney.ui.activity.feedback;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +42,16 @@ public class FeedBackActivity extends AppCompatActivity {
         String img_boss = intent.getStringExtra("IMG_BOSS");
         String id_House = intent.getStringExtra("ID_HOUSE");
         Glide.with(this).load(img_boss).into(binding.imgBoss);
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
         binding.tvNameBoss.setText(name_boss);
         binding.imgBackFB.setOnClickListener(v -> onBackPressed());
         binding.imgStar1.setOnClickListener(v -> {
@@ -115,6 +128,23 @@ public class FeedBackActivity extends AppCompatActivity {
                 }
             });
         });
+    }
 
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imgBackFB.setColorFilter(getResources().getColor(R.color.white));
+            binding.textView2.setTextColor(Color.WHITE);
+            binding.textView7.setTextColor(Color.WHITE);
+            binding.tvNameBoss.setTextColor(Color.WHITE);
+            binding.textView8.setTextColor(Color.WHITE);
+
+            binding.view5.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.view5.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+
+            binding.view5.setBackgroundResource(R.drawable.bg_chat_boss_dark);
+        } else {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+        }
     }
 }

@@ -2,9 +2,12 @@ package com.example.bookingapproyaljourney.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -118,9 +121,16 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
 
-        idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
 
-        Log.e("IdUser", UserClient.getInstance().getId());
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
+        idHouse = getIntent().getStringExtra(AppConstant.HOUSE_EXTRA);
 
         PaymentConfiguration.init(BillOderActivity.this, AppConstant.PUBLISHABLE_KEY);
 
@@ -562,8 +572,6 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
             binding.textCancel.setText(wordtoSpan);
         });
-
-
     }
 
     private void getEpericalKey(String customerID) {
@@ -708,7 +716,6 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                 binding.imageMatercard.setVisibility(View.GONE);
                 binding.textPayment.setText("Thẻ VISA (VISA card)");
 
-
                 StringRequest stringRequest = new StringRequest(Request.Method.POST,
                         "https://api.stripe.com/v1/customers",
                         new Response.Listener<String>() {
@@ -774,4 +781,80 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             binding.person.setText(sum + " khách");
         }
     }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.toolBar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.toolBar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            binding.toolBar.setTitleTextColor(Color.WHITE);
+
+            binding.contentBackground1.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentPayDayNight.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentEditPerson.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentBackground2.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentPayment.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentPhone.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentBackground3.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentCancellationPolicy.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentBackground4.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+
+            binding.nameHouse.setTextColor(Color.WHITE);
+            binding.startDate.setTextColor(Color.WHITE);
+            binding.endDate.setTextColor(Color.WHITE);
+            binding.personLimitHouse.setTextColor(Color.WHITE);
+            binding.person.setTextColor(Color.WHITE);
+            binding.editPerson.setTextColor(Color.WHITE);
+            binding.text1.setTextColor(Color.WHITE);
+            binding.text2.setTextColor(Color.WHITE);
+            binding.text3.setTextColor(Color.WHITE);
+            binding.text4.setTextColor(Color.WHITE);
+            binding.text5.setTextColor(Color.WHITE);
+            binding.text6.setTextColor(Color.WHITE);
+            binding.text7.setTextColor(Color.WHITE);
+            binding.textPayment.setTextColor(Color.WHITE);
+            binding.text8.setTextColor(Color.WHITE);
+            binding.phone.setTextColor(Color.WHITE);
+            binding.text9.setTextColor(Color.WHITE);
+            binding.priceAndCount.setTextColor(Color.WHITE);
+            binding.text10.setTextColor(Color.WHITE);
+            binding.text11.setTextColor(Color.WHITE);
+            binding.sumPrice.setTextColor(Color.WHITE);
+            binding.priceAll.setTextColor(Color.WHITE);
+            binding.text12.setTextColor(Color.WHITE);
+            binding.textCancel.setTextColor(Color.WHITE);
+            binding.text13.setTextColor(Color.WHITE);
+
+            binding.addPayment.setBackgroundResource(R.drawable.textview_border_ver2_dark);
+            binding.addPayment.setTextColor(Color.WHITE);
+            binding.addPhone.setBackgroundResource(R.drawable.textview_border_ver2_dark);
+            binding.addPhone.setTextColor(Color.WHITE);
+
+            binding.payOnline.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+            binding.payOfflinePercent.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+            binding.payOffline.setButtonTintList(ColorStateList.valueOf(Color.WHITE));
+
+            binding.edPhone.setBackgroundResource(R.drawable.textview_border_ver2_dark);
+            binding.edPhone.setTextColor(Color.WHITE);
+            binding.edPhone.setHintTextColor(Color.WHITE);
+
+            binding.btnComfirmPhone.setBackgroundResource(R.drawable.textview_border_ver2_dark);
+            binding.btnComfirmPhone.setTextColor(Color.WHITE);
+        } else {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+            binding.toolBar.setBackgroundColor(Color.WHITE);
+            binding.toolBar.getNavigationIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+
+            binding.contentBackground1.setBackgroundColor(Color.WHITE);
+            binding.contentPayDayNight.setBackgroundColor(Color.WHITE);
+            binding.contentEditPerson.setBackgroundColor(Color.WHITE);
+            binding.contentBackground2.setBackgroundColor(Color.WHITE);
+            binding.contentPayment.setBackgroundColor(Color.WHITE);
+            binding.contentPhone.setBackgroundColor(Color.WHITE);
+            binding.contentBackground3.setBackgroundColor(Color.WHITE);
+            binding.contentCancellationPolicy.setBackgroundColor(Color.WHITE);
+            binding.contentBackground4.setBackgroundColor(Color.WHITE);
+        }
+    }
+
 }

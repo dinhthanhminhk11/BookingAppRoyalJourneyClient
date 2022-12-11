@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/contentBackground"
     tools:context=".ui.activity.CancellationPolicyActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -26,12 +27,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/text1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hướng dẫn thực hiện • Khách"
                 android:textSize="@dimen/_16sp" />
 
             <TextView
+                android:id="@+id/text2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -41,6 +44,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/text3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
@@ -55,6 +59,7 @@
                 android:background="@color/color_F6F6F6" />
 
             <TextView
+                android:id="@+id/text4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -64,6 +69,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/text5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
@@ -78,6 +84,7 @@
                 android:background="@color/color_F6F6F6" />
 
             <TextView
+                android:id="@+id/text6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -87,6 +94,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/text7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
@@ -95,6 +103,7 @@
                 android:textSize="@dimen/_16sp" />
 
             <TextView
+                android:id="@+id/text8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
@@ -103,6 +112,7 @@
                 android:textSize="@dimen/_16sp" />
 
             <TextView
+                android:id="@+id/text9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
@@ -117,6 +127,7 @@
                 android:background="@color/color_F6F6F6" />
 
             <TextView
+                android:id="@+id/text10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -126,6 +137,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/text11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
@@ -140,6 +152,7 @@
                 android:background="@color/color_F6F6F6" />
 
             <TextView
+                android:id="@+id/text12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -156,6 +169,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/text13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/step1"
@@ -163,6 +177,7 @@
                     android:textSize="@dimen/_16sp" />
 
                 <TextView
+                    android:id="@+id/text14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10dp"
@@ -172,6 +187,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/text15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -181,6 +197,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/text16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
@@ -195,6 +212,7 @@
                 android:background="@color/color_F6F6F6" />
 
             <TextView
+                android:id="@+id/text17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -204,6 +222,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/text18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"

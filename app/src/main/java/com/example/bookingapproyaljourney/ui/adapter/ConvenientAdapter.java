@@ -1,6 +1,7 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,17 @@ import java.util.List;
 public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.ViewHodel> {
     private List<Convenient> convenientTestList;
     private Context context;
-
-    public ConvenientAdapter(List<Convenient> convenientTestList, Context context) {
-        this.convenientTestList = convenientTestList;
+    private int color = Color.BLACK;
+    public ConvenientAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setConvenientTestList(List<Convenient> convenientTestList) {
+        this.convenientTestList = convenientTestList;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     @NonNull
@@ -42,6 +50,7 @@ public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.Vi
                 .error(R.drawable.img);
         Glide.with(context).load(convenientTestList.get(position).getIconImage()).apply(options).into(holder.imgConvenien);
         holder.tvConvenien.setText(convenientTestList.get(position).getName());
+        holder.tvConvenien.setTextColor(color);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -33,6 +35,15 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
 
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -147,5 +158,20 @@ public class RegisterActivity extends AppCompatActivity {
         return null;
     }
 
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentView.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imageView.setImageResource(R.drawable.ic_shape_login_dark);
+            binding.textView.setTextColor(Color.WHITE);
+            binding.textView3.setTextColor(Color.WHITE);
+            binding.textView4.setTextColor(Color.WHITE);
+        } else {
+            binding.contentView.setBackgroundColor(this.getResources().getColor(R.color.color_F6F6F6));
+            binding.imageView.setImageResource(R.drawable.ic_shape_login);
+            binding.textView.setTextColor(Color.BLACK);
+            binding.textView3.setTextColor(Color.BLACK);
+            binding.textView4.setTextColor(Color.BLACK);
+        }
+    }
 
 }

@@ -2,16 +2,11 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -22,6 +17,7 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentSettingBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
+import com.example.bookingapproyaljourney.ui.activity.ChangePasswordActivity;
 import com.example.bookingapproyaljourney.ui.custom.RippleAnimation;
 
 import org.greenrobot.eventbus.EventBus;
@@ -173,6 +169,10 @@ public class SettingFragment extends Fragment {
                     changeTheme(2);
                 }
             }
+        });
+
+        binding.contentChangePass.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
         });
     }
 

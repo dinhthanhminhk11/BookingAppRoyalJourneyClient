@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/contentBackground"
     android:layout_height="match_parent"
     tools:context=".ui.activity.OtpActivity">
 
@@ -40,6 +41,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_24dp"
@@ -79,6 +81,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_24dp"

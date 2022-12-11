@@ -47,6 +47,15 @@ public class NewPasswordActivity extends AppCompatActivity {
         binding = ActivityNewPasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
         mail = getIntent().getStringExtra(AppConstant.EMAIL_USER);
 
         newPassViewModel = new ViewModelProvider(this).get(NewPassViewModel.class);
@@ -57,6 +66,10 @@ public class NewPasswordActivity extends AppCompatActivity {
             String CFPassword = binding.edCfPass.getText().toString();
             validateinfo(Password, CFPassword);
 
+        });
+
+        binding.tvSignUp.setOnClickListener(v -> {
+            startActivity(new Intent(NewPasswordActivity.this, RegisterActivity.class));
         });
 
 
@@ -120,11 +133,11 @@ public class NewPasswordActivity extends AppCompatActivity {
             binding.edPass.requestFocus();
             binding.edPass.setError(getString(R.string.textCheck1Register));
 
-        }else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")){
+        } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")) {
             binding.edPass.requestFocus();
             binding.edPass.setError(getString(R.string.textCheck2Register));
             return false;
-        }else if (cfPassword.length() <= 6) {
+        } else if (cfPassword.length() <= 6) {
             binding.edCfPass.requestFocus();
             binding.edCfPass.setError(getString(R.string.textCheckNewPass2));
             return false;
@@ -167,4 +180,27 @@ public class NewPasswordActivity extends AppCompatActivity {
         });
         dialogLogOut.show();
     }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentView.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imageView.setImageResource(R.drawable.ic_shape_login_dark);
+            binding.imageBot1.setImageResource(R.drawable.ic_ellipse_2_dark);
+            binding.imageBot2.setImageResource(R.drawable.ic_ellipse_3_dark);
+            binding.textView.setTextColor(Color.WHITE);
+            binding.textView3.setTextColor(Color.WHITE);
+            binding.textView4.setTextColor(Color.WHITE);
+            binding.textView5.setTextColor(Color.WHITE);
+        } else {
+            binding.contentView.setBackgroundColor(this.getResources().getColor(R.color.color_F6F6F6));
+            binding.imageView.setImageResource(R.drawable.ic_shape_login);
+            binding.textView.setTextColor(Color.BLACK);
+            binding.textView3.setTextColor(Color.BLACK);
+            binding.textView4.setTextColor(Color.BLACK);
+            binding.textView5.setTextColor(Color.BLACK);
+            binding.imageBot1.setImageResource(R.drawable.ic_ellipse_2);
+            binding.imageBot2.setImageResource(R.drawable.ic_ellipse_3);
+        }
+    }
+
 }

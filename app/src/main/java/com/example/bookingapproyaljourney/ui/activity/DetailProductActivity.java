@@ -23,6 +23,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -89,8 +90,18 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
     private ImageView ivimgHotel;
     private TextView tvNameHotel;
     private TextView tvAddress;
+    private TextView titleMota;
     private TextView tvAmountBedRoom;
     private TextView tvAmountBedroom2;
+    private TextView text3;
+    private TextView text4;
+    private TextView text5;
+    private TextView text7;
+    private TextView text6;
+    private TextView text8;
+    private TextView text9;
+    private TextView text10;
+    private TextView text11;
     private ImageView imgStar1;
     private TextView ContentHouse;
     private CircleImageView imgManage;
@@ -137,6 +148,8 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
     private List<Bathroom> dataBathRoom;
     private TextView countSao;
     private TextView showMedical;
+    private TextView textView1;
+    private TextView text2;
     private NumberFormat fm = new DecimalFormat("#,###");
     private boolean isStillEmpty;
     private BookmarkRepository bookmarkRepository;
@@ -146,6 +159,8 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
     private LatLng latLngLocationYourSelf;
     private MarkerOptions markerOptions;
     private Marker currentUser, searchPoint;
+    private RelativeLayout contentBackground;
+    private RelativeLayout contentBackgroundGradiend;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -192,6 +207,20 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         TextView tvSao = findViewById(R.id.tvSao);
         TextView btnShowFeedback = findViewById(R.id.btnShowFeedback);
         showMedical = findViewById(R.id.showMedical);
+        contentBackground = findViewById(R.id.contentBackground);
+        contentBackgroundGradiend = findViewById(R.id.contentBackgroundGradiend);
+        titleMota = findViewById(R.id.titleMota);
+        textView1 = findViewById(R.id.textView1);
+        text2 = findViewById(R.id.text2);
+        text3 = findViewById(R.id.text3);
+        text4 = findViewById(R.id.text4);
+        text5 = findViewById(R.id.text5);
+        text7 = findViewById(R.id.text7);
+        text6 = findViewById(R.id.text6);
+        text8 = findViewById(R.id.text8);
+        text9 = findViewById(R.id.text9);
+        text10 = findViewById(R.id.text10);
+        text11 = findViewById(R.id.text11);
 
         setSupportActionBar(toolBar);
 
@@ -207,6 +236,15 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
             }
         });
         getSupportActionBar().setTitle("");
+        convenientAdapter = new ConvenientAdapter(this);
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
 
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
         feedbackViewModel = new ViewModelProvider(this).get(FeedbackViewModel.class);
@@ -228,12 +266,14 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
                     .setBackgroundRes(R.drawable.background_toast)
                     .setCookiePosition(CookieBar.BOTTOM)
                     .show();
-//            new ToastCheck(this, R.style.StyleToast, "Thành công", "Phản hồi của bạn đã được lưu lại , chúc bạn 1 ngày tốt lành", R.drawable.ic_complete_order);
         }
+
         initData(idHouse);
+
         btnDanhGia.setPaintFlags(btnDanhGia.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         rcvFeedback.setHasFixedSize(true);
         rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
         feedbackViewModel.getFeedbackId(idHouse).observe(this, it -> {
             FeedbackAdapter feedbackAdapter = new FeedbackAdapter(it, this);
             rcvFeedback.setAdapter(feedbackAdapter);
@@ -260,11 +300,11 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
             }
 
         });
+
         showMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDialog();
-
             }
         });
 
@@ -313,7 +353,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         showMedical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DetailProductActivity.this , MedicalActivity.class));
+                startActivity(new Intent(DetailProductActivity.this, MedicalActivity.class));
             }
         });
         btnRentNow.setOnClickListener(new View.OnClickListener() {
@@ -390,7 +430,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
             rcvConvenient.setHasFixedSize(true);
             rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            ConvenientAdapter convenientAdapter = new ConvenientAdapter(item.getSupplement(), this);
+            convenientAdapter.setConvenientTestList(item.getSupplement());
             rcvConvenient.setAdapter(convenientAdapter);
             data = item.getSupplement();
 
@@ -550,4 +590,49 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
         currentUser = mMap.addMarker(markerOptions);
         currentUser.setTag(false);
     }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            titleMota.setTextColor(Color.WHITE);
+            ContentHouse.setTextColor(Color.WHITE);
+            NameManage.setTextColor(Color.WHITE);
+            textView1.setTextColor(Color.WHITE);
+            text2.setTextColor(Color.WHITE);
+            text3.setTextColor(Color.WHITE);
+            text4.setTextColor(Color.WHITE);
+            text5.setTextColor(Color.WHITE);
+            text7.setTextColor(Color.WHITE);
+            text6.setTextColor(Color.WHITE);
+            text8.setTextColor(Color.WHITE);
+            text9.setTextColor(Color.WHITE);
+            legalHouse.setTextColor(Color.WHITE);
+            text10.setTextColor(Color.WHITE);
+            text11.setTextColor(Color.WHITE);
+            convenientAdapter.setColor(Color.WHITE);
+            contentBackgroundGradiend.setBackgroundResource(R.drawable.gradientbackground_detailproduct_drak);
+//            textView2.setTextColor(Color.WHITE);
+        } else {
+            contentBackgroundGradiend.setBackgroundResource(R.drawable.gradientbackground_detailproduct);
+            contentBackground.setBackgroundColor(Color.WHITE);
+            titleMota.setTextColor(Color.BLACK);
+            ContentHouse.setTextColor(Color.BLACK);
+            NameManage.setTextColor(Color.BLACK);
+            textView1.setTextColor(Color.BLACK);
+            text2.setTextColor(Color.BLACK);
+            text3.setTextColor(Color.BLACK);
+            text4.setTextColor(Color.BLACK);
+            text5.setTextColor(Color.BLACK);
+            text7.setTextColor(Color.BLACK);
+            text6.setTextColor(Color.BLACK);
+            text8.setTextColor(Color.BLACK);
+            text9.setTextColor(Color.BLACK);
+            legalHouse.setTextColor(Color.BLACK);
+            text10.setTextColor(Color.BLACK);
+            text11.setTextColor(Color.BLACK);
+            convenientAdapter.setColor(Color.BLACK);
+//            textView2.setTextColor(Color.BLACK);
+        }
+    }
+
 }

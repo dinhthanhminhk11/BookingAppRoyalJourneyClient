@@ -1,6 +1,7 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,18 @@ import java.util.List;
 public class ConvenientListAdapter extends RecyclerView.Adapter<ConvenientListAdapter.ViewHoler> {
     private List<Convenient> convenientList;
     private Context context;
+    private int color = Color.BLACK;
 
-    public ConvenientListAdapter(List<Convenient> convenientList, Context context) {
-        this.convenientList = convenientList;
+    public ConvenientListAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setConvenientList(List<Convenient> convenientList) {
+        this.convenientList = convenientList;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     @NonNull
@@ -46,7 +55,7 @@ public class ConvenientListAdapter extends RecyclerView.Adapter<ConvenientListAd
 
     @Override
     public int getItemCount() {
-        if (convenientList != null){
+        if (convenientList != null) {
             return convenientList.size();
         }
         return 0;
@@ -56,6 +65,7 @@ public class ConvenientListAdapter extends RecyclerView.Adapter<ConvenientListAd
         private RelativeLayout layoutItem;
         private ImageView imgConvenien;
         private TextView tvConvenien;
+
         public ViewHoler(@NonNull View itemView) {
             super(itemView);
             imgConvenien = (ImageView) itemView.findViewById(R.id.image);

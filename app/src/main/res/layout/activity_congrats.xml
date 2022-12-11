@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/contentBackground"
     tools:context=".ui.activity.CongratsActivity">
 
     <LinearLayout
@@ -32,6 +33,7 @@
             android:textSize="@dimen/_30dp"/>
 
         <TextView
+            android:id="@+id/textView1"
             android:layout_marginHorizontal="@dimen/_20dp"
             android:layout_marginTop="@dimen/_12dp"
             android:gravity="center"
@@ -41,6 +43,7 @@
             android:textSize="@dimen/_23dp"
             android:text="@string/textBest14"/>
         <TextView
+            android:id="@+id/textView2"
             android:layout_marginHorizontal="@dimen/_20dp"
             android:layout_marginTop="@dimen/_12dp"
             android:gravity="center"

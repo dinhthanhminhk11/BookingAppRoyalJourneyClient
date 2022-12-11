@@ -3,8 +3,11 @@ package com.example.bookingapproyaljourney.ui.activity;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -92,6 +95,15 @@ public class StatusBillActivity extends AppCompatActivity {
             }
         });
         statusOrderViewModel = new ViewModelProvider(this).get(StatusOrderViewModel.class);
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
 
         initData();
 
@@ -350,4 +362,61 @@ public class StatusBillActivity extends AppCompatActivity {
         statusOrderViewModel.getOrderById(idOrder);
     }
 
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.toolBar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.toolBar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            binding.toolBar.setTitleTextColor(Color.WHITE);
+
+            binding.contentBackground1.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentPayDayNight.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentEditPerson.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentBackground2.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentPayment.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentPhone.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.contentBackground3.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+//            binding.contentCancellationPolicy.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+//            binding.contentBackground4.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+
+            binding.nameHouse.setTextColor(Color.WHITE);
+            binding.startDate.setTextColor(Color.WHITE);
+            binding.endDate.setTextColor(Color.WHITE);
+            binding.personLimitHouse.setTextColor(Color.WHITE);
+            binding.person.setTextColor(Color.WHITE);
+            binding.text1.setTextColor(Color.WHITE);
+            binding.text2.setTextColor(Color.WHITE);
+            binding.text3.setTextColor(Color.WHITE);
+            binding.text4.setTextColor(Color.WHITE);
+            binding.text5.setTextColor(Color.WHITE);
+            binding.text6.setTextColor(Color.WHITE);
+            binding.text7.setTextColor(Color.WHITE);
+            binding.textPayment.setTextColor(Color.WHITE);
+            binding.phone.setTextColor(Color.WHITE);
+            binding.priceAndCount.setTextColor(Color.WHITE);
+            binding.sumPrice.setTextColor(Color.WHITE);
+            binding.priceAll.setTextColor(Color.WHITE);
+
+            binding.edPhone.setBackgroundResource(R.drawable.textview_border_ver2_dark);
+            binding.edPhone.setTextColor(Color.WHITE);
+            binding.edPhone.setHintTextColor(Color.WHITE);
+            binding.textConfirm.setTextColor(Color.WHITE);
+
+            binding.btnComfirmPhone.setBackgroundResource(R.drawable.textview_border_ver2_dark);
+            binding.btnComfirmPhone.setTextColor(Color.WHITE);
+        } else {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+            binding.toolBar.setBackgroundColor(Color.WHITE);
+            binding.toolBar.getNavigationIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+
+            binding.contentBackground1.setBackgroundColor(Color.WHITE);
+            binding.contentPayDayNight.setBackgroundColor(Color.WHITE);
+            binding.contentEditPerson.setBackgroundColor(Color.WHITE);
+            binding.contentBackground2.setBackgroundColor(Color.WHITE);
+            binding.contentPayment.setBackgroundColor(Color.WHITE);
+            binding.contentPhone.setBackgroundColor(Color.WHITE);
+            binding.contentBackground3.setBackgroundColor(Color.WHITE);
+
+        }
+    }
 }

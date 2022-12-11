@@ -60,7 +60,8 @@ public class BottomSheetConvenient extends BottomSheetDialog {
     private void initData() {
         rcvConvenientList.setHasFixedSize(true);
         rcvConvenientList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-        ConvenientListAdapter convenientListAdapter = new ConvenientListAdapter(data, context);
+        ConvenientListAdapter convenientListAdapter = new ConvenientListAdapter(context);
+        convenientListAdapter.setConvenientList(data);
         rcvConvenientList.setAdapter(convenientListAdapter);
         close.setOnClickListener(v -> {
             callBack.onCLickCLose();

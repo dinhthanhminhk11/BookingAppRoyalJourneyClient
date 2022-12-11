@@ -53,7 +53,18 @@ public class OtpActivity extends AppCompatActivity {
         String pass = getIntent().getStringExtra(AppConstant.PASS_USER);
 
         binding.textAlien.setText(this.getString(R.string.enterCodeOTP) + mail);
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
         viewModel = new ViewModelProvider(this).get(VerifyViewModel.class);
+
         binding.btnSignIn.setOnClickListener(v -> {
             String otp = binding.otp.getText().toString();
             validateinfo(otp);
@@ -145,6 +156,7 @@ public class OtpActivity extends AppCompatActivity {
                 Toast.makeText(OtpActivity.this, testResponse.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
         String check = getIntent().getStringExtra(AppConstant.CheckSuccess);
         if (!(check == null)) {
             if (check.equals(AppConstant.LoginActivity)) {
@@ -207,4 +219,26 @@ public class OtpActivity extends AppCompatActivity {
 
         }
     }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.textAlien.setTextColor(Color.WHITE);
+            binding.title.setTextColor(Color.WHITE);
+            binding.textView1.setTextColor(Color.WHITE);
+            binding.sendAgain.setTextColor(Color.WHITE);
+            binding.otp.setBackgroundResource(R.drawable.textview_border_ver2_dark);
+            binding.close.setColorFilter(getResources().getColor(R.color.white));
+
+        } else {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.color_F6F6F6));
+            binding.textAlien.setTextColor(Color.BLACK);
+            binding.title.setTextColor(Color.BLACK);
+            binding.textView1.setTextColor(Color.BLACK);
+            binding.sendAgain.setTextColor(Color.BLACK);
+            binding.otp.setBackgroundResource(R.drawable.textview_border_ver2);
+            binding.close.setColorFilter(Color.BLACK);
+        }
+    }
+
 }

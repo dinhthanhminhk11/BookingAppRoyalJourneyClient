@@ -4,22 +4,16 @@ import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSucc
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
@@ -33,24 +27,11 @@ import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.greenrobot.eventbus.EventBus;
 
 public class LoginActivity extends AppCompatActivity {
-    private ConstraintLayout contentView;
-    private ImageView imageView;
-    private TextView textView;
-    private ImageView imageView2;
-    private EditText edEmail;
-    private EditText edPass;
-    private TextView tvForgotPass;
-    private AppCompatButton btnSignIn;
-    private TextView textView3;
-    private TextView tvSignUp;
-    private TextInputEditText textInputLayoutPass;
-    private LottieAnimationView progressBar;
     private String correct_email = "";
     private String correct_password = "";
     private UserLogin userLogin;
@@ -64,22 +45,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        contentView = (ConstraintLayout) findViewById(R.id.contentView);
-        imageView = (ImageView) findViewById(R.id.imageView);
-        textView = (TextView) findViewById(R.id.textView);
-        imageView2 = (ImageView) findViewById(R.id.imageView2);
-        edEmail = (EditText) findViewById(R.id.edEmail);
-        edPass = (EditText) findViewById(R.id.edPass);
-        tvForgotPass = (TextView) findViewById(R.id.tvForgotPass);
-        btnSignIn = (AppCompatButton) findViewById(R.id.btnSignIn);
-        textView3 = (TextView) findViewById(R.id.textView3);
-        tvSignUp = (TextView) findViewById(R.id.tvSignUp);
-        progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
-
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
@@ -113,9 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.btnSignIn.setOnClickListener(v -> {
-            if (edEmail.getText().toString().isEmpty()) {
-//                binding.edEmail.requestFocus();
-//                binding.edEmail.setError(getString(R.string.enterMail));
+            if (binding.edEmail.getText().toString().isEmpty()) {
                 CookieBar.build(LoginActivity.this)
                         .setTitle(LoginActivity.this.getString(R.string.Notify))
                         .setMessage(LoginActivity.this.getString(R.string.enterMail))
@@ -127,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
 
-            } else if (edPass.getText().toString().isEmpty()) {
+            } else if (binding.edPass.getText().toString().isEmpty()) {
                 CookieBar.build(LoginActivity.this)
                         .setTitle(LoginActivity.this.getString(R.string.Notify))
                         .setMessage(LoginActivity.this.getString(R.string.enterPass))
@@ -138,10 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
-//                binding.edPass.requestFocus();
-//                binding.edPass.setError(getString(R.string.enterPass));
-
-
             } else {
                 loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString());
             }
@@ -200,5 +171,17 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentView.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imageView.setImageResource(R.drawable.ic_shape_login_dark);
+            binding.textView.setTextColor(Color.WHITE);
+            binding.textView3.setTextColor(Color.WHITE);
+        } else {
+            binding.contentView.setBackgroundColor(this.getResources().getColor(R.color.color_F6F6F6));
+            binding.imageView.setImageResource(R.drawable.ic_shape_login);
+            binding.textView.setTextColor(Color.BLACK);
+            binding.textView3.setTextColor(Color.BLACK);
+        }
+    }
 }

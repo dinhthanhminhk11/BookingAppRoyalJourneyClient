@@ -61,6 +61,15 @@ public class CancelBookingActivity extends AppCompatActivity {
         binding = ActivityCancelBookingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
         dateCancel = getIntent().getStringExtra("dateCancel");
         checkBanking = Boolean.parseBoolean(getIntent().getStringExtra("checkIsbacking"));
         checkSeem = Boolean.parseBoolean(getIntent().getStringExtra("checkSeem"));
@@ -185,6 +194,24 @@ public class CancelBookingActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imgBackFB.setColorFilter(getResources().getColor(R.color.white));
+            binding.textView2.setTextColor(Color.WHITE);
+            binding.textView7.setTextColor(Color.WHITE);
+            binding.tvNameBoss.setTextColor(Color.WHITE);
+            binding.textView8.setTextColor(Color.WHITE);
+
+            binding.view5.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+            binding.view5.setBackgroundColor(this.getResources().getColor(R.color.dark_282A37));
+
+            binding.view5.setBackgroundResource(R.drawable.bg_chat_boss_dark);
+        } else {
+            binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+        }
+    }
+
 }
