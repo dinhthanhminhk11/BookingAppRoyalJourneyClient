@@ -116,11 +116,28 @@ public class LoginActivity extends AppCompatActivity {
             if (edEmail.getText().toString().isEmpty()) {
 //                binding.edEmail.requestFocus();
 //                binding.edEmail.setError(getString(R.string.enterMail));
-                binding.textInputLayoutEmail.requestFocus();
-                binding.textInputLayoutEmail.setHelperText(getString(R.string.enterMail));
+                CookieBar.build(LoginActivity.this)
+                        .setTitle(LoginActivity.this.getString(R.string.Notify))
+                        .setMessage(LoginActivity.this.getString(R.string.enterMail))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+
             } else if (edPass.getText().toString().isEmpty()) {
-                binding.textInputLayoutPass.requestFocus();
-                binding.textInputLayoutPass.setHelperText(getString(R.string.enterPass));
+                CookieBar.build(LoginActivity.this)
+                        .setTitle(LoginActivity.this.getString(R.string.Notify))
+                        .setMessage(LoginActivity.this.getString(R.string.enterPass))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
 //                binding.edPass.requestFocus();
 //                binding.edPass.setError(getString(R.string.enterPass));
 
