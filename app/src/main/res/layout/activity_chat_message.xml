@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEEE"
+    android:id="@+id/contentBackground"
     tools:context=".ui.activity.chat_message.ChatMessageActivity">
 
     <include
@@ -107,12 +107,11 @@
         app:layout_constraintVertical_bias="0.98"
         android:alpha="0.9"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgSendChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_send_chat"
-        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_group_send_chat_activity"
         app:layout_constraintBottom_toBottomOf="@+id/edContentChat"
         app:layout_constraintEnd_toEndOf="@+id/edContentChat"
         app:layout_constraintTop_toTopOf="@+id/edContentChat"

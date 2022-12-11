@@ -2,8 +2,10 @@ package com.example.bookingapproyaljourney.ui.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -50,6 +52,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.ui.IconGenerator;
@@ -135,6 +138,15 @@ public class SeeMoreNearFromYouActivity extends AppCompatActivity implements OnM
         } else {
             mMap.setMyLocationEnabled(true);
             getCurrentLocation();// hàm lấy vị trí chỗ mình đang đứng
+        }
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
         }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -389,4 +401,27 @@ public class SeeMoreNearFromYouActivity extends AppCompatActivity implements OnM
         }
         return latLngGetAddress;
     }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.toolBar2.setBackgroundResource(R.drawable.background_button_filter_dark);
+            binding.toolBar2.setTitleTextColor(Color.WHITE);
+            binding.toolBar2.setSubtitleTextColor(Color.WHITE);
+            binding.toolBar2.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            nearFromYouAdapterMap.setColor(Color.WHITE, this.getResources().getColor(R.color.dark_282A37));
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json));
+            binding.bottomSheetProfile.setBackgroundResource(R.drawable.background_card_profile);
+            binding.textCountHouse.setTextColor(Color.WHITE);
+        } else {
+            binding.toolBar2.setBackgroundResource(R.drawable.background_button_filter);
+            binding.toolBar2.setTitleTextColor(Color.BLACK);
+            binding.toolBar2.setSubtitleTextColor(Color.BLACK);
+            binding.toolBar2.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            nearFromYouAdapterMap.setColor(Color.BLACK, Color.WHITE);
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            binding.bottomSheetProfile.setBackgroundResource(R.drawable.background_card_profile_white);
+            binding.textCountHouse.setTextColor(Color.BLACK);
+        }
+    }
+
 }

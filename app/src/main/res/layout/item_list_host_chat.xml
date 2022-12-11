@@ -5,6 +5,7 @@
     android:layout_height="@dimen/_90dp"
     android:background="@drawable/background_boss_chat"
     android:orientation="horizontal"
+    android:id="@+id/contentBackground"
     android:layout_marginStart="@dimen/_17dp"
     android:layout_marginEnd="@dimen/_17dp"
     android:layout_marginTop="@dimen/_20dp"
@@ -35,6 +36,7 @@
             android:textSize="@dimen/_17sp"
             android:alpha="0.8"/>
         <TextView
+            android:id="@+id/contentText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

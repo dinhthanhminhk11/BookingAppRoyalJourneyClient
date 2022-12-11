@@ -10,7 +10,7 @@ public class DepthTransformation implements SliderPager.PageTransformer{
     public void transformPage(View page, float position) {
 
         if (position < -1){    // [-Infinity,-1)
-            // This page is way off-screen to the left.
+            // This page is way off-screenChu to the left.
             page.setAlpha(0);
 
         }

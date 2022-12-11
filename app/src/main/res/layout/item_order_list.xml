@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/contentCard"
     android:layout_marginBottom="20dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
@@ -36,6 +37,7 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/viewLine1"
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
             android:layout_marginVertical="10dp"
@@ -96,6 +98,7 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/viewLine2"
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
             android:layout_marginVertical="10dp"
@@ -193,6 +196,7 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/viewLine3"
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
             android:layout_marginVertical="10dp"
@@ -211,6 +215,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/titleSum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

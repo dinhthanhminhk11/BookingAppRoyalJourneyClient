@@ -1,11 +1,10 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,8 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.ui.adapter.RevenueAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -34,6 +39,7 @@ public class HelpFragment extends Fragment {
     HashMap<String, List<String>> topics;
     RevenueAdapter setAdapter;
     EditText etSearch;
+    TextView contentText;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -87,10 +93,21 @@ public class HelpFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         listView = view.findViewById(R.id.list_support);
         etSearch = view.findViewById(R.id.etSearch);
+        contentText = view.findViewById(R.id.contentText);
         fillData();
 
 
-        setAdapter = new RevenueAdapter(getContext(),Title,topics);
+        setAdapter = new RevenueAdapter(getContext(), Title, topics);
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferences.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
         listView.setAdapter(setAdapter);
         check();
         etSearch.addTextChangedListener(new TextWatcher() {
@@ -110,19 +127,22 @@ public class HelpFragment extends Fragment {
             }
         });
     }
+
     private void check() {
         listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             int check = -1;
+
             @Override
             public void onGroupExpand(int groupPosition) {
-                if(check != -1 && groupPosition != check){
+                if (check != -1 && groupPosition != check) {
                     listView.collapseGroup(check);
                 }
                 check = groupPosition;
             }
         });
     }
-    public void fillData(){
+
+    public void fillData() {
         Title = new ArrayList<>();
         topics = new HashMap<>();
 
@@ -168,17 +188,25 @@ public class HelpFragment extends Fragment {
         c9.add(getString(R.string.question_help93));
         List<String> c10 = new ArrayList<>();
         c10.add(getString(R.string.question_help101));
-        topics.put(Title.get(0),c1);
-        topics.put(Title.get(1),c2);
-        topics.put(Title.get(2),c3);
-        topics.put(Title.get(3),c4);
-        topics.put(Title.get(4),c5);
-        topics.put(Title.get(5),c6);
-        topics.put(Title.get(6),c7);
-        topics.put(Title.get(7),c8);
-        topics.put(Title.get(8),c9);
-        topics.put(Title.get(9),c10);
-
+        topics.put(Title.get(0), c1);
+        topics.put(Title.get(1), c2);
+        topics.put(Title.get(2), c3);
+        topics.put(Title.get(3), c4);
+        topics.put(Title.get(4), c5);
+        topics.put(Title.get(5), c6);
+        topics.put(Title.get(6), c7);
+        topics.put(Title.get(7), c8);
+        topics.put(Title.get(8), c9);
+        topics.put(Title.get(9), c10);
     }
 
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            setAdapter.setColor(Color.WHITE);
+            contentText.setTextColor(Color.WHITE);
+        } else {
+            setAdapter.setColor(Color.BLACK);
+            contentText.setTextColor(Color.BLACK);
+        }
+    }
 }

@@ -165,7 +165,8 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
         categoryViewModel = new ViewModelProvider(getActivity()).get(CategoryViewModel.class);
         bestForYouAdapter = new BestForYouAdapter(this);
-        bestForYouAdapterNotNull = new BestForYouAdapterNotNull(this);
+        bestForYouAdapterNotNull = new BestForYouAdapterNotNull();
+        bestForYouAdapterNotNull.setListernaer(this);
 
         nearFromYouAdapter = new NearFromYouAdapter(new NearFromYouAdapter.Listerner() {
             @Override
@@ -395,6 +396,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             titleBestYou.setTextColor(Color.WHITE);
 
             bestForYouAdapter.setColor(Color.WHITE, Color.WHITE);
+            bestForYouAdapterNotNull.setColor(Color.WHITE, Color.WHITE);
         } else {
             backgroundContent.setBackgroundColor((this.getResources().getColor(R.color.white)));
             etSearch.setBackgroundResource(R.drawable.framesearch_homefragment);
@@ -404,6 +406,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             titleBestYou.setTextColor(Color.BLACK);
 
             bestForYouAdapter.setColor(getContext().getResources().getColor(R.color.color_858585), Color.BLACK);
+            bestForYouAdapterNotNull.setColor( Color.BLACK,getContext().getResources().getColor(R.color.color_858585));
         }
     }
 }

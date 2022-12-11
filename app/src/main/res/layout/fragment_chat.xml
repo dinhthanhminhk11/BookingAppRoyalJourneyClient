@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.ChatFragment"
-    android:background="#EEEEEE">
+    tools:context=".ui.fragment.ChatFragment">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvListHost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -22,16 +24,18 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading.json"
         app:lottie_loop="true" />
+
     <LinearLayout
-        android:visibility="visible"
         android:id="@+id/contentNullList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_16dp"
         android:layout_marginTop="@dimen/_10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
+            android:id="@+id/titleProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"

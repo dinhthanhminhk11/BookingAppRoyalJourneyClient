@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -25,9 +26,23 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     private NumberFormat fm = new DecimalFormat("#,###");
     private Callback callback;
 
-    public OrderAdapter(List<OrderListResponse> data, Callback callback) {
-        this.data = data;
+    private int color = Color.BLACK;
+    private int background = Color.WHITE;
+
+    public OrderAdapter() {
         detailProductRepository = new DetailProductRepository();
+    }
+
+    public void setColor(int color, int background) {
+        this.color = color;
+        this.background = background;
+    }
+
+    public void setData(List<OrderListResponse> data) {
+        this.data = data;
+    }
+
+    public void setCallback(Callback callback) {
         this.callback = callback;
     }
 
@@ -46,34 +61,31 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder holder, int position) {
         OrderListResponse item = data.get(position);
         if (item != null) {
-
             if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && item.isBackingPercent()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
             } else if (item.getStatus().equals("Chủ đã huỷ")) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
-
             } else if (item.getStatus().equals("Đã xác nhận") && item.isBanking()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
                 holder.itemOrderListBinding.status.setText("Đã thanh toán");
-            }else if(item.getStatus().equals("Khách huỷ") && !item.isCancellationDate()){
+            } else if (item.getStatus().equals("Khách huỷ") && !item.isCancellationDate()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
                 holder.itemOrderListBinding.status.setText("Đang chờ huỷ");
-            }else if(item.getStatus().equals("Khách huỷ") && item.isCancellationDate()){
+            } else if (item.getStatus().equals("Khách huỷ") && item.isCancellationDate()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
                 holder.itemOrderListBinding.status.setText("Đã huỷ phòng");
-            }else if(item.getStatus().equals("Đã xác nhận") && item.isBackingPercent()){
+            } else if (item.getStatus().equals("Đã xác nhận") && item.isBackingPercent()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
                 holder.itemOrderListBinding.status.setText("Đã đặt cọc");
-            }else  if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && !item.isBackingPercent()) {
+            } else if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && !item.isBackingPercent()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
-            }else if(item.getStatus().equals("Đã trả phòng") && item.isCheckedOut()){
+            } else if (item.getStatus().equals("Đã trả phòng") && item.isCheckedOut()) {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_checkout);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
-            }
-            else {
+            } else {
                 holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_pendding);
                 holder.itemOrderListBinding.status.setText(item.getStatus());
             }
@@ -85,6 +97,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.itemOrderListBinding.tvNgayTra.setText(item.getEndDate());
             holder.itemOrderListBinding.price.setText(fm.format(Integer.parseInt(item.getPrice())) + " VND");
             holder.itemOrderListBinding.TVsoDem.setText(item.getDay() + "");
+
+            holder.itemOrderListBinding.countPerson.setTextColor(color);
+            holder.itemOrderListBinding.nameHouse.setTextColor(color);
+            holder.itemOrderListBinding.time.setTextColor(color);
+            holder.itemOrderListBinding.startDate.setTextColor(color);
+            holder.itemOrderListBinding.tvNgayTra.setTextColor(color);
+            holder.itemOrderListBinding.price.setTextColor(color);
+            holder.itemOrderListBinding.viewLine1.setBackgroundColor(color);
+            holder.itemOrderListBinding.viewLine2.setBackgroundColor(color);
+            holder.itemOrderListBinding.viewLine3.setBackgroundColor(color);
+            holder.itemOrderListBinding.titleSum.setTextColor(color);
+            holder.itemOrderListBinding.contentCard.setCardBackgroundColor(background);
+
             detailProductRepository.getProductById(item.getIdProduct(), new CallbackHouseById() {
                 @Override
                 public void success(HouseDetailResponse houseDetailResponse) {

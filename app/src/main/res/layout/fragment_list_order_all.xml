@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEEE"
+    android:id="@+id/contentBackground"
     tools:context=".ui.fragment.ListOrderAllFragment"
     tools:ignore="MissingDefaultResource">
 
@@ -19,7 +19,6 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_10dp"
             android:layout_marginTop="@dimen/_10dp"
-            android:background="#EEEEEE"
             android:overScrollMode="never" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -49,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:text="@string/textListOrder"
+            android:id="@+id/titleList"
+            android:text="@string/textListOrder1"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold" />

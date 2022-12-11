@@ -20,7 +20,7 @@ public class RevenueAdapter extends BaseExpandableListAdapter implements Filtera
     List<String> title;
     HashMap<String, List<String>> toppic;
     List<String> listTemp;
-
+    private int color;
     public RevenueAdapter(Context context, List<String> title, HashMap<String, List<String>> toppic) {
         this.context = context;
         this.title = title;
@@ -28,6 +28,9 @@ public class RevenueAdapter extends BaseExpandableListAdapter implements Filtera
         this.listTemp = title;
     }
 
+    public void setColor(int color) {
+        this.color = color;
+    }
 
     @Override
     public int getGroupCount() {
@@ -74,6 +77,7 @@ public class RevenueAdapter extends BaseExpandableListAdapter implements Filtera
 
         TextView textView = convertView.findViewById(R.id.tv_group);
         textView.setText(group);
+        textView.setTextColor(color);
         return convertView;
     }
 

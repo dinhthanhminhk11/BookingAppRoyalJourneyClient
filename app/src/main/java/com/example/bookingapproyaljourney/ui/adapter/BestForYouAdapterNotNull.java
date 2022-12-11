@@ -28,6 +28,13 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
     private List<House> dataHouse;
     private NumberFormat fm = new DecimalFormat("#,###");
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
+    private int color;
+    private int color1;
+
+    public void setColor(int color, int color1) {
+        this.color = color;
+        this.color1 = color1;
+    }
 
     public void setDataHouse(List<House> dataHouse) {
         notifyDataSetChanged();
@@ -36,7 +43,10 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
 
     private Listernaer listernaer;
 
-    public BestForYouAdapterNotNull(Listernaer listernaer) {
+    public BestForYouAdapterNotNull() {
+    }
+
+    public void setListernaer(Listernaer listernaer) {
         this.listernaer = listernaer;
     }
 
@@ -88,6 +98,14 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
             holder.btnDat.setOnClickListener(v -> {
                 listernaer.onClick(house);
             });
+
+            holder.tvAmountBedRoom.setTextColor(color1);
+            holder.tvCountBathroom.setTextColor(color1);
+            holder.tvNameConvenient.setTextColor(color1);
+            holder.tvPerson.setTextColor(color);
+            holder.tvTenPhong.setTextColor(color);
+            holder.tvStart.setTextColor(color);
+
         }
     }
 

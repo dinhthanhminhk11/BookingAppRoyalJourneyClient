@@ -1,16 +1,17 @@
 package com.example.bookingapproyaljourney.ui.activity.chat_message;
 
-import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,7 +58,9 @@ public class ChatMessageActivity extends AppCompatActivity {
     private ChatViewModel chatViewModel;
     private List<Content> listChat = new ArrayList<>();
     private ChatAdapter chatAdapter;
-    private String id_boss ="";
+    private String id_boss = "";
+    private ConstraintLayout contentBackground;
+    private View view2;
 
     {
         try {
@@ -66,6 +69,7 @@ public class ChatMessageActivity extends AppCompatActivity {
             e.getMessage();
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +82,8 @@ public class ChatMessageActivity extends AppCompatActivity {
         rcvChatMessage = (RecyclerView) findViewById(R.id.rcvChatMessage);
         edContentChat = (EditText) findViewById(R.id.edContentChat);
         imgSendChat = (ImageView) findViewById(R.id.imgSendChat);
+        contentBackground = (ConstraintLayout) findViewById(R.id.contentBackground);
+        view2 = (View) findViewById(R.id.view2);
         chatViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
 
         toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
@@ -87,6 +93,15 @@ public class ChatMessageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolBar.setNavigationOnClickListener(v -> onBackPressed());
 
+        SharedPreferences sharedPreferences = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferences.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
         mSocket.connect();
         Intent intent = getIntent();
         id_boss = intent.getStringExtra("ID_BOSS");
@@ -95,7 +110,7 @@ public class ChatMessageActivity extends AppCompatActivity {
         Glide.with(this).load(img_boss).transform(new CenterCrop(), new RoundedCorners(20)).into(imgBossChat);
         tvNameBossChat.setText(name_boss);
         chatViewModel.getContentChatLiveData(UserClient.getInstance().getId(), id_boss).observe(this, it -> {
-            for (int i=0; i <= it.size()-1; i++){
+            for (int i = 0; i <= it.size() - 1; i++) {
                 listChat.add(it.get(i));
             }
             chatAdapter = new ChatAdapter(listChat);
@@ -107,7 +122,9 @@ public class ChatMessageActivity extends AppCompatActivity {
         mSocket.on("new message", onNewMessage);
         mSocket.emit("join", UserClient.getInstance().getId());
         mSocket.on("join", checkOnline);
-        imgSendChat.setOnClickListener(v ->{sendChat();});
+        imgSendChat.setOnClickListener(v -> {
+            sendChat();
+        });
 
 
     }
@@ -118,22 +135,22 @@ public class ChatMessageActivity extends AppCompatActivity {
             runOnUiThread(() -> {
                 JSONObject data = (JSONObject) args[0];
                 String mess = data.optString("message");
-                listChat.add(new Content(new Text(mess),id_boss,UserClient.getInstance().getId()));
+                listChat.add(new Content(new Text(mess), id_boss, UserClient.getInstance().getId()));
                 chatAdapter.notifyDataSetChanged();
                 rcvChatMessage.smoothScrollToPosition(listChat.size() - 1);
             });
         }
     };
-    private final Emitter.Listener checkOnline= new Emitter.Listener() {
+    private final Emitter.Listener checkOnline = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
             runOnUiThread(() -> {
                 JSONObject data = (JSONObject) args[0];
                 String mess = data.optString("id");
-                if(mess.equals(id_boss)){
+                if (mess.equals(id_boss)) {
                     tvCheckOnline.setText("Online");
                     imgOnlineChat.setImageDrawable(getResources().getDrawable(R.drawable.ic_online));
-                }else {
+                } else {
                     tvCheckOnline.setText("Offline");
                     imgOnlineChat.setImageDrawable(getResources().getDrawable(R.drawable.ic_offline));
                 }
@@ -141,8 +158,8 @@ public class ChatMessageActivity extends AppCompatActivity {
         }
     };
 
-    public void sendChat(){
-        if(edContentChat.getText().toString().isEmpty() || edContentChat.getText().toString().trim().equals("")){
+    public void sendChat() {
+        if (edContentChat.getText().toString().isEmpty() || edContentChat.getText().toString().trim().equals("")) {
             edContentChat.setText("");
             return;
         }
@@ -153,16 +170,16 @@ public class ChatMessageActivity extends AppCompatActivity {
                 UserClient.getInstance().getId(),
                 id_boss,
                 UserClient.getInstance().getId(),
-                edContentChat.getText().toString(),date);
+                edContentChat.getText().toString(), date);
         try {
             JSONObject jObject = new JSONObject(gson.toJson(ms));
             mSocket.emit("message", jObject);
-            Message message = new Message(id_boss,UserClient.getInstance().getId(),edContentChat.getText().toString());
+            Message message = new Message(id_boss, UserClient.getInstance().getId(), edContentChat.getText().toString());
             chatViewModel.insertChat(message);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        listChat.add(new Content(new Text(edContentChat.getText().toString()),UserClient.getInstance().getId(),id_boss));
+        listChat.add(new Content(new Text(edContentChat.getText().toString()), UserClient.getInstance().getId(), id_boss));
         chatAdapter.notifyDataSetChanged();
         rcvChatMessage.smoothScrollToPosition(listChat.size() - 1);
         edContentChat.setText("");
@@ -172,5 +189,27 @@ public class ChatMessageActivity extends AppCompatActivity {
     protected void onPause() {
         mSocket.disconnect();
         super.onPause();
+    }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+
+            toolBar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            toolBar.setTitleTextColor(Color.WHITE);
+            toolBar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            view2.setBackgroundResource(R.drawable.background_boss_chat_drak);
+            tvNameBossChat.setTextColor(Color.WHITE);
+            tvCheckOnline.setTextColor(Color.WHITE);
+        } else {
+            tvNameBossChat.setTextColor(Color.BLACK);
+            tvCheckOnline.setTextColor(this.getResources().getColor(R.color.black));
+            view2.setBackgroundResource(R.drawable.background_boss_chat);
+            toolBar.setBackgroundColor(Color.WHITE);
+            contentBackground.setBackgroundColor(Color.WHITE);
+            toolBar.setTitleTextColor(Color.BLACK);
+            toolBar.getNavigationIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+        }
     }
 }

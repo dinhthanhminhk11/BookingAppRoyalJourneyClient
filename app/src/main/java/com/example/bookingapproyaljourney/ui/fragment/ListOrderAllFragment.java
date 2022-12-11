@@ -1,6 +1,10 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +69,18 @@ public class ListOrderAllFragment extends Fragment {
     }
 
     private void initView(View view) {
+
+        adapter = new OrderAdapter();
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferences.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
 //        Spannable wordtoSpan = new SpannableString(this.getString(R.string.question_bookmard));
 //
 ////        wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -100,7 +116,8 @@ public class ListOrderAllFragment extends Fragment {
                     } else {
                         binding.contentNullList.setVisibility(View.VISIBLE);
                     }
-                    adapter = new OrderAdapter(listOrderByIdUser.getData(), new OrderAdapter.Callback() {
+                    adapter.setData(listOrderByIdUser.getData());
+                    adapter.setCallback(new OrderAdapter.Callback() {
                         @Override
                         public void onClick(OrderListResponse orderListResponse) {
                             Intent intent = new Intent(getActivity().getApplication(), StatusBillActivity.class);
@@ -122,5 +139,26 @@ public class ListOrderAllFragment extends Fragment {
         });
     }
 
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.contentBackground.setBackgroundColor(getContext().getResources().getColor(R.color.dark_212332));
+            binding.recyclerView.setBackgroundColor(getContext().getResources().getColor(R.color.dark_212332));
+            binding.titleList.setTextColor(Color.WHITE);
+            binding.contentProfile.setTextColor(Color.WHITE);
+            binding.textHelps.setTextColor(Color.WHITE);
+            binding.btnSearch.setTextColor(Color.WHITE);
+            binding.btnSearch.setBackgroundResource(R.drawable.textview_border_setting_white);
+            adapter.setColor(Color.WHITE, this.getResources().getColor(R.color.dark_282A37));
+        } else {
+            binding.recyclerView.setBackgroundColor(getContext().getResources().getColor(R.color.color_EEEEEE));
+            binding.contentBackground.setBackgroundColor(Color.WHITE);
+            binding.titleList.setTextColor(Color.BLACK);
+            binding.contentProfile.setTextColor(Color.BLACK);
+            binding.textHelps.setTextColor(Color.BLACK);
+            binding.btnSearch.setTextColor(Color.BLACK);
+            binding.btnSearch.setBackgroundResource(R.drawable.textview_border_black);
+            adapter.setColor(Color.BLACK, Color.WHITE);
+        }
+    }
 
 }

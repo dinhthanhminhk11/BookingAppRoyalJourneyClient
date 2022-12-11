@@ -1,8 +1,12 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -10,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivitySeeMoreBestForYouBinding;
@@ -32,8 +35,7 @@ public class SeeMoreBestForYouActivity extends AppCompatActivity {
     private BestForYouAdapterNotNull bestForYouAdapterNotNull;
     private MaterialToolbar toolBar;
     private RecyclerView rcvSeeMoreBestForYou;
-    private LottieAnimationView progressBar;
-
+    private RelativeLayout contentBackground;
     private ActivitySeeMoreBestForYouBinding binding;
 
     private SeeMoreBestForYouViewModel seeMoreBestForYouViewModel;
@@ -47,6 +49,7 @@ public class SeeMoreBestForYouActivity extends AppCompatActivity {
         seeMoreBestForYouViewModel = new ViewModelProvider(this).get(SeeMoreBestForYouViewModel.class);
 
         rcvSeeMoreBestForYou = (RecyclerView) findViewById(R.id.rcvSeeMoreBestForYou);
+        contentBackground = (RelativeLayout) findViewById(R.id.contentBackground);
         rcvSeeMoreBestForYou.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         toolBar = (MaterialToolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolBar);
@@ -57,14 +60,23 @@ public class SeeMoreBestForYouActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle(R.string.BestForYou_homeFragment);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        bestForYouAdapterNotNull = new BestForYouAdapterNotNull();
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
 
         seeMoreBestForYouViewModel.getCategoryBestForYouResponseMutableLiveData().observe(this, new Observer<CategoryBestForYouResponse>() {
             @Override
             public void onChanged(CategoryBestForYouResponse categoryBestForYouResponse) {
-                bestForYouAdapterNotNull = new BestForYouAdapterNotNull(new BestForYouAdapterNotNull.Listernaer() {
+                bestForYouAdapterNotNull.setListernaer(new BestForYouAdapterNotNull.Listernaer() {
                     @Override
                     public void onClick(House house) {
                         Intent intent = new Intent(SeeMoreBestForYouActivity.this, DetailProductActivity.class);
@@ -107,5 +119,22 @@ public class SeeMoreBestForYouActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            toolBar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            toolBar.setTitleTextColor(Color.WHITE);
+            toolBar.setSubtitleTextColor(Color.WHITE);
+            toolBar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            contentBackground.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            bestForYouAdapterNotNull.setColor(Color.WHITE, Color.WHITE);
+        } else {
+            toolBar.setBackgroundColor(Color.WHITE);
+            toolBar.setTitleTextColor(Color.BLACK);
+            toolBar.setSubtitleTextColor(Color.BLACK);
+            toolBar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            contentBackground.setBackgroundColor(Color.WHITE);
+            bestForYouAdapterNotNull.setColor(Color.BLACK, this.getResources().getColor(R.color.color_858585));
+        }
+    }
 
 }
