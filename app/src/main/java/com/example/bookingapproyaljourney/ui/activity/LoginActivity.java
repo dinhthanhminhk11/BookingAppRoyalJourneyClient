@@ -33,6 +33,7 @@ import com.example.bookingapproyaljourney.view_model.LoginViewModel;
 import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.greenrobot.eventbus.EventBus;
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private AppCompatButton btnSignIn;
     private TextView textView3;
     private TextView tvSignUp;
+    private TextInputEditText textInputLayoutPass;
     private LottieAnimationView progressBar;
     private String correct_email = "";
     private String correct_password = "";
@@ -73,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         textView3 = (TextView) findViewById(R.id.textView3);
         tvSignUp = (TextView) findViewById(R.id.tvSignUp);
         progressBar = (LottieAnimationView) findViewById(R.id.progressBar);
+
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -111,11 +114,17 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.btnSignIn.setOnClickListener(v -> {
             if (edEmail.getText().toString().isEmpty()) {
-                binding.edEmail.requestFocus();
-                binding.edEmail.setError(getString(R.string.enterMail));
+//                binding.edEmail.requestFocus();
+//                binding.edEmail.setError(getString(R.string.enterMail));
+                binding.textInputLayoutEmail.requestFocus();
+                binding.textInputLayoutEmail.setHelperText(getString(R.string.enterMail));
             } else if (edPass.getText().toString().isEmpty()) {
-                binding.edPass.requestFocus();
-                binding.edPass.setError(getString(R.string.enterPass));
+                binding.textInputLayoutPass.requestFocus();
+                binding.textInputLayoutPass.setHelperText(getString(R.string.enterPass));
+//                binding.edPass.requestFocus();
+//                binding.edPass.setError(getString(R.string.enterPass));
+
+
             } else {
                 loginViewModel.login(binding.edEmail.getText().toString(), binding.edPass.getText().toString());
             }
