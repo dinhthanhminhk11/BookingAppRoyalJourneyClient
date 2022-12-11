@@ -64,6 +64,7 @@
             android:textSize="@dimen/_16sp" />
 
         <EditText
+            android:padding="@dimen/_10dp"
             android:id="@+id/otp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

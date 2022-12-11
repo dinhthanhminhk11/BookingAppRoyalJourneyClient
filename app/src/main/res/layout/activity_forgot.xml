@@ -64,6 +64,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
+        android:padding="@dimen/_10dp"
         android:id="@+id/edEmailForgot"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_51dp"

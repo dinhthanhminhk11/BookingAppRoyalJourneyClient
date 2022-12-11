@@ -6,6 +6,7 @@
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_complete_order.xml" value="0.154" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_warning_icon_check.xml" value="0.224" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_bill.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_bill_oder.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_congrats.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_detail_gallery.xml" value="0.20863616930312098" />
@@ -15,15 +16,24 @@
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_login.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_main.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_otp.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_otppassword.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_register.xml" value="0.20599409033347404" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_bookmark.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_chat.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_filter_home.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_filter_map.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_help.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_home.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_list_order_all.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_status_bill.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_text.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragmentcancelllationpolicy.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bathdrooms.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bathroombottomsheet.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bathroomlist.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bestforyou_hired.xml" value="0.20863616930312098" />
+        <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bestforyou_homefragment.xml" value="0.20863616930312098" />
         <entry key="..\:/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_list_host_chat.xml" value="0.20863616930312098" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable-v24/gradient_blue.xml" value="0.119" />
         <entry key="..\:/DuAnTN/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_blue_activity.xml" value="0.113" />
