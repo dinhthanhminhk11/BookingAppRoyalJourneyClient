@@ -1,0 +1,439 @@
+Index: app/src/main/res/layout/activity_contact.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_contact.xml b/app/src/main/res/layout/activity_contact.xml
+--- a/app/src/main/res/layout/activity_contact.xml	(revision 5eab71553a13082362b2e632cf267a6fab4556f2)
++++ b/app/src/main/res/layout/activity_contact.xml	(date 1670834267734)
+@@ -22,7 +22,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="70dp"
+-        android:text="Công ty cổ phần du lịch Việt Nam VnTravel"
++        android:text="@string/Company"
+         android:textColor="@color/black"
+         android:textSize="19dp"
+         android:textStyle="bold" />
+@@ -34,7 +34,7 @@
+         android:layout_below="@id/tv1"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="10dp"
+-        android:text="Hà Nội :  "
++        android:text="@string/Ha_noi"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -49,7 +49,7 @@
+         android:layout_marginLeft="129dp"
+         android:layout_marginTop="10dp"
+         android:layout_toEndOf="@+id/tv2"
+-        android:text=" (024) 7109 9999  "
++        android:text="@string/Number_hanoi"
+         android:textColor="@color/blue"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -61,7 +61,7 @@
+         android:layout_below="@+id/tv3"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="10dp"
+-        android:text="Tp.Hồ Chí Minh : "
++        android:text="@string/tp_h_ch_minh"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -75,7 +75,7 @@
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="10dp"
+         android:layout_toEndOf="@+id/tv4"
+-        android:text="(028) 7109 9998"
++        android:text="@string/Number_TP_hochiminh"
+         android:textColor="@color/blue"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -87,7 +87,7 @@
+         android:layout_below="@id/tv4"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="10dp"
+-        android:text="Hỗ trợ đặt vé máy bay : "
++        android:text="@string/Ticket_booking_support"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -101,7 +101,7 @@
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="177dp"
+         android:layout_toEndOf="@+id/tv6"
+-        android:text=" 1900 2083 "
++        android:text="@string/Number_Ticketbookingsupport"
+         android:textColor="@color/blue"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -112,7 +112,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="210dp"
+-        android:text="Email :"
++        android:text="@string/email_contact"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -124,7 +124,7 @@
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="210dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text="admin@mytour.vn"
++        android:text="@string/royaljouroyal_gmail_com"
+         android:textColor="@color/blue"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -134,7 +134,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="250dp"
+-        android:text="Văn phòng Hà Nội :"
++        android:text="@string/vp1"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -146,7 +146,7 @@
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="250dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text=" Tầng 11,Tòa Peakview, 36 "
++        android:text="@string/dcpv1"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -155,7 +155,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="275dp"
+-        android:text="Hoàng Cầu, Đống Đa,Hà Nội"
++        android:text="@string/dcvp11"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -164,7 +164,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="310dp"
+-        android:text="Văn phòng Hồ Chí Minh :"
++        android:text="@string/vp2"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -176,7 +176,7 @@
+         android:layout_marginLeft="15dp"
+         android:layout_marginTop="310dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text="Tầng 6 , Tòa Nhà  "
++        android:text="@string/dcvp2"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -185,7 +185,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="335dp"
+-        android:text="Central Park ,17 Nguyễn Du, Q.1 , Thành phố "
++        android:text="@string/dcvp21"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -194,7 +194,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="360dp"
+-        android:text="Hồ Chí Minh "
++        android:text="@string/dcvp22"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -203,7 +203,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="390dp"
+-        android:text="Số ĐKKD :"
++        android:text="@string/number_DKKD"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -215,7 +215,7 @@
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="390dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text="0108886908 cấp ngày 04/09/2019"
++        android:text="@string/DKKD_number"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -224,7 +224,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="420dp"
+-        android:text="Nơi Cấp :"
++        android:text="@string/noicap"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -236,7 +236,7 @@
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="420dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text="Sở kế hoạch và đầu tư thành phố Hà Nội "
++        android:text="@string/noicap1"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -245,7 +245,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="460dp"
+-        android:text="Lĩnh vực kinh doanh :"
++        android:text="@string/field"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -257,7 +257,7 @@
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="460dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text="Đại lý du lịch"
++        android:text="@string/field1"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -266,7 +266,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="490dp"
+-        android:text="Địa chỉ tên miền :"
++        android:text="@string/Address1"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -278,7 +278,7 @@
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="490dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text="MyVnTour"
++        android:text="@string/Address11"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -287,7 +287,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="520dp"
+-        android:text="Tài khoản ngân hàng số :"
++        android:text="@string/Account1"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -299,7 +299,7 @@
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="520dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text="19027493250015 "
++        android:text="@string/Account_number"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -308,7 +308,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="550dp"
+-        android:text="Techcombank Chi Nhánh Hội Sở"
++        android:text="@string/techcombank"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -317,7 +317,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="580dp"
+-        android:text="Chủ tài khoản :"
++        android:text="@string/Account_main"
+         android:textColor="@color/black"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -329,7 +329,7 @@
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="580dp"
+         android:layout_toEndOf="@+id/tv8"
+-        android:text="Công ty TNHH Mytour Việt Nam"
++        android:text="@string/Account_main1"
+         android:textColor="@color/black"
+         android:textSize="18dp" />
+ 
+@@ -338,7 +338,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="625dp"
+-        android:text="Quy chế hoạt động"
++        android:text="@string/Regulation"
+         android:textColor="@color/blue"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -348,7 +348,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="655dp"
+-        android:text="Chính sách bảo mật"
++        android:text="@string/Privacy_Policy"
+         android:textColor="@color/blue"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+@@ -358,7 +358,7 @@
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="685dp"
+-        android:text="Quy trình giải quyết , tranh chấp khiếu nại"
++        android:text="@string/Complaint_handling_process"
+         android:textColor="@color/blue"
+         android:textSize="18dp"
+         android:textStyle="bold" />
+Index: app/src/main/res/values-en-rUS/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values-en-rUS/strings.xml b/app/src/main/res/values-en-rUS/strings.xml
+--- a/app/src/main/res/values-en-rUS/strings.xml	(revision 5eab71553a13082362b2e632cf267a6fab4556f2)
++++ b/app/src/main/res/values-en-rUS/strings.xml	(date 1670834267745)
+@@ -336,5 +336,37 @@
+     <string name="Ban_muon_truy_cap_Camera">Want to access Camera ?</string>
+     <string name="Chon_cai_dat_de_cap_quyen_cho_ung_dung">Select Settings to give the app Camera permission.</string>
+     <string name="Thoat">Cancel</string>
++    <string name="Company">Công ty cổ phần du lịch Việt Nam VnTravel</string>
++    <string name="Ha_noi">Hà Nội :</string>
++    <string name="Number_hanoi">(024) 7109 9999</string>
++    <string name="tp_h_ch_minh">Tp_ho_chi_minh</string>
++    <string name="Number_TP_hochiminh">(028) 7109 9998</string>
++    <string name="Ticket_booking_support">Hỗ trợ đặt vé máy bay :</string>
++    <string name="Number_Ticketbookingsupport">1900 2083</string>
++    <string name="email_contact">Email :</string>
++    <string name="royaljouroyal_gmail_com">royaljouroyal@gmail.com</string>
++    <string name="vp1">Văn phòng Hà Nội :</string>
++    <string name="dcpv1">Tầng 11,Tòa Peakview, 36</string>
++    <string name="dcvp11">Hoàng Cầu, Đống Đa,Hà Nội</string>
++    <string name="vp2">Văn phòng Hồ Chí Minh :</string>
++    <string name="dcvp2">Tầng 6 , Tòa Nhà</string>
++    <string name="dcvp21">Central Park ,17 Nguyễn Du, Q.1 , Thành phố</string>
++    <string name="dcvp22">Hồ Chí Minh</string>
++    <string name="number_DKKD">Số ĐKKD :</string>
++    <string name="DKKD_number">0108886908 cấp ngày 04/09/2019</string>
++    <string name="noicap">Nơi Cấp :</string>
++    <string name="noicap1">Sở kế hoạch và đầu tư thành phố Hà Nội</string>
++    <string name="field">Lĩnh vực kinh doanh :</string>
++    <string name="field1">Đại lý du lịch</string>
++    <string name="Address1">Địa chỉ tên miền :</string>
++    <string name="Address11">RoyalJourney</string>
++    <string name="Account1">Tài khoản ngân hàng số :</string>
++    <string name="Account_number">19027493250015</string>
++    <string name="techcombank">Techcombank Chi Nhánh Hội Sở</string>
++    <string name="Account_main">Chủ tài khoản :</string>
++    <string name="Account_main1">Công ty TNHH Mytour Việt Nam</string>
++    <string name="Regulation">Quy chế hoạt động</string>
++    <string name="Privacy_Policy">Chính sách bảo mật</string>
++    <string name="Complaint_handling_process">Quy trình giải quyết , tranh chấp khiếu nại</string>
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/values-vi-rVN/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values-vi-rVN/strings.xml b/app/src/main/res/values-vi-rVN/strings.xml
+--- a/app/src/main/res/values-vi-rVN/strings.xml	(revision 5eab71553a13082362b2e632cf267a6fab4556f2)
++++ b/app/src/main/res/values-vi-rVN/strings.xml	(date 1670834267750)
+@@ -303,5 +303,37 @@
+     <string name="Chon_cai_dat_de_cap_quyen_cho_ung_dung">Chọn phần Cài đặt để cấp quyền Camera cho ứng dụng.</string>
+     <string name="Thoat">Thoát</string>
+     <string name="Ban_tu_choi_cap_quyen_camera">Bạn đã từ chối cấp quyền Camera</string>
++    <string name="Company">Công ty cổ phần du lịch Việt Nam VnTravel</string>
++    <string name="Ha_noi">Hà Nội :</string>
++    <string name="Number_hanoi">(024) 7109 9999</string>
++    <string name="tp_h_ch_minh">Tp_ho_chi_minh</string>
++    <string name="Number_TP_hochiminh">(028) 7109 9998</string>
++    <string name="Ticket_booking_support">Hỗ trợ đặt vé máy bay :</string>
++    <string name="Number_Ticketbookingsupport">1900 2083</string>
++    <string name="email_contact">Email :</string>
++    <string name="royaljouroyal_gmail_com">royaljouroyal@gmail.com</string>
++    <string name="vp1">Văn phòng Hà Nội :</string>
++    <string name="dcpv1">Tầng 11,Tòa Peakview, 36</string>
++    <string name="dcvp11">Hoàng Cầu, Đống Đa,Hà Nội</string>
++    <string name="vp2">Văn phòng Hồ Chí Minh :</string>
++    <string name="dcvp2">Tầng 6 , Tòa Nhà</string>
++    <string name="dcvp21">Central Park ,17 Nguyễn Du, Q.1 , Thành phố</string>
++    <string name="dcvp22">Hồ Chí Minh</string>
++    <string name="number_DKKD">Số ĐKKD :</string>
++    <string name="DKKD_number">0108886908 cấp ngày 04/09/2019</string>
++    <string name="noicap">Nơi Cấp :</string>
++    <string name="noicap1">Sở kế hoạch và đầu tư thành phố Hà Nội</string>
++    <string name="field">Lĩnh vực kinh doanh :</string>
++    <string name="field1">Đại lý du lịch</string>
++    <string name="Address1">Địa chỉ tên miền :</string>
++    <string name="Address11">RoyalJourney</string>
++    <string name="Account1">Tài khoản ngân hàng số :</string>
++    <string name="Account_number">19027493250015</string>
++    <string name="techcombank">Techcombank Chi Nhánh Hội Sở</string>
++    <string name="Account_main">Chủ tài khoản :</string>
++    <string name="Account_main1">Công ty TNHH Mytour Việt Nam</string>
++    <string name="Regulation">Quy chế hoạt động</string>
++    <string name="Privacy_Policy">Chính sách bảo mật</string>
++    <string name="Complaint_handling_process">Quy trình giải quyết , tranh chấp khiếu nại</string>
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 5eab71553a13082362b2e632cf267a6fab4556f2)
++++ b/app/src/main/res/values/strings.xml	(date 1670834267740)
+@@ -349,7 +349,38 @@
+     <string name="EditProfileError">Chỉnh sửa thất bại</string>
+     <string name="ThuLai">Vui lòng thử lại</string>
+     <string name="Ban_tu_choi_cap_quyen_camera">Bạn đã từ chối cấp quyền Camera</string>
+-
++    <string name="Company">Công ty cổ phần du lịch Việt Nam VnTravel</string>
++    <string name="Ha_noi">Hà Nội :</string>
++    <string name="Number_hanoi">(024) 7109 9999</string>
++    <string name="tp_h_ch_minh">Tp_ho_chi_minh</string>
++    <string name="Number_TP_hochiminh">(028) 7109 9998</string>
++    <string name="Ticket_booking_support">Hỗ trợ đặt vé máy bay :</string>
++    <string name="Number_Ticketbookingsupport">1900 2083</string>
++    <string name="email_contact">Email :</string>
++    <string name="royaljouroyal_gmail_com">royaljouroyal@gmail.com</string>
++    <string name="vp1">Văn phòng Hà Nội :</string>
++    <string name="dcpv1">Tầng 11,Tòa Peakview, 36</string>
++    <string name="dcvp11">Hoàng Cầu, Đống Đa,Hà Nội</string>
++    <string name="vp2">Văn phòng Hồ Chí Minh :</string>
++    <string name="dcvp2">Tầng 6 , Tòa Nhà</string>
++    <string name="dcvp21">Central Park ,17 Nguyễn Du, Q.1 , Thành phố</string>
++    <string name="dcvp22">Hồ Chí Minh</string>
++    <string name="number_DKKD">Số ĐKKD :</string>
++    <string name="DKKD_number">0108886908 cấp ngày 04/09/2019</string>
++    <string name="noicap">Nơi Cấp :</string>
++    <string name="noicap1">Sở kế hoạch và đầu tư thành phố Hà Nội</string>
++    <string name="field">Lĩnh vực kinh doanh :</string>
++    <string name="field1">Đại lý du lịch</string>
++    <string name="Address1">Địa chỉ tên miền :</string>
++    <string name="Address11">RoyalJourney</string>
++    <string name="Account1">Tài khoản ngân hàng số :</string>
++    <string name="Account_number">19027493250015</string>
++    <string name="techcombank">Techcombank Chi Nhánh Hội Sở</string>
++    <string name="Account_main">Chủ tài khoản :</string>
++    <string name="Account_main1">Công ty TNHH Mytour Việt Nam</string>
++    <string name="Regulation">Quy chế hoạt động</string>
++    <string name="Privacy_Policy">Chính sách bảo mật</string>
++    <string name="Complaint_handling_process">Quy trình giải quyết , tranh chấp khiếu nại</string>
+ 
+ 
+ </resources>
+\ No newline at end of file

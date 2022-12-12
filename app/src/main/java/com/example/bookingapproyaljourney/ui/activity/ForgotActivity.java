@@ -91,11 +91,31 @@ public class ForgotActivity extends AppCompatActivity implements GestureDetector
 
     private boolean validateinfo(String email) {
         if (email.length() == 0){
-            binding.edEmailForgot.requestFocus();
-            binding.edEmailForgot.setError(getString(R.string.enterMail));
+//            binding.edEmailForgot.requestFocus();
+//            binding.edEmailForgot.setError(getString(R.string.enterMail));
+            CookieBar.build(ForgotActivity.this)
+                    .setTitle(getString(R.string.Notify))
+                    .setMessage(getString(R.string.enterMail))
+                    .setIcon(R.drawable.ic_warning_icon_check)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
         }else if (!email.matches("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$")){
-            binding.edEmailForgot.requestFocus();
-            binding.edEmailForgot.setError(getString(R.string.enterMailFaild));
+//            binding.edEmailForgot.requestFocus();
+//            binding.edEmailForgot.setError(getString(R.string.enterMailFaild));
+            CookieBar.build(ForgotActivity.this)
+                    .setTitle(getString(R.string.Notify))
+                    .setMessage(getString(R.string.enterMailFaild))
+                    .setIcon(R.drawable.ic_warning_icon_check)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
             return false;
         }else {
             forgotPassViewModel.checkMail(new Email(binding.edEmailForgot.getText().toString()));

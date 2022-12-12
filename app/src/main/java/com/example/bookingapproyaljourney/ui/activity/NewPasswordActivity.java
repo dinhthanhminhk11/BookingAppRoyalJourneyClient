@@ -130,16 +130,46 @@ public class NewPasswordActivity extends AppCompatActivity {
 
     private Boolean validateinfo(String password, String cfPassword) {
         if (password.length() <= 6) {
-            binding.edPass.requestFocus();
-            binding.edPass.setError(getString(R.string.textCheck1Register));
+//            binding.edPass.requestFocus();
+//            binding.edPass.setError(getString(R.string.textCheck1Register));
+            CookieBar.build(NewPasswordActivity.this)
+                    .setTitle(getString(R.string.Notify))
+                    .setMessage(getString(R.string.textCheck1Register))
+                    .setIcon(R.drawable.ic_warning_icon_check)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
 
         } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")) {
-            binding.edPass.requestFocus();
-            binding.edPass.setError(getString(R.string.textCheck2Register));
+//            binding.edPass.requestFocus();
+//            binding.edPass.setError(getString(R.string.textCheck2Register));
+            CookieBar.build(NewPasswordActivity.this)
+                    .setTitle(getString(R.string.Notify))
+                    .setMessage(getString(R.string.textCheck2Register))
+                    .setIcon(R.drawable.ic_warning_icon_check)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
             return false;
         } else if (cfPassword.length() <= 6) {
-            binding.edCfPass.requestFocus();
-            binding.edCfPass.setError(getString(R.string.textCheckNewPass2));
+//            binding.edCfPass.requestFocus();
+//            binding.edCfPass.setError(getString(R.string.textCheckNewPass2));
+            CookieBar.build(NewPasswordActivity.this)
+                    .setTitle(getString(R.string.Notify))
+                    .setMessage(getString(R.string.textCheckNewPass2))
+                    .setIcon(R.drawable.ic_warning_icon_check)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
             return false;
         } else {
             newPassViewModel.newPassword(new UserLogin(mail, binding.edCfPass.getText().toString().trim()));

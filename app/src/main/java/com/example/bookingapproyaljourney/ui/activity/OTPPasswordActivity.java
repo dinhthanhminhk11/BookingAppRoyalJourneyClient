@@ -131,8 +131,18 @@ public class OTPPasswordActivity extends AppCompatActivity {
 
     private Boolean validateinfo(String otp) {
         if (otp.length() != 6) {
-            binding.otp.requestFocus();
-            binding.otp.setError(getString(R.string.textOTP));
+//            binding.otp.requestFocus();
+//            binding.otp.setError(getString(R.string.textOTP));
+            CookieBar.build(OTPPasswordActivity.this)
+                    .setTitle(getString(R.string.Notify))
+                    .setMessage(getString(R.string.textOTP))
+                    .setIcon(R.drawable.ic_warning_icon_check)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
             return true;
         } else {
             otpPasswordViewModel.postOTP(new Verify(mail, binding.otp.getText().toString().trim()));

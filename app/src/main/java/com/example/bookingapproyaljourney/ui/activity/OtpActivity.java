@@ -176,8 +176,18 @@ public class OtpActivity extends AppCompatActivity {
 
     private Boolean validateinfo(String otp) {
         if (otp.length() != 6) {
-            binding.otp.requestFocus();
-            binding.otp.setError(getString(R.string.textOTP));
+//            binding.otp.requestFocus();
+//            binding.otp.setError(getString(R.string.textOTP));
+            CookieBar.build(OtpActivity.this)
+                    .setTitle(OtpActivity.this.getString(R.string.Notify))
+                    .setMessage(OtpActivity.this.getString(R.string.textOTP))
+                    .setIcon(R.drawable.ic_warning_icon_check)
+                    .setTitleColor(R.color.black)
+                    .setMessageColor(R.color.black)
+                    .setDuration(3000)
+                    .setBackgroundRes(R.drawable.background_toast)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
             return true;
         } else {
             viewModel.postVerify(new Verify(mail, otp));
