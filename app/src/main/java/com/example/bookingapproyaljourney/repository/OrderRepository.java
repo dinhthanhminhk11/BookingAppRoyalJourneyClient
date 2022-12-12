@@ -4,6 +4,7 @@ package com.example.bookingapproyaljourney.repository;
 import android.util.Log;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.callback.CallBackString;
 import com.example.bookingapproyaljourney.callback.CallbackDeleteOrder;
 import com.example.bookingapproyaljourney.callback.CallbackEditOrderByUser;
 import com.example.bookingapproyaljourney.callback.CallbackHouseById;
@@ -160,4 +161,23 @@ public class OrderRepository {
             }
         });
     }
+
+    public void getHouseResponseByServer(CallBackString callBackString) {
+        apiRequest.getHouseResponseByServer().enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    callBackString.onResponse(response.body());
+                } else {
+                    callBackString.onFailure(new Throwable(response.message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                callBackString.onFailure(t);
+            }
+        });
+    }
+
 }

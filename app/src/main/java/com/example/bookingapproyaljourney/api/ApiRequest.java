@@ -192,4 +192,7 @@ public interface ApiRequest {
 
     @PATCH("updatePassword")
     Call<TestResponse> changePassword(@Body ChangePasswordRequest changePasswordRequest);
+
+    @GET("getHouseResponseByServer")
+    Call<String> getHouseResponseByServer();
 }

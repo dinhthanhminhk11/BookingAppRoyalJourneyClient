@@ -49,6 +49,16 @@ public class AppConstant {
     public static final int POS_DARK = 1;
     public static final int POS_LIGHT = 2;
     public static final String ChangePasswordResultSuccess = "ChangePasswordResultSuccess";
+    public static final String dateCancel = "dateCancel";
+    public static final String checkIsbacking = "checkIsbacking";
+    public static final String checkSeem = "checkSeem";
+    public static final String imageHost = "imageHost";
+    public static final String idOrder = "idOrder";
+    public static final String dataCreate = "dataCreate";
+    public static final String Khach_huy = "Khách huỷ";
+    public static final String Đa_xac_nhan = "Đã xác nhận";
+    public static final String Dang_cho = "Đang chờ";
+    public static final String da_tra_phong = "Đã trả phòng";
 
 
 }

@@ -8,15 +8,9 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.format.DateFormat;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -287,7 +281,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
                     binding.contentPayment.setVisibility(View.GONE);
                     binding.payOnline.setChecked(false);
                     binding.payOfflinePercent.setChecked(false);
-                    binding.textCancel.setText(BillOderActivity.this.getString(R.string.Billoder_date_cancel) + houseDetailResponse.getCancellatioDate() + BillOderActivity.this.getString(R.string.Billoder_date_cancel_1));
+//                    binding.textCancel.setText(BillOderActivity.this.getString(R.string.Billoder_date_cancel) + houseDetailResponse.getCancellatioDate() + BillOderActivity.this.getString(R.string.Billoder_date_cancel_1));
                 } else {
 
                 }
@@ -558,19 +552,17 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             checkEndDateResponse = item.getEndDate();
             Resources res = getResources();
 
-            String textCancel = String.format(getResources().getString(R.string.Cancel_before_date), houseDetailResponse.getCancellatioDate());
-
-            Spannable wordtoSpan = new SpannableString(textCancel);
-
-            wordtoSpan.setSpan(new UnderlineSpan(), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            wordtoSpan.setSpan(new UnderlineSpan(), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            binding.textCancel.setText(wordtoSpan);
+            String textCancel = String.format(getResources().getString(R.string.Cancel_before_date3), houseDetailResponse.getCancellatioDate());
+//            Spannable wordtoSpan = new SpannableString(textCancel);
+//
+//            wordtoSpan.setSpan(new UnderlineSpan(), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//
+//            wordtoSpan.setSpan(new UnderlineSpan(), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            binding.textCancel.setText(textCancel);
         });
     }
 

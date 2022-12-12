@@ -1,10 +1,12 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
+import static com.example.bookingapproyaljourney.constants.AppConstant.deleteOrderResponse;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -17,7 +19,6 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -73,6 +74,7 @@ public class StatusBillActivity extends AppCompatActivity {
     private String name_boss = "";
     private BottomSheetCancellationPolicy bottomSheetCancellationPolicy;
     private HouseDetailResponse houseDetailResponse1;
+    private String dataCreate = "";
 
     public StatusBillActivity() {
     }
@@ -149,8 +151,10 @@ public class StatusBillActivity extends AppCompatActivity {
         });
 
         statusOrderViewModel.getOrderResponseMutableLiveData().observe(this, new Observer<OrderBill>() {
+            @SuppressLint("StringFormatMatches")
             @Override
             public void onChanged(OrderBill orderResponse) {
+                dataCreate = orderResponse.getCreatedAt();
                 detailProductViewModel.getHouseById(orderResponse.getIdPro()).observe(StatusBillActivity.this, it -> {
                     name_boss = it.getHostResponse().getName();
                     img_boss = it.getHostResponse().getImage();
@@ -159,12 +163,11 @@ public class StatusBillActivity extends AppCompatActivity {
                 id_House = orderResponse.getIdPro();
                 checkSeem = orderResponse.isSeem();
                 isSuccess = orderResponse.isSuccess();
-                Log.e("MinhSeem", String.valueOf(orderResponse.isSuccess()));
                 textReasonUser = orderResponse.getReasonUser();
                 statusOrderViewModel.getDetailHouseById(orderResponse.getIdPro());
                 binding.startDate.setText(orderResponse.getStartDate());
                 binding.endDate.setText(orderResponse.getEndDate());
-                binding.person.setText(orderResponse.getPerson() + " khách");
+                binding.person.setText(orderResponse.getPerson() + "" + R.string.guest);
                 binding.phone.setText(orderResponse.getPhone() + "");
                 binding.payDay.setText(orderResponse.getPayDay() + "");
                 binding.priceAll.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
@@ -199,31 +202,28 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.btnFeedback.setVisibility(View.GONE);
-
-                    binding.textConfirm.setText("Do chủ nhà đã từ chối yêu cầu của bạn nên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà : " + orderResponse.getReasonHost());
+                    binding.textConfirm.setText(String.format(getResources().getString(R.string.textStatsBill5), orderResponse.getReasonHost()));
                 } else if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isCashMoney()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.btnFeedback.setVisibility(View.GONE);
-
-                    binding.textConfirm.setText("Chủ nhà đã từ chối yêu cầu của bạn lí do là vì: " + orderResponse.getReasonHost());
-                } else if (orderResponse.getStatus().equals("Khách huỷ") && orderResponse.isCancellationDate()) {
+                    binding.textConfirm.setText(String.format(getResources().getString(R.string.textStatsBill4), orderResponse.getReasonHost()));
+                } else if (orderResponse.getStatus().equals(AppConstant.Khach_huy) && orderResponse.isCancellationDate()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ phòng của bạn");
+                    binding.textConfirm.setText(R.string.textStatsBill3);
                     binding.btnDelete.setVisibility(View.GONE);
                     binding.btnFeedback.setVisibility(View.GONE);
-
-                } else if (orderResponse.getStatus().equals("Khách huỷ") && !orderResponse.isCancellationDate()) {
+                } else if (orderResponse.getStatus().equals(AppConstant.Khach_huy) && !orderResponse.isCancellationDate()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
                     binding.cancelRequest.setVisibility(View.GONE);
-                    binding.textConfirm.setText("Chủ nhà đã tiếp nhận yêu cầu huỷ của bạn sẽ có người gọi đến để xác nhận cho bạn");
+                    binding.textConfirm.setText(R.string.textStatsBill2);
                     binding.btnFeedback.setVisibility(View.GONE);
-                } else if (orderResponse.getStatus().equals("Đã trả phòng") && orderResponse.isCheckedOut()) {
+                } else if (orderResponse.getStatus().equals(AppConstant.da_tra_phong) && orderResponse.isCheckedOut()) {
                     binding.btnPay.setVisibility(View.GONE);
                     binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.textConfirm.setText("Bạn đã trả phòng cảm ơn bạn đã sửa dụng dịch vụ của chúng tôi");
+                    binding.textConfirm.setText(R.string.textStatsBill);
                     binding.btnDelete.setVisibility(View.GONE);
                     binding.btnFeedback.setVisibility(View.VISIBLE);
                 }
@@ -234,14 +234,14 @@ public class StatusBillActivity extends AppCompatActivity {
             if (isSuccess) {
                 statusOrderViewModel.updateOrderByUser(new OrderRequest(
                         idOrder,
-                        "Đã xác nhận",
+                        AppConstant.Đa_xac_nhan,
                         "",
                         ""
                 ));
             } else {
                 statusOrderViewModel.editOrderByUserUpdateOrderByIdNotSeem(new OrderRequest(
                         idOrder,
-                        "Đang chờ",
+                        AppConstant.Dang_cho,
                         "",
                         ""
                 ));
@@ -262,19 +262,19 @@ public class StatusBillActivity extends AppCompatActivity {
                 binding.tvTimeNhanPhong.setText(houseDetailResponse.getOpening());
                 binding.tvTimeTra.setText(houseDetailResponse.getEnding());
 
-                String textCancel = String.format(getResources().getString(R.string.Cancel_before_date), houseDetailResponse.getCancellatioDate());
+                String textCancel = String.format(getResources().getString(R.string.Cancel_before_date3), houseDetailResponse.getCancellatioDate());
 
-                Spannable wordtoSpan = new SpannableString(textCancel);
+//                Spannable wordtoSpan = new SpannableString(textCancel);
+//
+//                wordtoSpan.setSpan(new UnderlineSpan(), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//
+//                wordtoSpan.setSpan(new UnderlineSpan(), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-                wordtoSpan.setSpan(new UnderlineSpan(), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 23, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                wordtoSpan.setSpan(new UnderlineSpan(), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 70, 83, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                binding.contentCancel.setText(wordtoSpan);
+                binding.contentCancel.setText(textCancel);
 
                 dateCancel = houseDetailResponse.getCancellatioDate();
                 imageHost = houseDetailResponse.getHostResponse().getImage();
@@ -288,7 +288,7 @@ public class StatusBillActivity extends AppCompatActivity {
                     Intent intent = new Intent(StatusBillActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("CheckSuccess", "CancelBookingActivityByAccess");
+                    intent.putExtra(CheckSuccess, AppConstant.CancelBookingActivityByAccess);
                     startActivity(intent);
                 } else {
 
@@ -299,8 +299,8 @@ public class StatusBillActivity extends AppCompatActivity {
         binding.btnPay.setOnClickListener(v -> {
             if (UserClient.getInstance().getCountBooking() < -5) {
                 CookieBar.build(this)
-                        .setTitle("Uy tín của bạn đang rất thấp")
-                        .setMessage("Bằng việc huỷ phòng quá nhiều nên bạn sẽ không được tiếp tục huỷ phòng")
+                        .setTitle(R.string.Your_reputation_is_very_low)
+                        .setMessage(R.string.By_canceling_too_many_rooms_you_will_not_be_able_to_continue_to_cancel)
                         .setIcon(R.drawable.ic_warning_icon_check)
                         .setTitleColor(R.color.black)
                         .setMessageColor(R.color.black)
@@ -313,11 +313,12 @@ public class StatusBillActivity extends AppCompatActivity {
             }
 
             Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
-            intent.putExtra("imageHost", imageHost);
-            intent.putExtra("dateCancel", dateCancel);
-            intent.putExtra("idOrder", idOrder);
-            intent.putExtra("checkIsbacking", String.valueOf(checkIsBacking));
-            intent.putExtra("checkSeem", String.valueOf(checkSeem));
+            intent.putExtra(AppConstant.imageHost, imageHost);
+            intent.putExtra(AppConstant.dateCancel, dateCancel);
+            intent.putExtra(AppConstant.idOrder, idOrder);
+            intent.putExtra(AppConstant.checkIsbacking, String.valueOf(checkIsBacking));
+            intent.putExtra(AppConstant.checkSeem, String.valueOf(checkSeem));
+            intent.putExtra(AppConstant.dataCreate, dataCreate);
             startActivity(intent);
         });
 
@@ -348,7 +349,7 @@ public class StatusBillActivity extends AppCompatActivity {
                     Intent intent = new Intent(StatusBillActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("CheckSuccess", "deleteOrderResponse");
+                    intent.putExtra(CheckSuccess, deleteOrderResponse);
                     startActivity(intent);
                 } else {
 

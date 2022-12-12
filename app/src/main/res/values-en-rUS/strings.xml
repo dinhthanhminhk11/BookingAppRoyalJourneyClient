@@ -121,7 +121,7 @@
     <string name="Successfully">Successful</string>
     <string name="Successfully_feedback">Your feedback has been saved, have a nice day</string>
     <string name="out_of_room">Room sold out</string>
-    <string name="Billoder_date_cancel">Cancellation before date</string>
+    <string name="Billoder_date_cancel">Cancel before %s date for a refund, if you cancel after %s date will not be refunded</string>
     <string name="Billoder_date_cancel_1">for a partial refund</string>
     <string name="Ly_do_huy">Let us know the reason for your cancellation, your comments will help us to improve</string>
     <string name="Date_cancel">for a refund, if you cancel after the date</string>
@@ -336,5 +336,13 @@
     <string name="Ban_muon_truy_cap_Camera">Want to access Camera ?</string>
     <string name="Chon_cai_dat_de_cap_quyen_cho_ung_dung">Select Settings to give the app Camera permission.</string>
     <string name="Thoat">Cancel</string>
+    <string name="Your_reputation_is_very_low">Your reputation is very low</string>
+    <string name="By_canceling_too_many_rooms_you_will_not_be_able_to_continue_to_cancel">By canceling too many rooms, you will not be able to continue to cancel</string>
+    <string name="textStatsBill">You have checked out thank you for using our service</string>
+    <string name="textStatsBill2">The owner has received your cancellation request and someone will call to confirm for you</string>
+    <string name="textStatsBill3">The host has accepted your cancellation request</string>
+    <string name="textStatsBill4">The owner denied your request because: %s</string>
+    <string name="textStatsBill5">Since the landlord has denied your request, you will be refunded 100% of the amount paid \n landlords reason : %s</string>
 
+    <string name="Cancel_before_date3">If you cancel before <i><b>%s</b></i> you will get a partial refund. <i><b>Learn more</b></i></string>
 </resources>

@@ -1,8 +1,9 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -34,9 +36,6 @@ import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 import com.example.bookingapproyaljourney.view_model.CancelBookingViewModel;
 import com.example.librarytoastcustom.CookieBar;
 
-import java.util.Date;
-import java.util.Locale;
-
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class CancelBookingActivity extends AppCompatActivity {
 
@@ -51,9 +50,11 @@ public class CancelBookingActivity extends AppCompatActivity {
     private TextView text;
     private TextView btnCancel;
     private Button login;
-    private String currentDate;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    @SuppressLint("StringFormatInvalid")
+    private String currentDate = "";
+    private String dataCreate = "";
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+    @SuppressLint({"StringFormatInvalid", "StringFormatMatches"})
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +71,13 @@ public class CancelBookingActivity extends AppCompatActivity {
             changeTheme(2);
         }
 
-        dateCancel = getIntent().getStringExtra("dateCancel");
-        checkBanking = Boolean.parseBoolean(getIntent().getStringExtra("checkIsbacking"));
-        checkSeem = Boolean.parseBoolean(getIntent().getStringExtra("checkSeem"));
-        imageHost = getIntent().getStringExtra("imageHost");
-        idOrder = getIntent().getStringExtra("idOrder");
+        dateCancel = getIntent().getStringExtra(AppConstant.dateCancel);
+        checkBanking = Boolean.parseBoolean(getIntent().getStringExtra(AppConstant.checkIsbacking));
+        checkSeem = Boolean.parseBoolean(getIntent().getStringExtra(AppConstant.checkSeem));
+        imageHost = getIntent().getStringExtra(AppConstant.imageHost);
+        idOrder = getIntent().getStringExtra(AppConstant.idOrder);
+        dataCreate = getIntent().getStringExtra(AppConstant.dataCreate);
 
-        Log.e("MinhCheck", String.valueOf(checkBanking));
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.img)
@@ -86,48 +87,50 @@ public class CancelBookingActivity extends AppCompatActivity {
         if (checkBanking) {
             binding.textView8.setText(this.getString(R.string.Ly_do_huy));
         } else {
-            binding.textView8.setText(String.format(getResources().getString(R.string.Billoder_date_cancel), dateCancel, dateCancel));
+            binding.textView8.setText(String.format(getResources().getString(R.string.Billoder_date_cancel, dateCancel, dateCancel)));
         }
 
         cancelBookingViewModel = new ViewModelProvider(this).get(CancelBookingViewModel.class);
 
+        cancelBookingViewModel.getHouseResponseByServer();
         binding.imgBackFB.setOnClickListener(v -> {
             onBackPressed();
         });
 
-        //ngày hôm nay
-        currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-
-        try {
-            if ((sdf.parse(dateCancel).before((sdf.parse(currentDate)))) && !checkBanking) {
-                CookieBar.build(this)
-                        .setTitle(this.getString(R.string.Notify))
-                        .setMessage(this.getString(R.string.expired))
-                        .setIcon(R.drawable.ic_warning_icon_check)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000)
-                        .setSwipeToDismiss(false)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
-            } else if (currentDate.equals(dateCancel) && !checkBanking) {
-                CookieBar.build(this)
-                        .setTitle(this.getString(R.string.Notify))
-                        .setMessage(this.getString(R.string.dealine_date))
-                        .setIcon(R.drawable.ic_warning_icon_check)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000)
-                        .setSwipeToDismiss(false)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+        cancelBookingViewModel.getGetDate().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                currentDate = s;
+                try {
+                    if ((sdf.parse(dateCancel).before((sdf.parse(s)))) && !checkBanking) {
+                        CookieBar.build(CancelBookingActivity.this)
+                                .setTitle(CancelBookingActivity.this.getString(R.string.Notify))
+                                .setMessage(CancelBookingActivity.this.getString(R.string.expired))
+                                .setIcon(R.drawable.ic_warning_icon_check)
+                                .setTitleColor(R.color.black)
+                                .setMessageColor(R.color.black)
+                                .setDuration(5000)
+                                .setSwipeToDismiss(false)
+                                .setBackgroundRes(R.drawable.background_toast)
+                                .setCookiePosition(CookieBar.BOTTOM)
+                                .show();
+                    } else if (currentDate.equals(dateCancel) && !checkBanking) {
+                        CookieBar.build(CancelBookingActivity.this)
+                                .setTitle(CancelBookingActivity.this.getString(R.string.Notify))
+                                .setMessage(CancelBookingActivity.this.getString(R.string.dealine_date))
+                                .setIcon(R.drawable.ic_warning_icon_check)
+                                .setTitleColor(R.color.black)
+                                .setMessageColor(R.color.black)
+                                .setDuration(5000)
+                                .setSwipeToDismiss(false)
+                                .setBackgroundRes(R.drawable.background_toast)
+                                .setCookiePosition(CookieBar.BOTTOM)
+                                .show();
+                    }
+                } catch (Exception e) {
+                }
             }
-        } catch (Exception e) {
-
-        }
-
+        });
 
         final Dialog dialogLogOut = new Dialog(this);
         dialogLogOut.setContentView(R.layout.dia_log_comfirm_logout_ver2);
@@ -145,16 +148,19 @@ public class CancelBookingActivity extends AppCompatActivity {
         text.setText(this.getString(R.string.cancel_room));
         login.setText(this.getString(R.string.Confirm));
 
-
         binding.btnSubmit.setOnClickListener(v -> {
             dialogLogOut.show();
         });
 
-        Log.e("MInhCheckSeem", String.valueOf(checkSeem));
+        final Handler handler = new Handler();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+            }
+        }, 1000);
 
         login.setOnClickListener(v -> {
-
-
             dialogLogOut.cancel();
 
             cancelBookingViewModel.updateOrderByUser(new OrderRequest(
@@ -187,7 +193,7 @@ public class CancelBookingActivity extends AppCompatActivity {
                     Intent intent = new Intent(CancelBookingActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("CheckSuccess", "CancelBookingActivity");
+                    intent.putExtra(CheckSuccess, AppConstant.CancelBookingActivity);
                     startActivity(intent);
                 } else {
 
@@ -213,5 +219,4 @@ public class CancelBookingActivity extends AppCompatActivity {
             binding.contentBackground.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
         }
     }
-
 }

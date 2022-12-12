@@ -130,7 +130,6 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                     bookmarkRepository.addBookMark(new PostIDUserAndIdHouse(UserClient.getInstance().getId(), bookmark.getIdHouse()), new InterfacePostBookmark() {
                         @Override
                         public void onResponse(BookmarkResponse bookmarkResponse) {
-                            Log.e("Minh", bookmarkResponse.getData().toString());
                         }
 
                         @Override
@@ -145,7 +144,6 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                     bookmarkRepository.deleteBookmark(UserClient.getInstance().getId(), bookmark.getIdHouse(), new InterfacePostBookmark() {
                         @Override
                         public void onResponse(BookmarkResponse bookmarkResponse) {
-                            Log.e("Minh", "Xoá bookmark thành công");
                         }
 
                         @Override

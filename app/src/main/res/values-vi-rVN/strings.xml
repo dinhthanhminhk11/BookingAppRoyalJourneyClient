@@ -123,7 +123,7 @@
 
     <string name="out_of_room">Đã hết phòng</string>
 
-    <string name="Billoder_date_cancel">Huỷ trước ngày</string>
+    <string name="Billoder_date_cancel">Huỷ trước ngày %s để được hoàn lại tiền , nếu bạn hủy sau ngày %s sẽ không hoàn lại tiền</string>
     <string name="Billoder_date_cancel_1">để được hoàn lại một phần tiền</string>
 
     <string name="Ly_do_huy">Hãy cho chúng tôi biết lí do bạn huỷ, ý kiển của bạn sẽ giúp chúng tôi hoàn thiện hơn</string>
@@ -303,5 +303,14 @@
     <string name="Chon_cai_dat_de_cap_quyen_cho_ung_dung">Chọn phần Cài đặt để cấp quyền Camera cho ứng dụng.</string>
     <string name="Thoat">Thoát</string>
     <string name="Ban_tu_choi_cap_quyen_camera">Bạn đã từ chối cấp quyền Camera</string>
+    <string name="Your_reputation_is_very_low">Uy tín của bạn đang rất thấp</string>
+    <string name="By_canceling_too_many_rooms_you_will_not_be_able_to_continue_to_cancel">Bằng việc huỷ phòng quá nhiều nên bạn sẽ không được tiếp tục huỷ phòng</string>
+    <string name="textStatsBill">Bạn đã trả phòng cảm ơn bạn đã sửa dụng dịch vụ của chúng tôi</string>
+    <string name="textStatsBill2">Chủ nhà đã tiếp nhận yêu cầu huỷ của bạn sẽ có người gọi đến để xác nhận cho bạn</string>
+    <string name="textStatsBill3">Chủ nhà đã tiếp nhận yêu cầu huỷ phòng của bạn</string>
+    <string name="textStatsBill4">Chủ nhà đã từ chối yêu cầu của bạn lí do là vì: %s</string>
+    <string name="textStatsBill5">Do chủ nhà đã từ chối yêu cầu của bạn nên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà :  %s</string>
+    <string name="Cancel_before_date3">Nếu bạn hủy trước ngày <b>%s</b> bạn sẽ được hoàn lại một phần tiền. <b><i>Tìm hiểu thêm</i></b></string>
+
 
 </resources>
