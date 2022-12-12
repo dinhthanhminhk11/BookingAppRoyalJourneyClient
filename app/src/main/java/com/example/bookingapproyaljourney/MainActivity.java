@@ -4,6 +4,7 @@ import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBoo
 import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivityByAccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.ChangePasswordResultSuccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
+import static com.example.bookingapproyaljourney.constants.AppConstant.GetTestResponseMutableLiveData;
 import static com.example.bookingapproyaljourney.constants.AppConstant.LoginResultSuccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.deleteOrderResponse;
 import static com.example.bookingapproyaljourney.constants.AppConstant.text1111111111111;
@@ -306,6 +307,18 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setBackgroundRes(R.drawable.background_toast)
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
+            } else if (check.equals(GetTestResponseMutableLiveData)) {
+                CookieBar.build(this)
+                        .setTitle(R.string.Notify)
+                        .setMessage(R.string.EditProfileSuccess)
+                        .setIcon(R.drawable.ic_complete_order)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+                return;
             }
         }
 

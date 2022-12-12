@@ -304,7 +304,7 @@
     <string name="soap4">We are taking measures to help guests and staff keep a safe distance</string>
     <string name="soapcontext4">On-site doctor</string>
     <string name="soap5">There is a doctor on duty to quickly assist guests and staff</string>
-        <string name="soapcontext5">Provide hand sanitizer</string>
+    <string name="soapcontext5">Provide hand sanitizer</string>
     <string name="soap6">Provide hand sanitizer in both common areas and living room</string>
     <string name="soapcontext6">Check temperature</string>
     <string name="soap7">This property\'s safety standards include temperature checks of guests and staff</string>
@@ -329,7 +329,12 @@
     <string name="see_more">Xem Thêm</string>
     <string name="check_in">Nhận phòng từ ngày:</string>
 
-
     <string name="byRoyal">About us</string>
     <string name="infoRoyal">Information about us</string>
+
+    <string name="EditProfileSuccess">Update Successful</string>
+    <string name="Ban_muon_truy_cap_Camera">Want to access Camera ?</string>
+    <string name="Chon_cai_dat_de_cap_quyen_cho_ung_dung">Select Settings to give the app Camera permission.</string>
+    <string name="Thoat">Cancel</string>
+
 </resources>

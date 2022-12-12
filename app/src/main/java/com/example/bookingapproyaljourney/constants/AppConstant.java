@@ -2,7 +2,7 @@ package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
 
-    public static final String BASE = "https://9a9a-123-25-30-191.ap.ngrok.io";
+    public static final String BASE = "http://192.168.0.125:8080";
     public static final String BASE_URL = BASE + "/api/";
     public static final String BASE_URL_CHAT = BASE;
     public static final String URL_API_GOOGLE_MAP = "https://maps.googleapis.com/";
@@ -24,12 +24,14 @@ public class AppConstant {
     public static final String URL_PAYMENT = "https://api.stripe.com/v1/";
     public static final String ID_ORDER = "ID_ORDER";
     public static final String CheckSuccess = "CheckSuccess";
+    public static final String CheckError = "CheckError";
     public static final String text1111111111111 = "1111111111111";
     public static final String CancelBookingActivity = "CancelBookingActivity";
     public static final String CancelBookingActivityByAccess = "CancelBookingActivityByAccess";
     public static final String deleteOrderResponse = "deleteOrderResponse";
     public static final String LoginResultSuccess = "LoginResultSuccess";
     public static final String LoginActivity = "LoginActivity";
+    public static final String GetTestResponseMutableLiveData = "GetTestResponseMutableLiveData";
     public static final int CHECK_EVENT_CLICK_NOTIFICATION = 1;
     public static final int CHECK_EVENT_CONFIRM_ACCOUNT = 2;
 

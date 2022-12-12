@@ -295,7 +295,13 @@
     <string name="owner_detail">Owner</string>
     <string name="see_more">Xem Thêm</string>
     <string name="check_in">Nhận phòng từ ngày:</string>
-
     <string name="byRoyal">Về chúng tôi</string>
     <string name="infoRoyal">Những thông tin về chúng tôi</string>
+
+    <string name="EditProfileSuccess">Cập nhật thành công</string>
+    <string name="Ban_muon_truy_cap_Camera">Bạn muốn truy cập Camera ?</string>
+    <string name="Chon_cai_dat_de_cap_quyen_cho_ung_dung">Chọn phần Cài đặt để cấp quyền Camera cho ứng dụng.</string>
+    <string name="Thoat">Thoát</string>
+    <string name="Ban_tu_choi_cap_quyen_camera">Bạn đã từ chối cấp quyền Camera</string>
+
 </resources>

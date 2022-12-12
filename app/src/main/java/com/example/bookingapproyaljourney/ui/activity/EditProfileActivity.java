@@ -1,6 +1,10 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
+
 import android.Manifest;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +16,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +29,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
@@ -74,6 +82,10 @@ public class EditProfileActivity extends AppCompatActivity {
     private Uri imagePath;
     private static final String TAG = "Upload ###";
     private EditProfileViewModel editProfileViewModel;
+    public static final int CAMERA_PERMISSION_REQ = 100;
+
+    Dialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +121,8 @@ public class EditProfileActivity extends AppCompatActivity {
 //        edit image
         cameraEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                intit();
                 ImagePicker.with(EditProfileActivity.this)
                         .crop()
                         .compress(1024)
@@ -117,6 +130,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         .start(20);
             }
         });
+
 
 //        ban du lieu len clouldy
         saveEditProfile.setOnClickListener(v -> {
@@ -161,7 +175,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }).dispatch();
 
-
         });
 
 // lay vi tri người dùng
@@ -183,21 +196,15 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onChanged(TestResponse testResponse) {
                 if (testResponse.isStatus()) {
-                    CookieBar.build(EditProfileActivity.this)
-                            .setTitle(R.string.Notify)
-                            .setMessage("Chỉnh sửa thông tin thành công !")
-                            .setIcon(R.drawable.ic_complete_order)
-                            .setTitleColor(R.color.black)
-                            .setMessageColor(R.color.black)
-                            .setDuration(3000)
-                            .setBackgroundRes(R.drawable.background_toast)
-                            .setCookiePosition(CookieBar.BOTTOM)
-                            .show();
-                    onBackPressed();
+                    Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(CheckSuccess, AppConstant.GetTestResponseMutableLiveData);
+                    startActivity(intent);
                 } else {
                     CookieBar.build(EditProfileActivity.this)
                             .setTitle(R.string.Notify)
-                            .setMessage("Chỉnh sửa thông tin thất bại \n Vui lòng thử lại !")
+                            .setMessage(R.string.EditProfileError + "\n" + R.string.ThuLai)
                             .setIcon(R.drawable.ic_complete_order)
                             .setTitleColor(R.color.black)
                             .setMessageColor(R.color.black)
@@ -210,6 +217,26 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
+    private void intit() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+//            opencamera();
+        } else {
+            handlePermission();
+        }
+    }
+
+    private void handlePermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+
+        } else {
+// hoi xin quyen
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    CAMERA_PERMISSION_REQ);
+        }
+    }
+
+    //    thông báo khi người dùng lựa chọn cấp quyền
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -227,6 +254,32 @@ public class EditProfileActivity extends AppCompatActivity {
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
             }
+        }
+
+// bat su kien nguoi dung cap quyen Camera
+        switch (requestCode) {
+            case CAMERA_PERMISSION_REQ:
+                for (int i = 0; i < permissions.length; i++) {
+                    String permission = permissions[i];
+                    if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                        boolean showRationale = ActivityCompat.shouldShowRequestPermissionRationale(this, permission);
+                        if (showRationale) {
+                            CookieBar.build(this)
+                                    .setTitle(R.string.Notify)
+                                    .setMessage(R.string.Ban_tu_choi_cap_quyen_camera)
+                                    .setTitleColor(R.color.black)
+                                    .setMessageColor(R.color.black)
+                                    .setDuration(3000)
+                                    .setBackgroundRes(R.drawable.background_toast)
+                                    .setCookiePosition(CookieBar.BOTTOM)
+                                    .show();
+                        } else {
+                            showSettingsAlert();
+                        }
+                    } else {
+
+                    }
+                }
         }
     }
 
@@ -322,5 +375,41 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+    //    show  dialog
+    private void showSettingsAlert() {
+        dialog = new Dialog(EditProfileActivity.this);
+        dialog.setContentView(R.layout.permission_camera_editprofile_dialog);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.background_dialog_editprofile));
+        }
+//        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(true);
+        Button btnSetting = dialog.findViewById(R.id.btnSettingDialogEditProfile);
+        Button btnCancel = dialog.findViewById(R.id.btnCancelDialogEditProfile);
+        btnSetting.setOnClickListener(view -> {
+            dialog.dismiss();
+            openAppSetting(EditProfileActivity.this);
+        });
+
+        btnCancel.setOnClickListener(view -> {
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
+    public static void openAppSetting(final Activity context) {
+        if (context == null) {
+            return;
+        }
+        final Intent i = new Intent();
+        i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        i.addCategory(Intent.CATEGORY_DEFAULT);
+        i.setData(Uri.parse("package:" + context.getPackageName()));
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        context.startActivity(i);
+    }
 
 }
