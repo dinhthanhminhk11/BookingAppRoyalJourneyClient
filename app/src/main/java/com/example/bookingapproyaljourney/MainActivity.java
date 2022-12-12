@@ -666,6 +666,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             changeTheme(2);
         } else if (event.getIdEven() == AppConstant.BY_USER_NEW) {
             adapter.setSelected(POS_HOME);
+            showGuide();
         }
     }
 
@@ -748,49 +749,25 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
 
         Lighter.with(this)
                 .setBackgroundColor(0xB3000000)
+                .setOnLighterListener(new OnLighterListener() {
+                    @Override
+                    public void onShow(int index) {
+
+                    }
+
+                    @Override
+                    public void onDismiss() {
+                        EventBus.getDefault().postSticky(new KeyEvent(AppConstant.BY_USER_VER2));
+                    }
+                })
                 .addHighlight(new LighterParameter.Builder()
                         .setHighlightedViewId(R.id.nameCity)
-                        .setTipLayoutId(R.layout.layout_tip_1)
-                        .setLighterShape(circleShape)
-                        .setTipViewRelativeDirection(Direction.RIGHT)
+                        .setTipView(LighterHelper.createCommonTipView(this, R.drawable.icon_tip_4, "Vị trí của bạn"))
+                        .setLighterShape(new RectShape(0, 0, 25))
+                        .setTipViewRelativeDirection(Direction.TOP)
                         .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
-                        .setTipViewRelativeOffset(new MarginOffset(30, 0, 80, 0))
+                        .setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0))
                         .build())
-//                .addHighlight(new LighterParameter.Builder()
-//                        .setHighlightedViewId(R.id.layout_balance)
-//                        .setTipLayoutId(R.layout.layout_tip_2)
-//                        .setLighterShape(rectShape)
-//                        .setTipViewRelativeDirection(Direction.TOP)
-//                        .setShapeXOffset(10)
-//                        .setShapeYOffset(10)
-//                        .setTipViewDisplayAnimation(translateAnimation)
-//                        .setTipViewRelativeOffset(new MarginOffset(0, 10, 0, 20))
-//                        .build())
-//                .addHighlight(new LighterParameter.Builder()
-//                        .setHighlightedViewId(R.id.btn_highlight2)
-//                        .setTipView(LighterHelper.createCommonTipView(this, R.drawable.icon_tip_4, "向左移动"))
-//                        .setLighterShape(rectShape)
-//                        .setTipViewRelativeDirection(Direction.LEFT)
-//                        .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
-//                        .setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0))
-//                        .build())
-//                .addHighlight(new LighterParameter.Builder()
-//                                .setHighlightedViewId(R.id.btn_highlight1)
-//                                .setTipLayoutId(R.layout.layout_tip_3)
-//                                .setLighterShape(new RectShape(0, 0, 25))
-//                                .setTipViewRelativeDirection(Direction.TOP)
-//                                .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
-//                                .setTipViewRelativeOffset(new MarginOffset(100, 10, 0, 20))
-//                                .build(),
-//
-//                        new LighterParameter.Builder()
-//                                .setHighlightedViewId(R.id.btn_highlight3)
-//                                .setTipLayoutId(R.layout.layout_tip_1)
-//                                .setLighterShape(new OvalShape())
-//                                .setTipViewRelativeDirection(Direction.BOTTOM)
-//                                .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
-//                                .setTipViewRelativeOffset(new MarginOffset(300, 0, 0, 0))
-//                                .build())
                 .show();
     }
 }

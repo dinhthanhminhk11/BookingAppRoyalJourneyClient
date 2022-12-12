@@ -2,6 +2,7 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,11 +21,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
-import com.example.bookingapproyaljourney.event.KeyEvent;
+import com.example.bookingapproyaljourney.ui.activity.CancellationPolicyActivity;
 import com.example.bookingapproyaljourney.ui.adapter.RevenueAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,7 +103,8 @@ public class HelpFragment extends Fragment {
         setAdapter.setCallback(new RevenueAdapter.Callback() {
             @Override
             public void onCLick(int position) {
-                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.BY_USER_NEW));
+//                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.BY_USER_NEW));
+                startActivity(new Intent(getActivity(), CancellationPolicyActivity.class));
             }
         });
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);

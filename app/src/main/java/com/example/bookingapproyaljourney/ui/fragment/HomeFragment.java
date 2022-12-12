@@ -2,6 +2,7 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -50,11 +53,16 @@ import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapterNotNull;
 import com.example.bookingapproyaljourney.ui.adapter.CategoryHouseAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterHome;
+import com.example.bookingapproyaljourney.ui.custom.LighterHelper;
 import com.example.bookingapproyaljourney.view_model.CategoryViewModel;
 import com.example.bookingapproyaljourney.view_model.FilterViewModel;
 import com.example.hightlight.Lighter;
+import com.example.hightlight.interfaces.OnLighterListener;
 import com.example.hightlight.parameter.Direction;
 import com.example.hightlight.parameter.LighterParameter;
+import com.example.hightlight.parameter.MarginOffset;
+import com.example.hightlight.shape.CircleShape;
+import com.example.hightlight.shape.RectShape;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.greenrobot.eventbus.EventBus;
@@ -379,19 +387,80 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             changeTheme(1);
         } else if (event.getIdEven() == AppConstant.SAVE_THEME_LIGHT) {
             changeTheme(2);
-        } else if (event.getIdEven() == AppConstant.BY_USER_NEW) {
-//            showGuide(view);
+        } else if (event.getIdEven() == AppConstant.BY_USER_VER2) {
+            showGuide();
+            return;
         }
     }
 
-    private void showGuide(View highlightedView) {
+    @SuppressLint("RestrictedApi")
+    private void showGuide() {
+        TranslateAnimation translateAnimation = new TranslateAnimation(-500, 0, 0, 0);
+        translateAnimation.setDuration(500);
+        translateAnimation.setInterpolator(new BounceInterpolator());
 
-        Lighter.with((ViewGroup) backgroundContent)
+        CircleShape circleShape = new CircleShape(25);
+        circleShape.setPaint(LighterHelper.getDashPaint());
+
+
+        RectShape rectShape = new RectShape();
+        rectShape.setPaint(LighterHelper.getDiscretePaint());
+
+        Lighter.with(getActivity())
+                .setOnLighterListener(new OnLighterListener() {
+                    @Override
+                    public void onShow(int index) {
+
+                    }
+
+                    @Override
+                    public void onDismiss() {
+                        com.example.bookingapproyaljourney.event.KeyEvent locationReceivedStickyEvent = EventBus.getDefault().getStickyEvent(com.example.bookingapproyaljourney.event.KeyEvent.class);
+                        EventBus.getDefault().removeStickyEvent(locationReceivedStickyEvent);
+                    }
+                })
+                .setBackgroundColor(0xB3000000)
                 .addHighlight(new LighterParameter.Builder()
-                        .setHighlightedView(highlightedView)
-                        .setTipLayoutId(R.layout.layout_tip_5)
-                        .setTipViewRelativeDirection(Direction.TOP)
+                        .setHighlightedViewId(R.id.listCategoryHomeFragment)
+                        .setTipView(LighterHelper.createCommonTipView(getActivity(), R.drawable.ic_vector_hand_controler, "Các loại hình mà bạn có thể lựa chọn"))
+                        .setLighterShape(new RectShape(0, 0, 25))
+                        .setTipViewRelativeDirection(Direction.BOTTOM)
+                        .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+                        .setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0))
                         .build())
+                .addHighlight(new LighterParameter.Builder()
+                        .setHighlightedViewId(R.id.recyclerviewNearFromYouHomeFragment)
+                        .setTipView(LighterHelper.createCommonTipView(getActivity(), R.drawable.ic_vector_hand_controler, "Danh sách phòng gần bạn nhất"))
+                        .setLighterShape(new RectShape(0, 0, 25))
+                        .setTipViewRelativeDirection(Direction.BOTTOM)
+                        .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+                        .setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0))
+                        .build())
+
+                .addHighlight(new LighterParameter.Builder()
+                        .setHighlightedViewId(R.id.recyclerviewBestForYouHomeFragment)
+                        .setTipView(LighterHelper.createCommonTipView2(getActivity(), R.drawable.ic_vector_hand_controller_ver2, "Danh sách phòng tốt nhất bao gồm về giá và dịch vụ"))
+                        .setLighterShape(new RectShape(0, 0, 25))
+                        .setTipViewRelativeDirection(Direction.TOP)
+                        .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+                        .setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0))
+                        .build())
+                .addHighlight(new LighterParameter.Builder()
+                                .setHighlightedViewId(R.id.recyclerviewNearFromYouHomeFragment)
+                                .setTipView(LighterHelper.createCommonTipView2(getActivity(), R.drawable.ic_vector_hand_controller_ver2, "Bây h hãy lựa chọn chuyến đi của bạn"))
+                                .setLighterShape(new RectShape(0, 0, 25))
+                                .setTipViewRelativeDirection(Direction.TOP)
+                                .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+                                .setTipViewRelativeOffset(new MarginOffset(100, 10, 0, 20))
+                                .build(),
+                        new LighterParameter.Builder()
+                                .setHighlightedViewId(R.id.recyclerviewBestForYouHomeFragment)
+                                .setTipView(LighterHelper.createCommonTipView2(getActivity(), R.drawable.ic_vector_hand_controller_ver2, "Bây h hãy lựa chọn chuyến đi của bạn"))
+                                .setLighterShape(new RectShape(0, 0, 25))
+                                .setTipViewRelativeDirection(Direction.BOTTOM)
+                                .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
+                                .setTipViewRelativeOffset(new MarginOffset(300, 0, 0, 0))
+                                .build())
                 .show();
     }
 

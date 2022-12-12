@@ -10,7 +10,7 @@ public class RectShape extends LighterShape {
     private float mYRadius;
 
     public RectShape() {
-        this(5, 5, 15);
+        this(10, 10, 20);
     }
 
     public RectShape(float rx, float ry, float blurRadius) {

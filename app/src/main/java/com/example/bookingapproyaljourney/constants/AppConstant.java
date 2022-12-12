@@ -42,6 +42,7 @@ public class AppConstant {
     public static final int SAVE_THEME_LIGHT = 8;
     public static final int SAVE_THEME_DARK = 9;
     public static final int BY_USER_NEW = 15;
+    public static final int BY_USER_VER2 = 16;
 
     public static final int POS_DARK = 1;
     public static final int POS_LIGHT = 2;

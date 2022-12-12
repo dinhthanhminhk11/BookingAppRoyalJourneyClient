@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityCancellationPolicyBinding;
+import com.example.bookingapproyaljourney.event.KeyEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class CancellationPolicyActivity extends AppCompatActivity {
 
@@ -40,6 +43,8 @@ public class CancellationPolicyActivity extends AppCompatActivity {
             changeTheme(2);
         }
         binding.btnContact.setOnClickListener(v -> {
+            EventBus.getDefault().postSticky(new KeyEvent(AppConstant.BY_USER_NEW));
+            onBackPressed();
         });
     }
 

@@ -15,6 +15,11 @@
         android:background="@color/white"
         app:navigationIconTint="@color/black">
 
+        <View
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:id="@+id/view1"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

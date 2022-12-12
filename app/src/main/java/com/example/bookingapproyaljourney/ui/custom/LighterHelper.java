@@ -13,12 +13,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.bookingapproyaljourney.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LighterHelper {
 //    public final static int[] PICTURES = new int[]{
@@ -38,9 +33,10 @@ public class LighterHelper {
 //        }
 //    }
 
-    private LighterHelper(){}
+    private LighterHelper() {
+    }
 
-    public static Paint getDashPaint(){
+    public static Paint getDashPaint() {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.STROKE);
@@ -50,7 +46,7 @@ public class LighterHelper {
         return paint;
     }
 
-    public static Paint getDiscretePaint(){
+    public static Paint getDiscretePaint() {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.STROKE);
@@ -60,14 +56,23 @@ public class LighterHelper {
         return paint;
     }
 
-//    public static View createCommonTipView(Activity activity, int drawableId, String string){
-//        View view = activity.getLayoutInflater().inflate(R.layout.layout_tip_common, null);
-//        ImageView imageView = view.findViewById(R.id.iv_image);
-//        imageView.setImageResource(drawableId);
-//        TextView textView = view.findViewById(R.id.tv_text);
-//        textView.setText(string);
-//        return view;
-//    }
+    public static View createCommonTipView(Activity activity, int drawableId, String string) {
+        View view = activity.getLayoutInflater().inflate(R.layout.layout_tip_common, null);
+        ImageView imageView = view.findViewById(R.id.iv_image);
+        imageView.setImageResource(drawableId);
+        TextView textView = view.findViewById(R.id.tv_text);
+        textView.setText(string);
+        return view;
+    }
+
+    public static View createCommonTipView2(Activity activity, int drawableId, String string) {
+        View view = activity.getLayoutInflater().inflate(R.layout.layout_tip_common2, null);
+        ImageView imageView = view.findViewById(R.id.iv_image);
+        imageView.setImageResource(drawableId);
+        TextView textView = view.findViewById(R.id.tv_text);
+        textView.setText(string);
+        return view;
+    }
 
 //    public static void setupToolBarBackAction(final AppCompatActivity appCompatActivity, Toolbar toolbar){
 //        if (appCompatActivity == null
@@ -87,7 +92,7 @@ public class LighterHelper {
 //        });
 //    }
 
-    public static Animation getScaleAnimation(){
+    public static Animation getScaleAnimation() {
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.5f, 1f, 0.5f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(500);
         scaleAnimation.setInterpolator(new BounceInterpolator());
