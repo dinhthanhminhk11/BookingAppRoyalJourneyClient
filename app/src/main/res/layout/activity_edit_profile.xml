@@ -1,210 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/_F9F9F9"
-    android:orientation="vertical"
-    tools:context=".ui.activity.EditProfileActivity">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/tool_bar" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never">
+        android:background="@color/_F9F9F9"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".ui.activity.EditProfileActivity">
 
-        <LinearLayout
+        <include layout="@layout/tool_bar" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.example.librarycireleimage.CircleImageView
-                    android:id="@+id/avtEditProfile"
-                    android:layout_width="@dimen/_78dp"
-                    android:layout_height="@dimen/_78dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_40dp"
-                    android:src="@drawable/avt_editprofile"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/cameraEditProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_camera_edit_profile"
-                    app:layout_constraintBottom_toBottomOf="@+id/avtEditProfile"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.551"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/titleNameEditProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_18dp"
-                android:text="Đinh Thanh Minh"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/titleEmailEditProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:lineSpacingExtra="3dp"
-                android:text="dinhthanhminhk11@gmail.com"
-                android:textColor="@color/_ABABAB"
-                android:textSize="@dimen/_13dp"
-                android:textStyle="normal" />
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_16dp"
-                android:layout_marginTop="@dimen/_40dp"
                 android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_54dp"
-                    android:background="@color/white"
-                    android:hint="@string/Ten"
-                    app:boxStrokeColor="@color/_171717"
-                    app:hintTextColor="@color/color_555555">
+                    android:layout_height="match_parent">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/nameEditProfile"
-                        android:layout_width="match_parent"
+                    <com.example.librarycireleimage.CircleImageView
+                        android:id="@+id/avtEditProfile"
+                        android:layout_width="@dimen/_78dp"
+                        android:layout_height="@dimen/_78dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_40dp"
+                        android:src="@drawable/avt_editprofile"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/cameraEditProfile"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_13dp" />
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_camera_edit_profile"
+                        app:layout_constraintBottom_toBottomOf="@+id/avtEditProfile"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.551"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/titleNameEditProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_18dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16dp"
+                    android:textStyle="bold" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <TextView
+                    android:id="@+id/titleEmailEditProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="@color/_ABABAB"
+                    android:textSize="@dimen/_13dp"
+                    android:textStyle="normal" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20dp"
-                    android:background="@color/white"
-                    android:hint="@string/Sdt_editprofile"
-                    app:boxStrokeColor="@color/_171717"
-                    app:hintTextColor="@color/color_555555">
+                    android:layout_marginHorizontal="@dimen/_16dp"
+                    android:layout_marginTop="@dimen/_40dp"
+                    android:orientation="vertical">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/phoneEditProfile"
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_54dp"
                         android:background="@color/white"
-                        android:inputType="phone"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_13dp" />
+                        android:hint="@string/Ten"
+                        app:boxStrokeColor="@color/_171717"
+                        app:hintTextColor="@color/color_555555">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nameEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_54dp"
-                    android:layout_marginTop="@dimen/_20dp"
-                    android:background="@color/white"
-                    android:hint="@string/cccd"
-                    app:boxStrokeColor="@color/_171717"
-                    app:hintTextColor="@color/color_555555">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/cccdEditProfile"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20dp"
                         android:background="@color/white"
-                        android:inputType="number"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_13dp" />
+                        android:hint="@string/Sdt_editprofile"
+                        app:boxStrokeColor="@color/_171717"
+                        app:hintTextColor="@color/color_555555">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/phoneEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_54dp"
+                            android:background="@color/white"
+                            android:inputType="phone"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_54dp"
-                    android:layout_marginTop="@dimen/_20dp"
-                    android:background="@color/white"
-                    android:hint="@string/dia_chi"
-                    app:boxStrokeColor="@color/_171717"
-                    app:hintTextColor="@color/color_555555"
-                    app:startIconDrawable="@drawable/ic_subtract_edit_profile">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/locationEditProfile"
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_54dp"
+                        android:layout_marginTop="@dimen/_20dp"
                         android:background="@color/white"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_13dp" />
+                        android:hint="@string/cccd"
+                        app:boxStrokeColor="@color/_171717"
+                        app:hintTextColor="@color/color_555555">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/cccdEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13dp" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_45dp"
-                    android:layout_marginTop="-49dp"
-                    android:src="@drawable/ic_line_edit_profile" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/iconLocalEditProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_12dp"
-                    android:layout_marginTop="-32dp"
-                    android:src="@drawable/ic_subtract_edit_profile" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_54dp"
+                        android:layout_marginTop="@dimen/_20dp"
+                        android:background="@color/white"
+                        android:hint="@string/dia_chi"
+                        app:boxStrokeColor="@color/_171717"
+                        app:hintTextColor="@color/color_555555"
+                        app:startIconDrawable="@drawable/ic_subtract_edit_profile">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/saveEditProfile"
-                    android:layout_width="@dimen/_260dp"
-                    android:layout_height="@dimen/_55dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_108dp"
-                    android:background="@drawable/background_blue_edit_profile"
-                    android:elevation="@dimen/_3dp"
-                    android:gravity="center"
-                    android:text="@string/Thay_doi"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14dp"
-                    android:textStyle="bold" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/locationEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-<!--                <com.airbnb.lottie.LottieAnimationView-->
-<!--                    android:id="@+id/progressBarEdiProfile"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="@dimen/_120dp"-->
-<!--                    android:background="@null"-->
-<!--                    android:backgroundTint="@null"-->
-<!--                    android:backgroundTintMode="@null"-->
-<!--                    android:visibility="visible"-->
-<!--                    app:lottie_autoPlay="true"-->
-<!--                    app:lottie_fileName="loading.json"-->
-<!--                    app:lottie_loop="true" />-->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_45dp"
+                        android:layout_marginTop="-49dp"
+                        android:src="@drawable/ic_line_edit_profile" />
 
+                    <ImageView
+                        android:id="@+id/iconLocalEditProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_12dp"
+                        android:layout_marginTop="-32dp"
+                        android:src="@drawable/ic_subtract_edit_profile" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/saveEditProfile"
+                        android:layout_width="@dimen/_260dp"
+                        android:layout_height="@dimen/_55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_108dp"
+                        android:background="@drawable/background_blue_edit_profile"
+                        android:elevation="@dimen/_3dp"
+                        android:gravity="center"
+                        android:text="@string/Thay_doi"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBarEdiProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120dp"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -236,6 +236,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         } else {
             changeTheme(2);
         }
+        RecyclerView list = findViewById(R.id.listMenuLeftDrawer);
+        list.setNestedScrollingEnabled(false);
+        list.setLayoutManager(new LinearLayoutManager(this));
+        list.setAdapter(adapter);
 
         String check = getIntent().getStringExtra(CheckSuccess);
 
@@ -308,6 +312,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
             } else if (check.equals(GetTestResponseMutableLiveData)) {
+                adapter.setSelected(POS_PROFILE);
                 CookieBar.build(this)
                         .setTitle(R.string.Notify)
                         .setMessage(R.string.EditProfileSuccess)
@@ -322,10 +327,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             }
         }
 
-        RecyclerView list = findViewById(R.id.listMenuLeftDrawer);
-        list.setNestedScrollingEnabled(false);
-        list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(adapter);
+
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {

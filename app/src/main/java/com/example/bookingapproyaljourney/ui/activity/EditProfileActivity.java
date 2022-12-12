@@ -33,6 +33,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -75,7 +76,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private TextInputEditText cccdEditProfile;
     private TextInputEditText locationEditProfile;
     private AppCompatButton saveEditProfile;
-    //    private LottieAnimationView progressBarEdiProfile;
+    private LottieAnimationView progressBarEdiProfile;
     private LoginViewModel loginViewModel;
     private Location locationYouSelf;
     private String nameLocationYourSelf;
@@ -85,7 +86,6 @@ public class EditProfileActivity extends AppCompatActivity {
     public static final int CAMERA_PERMISSION_REQ = 100;
 
     Dialog dialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +103,7 @@ public class EditProfileActivity extends AppCompatActivity {
         cccdEditProfile = (TextInputEditText) findViewById(R.id.cccdEditProfile);
         locationEditProfile = (TextInputEditText) findViewById(R.id.locationEditProfile);
         saveEditProfile = (AppCompatButton) findViewById(R.id.saveEditProfile);
-//        progressBarEdiProfile = (LottieAnimationView) findViewById(R.id.progressBarEdiProfile);
+        progressBarEdiProfile = (LottieAnimationView) findViewById(R.id.progressBarEdiProfile);
 
         toolBar.setNavigationIcon(R.drawable.ic_exit_edit_profile);
         toolBar.setTitle(this.getString(R.string.edit_profile));
@@ -134,6 +134,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 //        ban du lieu len clouldy
         saveEditProfile.setOnClickListener(v -> {
+            progressBarEdiProfile.setVisibility(View.VISIBLE);
             if (imagePath == null) {
                 onBackPressed();
                 return;
@@ -153,7 +154,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(String requestId, Map resultData) {
                     linkImageAvt = resultData.get("url").toString();
-
+                    progressBarEdiProfile.setVisibility(View.GONE);
                     editProfileViewModel.updateProfileUser(new UserEditProfileRequest(
                             idUser,
                             nameEditProfile.getText().toString(),
@@ -197,8 +198,6 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onChanged(TestResponse testResponse) {
                 if (testResponse.isStatus()) {
                     Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(CheckSuccess, AppConstant.GetTestResponseMutableLiveData);
                     startActivity(intent);
                 } else {
