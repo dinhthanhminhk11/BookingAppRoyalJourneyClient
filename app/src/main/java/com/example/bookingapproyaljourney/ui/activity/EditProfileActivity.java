@@ -1,5 +1,4 @@
 package com.example.bookingapproyaljourney.ui.activity;
-
 import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
 
 import android.Manifest;
@@ -34,6 +33,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -132,7 +133,7 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
 
-//        ban du lieu len clouldy
+//        gửi dữ liệu lên Cloudy
         saveEditProfile.setOnClickListener(v -> {
             progressBarEdiProfile.setVisibility(View.VISIBLE);
             if (imagePath == null) {
@@ -175,12 +176,11 @@ public class EditProfileActivity extends AppCompatActivity {
                     Log.d(TAG, "onStart " + error);
                 }
             }).dispatch();
-
         });
 
-// lay vi tri người dùng
+// lấy vị trí người dùng
         iconLocalEditProfile.setOnClickListener(view -> {
-//            phien ban < android 6, khong can xin quyen
+//            nhỏ hơn android 6 ( ver23) , không cần xin quyền
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 return;
             }
@@ -218,7 +218,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void intit() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-//            opencamera();
+
         } else {
             handlePermission();
         }
@@ -228,14 +228,14 @@ public class EditProfileActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
 
         } else {
-// hoi xin quyen
+
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA},
                     CAMERA_PERMISSION_REQ);
         }
     }
 
-    //    thông báo khi người dùng lựa chọn cấp quyền
+    //    bắt sự kiện khi người dùng cấp quyền Location
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -255,7 +255,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         }
 
-// bat su kien nguoi dung cap quyen Camera
+// bắt sự kiện khi người dùng cấp quyền Camera
         switch (requestCode) {
             case CAMERA_PERMISSION_REQ:
                 for (int i = 0; i < permissions.length; i++) {
@@ -296,6 +296,13 @@ public class EditProfileActivity extends AppCompatActivity {
                 nameEditProfile.setText(s.getUser().getName());
                 phoneEditProfile.setText(s.getUser().getPhone());
                 locationEditProfile.setText(s.getUser().getAddress());
+
+                RequestOptions options = new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.drawable.avt_editprofile)
+                        .error(R.drawable.avt_editprofile);
+                Glide.with(EditProfileActivity.this).load(s.getUser().getImage()).apply(options).into(avtEditProfile);
+
             }
         });
     }
@@ -306,10 +313,11 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         imagePath = data.getData();
+        Log.d("LE HAI BIEN: ", "Image Path: "+ imagePath);
         avtEditProfile.setImageURI(imagePath);
     }
 
-    //  put dia chi clouldy
+    //  nhập thông tin cloudy
     private void initCongif() {
         try {
             Map config = new HashMap();
@@ -357,7 +365,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 }, Looper.getMainLooper());
     }
 
-    //  truyen vao vi tri nguoi dung
+    //  truyền vào vị trí người dùng
     private void getAddress(double lati, double longi) {
         Geocoder geocoder = new Geocoder(EditProfileActivity.this, Locale.getDefault());
         try {
@@ -393,10 +401,10 @@ public class EditProfileActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(view -> {
             dialog.dismiss();
         });
-
         dialog.show();
     }
 
+    //    mở phần cài đặt
     public static void openAppSetting(final Activity context) {
         if (context == null) {
             return;
