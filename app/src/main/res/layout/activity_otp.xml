@@ -60,7 +60,6 @@
             android:layout_marginHorizontal="@dimen/_24dp"
             android:layout_marginTop="@dimen/_5dp"
             android:maxLines="2"
-            android:text="Nhập mã mà chúng tôi đã gửi qua tin nhắn email dinhthanhminhk11"
             android:textSize="@dimen/_16sp" />
 
         <EditText

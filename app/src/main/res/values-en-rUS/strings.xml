@@ -326,8 +326,10 @@
     <string name="RePassIsEmpty">Re-enter the new password</string>
     <string name="LanguageSetting2">Change your password</string>
     <string name="owner_detail">Owner</string>
-    <string name="see_more">Xem Thêm</string>
-    <string name="check_in">Nhận phòng từ ngày:</string>
+    <string name="see_more">See more</string>
+    <string name="check_in">Check in from date:</string>
+    <string name="Online_payment"> Online_payment</string>
+    <string name="textOnline_payment"> Payment by bank transfer or using e-wallets</string>
 
     <string name="byRoyal">About us</string>
     <string name="infoRoyal">Information about us</string>
@@ -343,6 +345,15 @@
     <string name="textStatsBill3">The host has accepted your cancellation request</string>
     <string name="textStatsBill4">The owner denied your request because: %s</string>
     <string name="textStatsBill5">Since the landlord has denied your request, you will be refunded 100% of the amount paid \n landlords reason : %s</string>
-
     <string name="Cancel_before_date3">If you cancel before <i><b>%s</b></i> you will get a partial refund. <i><b>Learn more</b></i></string>
+    <string name="Direct_payment">Direct payment</string>
+    <string name="textDirect_payment">You will have to pay after you have completed the check-out procedure</string>
+    <string name="Partial_pre_deposit">Partial pre-deposit (32%)</string>
+    <string name="Pay_with">Pay with</string>
+    <string name="Add">Add</string>
+    <string name="textExactly_cancel">No refund support, you will not get your money back if you cancel</string>
+
+    <string name="textPartial_pre_deposit">If you want to make sure your accommodation is not cancelled, please make a 1-part deposit for us</string>
+
+
 </resources>

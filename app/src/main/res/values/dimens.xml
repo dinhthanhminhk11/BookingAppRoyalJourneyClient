@@ -2001,6 +2001,7 @@
     <dimen name="_997sp">997sp</dimen>
     <dimen name="_998sp">998sp</dimen>
     <dimen name="_999sp">999sp</dimen>
+    <dimen name="_05dp">0.5dp</dimen>
 
     Process finished with exit code 0
 

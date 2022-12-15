@@ -1,4 +1,5 @@
 package com.example.bookingapproyaljourney.ui.activity;
+
 import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
 
 import android.Manifest;
@@ -140,6 +141,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 onBackPressed();
                 return;
             }
+
             MediaManager.get().upload(imagePath).callback(new UploadCallback() {
                 @Override
                 public void onStart(String requestId) {
@@ -313,7 +315,7 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         imagePath = data.getData();
-        Log.d("LE HAI BIEN: ", "Image Path: "+ imagePath);
+        Log.d("LE HAI BIEN: ", "Image Path: " + imagePath);
         avtEditProfile.setImageURI(imagePath);
     }
 

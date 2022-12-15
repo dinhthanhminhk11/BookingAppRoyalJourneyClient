@@ -159,7 +159,7 @@
     <string name="text2">Bạn luôn có thể tìm thấy chính sách huỷ và các tuỳ chọn trong mục <b>Chuyến đi</b> chỉ cần nhấp hoặc nhấn vào chi tiết chuyến đi là bạn sẽ thấy <b>Chính sách huỷ</b> của mình.Ngày và giờ mà chúng tôi hiển thị cho chính sách huỷ là theo múi h của địa phương của phòng. Thời gian huỷ để nhận tiền hoàn lại được tính từ giờ nhận phòng của phòng cho thuê theo múi giờ địa phương, hoặc nếu mục cho thuê không ghi rõ giờ nhận phòng</string>
     <string name="textCancelation_policy2">Nếu bạn gặp phải một vấn để nào đó trong thời gian ở, bạn có thể yêu cầu Chủ nhà khắc phục vấn đề đó, yếu cầu hoàn tiền một phần hoặc yêu cầu hoàn tiền đầy đủ. Bạn cần gửi yêu trong vòng 24 giờ kể từ thời điểm phát hiện vấn đề, Còn chủ nhà sẽ có 1 giờ để trả lời. Nếu chủ nhà từ chối hoặc không phản hồi, bạn có thể yêu cầu RoyalRourney can thiệp để giúp giải quyết</string>
     <string name="textCancelation_policy">Kế hoạch của bạn đã thay đổi và bây giờ bạn cần huỷ đặt phòng của mình. Không thành vấn đề. Bạn có thể vào mục. Chuyến đi để huỷ</string>
-    <string name="text_comfirm_status_bill">Đặt phòng của bạn là đặt phòng với RoyalJourney được sử lí bời công ti đối tác của chúng tôi . khi hoàn tất đặt phòng này bạn đồng ý với điều kiện đặt phòng , diều khoản chung và chính sách bảo mật .Vai trò của RoyalJourney chỉ đơn thuần là nhà cung cấp nền tảng kết nối giữa khách hàng và công ty du lịch có liên quan.Bạn sẽ không được nhận hỗ trọ từ bộ phần dịch vụ khách hàng của RoyalJourney cho đặt phòng này</string>
+    <string name="text_comfirm_status_bill">Đặt phòng của bạn là đặt phòng với RoyalJourney được xử lý bời công ty đối tác của chúng tôi. Khi hoàn tất đặt phòng này bạn đồng ý với điều kiện đặt phòng , diều khoản chung và chính sách bảo mật .Vai trò của RoyalJourney chỉ đơn thuần là nhà cung cấp nền tảng kết nối giữa khách hàng và công ty du lịch có liên quan.Bạn sẽ không được nhận hỗ trọ từ bộ phần dịch vụ khách hàng của RoyalJourney cho đặt phòng này</string>
 
 
     <string name="Your_trip">Chuyến đi của bạn</string>
@@ -203,7 +203,7 @@
     <string name="titleConfrimMail">Tài khoản của bạn chưa xác thực email</string>
     <string name="contentConfrimMail">Bảo mật bằng việc xác thực qua mã OTP được coi là hình thức bảo mật an toàn</string>
     <string name="textOTP">Mã OTP gồm có 6 kí tự</string>
-    <string name="enterCodeOTP">Nhập mã mà chúng tôi đã gửi qua tin nhắn email </string>
+    <string name="enterCodeOTP">Nhập mã mà chúng tôi đã gửi qua tin nhắn email  </string>
     <string name="out">Thoát</string>
     <string name="OTPFail">OTP không chính xác</string>
     <string name="SEND">Đã Gửi</string>
@@ -297,7 +297,9 @@
     <string name="check_in">Nhận phòng từ ngày:</string>
     <string name="byRoyal">Về chúng tôi</string>
     <string name="infoRoyal">Những thông tin về chúng tôi</string>
-
+    <string name="Online_payment">Thanh toán online</string>
+    <string name="textOnline_payment">Thanh toán bằng cách chuyển khoản hoặc sử dụng ví điện tử</string>
+    <string name="Confirmation_and_payment">Xác nhận và thanh toán</string>
     <string name="EditProfileSuccess">Cập nhật thành công</string>
     <string name="Ban_muon_truy_cap_Camera">Bạn muốn truy cập Camera ?</string>
     <string name="Chon_cai_dat_de_cap_quyen_cho_ung_dung">Chọn phần Cài đặt để cấp quyền Camera cho ứng dụng.</string>
@@ -311,6 +313,13 @@
     <string name="textStatsBill4">Chủ nhà đã từ chối yêu cầu của bạn lí do là vì: %s</string>
     <string name="textStatsBill5">Do chủ nhà đã từ chối yêu cầu của bạn nên bạn sẽ được lại lại 100% số tiền đã thanh toán \n lí do của chủ nhà :  %s</string>
     <string name="Cancel_before_date3">Nếu bạn hủy trước ngày <b>%s</b> bạn sẽ được hoàn lại một phần tiền. <b><i>Tìm hiểu thêm</i></b></string>
+    <string name="Direct_payment">Thanh toán trực tiếp</string>
+    <string name="textDirect_payment">Bạn sẽ phải thanh toán sau khi đã hoàn tất thủ tục trả phòng</string>
+    <string name="Partial_pre_deposit">Đặt cọc trước 1 phần (32%)</string>
+    <string name="textPartial_pre_deposit">Nếu bạn muốn đảm bảo chỗ ở của bạn không bị hủy thì xin hãy đặt cọc trước 1 phần cho chúng tôi</string>
+    <string name="Pay_with">Thanh toán bằng</string>
+    <string name="Add">Thêm</string>
+    <string name="textExactly_cancel">Không hỗ trợ hoàn huỷ, bạn sẽ không nhận lại được tiền nếu bạn huỷ</string>
 
 
 </resources>

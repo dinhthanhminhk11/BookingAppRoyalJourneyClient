@@ -404,7 +404,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/info_bill"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/_16dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -513,7 +513,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5dp"
-                    android:text="Không hỗ trợ hoàn huỷ , bạn sẽ không nhận được lại tiền nếu bạn huỷ" />
+                    android:text="@string/textExactly_cancel"/>
+
             </LinearLayout>
 
             <LinearLayout
