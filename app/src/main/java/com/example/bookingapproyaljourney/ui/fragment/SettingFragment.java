@@ -179,7 +179,7 @@ public class SettingFragment extends Fragment {
         if (idTheme == 1) {
             EventBus.getDefault().postSticky(new KeyEvent(AppConstant.SAVE_THEME_DARK));
 
-            binding.contentTheme.setText("Dark");
+            binding.contentTheme.setText(R.string.Dark);
             binding.contentBackground.setBackgroundColor(getContext().getResources().getColor(R.color.dark_212332));
             binding.contentItemChildTheme.setBackgroundResource(R.drawable.background_setting_item_dark);
             binding.contentItemChildLang.setBackgroundResource(R.drawable.background_setting_item_dark);
@@ -208,7 +208,7 @@ public class SettingFragment extends Fragment {
         } else {
             EventBus.getDefault().postSticky(new KeyEvent(AppConstant.SAVE_THEME_LIGHT));
 
-            binding.contentTheme.setText("Light");
+            binding.contentTheme.setText(R.string.Light);
             binding.contentBackground.setBackgroundColor(getContext().getResources().getColor(R.color.white));
             binding.contentItemChildTheme.setBackgroundResource(R.drawable.background_setting_item);
             binding.contentItemChildLang.setBackgroundResource(R.drawable.background_setting_item);

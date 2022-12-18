@@ -17,13 +17,13 @@
 
         <LinearLayout
             android:id="@+id/contentItemChildLang"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_5dp"
             android:layout_weight="1"
             android:background="@drawable/background_setting_item"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="@dimen/_10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/textview_border_setting_xam"
-                    android:padding="5dp"
+                    android:padding="@dimen/_5dp"
                     android:src="@drawable/ic_internet_language_settings_ver3"
                     tools:ignore="ContentDescription" />
 
@@ -56,27 +56,27 @@
 
             <TextView
                 android:id="@+id/title_lang"
-                android:layout_width="140dp"
+                android:layout_width="@dimen/_140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_20dp"
                 android:layout_weight="1"
                 android:text="@string/LanguageSetting"
                 android:textColor="?attr/text_color"
-                android:textSize="18dp"
+                android:textSize="@dimen/_18dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:visibility="gone"
                 android:id="@+id/content_lang"
-                android:layout_width="140dp"
+                android:layout_width="@dimen/_140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_5dp"
                 android:layout_weight="1"
                 android:text="@string/LanguageSetting"
                 android:textColor="?attr/text_color"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp" />
 
             <Spinner
                 android:layout_width="wrap_content"
@@ -87,13 +87,13 @@
 
         <LinearLayout
             android:id="@+id/contentItemChildTheme"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_5dp"
             android:layout_weight="1"
             android:background="@drawable/background_setting_item"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="@dimen/_10dp"
 
             >
 
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/textview_border_setting_xam"
-                    android:padding="5dp"
+                    android:padding="@dimen/_5dp"
                     android:src="@drawable/ic_group_moon_setting"
                     tools:ignore="ContentDescription" />
 
@@ -131,20 +131,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
                 android:layout_weight="1"
-                android:text="Theme"
+                android:text="@string/theme"
                 android:textColor="?attr/text_color"
-                android:textSize="18dp"
+                android:textSize="@dimen/_18dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/content_theme"
-                android:layout_width="140dp"
+                android:layout_width="@dimen/_140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5dp"
                 android:layout_weight="1"
-                android:text="Light"
+                android:text="@string/Light"
                 android:textColor="?attr/text_color"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -153,13 +153,13 @@
         android:id="@+id/contentChangePass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
+        android:layout_marginHorizontal="@dimen/_5dp"
         android:layout_marginTop="@dimen/_20dp"
         android:background="@drawable/background_setting_item"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
-        android:paddingVertical="10dp"
-        android:paddingLeft="10dp">
+        android:paddingVertical="@dimen/_10dp"
+        android:paddingLeft="@dimen/_10dp">
 
         <ImageView
             android:id="@+id/icon_changepass"
@@ -181,7 +181,7 @@
                 android:layout_marginHorizontal="@dimen/_20dp"
                 android:text="@string/ChangePassSetting"
                 android:textColor="?attr/text_color"
-                android:textSize="18dp"
+                android:textSize="@dimen/_18dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -192,7 +192,7 @@
                 android:layout_marginTop="@dimen/_5dp"
                 android:text="@string/LanguageSetting2"
                 android:textColor="?attr/text_color"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp" />
         </LinearLayout>
 
         <ImageView
@@ -206,13 +206,13 @@
         android:id="@+id/contentByRoyal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
+        android:layout_marginHorizontal="@dimen/_5dp"
         android:layout_marginTop="@dimen/_20dp"
         android:background="@drawable/background_setting_item"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
-        android:paddingVertical="10dp"
-        android:paddingLeft="10dp">
+        android:paddingVertical="@dimen/_10dp"
+        android:paddingLeft="@dimen/_10dp">
 
         <ImageView
             android:id="@+id/icon_royal"
@@ -234,7 +234,7 @@
                 android:layout_marginHorizontal="@dimen/_20dp"
                 android:text="@string/byRoyal"
                 android:textColor="?attr/text_color"
-                android:textSize="18dp"
+                android:textSize="@dimen/_18dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -245,7 +245,8 @@
                 android:layout_marginTop="@dimen/_5dp"
                 android:text="@string/infoRoyal"
                 android:textColor="?attr/text_color"
-                android:textSize="14dp" />
+                android:textSize="@dimen/_14dp" />
+
         </LinearLayout>
 
         <ImageView
@@ -253,5 +254,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_button_infor_setting" />
+
     </LinearLayout>
 </LinearLayout>

@@ -320,6 +320,10 @@
     <string name="Pay_with">Thanh toán bằng</string>
     <string name="Add">Thêm</string>
     <string name="textExactly_cancel">Không hỗ trợ hoàn huỷ, bạn sẽ không nhận lại được tiền nếu bạn huỷ</string>
+    <string name="theme">Chủ đề</string>
+    <string name="Light">Sáng</string>
+    <string name="Dark">Tối</string>
+    <string name="Choose_Language">Chọn ngôn ngữ</string>
 
 
 </resources>

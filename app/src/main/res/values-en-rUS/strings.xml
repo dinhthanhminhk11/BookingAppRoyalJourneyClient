@@ -352,8 +352,10 @@
     <string name="Pay_with">Pay with</string>
     <string name="Add">Add</string>
     <string name="textExactly_cancel">No refund support, you will not get your money back if you cancel</string>
-
+    <string name="theme">Theme</string>
     <string name="textPartial_pre_deposit">If you want to make sure your accommodation is not cancelled, please make a 1-part deposit for us</string>
-
+    <string name="Light">Light</string>
+    <string name="Dark">Dark</string>
+    <string name="Choose_Language">Choose Language</string>
 
 </resources>

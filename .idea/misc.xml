@@ -7,9 +7,11 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/font/poppins.xml" value="0.3927083333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/font/poppins_medium.xml" value="0.3927083333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_option.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/Admin/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_btn_dialog_edit_profile.xml" value="0.1135" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_dialog_editprofile.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_baseline_mode_night_24.xml" value="0.104" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_button_infor_setting.xml" value="0.104" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_bill.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_bill_oder.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_change_password.xml" value="0.14666666666666667" />
@@ -18,6 +20,7 @@
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_otp.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_status_bill.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_profile.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_setting.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_detail_gallery.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_feedback.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/permission_camera_editprofile_dialog.xml" value="0.184375" />
