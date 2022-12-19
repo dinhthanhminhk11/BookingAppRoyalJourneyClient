@@ -324,6 +324,27 @@
     <string name="Light">Sáng</string>
     <string name="Dark">Tối</string>
     <string name="Choose_Language">Chọn ngôn ngữ</string>
-
+    <string name="Vietnam_Tourism_Joint_Stock_Company_VnTravel">Công ty cổ phần du lịch Việt Nam VnTravel</string>
+    <string name="Hanoi">Hà Nội</string>
+    <string name="Tp_Ho_Chi_Minh">Tp.Hồ Chí Minh</string>
+    <string name="Flight_booking_assistance">Hỗ trợ đặt vé máy bay:</string>
+    <string name="Office_in_Hanoi">Văn phòng tại Hà Nội:</string>
+    <string name="th_Floor_Peakview_Building_Hoang_Cau_Dong_Da_Hanoi">Tầng 11,Tòa Peakview, 36 Hoàng Cầu, Đống Đa,Hà Nội</string>
+    <string name="Business_registration_number">Số ĐKKD:</string>
+    <string name="Office_in_Ho_Chi_Minh_City">Văn phòng tại Tp.Hồ Chí Minh:</string>
+    <string name="Floor_Central_Park_Building_Nguyen_Du_District_Ho_Chi_Minh_City">Tầng 6, Tòa Nhà Central Park, 17 Nguyễn Du, Quận 1, Tp.Hồ Chí Minh</string>
+    <string name="issued_on">0108886908 cấp ngày 04/09/2019</string>
+    <string name="Place_of_issue">Nơi cấp:</string>
+    <string name="Hanoi_Department_of_Planning_and_Investment">Sở kế hoạch và đầu tư thành phố Hà Nội</string>
+    <string name="Business_Areas">Lĩnh vực kinh doanh:</string>
+    <string name="Travel_agency">Đại lý du lịch</string>
+    <string name="Domain_address">Địa chỉ tên miền:</string>
+    <string name="Digital_bank_account">Tài khoản ngân hàng số:</string>
+    <string name="Techcombank_Ha_Dong_Branch">Techcombank Chi Nhánh Hội Sở</string>
+    <string name="Account_holders">Chủ tài khoản:</string>
+    <string name="RoyalJourney_Vietnam_Company_Limited">Công Ty TNHH RoyalJourney Việt Nam</string>
+    <string name="Operating_regulations">Quy chế hoạt động</string>
+    <string name="Privacy_Policy">Chính sách bảo mật</string>
+    <string name="Process_of_resolving_and_disputing_complaints">Quy trình giải quyết, tranh chấp khiếu nại</string>
 
 </resources>

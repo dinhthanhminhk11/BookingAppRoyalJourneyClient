@@ -261,7 +261,7 @@
     <string name="Hai_Phong">Hai Phong</string>
     <string name="Thai_binh">Thai Binh</string>
     <string name="Hung_yen">Hung Yen</string>
-    <string name="Tp_Ho_Chi_Minh">TP. Ho Chi Minh</string>
+    <string name="Tp_Ho_Chi_Minh">Tp. Ho Chi Minh</string>
     <string name="Clean_the_filter">Clear filter</string>
     <string name="delete_search">Clear search</string>
     <string name="Change_Location">Try changing the search address and find it again</string>
@@ -357,5 +357,25 @@
     <string name="Light">Light</string>
     <string name="Dark">Dark</string>
     <string name="Choose_Language">Choose Language</string>
+    <string name="Vietnam_Tourism_Joint_Stock_Company_VnTravel">Vietnam Tourism Joint Stock Company VnTravel</string>
+    <string name="Flight_booking_assistance">Flight booking assistance:</string>
+    <string name="Office_in_Hanoi">Office in Hanoi:</string>
+    <string name="th_Floor_Peakview_Building_Hoang_Cau_Dong_Da_Hanoi">11th Floor, Peakview Building, 36 Hoang Cau, Dong Da, Hanoi</string>
+    <string name="Business_registration_number">Business registration number:</string>
+    <string name="Office_in_Ho_Chi_Minh_City">Office in Ho Chi Minh City:</string>
+    <string name="Floor_Central_Park_Building_Nguyen_Du_District_Ho_Chi_Minh_City">6th Floor, Central Park Building, 17 Nguyen Du, District 1, Ho Chi Minh City</string>
+    <string name="issued_on">0108886908 issued on 04/09/2019</string>
+    <string name="Place_of_issue">Place of issue:</string>
+    <string name="Hanoi_Department_of_Planning_and_Investment">Hanoi Department of Planning and Investment</string>
+    <string name="Business_Areas">Business Areas:</string>
+    <string name="Travel_agency">Travel agency</string>
+    <string name="Domain_address">Domain address:</string>
+    <string name="Digital_bank_account">Digital bank account:</string>
+    <string name="Techcombank_Ha_Dong_Branch">Techcombank Hoi So Branch</string>
+    <string name="Account_holders">Account holders:</string>
+    <string name="RoyalJourney_Vietnam_Company_Limited">RoyalJourney Vietnam Company Limited</string>
+    <string name="Operating_regulations">Operating regulations</string>
+    <string name="Privacy_Policy">Privacy Policy</string>
+    <string name="Process_of_resolving_and_disputing_complaints">Process of resolving, disputing complaints</string>
 
 </resources>
