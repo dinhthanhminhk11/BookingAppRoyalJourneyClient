@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
@@ -86,6 +89,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private static final String TAG = "Upload ###";
     private EditProfileViewModel editProfileViewModel;
     public static final int CAMERA_PERMISSION_REQ = 100;
+    private LinearLayout viewEditProfile;
 
     Dialog dialog;
 
@@ -94,6 +98,7 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        viewEditProfile = (LinearLayout) findViewById(R.id.viewEditProfile);
         toolBar = (MaterialToolbar) findViewById(R.id.tool_bar);
         avtEditProfile = (CircleImageView) findViewById(R.id.avtEditProfile);
         cameraEditProfile = (ImageView) findViewById(R.id.cameraEditProfile);
@@ -107,7 +112,6 @@ public class EditProfileActivity extends AppCompatActivity {
         saveEditProfile = (AppCompatButton) findViewById(R.id.saveEditProfile);
         progressBarEdiProfile = (LottieAnimationView) findViewById(R.id.progressBarEdiProfile);
 
-        toolBar.setNavigationIcon(R.drawable.ic_exit_edit_profile);
         toolBar.setTitle(this.getString(R.string.edit_profile));
         toolBar.setPadding(15, 0, 0, 0);
         setSupportActionBar(toolBar);
@@ -116,6 +120,19 @@ public class EditProfileActivity extends AppCompatActivity {
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         editProfileViewModel = new ViewModelProvider(this).get(EditProfileViewModel.class);
+
+//        thay đổi Theme
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
 
         initData();
         initCongif();
@@ -132,7 +149,6 @@ public class EditProfileActivity extends AppCompatActivity {
                         .start(20);
             }
         });
-
 
 //        gửi dữ liệu lên Cloudy
         saveEditProfile.setOnClickListener(v -> {
@@ -192,7 +208,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
                 requestPermissions(permissions, REQUES_PERMISSION_CODE);
             }
-
         });
 
         editProfileViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TestResponse>() {
@@ -419,6 +434,24 @@ public class EditProfileActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         context.startActivity(i);
+    }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            toolBar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            toolBar.setNavigationIcon(R.drawable.ic_exitwhite_editprofile);
+            toolBar.setTitleTextColor(Color.WHITE);
+            viewEditProfile.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            titleNameEditProfile.setTextColor(Color.WHITE);
+            titleEmailEditProfile.setTextColor(Color.WHITE);
+        } else {
+            toolBar.setBackgroundColor(this.getResources().getColor(R.color.white));
+            toolBar.setNavigationIcon(R.drawable.ic_exit_edit_profile);
+            toolBar.setTitleTextColor(Color.BLACK);
+            viewEditProfile.setBackgroundColor(this.getResources().getColor(R.color._F9F9F9));
+            titleNameEditProfile.setTextColor(Color.BLACK);
+            titleEmailEditProfile.setTextColor(Color.BLACK);
+        }
     }
 
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/viewEditProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/_F9F9F9"
@@ -85,19 +86,18 @@
                     android:layout_marginTop="@dimen/_40dp"
                     android:orientation="vertical">
 
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_54dp"
+                        android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:hint="@string/Ten"
-                        app:boxStrokeColor="@color/_171717"
-                        app:hintTextColor="@color/color_555555">
+                        app:boxStrokeColor="@color/hint_color"
+                        app:hintTextColor="@color/hint_color">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/nameEditProfile"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_54dp"
                             android:background="@color/white"
                             android:inputType="text"
                             android:textColor="@color/black"
@@ -113,7 +113,7 @@
                         android:background="@color/white"
                         android:hint="@string/Sdt_editprofile"
                         app:boxStrokeColor="@color/_171717"
-                        app:hintTextColor="@color/color_555555">
+                        app:hintTextColor="@color/hint_color">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/phoneEditProfile"
@@ -129,17 +129,17 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_54dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20dp"
                         android:background="@color/white"
                         android:hint="@string/cccd"
-                        app:boxStrokeColor="@color/_171717"
-                        app:hintTextColor="@color/color_555555">
+                        app:boxStrokeColor="@color/hint_color"
+                        app:hintTextColor="@color/hint_color">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/cccdEditProfile"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_54dp"
                             android:background="@color/white"
                             android:inputType="number"
                             android:textColor="@color/black"
@@ -149,18 +149,18 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_54dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20dp"
                         android:background="@color/white"
                         android:hint="@string/dia_chi"
                         app:boxStrokeColor="@color/_171717"
-                        app:hintTextColor="@color/color_555555"
+                        app:hintTextColor="@color/hint_color"
                         app:startIconDrawable="@drawable/ic_subtract_edit_profile">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/locationEditProfile"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_54dp"
                             android:background="@color/white"
                             android:inputType="text"
                             android:textColor="@color/black"
