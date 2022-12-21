@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.ContactActivity">
+    tools:context=".ui.activity.ContactActivity"
+    android:id="@+id/layoutAboutUs">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tool_bar"
@@ -277,11 +278,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
             <TextView
+                android:id="@+id/RoyalJourney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@+id/tv8"
-                android:text="RoyalJourney"
+                android:text="@string/RoyalJourney"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView19"
@@ -385,7 +387,5 @@
                 app:layout_constraintStart_toStartOf="@+id/textView26"
                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
 </RelativeLayout>
