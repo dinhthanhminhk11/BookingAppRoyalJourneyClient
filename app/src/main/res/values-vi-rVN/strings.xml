@@ -94,7 +94,7 @@
     <string name="Phone">Phone</string>
     <string name="Address">Address</string>
     <string name="Citizen_identity_card">Citizen identity card</string>
-    <string name="SAVE">SAVE</string>
+    <string name="SAVE">LƯU</string>
     <string name="setting_arrays_travel">Chuyến đi</string>
     <string name="your_order_just_arrived">Đoạn Chat Của Bạn Ở Đây</string>
     <string name="chuyen_di_nhu_nao">Chuyến đi như nào?</string>
@@ -355,5 +355,17 @@
     <string name="Rank">Xếp hạng</string>
     <string name="Type_of_house">Loại nhà/phòng</string>
     <string name="Show_results">Hiển thị kết quả</string>
-
+    <string name="Check_inItemOrder">Nhận phòng</string>
+    <string name="Check_outItemOrder">Trả phòng</string>
+    <string name="Total_amount">Tổng tiền:</string>
+    <string name="Payment_Methods">Phương thức thanh toán</string>
+    <string name="Guest">Khách</string>
+    <string name="titleOne_bottomsheetEditPerson">Chỗ này cho phép tối đa 6 người, không tính em bé, nếu bạn mang theo nhiều hơn 2 thú cưng, vui lòng thông báo với chủ nhà.</string>
+    <string name="titleTwo_bottomsheetEditPerson">Chủ nhà cho biết chỗ ở của họ có các đặc điểm không phụ hợp với trẻ em. Nếu bạn vẫn muốn ở, hãy gửi yêu cầu đặt phòng cho chủ nhà để biết thêm thông tin chi tiết.</string>
+    <string name="Adult">Người lớn</string>
+    <string name="thirteen_years_and_older">13 tuổi trở lên</string>
+    <string name="Children">Trẻ em</string>
+    <string name="AgesToAndTo">Ages 2 - 12</string>
+    <string name="Select_a_date">Chọn ngày</string>
+    <string name="one_night">x 1 đêm</string>
 </resources>

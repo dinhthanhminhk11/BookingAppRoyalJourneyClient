@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="@dimen/_10dp"
+    android:layout_marginVertical="@dimen/_5dp"
     android:id="@+id/contentCard"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="8dp">
+    app:cardCornerRadius="@dimen/_10dp"
+    app:cardElevation="@dimen/_8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,11 +23,11 @@
             android:scaleType="centerCrop" />
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="@dimen/_10dp">
 
             <TextView
                 android:id="@+id/name"
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nameCategory"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="@dimen/_10dp">
 
                 <ImageView
                     android:id="@+id/imageStar1"
@@ -114,7 +114,7 @@
                 android:background="@drawable/textview_border"
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
-                android:padding="3dp"
+                android:padding="@dimen/_3dp"
                 android:text="Hotel"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/_12dp" />

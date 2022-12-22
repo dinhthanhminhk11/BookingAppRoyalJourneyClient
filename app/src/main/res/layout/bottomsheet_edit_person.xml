@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/_10dp"
             android:layout_toRightOf="@+id/close"
             android:fontFamily="@font/poppins_medium"
-            android:text="Khách"
+            android:text="@string/Guest"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sp" />
 
@@ -56,14 +56,16 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_20dp"
-        android:text="Chỗ này cho phép tối đa 6 người , không tính em bé , nếu bạn mang theo nhiều hơn 2 thú cưng ,  vui lòng thông báo với chủ nhà" />
+        android:text="@string/titleOne_bottomsheetEditPerson" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="@dimen/_20dp"
-        android:text="Chủ nhà cho biết chỗ ở của họ có các đặc điểm không phụ hợp với trẻ em. Nếu bạn vẫn muốn ở nhà họ, hãy gửi yêu cầu đặt phòng cho chủ nhà để biết thêm thông tin chi tiết" />
+        android:text="@string/titleTwo_bottomsheetEditPerson"/>
+<!--        android:text="Chủ nhà cho biết chỗ ở của họ có các đặc điểm không phụ hợp với trẻ em. Nếu bạn vẫn muốn ở nhà họ, hãy gửi yêu cầu đặt phòng cho chủ nhà để biết thêm thông tin chi tiết" -->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,7 +82,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Người lớn"
+                android:text="@string/Adult"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold" />
@@ -89,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5dp"
-                android:text="13 tuổi trở lên"
+                android:text="@string/thirteen_years_and_older"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -141,16 +143,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trẻ em"
+                android:text="@string/Children"
                 android:textColor="@color/black"
-                android:textSize="16dp"
+                android:textSize="@dimen/_16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5dp"
-                android:text="Độ tuổi 2 -12"
+                android:text="@string/AgesToAndTo"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -207,7 +209,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="Huỷ"
+            android:text="@string/cancel_status_bill"
             android:textColor="@color/black"
             android:textSize="@dimen/_18dp"
             android:textStyle="bold" />
@@ -218,8 +220,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/bg_buttom_black"
-            android:text="Lưu"
+            android:text="@string/SAVE"
             app:backgroundTint="@null" />
     </LinearLayout>
-
 </LinearLayout>

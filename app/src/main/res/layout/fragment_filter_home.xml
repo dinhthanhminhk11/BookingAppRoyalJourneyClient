@@ -75,10 +75,10 @@
                 android:valueFrom="120000"
                 android:valueTo="5000000"
                 android:stepSize="10000"
-                app:tickColor="#238ae6"
-                app:thumbColor="#238ae6"
-                app:trackColorActive="#238ae6"
-                app:trackColorInactive="#F8F8F8"
+                app:tickColor="@color/color_238ae6"
+                app:thumbColor="@color/color_238ae6"
+                app:trackColorActive="@color/color_238ae6"
+                app:trackColorInactive="@color/color_F8F8F8"
                 app:values="@array/initial_slider_values" />
 
             <LinearLayout

@@ -296,9 +296,9 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
         builder.setTheme(R.style.ThemeOverlay_App_DatePicker);
         MaterialDatePicker<Pair<Long, Long>> materialDatePicker = builder
-                .setTitleText("Chọn ngày")
-                .setPositiveButtonText("Lưu")
-                .setNegativeButtonText("không")
+                .setTitleText(BillOderActivity.this.getString(R.string.Select_a_date))
+                .setPositiveButtonText(BillOderActivity.this.getString(R.string.SAVE))
+                .setNegativeButtonText(BillOderActivity.this.getString(R.string.Thoat))
                 .build();
 
 
@@ -542,8 +542,8 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             binding.nameHouse.setText(item.getName());
             binding.tvTimeNhanPhong.setText(item.getOpening());
             binding.tvTimeTra.setText(item.getEnding());
-            binding.personLimitHouse.setText("Tối đa " + item.getLimitPerson() + " khách");
-            binding.priceAndCount.setText("$" + fm.format(item.getPrice()) + " x 1 đêm");
+            binding.personLimitHouse.setText(this.getString(R.string.Maximal) + " " + item.getLimitPerson() + " " + this.getString(R.string.Guest));
+            binding.priceAndCount.setText("$" + fm.format(item.getPrice()) + " " + this.getString(R.string.one_night));
             binding.sumPrice.setText("$" + fm.format(item.getPrice()));
             binding.priceAll.setText("$" + fm.format(item.getPrice()));
             binding.startDateAndEndDate.setText(item.getStartDate() + " - " + item.getEndDate());
@@ -770,7 +770,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             return;
         } else {
             personLimitPrivate = sum;
-            binding.person.setText(sum + " khách");
+            binding.person.setText(sum + " " + this.getString(R.string.Guest));
         }
     }
 

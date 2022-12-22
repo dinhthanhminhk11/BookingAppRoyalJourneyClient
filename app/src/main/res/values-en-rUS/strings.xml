@@ -386,5 +386,18 @@
     <string name="Rank">Rank</string>
     <string name="Type_of_house">House/room type</string>
     <string name="Show_results">Show results</string>
+    <string name="Check_inItemOrder">Check-in</string>
+    <string name="Check_outItemOrder">Check-out</string>
+    <string name="Total_amount">Total amount:</string>
+    <string name="Payment_Methods">Payment Methods</string>
+    <string name="Guest">Guest</string>
+    <string name="titleOne_bottomsheetEditPerson">This property allows up to 6 people, excluding babies, if you are bringing more than 2 pets, please inform the host.</string>
+    <string name="titleTwo_bottomsheetEditPerson" >Landlords said their accommodation has characteristics that are not suitable for children. If you still want to stay, send a reservation request to the host for more details.</string>
+    <string name="Adult">Adult</string>
+    <string name="thirteen_years_and_older">13 years and older</string>
+    <string name="Children">Children</string>
+    <string name="AgesToAndTo">Ages 2 - 12</string>
+    <string name="Select_a_date">Select a date</string>
+    <string name="one_night">x 1 night</string>
 
 </resources>
