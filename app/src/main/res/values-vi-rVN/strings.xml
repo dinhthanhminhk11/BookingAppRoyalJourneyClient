@@ -348,5 +348,12 @@
     <string name="Process_of_resolving_and_disputing_complaints">Quy trình giải quyết, tranh chấp khiếu nại</string>
     <string name="veRoyalJourney">Về RoyalJourney</string>
     <string name="RoyalJourney">RoyalJourney</string>
+    <string name="filter">Bộ lọc</string>
+    <string name="Price_range">Phạm vi giá</string>
+    <string name="Minimum">Tối thiểu</string>
+    <string name="Maximal">Tối đa</string>
+    <string name="Rank">Xếp hạng</string>
+    <string name="Type_of_house">Loại nhà/phòng</string>
+    <string name="Show_results">Hiển thị kết quả</string>
 
 </resources>

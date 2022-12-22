@@ -107,11 +107,8 @@ public class ContactActivity extends AppCompatActivity {
             layoutAboutUs.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
             tv1.setTextColor(Color.WHITE);
             tv2.setTextColor(Color.WHITE);
-
             tv4.setTextColor(Color.WHITE);
-
             tv6.setTextColor(Color.WHITE);
-
             tv8.setTextColor(Color.WHITE);
             textView2.setTextColor(Color.WHITE);
             textView3.setTextColor(Color.WHITE);
@@ -159,5 +156,4 @@ public class ContactActivity extends AppCompatActivity {
             RoyalJourney.setTextColor(Color.BLACK);
         }
     }
-
 }

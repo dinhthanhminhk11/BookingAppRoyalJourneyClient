@@ -12,6 +12,7 @@
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_btn_dialog_edit_profile.xml" value="0.1135" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_card_profile_white.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_dialog_editprofile.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_filter.xml" value="0.1065" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/background_setting_item_dark.xml" value="0.104" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/bg_edittext.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1" />
@@ -25,8 +26,15 @@
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_status_bill.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/dia_log_comfirm_logout.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_bookmark.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_filter_home.xml" value="0.22" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_filter_map.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_home.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_notification.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_profile.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_setting.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_text.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_loai.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/permission_camera_editprofile_dialog.xml" value="0.184375" />
       </map>
     </option>

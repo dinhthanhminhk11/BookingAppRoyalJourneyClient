@@ -30,7 +30,7 @@
             android:layout_toEndOf="@+id/imgCancel"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
-            android:text="Bộ lọc"
+            android:text="@string/filter"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sp" />
 
@@ -48,7 +48,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/_0dp"
         android:layout_marginHorizontal="@dimen/_22dp"
         android:layout_marginTop="@dimen/_10dp"
         android:layout_weight="1"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Phạm vi giá"
+                android:text="@string/Price_range"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp" />
 
@@ -84,11 +84,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_65dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/_0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -99,8 +99,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Tối thiểu"
-                        android:layout_marginTop="5dp"
+                        android:text="@string/Minimum"
+                        android:layout_marginTop="@dimen/_5dp"
                         android:layout_marginStart="@dimen/_18sp"/>
                     <TextView
                         android:id="@+id/starPrice"
@@ -125,8 +125,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:layout_marginTop="5dp"
-                        android:text="Tối đa"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:text="@string/Maximal"
                         android:layout_marginStart="@dimen/_18dp"/>
                     <TextView
                         android:id="@+id/endPrice"
@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Xếp hạng"
+                android:text="@string/Rank"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp" />
 
@@ -154,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/address"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="@dimen/_10dp">
 
                 <ImageView
                     android:id="@+id/imgStar1"
@@ -218,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Loại nhà/phòng"
+                android:text="@string/Type_of_house"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp" />
 
@@ -237,10 +237,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:background="@drawable/background_button_filter_show"
-        android:text="Hiển thị kết quả"
+        android:text="@string/Show_results"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="@dimen/_15sp"
         app:backgroundTint="@null" />
 </LinearLayout>
 
