@@ -399,5 +399,22 @@
     <string name="AgesToAndTo">Ages 2 - 12</string>
     <string name="Select_a_date">Select a date</string>
     <string name="one_night">x 1 night</string>
+    <string name="Cancellation_policy">Cancellation policy</string>
+    <string name="Cancellation_at_the_latest_on_the_date">Cancellation at the latest on the date</string>
+    <string name="forty_eight_hours">48 hours</string>
+    <string name="After_booking">After booking</string>
+    <string name="haiBay_thangBa">27th March</string>
+    <string name="AfterHaiBay_thangBa">After 27th March</string>
+    <string name="Learn_more_about_cancellation_policies">Learn more about cancellation policies</string>
+    <string name="No_refunds">No refunds</string>
+    <string name="Partial_Refund">Partial Refund: Get 50% back on all nights. Service fees are non-refundable.</string>
+    <string name="Full_refund">Full refund: Get 100% refund of what you paid</string>
+    <string name="Your_location">Your location</string>
+    <string name="Types_that_you_can_choose_from">Types that you can choose from</string>
+    <string name="List_of_rooms_closest_to_you">List of rooms closest to you</string>
+    <string name="List_of_the_best_rooms_included_in_terms_of_price_and_service">List of the best rooms included in terms of price and service</string>
+    <string name="Now_choose_your_trip">Now choose your trip!</string>
+    <string name="After">After</string>
+
 
 </resources>

@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_filter"
-    android:paddingBottom="@dimen/_30dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_30dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/_10dp"
             android:layout_toRightOf="@+id/close"
             android:fontFamily="@font/poppins_medium"
-            android:text="Chính sách huỷ"
+            android:text="@string/Cancellation_policy"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sp" />
     </RelativeLayout>
@@ -41,9 +41,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Huỷ muộn nhất vào ngày"
+        android:text="@string/Cancellation_at_the_latest_on_the_date"
         android:textColor="@color/black"
         android:textSize="@dimen/_16sp" />
 
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="48 giờ"
+                android:text="@string/forty_eight_hours"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold" />
@@ -71,7 +71,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sau khi đặt phòng"
+                android:text="@string/After_booking"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sp" />
         </LinearLayout>
@@ -79,9 +79,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:maxLines="3"
-            android:text="Hoàn tiền đầy đủ: Được hoàn lại 100% số tiền bạn đã thanh toán"
+            android:layout_marginLeft="@dimen/_55dp"
+            android:maxLines="4"
+            android:text="@string/Full_refund"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sp" />
 
@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="27 thg 3"
+                android:text="@string/haiBay_thangBa"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold" />
@@ -126,9 +126,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="66dp"
+            android:layout_marginLeft="@dimen/_66dp"
             android:maxLines="5"
-            android:text="Hoàn tiền một phần : Nhận lại 50% chi phí tất cả các đêm. Không được hoàn lại phí dịch vụ"
+            android:text="@string/Partial_Refund"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sp" />
 
@@ -156,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Sau 27 thg 3"
+                android:text="@string/AfterHaiBay_thangBa"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold" />
@@ -173,9 +173,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="@dimen/_30dp"
             android:maxLines="3"
-            android:text="Không hoàn tiền"
+            android:text="@string/No_refunds"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sp" />
 
@@ -186,15 +186,16 @@
         android:layout_height="1.5dp"
         android:layout_marginVertical="@dimen/_20dp"
         android:background="@color/color_F6F6F6" />
+
     <TextView
         android:id="@+id/btnCancellationPolicy"
-        android:layout_marginHorizontal="@dimen/_24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_24dp"
         android:maxLines="5"
-        android:textStyle="bold"
-        android:text="Tìm hiểu thêm về các chính sách huỷ"
+        android:text="@string/Learn_more_about_cancellation_policies"
         android:textColor="@color/black"
-        android:textSize="@dimen/_16sp" />
+        android:textSize="@dimen/_16sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

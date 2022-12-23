@@ -9,14 +9,14 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_50dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/_20dp"
+            android:layout_height="@dimen/_20dp"
             android:layout_gravity="left"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/_15dp"
             android:src="@drawable/ic_back_bill_activity" />
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:text="Bill"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="@dimen/_20dp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
 
@@ -33,6 +33,6 @@
         android:id="@+id/recycleviewBill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+        android:layout_margin="@dimen/_10dp" />
 
 </LinearLayout>

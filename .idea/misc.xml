@@ -30,25 +30,38 @@
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_register.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_see_more_near_from_you.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_splash_screen_ver2.xml" value="0.1" />
-        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_status_bill.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/activity_status_bill.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/bottomsheet_edit_person.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/bottomsheet_payment.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/custom_cookie.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/dia_log_comfirm_logout.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/dia_log_comfirm_logout_ver2.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_bookmark.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_filter_home.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_filter_map.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_home.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_list_order_all.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_nearbyfromyou_seemore.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_notification.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_profile.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_setting.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragment_text.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/fragmentcancelllationpolicy.xml" value="0.22" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_bookmark_by_user.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_category_homefragment.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_child.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_convenient.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_convenientlist.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_detail_gallery.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_facilities.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_feedback.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_gallery.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_gallery_first.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_gallery_second.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_group.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_imager.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_layout_notification.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_list_feedback.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_loai.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_option.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_order_list.xml" value="0.184375" />
@@ -56,7 +69,9 @@
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/item_sorted_by.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/layout_tip_1.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/layout_tip_5.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/layout_tip_common.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/marker.xml" value="0.184375" />
+        <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/menu_left_drawer.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/permission_camera_editprofile_dialog.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/tool_bar.xml" value="0.184375" />
         <entry key="..\:/Users/Admin/Downloads/BookingAppRoyalJourneyClient/app/src/main/res/layout/tool_bar_near_from_you.xml" value="0.184375" />

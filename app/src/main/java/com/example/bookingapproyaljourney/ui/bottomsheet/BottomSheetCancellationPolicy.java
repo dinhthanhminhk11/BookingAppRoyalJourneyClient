@@ -53,7 +53,7 @@ public class BottomSheetCancellationPolicy extends BottomSheetDialog {
         btnCancellationPolicy.setPaintFlags(btnCancellationPolicy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         dateStart.setText(houseDetailResponse1.getStartDate());
-        dateStartVer2.setText("Sau "+houseDetailResponse1.getStartDate());
+        dateStartVer2.setText(getContext().getString(R.string.After) + " " +houseDetailResponse1.getStartDate());
         startTimeVer2.setText(houseDetailResponse1.getOpening());
         btnCancellationPolicy.setOnClickListener(v -> {
             callbackOnClickBottomSheetCancellationPolicy.onclickBtn();

@@ -368,4 +368,20 @@
     <string name="AgesToAndTo">Ages 2 - 12</string>
     <string name="Select_a_date">Chọn ngày</string>
     <string name="one_night">x 1 đêm</string>
+    <string name="Cancellation_policy">Chính sách huỷ</string>
+    <string name="Cancellation_at_the_latest_on_the_date">Huỷ muộn nhất vào ngày</string>
+    <string name="forty_eight_hours">48 giờ</string>
+    <string name="After_booking">Sau khi đặt phòng</string>
+    <string name="haiBay_thangBa">27 thg 3</string>
+    <string name="AfterHaiBay_thangBa">Sau 27 thg 3</string>
+    <string name="Learn_more_about_cancellation_policies">Tìm hiểu thêm về các chính sách huỷ đặt phòng</string>
+    <string name="No_refunds">Không hoàn tiền</string>
+    <string name="Partial_Refund">Hoàn tiền một phần : Nhận lại 50% chi phí tất cả các đêm. Không được hoàn lại phí dịch vụ.</string>
+    <string name="Full_refund">Hoàn tiền đầy đủ: Được hoàn lại 100% số tiền bạn đã thanh toán</string>
+    <string name="Your_location">Vị trí của bạn</string>
+    <string name="Types_that_you_can_choose_from">Các loại hình mà bạn có thể lựa chọn</string>
+    <string name="List_of_rooms_closest_to_you">Danh sách các phòng gần bạn nhất</string>
+    <string name="List_of_the_best_rooms_included_in_terms_of_price_and_service">Danh sách các phòng tốt nhất bao gồm về giá và dịch vụ</string>
+    <string name="Now_choose_your_trip">Bây giờ hãy lựa chọn chuyến đi của bạn!</string>
+    <string name="After">Sau</string>
 </resources>

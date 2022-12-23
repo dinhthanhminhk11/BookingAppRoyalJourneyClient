@@ -167,7 +167,7 @@ public class StatusBillActivity extends AppCompatActivity {
                 statusOrderViewModel.getDetailHouseById(orderResponse.getIdPro());
                 binding.startDate.setText(orderResponse.getStartDate());
                 binding.endDate.setText(orderResponse.getEndDate());
-                binding.person.setText(orderResponse.getPerson() + "" + R.string.guest);
+                binding.person.setText(orderResponse.getPerson() + " " + getString(R.string.guest));
                 binding.phone.setText(orderResponse.getPhone() + "");
                 binding.payDay.setText(orderResponse.getPayDay() + "");
                 binding.priceAll.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
