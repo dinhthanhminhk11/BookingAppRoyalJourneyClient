@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -20,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.databinding.ActivityFeedbackListBinding;
-import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackListAdapter;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
@@ -34,6 +32,7 @@ public class FeedbackListActivity extends AppCompatActivity {
     private String name_boss = "";
     private String img_boss = "";
     private String id_House = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,12 +59,12 @@ public class FeedbackListActivity extends AppCompatActivity {
         binding.progressBar.setVisibility(View.VISIBLE);
         binding.rcvListFeedback.setLayoutManager(new LinearLayoutManager(this));
         binding.rcvListFeedback.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        feedbackViewModel.getFeedbackId(id_House).observe(this, it ->{
+        feedbackViewModel.getFeedbackId(id_House).observe(this, it -> {
             Float total = 0f;
-            if(it.size() == 0){
+            if (it.size() == 0) {
                 binding.progressBar.setAlpha(0f);
                 binding.tvDetail.setText("Chưa có đánh giá nào");
-            }else {
+            } else {
                 binding.progressBar.setAlpha(0f);
                 binding.rcvListFeedback.setAdapter(new FeedbackListAdapter(it));
                 for (int i = 0; i < it.size(); i++) {
@@ -74,9 +73,9 @@ public class FeedbackListActivity extends AppCompatActivity {
                 float average = total / it.size();
                 DecimalFormat decimalFormat = new DecimalFormat("#.#");
                 if (average % 1 == 0) {
-                    binding.tvDetail.setText(decimalFormat.format(average) + ",0 . "+it.size()+" Đánh giá");
+                    binding.tvDetail.setText(decimalFormat.format(average) + ",0 . " + it.size() + " Đánh giá");
                 } else {
-                    binding.tvDetail.setText(decimalFormat.format(average) + " . "+it.size()+" Đánh giá");
+                    binding.tvDetail.setText(decimalFormat.format(average) + " . " + it.size() + " Đánh giá");
                 }
             }
         });
@@ -89,7 +88,7 @@ public class FeedbackListActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                feedbackViewModel.getFeedbackTk(id_House,charSequence.toString()).observe(FeedbackListActivity.this,v->{
+                feedbackViewModel.getFeedbackTk(id_House, charSequence.toString()).observe(FeedbackListActivity.this, v -> {
                     binding.rcvListFeedback.setAdapter(new FeedbackListAdapter(v));
                     binding.progressBar.setAlpha(0f);
                 });
@@ -100,6 +99,7 @@ public class FeedbackListActivity extends AppCompatActivity {
                 binding.progressBar.setAlpha(0f);
             }
         });
+
     }
 
 }

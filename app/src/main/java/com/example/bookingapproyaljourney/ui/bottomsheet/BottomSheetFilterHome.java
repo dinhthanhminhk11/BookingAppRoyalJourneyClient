@@ -122,11 +122,11 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             }
         });
         List<Loai> list = new ArrayList<>();
-        list.add(new Loai("63437724ee6dd920372f306a", "Nhà Ở", R.drawable.house + ""));
-        list.add(new Loai("6343772cee6dd920372f306c", "Chung Cư", R.drawable.resort + ""));
-        list.add(new Loai("63437732ee6dd920372f306e", "Khách Sạn", R.drawable.hotels + ""));
-        list.add(new Loai("63437738ee6dd920372f3070", "Villa", R.drawable.villa + ""));
-        list.add(new Loai("63437740ee6dd920372f3072", "Nhà Tranh", R.drawable.cabin + ""));
+        list.add(new Loai("63437724ee6dd920372f306a", getContext().getString(R.string.House), R.drawable.house + ""));
+        list.add(new Loai("6343772cee6dd920372f306c", getContext().getString(R.string.Apartment), R.drawable.resort + ""));
+        list.add(new Loai("63437732ee6dd920372f306e", getContext().getString(R.string.Hotel), R.drawable.hotels + ""));
+        list.add(new Loai("63437738ee6dd920372f3070", getContext().getString(R.string.Villa), R.drawable.villa + ""));
+        list.add(new Loai("63437740ee6dd920372f3072", getContext().getString(R.string.Cottage), R.drawable.cabin + ""));
         rcvLoaiPhong.setAdapter(new LoaiAdapter(list, this));
         rcvLoaiPhong.setLayoutManager(new GridLayoutManager(context, 2));
 
