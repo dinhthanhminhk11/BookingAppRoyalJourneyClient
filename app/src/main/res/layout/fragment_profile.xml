@@ -21,21 +21,21 @@
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_margin="@dimen/_15dp"
                 android:text="@string/textHoso"
                 android:textColor="@color/black"
-                android:textSize="30dp"
+                android:textSize="@dimen/_30dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/contentText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="23dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/_23dp"
+                android:layout_marginTop="@dimen/_10dp"
                 android:lines="2"
                 android:text="@string/textHoso1"
-                android:textSize="20dp" />
+                android:textSize="@dimen/_20dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login"
@@ -44,7 +44,7 @@
                 android:layout_marginStart="@dimen/_20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="@dimen/_25dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="@dimen/_10dp"
                 android:background="@drawable/bg_buttom"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/sign_in_login"
@@ -56,7 +56,7 @@
                 android:id="@+id/siginProfileLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="@dimen/_25dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -70,7 +70,7 @@
                     android:id="@+id/tvSignUpProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/_5dp"
                     android:text="@string/sign_up_login"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -95,7 +95,7 @@
                 <ImageView
                     android:id="@+id/imageProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="@dimen/_500dp"
                     android:scaleType="centerCrop"
                     tools:ignore="ContentDescription,MissingConstraints" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -107,8 +107,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/purple_700"
                 android:orientation="vertical"
-                app:behavior_peekHeight="350dp"
-                app:cardCornerRadius="19dp"
+                app:behavior_peekHeight="@dimen/_350dp"
+                app:cardCornerRadius="@dimen/_19dp"
                 app:layout_anchorGravity="top"
                 app:layout_behavior="@string/bottom_sheet_behavior">
 
@@ -125,26 +125,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_18dp"
+                    android:layout_marginEnd="@dimen/_10dp"
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="5dp"
+                        android:layout_width="@dimen/_80dp"
+                        android:layout_height="@dimen/_40dp"
+                        android:layout_margin="@dimen/_5dp"
                         app:cardBackgroundColor="#FEF6ED"
-                        app:cardCornerRadius="19dp">
+                        app:cardCornerRadius="@dimen/_19dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="3dp"
-                            android:text="Thành viên"
+                            android:layout_margin="@dimen/_3dp"
+                            android:text="@string/Member"
                             android:textColor="#FEAD1D"
-                            android:textSize="15dp" />
+                            android:textSize="@dimen/_15dp" />
                     </androidx.cardview.widget.CardView>
 
                     <LinearLayout
@@ -154,9 +154,9 @@
 
                         <TextView
                             android:id="@+id/tvNameUserProfile"
-                            android:layout_width="350dp"
+                            android:layout_width="@dimen/_350dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
+                            android:layout_margin="@dimen/_3dp"
                             android:layout_weight="1"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_27sp"
@@ -176,16 +176,16 @@
                         android:id="@+id/tvEmailUserProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
+                        android:layout_margin="@dimen/_3dp"
                         android:textSize="@dimen/_14sp" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="@dimen/_5dp"
                         android:elevation="@dimen/_3dp"
                         android:visibility="gone"
-                        app:cardCornerRadius="19dp">
+                        app:cardCornerRadius="@dimen/_19dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -193,19 +193,19 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_margin="5dp"
+                                android:layout_width="@dimen/_50dp"
+                                android:layout_height="@dimen/_50dp"
+                                android:layout_margin="@dimen/_5dp"
                                 android:src="@drawable/ic_voucher_profile" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="@dimen/_20dp"
                                 android:text="You have 3 voucher"
                                 android:textColor="@color/black"
-                                android:textSize="20dp"
+                                android:textSize="@dimen/_20dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -213,17 +213,17 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
+                        android:layout_margin="@dimen/_3dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/textThue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
+                            android:layout_margin="@dimen/_3dp"
                             android:text="@string/textHoso2"
                             android:textColor="@color/black"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/_15dp"
                             android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView

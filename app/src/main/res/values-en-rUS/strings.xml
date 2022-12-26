@@ -103,7 +103,7 @@
     <string name="hint_comment">Your review...</string>
     <string name="Ten">Name</string>
     <string name="Sdt_editprofile">Phone number</string>
-    <string name="cccd">CCCD</string>
+    <string name="cccd">Citizen Identification Card</string>
     <string name="dia_chi">Address</string>
     <string name="Thay_doi">Change</string>
     <string name="comment_feedback">Write Review</string>
@@ -398,7 +398,7 @@
     <string name="Children">Children</string>
     <string name="AgesToAndTo">Ages 2 - 12</string>
     <string name="Select_a_date">Select a date</string>
-    <string name="one_night">x 1 night</string>
+    <string name="one_night">x 01 night</string>
     <string name="Cancellation_policy">Cancellation policy</string>
     <string name="Cancellation_at_the_latest_on_the_date">Cancellation at the latest on the date</string>
     <string name="forty_eight_hours">48 hours</string>
@@ -415,6 +415,15 @@
     <string name="List_of_the_best_rooms_included_in_terms_of_price_and_service">List of the best rooms included in terms of price and service</string>
     <string name="Now_choose_your_trip">Now choose your trip!</string>
     <string name="After">After</string>
+    <string name="House">House</string>
+    <string name="Apartment">Apartment</string>
+    <string name="Hotel">Hotel</string>
+    <string name="Villa">Villa</string>
+    <string name="Cottage">Cottage</string>
+    <string name="Waiting">Waiting</string>
+    <string name="Confirmed">Confirmed</string>
+    <string name="Member">Member</string>
+    <string name="feedback">Feedback</string>
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
 import com.example.librarycireleimage.CircleImageView;
 
@@ -27,6 +29,7 @@ import java.util.Locale;
 
 public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapter.ViewHolder> {
     private List<FeedBack> feedbackList;
+
 
     public FeedbackListAdapter(List<FeedBack> feedbackList) {
         this.feedbackList = feedbackList;
@@ -45,7 +48,7 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
             return;
         }
         FeedBack feedBack = feedbackList.get(position);
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
         long time = calendar.getTimeInMillis();
         String date = format.format(time);

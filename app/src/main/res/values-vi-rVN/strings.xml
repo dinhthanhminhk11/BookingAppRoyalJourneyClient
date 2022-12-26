@@ -365,9 +365,9 @@
     <string name="Adult">Người lớn</string>
     <string name="thirteen_years_and_older">13 tuổi trở lên</string>
     <string name="Children">Trẻ em</string>
-    <string name="AgesToAndTo">Ages 2 - 12</string>
+    <string name="AgesToAndTo">Độ tuổi 2 - 12</string>
     <string name="Select_a_date">Chọn ngày</string>
-    <string name="one_night">x 1 đêm</string>
+    <string name="one_night">x 01 đêm</string>
     <string name="Cancellation_policy">Chính sách huỷ</string>
     <string name="Cancellation_at_the_latest_on_the_date">Huỷ muộn nhất vào ngày</string>
     <string name="forty_eight_hours">48 giờ</string>
@@ -384,4 +384,13 @@
     <string name="List_of_the_best_rooms_included_in_terms_of_price_and_service">Danh sách các phòng tốt nhất bao gồm về giá và dịch vụ</string>
     <string name="Now_choose_your_trip">Bây giờ hãy lựa chọn chuyến đi của bạn!</string>
     <string name="After">Sau</string>
+    <string name="House">Nhà Ở</string>
+    <string name="Apartment">Chung Cư</string>
+    <string name="Hotel">Khách sạn</string>
+    <string name="Villa">Villa</string>
+    <string name="Cottage">Nhà Tranh</string>
+    <string name="Waiting">Đang chờ</string>
+    <string name="Confirmed">Đã xác nhận</string>
+    <string name="Member">Thành viên</string>
+    <string name="feedback">Đánh giá</string>
 </resources>
