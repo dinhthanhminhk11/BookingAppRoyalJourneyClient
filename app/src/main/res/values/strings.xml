@@ -267,7 +267,7 @@
     <string name="Confirmation_and_payment">Xác nhận và thanh toán</string>
 
     <string name="failure">Thất bại</string>
-    <string name="Cancel_before_date3">Nếu bạn hủy trước ngày <b>%s</b> bạn sẽ được hoàn lại một phần tiền. <i><b>Tìm hiểu thêm</b></i></string>
+    <string name="Cancel_before_date3">Nếu bạn hủy trước ngày <b>%s</b> bạn sẽ được hoàn lại một phần tiền. <b><i>Tìm hiểu thêm</i></b></string>
     <string name="Cancel_before_date1">bạn sẽ được hoàn lại một phần tiền. Tìm hiểu thêm</string>
     <string name="Bedroom"> Phòng ngủ</string>
     <string name="Hanoi">Hà Nội</string>

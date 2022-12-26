@@ -207,7 +207,7 @@ public class ChatMessageActivity extends AppCompatActivity {
             tvCheckOnline.setTextColor(this.getResources().getColor(R.color.black));
             view2.setBackgroundResource(R.drawable.background_boss_chat);
             toolBar.setBackgroundColor(Color.WHITE);
-            contentBackground.setBackgroundColor(Color.WHITE);
+            contentBackground.setBackgroundColor(this.getResources().getColor(R.color.color_f5f5f5));
             toolBar.setTitleTextColor(Color.BLACK);
             toolBar.getNavigationIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
         }

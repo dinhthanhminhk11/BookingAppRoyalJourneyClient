@@ -54,7 +54,8 @@ public class BottomSheetCancellationPolicy extends BottomSheetDialog {
 
         dateStart.setText(houseDetailResponse1.getStartDate());
         dateStartVer2.setText(getContext().getString(R.string.After) + " " +houseDetailResponse1.getStartDate());
-        startTimeVer2.setText(houseDetailResponse1.getOpening());
+        startTime.setText(houseDetailResponse1.getOpening());
+        startTimeVer2.setText(houseDetailResponse1.getEnding());
         btnCancellationPolicy.setOnClickListener(v -> {
             callbackOnClickBottomSheetCancellationPolicy.onclickBtn();
         });
