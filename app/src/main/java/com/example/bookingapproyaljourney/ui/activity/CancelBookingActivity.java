@@ -102,7 +102,7 @@ public class CancelBookingActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 currentDate = s;
                 try {
-                    if ((sdf.parse(dateCancel).before((sdf.parse(s)))) && !checkBanking) {
+                    if ((sdf.parse(dateCancel).after((sdf.parse(s)))) && !checkBanking) {
                         CookieBar.build(CancelBookingActivity.this)
                                 .setTitle(CancelBookingActivity.this.getString(R.string.Notify))
                                 .setMessage(CancelBookingActivity.this.getString(R.string.expired))
