@@ -393,4 +393,14 @@
     <string name="Confirmed">Đã xác nhận</string>
     <string name="Member">Thành viên</string>
     <string name="feedback">Đánh giá</string>
+    <string name="yourpayment">Ví của bạn</string>
+    <string name="textInfoTextPayment">Sử dụng ngay</string>
+    <string name="taikhoannguon">Tài khoản nguồn</string>
+    <string name="titleAddMoney">Nạp tiền</string>
+    <string name="contentAddMoney">Thêm tiền vào ví của bạn</string>
+    <string name="historyPayment">Lịch sử giao dịch</string>
+    <string name="add_money_to_card">Nạp tiền</string>
+    <string name="textInputMoney">Nhập số tiền (₫)</string>
+    <string name="countMoneyAdd">Số tiền nạp</string>
+
 </resources>

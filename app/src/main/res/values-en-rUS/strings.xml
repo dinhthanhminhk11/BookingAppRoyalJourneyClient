@@ -424,6 +424,15 @@
     <string name="Confirmed">Confirmed</string>
     <string name="Member">Member</string>
     <string name="feedback">Feedback</string>
+    <string name="yourpayment">Your wallet</string>
+    <string name="textInfoTextPayment">Can be used immediately</string>
+    <string name="taikhoannguon">Source Account</string>
+    <string name="titleAddMoney">Deposit</string>
+    <string name="contentAddMoney">Add money to your wallet</string>
+    <string name="historyPayment">Transaction history</string>
 
+    <string name="add_money_to_card">Deposit</string>
+    <string name="textInputMoney">Enter amount (₫)</string>
 
+    <string name="countMoneyAdd">Deposit amount</string>
 </resources>

@@ -18,7 +18,7 @@
         <LinearLayout
             android:id="@+id/contentItemChildLang"
             android:layout_width="@dimen/_0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="@dimen/_5dp"
             android:layout_weight="1"
             android:background="@drawable/background_setting_item"
@@ -251,6 +251,60 @@
 
         <ImageView
             android:id="@+id/icon_changePass_last2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_button_infor_setting" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/contentPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/background_setting_item"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_10dp"
+        android:paddingLeft="@dimen/_10dp">
+
+        <ImageView
+            android:id="@+id/icon_payment"
+            android:layout_width="@dimen/_24dp"
+            android:layout_height="@dimen/_24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_payment_svgrepo_com" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_Payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:text="@string/yourpayment"
+                android:textColor="?attr/text_color"
+                android:textSize="@dimen/_18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/content_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:text="@string/textInfoTextPayment"
+                android:textColor="?attr/text_color"
+                android:textSize="@dimen/_14dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/icon_change_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_button_infor_setting" />
