@@ -402,5 +402,6 @@
     <string name="add_money_to_card">Nạp tiền</string>
     <string name="textInputMoney">Nhập số tiền (₫)</string>
     <string name="countMoneyAdd">Số tiền nạp</string>
+    <string name="textpayment2">Vui lòng chọn phương thức thanh toán</string>
 
 </resources>

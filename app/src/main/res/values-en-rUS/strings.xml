@@ -435,4 +435,5 @@
     <string name="textInputMoney">Enter amount (₫)</string>
 
     <string name="countMoneyAdd">Deposit amount</string>
+    <string name="textpayment2">Please select a payment method</string>
 </resources>
