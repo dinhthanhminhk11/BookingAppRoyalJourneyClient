@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.api;
 
+import com.example.bookingapproyaljourney.model.cash.CashFolwRequest;
 import com.example.bookingapproyaljourney.model.chat.Data;
 import com.example.bookingapproyaljourney.model.chat.DataUser;
 import com.example.bookingapproyaljourney.model.chat.Message;
@@ -34,6 +35,7 @@ import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
+import com.example.bookingapproyaljourney.response.user.CashFolwResponse;
 
 import java.util.List;
 
@@ -195,4 +197,13 @@ public interface ApiRequest {
 
     @GET("getHouseResponseByServer")
     Call<String> getHouseResponseByServer();
+
+    @GET("getCash/{id}")
+    Call<String> getPriceCash(@Path("id") String id);
+
+    @GET("listCashFlow/{id}")
+    Call<List<CashFolwResponse>> getListCashFolw(@Path("id") String id);
+
+    @POST("createCashFlow")
+    Call<TestResponse> createCashFolw(@Body CashFolwRequest cashFolwRequest);
 }

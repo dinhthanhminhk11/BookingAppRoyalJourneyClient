@@ -443,6 +443,9 @@
     <string name="titleAddMoney">Nạp tiền</string>
     <string name="contentAddMoney">Thêm tiền vào ví của bạn</string>
     <string name="historyPayment">Lịch sử giao dịch</string>
+    <string name="historyPaymentNull">Chưa có giao dịch nào</string>
     <string name="textInputMoney">Nhập số tiền (₫)</string>
     <string name="countMoneyAdd">Số tiền nạp</string>
+    <string name="textErrorAddMoney">Nạp tiền không thành công</string>
+    <string name="textSuccessAddMoney">Nạp tiền thành công</string>
 </resources>

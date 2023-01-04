@@ -403,5 +403,7 @@
     <string name="textInputMoney">Nhập số tiền (₫)</string>
     <string name="countMoneyAdd">Số tiền nạp</string>
     <string name="textpayment2">Vui lòng chọn phương thức thanh toán</string>
-
+    <string name="historyPaymentNull">Chưa có giao dịch nào</string>
+    <string name="textErrorAddMoney">Nạp tiền không thành công</string>
+    <string name="textSuccessAddMoney">Nạp tiền thành công</string>
 </resources>

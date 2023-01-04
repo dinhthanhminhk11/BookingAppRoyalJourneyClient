@@ -1,21 +1,32 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityAddMoneyBinding;
+import com.example.bookingapproyaljourney.model.cash.CashFolwRequest;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
+import com.example.bookingapproyaljourney.view_model.AddCashViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -24,6 +35,7 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
     private ActivityAddMoneyBinding binding;
     private String gia;
     private BottomSheetPayment bottomSheetPayment;
+    private AddCashViewModel addCashViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,24 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
 
         binding.editInputMoney.addTextChangedListener(new NumberTextWatcher(binding.editInputMoney));
 
+        binding.editInputMoney.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+                v.performClick();
+                if (binding.editInputMoney.getCompoundDrawables()[DRAWABLE_RIGHT] == null)
+                    return false;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (binding.editInputMoney.getRight() - binding.editInputMoney.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        resetText(false);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
         final View activityRootView = findViewById(R.id.contentBackground);
         activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -53,14 +83,45 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-      checkBtnClick();
+        addCashViewModel = new ViewModelProvider(this).get(AddCashViewModel.class);
+        addCashViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.progressBar.setVisibility(integer);
+            }
+        });
+
+        addCashViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TestResponse>() {
+            @Override
+            public void onChanged(TestResponse testResponse) {
+                if(testResponse.isStatus()){
+                    Intent intent = new Intent(AddMoneyActivity.this, PayCashYourActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(AppConstant.CheckSuccess, AppConstant.CHECK_SUCCESS_ADD_MONEY);
+                    startActivity(intent);
+                }else {
+                    CookieBar.build(AddMoneyActivity.this)
+                            .setTitle(AddMoneyActivity.this.getString(R.string.Notify))
+                            .setMessage(AddMoneyActivity.this.getString(R.string.textErrorAddMoney))
+                            .setIcon(R.drawable.ic_warning_icon_check)
+                            .setTitleColor(R.color.black)
+                            .setMessageColor(R.color.black)
+                            .setDuration(3000).setSwipeToDismiss(false)
+                            .setBackgroundRes(R.drawable.background_toast)
+                            .setCookiePosition(CookieBar.BOTTOM)
+                            .show();
+                }
+            }
+        });
+        checkBtnClick();
     }
 
     private void checkBtnClick() {
-        if (binding.editInputMoney.getText().toString().isEmpty() || !binding.textPayment.getText().toString().trim().equals("Thẻ VISA (VISA card)")){
+        if (binding.editInputMoney.getText().toString().isEmpty() || !binding.textPayment.getText().toString().trim().equals("Thẻ VISA (VISA card)")) {
             binding.btnPay.setAlpha(0.4f);
             binding.btnPay.setEnabled(false);
-        }else {
+        } else {
             binding.btnPay.setAlpha(1);
             binding.btnPay.setEnabled(true);
         }
@@ -82,12 +143,23 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    private void resetText(boolean showClearButton) {
+        if (showClearButton) {
+            binding.editInputMoney.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_round_close_24, 0);
+            return;
+        } else {
+            binding.editInputMoney.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
+        binding.editInputMoney.setText("");
+        binding.editInputMoney.requestFocus();
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnPay:
                 String textString = binding.editInputMoney.getText().toString().replace(".", "");
-                Toast.makeText(this, "toast " + textString, Toast.LENGTH_SHORT).show();
+                addCashViewModel.createCash(new CashFolwRequest(UserClient.getInstance().getId(), true, "Thông báo biến động số dư", "Nạp tiền vào tài khoản (VISA)", textString));
                 break;
 
             case R.id.number1:
@@ -135,9 +207,8 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
                 binding.btnPay.setAlpha(0.4f);
                 binding.btnPay.setEnabled(false);
             } else {
+                checkBtnClick();
                 binding.btnPay.setAlpha(1);
-                binding.btnPay.setEnabled(true);
-
             }
 
             if (binding.editInputMoney.getText().toString().length() == 1 && !binding.editInputMoney.getText().toString().trim().equals("0")) {
@@ -213,6 +284,11 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            if (count > 0) {
+                resetText(true);
+            }
+
             if (s.toString().contains(String.valueOf(df.getDecimalFormatSymbols().getDecimalSeparator()))) {
                 hasFractionalPart = true;
             } else {

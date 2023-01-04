@@ -22,6 +22,7 @@ import com.example.bookingapproyaljourney.databinding.FragmentSettingBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.ui.activity.ChangePasswordActivity;
 import com.example.bookingapproyaljourney.ui.activity.ContactActivity;
+import com.example.bookingapproyaljourney.ui.activity.PayCashYourActivity;
 import com.example.bookingapproyaljourney.ui.custom.RippleAnimation;
 
 import org.greenrobot.eventbus.EventBus;
@@ -172,6 +173,10 @@ public class SettingFragment extends Fragment {
 
         binding.contentByRoyal.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ContactActivity.class));
+        });
+
+        binding.contentPayment.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), PayCashYourActivity.class));
         });
     }
 

@@ -2,7 +2,7 @@ package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
 
-    public static final String BASE = "https://e613-113-160-0-10.ap.ngrok.io";
+    public static final String BASE = "https://fbca-113-160-45-182.ap.ngrok.io";
     public static final String BASE_URL = BASE + "/api/";
     public static final String BASE_URL_CHAT = BASE;
     public static final String URL_API_GOOGLE_MAP = "https://maps.googleapis.com/";
@@ -59,5 +59,6 @@ public class AppConstant {
     public static final String Đa_xac_nhan = "Đã xác nhận";
     public static final String Dang_cho = "Đang chờ";
     public static final String da_tra_phong = "Đã trả phòng";
+    public static final String CHECK_SUCCESS_ADD_MONEY = "CHECK_SUCCESS_ADD_MONEY";
 
 }

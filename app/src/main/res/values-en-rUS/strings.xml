@@ -434,6 +434,9 @@
     <string name="add_money_to_card">Deposit</string>
     <string name="textInputMoney">Enter amount (₫)</string>
 
+    <string name="historyPaymentNull">No transaction yet</string>
     <string name="countMoneyAdd">Deposit amount</string>
     <string name="textpayment2">Please select a payment method</string>
+    <string name="textErrorAddMoney">Deposit failed</string>
+    <string name="textSuccessAddMoney">Deposit successful</string>
 </resources>

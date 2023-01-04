@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,45 +8,105 @@
     android:orientation="vertical"
     tools:context=".ui.activity.PayCashYourActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/gradientbackground_white"
-        app:titleCentered="true"
-        app:titleTextColor="@color/black" />
-
     <LinearLayout
-        android:id="@+id/contentCancellationPolicy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:background="@drawable/gradientbackground_white"
-        android:foreground="?attr/selectableItemBackground"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/_20dp"
-        android:paddingVertical="@dimen/_10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/taikhoannguon"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16dp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/contentPayOfflineLine"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tool_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_05dp"
-            android:layout_marginVertical="@dimen/_10dp"
-            android:background="#F5F5F5" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/gradientbackground_white"
+            app:titleCentered="true"
+            app:titleTextColor="@color/black" />
 
         <LinearLayout
+            android:id="@+id/contentCancellationPolicy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="@drawable/gradientbackground_white"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_20dp"
+            android:paddingVertical="@dimen/_10dp">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/taikhoannguon"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16dp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/contentPayOfflineLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_05dp"
+                android:layout_marginVertical="@dimen/_10dp"
+                android:background="#F5F5F5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/background_icon_payment"
+                    android:elevation="3dp">
+
+                    <ImageView
+                        android:id="@+id/icon_changepass"
+                        android:layout_width="@dimen/_24dp"
+                        android:layout_height="@dimen/_24dp"
+                        android:layout_margin="@dimen/_5dp"
+                        android:src="@drawable/ic_payment_svgrepo_com" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sourcePayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 đ"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:text="RoyalJourneySuper Account" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentAddMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="@drawable/gradientbackground_white"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_10dp"
+            android:paddingLeft="@dimen/_20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -57,11 +117,11 @@
                 android:elevation="3dp">
 
                 <ImageView
-                    android:id="@+id/icon_changepass"
+                    android:id="@+id/icon_changepass2"
                     android:layout_width="@dimen/_24dp"
                     android:layout_height="@dimen/_24dp"
                     android:layout_margin="@dimen/_5dp"
-                    android:src="@drawable/ic_payment_svgrepo_com" />
+                    android:src="@drawable/ic_visa_svgrepo_com" />
             </LinearLayout>
 
 
@@ -73,116 +133,86 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/sourcePayment"
+                    android:id="@+id/textAddMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100.000.000 đ"
+                    android:text="@string/titleAddMoney"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textCancel"
+                    android:id="@+id/contentTextAddMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5dp"
-                    android:text="RoyalJourneySuper Account" />
+                    android:text="@string/contentAddMoney" />
             </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/contentAddMoney"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:background="@drawable/gradientbackground_white"
-        android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/_20dp"
-        android:paddingVertical="@dimen/_10dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="1dp"
-            android:background="@drawable/background_icon_payment"
-            android:elevation="3dp">
 
             <ImageView
-                android:id="@+id/icon_changepass2"
-                android:layout_width="@dimen/_24dp"
-                android:layout_height="@dimen/_24dp"
-                android:layout_margin="@dimen/_5dp"
-                android:src="@drawable/ic_visa_svgrepo_com" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textAddMoney"
+                android:id="@+id/icon_changePass_last2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/titleAddMoney"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_button_infor_setting" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentHistoryPayment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="@drawable/gradientbackground_white"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical"
+
+            android:paddingVertical="@dimen/_10dp">
+
+            <TextView
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/historyPayment"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16dp"
                 android:textStyle="bold" />
 
+            <View
+                android:layout_marginHorizontal="@dimen/_20dp"
+                android:id="@+id/contentPayOfflineLine2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_05dp"
+                android:layout_marginVertical="@dimen/_10dp"
+                android:background="#9C9090" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
             <TextView
-                android:id="@+id/contentTextAddMoney"
+                android:id="@+id/text4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5dp"
-                android:text="@string/contentAddMoney" />
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/historyPaymentNull"
+                android:textSize="@dimen/_16dp"
+                android:visibility="gone" />
         </LinearLayout>
-
-        <ImageView
-            android:layout_gravity="center"
-            android:id="@+id/icon_changePass_last2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_button_infor_setting" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/contentHistoryPayment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_10dp"
-        android:background="@drawable/gradientbackground_white"
-        android:foreground="?attr/selectableItemBackground"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/_20dp"
-        android:paddingVertical="@dimen/_10dp">
-
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/historyPayment"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16dp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/contentPayOfflineLine2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_05dp"
-            android:layout_marginVertical="@dimen/_10dp"
-            android:background="#F5F5F5" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
-    </LinearLayout>
-</LinearLayout>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120dp"
+        android:layout_gravity="center"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
+</FrameLayout>

@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_EBEBEB"
     android:orientation="vertical"
-    android:id="@+id/contentBackground"
     tools:context=".ui.activity.AddMoneyActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -67,16 +67,16 @@
     </LinearLayout>
 
     <LinearLayout
-        android:foreground="?attr/selectableItemBackground"
         android:id="@+id/contentPayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/contentCancellationPolicy"
         android:layout_marginTop="@dimen/_10dp"
         android:background="@drawable/gradientbackground_white"
+        android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/_20dp"
-        android:paddingVertical="@dimen/_10dp">
+        android:paddingVertical="@dimen/_10dp"
+        android:paddingLeft="@dimen/_20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -186,11 +186,11 @@
         android:paddingVertical="@dimen/_10dp">
 
         <Button
-            android:layout_marginHorizontal="@dimen/_20dp"
             android:id="@+id/btnPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_20dp"
             android:background="@drawable/bg_buttom_black"
             android:foreground="?attr/selectableItemBackground"
             android:text="@string/Confirmation_and_payment"
@@ -199,12 +199,13 @@
             app:backgroundTint="@null" />
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/contentLayoutMoney"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10dp"
-            android:orientation="horizontal">
+            android:animateLayoutChanges="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/number1"
@@ -250,4 +251,18 @@
                 android:textSize="@dimen/_17sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 </RelativeLayout>
