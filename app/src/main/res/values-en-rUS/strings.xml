@@ -439,4 +439,6 @@
     <string name="textpayment2">Please select a payment method</string>
     <string name="textErrorAddMoney">Deposit failed</string>
     <string name="textSuccessAddMoney">Deposit successful</string>
+    <string name="textBiometric1">Fingerprint authentication</string>
+    <string name="textBiometric2">Unlock the wallet with your fingerprint</string>
 </resources>

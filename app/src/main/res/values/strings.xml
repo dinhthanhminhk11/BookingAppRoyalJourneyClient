@@ -448,4 +448,6 @@
     <string name="countMoneyAdd">Số tiền nạp</string>
     <string name="textErrorAddMoney">Nạp tiền không thành công</string>
     <string name="textSuccessAddMoney">Nạp tiền thành công</string>
+    <string name="textBiometric1">Xác thực bằng vân tay</string>
+    <string name="textBiometric2">Mở khoá ví bằng vân tay của bạn</string>
 </resources>

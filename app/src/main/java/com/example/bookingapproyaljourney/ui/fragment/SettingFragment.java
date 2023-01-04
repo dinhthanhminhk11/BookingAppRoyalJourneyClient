@@ -2,6 +2,11 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
+import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
+
+import static com.example.libraryimagepicker.ImagePicker.REQUEST_CODE;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +14,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +23,13 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.bookingapproyaljourney.MainActivity;
@@ -26,6 +37,7 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentSettingBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
+import com.example.bookingapproyaljourney.ui.activity.AddMoneyActivity;
 import com.example.bookingapproyaljourney.ui.activity.ChangePasswordActivity;
 import com.example.bookingapproyaljourney.ui.activity.ContactActivity;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
@@ -34,12 +46,16 @@ import com.example.bookingapproyaljourney.ui.custom.RippleAnimation;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.concurrent.Executor;
+
 
 public class SettingFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
     private String mParam1;
     private String mParam2;
 
@@ -86,7 +102,6 @@ public class SettingFragment extends Fragment {
 
         intView();
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerLanguage.setAdapter(adapter);
@@ -115,6 +130,28 @@ public class SettingFragment extends Fragment {
     }
 
     private void intView() {
+        executor = ContextCompat.getMainExecutor(getActivity());
+        biometricPrompt = new BiometricPrompt(getActivity(), executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                startActivity(new Intent(getActivity(), PayCashYourActivity.class));
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+
+            }
+        });
+
+        promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("Xác thực vân tay").setSubtitle("Uỷ quyền thông tin Sinh trắc").setNegativeButtonText("Dùng mật khẩu ví").build();
+
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -136,31 +173,6 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (binding.switchComparTheme.isChecked()) {
-//                    try {
-//                        int[] pos = (int[]) args[2];
-//                        int w = binding.contentBackground.getMeasuredWidth();
-//                        int h = binding.contentBackground.getMeasuredHeight();
-//                        Bitmap bitmap = Bitmap.createBitmap(binding.contentBackground.getMeasuredWidth(), binding.contentBackground.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-//                        Canvas canvas = new Canvas(bitmap);
-//                        binding.contentBackground.draw(canvas);
-////                        themeSwitchImageView.setImageBitmap(bitmap);
-////                        themeSwitchImageView.setVisibility(View.VISIBLE);
-//                        float finalRadius = (float) Math.max(Math.sqrt((w - pos[0]) * (w - pos[0]) + (h - pos[1]) * (h - pos[1])), Math.sqrt(pos[0] * pos[0] + (h - pos[1]) * (h - pos[1])));
-//                        Animator anim = ViewAnimationUtils.createCircularReveal(binding.contentBackground, pos[0], pos[1], 0, finalRadius);
-//                        anim.setDuration(400);
-////                        anim.setInterpolator(CubicBezierInterpolator.EASE_IN_OUT_QUAD);
-//                        anim.addListener(new AnimatorListenerAdapter() {
-//                            @Override
-//                            public void onAnimationEnd(Animator animation) {
-////                                themeSwitchImageView.setImageDrawable(null);
-////                                themeSwitchImageView.setVisibility(View.GONE);
-//                            }
-//                        });
-//                        anim.start();
-////                        instant = true;
-//                    } catch (Throwable ignore) {
-//
-//                    }
                     editor.putInt(AppConstant.SHAREDPREFERENCES_USER_THEME, AppConstant.POS_DARK);
                     editor.commit();
                     RippleAnimation.create(view).setDuration(500).start();
@@ -206,7 +218,7 @@ public class SettingFragment extends Fragment {
             if (token.equals("")) {
                 dialog.show();
             } else {
-                startActivity(new Intent(getActivity(), PayCashYourActivity.class));
+                biometricPrompt.authenticate(promptInfo);
             }
         });
     }

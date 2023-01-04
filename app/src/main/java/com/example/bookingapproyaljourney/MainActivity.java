@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney;
 
+import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
+import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivity;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivityByAccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.ChangePasswordResultSuccess;
@@ -8,6 +10,7 @@ import static com.example.bookingapproyaljourney.constants.AppConstant.GetTestRe
 import static com.example.bookingapproyaljourney.constants.AppConstant.LoginResultSuccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.deleteOrderResponse;
 import static com.example.bookingapproyaljourney.constants.AppConstant.text1111111111111;
+import static com.example.libraryimagepicker.ImagePicker.REQUEST_CODE;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -30,6 +33,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +53,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.biometric.BiometricManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -180,6 +185,26 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
+
+        BiometricManager biometricManager = BiometricManager.from(this);
+        switch (biometricManager.canAuthenticate(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)) {
+            case BiometricManager.BIOMETRIC_SUCCESS:
+                Log.d("MY_APP_TAG", "Ứng dụng có thể xác thực bằng sinh trắc học.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Log.e("MY_APP_TAG", "Không có tính năng sinh trắc học nào khả dụng trên thiết bị này.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                Log.e("MY_APP_TAG", "Các tính năng sinh trắc học hiện không khả dụng.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                // Prompts the user to create credentials that your app accepts.
+                final Intent enrollIntent = new Intent(Settings.ACTION_BIOMETRIC_ENROLL);
+                enrollIntent.putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+                        BIOMETRIC_STRONG | DEVICE_CREDENTIAL);
+                startActivityForResult(enrollIntent, REQUEST_CODE);
+                break;
+        }
 
         SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
         int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);

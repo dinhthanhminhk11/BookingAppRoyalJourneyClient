@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.ui.activity;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
 
 import android.content.Intent;
+import android.hardware.biometrics.BiometricPrompt;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,6 +24,7 @@ import com.example.librarytoastcustom.CookieBar;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 public class PayCashYourActivity extends AppCompatActivity {
 
@@ -76,16 +78,7 @@ public class PayCashYourActivity extends AppCompatActivity {
         String check = getIntent().getStringExtra(CheckSuccess);
         if (!(check == null)) {
             if (check.equals(AppConstant.CHECK_SUCCESS_ADD_MONEY)) {
-                CookieBar.build(this)
-                        .setTitle(R.string.Notify)
-                        .setMessage(R.string.textSuccessAddMoney)
-                        .setIcon(R.drawable.ic_complete_order)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(R.string.Notify).setMessage(R.string.textSuccessAddMoney).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             }
         }
     }

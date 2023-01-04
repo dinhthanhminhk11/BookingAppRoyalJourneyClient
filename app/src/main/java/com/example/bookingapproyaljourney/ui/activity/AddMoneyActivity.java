@@ -1,19 +1,31 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
+import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
+import static com.example.libraryimagepicker.ImagePicker.REQUEST_CODE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -30,6 +42,7 @@ import com.example.librarytoastcustom.CookieBar;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.concurrent.Executor;
 
 public class AddMoneyActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityAddMoneyBinding binding;
@@ -37,11 +50,15 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
     private BottomSheetPayment bottomSheetPayment;
     private AddCashViewModel addCashViewModel;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddMoneyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
 
         initToolbar();
         initView();
@@ -94,23 +111,14 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
         addCashViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TestResponse>() {
             @Override
             public void onChanged(TestResponse testResponse) {
-                if(testResponse.isStatus()){
+                if (testResponse.isStatus()) {
                     Intent intent = new Intent(AddMoneyActivity.this, PayCashYourActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(AppConstant.CheckSuccess, AppConstant.CHECK_SUCCESS_ADD_MONEY);
                     startActivity(intent);
-                }else {
-                    CookieBar.build(AddMoneyActivity.this)
-                            .setTitle(AddMoneyActivity.this.getString(R.string.Notify))
-                            .setMessage(AddMoneyActivity.this.getString(R.string.textErrorAddMoney))
-                            .setIcon(R.drawable.ic_warning_icon_check)
-                            .setTitleColor(R.color.black)
-                            .setMessageColor(R.color.black)
-                            .setDuration(3000).setSwipeToDismiss(false)
-                            .setBackgroundRes(R.drawable.background_toast)
-                            .setCookiePosition(CookieBar.BOTTOM)
-                            .show();
+                } else {
+                    CookieBar.build(AddMoneyActivity.this).setTitle(AddMoneyActivity.this.getString(R.string.Notify)).setMessage(AddMoneyActivity.this.getString(R.string.textErrorAddMoney)).setIcon(R.drawable.ic_warning_icon_check).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setSwipeToDismiss(false).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
                 }
             }
         });
