@@ -2,14 +2,20 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +28,7 @@ import com.example.bookingapproyaljourney.databinding.FragmentSettingBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
 import com.example.bookingapproyaljourney.ui.activity.ChangePasswordActivity;
 import com.example.bookingapproyaljourney.ui.activity.ContactActivity;
+import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.PayCashYourActivity;
 import com.example.bookingapproyaljourney.ui.custom.RippleAnimation;
 
@@ -167,8 +174,28 @@ public class SettingFragment extends Fragment {
             }
         });
 
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dia_log_comfirm_logout);
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialog.setCancelable(true);
+        SharedPreferences sharedPreferences3 = getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferences3.getString(AppConstant.TOKEN_USER, "");
+        Button login = (Button) dialog.findViewById(R.id.login);
+        login.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+            dialog.dismiss();
+        });
+
         binding.contentChangePass.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
+            if (token.equals("")) {
+                dialog.show();
+            } else {
+                startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
+            }
         });
 
         binding.contentByRoyal.setOnClickListener(v -> {
@@ -176,7 +203,11 @@ public class SettingFragment extends Fragment {
         });
 
         binding.contentPayment.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), PayCashYourActivity.class));
+            if (token.equals("")) {
+                dialog.show();
+            } else {
+                startActivity(new Intent(getActivity(), PayCashYourActivity.class));
+            }
         });
     }
 
