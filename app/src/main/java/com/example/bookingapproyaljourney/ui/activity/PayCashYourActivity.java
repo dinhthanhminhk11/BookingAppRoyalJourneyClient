@@ -3,7 +3,7 @@ package com.example.bookingapproyaljourney.ui.activity;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSuccess;
 
 import android.content.Intent;
-import android.hardware.biometrics.BiometricPrompt;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -24,7 +24,6 @@ import com.example.librarytoastcustom.CookieBar;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 public class PayCashYourActivity extends AppCompatActivity {
 
@@ -38,7 +37,16 @@ public class PayCashYourActivity extends AppCompatActivity {
         binding = ActivityPayCashYourBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_PASS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        int theme = sharedPreferences.getInt(AppConstant.SHAREDPREFERENCES_PASS, 2655);
         initToolbar();
+
+        if (theme == AppConstant.POS_VANTAY) {
+            binding.switchComparTheme.setChecked(true);
+        } else {
+            binding.switchComparTheme.setChecked(false);
+        }
 
         binding.contentAddMoney.setOnClickListener(v -> {
             startActivity(new Intent(this, AddMoneyActivity.class));
@@ -81,6 +89,16 @@ public class PayCashYourActivity extends AppCompatActivity {
                 CookieBar.build(this).setTitle(R.string.Notify).setMessage(R.string.textSuccessAddMoney).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             }
         }
+
+        binding.switchComparTheme.setOnClickListener(v -> {
+            if (binding.switchComparTheme.isChecked()) {
+                editor.putInt(AppConstant.SHAREDPREFERENCES_PASS, AppConstant.POS_VANTAY);
+                editor.commit();
+            } else {
+                editor.putInt(AppConstant.SHAREDPREFERENCES_PASS, AppConstant.POS_PASS);
+                editor.commit();
+            }
+        });
     }
 
     @Override

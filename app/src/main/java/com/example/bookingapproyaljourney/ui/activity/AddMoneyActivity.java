@@ -1,35 +1,22 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
-import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
-import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
-import static com.example.libraryimagepicker.ImagePicker.REQUEST_CODE;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricManager;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityAddMoneyBinding;
@@ -42,7 +29,6 @@ import com.example.librarytoastcustom.CookieBar;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.concurrent.Executor;
 
 public class AddMoneyActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityAddMoneyBinding binding;
@@ -51,13 +37,11 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
     private AddCashViewModel addCashViewModel;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddMoneyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
 
 
         initToolbar();

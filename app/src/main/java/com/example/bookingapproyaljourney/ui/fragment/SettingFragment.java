@@ -2,11 +2,6 @@ package com.example.bookingapproyaljourney.ui.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
-import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
-
-import static com.example.libraryimagepicker.ImagePicker.REQUEST_CODE;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +9,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,22 +20,26 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentSettingBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
-import com.example.bookingapproyaljourney.ui.activity.AddMoneyActivity;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.ui.activity.AddPassPinActivity;
 import com.example.bookingapproyaljourney.ui.activity.ChangePasswordActivity;
 import com.example.bookingapproyaljourney.ui.activity.ContactActivity;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.PayCashYourActivity;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPassPayment;
 import com.example.bookingapproyaljourney.ui.custom.RippleAnimation;
+import com.example.bookingapproyaljourney.view_model.CashPayViewModel;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -58,19 +55,19 @@ public class SettingFragment extends Fragment {
     private BiometricPrompt.PromptInfo promptInfo;
     private String mParam1;
     private String mParam2;
-
+    private BottomSheetPassPayment bottomSheetPassPayment;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private boolean isDark;
-
+    private CashPayViewModel cashPayViewModel;
     public static final String[] languages = {"Choose Language", "Tiếng Việt", "English"};
     public int idLang = 10;
     public int idTheme = 13;
     private FragmentSettingBinding binding;
-
-
-    public static SettingFragment newInstance(String param1, String param2) {
+    private String checkPass;
+    private int theme2;
+    static SettingFragment newInstance(String param1, String param2) {
         SettingFragment fragment = new SettingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -79,6 +76,7 @@ public class SettingFragment extends Fragment {
         fragment.getView().setBackgroundColor(android.R.attr.colorBackground);
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -130,11 +128,37 @@ public class SettingFragment extends Fragment {
     }
 
     private void intView() {
+
+        cashPayViewModel = new ViewModelProvider(this).get(CashPayViewModel.class);
+
         executor = ContextCompat.getMainExecutor(getActivity());
         biometricPrompt = new BiometricPrompt(getActivity(), executor, new BiometricPrompt.AuthenticationCallback() {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
+                // dùng mật khẩu
+                if (checkPass.equals("")) {
+                    startActivity(new Intent(getActivity(), AddPassPinActivity.class));
+                } else {
+                    bottomSheetPassPayment = new BottomSheetPassPayment(getActivity(), R.style.MaterialDialogSheet, new BottomSheetPassPayment.CallBack() {
+                        @Override
+                        public void onCLickCLose() {
+
+                        }
+
+                        @Override
+                        public void onClickPayment(String s) {
+                            if (checkPass.equals(s)) {
+                                bottomSheetPassPayment.dismiss();
+                                startActivity(new Intent(getActivity(), PayCashYourActivity.class));
+                            } else {
+                                Toast.makeText(getActivity(), "Mã pin không chính xác", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    bottomSheetPassPayment.show();
+                    bottomSheetPassPayment.setCanceledOnTouchOutside(false);
+                }
             }
 
             @Override
@@ -146,7 +170,6 @@ public class SettingFragment extends Fragment {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-
             }
         });
 
@@ -162,6 +185,9 @@ public class SettingFragment extends Fragment {
         } else {
             binding.switchComparTheme.setChecked(false);
         }
+
+
+
 
         if (binding.switchComparTheme.isChecked()) {
             changeTheme(1);
@@ -218,7 +244,35 @@ public class SettingFragment extends Fragment {
             if (token.equals("")) {
                 dialog.show();
             } else {
-                biometricPrompt.authenticate(promptInfo);
+                if (theme2 == AppConstant.POS_VANTAY) {
+                    biometricPrompt.authenticate(promptInfo);
+                } else {
+                    bottomSheetPassPayment = new BottomSheetPassPayment(getActivity(), R.style.MaterialDialogSheet, new BottomSheetPassPayment.CallBack() {
+                        @Override
+                        public void onCLickCLose() {
+
+                        }
+
+                        @Override
+                        public void onClickPayment(String s) {
+                            if (checkPass.equals(s)) {
+                                bottomSheetPassPayment.dismiss();
+                                startActivity(new Intent(getActivity(), PayCashYourActivity.class));
+                            } else {
+                                Toast.makeText(getActivity(), "Mã pin không chính xác", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    bottomSheetPassPayment.show();
+                    bottomSheetPassPayment.setCanceledOnTouchOutside(false);
+                }
+            }
+        });
+
+        cashPayViewModel.getPassCashMutableLiveData().observe(getActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                checkPass = s;
             }
         });
     }
@@ -283,5 +337,14 @@ public class SettingFragment extends Fragment {
             binding.iconRoyal.setColorFilter(getResources().getColor(R.color.black));
             binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.black));
         }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cashPayViewModel.getPassCash(UserClient.getInstance().getId());
+        SharedPreferences sharedPreferences2 = getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_PASS, MODE_PRIVATE);
+        theme2 = sharedPreferences2.getInt(AppConstant.SHAREDPREFERENCES_PASS, 2655);
     }
 }

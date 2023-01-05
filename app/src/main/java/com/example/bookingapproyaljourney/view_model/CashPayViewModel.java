@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.bookingapproyaljourney.callback.CallbackCashPay;
 import com.example.bookingapproyaljourney.callback.CallbackListPayCashFolw;
+import com.example.bookingapproyaljourney.callback.CallbackPassCash;
 import com.example.bookingapproyaljourney.repository.CashPayRepository;
 import com.example.bookingapproyaljourney.response.user.CashFolwResponse;
 
@@ -22,6 +23,7 @@ public class CashPayViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
 
     MutableLiveData<String> getPrice = new MutableLiveData<>();
+    MutableLiveData<String> passCashMutableLiveData = new MutableLiveData<>();
     MutableLiveData<List<CashFolwResponse>> listMutableLiveDataListCashPayFolw = new MutableLiveData<>();
 
     public CashPayViewModel(@NonNull Application application) {
@@ -36,6 +38,22 @@ public class CashPayViewModel extends AndroidViewModel {
             public void success(String result) {
                 mProgressMutableData.postValue(View.GONE);
                 getPrice.postValue(result);
+            }
+
+            @Override
+            public void failure(Throwable t) {
+                mProgressMutableData.postValue(View.GONE);
+            }
+        });
+    }
+
+    public void getPassCash(String id) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        repository.getPassCash(id, new CallbackPassCash() {
+            @Override
+            public void success(String result) {
+                mProgressMutableData.postValue(View.GONE);
+                passCashMutableLiveData.postValue(result);
             }
 
             @Override
@@ -71,5 +89,9 @@ public class CashPayViewModel extends AndroidViewModel {
 
     public LiveData<List<CashFolwResponse>> getListMutableLiveDataListCashPayFolw() {
         return listMutableLiveDataListCashPayFolw;
+    }
+
+    public LiveData<String> getPassCashMutableLiveData() {
+        return passCashMutableLiveData;
     }
 }

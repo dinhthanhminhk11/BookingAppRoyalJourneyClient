@@ -4,27 +4,27 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.ui.custom.edittext.PinView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class BottomSheetPayment extends BottomSheetDialog {
-    private CallBack callBack;
+public class BottomSheetPassPayment extends BottomSheetDialog {
     private ImageView close;
     private TextView reset;
-    private LinearLayout payGoogle;
-    private LinearLayout payVisa;
-    private LinearLayout payMaterCard;
-    private LinearLayout payPayPal;
+    private CallBack callBack;
+    private PinView secondPinView;
+    private PinView pinView;
 
-    public BottomSheetPayment(@NonNull Context context, int theme, CallBack callBack) {
+    public BottomSheetPassPayment(@NonNull Context context, int theme, CallBack callBack) {
         super(context, theme);
         this.callBack = callBack;
     }
@@ -35,38 +35,40 @@ public class BottomSheetPayment extends BottomSheetDialog {
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         getWindow().setGravity(Gravity.BOTTOM);
-        setContentView(R.layout.bottomsheet_payment);
+        setContentView(R.layout.bottomsheet_payment_pass);
+        pinView = ((PinView) findViewById(R.id.secondPinView));
         close = (ImageView) findViewById(R.id.close);
         reset = (TextView) findViewById(R.id.reset);
-        payGoogle = (LinearLayout) findViewById(R.id.payGoogle);
-        payVisa = (LinearLayout) findViewById(R.id.payVisa);
-        payMaterCard = (LinearLayout) findViewById(R.id.payMaterCard);
-        payPayPal = (LinearLayout) findViewById(R.id.payPayPal);
-
+        pinView.setAnimationEnable(true);
         close.setOnClickListener(v -> {
-            callBack.onCLickCLose();
+            dismiss();
         });
 
-        payGoogle.setOnClickListener(v -> {
+        pinView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 6) {
+                    callBack.onClickPayment(String.valueOf(s));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
 
-        payPayPal.setOnClickListener(v -> {
-
-        });
-
-        payMaterCard.setOnClickListener(v -> {
-
-        });
-
-        payVisa.setOnClickListener(v -> {
-            callBack.onClickPayment();
-        });
     }
+
 
     public interface CallBack {
         void onCLickCLose();
 
-        void onClickPayment();
+        void onClickPayment(String s);
     }
 }

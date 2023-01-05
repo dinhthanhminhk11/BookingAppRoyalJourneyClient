@@ -17,6 +17,7 @@ import com.example.bookingapproyaljourney.model.user.ChangePasswordRequest;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
 import com.example.bookingapproyaljourney.model.user.UserLogin;
+import com.example.bookingapproyaljourney.model.user.UserPin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Verify;
@@ -206,4 +207,10 @@ public interface ApiRequest {
 
     @POST("createCashFlow")
     Call<TestResponse> createCashFolw(@Body CashFolwRequest cashFolwRequest);
+
+    @GET("getPassPin/{id}")
+    Call<String> getPassCash(@Path("id") String id);
+
+    @POST("createPinPass")
+    Call<TestResponse> createPassCash(@Body UserPin userPin);
 }

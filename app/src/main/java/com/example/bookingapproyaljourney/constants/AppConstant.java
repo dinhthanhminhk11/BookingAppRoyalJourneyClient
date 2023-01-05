@@ -2,7 +2,7 @@ package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
 
-    public static final String BASE = "https://fbca-113-160-45-182.ap.ngrok.io";
+    public static final String BASE = "https://0b91-113-160-0-14.ap.ngrok.io";
     public static final String BASE_URL = BASE + "/api/";
     public static final String BASE_URL_CHAT = BASE;
     public static final String URL_API_GOOGLE_MAP = "https://maps.googleapis.com/";
@@ -13,6 +13,7 @@ public class AppConstant {
     public static final String HOUSE_EXTRA = "house";
     public static final String SHAREDPREFERENCES_USER = "USERCLIENT";
     public static final String SHAREDPREFERENCES_USER_THEME = "SHAREDPREFERENCES_USER_THEME";
+    public static final String SHAREDPREFERENCES_PASS = "SHAREDPREFERENCES_Pass";
     public static final String TOKEN_CANCEL = "TOKEN_CANCEL";
     public static final String SHAREDPREFERENCES_CHECK_CANCEL = "SHAREDPREFERENCES_CHECK_CANCEL";
     public static final String ID_USER = "ID_USER";
@@ -48,6 +49,8 @@ public class AppConstant {
 
     public static final int POS_DARK = 1;
     public static final int POS_LIGHT = 2;
+    public static final int POS_VANTAY = 2344;
+    public static final int POS_PASS = 2655;
     public static final String ChangePasswordResultSuccess = "ChangePasswordResultSuccess";
     public static final String dateCancel = "dateCancel";
     public static final String checkIsbacking = "checkIsbacking";

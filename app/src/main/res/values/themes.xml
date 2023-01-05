@@ -14,7 +14,7 @@
         <item name="background_color">#FFFFFF</item>
         <item name="text_color">#000000</item>
         <!-- Customize your theme here. -->
-
+        <item name="pinViewStyle">@style/PinWidget.PinView</item>
     </style>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
@@ -101,5 +101,17 @@
         <!-- active thumb & track color (30% transparency) -->
         <item name="colorControlActivated">#e6e600</item>
         <item name="colorSwitchThumbNormal">#cc0000</item>
+    </style>
+
+    <style name="PinWidget" />
+
+    <style name="PinWidget.PinView" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@null</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textCursorDrawable">@drawable/pv_invisible_image</item>
+        <item name="android:textSelectHandle">@drawable/pv_invisible_image</item>
+        <item name="android:textSelectHandleLeft">@drawable/pv_invisible_image</item>
+        <item name="android:textSelectHandleRight">@drawable/pv_invisible_image</item>
     </style>
 </resources>

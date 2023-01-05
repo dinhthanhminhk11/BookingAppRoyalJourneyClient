@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_700dp"
+    android:background="@drawable/background_filter_ver2"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_24dp"
+        android:layout_marginTop="@dimen/_30dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="@dimen/_24dp"
+            android:layout_height="@dimen/_24dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_round_close_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_toRightOf="@+id/close"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/textpinpass"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp" />
+
+        <TextView
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Reset"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/_16sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="@dimen/_20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black" />
+
+    <com.example.bookingapproyaljourney.ui.custom.edittext.PinView
+        android:id="@+id/secondPinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_25dp"
+        android:layout_marginBottom="@dimen/_5dp"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:textColor="@color/black"
+        app:itemRadius="@dimen/pv_pin_view_item_radius" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15dp"
+        android:gravity="center"
+        android:text="Pin không đúng"
+        android:textColor="@color/red"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25dp"
+        android:gravity="center"
+        android:text="@string/forgot_pass"
+        android:textColor="@color/black" />
+</LinearLayout>

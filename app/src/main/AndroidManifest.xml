@@ -31,14 +31,15 @@
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.AddMoneyActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".ui.activity.AddPassPinActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activity.AddMoneyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".ui.activity.PayCashYourActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ui.activity.ContactActivity"
             android:exported="false" />
@@ -132,10 +133,10 @@
             android:exported="true" />
         <activity
             android:name=".ui.activity.SplashScreenVer2"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

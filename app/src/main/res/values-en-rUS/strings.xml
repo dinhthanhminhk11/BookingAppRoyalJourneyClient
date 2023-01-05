@@ -441,4 +441,5 @@
     <string name="textSuccessAddMoney">Deposit successful</string>
     <string name="textBiometric1">Fingerprint authentication</string>
     <string name="textBiometric2">Unlock the wallet with your fingerprint</string>
+    <string name="textpinpass">Enter your pin</string>
 </resources>
