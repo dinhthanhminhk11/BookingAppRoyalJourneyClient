@@ -78,6 +78,7 @@ import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HelpFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
+import com.example.bookingapproyaljourney.ui.fragment.HomeVer2Fragment;
 import com.example.bookingapproyaljourney.ui.fragment.ListOrderAllFragment;
 import com.example.bookingapproyaljourney.ui.fragment.NotificationFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ProfileFragment;
@@ -456,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         } else if (position == POS_HOME) {
             nameAddress.setVisibility(View.GONE);
             nameCity.setVisibility(View.VISIBLE);
-            showFragment(new HomeFragment(locationYouSelf));
+            showFragment(new HomeVer2Fragment());
         } else if (position == POS_NEARBY) {
             startActivity(new Intent(MainActivity.this, NearFromYouMapsActivity.class));
         } else if (position == POS_PROFILE) {
