@@ -48,6 +48,8 @@ import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.bookingapproyaljourney.view_model.OrderViewModel;
 import com.example.librarytoastcustom.CookieBar;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.stripe.android.PaymentConfiguration;
@@ -294,13 +296,21 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
 
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+
+        CalendarConstraints.Builder constraintBuilder = new CalendarConstraints.Builder();
+        constraintBuilder.setValidator(DateValidatorPointForward.now());
+
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+
+        builder.setCalendarConstraints(constraintsBuilder.build());
         builder.setTheme(R.style.ThemeOverlay_App_DatePicker);
         MaterialDatePicker<Pair<Long, Long>> materialDatePicker = builder
                 .setTitleText(BillOderActivity.this.getString(R.string.Select_a_date))
                 .setPositiveButtonText(BillOderActivity.this.getString(R.string.SAVE))
                 .setNegativeButtonText(BillOderActivity.this.getString(R.string.Thoat))
+                .setSelection(new Pair<>(MaterialDatePicker.todayInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds()))
+                .setCalendarConstraints(constraintBuilder.build())
                 .build();
-
 
         binding.contentPayDayNight.setOnClickListener(v -> {
             materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
@@ -848,5 +858,6 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             binding.contentBackground4.setBackgroundColor(Color.WHITE);
         }
     }
+
 
 }
