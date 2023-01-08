@@ -107,7 +107,7 @@
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:src="@drawable/ic_bedroom_detailproduct" />
+                                        android:src="@drawable/ic_arear_svg" />
 
                                     <TextView
                                         android:id="@+id/tvSumDienTich"
