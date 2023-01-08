@@ -339,7 +339,7 @@
     <string name="RePassIsEmpty">Nhập lại mật khẩu mới</string>
     <string name="owner_detail">Owner</string>
     <string name="see_more">Xem Thêm</string>
-    <string name="check_in">Nhận phòng từ ngày:</string>
+    <string name="check_in">Nhận phòng từ</string>
     <string name="Online_payment">Thanh toán online</string>
     <string name="textOnline_payment">Thanh toán bằng cách chuyển khoản hoặc sử dụng ví điện tử</string>
 
@@ -435,7 +435,7 @@
     <string name="Waiting">Đang chờ</string>
     <string name="Confirmed">Đã xác nhận</string>
     <string name="Member">Thành viên</string>
-    <string name="feedback">Đánh giá</string>
+    <string name="feedback"><u>Đánh giá</u></string>
 
     <string name="yourpayment">Ví của bạn</string>
     <string name="add_money_to_card">Nạp tiền</string>
