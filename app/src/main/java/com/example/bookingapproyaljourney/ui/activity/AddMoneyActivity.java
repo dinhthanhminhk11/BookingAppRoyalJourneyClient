@@ -3,6 +3,8 @@ package com.example.bookingapproyaljourney.ui.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -43,7 +45,7 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
         binding = ActivityAddMoneyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        Theme();
         initToolbar();
         initView();
 
@@ -133,6 +135,79 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
         binding.toolBar.setNavigationOnClickListener(v -> {
             onBackPressed();
         });
+    }
+
+    private void Theme(){
+        //thay đổi Theme
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+    }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.toolBar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+            binding.toolBar.setTitleTextColor(Color.WHITE);
+            binding.contentBackgroundAddMoney.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+
+            binding.contentCancellationPolicy.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.contentPayment.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.contentBackground3.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.contentBtnAdd.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+
+            binding.text1.setTextColor(Color.WHITE);
+            binding.vnd.setTextColor(Color.WHITE);
+            binding.editInputMoney.setTextColor(Color.WHITE);
+            binding.text7.setTextColor(Color.WHITE);
+            binding.textPayment.setTextColor(Color.WHITE);
+            binding.priceAndCount.setTextColor(Color.WHITE);
+            binding.sumPrice.setTextColor(Color.WHITE);
+            binding.text11.setTextColor(Color.WHITE);
+            binding.priceAll.setTextColor(Color.WHITE);
+            binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.white));
+
+            binding.number1.setTextColor(Color.WHITE);
+            binding.number2.setTextColor(Color.WHITE);
+            binding.number3.setTextColor(Color.WHITE);
+            binding.lineNumber1.setBackgroundColor(Color.WHITE);
+            binding.lineNumber2.setBackgroundColor(Color.WHITE);
+        } else {
+            binding.toolBar.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
+            binding.toolBar.setTitleTextColor(Color.BLACK);
+            binding.contentBackgroundAddMoney.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+
+            binding.contentCancellationPolicy.setBackgroundColor(Color.WHITE);
+            binding.contentPayment.setBackgroundColor(Color.WHITE);
+            binding.contentBackground3.setBackgroundColor(Color.WHITE);
+            binding.contentBtnAdd.setBackgroundColor(Color.WHITE);
+
+            binding.text1.setTextColor(Color.BLACK);
+            binding.vnd.setTextColor(Color.BLACK);
+            binding.editInputMoney.setTextColor(this.getResources().getColor(R.color.color_555555));
+            binding.text7.setTextColor(Color.BLACK);
+            binding.textPayment.setTextColor(this.getResources().getColor(R.color.color_555555));
+            binding.priceAndCount.setTextColor(this.getResources().getColor(R.color.color_555555));
+            binding.sumPrice.setTextColor(this.getResources().getColor(R.color.color_555555));
+            binding.text11.setTextColor(Color.BLACK);
+            binding.priceAll.setTextColor(Color.BLACK);
+            binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.black));
+
+            binding.number1.setTextColor(Color.BLACK);
+            binding.number2.setTextColor(Color.BLACK);
+            binding.number3.setTextColor(Color.BLACK);
+            binding.lineNumber1.setBackgroundColor(Color.BLACK);
+            binding.lineNumber2.setBackgroundColor(Color.BLACK);
+        }
     }
 
     private void resetText(boolean showClearButton) {
@@ -311,4 +386,6 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
         bottomSheetPayment.show();
         bottomSheetPayment.setCanceledOnTouchOutside(false);
     }
+
+
 }

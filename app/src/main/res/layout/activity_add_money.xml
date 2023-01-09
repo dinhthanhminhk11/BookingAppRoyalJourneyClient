@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/contentBackground"
+    android:id="@+id/contentBackgroundAddMoney"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_EBEBEB"
@@ -46,6 +46,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/vnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="₫"
@@ -61,7 +62,9 @@
                 android:hint="0"
                 android:inputType="number"
                 android:maxLength="13"
+                android:textColor="@color/color_555555"
                 android:textSize="25sp" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -98,7 +101,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5dp"
-                android:text="@string/textpayment2" />
+                android:text="@string/textpayment2"
+                android:textColor="@color/color_555555" />
 
         </LinearLayout>
 
@@ -132,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5dp"
                 android:text="@string/countMoneyAdd"
+                android:textColor="@color/color_555555"
                 android:textSize="@dimen/_17sp" />
 
             <TextView
@@ -142,6 +147,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:text="0 ₫"
+                android:textColor="@color/color_555555"
                 android:textSize="@dimen/_17sp" />
         </LinearLayout>
 
@@ -219,6 +225,7 @@
                 android:textSize="@dimen/_17sp" />
 
             <View
+                android:id="@+id/lineNumber1"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@color/black" />
@@ -235,6 +242,7 @@
                 android:textSize="@dimen/_17sp" />
 
             <View
+                android:id="@+id/lineNumber2"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@color/black" />

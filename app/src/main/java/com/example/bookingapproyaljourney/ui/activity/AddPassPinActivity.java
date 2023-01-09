@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney.ui.activity;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityAddPassPinBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.model.user.UserPin;
@@ -33,7 +37,9 @@ public class AddPassPinActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
         addPassPinViewModel = new ViewModelProvider(this).get(AddPassPinViewModel.class);
+
         binding.editText1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -71,7 +77,6 @@ public class AddPassPinActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 6) {
@@ -100,6 +105,19 @@ public class AddPassPinActivity extends AppCompatActivity {
             }
         });
 
+        //thay đổi Theme
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
     }
 
     @Override
@@ -107,4 +125,32 @@ public class AddPassPinActivity extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.toolbar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+            binding.toolbar.setTitleTextColor(Color.WHITE);
+            binding.layoutAddPassPin.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+
+            binding.text.setTextColor(Color.BLACK);
+            binding.editText1.setTextColor(Color.BLACK);
+            binding.editText2.setTextColor(Color.BLACK);
+            binding.text2.setTextColor(Color.BLACK);
+
+        } else {
+            binding.toolbar.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
+            binding.toolbar.setTitleTextColor(Color.BLACK);
+            binding.layoutAddPassPin.setBackgroundColor(this.getResources().getColor(R.color.white));
+
+            binding.text.setTextColor(Color.BLACK);
+            binding.editText1.setTextColor(Color.BLACK);
+            binding.editText2.setTextColor(Color.BLACK);
+            binding.text2.setTextColor(Color.BLACK);
+        }
+    }
+
+
 }

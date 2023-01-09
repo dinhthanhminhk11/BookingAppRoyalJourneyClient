@@ -67,6 +67,7 @@ public class SettingFragment extends Fragment {
     private FragmentSettingBinding binding;
     private String checkPass;
     private int theme2;
+
     static SettingFragment newInstance(String param1, String param2) {
         SettingFragment fragment = new SettingFragment();
         Bundle args = new Bundle();
@@ -187,8 +188,6 @@ public class SettingFragment extends Fragment {
         }
 
 
-
-
         if (binding.switchComparTheme.isChecked()) {
             changeTheme(1);
         } else {
@@ -240,7 +239,7 @@ public class SettingFragment extends Fragment {
             startActivity(new Intent(getActivity(), ContactActivity.class));
         });
 
-        binding.contentPayment.setOnClickListener(v -> {
+        binding.layoutContentPayment.setOnClickListener(v -> {
             if (token.equals("")) {
                 dialog.show();
             } else {
@@ -307,6 +306,13 @@ public class SettingFragment extends Fragment {
             binding.contentRoyal.setTextColor(getContext().getResources().getColor(R.color.white));
             binding.iconRoyal.setColorFilter(getResources().getColor(R.color.white));
             binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.white));
+
+            binding.layoutContentPayment.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.iconPayment.setColorFilter(getResources().getColor(R.color.white));
+            binding.titlePayment.setTextColor(getContext().getResources().getColor(R.color.white));
+            binding.contentPayment.setTextColor(getContext().getResources().getColor(R.color.white));
+            binding.iconChangePayment.setColorFilter(getResources().getColor(R.color.white));
+
         } else {
             EventBus.getDefault().postSticky(new KeyEvent(AppConstant.SAVE_THEME_LIGHT));
 
@@ -336,6 +342,13 @@ public class SettingFragment extends Fragment {
             binding.contentRoyal.setTextColor(getContext().getResources().getColor(R.color.black));
             binding.iconRoyal.setColorFilter(getResources().getColor(R.color.black));
             binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.black));
+
+            binding.layoutContentPayment.setBackgroundResource(R.drawable.background_setting_item);
+            binding.iconPayment.setColorFilter(getResources().getColor(R.color.black));
+            binding.titlePayment.setTextColor(getContext().getResources().getColor(R.color.black));
+            binding.contentPayment.setTextColor(getContext().getResources().getColor(R.color.black));
+            binding.iconChangePayment.setColorFilter(getResources().getColor(R.color.black));
+
         }
     }
 
