@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -43,11 +44,13 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
-    public BestForYouAdapter(int type, Consumer<Hotel> consumer) {
+    public BestForYouAdapter(Consumer<Hotel> consumer) {
         this.consumer = consumer;
-        this.type = type;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
 
     @NonNull
     @Override
@@ -58,16 +61,14 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return new ViewHolderNearByNull(ItemBestforyouHomefragmentNotNullBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (type == 0) {
             ViewHolder viewHolder = (ViewHolder) holder;
             Hotel item = dataHotel.get(position);
             if (item instanceof Hotel) {
-                RequestOptions options = new RequestOptions()
-                        .centerCrop()
-                        .placeholder(R.drawable.img)
-                        .error(R.drawable.img);
+                RequestOptions options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
                 Glide.with(holder.itemView.getContext()).load(item.getImages().get(0)).apply(options).into(viewHolder.binding.imgItemBestForYou);
 
                 if (item.getTienNghiKS().size() > 2) {
@@ -83,16 +84,17 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder.binding.tvNameIcon1.setTextColor(colorBlack);
                 viewHolder.binding.nameIcon1.setTextColor(colorBlack);
                 viewHolder.binding.tvPriceHouseItemBestforyou.setTextColor(color);
+
+                viewHolder.itemView.setOnClickListener(v -> {
+                    consumer.accept(item);
+                });
             }
 
         } else {
             ViewHolderNearByNull viewHolderNearByNull = (ViewHolderNearByNull) holder;
             Hotel item = dataHotel.get(position);
             if (item instanceof Hotel) {
-                RequestOptions options = new RequestOptions()
-                        .centerCrop()
-                        .placeholder(R.drawable.img)
-                        .error(R.drawable.img);
+                RequestOptions options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
 
                 imageAutoSliderAdapter = new ImageAutoSliderAdapter(item.getImages());
                 viewHolderNearByNull.binding.imageItem.setSliderAdapter(imageAutoSliderAdapter);
@@ -104,7 +106,7 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolderNearByNull.binding.imageItem.setScrollTimeInSec(4); //set scroll delay in seconds :
                 viewHolderNearByNull.binding.imageItem.startAutoCycle();
 
-                viewHolderNearByNull.binding.tvStart.setText(item.getTbSao() +"");
+                viewHolderNearByNull.binding.tvStart.setText(item.getTbSao() + "");
                 viewHolderNearByNull.binding.price.setText(item.getGiaDaoDong());
                 if (item.getTienNghiKS().size() > 4) {
                     Glide.with(holder.itemView.getContext()).load(item.getTienNghiKS().get(0).getIconImage()).apply(options).into(viewHolderNearByNull.binding.icon1);
@@ -117,6 +119,13 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     viewHolderNearByNull.binding.tvNameConvenient.setText(item.getTienNghiKS().get(2).getName());
                     viewHolderNearByNull.binding.tvPerson.setText(item.getTienNghiKS().get(3).getName());
                 }
+
+                viewHolderNearByNull.itemView.setOnClickListener(v -> {
+                    consumer.accept(item);
+                });
+                viewHolderNearByNull.binding.btnDat.setOnClickListener(v -> {
+                    consumer.accept(item);
+                });
 
             }
         }

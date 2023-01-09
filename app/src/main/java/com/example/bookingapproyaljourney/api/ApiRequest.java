@@ -7,6 +7,7 @@ import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.feedback.DataFeedBack;
 import com.example.bookingapproyaljourney.model.feedback.DataId;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
 import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
@@ -222,4 +223,8 @@ public interface ApiRequest {
 
     @POST("hotelNearBy")
     Call<HotelReponseNearBy> getListHotelNearBy(@Body LocationNearByRequest locationNearByRequest);
+
+    @GET("getHotelById/{id}")
+    Call<Hotel> getHotelById(@Path("id") String id);
+
 }

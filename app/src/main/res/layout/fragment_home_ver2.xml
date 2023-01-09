@@ -275,7 +275,8 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_20dp"
                 android:paddingTop="@dimen/_10dp"
-                android:paddingBottom="@dimen/_20dp">
+                android:paddingBottom="@dimen/_20dp"
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:id="@+id/contentTextNearFromYou"
@@ -326,7 +327,8 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_20dp"
-                android:paddingVertical="@dimen/_10dp">
+                android:paddingVertical="@dimen/_10dp"
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:id="@+id/contentBestForYouHomeFragment"
@@ -381,4 +383,5 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading.json"
         app:lottie_loop="true" />
+
 </RelativeLayout>

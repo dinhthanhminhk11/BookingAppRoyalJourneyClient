@@ -501,7 +501,6 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
             }
         });
-
         return true;
     }
 

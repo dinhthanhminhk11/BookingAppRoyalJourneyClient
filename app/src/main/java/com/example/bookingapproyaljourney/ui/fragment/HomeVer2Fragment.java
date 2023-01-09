@@ -1,10 +1,12 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +20,7 @@ import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
 import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.view_model.HomeViewModel;
@@ -63,9 +66,9 @@ public class HomeVer2Fragment extends Fragment {
     }
 
     private void initView() {
-        bestForYouAdapter = new BestForYouAdapter(1, o -> {
+        bestForYouAdapter = new BestForYouAdapter(o -> {
             if (o instanceof Hotel) {
-
+                startActivity(new Intent(getActivity(), HotelActivity.class));
             }
         });
 
@@ -80,6 +83,7 @@ public class HomeVer2Fragment extends Fragment {
         homeViewModel.getHotelReponseMutableLiveData().observe(getActivity(), new Observer<HotelReponse>() {
             @Override
             public void onChanged(HotelReponse hotelReponse) {
+                binding.contentBottom.setVisibility(View.VISIBLE);
                 bestForYouAdapter.setDataHotel(hotelReponse.getDatapros());
                 binding.recyclerviewBestForYouHomeFragment.setAdapter(bestForYouAdapter);
             }
@@ -93,8 +97,10 @@ public class HomeVer2Fragment extends Fragment {
                         nearFromYouAdapter = new NearFromYouAdapter(hotelReponse.getData());
                         binding.recyclerviewNearFromYouHomeFragment.setAdapter(nearFromYouAdapter);
                         binding.contentCenter.setVisibility(View.VISIBLE);
+                        bestForYouAdapter.setType(0);
                     } else {
                         binding.contentCenter.setVisibility(View.GONE);
+                        bestForYouAdapter.setType(1);
                     }
                 }
             }
