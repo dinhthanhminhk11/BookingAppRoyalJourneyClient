@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/_700dp"
     android:background="@drawable/background_filter_ver2"
+    android:id="@+id/layoutBottomsheet_payment_pass"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -22,6 +23,7 @@
             android:src="@drawable/ic_round_close_24" />
 
         <TextView
+            android:id="@+id/tvTextpinpass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10dp"
@@ -42,11 +44,13 @@
             android:textColor="@color/blue"
             android:textSize="@dimen/_16sp"
             android:visibility="gone" />
+
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
+        android:id="@+id/viewLine"
         android:layout_marginHorizontal="@dimen/_20dp"
         android:layout_marginTop="20dp"
         android:background="@color/black" />
@@ -78,6 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_25dp"
         android:gravity="center"
+        android:id="@+id/forgot_pass"
         android:text="@string/forgot_pass"
         android:textColor="@color/black" />
 </LinearLayout>
+
