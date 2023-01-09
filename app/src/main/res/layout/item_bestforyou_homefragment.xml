@@ -20,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/anh5"
-             />
+            android:src="@drawable/anh5" />
 
 
     </androidx.cardview.widget.CardView>
@@ -60,13 +59,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_bedroom_itembestforyou" />
+                    android:id="@+id/icon1"
+                    android:layout_width="@dimen/_18dp"
+                    android:layout_height="@dimen/_18dp"
+                    android:layout_gravity="center_vertical" />
 
                 <TextView
-                    android:id="@+id/tvCountBedroomItemBestforyou"
+                    android:id="@+id/nameIcon1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -82,13 +81,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_bathroom_itembestforyou" />
+                    android:id="@+id/icon2"
+                    android:layout_width="@dimen/_18dp"
+                    android:layout_height="@dimen/_18dp"
+                    android:layout_gravity="center_vertical" />
 
                 <TextView
-                    android:id="@+id/tvCountBathroomItemBestforyou"
+                    android:id="@+id/tvNameIcon1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

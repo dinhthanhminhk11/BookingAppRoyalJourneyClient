@@ -7,6 +7,9 @@ import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.feedback.DataFeedBack;
 import com.example.bookingapproyaljourney.model.feedback.DataId;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
+import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
+import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
+import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
 import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
@@ -213,4 +216,10 @@ public interface ApiRequest {
 
     @POST("createPinPass")
     Call<TestResponse> createPassCash(@Body UserPin userPin);
+
+    @GET("getAllHotelConfirm")
+    Call<HotelReponse> getAllListHotel();
+
+    @POST("hotelNearBy")
+    Call<HotelReponseNearBy> getListHotelNearBy(@Body LocationNearByRequest locationNearByRequest);
 }

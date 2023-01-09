@@ -88,13 +88,12 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/appBar"
         android:layout_marginTop="-10dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <ScrollView
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/backgroundscrellview">
@@ -384,7 +383,6 @@
                         android:id="@+id/btnThem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:background="@drawable/bg_buttom_blue"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="Chọn"
