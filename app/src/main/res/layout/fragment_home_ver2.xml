@@ -68,9 +68,11 @@
 
                 <LinearLayout
                     android:id="@+id/contentDate"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15dp"
+                    android:foreground="?attr/selectableItemBackground"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -196,6 +198,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15dp"
+                    android:foreground="?attr/selectableItemBackground"
                     android:orientation="horizontal">
 
                     <ImageView

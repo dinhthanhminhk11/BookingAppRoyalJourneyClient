@@ -51,14 +51,14 @@
                             android:fontFamily="@font/poppins_medium"
                             android:textAlignment="center"
                             android:theme="@style/ToolbarTheme"
+                            app:layout_scrollFlags="scroll|exitUntilCollapsed"
                             app:titleTextColor="@color/black" />
 
                         <ImageView
                             android:id="@+id/ivimgHotel"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                             />
+                            android:scaleType="centerCrop" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -129,13 +129,14 @@
                     android:layout_marginBottom="@dimen/_14dp"
                     android:text="@string/motadetail"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
+                    android:textSize="@dimen/_16sp"
+                    android:textStyle="bold" />
 
 
                 <TextView
                     android:id="@+id/ContentHouse"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
@@ -158,8 +159,7 @@
                         android:id="@+id/imgManage"
                         android:layout_width="@dimen/_40dp"
                         android:layout_height="@dimen/_40dp"
-                        android:layout_gravity="center"
-                         />
+                        android:layout_gravity="center" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -235,12 +235,14 @@
 
                     <TextView
                         android:id="@+id/text3"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/tienichdetail"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_16sp" />
+                        android:textSize="@dimen/_16sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/showMore"
@@ -275,12 +277,14 @@
 
                 <TextView
                     android:id="@+id/text4"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10dp"
                     android:text="@string/anhdetail"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
+                    android:textSize="@dimen/_16sp"
+                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvGallery"
@@ -305,11 +309,13 @@
 
                 <TextView
                     android:id="@+id/text5"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mapdetail"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
+                    android:textSize="@dimen/_16sp"
+                    android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -405,11 +411,13 @@
 
                 <TextView
                     android:id="@+id/text8"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/check_in"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
+                    android:textSize="@dimen/_16sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -485,12 +493,14 @@
 
                 <TextView
                     android:id="@+id/text14"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10dp"
                     android:text="@string/CancellationpolicydetailVer2"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
+                    android:textSize="@dimen/_16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textPolicy"
@@ -515,12 +525,14 @@
 
                 <TextView
                     android:id="@+id/text9"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10dp"
                     android:text="@string/Cancellationpolicydetail"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
+                    android:textSize="@dimen/_16sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:id="@+id/cancel_true"
@@ -620,12 +632,14 @@
 
                     <TextView
                         android:id="@+id/text10"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/Ytedetail"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_16sp" />
+                        android:textSize="@dimen/_16sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/showMedical"
@@ -656,14 +670,16 @@
                 android:paddingVertical="@dimen/_10dp">
 
                 <TextView
-                    android:paddingHorizontal="@dimen/_20dp"
                     android:id="@+id/text15"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10dp"
+                    android:paddingHorizontal="@dimen/_20dp"
                     android:text="@string/choseRoom"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp" />
+                    android:textSize="@dimen/_16sp"
+                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvRoom"

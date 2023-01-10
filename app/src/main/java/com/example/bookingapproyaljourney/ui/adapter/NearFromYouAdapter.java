@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -14,11 +15,18 @@ import com.example.bookingapproyaljourney.model.hotel.Hotel;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.ViewHolder> {
 
     private List<Hotel> dataHotel;
     private static final DecimalFormat df = new DecimalFormat("0.00");
+
+    private Consumer<Hotel> hotelConsumer;
+
+    public void setHotelConsumer(Consumer<Hotel> hotelConsumer) {
+        this.hotelConsumer = hotelConsumer;
+    }
 
     public NearFromYouAdapter(List<Hotel> dataHotel) {
         this.dataHotel = dataHotel;
@@ -30,6 +38,7 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
         return new ViewHolder(ItemNearfromyouHomefragmentBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(@NonNull NearFromYouAdapter.ViewHolder holder, int position) {
 
@@ -44,6 +53,10 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
             holder.binding.tvAddressItemNearFromYou.setText(item.getSonha() + ", " + item.getXa() + ", " + item.getHuyen() + ", " + item.getTinh());
             holder.binding.tvDistanceItemNearFromYou.setText(df.format(item.getCalculated()) + " Km");
             holder.binding.tvNameItemNearFromYou.setText(item.getName());
+
+            holder.itemView.setOnClickListener(v->{
+                hotelConsumer.accept(item);
+            });
         }
     }
 
@@ -54,13 +67,10 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ItemNearfromyouHomefragmentBinding binding;
-
         public ViewHolder(ItemNearfromyouHomefragmentBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
     }
-
-
 }
 

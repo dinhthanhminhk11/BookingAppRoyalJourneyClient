@@ -12,6 +12,7 @@ public class AppConstant {
     public static final String TAG_MINHCHEK = "MinhCheck";
     public static final String TAG_ERROR = "Retrofit_Error";
     public static final String HOUSE_EXTRA = "house";
+    public static final String HOTEL_EXTRA = "HOTEL_EXTRA";
     public static final String SHAREDPREFERENCES_USER = "USERCLIENT";
     public static final String SHAREDPREFERENCES_USER_THEME = "SHAREDPREFERENCES_USER_THEME";
     public static final String SHAREDPREFERENCES_PASS = "SHAREDPREFERENCES_Pass";

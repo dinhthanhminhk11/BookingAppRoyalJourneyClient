@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.activity.Hotel;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -105,6 +106,10 @@ public class RoomInfoActivity extends AppCompatActivity {
                 convenientAdapter.setConvenientTestList(item.getTienNghiPhong());
                 binding.recyclerView.setAdapter(convenientAdapter);
             }
+        });
+
+        binding.btnThem.setOnClickListener(v -> {
+            startActivity(new Intent(RoomInfoActivity.this, BookingActivity.class));
         });
     }
 
