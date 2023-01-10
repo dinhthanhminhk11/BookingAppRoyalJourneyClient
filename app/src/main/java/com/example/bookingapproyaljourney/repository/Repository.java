@@ -5,10 +5,11 @@ import android.util.Log;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.constants.AppConstant;
-import com.example.bookingapproyaljourney.model.hotel.Hotel;
+import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
 import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
+import com.example.bookingapproyaljourney.model.hotel.Room;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
 import java.util.function.Consumer;
@@ -61,10 +62,10 @@ public class Repository {
         });
     }
 
-    public void getHotelById(String id, Consumer<Hotel> consumer) {
-        apiRequest.getHotelById(id).enqueue(new Callback<Hotel>() {
+    public void getHotelById(String id, Consumer<HotelById> consumer) {
+        apiRequest.getHotelById(id).enqueue(new Callback<HotelById>() {
             @Override
-            public void onResponse(Call<Hotel> call, Response<Hotel> response) {
+            public void onResponse(Call<HotelById> call, Response<HotelById> response) {
                 if (response.isSuccessful()) {
                     consumer.accept(response.body());
                 } else {
@@ -73,7 +74,25 @@ public class Repository {
             }
 
             @Override
-            public void onFailure(Call<Hotel> call, Throwable t) {
+            public void onFailure(Call<HotelById> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+            }
+        });
+    }
+
+    public void getRoomById(String id, Consumer<Room> consumer) {
+        apiRequest.getRoomById(id).enqueue(new Callback<Room>() {
+            @Override
+            public void onResponse(Call<Room> call, Response<Room> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Room> call, Throwable t) {
                 Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
             }
         });

@@ -81,7 +81,7 @@
     <string name="houserulesdetail">Nội quy nhận phòng</string>
     <string name="Cancellationpolicydetail">Chính sách hủy</string>
     <string name="pricedetail">Giá thuê</string>
-    <string name="rentnowdetail">Thuê ngay</string>
+    <string name="rentnowdetail">Chọn phòng</string>
     <string name="danhgiadetail">Đánh giá</string>
     <string name="Ytedetail">Y tế và an toàn</string>
     <string name="Y_te_detail">Các biện pháp an toàn trong đại dịch COVID-19 của BookingAppRoyalJourney được áp dụng. Có máy phát hiện khí CO/máy báo khói, Camera an ninh/thiết bị ghi</string>
@@ -294,7 +294,7 @@
     <string name="RePassIsEmpty">Nhập lại mật khẩu mới</string>
     <string name="owner_detail">Owner</string>
     <string name="see_more">Xem Thêm</string>
-    <string name="check_in">Nhận phòng từ ngày:</string>
+    <string name="check_in">Nhận phòng từ:</string>
     <string name="byRoyal">Về chúng tôi</string>
     <string name="infoRoyal">Những thông tin về chúng tôi</string>
     <string name="Online_payment">Thanh toán online</string>

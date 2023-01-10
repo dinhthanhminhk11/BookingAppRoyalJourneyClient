@@ -120,6 +120,8 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     viewHolderNearByNull.binding.tvPerson.setText(item.getTienNghiKS().get(3).getName());
                 }
 
+                viewHolderNearByNull.binding.tvTenPhong.setText(item.getName());
+
                 viewHolderNearByNull.itemView.setOnClickListener(v -> {
                     consumer.accept(item);
                 });

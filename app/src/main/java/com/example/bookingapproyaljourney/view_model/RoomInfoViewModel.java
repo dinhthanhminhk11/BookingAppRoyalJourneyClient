@@ -7,40 +7,35 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.bookingapproyaljourney.model.hotel.Hotel;
-import com.example.bookingapproyaljourney.model.hotel.HotelById;
-import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
+import com.example.bookingapproyaljourney.model.hotel.Room;
 import com.example.bookingapproyaljourney.repository.Repository;
 
-public class HotelInfoViewModel extends AndroidViewModel {
-
+public class RoomInfoViewModel extends AndroidViewModel {
     private Repository repository;
 
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
-    MutableLiveData<HotelById> hotelMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<Room> roomMutableLiveData = new MutableLiveData<>();
 
-
-    public HotelInfoViewModel(@NonNull Application application) {
+    public RoomInfoViewModel(@NonNull Application application) {
         super(application);
         repository = new Repository();
     }
 
-    public void getHotelById(String id) {
+    public void getRoomById(String id) {
         mProgressMutableData.postValue(View.VISIBLE);
-        repository.getHotelById(id, o -> {
-            if (o instanceof HotelById) {
+        repository.getRoomById(id, o -> {
+            if (o instanceof Room) {
                 mProgressMutableData.postValue(View.GONE);
-                hotelMutableLiveData.postValue(o);
+                roomMutableLiveData.postValue(o);
             }
         });
     }
-
 
     public MutableLiveData<Integer> getmProgressMutableData() {
         return mProgressMutableData;
     }
 
-    public MutableLiveData<HotelById> getHotelMutableLiveData() {
-        return hotelMutableLiveData;
+    public MutableLiveData<Room> getRoomMutableLiveData() {
+        return roomMutableLiveData;
     }
 }

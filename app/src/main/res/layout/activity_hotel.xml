@@ -7,19 +7,6 @@
     android:background="@color/color_EBEBEB"
     tools:context=".ui.activity.Hotel.HotelActivity">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_120dp"
-        android:layout_centerInParent="true"
-        android:background="@null"
-        android:backgroundTint="@null"
-        android:backgroundTintMode="@null"
-        android:visibility="gone"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="loading.json"
-        app:lottie_loop="true" />
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -62,16 +49,16 @@
                             android:background="@color/white"
                             android:elevation="@dimen/_8dp"
                             android:fontFamily="@font/poppins_medium"
-                            app:titleTextColor="@color/black"
+                            android:textAlignment="center"
                             android:theme="@style/ToolbarTheme"
-                            android:textAlignment="center"/>
+                            app:titleTextColor="@color/black" />
 
                         <ImageView
                             android:id="@+id/ivimgHotel"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/anh5" />
+                             />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -148,8 +135,7 @@
                 <TextView
                     android:id="@+id/ContentHouse"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Gạt đi mọi công việc thường ngày, những ưu tư muộn phiền bỏ sang 1 bên. Bạn hãy dành thời gian nằm dài ễnh ương trên thảm cỏ xanh mướt dưới ánh nắng vàng tươi đẹp hay chốc lát nhảy tùm xuống bể bơi xanh mát, vẫy vùng trong làn nước trong vắt tại The Box Villa. Bạn sẽ có cảm giác vô cùng thanh thuần, tươi mới và hoàn toàn phù hợp cho những ai đang tìm kiếm một nơi để thư giãn, nghỉ ngơi và tái tạo năng lượng." />
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
@@ -173,7 +159,7 @@
                         android:layout_width="@dimen/_40dp"
                         android:layout_height="@dimen/_40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/anh5" />
+                         />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -187,7 +173,6 @@
                             android:id="@+id/NameManage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dinh Thanh Minh"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_16sp" />
 
@@ -488,6 +473,36 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/contentPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="@drawable/gradientbackground_white"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_15dp"
+                android:paddingVertical="@dimen/_10dp">
+
+                <TextView
+                    android:id="@+id/text14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:text="@string/CancellationpolicydetailVer2"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <TextView
+                    android:id="@+id/textPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:maxLines="5"
+                    android:text="Hoàn huỷ miễn phí"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/contentCancelBooking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -507,11 +522,83 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
 
-                <TextView
-                    android:id="@+id/legalHouse"
+                <LinearLayout
+                    android:id="@+id/cancel_true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvChinhSachHuyPhong"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:maxLines="2"
+                        android:text="Hoàn huỷ miễn phí"
+                        android:textColor="@color/black" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cancel_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:layout_gravity="center"
+                            android:background="@color/black" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:maxLines="2"
+                            android:text="Trước 2 ngày 100%"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:layout_gravity="center"
+                            android:background="@color/black" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:maxLines="2"
+                            android:text="Sau 2 ngày không hoàn tiền"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -556,6 +643,33 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Y_te_detail" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="@drawable/gradientbackground_white"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/_10dp">
+
+                <TextView
+                    android:paddingHorizontal="@dimen/_20dp"
+                    android:id="@+id/text15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:text="@string/choseRoom"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never" />
 
                 <View
                     android:layout_width="match_parent"
@@ -564,7 +678,6 @@
 
         </LinearLayout>
     </ScrollView>
-
 
     <RelativeLayout
         android:id="@+id/contentBackgroundGradiend"
@@ -615,4 +728,16 @@
             android:textSize="@dimen/_16sp"
             app:backgroundTint="@null" />
     </RelativeLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120dp"
+        android:layout_centerInParent="true"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 </RelativeLayout>

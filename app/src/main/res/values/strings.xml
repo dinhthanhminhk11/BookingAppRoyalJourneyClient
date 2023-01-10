@@ -80,8 +80,10 @@
     <string name="availabilitystatusdetail">Tình trạng phòng sẵn:</string>
     <string name="houserulesdetail">Nội quy nhận phòng</string>
     <string name="Cancellationpolicydetail">Chính sách hủy</string>
+    <string name="choseRoom">Chọn phòng</string>
+    <string name="CancellationpolicydetailVer2">Chính sách chung</string>
     <string name="pricedetail">Giá thuê</string>
-    <string name="rentnowdetail">Thuê ngay</string>
+    <string name="rentnowdetail">Chọn phòng</string>
     <string name="danhgiadetail">Đánh giá</string>
     <string name="Ytedetail">Y tế và an toàn</string>
     <string name="Y_te_detail">Các biện pháp an toàn trong đại dịch COVID-19 của BookingAppRoyalJourney được áp dụng. Có máy phát hiện khí CO/máy báo khói, Camera an ninh/thiết bị ghi</string>

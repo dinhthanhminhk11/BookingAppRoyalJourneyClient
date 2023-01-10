@@ -59,7 +59,6 @@
                     android:layout_marginRight="5dp"
                     android:text="8"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -255,6 +254,33 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/contentContentHotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:background="@drawable/gradientbackground_white"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/_15dp"
+                    android:paddingVertical="@dimen/_10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mô tả"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/contentMota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:text="Trước ngày 2 ngày 100%"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10dp"
@@ -272,6 +298,7 @@
                         android:textStyle="bold" />
 
                     <LinearLayout
+                        android:id="@+id/canceltrue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -296,6 +323,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/cancelfalse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -370,31 +398,46 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10dp"
-                    android:background="@drawable/gradientbackground_white"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/_15dp"
-                    android:paddingVertical="@dimen/_10dp">
 
-                    <Button
-                        android:id="@+id/btnThem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_buttom_blue"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:text="Chọn"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:backgroundTint="@null" />
-
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_120dp"
+        android:layout_gravity="center"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/gradientbackground_white"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_15dp"
+        android:paddingVertical="@dimen/_10dp">
+
+        <Button
+            android:id="@+id/btnThem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_buttom_blue"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="Chọn"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,29 +1,39 @@
 package com.example.bookingapproyaljourney.ui.activity.Hotel;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.callback.InterfacePostBookmark;
 import com.example.bookingapproyaljourney.databinding.ActivityHotelBinding;
-import com.example.bookingapproyaljourney.model.hotel.Hotel;
-import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
-import com.example.bookingapproyaljourney.model.user.UserClient;
-import com.example.bookingapproyaljourney.response.BookmarkResponse;
+import com.example.bookingapproyaljourney.model.hotel.HotelById;
+import com.example.bookingapproyaljourney.model.hotel.Room;
+import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
+import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
+import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
 
-public class HotelActivity extends AppCompatActivity {
+public class HotelActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityHotelBinding binding;
     private MenuItem menuItem;
     private boolean isClickSpeed = true;
     private HotelInfoViewModel hotelInfoViewModel;
+    private RequestOptions options;
+    private String phone;
+    private ConvenientAdapter convenientAdapter;
+    private GalleryAdapter galleryAdapter;
+    private RoomHotelAdapter roomHotelAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +46,18 @@ public class HotelActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        convenientAdapter = new ConvenientAdapter(this);
+        roomHotelAdapter = new RoomHotelAdapter();
+        binding.btPhone.setOnClickListener(this);
+
+        binding.rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.rcvGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img);
+
         hotelInfoViewModel = new ViewModelProvider(this).get(HotelInfoViewModel.class);
         hotelInfoViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
             @Override
@@ -44,18 +66,48 @@ public class HotelActivity extends AppCompatActivity {
             }
         });
 
-        hotelInfoViewModel.getHotelMutableLiveData().observe(this, new Observer<Hotel>() {
+        hotelInfoViewModel.getHotelMutableLiveData().observe(this, new Observer<HotelById>() {
             @Override
-            public void onChanged(Hotel item) {
-                if (item instanceof Hotel) {
-                    binding.tvNameHotel.setText(item.getName());
-                    binding.tvAddress.setText(item.getSonha() + ", " + item.getXa() + ", " + item.getHuyen() + ", " + item.getTinh());
-                    binding.tvSumDienTich.setText(item.getDienTich()+" m²");
-                    binding.priceRoom.setText(item.getGiaDaoDong());
-                    binding.titleMota.setText(item.getMota());
+            public void onChanged(HotelById item) {
+                if (item instanceof HotelById) {
+                    phone = item.getDataUser().getPhone();
+                    binding.tvNameHotel.setText(item.getDataHotel().getName());
+                    binding.tvAddress.setText(item.getDataHotel().getSonha() + ", " + item.getDataHotel().getXa() + ", " + item.getDataHotel().getHuyen() + ", " + item.getDataHotel().getTinh());
+                    binding.tvSumDienTich.setText(item.getDataHotel().getDienTich() + " m²");
+                    binding.priceRoom.setText(item.getDataHotel().getGiaDaoDong());
+                    binding.ContentHouse.setText(item.getDataHotel().getMota());
+                    binding.tvTimeNhanPhong.setText(item.getDataHotel().getTimeDat());
+                    binding.dayEnd.setText(item.getDataHotel().getTimeTra());
+                    binding.textPolicy.setText(item.getDataHotel().getChinhsach());
+
+                    Glide.with(HotelActivity.this).load(item.getDataHotel().getImages().get(0)).apply(options).into(binding.ivimgHotel);
+
+                    binding.NameManage.setText(item.getDataUser().getName());
+                    Glide.with(HotelActivity.this).load(item.getDataUser().getImage()).apply(options).into(binding.imgManage);
+
+                    convenientAdapter.setConvenientTestList(item.getDataHotel().getTienNghiKS());
+                    binding.rcvConvenient.setAdapter(convenientAdapter);
+
+                    galleryAdapter = new GalleryAdapter(HotelActivity.this, item.getDataHotel().getImages());
+                    binding.rcvGallery.setAdapter(galleryAdapter);
+
+                    if (item.getDataHotel().isChinhSachHuy()) {
+                        binding.cancelTrue.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.cancelFalse.setVisibility(View.VISIBLE);
+                    }
+                    roomHotelAdapter.setData(item.getDataRoom());
+                    binding.rcvRoom.setAdapter(roomHotelAdapter);
+
+                    roomHotelAdapter.setConsumer(o -> {
+                        if (o instanceof Room) {
+                            startActivity(new Intent(HotelActivity.this, RoomInfoActivity.class));
+                        }
+                    });
                 }
             }
         });
+
     }
 
     private void initToolbar() {
@@ -98,5 +150,16 @@ public class HotelActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         hotelInfoViewModel.getHotelById("63ba4351a272c793b1222c4f");
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btPhone:
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + phone));
+                startActivity(intent);
+                break;
+        }
     }
 }

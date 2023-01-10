@@ -15,19 +15,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.model.house.Convenient;
+import com.example.bookingapproyaljourney.model.hotel.TienNghiK;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.ViewHodel> {
-    private List<Convenient> convenientTestList;
+    private ArrayList<TienNghiK> convenientTestList;
     private Context context;
     private int color = Color.BLACK;
+
     public ConvenientAdapter(Context context) {
         this.context = context;
     }
 
-    public void setConvenientTestList(List<Convenient> convenientTestList) {
+    public void setConvenientTestList(ArrayList<TienNghiK> convenientTestList) {
         this.convenientTestList = convenientTestList;
     }
 

@@ -430,7 +430,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
             rcvConvenient.setHasFixedSize(true);
             rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            convenientAdapter.setConvenientTestList(item.getSupplement());
+//            convenientAdapter.setConvenientTestList(item.getSupplement());
             rcvConvenient.setAdapter(convenientAdapter);
             data = item.getSupplement();
 
