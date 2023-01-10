@@ -73,11 +73,10 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        final View activityRootView = findViewById(R.id.contentBackground);
-        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        binding.contentBackgroundAddMoney.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+                int heightDiff = binding.contentBackgroundAddMoney.getRootView().getHeight() - binding.contentBackgroundAddMoney.getHeight();
                 if ((heightDiff > dpToPx(AddMoneyActivity.this, 200)) && (binding.editInputMoney.getText().toString().length() < 7)) { // if more than 200 dp, it's probably a keyboard...
                     binding.contentLayoutMoney.setVisibility(View.VISIBLE);
                 } else {
@@ -137,7 +136,7 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void Theme(){
+    private void Theme() {
         //thay đổi Theme
         SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
