@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/color_EBEBEB"
     android:orientation="vertical"
+    android:id="@+id/layoutPayCashYour"
     tools:context=".ui.activity.PayCashYourActivity">
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
@@ -14,17 +16,17 @@
         android:background="@drawable/gradientbackground_white"
         app:titleCentered="true"
         app:titleTextColor="@color/black" />
+
     <androidx.core.widget.NestedScrollView
-        android:layout_below="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/tool_bar"
         android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
 
             <LinearLayout
@@ -175,6 +177,7 @@
                 android:paddingLeft="@dimen/_20dp">
 
                 <LinearLayout
+                    android:id="@+id/layoutVanTay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -213,6 +216,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5dp"
                         android:text="@string/textBiometric2" />
+
                 </LinearLayout>
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -280,8 +284,8 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_120dp"
-        android:background="@null"
         android:layout_centerInParent="true"
+        android:background="@null"
         android:backgroundTint="@null"
         android:backgroundTintMode="@null"
         app:lottie_autoPlay="true"

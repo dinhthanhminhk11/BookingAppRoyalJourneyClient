@@ -130,7 +130,6 @@ public class AddMoneyActivity extends AppCompatActivity implements View.OnClickL
 
     private void initToolbar() {
         binding.toolBar.setTitle(R.string.add_money_to_card);
-        binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         binding.toolBar.setNavigationOnClickListener(v -> {
             onBackPressed();
         });

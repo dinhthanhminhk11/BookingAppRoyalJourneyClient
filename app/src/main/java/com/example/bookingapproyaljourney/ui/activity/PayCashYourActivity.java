@@ -4,6 +4,7 @@ import static com.example.bookingapproyaljourney.constants.AppConstant.CheckSucc
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -46,6 +47,12 @@ public class PayCashYourActivity extends AppCompatActivity {
             binding.switchComparTheme.setChecked(true);
         } else {
             binding.switchComparTheme.setChecked(false);
+        }
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
         }
 
         binding.contentAddMoney.setOnClickListener(v -> {
@@ -99,6 +106,7 @@ public class PayCashYourActivity extends AppCompatActivity {
                 editor.commit();
             }
         });
+
     }
 
     @Override
@@ -111,9 +119,75 @@ public class PayCashYourActivity extends AppCompatActivity {
 
     private void initToolbar() {
         binding.toolBar.setTitle(R.string.yourpayment);
-        binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         binding.toolBar.setNavigationOnClickListener(v -> {
             onBackPressed();
         });
     }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.toolBar.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+            binding.toolBar.setTitleTextColor(Color.WHITE);
+            binding.layoutPayCashYour.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+
+            binding.contentCancellationPolicy.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.contentAddMoney.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.contentBiometric.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.contentHistoryPayment.setBackgroundResource(R.drawable.background_setting_item_dark);
+            binding.layoutVanTay.setBackgroundResource(R.drawable.background_setting_item_dark);
+
+            binding.text1.setTextColor(Color.WHITE);
+            binding.contentPayOfflineLine.setBackgroundColor(Color.WHITE);
+            binding.sourcePayment.setTextColor(Color.WHITE);
+            binding.textCancel.setTextColor(Color.WHITE);
+            binding.iconChangepass.setColorFilter(getResources().getColor(R.color.white));
+
+            binding.iconChangepass2.setColorFilter(getResources().getColor(R.color.white));
+            binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.white));
+            binding.textAddMoney.setTextColor(Color.WHITE);
+            binding.contentTextAddMoney.setTextColor(Color.WHITE);
+
+            binding.iconChangepass3.setColorFilter(getResources().getColor(R.color.white));
+            binding.textAddMoney2.setTextColor(Color.WHITE);
+            binding.contentTextAddMoney2.setTextColor(Color.WHITE);
+
+            binding.text2.setTextColor(Color.WHITE);
+            binding.text4.setTextColor(Color.WHITE);
+            binding.contentPayOfflineLine2.setBackgroundColor(Color.WHITE);
+
+        } else {
+            binding.toolBar.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
+            binding.toolBar.setTitleTextColor(Color.BLACK);
+            binding.layoutPayCashYour.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+
+            binding.contentCancellationPolicy.setBackgroundColor(Color.WHITE);
+            binding.contentAddMoney.setBackgroundColor(Color.WHITE);
+            binding.contentBiometric.setBackgroundColor(Color.WHITE);
+            binding.contentHistoryPayment.setBackgroundColor(Color.WHITE);
+            binding.layoutVanTay.setBackgroundColor(Color.WHITE);
+
+            binding.text1.setTextColor(Color.BLACK);
+            binding.contentPayOfflineLine.setBackgroundColor(Color.BLACK);
+            binding.sourcePayment.setTextColor(Color.BLACK);
+            binding.textCancel.setTextColor(Color.BLACK);
+            binding.iconChangepass.setColorFilter(getResources().getColor(R.color.black));
+
+            binding.iconChangepass2.setColorFilter(getResources().getColor(R.color.black));
+            binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.black));
+            binding.textAddMoney.setTextColor(Color.BLACK);
+            binding.contentTextAddMoney.setTextColor(Color.BLACK);
+
+            binding.iconChangepass3.setColorFilter(getResources().getColor(R.color.black));
+            binding.textAddMoney2.setTextColor(Color.BLACK);
+            binding.contentTextAddMoney2.setTextColor(Color.BLACK);
+
+            binding.text2.setTextColor(Color.BLACK);
+            binding.text4.setTextColor(Color.BLACK);
+            binding.contentPayOfflineLine2.setBackgroundColor(Color.BLACK);
+        }
+    }
+
+
 }

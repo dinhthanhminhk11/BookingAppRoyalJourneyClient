@@ -134,10 +134,10 @@ public class AddPassPinActivity extends AppCompatActivity {
             binding.toolbar.setTitleTextColor(Color.WHITE);
             binding.layoutAddPassPin.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
 
-            binding.text.setTextColor(Color.BLACK);
-            binding.editText1.setTextColor(Color.BLACK);
-            binding.editText2.setTextColor(Color.BLACK);
-            binding.text2.setTextColor(Color.BLACK);
+            binding.text.setTextColor(Color.WHITE);
+            binding.editText1.setTextColor(Color.WHITE);
+            binding.editText2.setTextColor(Color.WHITE);
+            binding.text2.setTextColor(Color.WHITE);
 
         } else {
             binding.toolbar.setBackgroundColor(this.getResources().getColor(R.color.white));
