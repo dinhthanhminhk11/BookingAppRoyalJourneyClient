@@ -99,6 +99,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -130,6 +131,56 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/anh5" />
                 </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentContentHotel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="@drawable/gradientbackground_white"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_15dp"
+                android:paddingVertical="@dimen/_10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thông tin phòng"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nameRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:text="Phòng 1"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_bed_outline" />
+
+                    <TextView
+                        android:id="@+id/tvSoGiuong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="2 Giường đơn, 1 giường Queen "
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -231,6 +282,51 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/contentLayoutCountRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradientbackground_white"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_20dp"
+                android:paddingVertical="@dimen/_10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/countRoom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số lượng phòng"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textCountRoom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:text="Nhập số lượng phòng thuê" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/editCountRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@string/edit_person"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/contentEditPerson"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -294,6 +390,7 @@
                         android:id="@+id/contentPayOnline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:foreground="?attr/selectableItemBackground"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -343,6 +440,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20dp"
+                        android:foreground="?attr/selectableItemBackground"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -371,53 +469,6 @@
 
                         <RadioButton
                             android:id="@+id/payOffline"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="@dimen/_10dp"
-                            android:buttonTint="@color/black"
-                            android:gravity="center" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_05dp"
-                        android:layout_marginTop="@dimen/_20dp"
-                        android:background="@color/color_858585" />
-
-                    <LinearLayout
-                        android:id="@+id/contentPayOnlinePercent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20dp"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/text5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Partial_pre_deposit"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_16dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/text6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_5dp"
-                                android:text="@string/textPartial_pre_deposit" />
-
-                        </LinearLayout>
-
-                        <RadioButton
-                            android:id="@+id/payOfflinePercent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -585,6 +636,93 @@
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:visibility="gone"
+                    app:backgroundTint="@null" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentLayoutYeuCauThem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="@drawable/gradientbackground_white"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_20dp"
+                android:paddingVertical="@dimen/_10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Yêu cầu thêm"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textMore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5dp"
+                            android:text="Nhập yêu cầu của bạn" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/addYeuCauThem"
+                        android:layout_width="@dimen/_80dp"
+                        android:layout_height="@dimen/_40dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_border_black"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:text="@string/Add"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edYeuCauThem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:background="@drawable/textview_border_ver2"
+                    android:ems="10"
+                    android:gravity="left|top"
+                    android:hint="Nhập yêu cầu của bạn"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:paddingHorizontal="@dimen/_10dp"
+                    android:paddingVertical="@dimen/_10dp"
+                    android:scrollbars="vertical"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnComfirmYeuCauThem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_20dp"
+                    android:background="@drawable/textview_border_black"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:text="Xác nhận"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+
                     app:backgroundTint="@null" />
 
             </LinearLayout>

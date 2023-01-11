@@ -8,7 +8,6 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,19 +26,15 @@ import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
 import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
-import com.example.bookingapproyaljourney.ui.activity.BillOderActivity;
-import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.view_model.HomeViewModel;
-import com.example.librarytoastcustom.CookieBar;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -227,7 +222,7 @@ public class HomeVer2Fragment extends Fragment {
         super.onResume();
         homeViewModel.getListAllHotel();
         if (locationYouSelf != null) {
-            homeViewModel.getListHotelNearBy(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 1000));
+            homeViewModel.getListHotelNearBy(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 10000));
         }
     }
 }

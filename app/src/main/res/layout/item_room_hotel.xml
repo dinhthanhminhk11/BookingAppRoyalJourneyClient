@@ -50,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Deluxe"
             android:textColor="@color/black"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -83,7 +82,6 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:text="Ở 8 người"
                 android:textColor="#302F2F" />
 
             <ImageView
@@ -99,7 +97,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:text="Ở 8 người"
                 android:textColor="#302F2F" />
         </LinearLayout>
 
@@ -131,7 +128,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:text="2 Giường đơn, 1 giường Queen "
                 android:textColor="#302F2F" />
         </LinearLayout>
 

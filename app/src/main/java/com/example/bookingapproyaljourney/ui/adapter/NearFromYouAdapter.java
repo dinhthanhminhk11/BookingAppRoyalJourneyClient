@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.ViewHolder> {
 
     private List<Hotel> dataHotel;
-    private static final DecimalFormat df = new DecimalFormat("0.00");
+    private static final DecimalFormat df = new DecimalFormat("0.0");
 
     private Consumer<Hotel> hotelConsumer;
 
@@ -51,10 +51,10 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
             Glide.with(holder.itemView.getContext()).load(item.getImages().get(0)).apply(options).into(holder.binding.imgItemNearFromYou);
 
             holder.binding.tvAddressItemNearFromYou.setText(item.getSonha() + ", " + item.getXa() + ", " + item.getHuyen() + ", " + item.getTinh());
-            holder.binding.tvDistanceItemNearFromYou.setText(df.format(item.getCalculated()) + " Km");
+            holder.binding.tvDistanceItemNearFromYou.setText(df.format(item.getCalculated()/1000) + " Km");
             holder.binding.tvNameItemNearFromYou.setText(item.getName());
 
-            holder.itemView.setOnClickListener(v->{
+            holder.itemView.setOnClickListener(v -> {
                 hotelConsumer.accept(item);
             });
         }
@@ -67,6 +67,7 @@ public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ItemNearfromyouHomefragmentBinding binding;
+
         public ViewHolder(ItemNearfromyouHomefragmentBinding binding) {
             super(binding.getRoot());
             this.binding = binding;

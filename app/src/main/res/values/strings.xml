@@ -148,7 +148,7 @@
     <string name="sum">Tổng</string>
     <string name="Exactly_cancel">Chính sách huỷ</string>
     <string name="continue_phone">Tiếp tục với số điện thoại này</string>
-    <string name="edit_person">Chỉnh sửa</string>
+    <string name="edit_person"><u>Chỉnh sửa</u></string>
     <string name="tvContact">Bạn cũng có thể <u><b>gửi phản hồi cho chúng tôi</b></u></string>
     <string name="text6">Để bắt đầu, vui lòng trả lời một số câu hỏi để chúng tôi có thể kết nối với bạn với bộ phận phù hợp</string>
     <string name="text4">Trong trường hợp khách sạn không lấy phí hủy phòng thì RoyalRourney sẽ nhanh chóng thanh toán và hoàn lại 100% phí.</string>

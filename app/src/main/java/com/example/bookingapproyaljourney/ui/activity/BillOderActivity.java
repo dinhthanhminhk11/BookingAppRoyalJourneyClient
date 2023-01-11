@@ -112,7 +112,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         binding.editPerson.setPaintFlags(binding.editPerson.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        bottomSheetEditPerson = new BottomSheetEditPerson(BillOderActivity.this, R.style.MaterialDialogSheet, this);
+        bottomSheetEditPerson = new BottomSheetEditPerson(BillOderActivity.this, R.style.MaterialDialogSheet, this , null);
 
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
@@ -166,18 +166,13 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
         binding.addPhone.setOnClickListener(v -> {
-
             binding.edPhone.setVisibility(View.VISIBLE);
             binding.btnComfirmPhone.setVisibility(View.VISIBLE);
-
         });
 
         binding.btnComfirmPhone.setOnClickListener(v -> {
             String phone = binding.edPhone.getText().toString();
             phonePrivate = binding.edPhone.getText().toString();
-
-//            binding.edPhone.setVisibility(View.GONE);
-//            binding.btnComfirmPhone.setVisibility(View.GONE);
             validateinfo(phone);
         });
 
@@ -765,7 +760,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     }
 
     @Override
-    public void onCLickSum(int sum) {
+    public void onCLickSum(int sum, int children ,int countRoom) {
         if (sum > houseDetailResponse.getLimitPerson()) {
             CookieBar.build(this)
                     .setTitle(this.getString(R.string.BillOder_host_received_max))

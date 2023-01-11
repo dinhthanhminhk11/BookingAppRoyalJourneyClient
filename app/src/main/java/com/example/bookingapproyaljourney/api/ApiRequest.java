@@ -7,6 +7,7 @@ import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.feedback.DataFeedBack;
 import com.example.bookingapproyaljourney.model.feedback.DataId;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
+import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
@@ -231,4 +232,6 @@ public interface ApiRequest {
     @GET("getPhongById/{id}")
     Call<Room> getRoomById(@Path("id") String id);
 
+    @GET("getHotelAndRoomByIdRoom/{id}")
+    Call<HotelBillResponse> getHotelAndRoomByIdRoom(@Path("id") String id);
 }

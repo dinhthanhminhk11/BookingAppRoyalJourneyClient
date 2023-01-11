@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
@@ -93,6 +94,24 @@ public class Repository {
 
             @Override
             public void onFailure(Call<Room> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+            }
+        });
+    }
+
+    public void getHotelAndRoomByIdRoom(String id, Consumer<HotelBillResponse> consumer) {
+        apiRequest.getHotelAndRoomByIdRoom(id).enqueue(new Callback<HotelBillResponse>() {
+            @Override
+            public void onResponse(Call<HotelBillResponse> call, Response<HotelBillResponse> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HotelBillResponse> call, Throwable t) {
                 Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
             }
         });

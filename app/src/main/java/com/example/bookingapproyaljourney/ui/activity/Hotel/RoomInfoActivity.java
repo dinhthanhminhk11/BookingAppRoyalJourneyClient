@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityRoomInfoBinding;
 import com.example.bookingapproyaljourney.model.hotel.Room;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
@@ -31,12 +33,19 @@ public class RoomInfoActivity extends AppCompatActivity {
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
     private NumberFormat fm = new DecimalFormat("#,###");
     private ConvenientAdapter convenientAdapter;
+    private String idRoom;
+    private int ageChildren;
+    private boolean cancelBooking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRoomInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        idRoom = getIntent().getStringExtra(AppConstant.ROOM_EXTRA);
+        ageChildren = Integer.parseInt(getIntent().getStringExtra(AppConstant.ROOM_AGE_CHILDREN));
+        cancelBooking = Boolean.parseBoolean(getIntent().getStringExtra(AppConstant.ROOM_CANCEL_BOOKING));
         initToolbar();
         initView();
 
@@ -66,7 +75,7 @@ public class RoomInfoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        roomInfoViewModel.getRoomById("63ba7b3128b619e3e26e5825");
+        roomInfoViewModel.getRoomById(idRoom);
     }
 
     private void initView() {
@@ -102,14 +111,23 @@ public class RoomInfoActivity extends AppCompatActivity {
                 binding.tvDientich.setText(item.getDienTich() + " m²");
                 binding.tvSoPhong.setText("Còn " + item.getSoPhong() + " phòng khác giống phòng này");
                 binding.tvGia.setText(fm.format(item.getPrice()) + " đ");
+                binding.text4.setText("Trẻ em mà trên " + ageChildren + " tuổi sẽ được tính như người lớn");
                 binding.contentMota.setText(item.getMota());
                 convenientAdapter.setConvenientTestList(item.getTienNghiPhong());
                 binding.recyclerView.setAdapter(convenientAdapter);
+
+                if (cancelBooking) {
+                    binding.canceltrue.setVisibility(View.VISIBLE);
+                } else {
+                    binding.cancelfalse.setVisibility(View.VISIBLE);
+                }
             }
         });
 
         binding.btnThem.setOnClickListener(v -> {
-            startActivity(new Intent(RoomInfoActivity.this, BookingActivity.class));
+            Intent intent = new Intent(RoomInfoActivity.this, BookingActivity.class);
+            intent.putExtra(AppConstant.ROOM_EXTRA, idRoom);
+            startActivity(intent);
         });
     }
 

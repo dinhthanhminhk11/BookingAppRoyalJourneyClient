@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,10 +27,7 @@ import com.example.bookingapproyaljourney.databinding.ActivityHotelBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.Room;
-import com.example.bookingapproyaljourney.response.HouseDetailResponse;
-import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
-import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
@@ -57,7 +55,9 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     private String idHotel;
     private GoogleMap mMap;
     private MarkerOptions markerOptions;
-    private Marker currentUser, searchPoint;
+    private Marker currentUser;
+    private String ageChildren;
+    private String cancelBooking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
 
         binding.rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rcvGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        binding.rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
 
         hotelInfoViewModel = new ViewModelProvider(this).get(HotelInfoViewModel.class);
@@ -96,6 +96,12 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onChanged(HotelById item) {
                 if (item instanceof HotelById) {
+
+                    Log.e("MinhCheck", item.getDataHotel().getTreEm() + " trẻ em");
+                    Log.e("MinhCheck", item.getDataHotel().isChinhSachHuy() + " huỷ");
+                    ageChildren = String.valueOf(item.getDataHotel().getTreEm());
+                    cancelBooking = String.valueOf(item.getDataHotel().isChinhSachHuy());
+
                     phone = item.getDataUser().getPhone();
                     binding.tvNameHotel.setText(item.getDataHotel().getName());
                     binding.tvAddress.setText(item.getDataHotel().getSonha() + ", " + item.getDataHotel().getXa() + ", " + item.getDataHotel().getHuyen() + ", " + item.getDataHotel().getTinh());
@@ -127,7 +133,11 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
 
                     roomHotelAdapter.setConsumer(o -> {
                         if (o instanceof Room) {
-                            startActivity(new Intent(HotelActivity.this, RoomInfoActivity.class));
+                            Intent intent = new Intent(HotelActivity.this, RoomInfoActivity.class);
+                            intent.putExtra(AppConstant.ROOM_EXTRA, o.get_id());
+                            intent.putExtra(AppConstant.ROOM_AGE_CHILDREN, ageChildren);
+                            intent.putExtra(AppConstant.ROOM_CANCEL_BOOKING, cancelBooking);
+                            startActivity(intent);
                         }
                     });
 

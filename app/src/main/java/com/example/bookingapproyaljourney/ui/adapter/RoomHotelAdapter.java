@@ -58,6 +58,7 @@ public class RoomHotelAdapter extends RecyclerView.Adapter<RoomHotelAdapter.View
             holder.binding.imageItem.setScrollTimeInSec(4); //set scroll delay in seconds :
             holder.binding.imageItem.startAutoCycle();
 
+            holder.binding.tvTenPhong.setText(item.getName());
             holder.binding.tvAmountBedRoom.setText(item.getMaxNguoiLon() + " nguời lớn, " + item.getMaxTreEm() + " trẻ em");
             holder.binding.tvArea.setText(item.getDienTich() + " m²");
             holder.binding.tvCountBathroom.setText(item.getBedroom().get(0).getName());
