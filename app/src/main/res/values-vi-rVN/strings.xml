@@ -142,7 +142,7 @@
     <string name="guest">Khách</string>
     <string name="option_payment">Thanh toán bằng</string>
     <string name="option_phone">Số điện thoại</string>
-    <string name="info_bill">Chi tiết giá</string>
+    <string name="info_bill">Chi tiết giá cho</string>
     <string name="service_charge">Phí dịch vụ</string>
     <string name="sum">Tổng</string>
     <string name="Exactly_cancel">Chính sách huỷ</string>

@@ -11,8 +11,11 @@ import com.example.bookingapproyaljourney.callback.CallbackListOrderById;
 import com.example.bookingapproyaljourney.callback.InterfaceResponseOrder;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.repository.OrderRepository;
+import com.example.bookingapproyaljourney.response.bill.ListBillResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
+
+import java.util.List;
 
 public class OrderViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
@@ -20,6 +23,7 @@ public class OrderViewModel extends AndroidViewModel {
     MutableLiveData<OrderResponse> orderResponseMutableLiveData = new MutableLiveData<>();
 
     MutableLiveData<ListOrderByIdUser> orderByIdMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<List<ListBillResponse>> listBillMutableLiveData = new MutableLiveData<>();
 
     private OrderRepository orderRepository;
 
@@ -60,6 +64,14 @@ public class OrderViewModel extends AndroidViewModel {
         });
     }
 
+    public void getListBillByUserId(String id) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        orderRepository.getListBillByUserId(id, o -> {
+            listBillMutableLiveData.postValue(o);
+            mProgressMutableData.postValue(View.GONE);
+        });
+    }
+
     public MutableLiveData<Integer> getmProgressMutableData() {
         return mProgressMutableData;
     }
@@ -74,5 +86,9 @@ public class OrderViewModel extends AndroidViewModel {
 
     public MutableLiveData<ListOrderByIdUser> getOrderByIdMutableLiveData() {
         return orderByIdMutableLiveData;
+    }
+
+    public MutableLiveData<List<ListBillResponse>> getListBillMutableLiveData() {
+        return listBillMutableLiveData;
     }
 }

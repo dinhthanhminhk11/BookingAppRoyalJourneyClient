@@ -1,15 +1,14 @@
 package com.example.bookingapproyaljourney.ui.activity.Hotel;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.Pair;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -17,36 +16,28 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityBookingBinding;
 import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.request.BillRequest;
+import com.example.bookingapproyaljourney.response.bill.BillResponse;
+import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetEditPerson;
-import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
 import com.example.bookingapproyaljourney.view_model.BookingViewModel;
 import com.example.librarytoastcustom.CookieBar;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-import com.stripe.android.PaymentConfiguration;
-import com.stripe.android.paymentsheet.PaymentSheet;
-import com.stripe.android.paymentsheet.PaymentSheetResult;
 
-import org.json.JSONObject;
-
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class BookingActivity extends AppCompatActivity implements BottomSheetEditPerson.CallBack {
@@ -59,12 +50,12 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
     private String idRoom;
     private long daysDiff = 1;
     private int payday;
-    private BottomSheetPayment bottomSheetPayment;
-    private PaymentSheet paymentSheet;
-
-    private String customerID;
-    private String EpericalKey;
-    private String ClientSecret;
+    private NumberFormat fm = new DecimalFormat("#,###");
+    private HotelBillResponse hotelBillResponse;
+    private int countRoomLocal = 1;
+    private String startDatePrivate;
+    private String endDatePrivate;
+    private long pricePrivate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +69,13 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
 
     private void initView() {
 
-        PaymentConfiguration.init(BookingActivity.this, AppConstant.PUBLISHABLE_KEY);
-
-        paymentSheet = new PaymentSheet(this, paymentSheetResult -> {
-            onPaymentResult(paymentSheetResult);
-        });
         idRoom = getIntent().getStringExtra(AppConstant.ROOM_EXTRA);
         bookingViewModel = new ViewModelProvider(this).get(BookingViewModel.class);
 
 
         binding.editPerson.setPaintFlags(binding.editPerson.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.editCountRoom.setPaintFlags(binding.editCountRoom.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        binding.text9CountRoom.setPaintFlags(binding.text9CountRoom.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         binding.addPhone.setOnClickListener(v -> {
             binding.edPhone.setVisibility(View.VISIBLE);
@@ -133,19 +120,6 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
         });
 
         binding.contentPayOffline.setOnClickListener(v -> {
-//            if (UserClient.getInstance().getCountBooking() < 4) {
-//                CookieBar.build(BillOderActivity.this)
-//                        .setTitle(this.getString(R.string.BillOder_add_uy_tin))
-//                        .setMessage(this.getString(R.string.BillOder_add_uy_tin_5))
-//                        .setIcon(R.drawable.ic_warning_icon_check)
-//                        .setTitleColor(R.color.black)
-//                        .setMessageColor(R.color.black)
-//                        .setDuration(3000).setSwipeToDismiss(false)
-//                        .setBackgroundRes(R.drawable.background_toast)
-//                        .setCookiePosition(CookieBar.BOTTOM)
-//                        .show();
-//                return;
-//            }
             TYPE_PAYMENT = 2;
             binding.contentPayment.setVisibility(View.GONE);
             binding.payOnline.setChecked(false);
@@ -169,29 +143,10 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-//                    if (UserClient.getInstance().getCountBooking() < 4) {
-//                        CookieBar.build(BillOderActivity.this)
-//                                .setTitle(BillOderActivity.this.getString(R.string.BillOder_add_uy_tin))
-//                                .setMessage(BillOderActivity.this.getString(R.string.BillOder_add_uy_tin_5))
-//                                .setIcon(R.drawable.ic_warning_icon_check)
-//                                .setTitleColor(R.color.black)
-//                                .setMessageColor(R.color.black)
-//                                .setDuration(3000).setSwipeToDismiss(false)
-//                                .setBackgroundRes(R.drawable.background_toast)
-//                                .setCookiePosition(CookieBar.BOTTOM)
-//                                .show();
-//                        binding.payOffline.setChecked(false);
-//                        return;
-//                    }
                     TYPE_PAYMENT = 2;
-//                    binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
                     binding.contentPayment.setVisibility(View.GONE);
                     binding.payOnline.setChecked(false);
-//                    binding.textCancel.setText(BillOderActivity.this.getString(R.string.Billoder_date_cancel) + houseDetailResponse.getCancellatioDate() + BillOderActivity.this.getString(R.string.Billoder_date_cancel_1));
                 }
-//                else {
-//
-//                }
             }
         });
 
@@ -214,6 +169,7 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
             @Override
             public void onChanged(HotelBillResponse item) {
                 if (item instanceof HotelBillResponse) {
+                    hotelBillResponse = item;
                     RequestOptions options = new RequestOptions()
                             .centerCrop()
                             .placeholder(R.drawable.img)
@@ -224,11 +180,18 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
                     binding.nameRoom.setText(item.getNameRoom());
                     binding.address.setText(item.getAddressHotel());
                     binding.tvSoGiuong.setText(item.getBedroom().get(0).getName());
+
                     if (item.isPolicyHotel()) {
                         binding.textCancel.setText("Hoàn huỷ miễn phí, bạn sẽ được hoàn tiền 100% , số tiền sẽ được chuyển vào ví RoyalJourneySuper");
                     } else {
                         binding.textCancel.setText("Không hỗ trợ hoàn huỷ, nếu bạn huỷ trước ngày " + item.getDateCancel() + " sẽ được hoàn tiền 100%, sau ngày " + item.getDateCancel() + " không hỗ trợ hoàn huỷ");
                     }
+                    binding.text9CountRoom.setText(countRoomLocal + " phòng");
+                    binding.priceAndCount.setText(fm.format(item.getPriceRoom()) + " ₫ " + BookingActivity.this.getString(R.string.one_night));
+                    binding.sumPrice.setText(fm.format(item.getPriceRoom()) + " ₫");
+                    binding.priceAll.setText(fm.format(item.getPriceRoom()) + " ₫");
+                    binding.priceSupperLine.setText(fm.format(item.getPriceRoom() * 0.1) + " ₫");
+                    pricePrivate = item.getPriceRoom();
                 }
             }
         });
@@ -279,9 +242,10 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
                 public void onPositiveButtonClick(Pair<Long, Long> selection) {
                     Long startDate = selection.first;
                     Long endDate = selection.second;
-
-                    String startDateString = DateFormat.format("EEE, dd-MM", new Date(startDate)).toString();
-                    String endDateString = DateFormat.format("EEE, dd-MM", new Date(endDate)).toString();
+                    String startDateString1 = DateFormat.format("EEE, dd-MM", new Date(startDate)).toString();
+                    String endDateString2 = DateFormat.format("EEE, dd-MM", new Date(endDate)).toString();
+                    String startDateString = DateFormat.format("EEE, dd-MM-yyyy", new Date(startDate)).toString();
+                    String endDateString = DateFormat.format("EEE, dd-MM-yyyy", new Date(endDate)).toString();
 
 
                     long msDiff = endDate - startDate;
@@ -290,29 +254,17 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
                     payday = Integer.parseInt(String.valueOf(daysDiff));
                     binding.payDay.setText(daysDiff + "");
 
-//                    startDateStringPrivate = startDateString;
-//                    endDateStringPrivate = endDateString;
+                    startDatePrivate = startDateString;
+                    endDatePrivate = endDateString;
 
-                    binding.startDate.setText(startDateString);
-                    binding.endDate.setText(endDateString);
-
-//                    if (TYPE_PAYMENT == 1 || TYPE_PAYMENT == 2) {
-//                        sumAll = houseDetailResponse.getPrice() * daysDiff;
-//                        binding.priceAndCount.setText("$" + fm.format(houseDetailResponse.getPrice()) + " x " + daysDiff + " đêm");
-//                        binding.sumPrice.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
-//                        binding.priceAll.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
-//                    } else if (TYPE_PAYMENT == 3) {
-//                        binding.priceAndCount.setText("$" + fm.format(houseDetailResponse.getPrice()) + " x " + daysDiff + " đêm");
-//                        binding.sumPrice.setText("$" + fm.format(houseDetailResponse.getPrice() * daysDiff));
-//                        sumAllPercent = (long) (sumAll * 0.32);
-//                        binding.priceAll.setText("$" + fm.format(sumAllPercent * daysDiff));
-//                    }
-
+                    binding.startDate.setText(startDateString1);
+                    binding.endDate.setText(endDateString2);
+                    loadData();
                 }
             });
         });
 
-        binding.addPayment.setOnClickListener(v -> {
+        binding.btnPay.setOnClickListener(v -> {
             if (binding.startDate.getText().toString().equals("")) {
                 CookieBar.build(this)
                         .setTitle(this.getString(R.string.dialogstartdate))
@@ -325,146 +277,110 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
                         .setCookiePosition(CookieBar.BOTTOM)
                         .show();
                 return;
+            } else if (binding.person.getText().toString().equals(this.getString(R.string.limitperson))) {
+                CookieBar.build(this)
+                        .setTitle(this.getString(R.string.BillOder_add_amount))
+                        .setMessage(this.getString(R.string.dialogcontentnomal))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000).setSwipeToDismiss(false)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+                return;
+            } else if (binding.phone.getText().toString().equals(this.getString(R.string.nullphone))) {
+                CookieBar.build(this)
+                        .setTitle(this.getString(R.string.BillOder_add_phone_number))
+                        .setMessage(this.getString(R.string.dialogcontentnomal))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000).setSwipeToDismiss(false)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+                return;
+            } else if (!binding.payOnline.isChecked() && !binding.payOffline.isChecked()) {
+                CookieBar.build(this)
+                        .setTitle("Thêm hình thức thanh toán")
+                        .setMessage(this.getString(R.string.dialogcontentnomal))
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(5000).setSwipeToDismiss(false)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
             } else {
-                showDialog();
+                switch (TYPE_PAYMENT) {
+                    case 1:
+                        bookingViewModel.createBooking(new BillRequest(
+                                hotelBillResponse.getIdHost(),
+                                UserClient.getInstance().getId(),
+                                hotelBillResponse.getIdHotel(),
+                                hotelBillResponse.getIdRoom(),
+                                startDatePrivate,
+                                endDatePrivate,
+                                payday,
+                                countRoomLocal,
+                                binding.person.getText().toString(),
+                                binding.phone.getText().toString(),
+                                binding.textMore.getText().toString(),
+                                Integer.parseInt(String.valueOf(pricePrivate)),
+                                false,
+                                true,
+                                hotelBillResponse.getDateCancel()
+                        ));
+                        break;
+                    case 2:
+                        bookingViewModel.createBooking(new BillRequest(
+                                hotelBillResponse.getIdHost(),
+                                UserClient.getInstance().getId(),
+                                hotelBillResponse.getIdHotel(),
+                                hotelBillResponse.getIdRoom(),
+                                startDatePrivate,
+                                endDatePrivate,
+                                payday,
+                                countRoomLocal,
+                                binding.person.getText().toString(),
+                                binding.phone.getText().toString(),
+                                binding.textMore.getText().toString(),
+                                Integer.parseInt(String.valueOf(pricePrivate)),
+                                true,
+                                false,
+                                hotelBillResponse.getDateCancel()
+                        ));
+                        break;
+                }
+            }
+        });
+
+        bookingViewModel.getBillResponseMutableLiveData().observe(this, new Observer<BillResponse>() {
+            @Override
+            public void onChanged(BillResponse billResponse) {
+                if (billResponse instanceof BillResponse) {
+                    if (billResponse.isMessage()) {
+                        Intent intent = new Intent(BookingActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("CheckSuccess", "1111111111111");
+                        startActivity(intent);
+                    } else {
+                        ToastCheck toastCheck = new ToastCheck(BookingActivity.this, R.style.StyleToast, getString(R.string.failure), getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+                    }
+                }
             }
         });
     }
 
-    private void getEpericalKey(String customerID) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                "https://api.stripe.com/v1/ephemeral_keys",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject object = new JSONObject(response);
-                            EpericalKey = object.getString("id");
-                            Log.e("MinhEpericalKey", EpericalKey);
-                            getClientSeretEpericalKey(customerID, TYPE_PAYMENT);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> header = new HashMap<>();
-                header.put("Authorization", "Bearer " + AppConstant.SECRET_KEY);
-                header.put("Stripe-Version", "2022-08-01");
-                return header;
-            }
-
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("customer", customerID);
-                return params;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(BookingActivity.this);
-        requestQueue.add(stringRequest);
-    }
-
-    private void getClientSeretEpericalKey(String customerID, int type_pay) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                "https://api.stripe.com/v1/payment_intents",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject object = new JSONObject(response);
-                            ClientSecret = object.getString("client_secret");
-                            Log.e("MinhClientSecret", ClientSecret);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> header = new HashMap<>();
-                header.put("Authorization", "Bearer " + AppConstant.SECRET_KEY);
-                return header;
-            }
-
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("customer", customerID);
-                params.put("amount", "100000");
-                params.put("currency", "VND");
-                params.put("automatic_payment_methods[enabled]", "true");
-                return params;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-    private void showDialog() {
-        bottomSheetPayment = new BottomSheetPayment(BookingActivity.this, R.style.MaterialDialogSheet, new BottomSheetPayment.CallBack() {
-            @Override
-            public void onCLickCLose() {
-                bottomSheetPayment.dismiss();
-            }
-
-            @Override
-            public void onClickPayment() {
-                bottomSheetPayment.dismiss();
-                binding.imageGooglePlay.setVisibility(View.GONE);
-                binding.imagePaypal.setVisibility(View.GONE);
-                binding.imageMatercard.setVisibility(View.GONE);
-                binding.textPayment.setText("Thẻ VISA (VISA card)");
-
-                StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                        "https://api.stripe.com/v1/customers",
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject object = new JSONObject(response);
-                                    customerID = object.getString("id");
-                                    Log.e("MinhcustomerID", customerID);
-                                    getEpericalKey(customerID);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }) {
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        Map<String, String> header = new HashMap<>();
-                        header.put("Authorization", "Bearer " + AppConstant.SECRET_KEY);
-                        return header;
-                    }
-                };
-
-                RequestQueue requestQueue = Volley.newRequestQueue(BookingActivity.this);
-                requestQueue.add(stringRequest);
-            }
-        });
-        bottomSheetPayment.show();
-        bottomSheetPayment.setCanceledOnTouchOutside(false);
+    public void loadData() {
+        binding.text9CountRoom.setText(countRoomLocal + " phòng");
+        binding.priceAndCount.setText(fm.format(hotelBillResponse.getPriceRoom()) + " ₫ x " + daysDiff + " đêm");
+        binding.sumPrice.setText(fm.format(hotelBillResponse.getPriceRoom() * daysDiff) + "  ₫");
+        binding.priceAll.setText(fm.format(hotelBillResponse.getPriceRoom() * daysDiff * countRoomLocal) + "  ₫");
+        binding.priceSupperLine.setText(fm.format(hotelBillResponse.getPriceRoom() * daysDiff * countRoomLocal * 0.1) + " ₫");
+        pricePrivate = hotelBillResponse.getPriceRoom() * daysDiff * countRoomLocal;
     }
 
     private void showDiaLogEditPerson() {
@@ -500,27 +416,6 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
         return true;
     }
 
-    private void onPaymentResult(PaymentSheetResult paymentSheetResult) {
-//        if (paymentSheetResult instanceof PaymentSheetResult.Completed) {
-//            orderViewModel.postOrder(new OrderCreate(
-//                    "RJ" + random,
-//                    houseDetailResponse.getHostResponse().get_id(),
-//                    houseDetailResponse.get_id(),
-//                    UserClient.getInstance().getId(),
-//                    payday,
-//                    String.valueOf(sumAll),
-//                    "",
-//                    false,
-//                    true,
-//                    false,
-//                    startDateStringPrivate,
-//                    endDateStringPrivate,
-//                    personLimitPrivate,
-//                    phonePrivate
-//            ));
-//        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -535,7 +430,9 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
     @Override
     public void onCLickSum(int person, int children, int countRoom) {
         personLimitPrivate = person;
+        this.countRoomLocal = countRoom;
         binding.person.setText(person + " " + this.getString(R.string.Guest) + ", " + children + " trẻ em");
         binding.textCountRoom.setText(countRoom + " phòng");
+        loadData();
     }
 }

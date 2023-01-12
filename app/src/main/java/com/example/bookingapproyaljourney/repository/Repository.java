@@ -11,6 +11,8 @@ import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
 import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
 import com.example.bookingapproyaljourney.model.hotel.Room;
+import com.example.bookingapproyaljourney.request.BillRequest;
+import com.example.bookingapproyaljourney.response.bill.BillResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
 import java.util.function.Consumer;
@@ -112,6 +114,24 @@ public class Repository {
 
             @Override
             public void onFailure(Call<HotelBillResponse> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+            }
+        });
+    }
+
+    public void createBill(BillRequest billRequest, Consumer consumer) {
+        apiRequest.createBooking(billRequest).enqueue(new Callback<BillResponse>() {
+            @Override
+            public void onResponse(Call<BillResponse> call, Response<BillResponse> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BillResponse> call, Throwable t) {
                 Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
             }
         });

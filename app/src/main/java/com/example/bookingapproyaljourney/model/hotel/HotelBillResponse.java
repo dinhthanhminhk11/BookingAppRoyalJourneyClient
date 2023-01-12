@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class HotelBillResponse {
     private String idHotel;
+    private String idHost;
     private String nameHotel;
     private String addressHotel;
     private int startHotel;
@@ -18,6 +19,10 @@ public class HotelBillResponse {
     private int maxPeople;
     private int maxChildren;
     private String dateCancel;
+
+    public String getIdHost() {
+        return idHost;
+    }
 
     public String getDateCancel() {
         return dateCancel;

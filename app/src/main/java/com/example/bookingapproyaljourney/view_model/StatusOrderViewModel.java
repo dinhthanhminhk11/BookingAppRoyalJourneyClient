@@ -14,6 +14,7 @@ import com.example.bookingapproyaljourney.callback.CallbackOrderById;
 import com.example.bookingapproyaljourney.model.order.OrderBill;
 import com.example.bookingapproyaljourney.repository.OrderRepository;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.response.bill.StatusBillResponse;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 
@@ -23,6 +24,7 @@ public class StatusOrderViewModel extends AndroidViewModel {
     MutableLiveData<HouseDetailResponse> houseDetailResponseMutableLiveData = new MutableLiveData<>();
     MutableLiveData<OrderStatusResponse> orderStatusResponseMutableLiveData = new MutableLiveData<>();
     MutableLiveData<OrderStatusResponse> deleteOrderResponse = new MutableLiveData<>();
+    MutableLiveData<StatusBillResponse> statusBillResponseMutableLiveData = new MutableLiveData<>();
     private OrderRepository orderRepository;
 
     public StatusOrderViewModel(@NonNull Application application) {
@@ -110,6 +112,15 @@ public class StatusOrderViewModel extends AndroidViewModel {
         });
     }
 
+    public void getStatusBill(String id) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        orderRepository.getStatusBill(id, o -> {
+            if (o instanceof StatusBillResponse) {
+                mProgressMutableData.postValue(View.GONE);
+                statusBillResponseMutableLiveData.postValue((StatusBillResponse) o);
+            }
+        });
+    }
 
     public MutableLiveData<Integer> getmProgressMutableData() {
         return mProgressMutableData;
@@ -129,5 +140,9 @@ public class StatusOrderViewModel extends AndroidViewModel {
 
     public MutableLiveData<OrderStatusResponse> getDeleteOrderResponse() {
         return deleteOrderResponse;
+    }
+
+    public MutableLiveData<StatusBillResponse> getStatusBillResponseMutableLiveData() {
+        return statusBillResponseMutableLiveData;
     }
 }

@@ -27,6 +27,7 @@ import com.example.bookingapproyaljourney.model.user.UserPin;
 import com.example.bookingapproyaljourney.model.user.UserRegister;
 import com.example.bookingapproyaljourney.model.user.UserRequestTokenDevice;
 import com.example.bookingapproyaljourney.model.user.Verify;
+import com.example.bookingapproyaljourney.request.BillRequest;
 import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.CountNotiResponse;
@@ -36,6 +37,9 @@ import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.NotiResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
+import com.example.bookingapproyaljourney.response.bill.BillResponse;
+import com.example.bookingapproyaljourney.response.bill.ListBillResponse;
+import com.example.bookingapproyaljourney.response.bill.StatusBillResponse;
 import com.example.bookingapproyaljourney.response.order.ListFilterResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
@@ -234,4 +238,13 @@ public interface ApiRequest {
 
     @GET("getHotelAndRoomByIdRoom/{id}")
     Call<HotelBillResponse> getHotelAndRoomByIdRoom(@Path("id") String id);
+
+    @POST("addorder")
+    Call<BillResponse> createBooking(@Body BillRequest billRequest);
+
+    @GET("getBillById/{id}")
+    Call<StatusBillResponse> getStatusBill(@Path("id") String id);
+
+    @GET("listBillByUserId/{id}")
+    Call<List<ListBillResponse>> getListBillByUser(@Path("id") String id);
 }

@@ -1,6 +1,7 @@
 package com.example.bookingapproyaljourney.repository;
 
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
@@ -15,16 +16,22 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.order.OrderBill;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.response.bill.ListBillResponse;
+import com.example.bookingapproyaljourney.response.bill.StatusBillResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
+import java.util.List;
+import java.util.function.Consumer;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressLint("NewApi")
 public class OrderRepository {
     private ApiRequest apiRequest;
 
@@ -176,6 +183,42 @@ public class OrderRepository {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 callBackString.onFailure(t);
+            }
+        });
+    }
+
+    public void getStatusBill(String id, Consumer consumer) {
+        apiRequest.getStatusBill(id).enqueue(new Callback<StatusBillResponse>() {
+            @Override
+            public void onResponse(Call<StatusBillResponse> call, Response<StatusBillResponse> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StatusBillResponse> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+            }
+        });
+    }
+
+    public void getListBillByUserId(String id, Consumer<List<ListBillResponse>> consumer) {
+        apiRequest.getListBillByUser(id).enqueue(new Callback<List<ListBillResponse>>() {
+            @Override
+            public void onResponse(Call<List<ListBillResponse>> call, Response<List<ListBillResponse>> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ListBillResponse>> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -10,21 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.callback.CallbackHouseById;
 import com.example.bookingapproyaljourney.databinding.ItemOrderListBinding;
 import com.example.bookingapproyaljourney.repository.DetailProductRepository;
-import com.example.bookingapproyaljourney.response.HouseDetailResponse;
-import com.example.bookingapproyaljourney.response.order.OrderListResponse;
+import com.example.bookingapproyaljourney.response.bill.ListBillResponse;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     private DetailProductRepository detailProductRepository;
-    private List<OrderListResponse> data;
+    private List<ListBillResponse> data;
     private NumberFormat fm = new DecimalFormat("#,###");
-    private Callback callback;
+    private Consumer callback;
 
     private int color = Color.BLACK;
     private int background = Color.WHITE;
@@ -38,18 +38,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         this.background = background;
     }
 
-    public void setData(List<OrderListResponse> data) {
+    public void setData(List<ListBillResponse> data) {
         this.data = data;
     }
 
-    public void setCallback(Callback callback) {
+    public void setCallback(Consumer consumer) {
         this.callback = callback;
     }
-
-    public interface Callback {
-        void onClick(OrderListResponse orderListResponse);
-    }
-
 
     @NonNull
     @Override
@@ -57,47 +52,18 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         return new ViewHolder(ItemOrderListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder holder, int position) {
-        OrderListResponse item = data.get(position);
+        ListBillResponse item = data.get(position);
         if (item != null) {
-            if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && item.isBackingPercent()) {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
-                holder.itemOrderListBinding.status.setText(item.getStatus());
-            } else if (item.getStatus().equals("Chủ đã huỷ")) {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
-                holder.itemOrderListBinding.status.setText(item.getStatus());
-            } else if (item.getStatus().equals("Đã xác nhận") && item.isBanking()) {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
-                holder.itemOrderListBinding.status.setText("Đã thanh toán");
-            } else if (item.getStatus().equals("Khách huỷ") && !item.isCancellationDate()) {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
-                holder.itemOrderListBinding.status.setText("Đang chờ huỷ");
-            } else if (item.getStatus().equals("Khách huỷ") && item.isCancellationDate()) {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
-                holder.itemOrderListBinding.status.setText("Đã huỷ phòng");
-            } else if (item.getStatus().equals("Đã xác nhận") && item.isBackingPercent()) {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_paid);
-                holder.itemOrderListBinding.status.setText("Đã đặt cọc");
-            } else if (item.getStatus().equals("Đã xác nhận") && !item.isBanking() && item.isCashMoney() && !item.isBackingPercent()) {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
-                holder.itemOrderListBinding.status.setText(item.getStatus());
-            } else if (item.getStatus().equals("Đã trả phòng") && item.isCheckedOut()) {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_checkout);
-                holder.itemOrderListBinding.status.setText(item.getStatus());
-            } else {
-                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_pendding);
-                holder.itemOrderListBinding.status.setText(item.getStatus());
-            }
-
-            holder.itemOrderListBinding.countPerson.setText(item.getPerson() + " khách");
-            holder.itemOrderListBinding.tvCodeBill.setText(item.getIdOder());
-            holder.itemOrderListBinding.time.setText(item.getTime());
+            holder.itemOrderListBinding.countPerson.setText(item.getCountPerson());
+            holder.itemOrderListBinding.tvCodeBill.setText(item.getCodeBill());
+            holder.itemOrderListBinding.time.setText(item.getTimeCreate());
             holder.itemOrderListBinding.startDate.setText(item.getStartDate());
             holder.itemOrderListBinding.tvNgayTra.setText(item.getEndDate());
-            holder.itemOrderListBinding.price.setText(fm.format(Integer.parseInt(item.getPrice())) + " VND");
-            holder.itemOrderListBinding.TVsoDem.setText(item.getDay() + "");
-
+            holder.itemOrderListBinding.price.setText(fm.format(item.getPrice()) + " ₫");
+            holder.itemOrderListBinding.TVsoDem.setText(item.getCountDay() + "");
             holder.itemOrderListBinding.countPerson.setTextColor(color);
             holder.itemOrderListBinding.nameHouse.setTextColor(color);
             holder.itemOrderListBinding.time.setTextColor(color);
@@ -109,32 +75,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.itemOrderListBinding.viewLine3.setBackgroundColor(color);
             holder.itemOrderListBinding.titleSum.setTextColor(color);
             holder.itemOrderListBinding.contentCard.setCardBackgroundColor(background);
-
-            detailProductRepository.getProductById(item.getIdProduct(), new CallbackHouseById() {
-                @Override
-                public void success(HouseDetailResponse houseDetailResponse) {
-                    RequestOptions options = new RequestOptions()
-                            .centerCrop()
-                            .placeholder(R.drawable.img)
-                            .error(R.drawable.img);
-                    Glide.with(
-                                    holder.itemOrderListBinding.imageHouse.getContext()).
-                            load(houseDetailResponse.getImages().get(0)).
-                            apply(options).
-                            dontAnimate().
-                            into(holder.itemOrderListBinding.imageHouse);
-                    holder.itemOrderListBinding.nameHouse.setText(houseDetailResponse.getName());
-                    holder.itemOrderListBinding.tvTimeNhanPhong.setText(houseDetailResponse.getOpening());
-                    holder.itemOrderListBinding.tvTimeTra.setText(houseDetailResponse.getEnding());
-                }
-
-                @Override
-                public void failure(Throwable t) {
-
-                }
-            });
+            holder.itemOrderListBinding.nameHouse.setText(item.getNameHotel());
+            holder.itemOrderListBinding.tvTimeNhanPhong.setText(item.getTimeInRoom());
+            holder.itemOrderListBinding.tvTimeTra.setText(item.getTimeOutRoom());
+            holder.itemOrderListBinding.status.setText(item.getStatus());
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.drawable.img)
+                    .error(R.drawable.img);
+            Glide.with(holder.itemOrderListBinding.imageHouse.getContext()).
+                    load(item.getImageHotel()).
+                    apply(options).
+                    dontAnimate().
+                    into(holder.itemOrderListBinding.imageHouse);
             holder.itemView.setOnClickListener(v -> {
-                callback.onClick(item);
+                callback.accept(item.getIdBill());
             });
         }
     }
