@@ -2,9 +2,10 @@ package com.example.bookingapproyaljourney.response.bill;
 
 import com.example.bookingapproyaljourney.model.hotel.Bedroom;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class StatusBillResponse {
+public class StatusBillResponse implements Serializable {
     private String idOrder;
     private String nameHouse;
     private int startHotel;

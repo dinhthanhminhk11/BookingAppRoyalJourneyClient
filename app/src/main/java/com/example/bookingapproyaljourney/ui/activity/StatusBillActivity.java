@@ -31,15 +31,15 @@ import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityStatusBillBinding;
-import com.example.bookingapproyaljourney.model.order.OrderBill;
+import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.bill.StatusBillResponse;
 import com.example.bookingapproyaljourney.response.order.OrderListResponse;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 import com.example.bookingapproyaljourney.ui.activity.feedback.FeedBackActivity;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetCancellationPolicy;
-import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.bookingapproyaljourney.view_model.StatusOrderViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -50,7 +50,6 @@ public class StatusBillActivity extends AppCompatActivity {
     private OrderListResponse orderListResponse;
     private String idBill;
     private StatusOrderViewModel statusOrderViewModel;
-    private DetailProductViewModel detailProductViewModel;
     private NumberFormat fm = new DecimalFormat("#,###");
     private String dateCancel;
     private boolean checkIsBacking;
@@ -69,6 +68,7 @@ public class StatusBillActivity extends AppCompatActivity {
     private BottomSheetCancellationPolicy bottomSheetCancellationPolicy;
     private HouseDetailResponse houseDetailResponse1;
     private String dataCreate = "";
+    private StatusBillResponse statusBillResponse;
 
     public StatusBillActivity() {
     }
@@ -80,11 +80,10 @@ public class StatusBillActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityStatusBillBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
         binding.toolBar.setTitle(this.getString(R.string.trip_details));
         binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         binding.text9CountRoom.setPaintFlags(binding.text9CountRoom.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-//        idBill = getIntent().getStringExtra(AppConstant.ID_ORDER);
+        idBill = getIntent().getStringExtra(AppConstant.ID_ORDER);
         binding.toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +148,7 @@ public class StatusBillActivity extends AppCompatActivity {
             @Override
             public void onChanged(StatusBillResponse item) {
                 if (item instanceof StatusBillResponse) {
+                    statusBillResponse = item;
                     RequestOptions options = new RequestOptions()
                             .centerCrop()
                             .placeholder(R.drawable.img)
@@ -187,86 +187,6 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.textContentMore1.setText("Ngày đặt: " + item.getDateCreate());
                     binding.textContentMore2.setText("Giờ đặt: " + item.getTimeCreate());
 
-                }
-            }
-        });
-
-        statusOrderViewModel.getOrderResponseMutableLiveData().observe(this, new Observer<OrderBill>() {
-            @SuppressLint("StringFormatMatches")
-            @Override
-            public void onChanged(OrderBill orderResponse) {
-                dataCreate = orderResponse.getCreatedAt();
-                detailProductViewModel.getHouseById(orderResponse.getIdPro()).observe(StatusBillActivity.this, it -> {
-                    name_boss = it.getHostResponse().getName();
-                    img_boss = it.getHostResponse().getImage();
-                });
-                id_boss = orderResponse.getIdHost();
-                id_House = orderResponse.getIdPro();
-                checkSeem = orderResponse.isSeem();
-                isSuccess = orderResponse.isSuccess();
-                textReasonUser = orderResponse.getReasonUser();
-                statusOrderViewModel.getDetailHouseById(orderResponse.getIdPro());
-
-                binding.startDate.setText(orderResponse.getStartDate());
-                binding.endDate.setText(orderResponse.getEndDate());
-                binding.person.setText(orderResponse.getPerson() + " " + getString(R.string.guest));
-                binding.phone.setText(orderResponse.getPhone() + "");
-                binding.payDay.setText(orderResponse.getPayDay() + "");
-                binding.priceAll.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
-                binding.sumPrice.setText(fm.format(Integer.parseInt(orderResponse.getPrice())) + " Vnd");
-                checkIsBacking = orderResponse.isCashMoney();
-                if (orderResponse.isBanking()) {
-                    binding.textPayment.setText(StatusBillActivity.this.getString(R.string.card_visa));
-                    binding.imageMatercard.setVisibility(View.GONE);
-                    binding.imagePaypal.setVisibility(View.GONE);
-                    binding.imageGooglePlay.setVisibility(View.GONE);
-                } else if (orderResponse.isBackingPercent()) {
-                    binding.textPayment.setText(StatusBillActivity.this.getString(R.string.card_visa1));
-                    binding.imageMatercard.setVisibility(View.GONE);
-                    binding.imagePaypal.setVisibility(View.GONE);
-                    binding.imageGooglePlay.setVisibility(View.GONE);
-                } else {
-                    binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.textPayment.setText(StatusBillActivity.this.getString(R.string.paying_later));
-                    binding.imageMatercard.setVisibility(View.GONE);
-                    binding.imagePaypal.setVisibility(View.GONE);
-                    binding.imageGooglePlay.setVisibility(View.GONE);
-                }
-
-                if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isBanking()) {
-                    binding.btnPay.setVisibility(View.GONE);
-                    binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.btnFeedback.setVisibility(View.GONE);
-
-                    binding.textConfirm.setText(StatusBillActivity.this.getString(R.string.refuse_the_landlord) + orderResponse.getReasonHost());
-                } else if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isBackingPercent()) {
-                    binding.btnPay.setVisibility(View.GONE);
-                    binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.btnFeedback.setVisibility(View.GONE);
-                    binding.textConfirm.setText(String.format(getResources().getString(R.string.textStatsBill5), orderResponse.getReasonHost()));
-                } else if (orderResponse.getStatus().equals(StatusBillActivity.this.getString(R.string.owner_canceled)) && orderResponse.isCashMoney()) {
-                    binding.btnPay.setVisibility(View.GONE);
-                    binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.btnFeedback.setVisibility(View.GONE);
-                    binding.textConfirm.setText(String.format(getResources().getString(R.string.textStatsBill4), orderResponse.getReasonHost()));
-                } else if (orderResponse.getStatus().equals(AppConstant.Khach_huy) && orderResponse.isCancellationDate()) {
-                    binding.btnPay.setVisibility(View.GONE);
-                    binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.textConfirm.setText(R.string.textStatsBill3);
-                    binding.btnDelete.setVisibility(View.GONE);
-                    binding.btnFeedback.setVisibility(View.GONE);
-                } else if (orderResponse.getStatus().equals(AppConstant.Khach_huy) && !orderResponse.isCancellationDate()) {
-                    binding.btnPay.setVisibility(View.GONE);
-                    binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.cancelRequest.setVisibility(View.GONE);
-                    binding.textConfirm.setText(R.string.textStatsBill2);
-                    binding.btnFeedback.setVisibility(View.GONE);
-                } else if (orderResponse.getStatus().equals(AppConstant.da_tra_phong) && orderResponse.isCheckedOut()) {
-                    binding.btnPay.setVisibility(View.GONE);
-                    binding.contentCancelLayout.setVisibility(View.GONE);
-                    binding.textConfirm.setText(R.string.textStatsBill);
-                    binding.btnDelete.setVisibility(View.GONE);
-                    binding.btnFeedback.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -338,45 +258,39 @@ public class StatusBillActivity extends AppCompatActivity {
         });
 
         binding.btnPay.setOnClickListener(v -> {
-//            if (UserClient.getInstance().getCountBooking() < -5) {
-//                CookieBar.build(this)
-//                        .setTitle(R.string.Your_reputation_is_very_low)
-//                        .setMessage(R.string.By_canceling_too_many_rooms_you_will_not_be_able_to_continue_to_cancel)
-//                        .setIcon(R.drawable.ic_warning_icon_check)
-//                        .setTitleColor(R.color.black)
-//                        .setMessageColor(R.color.black)
-//                        .setDuration(3000)
-//                        .setSwipeToDismiss(false)
-//                        .setBackgroundRes(R.drawable.background_toast)
-//                        .setCookiePosition(CookieBar.BOTTOM)
-//                        .show();
-//                return;
-//            }
-//
-//            Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
-//            intent.putExtra(AppConstant.imageHost, imageHost);
-//            intent.putExtra(AppConstant.dateCancel, dateCancel);
-//            intent.putExtra(AppConstant.idOrder, idOrder);
-//            intent.putExtra(AppConstant.checkIsbacking, String.valueOf(checkIsBacking));
-//            intent.putExtra(AppConstant.checkSeem, String.valueOf(checkSeem));
-//            intent.putExtra(AppConstant.dataCreate, dataCreate);
-//            startActivity(intent);
+            if (UserClient.getInstance().getCountBooking() < -5) {
+                CookieBar.build(this)
+                        .setTitle(R.string.Your_reputation_is_very_low)
+                        .setMessage(R.string.By_canceling_too_many_rooms_you_will_not_be_able_to_continue_to_cancel)
+                        .setIcon(R.drawable.ic_warning_icon_check)
+                        .setTitleColor(R.color.black)
+                        .setMessageColor(R.color.black)
+                        .setDuration(3000)
+                        .setSwipeToDismiss(false)
+                        .setBackgroundRes(R.drawable.background_toast)
+                        .setCookiePosition(CookieBar.BOTTOM)
+                        .show();
+                return;
+            }
+            Intent intent = new Intent(StatusBillActivity.this, CancelBookingActivity.class);
+            intent.putExtra(AppConstant.STATUS_BILL, statusBillResponse.getIdOrder());
+            startActivity(intent);
         });
 
         binding.contentCancelLayout.setOnClickListener(v -> {
-            bottomSheetCancellationPolicy = new BottomSheetCancellationPolicy(this, R.style.MaterialDialogSheet, new BottomSheetCancellationPolicy.CallbackOnClickBottomSheetCancellationPolicy() {
-                @Override
-                public void onclickBtn() {
-                    startActivity(new Intent(StatusBillActivity.this, CancellationPolicyActivity.class));
-                }
-
-                @Override
-                public void onClose() {
-                    bottomSheetCancellationPolicy.dismiss();
-                }
-            }, houseDetailResponse1);
-            bottomSheetCancellationPolicy.show();
-            bottomSheetCancellationPolicy.setCanceledOnTouchOutside(false);
+//            bottomSheetCancellationPolicy = new BottomSheetCancellationPolicy(this, R.style.MaterialDialogSheet, new BottomSheetCancellationPolicy.CallbackOnClickBottomSheetCancellationPolicy() {
+//                @Override
+//                public void onclickBtn() {
+//                    startActivity(new Intent(StatusBillActivity.this, CancellationPolicyActivity.class));
+//                }
+//
+//                @Override
+//                public void onClose() {
+//                    bottomSheetCancellationPolicy.dismiss();
+//                }
+//            }, houseDetailResponse1);
+//            bottomSheetCancellationPolicy.show();
+//            bottomSheetCancellationPolicy.setCanceledOnTouchOutside(false);
         });
 
         statusOrderViewModel.getDeleteOrderResponse().observe(this, new Observer<OrderStatusResponse>() {
@@ -397,7 +311,7 @@ public class StatusBillActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        statusOrderViewModel.getStatusBill("63c00234be753f53b4e20607");
+        statusOrderViewModel.getStatusBill(idBill);
     }
 
     private void changeTheme(int idTheme) {

@@ -43,7 +43,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     }
 
     public void setCallback(Consumer consumer) {
-        this.callback = callback;
+        this.callback = consumer;
     }
 
     @NonNull
@@ -91,6 +91,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.itemView.setOnClickListener(v -> {
                 callback.accept(item.getIdBill());
             });
+
+            if(item.getStatus().equals("Đã xác nhận")){
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_done);
+            }else if(item.getStatus().equals("Chủ đã huỷ")){
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
+            }else if(item.getStatus().equals("Đã trả phòng")){
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_checkout);
+            }else if(item.getStatus().equals("Khách huỷ")){
+                holder.itemOrderListBinding.status.setBackgroundResource(R.drawable.background_cancel);
+            }
+
         }
     }
 

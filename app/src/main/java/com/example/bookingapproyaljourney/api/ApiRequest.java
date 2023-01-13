@@ -38,6 +38,7 @@ import com.example.bookingapproyaljourney.response.NotiResponse;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.response.bill.BillResponse;
+import com.example.bookingapproyaljourney.response.bill.CancelBillResponse;
 import com.example.bookingapproyaljourney.response.bill.ListBillResponse;
 import com.example.bookingapproyaljourney.response.bill.StatusBillResponse;
 import com.example.bookingapproyaljourney.response.order.ListFilterResponse;
@@ -247,4 +248,7 @@ public interface ApiRequest {
 
     @GET("listBillByUserId/{id}")
     Call<List<ListBillResponse>> getListBillByUser(@Path("id") String id);
+
+    @GET("getDataCancelBooking/{id}")
+    Call<CancelBillResponse> getDataCancelBooking(@Path("id") String id);
 }

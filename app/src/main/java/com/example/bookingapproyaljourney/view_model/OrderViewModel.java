@@ -11,6 +11,7 @@ import com.example.bookingapproyaljourney.callback.CallbackListOrderById;
 import com.example.bookingapproyaljourney.callback.InterfaceResponseOrder;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
 import com.example.bookingapproyaljourney.repository.OrderRepository;
+import com.example.bookingapproyaljourney.response.bill.CancelBillResponse;
 import com.example.bookingapproyaljourney.response.bill.ListBillResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.OrderResponse;
@@ -72,6 +73,8 @@ public class OrderViewModel extends AndroidViewModel {
         });
     }
 
+
+
     public MutableLiveData<Integer> getmProgressMutableData() {
         return mProgressMutableData;
     }
@@ -91,4 +94,5 @@ public class OrderViewModel extends AndroidViewModel {
     public MutableLiveData<List<ListBillResponse>> getListBillMutableLiveData() {
         return listBillMutableLiveData;
     }
+
 }

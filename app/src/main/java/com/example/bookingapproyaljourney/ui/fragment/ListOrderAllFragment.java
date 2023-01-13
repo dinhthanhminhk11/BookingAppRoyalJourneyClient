@@ -26,6 +26,7 @@ import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.bill.ListBillResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser;
 import com.example.bookingapproyaljourney.response.order.OrderListResponse;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.StatusBillActivity;
 import com.example.bookingapproyaljourney.ui.adapter.OrderAdapter;
 import com.example.bookingapproyaljourney.view_model.OrderViewModel;
@@ -60,7 +61,6 @@ public class ListOrderAllFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentListOrderAllBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -83,7 +83,6 @@ public class ListOrderAllFragment extends Fragment {
         } else {
             changeTheme(2);
         }
-
 //        Spannable wordtoSpan = new SpannableString(this.getString(R.string.question_bookmard));
 //
 ////        wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLUE), 53, 80, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -118,9 +117,6 @@ public class ListOrderAllFragment extends Fragment {
                     binding.contentNullList.setVisibility(View.VISIBLE);
                 }
                 adapter.setData(listBillResponses);
-                adapter.setCallback(o->{
-
-                });
                 binding.recyclerView.setAdapter(adapter);
             }
         });
@@ -131,6 +127,12 @@ public class ListOrderAllFragment extends Fragment {
 
         binding.textHelps.setOnClickListener(v -> {
             callbackOrderClick.clickHelps();
+        });
+
+        adapter.setCallback(o->{
+            Intent intent = new Intent(getActivity(), StatusBillActivity.class);
+            intent.putExtra(AppConstant.ID_ORDER, String.valueOf(o));
+            startActivity(intent);
         });
     }
 
