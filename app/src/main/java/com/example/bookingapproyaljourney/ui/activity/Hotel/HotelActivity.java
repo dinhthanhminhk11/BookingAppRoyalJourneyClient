@@ -15,6 +15,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +45,7 @@ import com.example.bookingapproyaljourney.model.hotel.TienNghiK;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.activity.MedicalActivity;
+import com.example.bookingapproyaljourney.ui.activity.feedback.FeedbackListActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
@@ -85,6 +89,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     private String idBoss ="";
     private String nameBoss ="";
     private String imgBoss = "";
+    private String id_house ="";
     private TextView showMore;
     private RecyclerView rcvConvenientList;
     private TextView showMedical;
@@ -153,6 +158,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
             binding.rcvFeedback.setAdapter(feedbackAdapter);
             if (it.size() > 0) {
                 binding.btnDanhGia.setText(it.size() + " Đánh giá");
+                binding.tvTotalFeedback.setText(it.size() + " Đánh giá");
                 float total = 0;
                 for (int i = 0; i < it.size(); i++) {
                     total = total + it.get(i).getSao();
@@ -168,15 +174,21 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
             } else {
                 binding.btnDanhGia.setText("Đánh giá");
                 binding.tvCountSao.setText("5.0");
+                binding.tvTotalFeedback.setText("0 Đánh giá");
             }
 
         });
+
+
 
         hotelInfoViewModel.getHotelMutableLiveData().observe(this, new Observer<HotelById>() {
             @Override
             public void onChanged(HotelById item) {
                 if (item instanceof HotelById) {
-
+                    idBoss = item.getDataUser().get_id();
+                    nameBoss = item.getDataUser().getName();
+                    imgBoss = item.getDataUser().getImage();
+                    id_house = item.getDataHotel().get_id();
                     Log.e("MinhCheck", item.getDataHotel().getTreEm() + " trẻ em");
                     Log.e("MinhCheck", item.getDataHotel().isChinhSachHuy() + " huỷ");
                     ageChildren = String.valueOf(item.getDataHotel().getTreEm());
@@ -232,6 +244,32 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_log_comfirm_logout);
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialog.setCancelable(true);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+        Button login = (Button) dialog.findViewById(R.id.login);
+        login.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            dialog.dismiss();
+        });
+        binding.btMesseger.setOnClickListener(v -> {
+            if (token.equals("")) {
+                dialog.show();
+            } else {
+                Intent intent = new Intent(this, ChatMessageActivity.class);
+                intent.putExtra("ID_BOSS", idBoss);
+                intent.putExtra("IMG_BOSS", imgBoss);
+                intent.putExtra("NAME_BOSS", nameBoss);
+                startActivity(intent);
+            }
+        });
 
         binding.btnRentNow.setOnClickListener(v -> {
             int positionScroll = binding.contentCancellationPolicy.getHeight();
@@ -331,6 +369,11 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick() {
-
+        Intent intent = new Intent(this, FeedbackListActivity.class);
+        intent.putExtra("ID_BOSS", idBoss);
+        intent.putExtra("ID_HOUSE", id_house);
+        intent.putExtra("IMG_BOSS", imgBoss);
+        intent.putExtra("NAME_BOSS", nameBoss);
+        startActivity(intent);
     }
 }

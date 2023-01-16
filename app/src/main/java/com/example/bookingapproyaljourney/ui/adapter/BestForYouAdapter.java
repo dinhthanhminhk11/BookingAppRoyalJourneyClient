@@ -105,7 +105,11 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolderNearByNull.binding.imageItem.setIndicatorUnselectedColor(Color.GRAY);
                 viewHolderNearByNull.binding.imageItem.setScrollTimeInSec(4); //set scroll delay in seconds :
                 viewHolderNearByNull.binding.imageItem.startAutoCycle();
-                viewHolderNearByNull.binding.tvStart.setText(decimalFormat.format(item.getTbSao()));
+                if(item.getTbSao() % 1 == 0){
+                    viewHolderNearByNull.binding.tvStart.setText(item.getTbSao()+"");
+                }else {
+                    viewHolderNearByNull.binding.tvStart.setText(decimalFormat.format(item.getTbSao()));
+                }
                 viewHolderNearByNull.binding.price.setText(item.getGiaDaoDong());
                 if (item.getTienNghiKS().size() > 4) {
                     Glide.with(holder.itemView.getContext()).load(item.getTienNghiKS().get(0).getIconImage()).apply(options).into(viewHolderNearByNull.binding.icon1);
