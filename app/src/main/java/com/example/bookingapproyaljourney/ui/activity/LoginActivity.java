@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private String checkStartDateResponse;
     private String tokenDevice;
+    private String stringCheckNullToken = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             changeTheme(2);
         }
+
+        stringCheckNullToken = getIntent().getStringExtra(AppConstant.CHECK_LOGIN_TOKEN_NULL);
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
@@ -143,15 +146,28 @@ public class LoginActivity extends AppCompatActivity {
                     if (!loginResponse.getUser().getTokenDevice().equals(tokenDevice)) {
                         loginViewModel.updateTokenDevice(new UserRequestTokenDevice(loginResponse.getUser().getId(), tokenDevice));
                     }
+
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                     editor.putString(AppConstant.ID_USER, loginResponse.getUser().getId());
                     editor.commit();
+                    if (!(stringCheckNullToken == null)) {
+                        if (stringCheckNullToken.equals("checkNotSignIn")) {
+                            onBackPressed();
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra(CheckSuccess, AppConstant.LoginResultSuccess);
+                            startActivity(intent);
+                        }
+                    }else {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(CheckSuccess, AppConstant.LoginResultSuccess);
+                        startActivity(intent);
+                    }
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(CheckSuccess, AppConstant.LoginResultSuccess);
-                    startActivity(intent);
                 } else {
                     EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_CONFIRM_ACCOUNT));
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);

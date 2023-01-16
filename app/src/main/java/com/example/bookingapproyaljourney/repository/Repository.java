@@ -101,8 +101,8 @@ public class Repository {
         });
     }
 
-    public void getHotelAndRoomByIdRoom(String id, Consumer<HotelBillResponse> consumer) {
-        apiRequest.getHotelAndRoomByIdRoom(id).enqueue(new Callback<HotelBillResponse>() {
+    public void getHotelAndRoomByIdRoom(String id,String idUser , Consumer<HotelBillResponse> consumer) {
+        apiRequest.getHotelAndRoomByIdRoom(id , idUser).enqueue(new Callback<HotelBillResponse>() {
             @Override
             public void onResponse(Call<HotelBillResponse> call, Response<HotelBillResponse> response) {
                 if (response.isSuccessful()) {

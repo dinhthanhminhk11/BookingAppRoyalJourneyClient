@@ -19,6 +19,16 @@ public class HotelBillResponse {
     private int maxPeople;
     private int maxChildren;
     private String dateCancel;
+    private String passCashFlow;
+    private String priceCashFlow;
+
+    public String getPassCashFlow() {
+        return passCashFlow;
+    }
+
+    public String getPriceCashFlow() {
+        return priceCashFlow;
+    }
 
     public String getIdHost() {
         return idHost;

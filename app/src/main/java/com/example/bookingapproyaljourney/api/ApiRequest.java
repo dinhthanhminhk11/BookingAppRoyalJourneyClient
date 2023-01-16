@@ -237,8 +237,8 @@ public interface ApiRequest {
     @GET("getPhongById/{id}")
     Call<Room> getRoomById(@Path("id") String id);
 
-    @GET("getHotelAndRoomByIdRoom/{id}")
-    Call<HotelBillResponse> getHotelAndRoomByIdRoom(@Path("id") String id);
+    @GET("getHotelAndRoomByIdRoom/{id}/{idUser}")
+    Call<HotelBillResponse> getHotelAndRoomByIdRoom(@Path("id") String id, @Path("idUser") String idUser);
 
     @POST("addorder")
     Call<BillResponse> createBooking(@Body BillRequest billRequest);

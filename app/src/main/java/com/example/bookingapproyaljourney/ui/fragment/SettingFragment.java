@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +69,12 @@ public class SettingFragment extends Fragment {
     private FragmentSettingBinding binding;
     private String checkPass;
     private int theme2;
+    private SharedPreferences sharedPreferences3;
+    private String token;
+    private CountDownTimer countDownTimer;
+    private boolean checkCountDown = true;
+    private SharedPreferences.Editor editorCheckPassCash;
+    private boolean checkPassCash;
 
     static SettingFragment newInstance(String param1, String param2) {
         SettingFragment fragment = new SettingFragment();
@@ -126,6 +134,8 @@ public class SettingFragment extends Fragment {
 
             }
         });
+
+
     }
 
     private void intView() {
@@ -219,11 +229,12 @@ public class SettingFragment extends Fragment {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         dialog.setCancelable(true);
-        SharedPreferences sharedPreferences3 = getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
-        String token = sharedPreferences3.getString(AppConstant.TOKEN_USER, "");
+
         Button login = (Button) dialog.findViewById(R.id.login);
         login.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), LoginActivity.class));
+            Intent checkLogin = new Intent(getActivity(), LoginActivity.class);
+            checkLogin.putExtra(AppConstant.CHECK_LOGIN_TOKEN_NULL, "checkNotSignIn");
+            startActivity(checkLogin);
             dialog.dismiss();
         });
 
@@ -239,41 +250,67 @@ public class SettingFragment extends Fragment {
             startActivity(new Intent(getActivity(), ContactActivity.class));
         });
 
+
         binding.layoutContentPayment.setOnClickListener(v -> {
             if (token.equals("")) {
                 dialog.show();
+            } else if (checkPass.equals("")) {
+                startActivity(new Intent(getActivity(), AddPassPinActivity.class));
             } else {
-                if (theme2 == AppConstant.POS_VANTAY) {
-                    biometricPrompt.authenticate(promptInfo);
-                } else {
-                    bottomSheetPassPayment = new BottomSheetPassPayment(getActivity(), R.style.MaterialDialogSheet, new BottomSheetPassPayment.CallBack() {
-                        @Override
-                        public void onCLickCLose() {
+                if (checkPassCash) {
+                    if (theme2 == AppConstant.POS_VANTAY) {
+                        biometricPrompt.authenticate(promptInfo);
+                    } else {
+                        bottomSheetPassPayment = new BottomSheetPassPayment(getActivity(), R.style.MaterialDialogSheet, new BottomSheetPassPayment.CallBack() {
+                            @Override
+                            public void onCLickCLose() {
 
-                        }
-
-                        @Override
-                        public void onClickPayment(String s) {
-                            if (checkPass.equals(s)) {
-                                bottomSheetPassPayment.dismiss();
-                                startActivity(new Intent(getActivity(), PayCashYourActivity.class));
-                            } else {
-                                Toast.makeText(getActivity(), "Mã pin không chính xác", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    });
-                    bottomSheetPassPayment.show();
-                    bottomSheetPassPayment.setCanceledOnTouchOutside(false);
+
+                            @Override
+                            public void onClickPayment(String s) {
+                                if (checkPass.equals(s)) {
+                                    bottomSheetPassPayment.dismiss();
+                                    startActivity(new Intent(getActivity(), PayCashYourActivity.class));
+                                } else {
+                                    Toast.makeText(getActivity(), "Mã pin không chính xác", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        bottomSheetPassPayment.show();
+                        bottomSheetPassPayment.setCanceledOnTouchOutside(false);
+                    }
+                    editorCheckPassCash.putBoolean(AppConstant.SHAREDPREFERENCES_CHECK_PASS_CASH, false);
+                    editorCheckPassCash.commit();
+                    countDownTimer.start();
+                } else {
+                    startActivity(new Intent(getActivity(), PayCashYourActivity.class));
                 }
+
             }
         });
 
         cashPayViewModel.getPassCashMutableLiveData().observe(getActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
+                Log.e("MinhCheck", s.length() + " length");
                 checkPass = s;
             }
         });
+        //cứ 5 phút bắt nhập lại pass 1 lần
+
+        countDownTimer = new CountDownTimer(300000, 1000 / 100) {
+            @Override
+            public void onTick(long l) {
+                // call when timer start
+            }
+
+            @Override
+            public void onFinish() {
+                editorCheckPassCash.putBoolean(AppConstant.SHAREDPREFERENCES_CHECK_PASS_CASH, true);
+                editorCheckPassCash.commit();
+            }
+        };
     }
 
     private void changeTheme(int idTheme) {
@@ -359,5 +396,10 @@ public class SettingFragment extends Fragment {
         cashPayViewModel.getPassCash(UserClient.getInstance().getId());
         SharedPreferences sharedPreferences2 = getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_PASS, MODE_PRIVATE);
         theme2 = sharedPreferences2.getInt(AppConstant.SHAREDPREFERENCES_PASS, 2655);
+        sharedPreferences3 = getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        token = sharedPreferences3.getString(AppConstant.TOKEN_USER, "");
+        SharedPreferences sharedPreferencesCheckPassCash = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_CHECK_PASS_CASH, MODE_PRIVATE);
+        editorCheckPassCash = sharedPreferencesCheckPassCash.edit();
+        checkPassCash = sharedPreferencesCheckPassCash.getBoolean(AppConstant.SHAREDPREFERENCES_CHECK_PASS_CASH, true);
     }
 }

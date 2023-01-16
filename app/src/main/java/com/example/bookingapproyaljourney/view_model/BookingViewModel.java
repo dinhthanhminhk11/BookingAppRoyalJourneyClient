@@ -24,9 +24,9 @@ public class BookingViewModel extends AndroidViewModel {
         repository = new Repository();
     }
 
-    public void getHotelAndRoomByIdRoom(String id) {
+    public void getHotelAndRoomByIdRoom(String id,String idUser) {
         mProgressMutableData.postValue(View.VISIBLE);
-        repository.getHotelAndRoomByIdRoom(id, o -> {
+        repository.getHotelAndRoomByIdRoom(id, idUser, o -> {
             if (o instanceof HotelBillResponse) {
                 mProgressMutableData.postValue(View.GONE);
                 hotelBillResponseMutableLiveData.postValue(o);

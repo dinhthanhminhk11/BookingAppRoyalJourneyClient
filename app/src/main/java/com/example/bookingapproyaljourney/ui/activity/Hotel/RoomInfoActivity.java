@@ -1,10 +1,17 @@
 package com.example.bookingapproyaljourney.ui.activity.Hotel;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
@@ -16,6 +23,7 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityRoomInfoBinding;
 import com.example.bookingapproyaljourney.model.hotel.Room;
+import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ImageAutoSliderAdapter;
 import com.example.bookingapproyaljourney.view_model.RoomInfoViewModel;
@@ -36,6 +44,8 @@ public class RoomInfoActivity extends AppCompatActivity {
     private String idRoom;
     private int ageChildren;
     private boolean cancelBooking;
+    private SharedPreferences sharedPreferences;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +85,8 @@ public class RoomInfoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
         roomInfoViewModel.getRoomById(idRoom);
     }
 
@@ -124,10 +136,31 @@ public class RoomInfoActivity extends AppCompatActivity {
             }
         });
 
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_log_comfirm_logout);
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialog.setCancelable(true);
+
+        Button login = (Button) dialog.findViewById(R.id.login);
+        login.setOnClickListener(v -> {
+            Intent checkLogin = new Intent(RoomInfoActivity.this, LoginActivity.class);
+            checkLogin.putExtra(AppConstant.CHECK_LOGIN_TOKEN_NULL, "checkNotSignIn");
+            startActivity(checkLogin);
+            dialog.dismiss();
+        });
+
         binding.btnThem.setOnClickListener(v -> {
-            Intent intent = new Intent(RoomInfoActivity.this, BookingActivity.class);
-            intent.putExtra(AppConstant.ROOM_EXTRA, idRoom);
-            startActivity(intent);
+            if (token.equals("")) {
+                dialog.show();
+            } else {
+                Intent intent = new Intent(RoomInfoActivity.this, BookingActivity.class);
+                intent.putExtra(AppConstant.ROOM_EXTRA, idRoom);
+                startActivity(intent);
+            }
         });
     }
 

@@ -2,14 +2,25 @@ package com.example.bookingapproyaljourney.ui.activity.Hotel;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.format.DateFormat;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -27,7 +38,10 @@ import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.request.BillRequest;
 import com.example.bookingapproyaljourney.response.bill.BillResponse;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
+import com.example.bookingapproyaljourney.ui.activity.AddPassPinActivity;
+import com.example.bookingapproyaljourney.ui.activity.PayCashYourActivity;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetEditPerson;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPassPayment;
 import com.example.bookingapproyaljourney.view_model.BookingViewModel;
 import com.example.librarytoastcustom.CookieBar;
 import com.google.android.material.datepicker.CalendarConstraints;
@@ -38,6 +52,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Date;
+import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
 public class BookingActivity extends AppCompatActivity implements BottomSheetEditPerson.CallBack {
@@ -56,6 +71,17 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
     private String startDatePrivate;
     private String endDatePrivate;
     private long pricePrivate;
+    private BottomSheetPassPayment bottomSheetPassPayment;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
+    private Executor executor;
+    private int priceUser;
+    private String passCashUser;
+    private int theme2;
+
+    private SharedPreferences.Editor editorCheckPassCash;
+    private boolean checkPassCash;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +93,147 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
         initView();
     }
 
+    private void initData() {
+        bookingViewModel.getHotelAndRoomByIdRoom(idRoom, UserClient.getInstance().getId());
+        biometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                // dùng mật khẩu
+                if (passCashUser.equals("")) {
+                    startActivity(new Intent(BookingActivity.this, AddPassPinActivity.class));
+                } else {
+                    bottomSheetPassPayment = new BottomSheetPassPayment(BookingActivity.this, R.style.MaterialDialogSheet, new BottomSheetPassPayment.CallBack() {
+                        @Override
+                        public void onCLickCLose() {
+
+                        }
+
+                        @Override
+                        public void onClickPayment(String s) {
+                            if (passCashUser.equals(s)) {
+                                bottomSheetPassPayment.dismiss();
+                                // xác thực đúng
+//                                payment();
+//                                startActivity(new Intent(BookingActivity.this, PayCashYourActivity.class));
+                                if (pricePrivate > priceUser) {
+                                    CookieBar.build(BookingActivity.this)
+                                            .setTitle("Thông báo")
+                                            .setMessage("Số dư trong ví hiện tại không đủ")
+                                            .setIcon(R.drawable.ic_warning_icon_check)
+                                            .setTitleColor(R.color.black)
+                                            .setMessageColor(R.color.black)
+                                            .setDuration(5000).setSwipeToDismiss(false)
+                                            .setBackgroundRes(R.drawable.background_toast)
+                                            .setCookiePosition(CookieBar.BOTTOM)
+                                            .show();
+                                } else {
+                                    bookingViewModel.createBooking(new BillRequest(
+                                            hotelBillResponse.getIdHost(),
+                                            UserClient.getInstance().getId(),
+                                            hotelBillResponse.getIdHotel(),
+                                            hotelBillResponse.getIdRoom(),
+                                            startDatePrivate,
+                                            endDatePrivate,
+                                            payday,
+                                            countRoomLocal,
+                                            binding.person.getText().toString(),
+                                            binding.phone.getText().toString(),
+                                            binding.textMore.getText().toString(),
+                                            Integer.parseInt(String.valueOf(pricePrivate)),
+                                            false,
+                                            true,
+                                            hotelBillResponse.getDateCancel()
+                                    ));
+                                }
+
+                            } else {
+                                CookieBar.build(BookingActivity.this)
+                                        .setTitle("Thông báo")
+                                        .setMessage("Mã pin không chính xác")
+                                        .setIcon(R.drawable.ic_warning_icon_check)
+                                        .setTitleColor(R.color.black)
+                                        .setMessageColor(R.color.black)
+                                        .setDuration(5000).setSwipeToDismiss(false)
+                                        .setBackgroundRes(R.drawable.background_toast)
+                                        .setCookiePosition(CookieBar.BOTTOM)
+                                        .show();
+                            }
+                        }
+                    });
+                    bottomSheetPassPayment.show();
+                    bottomSheetPassPayment.setCanceledOnTouchOutside(false);
+                }
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                if (pricePrivate > priceUser) {
+                    String textCancel = "Số dư trong ví hiện tại không đủ. Nạp thêm tiền ngay!";
+                    Spannable wordtoSpan = new SpannableString(textCancel);
+
+                    wordtoSpan.setSpan(new UnderlineSpan(), 34, textCancel.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 34, textCancel.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 34, textCancel.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                    new ToastCheck(BookingActivity.this, R.style.StyleToast, "Thông báo", wordtoSpan, R.drawable.ic_warning_icon_check).setConsumer(o -> {
+                        if (o instanceof Boolean) {
+                            startActivity(new Intent(BookingActivity.this, PayCashYourActivity.class));
+                        }
+                    });
+
+//                    CookieBar.build(BookingActivity.this)
+//                            .setTitle("Thông báo")
+//                            .setMessage("Số dư trong ví hiện tại không đủ")
+//                            .setIcon(R.drawable.ic_warning_icon_check)
+//                            .setTitleColor(R.color.black)
+//                            .setMessageColor(R.color.black)
+//                            .setDuration(5000).setSwipeToDismiss(false)
+//                            .setBackgroundRes(R.drawable.background_toast)
+//                            .setCookiePosition(CookieBar.BOTTOM)
+//                            .show();
+                } else {
+                    bookingViewModel.createBooking(new BillRequest(
+                            hotelBillResponse.getIdHost(),
+                            UserClient.getInstance().getId(),
+                            hotelBillResponse.getIdHotel(),
+                            hotelBillResponse.getIdRoom(),
+                            startDatePrivate,
+                            endDatePrivate,
+                            payday,
+                            countRoomLocal,
+                            binding.person.getText().toString(),
+                            binding.phone.getText().toString(),
+                            binding.textMore.getText().toString(),
+                            Integer.parseInt(String.valueOf(pricePrivate)),
+                            false,
+                            true,
+                            hotelBillResponse.getDateCancel()
+                    ));
+                }
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+            }
+        });
+        SharedPreferences sharedPreferences2 = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_PASS, MODE_PRIVATE);
+        theme2 = sharedPreferences2.getInt(AppConstant.SHAREDPREFERENCES_PASS, 0);
+        SharedPreferences sharedPreferencesCheckPassCash = getSharedPreferences(AppConstant.SHAREDPREFERENCES_CHECK_PASS_CASH, MODE_PRIVATE);
+        editorCheckPassCash = sharedPreferencesCheckPassCash.edit();
+        checkPassCash = sharedPreferencesCheckPassCash.getBoolean(AppConstant.SHAREDPREFERENCES_CHECK_PASS_CASH, true);
+    }
+
     private void initView() {
+        executor = ContextCompat.getMainExecutor(this);
+
+        promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("Xác thực vân tay").setSubtitle("Uỷ quyền thông tin Sinh trắc").setNegativeButtonText("Dùng mật khẩu ví").build();
 
         idRoom = getIntent().getStringExtra(AppConstant.ROOM_EXTRA);
         bookingViewModel = new ViewModelProvider(this).get(BookingViewModel.class);
-
+        binding.payOnline.setChecked(true);
 
         binding.editPerson.setPaintFlags(binding.editPerson.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.editCountRoom.setPaintFlags(binding.editCountRoom.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -192,6 +354,10 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
                     binding.priceAll.setText(fm.format(item.getPriceRoom()) + " ₫");
                     binding.priceSupperLine.setText(fm.format(item.getPriceRoom() * 0.1) + " ₫");
                     pricePrivate = item.getPriceRoom();
+                    binding.editTextPrice.setEnabled(false);
+                    binding.editTextPrice.setText(fm.format(Integer.parseInt(item.getPriceCashFlow())) + " ₫");
+                    priceUser = Integer.parseInt(item.getPriceCashFlow());
+                    passCashUser = item.getPassCashFlow();
                 }
             }
         });
@@ -264,74 +430,124 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
             });
         });
 
+        countDownTimer = new CountDownTimer(300000, 1000 / 100) {
+            @Override
+            public void onTick(long l) {
+                // call when timer start
+            }
+
+            @Override
+            public void onFinish() {
+                editorCheckPassCash.putBoolean(AppConstant.SHAREDPREFERENCES_CHECK_PASS_CASH, true);
+                editorCheckPassCash.commit();
+            }
+        };
+
         binding.btnPay.setOnClickListener(v -> {
             if (binding.startDate.getText().toString().equals("")) {
-                CookieBar.build(this)
-                        .setTitle(this.getString(R.string.dialogstartdate))
-                        .setMessage(this.getString(R.string.dialogcontentnomal))
-                        .setIcon(R.drawable.ic_warning_icon_check)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000).setSwipeToDismiss(false)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(this.getString(R.string.dialogstartdate)).setMessage(this.getString(R.string.dialogcontentnomal)).setIcon(R.drawable.ic_warning_icon_check).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setSwipeToDismiss(false).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
                 return;
             } else if (binding.person.getText().toString().equals(this.getString(R.string.limitperson))) {
-                CookieBar.build(this)
-                        .setTitle(this.getString(R.string.BillOder_add_amount))
-                        .setMessage(this.getString(R.string.dialogcontentnomal))
-                        .setIcon(R.drawable.ic_warning_icon_check)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000).setSwipeToDismiss(false)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(this.getString(R.string.BillOder_add_amount)).setMessage(this.getString(R.string.dialogcontentnomal)).setIcon(R.drawable.ic_warning_icon_check).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setSwipeToDismiss(false).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
                 return;
             } else if (binding.phone.getText().toString().equals(this.getString(R.string.nullphone))) {
-                CookieBar.build(this)
-                        .setTitle(this.getString(R.string.BillOder_add_phone_number))
-                        .setMessage(this.getString(R.string.dialogcontentnomal))
-                        .setIcon(R.drawable.ic_warning_icon_check)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000).setSwipeToDismiss(false)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(this.getString(R.string.BillOder_add_phone_number)).setMessage(this.getString(R.string.dialogcontentnomal)).setIcon(R.drawable.ic_warning_icon_check).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setSwipeToDismiss(false).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
                 return;
             } else if (!binding.payOnline.isChecked() && !binding.payOffline.isChecked()) {
-                CookieBar.build(this)
-                        .setTitle("Thêm hình thức thanh toán")
-                        .setMessage(this.getString(R.string.dialogcontentnomal))
-                        .setIcon(R.drawable.ic_warning_icon_check)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000).setSwipeToDismiss(false)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle("Thêm hình thức thanh toán").setMessage(this.getString(R.string.dialogcontentnomal)).setIcon(R.drawable.ic_warning_icon_check).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setSwipeToDismiss(false).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
+//                new ToastCheck(this, R.style.StyleToast, "Hãy đóng góp ý kiến của bạn", this.getString(R.string.dialogcontentnomal), R.drawable.ic_warning_icon_check);
+            } else if (passCashUser.equals("")) {
+                startActivity(new Intent(this, AddPassPinActivity.class));
             } else {
                 switch (TYPE_PAYMENT) {
                     case 1:
-                        bookingViewModel.createBooking(new BillRequest(
-                                hotelBillResponse.getIdHost(),
-                                UserClient.getInstance().getId(),
-                                hotelBillResponse.getIdHotel(),
-                                hotelBillResponse.getIdRoom(),
-                                startDatePrivate,
-                                endDatePrivate,
-                                payday,
-                                countRoomLocal,
-                                binding.person.getText().toString(),
-                                binding.phone.getText().toString(),
-                                binding.textMore.getText().toString(),
-                                Integer.parseInt(String.valueOf(pricePrivate)),
-                                false,
-                                true,
-                                hotelBillResponse.getDateCancel()
-                        ));
+                        if (checkPassCash) {
+                            if (theme2 == AppConstant.POS_VANTAY) {
+                                biometricPrompt.authenticate(promptInfo);
+                            } else {
+                                bottomSheetPassPayment = new BottomSheetPassPayment(this, R.style.MaterialDialogSheet, new BottomSheetPassPayment.CallBack() {
+                                    @Override
+                                    public void onCLickCLose() {
+
+                                    }
+
+                                    @Override
+                                    public void onClickPayment(String s) {
+                                        if (passCashUser.equals(s)) {
+                                            bottomSheetPassPayment.dismiss();
+//                                payment();
+//                                startActivity(new Intent(, PayCashYourActivity.class));
+                                            bookingViewModel.createBooking(new BillRequest(
+                                                    hotelBillResponse.getIdHost(),
+                                                    UserClient.getInstance().getId(),
+                                                    hotelBillResponse.getIdHotel(),
+                                                    hotelBillResponse.getIdRoom(),
+                                                    startDatePrivate,
+                                                    endDatePrivate,
+                                                    payday,
+                                                    countRoomLocal,
+                                                    binding.person.getText().toString(),
+                                                    binding.phone.getText().toString(),
+                                                    binding.textMore.getText().toString(),
+                                                    Integer.parseInt(String.valueOf(pricePrivate)),
+                                                    false,
+                                                    true,
+                                                    hotelBillResponse.getDateCancel()
+                                            ));
+                                        } else {
+                                            CookieBar.build(BookingActivity.this)
+                                                    .setTitle(BookingActivity.this.getString(R.string.BillOder_add_phone_number))
+                                                    .setMessage(BookingActivity.this.getString(R.string.dialogcontentnomal))
+                                                    .setIcon(R.drawable.ic_warning_icon_check)
+                                                    .setTitleColor(R.color.black)
+                                                    .setMessageColor(R.color.black)
+                                                    .setDuration(5000).setSwipeToDismiss(false)
+                                                    .setBackgroundRes(R.drawable.background_toast)
+                                                    .setCookiePosition(CookieBar.BOTTOM)
+                                                    .show();
+                                        }
+                                    }
+                                });
+                                bottomSheetPassPayment.show();
+                                bottomSheetPassPayment.setCanceledOnTouchOutside(false);
+                            }
+                            editorCheckPassCash.putBoolean(AppConstant.SHAREDPREFERENCES_CHECK_PASS_CASH, false);
+                            editorCheckPassCash.commit();
+                            countDownTimer.start();
+                        } else {
+                            if (pricePrivate > priceUser) {
+                                String textCancel = "Số dư trong ví hiện tại không đủ. Nạp thêm tiền ngay!";
+                                Spannable wordtoSpan = new SpannableString(textCancel);
+
+                                wordtoSpan.setSpan(new UnderlineSpan(), 34, textCancel.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                wordtoSpan.setSpan(new StyleSpan(Typeface.BOLD), 34, textCancel.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                wordtoSpan.setSpan(new ForegroundColorSpan(Color.BLACK), 34, textCancel.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                                new ToastCheck(BookingActivity.this, R.style.StyleToast, "Thông báo", wordtoSpan, R.drawable.ic_warning_icon_check).setConsumer(o -> {
+                                    if (o instanceof Boolean) {
+                                        startActivity(new Intent(BookingActivity.this, PayCashYourActivity.class));
+                                    }
+                                });
+                            } else {
+                                bookingViewModel.createBooking(new BillRequest(
+                                        hotelBillResponse.getIdHost(),
+                                        UserClient.getInstance().getId(),
+                                        hotelBillResponse.getIdHotel(),
+                                        hotelBillResponse.getIdRoom(),
+                                        startDatePrivate,
+                                        endDatePrivate,
+                                        payday,
+                                        countRoomLocal,
+                                        binding.person.getText().toString(),
+                                        binding.phone.getText().toString(),
+                                        binding.textMore.getText().toString(),
+                                        Integer.parseInt(String.valueOf(pricePrivate)),
+                                        false,
+                                        true,
+                                        hotelBillResponse.getDateCancel()
+                                ));
+                            }
+                        }
                         break;
                     case 2:
                         bookingViewModel.createBooking(new BillRequest(
@@ -353,6 +569,7 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
                         ));
                         break;
                 }
+
             }
         });
 
@@ -419,7 +636,8 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
     @Override
     protected void onResume() {
         super.onResume();
-        bookingViewModel.getHotelAndRoomByIdRoom(idRoom);
+        initData();
+
     }
 
     @Override
@@ -431,7 +649,7 @@ public class BookingActivity extends AppCompatActivity implements BottomSheetEdi
     public void onCLickSum(int person, int children, int countRoom) {
         personLimitPrivate = person;
         this.countRoomLocal = countRoom;
-        binding.person.setText(person + " " + this.getString(R.string.Guest) + ", " + children + " trẻ em");
+        binding.person.setText(person + " người lớn, " + children + " trẻ em");
         binding.textCountRoom.setText(countRoom + " phòng");
         loadData();
     }

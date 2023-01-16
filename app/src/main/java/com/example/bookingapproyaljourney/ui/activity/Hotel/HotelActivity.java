@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,22 +37,18 @@ import com.example.bookingapproyaljourney.databinding.ActivityHotelBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.Room;
-import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
-import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
-import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
 import com.example.bookingapproyaljourney.model.hotel.TienNghiK;
-import com.example.bookingapproyaljourney.model.house.Convenient;
-import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
+import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.MedicalActivity;
+import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
 import com.example.bookingapproyaljourney.ui.activity.feedback.FeedbackListActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
-import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
+import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
-import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -66,8 +61,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
-public class HotelActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback,FeedbackAdapter.EventClick {
+
+public class HotelActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback, FeedbackAdapter.EventClick {
     private ActivityHotelBinding binding;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private MenuItem menuItem;
@@ -86,16 +81,16 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     private String ageChildren;
     private String cancelBooking;
     private FeedbackViewModel feedbackViewModel;
-    private String idBoss ="";
-    private String nameBoss ="";
+    private String idBoss = "";
+    private String nameBoss = "";
     private String imgBoss = "";
-    private String id_house ="";
+    private String id_house = "";
     private TextView showMore;
     private RecyclerView rcvConvenientList;
     private TextView showMedical;
     private ArrayList<TienNghiK> data;
-
-
+    private SharedPreferences sharedPreferences;
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,7 +175,6 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
         });
 
 
-
         hotelInfoViewModel.getHotelMutableLiveData().observe(this, new Observer<HotelById>() {
             @Override
             public void onChanged(HotelById item) {
@@ -193,7 +187,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
                     Log.e("MinhCheck", item.getDataHotel().isChinhSachHuy() + " huỷ");
                     ageChildren = String.valueOf(item.getDataHotel().getTreEm());
                     cancelBooking = String.valueOf(item.getDataHotel().isChinhSachHuy());
-                    data= item.getDataHotel().getTienNghiKS();
+                    data = item.getDataHotel().getTienNghiKS();
 
                     phone = item.getDataUser().getPhone();
                     binding.tvNameHotel.setText(item.getDataHotel().getName());
@@ -261,11 +255,12 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         dialog.setCancelable(true);
-        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+
         Button login = (Button) dialog.findViewById(R.id.login);
         login.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent checkLogin = new Intent(this, LoginActivity.class);
+            checkLogin.putExtra(AppConstant.CHECK_LOGIN_TOKEN_NULL, "checkNotSignIn");
+            startActivity(checkLogin);
             dialog.dismiss();
         });
         binding.btMesseger.setOnClickListener(v -> {
@@ -341,6 +336,8 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     protected void onResume() {
         super.onResume();
         hotelInfoViewModel.getHotelById(idHotel);
+        sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
     }
 
     @Override

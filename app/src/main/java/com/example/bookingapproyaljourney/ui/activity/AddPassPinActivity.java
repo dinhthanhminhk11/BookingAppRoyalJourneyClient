@@ -19,6 +19,7 @@ import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.model.user.UserPin;
 import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.view_model.AddPassPinViewModel;
+import com.example.librarytoastcustom.CookieBar;
 
 public class AddPassPinActivity extends AppCompatActivity {
 
@@ -39,8 +40,16 @@ public class AddPassPinActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         addPassPinViewModel = new ViewModelProvider(this).get(AddPassPinViewModel.class);
-
-        binding.editText1.addTextChangedListener(new TextWatcher() {
+        CookieBar.build(this)
+                .setTitle("Thông báo")
+                .setMessage("Hãy tạo mật khẩu ví của bạn để an toàn hơn")
+                .setIcon(R.drawable.ic_warning_icon_check)
+                .setTitleColor(R.color.black)
+                .setMessageColor(R.color.black)
+                .setDuration(5000).setSwipeToDismiss(false)
+                .setBackgroundRes(R.drawable.background_toast)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();        binding.editText1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

@@ -15,10 +15,12 @@ public class AppConstant {
     public static final String HOUSE_EXTRA = "house";
     public static final String HOTEL_EXTRA = "HOTEL_EXTRA";
     public static final String ROOM_EXTRA = "ROOM_EXTRA";
+    public static final String CHECK_LOGIN_TOKEN_NULL = "CHECK_LOGIN_TOKEN_NULL";
     public static final String ROOM_AGE_CHILDREN = "ROOM_AGE_CHILDREN";
     public static final String ROOM_CANCEL_BOOKING = "ROOM_CANCEL_BOOKING";
     public static final String SHAREDPREFERENCES_USER = "USERCLIENT";
     public static final String SHAREDPREFERENCES_USER_THEME = "SHAREDPREFERENCES_USER_THEME";
+    public static final String SHAREDPREFERENCES_CHECK_PASS_CASH = "SHAREDPREFERENCES_CHECK_PASS_CASH";
     public static final String SHAREDPREFERENCES_PASS = "SHAREDPREFERENCES_Pass";
     public static final String TOKEN_CANCEL = "TOKEN_CANCEL";
     public static final String SHAREDPREFERENCES_CHECK_CANCEL = "SHAREDPREFERENCES_CHECK_CANCEL";

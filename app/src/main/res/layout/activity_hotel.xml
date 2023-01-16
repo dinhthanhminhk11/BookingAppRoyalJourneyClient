@@ -138,19 +138,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:background="@drawable/gradientbackground_white"
-                >
+                android:background="@drawable/gradientbackground_white">
 
                 <ImageView
                     android:id="@+id/imgStar1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_marginStart="@dimen/_16dp"
+                    android:layout_marginTop="3dp"
                     android:src="@drawable/ic_star_detailproduct" />
 
                 <TextView
