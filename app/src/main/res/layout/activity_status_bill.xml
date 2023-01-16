@@ -334,14 +334,14 @@
 
 
                         <LinearLayout
-                            android:visibility="gone"
+                            android:id="@+id/iconPay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="1dp"
-                            android:id="@+id/iconPay"
                             android:background="@drawable/background_icon_payment"
-                            android:elevation="3dp">
+                            android:elevation="3dp"
+                            android:visibility="gone">
 
                             <ImageView
                                 android:id="@+id/icon_changepass"
@@ -714,6 +714,7 @@
                     android:text="@string/textExactly_cancel" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/contentMore"
                 android:layout_width="match_parent"
@@ -738,32 +739,43 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16dp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/textContentMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Pay_with"
-                        android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_5dp"
-                        /><TextView
+                        android:text="@string/Pay_with"
+                        android:textColor="@color/black" />
+
+                    <TextView
                         android:id="@+id/textContentMore1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Pay_with"
-                        android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_5dp"
-                        /><TextView
+                        android:text="@string/Pay_with"
+                        android:textColor="@color/black" />
+
+                    <TextView
                         android:id="@+id/textContentMore2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Pay_with"
-                        android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_5dp"
-                        />
+                        android:text="@string/Pay_with"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textContentMore3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:text="@string/Pay_with"
+                        android:textColor="@color/black" />
 
 
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/contentBackground3"
                 android:layout_width="match_parent"

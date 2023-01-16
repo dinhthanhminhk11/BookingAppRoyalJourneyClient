@@ -50,6 +50,7 @@ public class StatusBillResponse implements Serializable {
     public String getImageHost() {
         return imageHost;
     }
+    private String content;
 
     public String getDateCreate() {
         return dateCreate;
@@ -161,5 +162,9 @@ public class StatusBillResponse implements Serializable {
 
     public String getCheckDataCancel() {
         return checkDataCancel;
+    }
+
+    public String getContent() {
+        return content;
     }
 }

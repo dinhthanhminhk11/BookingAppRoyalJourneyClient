@@ -15,9 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -38,11 +38,16 @@ import com.example.bookingapproyaljourney.model.hotel.Room;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
+import com.example.bookingapproyaljourney.model.hotel.TienNghiK;
+import com.example.bookingapproyaljourney.model.house.Convenient;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
+import com.example.bookingapproyaljourney.ui.activity.MedicalActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
 import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -56,7 +61,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.DecimalFormat;
-
+import java.util.ArrayList;
+import java.util.List;
 public class HotelActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback,FeedbackAdapter.EventClick {
     private ActivityHotelBinding binding;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -70,6 +76,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     private RoomHotelAdapter roomHotelAdapter;
     private String idHotel;
     private GoogleMap mMap;
+    private BottomSheetConvenient bottomSheetConvenient;
     private MarkerOptions markerOptions;
     private Marker currentUser;
     private String ageChildren;
@@ -78,6 +85,11 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     private String idBoss ="";
     private String nameBoss ="";
     private String imgBoss = "";
+    private TextView showMore;
+    private RecyclerView rcvConvenientList;
+    private TextView showMedical;
+    private ArrayList<TienNghiK> data;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +103,30 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
         initToolbar();
         initView();
 
+        binding.showMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
+        binding.showMedical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HotelActivity.this, MedicalActivity.class));
+            }
+        });
+    }
+
+    private void showDialog() {
+
+        bottomSheetConvenient = new BottomSheetConvenient(HotelActivity.this, R.style.MaterialDialogSheet, data, new BottomSheetConvenient.CallBack() {
+            @Override
+            public void onCLickCLose() {
+                bottomSheetConvenient.dismiss();
+            }
+        });
+        bottomSheetConvenient.show();
+        bottomSheetConvenient.setCanceledOnTouchOutside(false);
     }
 
     private void initView() {
@@ -140,9 +176,6 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onChanged(HotelById item) {
                 if (item instanceof HotelById) {
-                    idBoss = item.getDataUser().get_id();
-                    nameBoss = item.getDataUser().getName();
-                    imgBoss = item.getDataUser().getImage();
 
                     Log.e("MinhCheck", item.getDataHotel().getTreEm() + " trẻ em");
                     Log.e("MinhCheck", item.getDataHotel().isChinhSachHuy() + " huỷ");
@@ -218,33 +251,6 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
                     binding.scrollView.scrollTo(0, sum);
                 }
             });
-        });
-
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dia_log_comfirm_logout);
-        Window window = dialog.getWindow();
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
-        dialog.setCancelable(true);
-        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
-        Button login = (Button) dialog.findViewById(R.id.login);
-        login.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
-            dialog.dismiss();
-        });
-        binding.btMesseger.setOnClickListener(v -> {
-            if (token.equals("")) {
-                dialog.show();
-            } else {
-                Intent intent = new Intent(this, ChatMessageActivity.class);
-                intent.putExtra("ID_BOSS", idBoss);
-                intent.putExtra("IMG_BOSS", imgBoss);
-                intent.putExtra("NAME_BOSS", nameBoss);
-                startActivity(intent);
-            }
         });
     }
 
