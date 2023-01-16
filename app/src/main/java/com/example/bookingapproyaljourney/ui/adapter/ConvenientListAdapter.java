@@ -32,16 +32,16 @@ public class ConvenientListAdapter extends RecyclerView.Adapter<ConvenientListAd
     public void setConvenientTestList(ArrayList<TienNghiK> convenientTestList) {
         this.convenientTestList = convenientTestList;
     }
-
+    public void setColor(int color) {
+        this.color = color;
+    }
     @NonNull
     @Override
     public ViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_convenient, parent, false);
         return new ViewHoler(view);
     }
-    public void setColor(int color) {
-        this.color = color;
-    }
+
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {

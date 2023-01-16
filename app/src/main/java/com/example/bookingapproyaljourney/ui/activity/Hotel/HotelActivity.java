@@ -193,6 +193,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
                     Log.e("MinhCheck", item.getDataHotel().isChinhSachHuy() + " huỷ");
                     ageChildren = String.valueOf(item.getDataHotel().getTreEm());
                     cancelBooking = String.valueOf(item.getDataHotel().isChinhSachHuy());
+                    data= item.getDataHotel().getTienNghiKS();
 
                     phone = item.getDataUser().getPhone();
                     binding.tvNameHotel.setText(item.getDataHotel().getName());
@@ -242,6 +243,14 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
                     }, 2000);
                 }
             }
+        });
+        binding.btnShowFeedback.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FeedbackListActivity.class);
+            intent.putExtra("ID_BOSS", idBoss);
+            intent.putExtra("ID_HOUSE", id_house);
+            intent.putExtra("IMG_BOSS", imgBoss);
+            intent.putExtra("NAME_BOSS", nameBoss);
+            startActivity(intent);
         });
 
         final Dialog dialog = new Dialog(this);
