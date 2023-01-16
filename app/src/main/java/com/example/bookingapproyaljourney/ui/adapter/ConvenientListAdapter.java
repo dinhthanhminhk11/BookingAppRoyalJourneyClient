@@ -15,25 +15,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.model.hotel.TienNghiK;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConvenientListAdapter extends RecyclerView.Adapter<ConvenientListAdapter.ViewHoler> {
-    private List<Convenient> convenientList;
+    private ArrayList<TienNghiK> convenientTestList;
     private Context context;
     private int color = Color.BLACK;
 
     public ConvenientListAdapter(Context context) {
         this.context = context;
     }
-
-    public void setConvenientList(List<Convenient> convenientList) {
-        this.convenientList = convenientList;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
+    public void setConvenientTestList(ArrayList<TienNghiK> convenientTestList) {
+        this.convenientTestList = convenientTestList;
     }
 
     @NonNull
@@ -42,6 +39,9 @@ public class ConvenientListAdapter extends RecyclerView.Adapter<ConvenientListAd
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_convenient, parent, false);
         return new ViewHoler(view);
     }
+    public void setColor(int color) {
+        this.color = color;
+    }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoler holder, int position) {
@@ -49,14 +49,15 @@ public class ConvenientListAdapter extends RecyclerView.Adapter<ConvenientListAd
                 .centerCrop()
                 .placeholder(R.drawable.img)
                 .error(R.drawable.img);
-        Glide.with(context).load(convenientList.get(position).getIconImage()).apply(options).into(holder.imgConvenien);
-        holder.tvConvenien.setText(convenientList.get(position).getName());
+        Glide.with(context).load(convenientTestList.get(position).getIconImage()).apply(options).into(holder.imgConvenien);
+        holder.tvConvenien.setText(convenientTestList.get(position).getName());
+        holder.tvConvenien.setTextColor(color);
     }
 
     @Override
     public int getItemCount() {
-        if (convenientList != null) {
-            return convenientList.size();
+        if (convenientTestList != null) {
+            return convenientTestList.size();
         }
         return 0;
     }

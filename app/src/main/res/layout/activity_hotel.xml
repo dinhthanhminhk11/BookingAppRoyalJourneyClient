@@ -138,6 +138,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/gradientbackground_white"
+                >
+
+                <ImageView
+                    android:id="@+id/imgStar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/ic_star_detailproduct" />
+
+                <TextView
+                    android:id="@+id/tvSao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="#0A8ED9"
+                    android:textSize="@dimen/_18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/danhgiadetail"
+                    android:textColor="#0A8ED9"
+                    android:textSize="@dimen/_18dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/contentHost"
@@ -247,7 +281,7 @@
                     <TextView
                         android:id="@+id/showMore"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="@string/see_more"
                         android:textColor="#0A8ED9"
@@ -692,6 +726,17 @@
                     android:layout_height="@dimen/_90dp" />
             </LinearLayout>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_120dp"
+                android:background="@null"
+                android:backgroundTint="@null"
+                android:backgroundTintMode="@null"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="loading.json"
+                app:lottie_loop="true" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -745,15 +790,4 @@
             app:backgroundTint="@null" />
     </RelativeLayout>
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_120dp"
-        android:layout_centerInParent="true"
-        android:background="@null"
-        android:backgroundTint="@null"
-        android:backgroundTintMode="@null"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="loading.json"
-        app:lottie_loop="true" />
 </RelativeLayout>

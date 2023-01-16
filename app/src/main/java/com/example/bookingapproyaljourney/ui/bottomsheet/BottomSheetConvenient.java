@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.model.hotel.TienNghiK;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientListAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,11 +30,11 @@ public class BottomSheetConvenient extends BottomSheetDialog {
     private ImageView close;
     private TextView reset;
     private RecyclerView rcvConvenientList;
-    private List<Convenient> data;
+    private ArrayList<TienNghiK> data;
     private Context context;
     private CallBack callBack;
 
-    public BottomSheetConvenient(@NonNull Context context, int theme, List<Convenient> data, CallBack callback) {
+    public BottomSheetConvenient(@NonNull Context context, int theme, ArrayList<TienNghiK> data, CallBack callback) {
         super(context, theme);
         this.data = data;
         this.context = context;
@@ -61,7 +63,7 @@ public class BottomSheetConvenient extends BottomSheetDialog {
         rcvConvenientList.setHasFixedSize(true);
         rcvConvenientList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         ConvenientListAdapter convenientListAdapter = new ConvenientListAdapter(context);
-        convenientListAdapter.setConvenientList(data);
+        convenientListAdapter.setConvenientTestList(data);
         rcvConvenientList.setAdapter(convenientListAdapter);
         close.setOnClickListener(v -> {
             callBack.onCLickCLose();

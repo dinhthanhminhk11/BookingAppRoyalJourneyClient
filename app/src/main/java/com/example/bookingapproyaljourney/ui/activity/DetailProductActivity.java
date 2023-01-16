@@ -301,12 +301,12 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
         });
 
-        showMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog();
-            }
-        });
+//        showMore.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showDialog();
+//            }
+//        });
 
         showMorebathdroom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -455,16 +455,16 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
     }
 
-    private void showDialog() {
-        bottomSheetConvenient = new BottomSheetConvenient(DetailProductActivity.this, R.style.MaterialDialogSheet, data, new BottomSheetConvenient.CallBack() {
-            @Override
-            public void onCLickCLose() {
-                bottomSheetConvenient.dismiss();
-            }
-        });
-        bottomSheetConvenient.show();
-        bottomSheetConvenient.setCanceledOnTouchOutside(false);
-    }
+//    private void showDialog() {
+//        bottomSheetConvenient = new BottomSheetConvenient(DetailProductActivity.this, R.style.MaterialDialogSheet, data, new BottomSheetConvenient.CallBack() {
+//            @Override
+//            public void onCLickCLose() {
+//                bottomSheetConvenient.dismiss();
+//            }
+//        });
+//        bottomSheetConvenient.show();
+//        bottomSheetConvenient.setCanceledOnTouchOutside(false);
+//    }
 
     private void showDialogBathRoom() {
         bottomSheetBathRoom = new BottomSheetBathRoom(DetailProductActivity.this, R.style.MaterialDialogSheet, dataBathRoom, new BottomSheetBathRoom.CallBack() {

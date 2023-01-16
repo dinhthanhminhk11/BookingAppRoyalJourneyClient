@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -27,9 +30,14 @@ import com.example.bookingapproyaljourney.databinding.ActivityHotelBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.Room;
+import com.example.bookingapproyaljourney.model.hotel.TienNghiK;
+import com.example.bookingapproyaljourney.model.house.Convenient;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
+import com.example.bookingapproyaljourney.ui.activity.MedicalActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,6 +48,9 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HotelActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
     private ActivityHotelBinding binding;
@@ -54,10 +65,16 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     private RoomHotelAdapter roomHotelAdapter;
     private String idHotel;
     private GoogleMap mMap;
+    private BottomSheetConvenient bottomSheetConvenient;
     private MarkerOptions markerOptions;
     private Marker currentUser;
     private String ageChildren;
     private String cancelBooking;
+    private TextView showMore;
+    private RecyclerView rcvConvenientList;
+    private TextView showMedical;
+    private ArrayList<TienNghiK> data;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +89,30 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
 
         initToolbar();
         initView();
+        binding.showMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
+        binding.showMedical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HotelActivity.this, MedicalActivity.class));
+            }
+        });
+    }
+
+    private void showDialog() {
+
+        bottomSheetConvenient = new BottomSheetConvenient(HotelActivity.this, R.style.MaterialDialogSheet, data, new BottomSheetConvenient.CallBack() {
+            @Override
+            public void onCLickCLose() {
+                bottomSheetConvenient.dismiss();
+            }
+        });
+        bottomSheetConvenient.show();
+        bottomSheetConvenient.setCanceledOnTouchOutside(false);
     }
 
     private void initView() {
