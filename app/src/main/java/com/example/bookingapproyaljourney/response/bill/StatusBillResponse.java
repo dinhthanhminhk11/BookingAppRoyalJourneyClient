@@ -34,6 +34,7 @@ public class StatusBillResponse implements Serializable {
     private boolean checkedOut;
     private String dateCreate;
     private String timeCreate;
+    private String content;
 
     public String getDateCreate() {
         return dateCreate;
@@ -145,5 +146,9 @@ public class StatusBillResponse implements Serializable {
 
     public String getCheckDataCancel() {
         return checkDataCancel;
+    }
+
+    public String getContent() {
+        return content;
     }
 }

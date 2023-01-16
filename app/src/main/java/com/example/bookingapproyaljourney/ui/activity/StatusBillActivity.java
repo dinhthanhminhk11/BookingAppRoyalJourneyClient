@@ -186,6 +186,11 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.textContentMore.setText("Trạng thái: " + item.getStatus());
                     binding.textContentMore1.setText("Ngày đặt: " + item.getDateCreate());
                     binding.textContentMore2.setText("Giờ đặt: " + item.getTimeCreate());
+                    if (item.getContent().equals("") || item.getContent() == null) {
+                        binding.textContentMore3.setVisibility(View.GONE);
+                    } else {
+                        binding.textContentMore3.setText(item.getContent());
+                    }
                     if (item.getStatus().equals("Khách huỷ") || item.getStatus().equals("Chủ huỷ")) {
                         binding.btnPay.setVisibility(View.GONE);
                     } else if (item.getStatus().equals("Đã trả phòng")) {
