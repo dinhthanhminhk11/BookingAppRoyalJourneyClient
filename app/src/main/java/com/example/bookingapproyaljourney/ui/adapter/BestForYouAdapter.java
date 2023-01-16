@@ -27,6 +27,7 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private ArrayList<Hotel> dataHotel;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private DecimalFormat decimalFormat = new DecimalFormat("#.#");
     private int color = Color.BLUE;
     private int colorBlack = Color.BLACK;
     private Consumer<Hotel> consumer;
@@ -79,7 +80,6 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 }
                 viewHolder.binding.tvNameHouseItemBestforyou.setText(item.getName());
                 viewHolder.binding.tvPriceHouseItemBestforyou.setText(item.getGiaDaoDong());
-
                 viewHolder.binding.tvNameHouseItemBestforyou.setTextColor(colorBlack);
                 viewHolder.binding.tvNameIcon1.setTextColor(colorBlack);
                 viewHolder.binding.nameIcon1.setTextColor(colorBlack);
@@ -105,8 +105,7 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolderNearByNull.binding.imageItem.setIndicatorUnselectedColor(Color.GRAY);
                 viewHolderNearByNull.binding.imageItem.setScrollTimeInSec(4); //set scroll delay in seconds :
                 viewHolderNearByNull.binding.imageItem.startAutoCycle();
-
-                viewHolderNearByNull.binding.tvStart.setText(item.getTbSao() + "");
+                viewHolderNearByNull.binding.tvStart.setText(decimalFormat.format(item.getTbSao()));
                 viewHolderNearByNull.binding.price.setText(item.getGiaDaoDong());
                 if (item.getTienNghiKS().size() > 4) {
                     Glide.with(holder.itemView.getContext()).load(item.getTienNghiKS().get(0).getIconImage()).apply(options).into(viewHolderNearByNull.binding.icon1);
@@ -118,8 +117,10 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     viewHolderNearByNull.binding.tvCountBathroom.setText(item.getTienNghiKS().get(1).getName());
                     viewHolderNearByNull.binding.tvNameConvenient.setText(item.getTienNghiKS().get(2).getName());
                     viewHolderNearByNull.binding.tvPerson.setText(item.getTienNghiKS().get(3).getName());
-                }
 
+
+                }
+//                viewHolderNearByNull.binding.tvStart.setText(item.getTbSao().toString());
                 viewHolderNearByNull.binding.tvTenPhong.setText(item.getName());
 
                 viewHolderNearByNull.itemView.setOnClickListener(v -> {

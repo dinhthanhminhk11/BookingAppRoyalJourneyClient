@@ -382,7 +382,7 @@
                         android:id="@+id/btnShowFeedback"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
                         android:text="@string/see_more"
                         android:textColor="#0A8ED9"
                         android:textSize="@dimen/_16dp" />

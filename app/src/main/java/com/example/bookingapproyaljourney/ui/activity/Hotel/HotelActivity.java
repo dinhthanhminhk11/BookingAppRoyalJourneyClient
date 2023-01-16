@@ -1,8 +1,13 @@
 package com.example.bookingapproyaljourney.ui.activity.Hotel;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +15,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,10 +35,16 @@ import com.example.bookingapproyaljourney.databinding.ActivityHotelBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.Room;
+import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
+import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
+import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
+import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
+import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
+import com.example.librarytoastcustom.CookieBar;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,7 +55,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class HotelActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
+import java.text.DecimalFormat;
+
+public class HotelActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback,FeedbackAdapter.EventClick {
     private ActivityHotelBinding binding;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private MenuItem menuItem;
@@ -58,20 +74,23 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     private Marker currentUser;
     private String ageChildren;
     private String cancelBooking;
+    private FeedbackViewModel feedbackViewModel;
+    private String idBoss ="";
+    private String nameBoss ="";
+    private String imgBoss = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHotelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         idHotel = getIntent().getStringExtra(AppConstant.HOTEL_EXTRA);
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapinfo);
         mapFragment.getMapAsync(this);
-
+        feedbackViewModel = new ViewModelProvider(this).get(FeedbackViewModel.class);
         initToolbar();
         initView();
+
     }
 
     private void initView() {
@@ -82,6 +101,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
         binding.rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rcvGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
 
         hotelInfoViewModel = new ViewModelProvider(this).get(HotelInfoViewModel.class);
@@ -92,10 +112,37 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        feedbackViewModel.getFeedbackId(idHotel).observe(this, it -> {
+            FeedbackAdapter feedbackAdapter = new FeedbackAdapter(it, this);
+            binding.rcvFeedback.setAdapter(feedbackAdapter);
+            if (it.size() > 0) {
+                binding.btnDanhGia.setText(it.size() + " Đánh giá");
+                float total = 0;
+                for (int i = 0; i < it.size(); i++) {
+                    total = total + it.get(i).getSao();
+                }
+                float average = total / it.size();
+                DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                if (average % 1 == 0) {
+                    binding.tvCountSao.setText(decimalFormat.format(average) + ".0");
+                } else {
+                    binding.tvCountSao.setText(decimalFormat.format(average));
+                }
+                feedbackViewModel.updateSaoProduct(idHotel, (double) average);
+            } else {
+                binding.btnDanhGia.setText("Đánh giá");
+                binding.tvCountSao.setText("5.0");
+            }
+
+        });
+
         hotelInfoViewModel.getHotelMutableLiveData().observe(this, new Observer<HotelById>() {
             @Override
             public void onChanged(HotelById item) {
                 if (item instanceof HotelById) {
+                    idBoss = item.getDataUser().get_id();
+                    nameBoss = item.getDataUser().getName();
+                    imgBoss = item.getDataUser().getImage();
 
                     Log.e("MinhCheck", item.getDataHotel().getTreEm() + " trẻ em");
                     Log.e("MinhCheck", item.getDataHotel().isChinhSachHuy() + " huỷ");
@@ -172,6 +219,33 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
                 }
             });
         });
+
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_log_comfirm_logout);
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialog.setCancelable(true);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(AppConstant.TOKEN_USER, "");
+        Button login = (Button) dialog.findViewById(R.id.login);
+        login.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            dialog.dismiss();
+        });
+        binding.btMesseger.setOnClickListener(v -> {
+            if (token.equals("")) {
+                dialog.show();
+            } else {
+                Intent intent = new Intent(this, ChatMessageActivity.class);
+                intent.putExtra("ID_BOSS", idBoss);
+                intent.putExtra("IMG_BOSS", imgBoss);
+                intent.putExtra("NAME_BOSS", nameBoss);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initToolbar() {
@@ -247,5 +321,10 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
         markerOptions = new MarkerOptions().position(myLocation).title(hotel.getName()).snippet(hotel.getSonha() + ", " + hotel.getXa() + ", " + hotel.getHuyen() + ", " + hotel.getTinh()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         currentUser = mMap.addMarker(markerOptions);
         currentUser.setTag(false);
+    }
+
+    @Override
+    public void onClick() {
+
     }
 }

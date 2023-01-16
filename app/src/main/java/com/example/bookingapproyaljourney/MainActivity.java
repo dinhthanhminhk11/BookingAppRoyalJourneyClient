@@ -185,7 +185,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
-
         BiometricManager biometricManager = BiometricManager.from(this);
         switch (biometricManager.canAuthenticate(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
@@ -250,7 +249,9 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         String check = getIntent().getStringExtra(CheckSuccess);
 
         if (!(check == null)) {
-            if (check.equals(text1111111111111)) {
+            if(check.equals("feedback")){
+                CookieBar.build(this).setTitle(this.getString(R.string.Successfully)).setMessage(this.getString(R.string.Successfully_feedback)).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
+            }else if (check.equals(text1111111111111)) {
                 CookieBar.build(this).setTitle(R.string.Successfully).setMessage(R.string.textcheck111).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             } else if (check.equals(CancelBookingActivity)) {
                 CookieBar.build(this).setTitle(R.string.Successfully).setMessage(R.string.textCheckCancelBookingActivity).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();

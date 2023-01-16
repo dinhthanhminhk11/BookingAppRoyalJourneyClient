@@ -13,6 +13,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.service.autofill.UserData;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -36,6 +37,7 @@ import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.response.bill.StatusBillResponse;
 import com.example.bookingapproyaljourney.response.order.OrderListResponse;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.feedback.FeedBackActivity;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetCancellationPolicy;
 import com.example.bookingapproyaljourney.view_model.StatusOrderViewModel;
@@ -62,7 +64,6 @@ public class StatusBillActivity extends AppCompatActivity {
     private boolean isSuccess;
     private String textReasonUser;
     private String img_boss = "";
-    private String id_boss = "";
     private String id_House = "";
     private String name_boss = "";
     private BottomSheetCancellationPolicy bottomSheetCancellationPolicy;
@@ -102,7 +103,6 @@ public class StatusBillActivity extends AppCompatActivity {
         }
 
         initData();
-
         final Dialog dialogLogOut = new Dialog(this);
         dialogLogOut.setContentView(R.layout.dia_log_comfirm_logout_ver2);
         Window window2 = dialogLogOut.getWindow();
@@ -128,14 +128,7 @@ public class StatusBillActivity extends AppCompatActivity {
             dialogLogOut.cancel();
         });
 
-        binding.btnFeedback.setOnClickListener(v -> {
-            Intent intent1 = new Intent(this, FeedBackActivity.class);
-            intent1.putExtra("ID_BOSS", id_boss);
-            intent1.putExtra("ID_HOUSE", id_House);
-            intent1.putExtra("IMG_BOSS", img_boss);
-            intent1.putExtra("NAME_BOSS", name_boss);
-            startActivity(intent1);
-        });
+
 
         statusOrderViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
             @Override
@@ -148,6 +141,9 @@ public class StatusBillActivity extends AppCompatActivity {
             @Override
             public void onChanged(StatusBillResponse item) {
                 if (item instanceof StatusBillResponse) {
+                    id_House = item.getIdHotel();
+                    name_boss = item.getNameHost();
+                    img_boss = item.getImageHost();
                     statusBillResponse = item;
                     RequestOptions options = new RequestOptions()
                             .centerCrop()
@@ -159,6 +155,7 @@ public class StatusBillActivity extends AppCompatActivity {
                     binding.nameRoom.setText(item.getNameRoom());
                     binding.startDate.setText(item.getStartDate());
                     binding.endDate.setText(item.getEndDate());
+
 
                     if (item.isPolicyHotel()) {
                         binding.contentCancel.setText("Hoàn huỷ miễn phí, bạn sẽ được hoàn tiền 100% , số tiền sẽ được chuyển vào ví RoyalJourneySuper");
@@ -194,6 +191,13 @@ public class StatusBillActivity extends AppCompatActivity {
                     }
                 }
             }
+        });
+        binding.btnFeedback.setOnClickListener(v -> {
+            Intent intent1 = new Intent(this, FeedBackActivity.class);
+            intent1.putExtra("ID_HOUSE", id_House);
+            intent1.putExtra("IMG_BOSS", img_boss);
+            intent1.putExtra("NAME_BOSS", name_boss);
+            startActivity(intent1);
         });
 
 //        login.setOnClickListener(v -> {

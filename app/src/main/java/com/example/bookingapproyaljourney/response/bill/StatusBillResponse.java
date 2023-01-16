@@ -34,6 +34,22 @@ public class StatusBillResponse implements Serializable {
     private boolean checkedOut;
     private String dateCreate;
     private String timeCreate;
+    private String idHotel;
+    private String nameHost;
+    private String imageHost;
+
+
+    public String getIdHotel() {
+        return idHotel;
+    }
+
+    public String getNameHost() {
+        return nameHost;
+    }
+
+    public String getImageHost() {
+        return imageHost;
+    }
 
     public String getDateCreate() {
         return dateCreate;

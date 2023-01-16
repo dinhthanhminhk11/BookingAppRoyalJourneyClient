@@ -20,7 +20,7 @@ public class Hotel {
     private String timeTra;
     @SerializedName("TienNghiKS")
     private ArrayList<TienNghiK> tienNghiKS;
-    private int tbSao;
+    private Double TbSao;
     private ArrayList<String> imageConfirm;
     private String mota;
     private String chinhsach;
@@ -84,8 +84,8 @@ public class Hotel {
         return tienNghiKS;
     }
 
-    public int getTbSao() {
-        return tbSao;
+    public Double getTbSao() {
+        return TbSao;
     }
 
     public ArrayList<String> getImageConfirm() {
