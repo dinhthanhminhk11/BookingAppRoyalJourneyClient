@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,15 +22,11 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityRoomInfoBinding;
+import com.example.bookingapproyaljourney.model.hotel.Bedroom;
 import com.example.bookingapproyaljourney.model.hotel.Room;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ImageAutoSliderAdapter;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.Slidr;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.Utils;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrConfig;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrInterface;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrPosition;
 import com.example.bookingapproyaljourney.view_model.RoomInfoViewModel;
 import com.example.libraryautoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.example.libraryautoimageslider.SliderAnimations;
@@ -125,7 +120,15 @@ public class RoomInfoActivity extends BaseActivity {
                 binding.text2.setText("• Phòng chứa tối đa " + (item.getMaxTreEm() + item.getMaxNguoiLon()) + " người");
                 binding.text1.setText("• Cho phép " + item.getMaxNguoiLon() + " người lớn");
                 binding.text3.setText("• Cho phép tối đa " + item.getMaxTreEm() + " trẻ em đi theo");
-                binding.tvSoGiuong.setText(item.getBedroom().get(0).getName());
+
+                for (Bedroom bedroom : item.getBedroom()
+                ) {
+                    String content = "";
+                    content += bedroom.getName() + ", ";
+                    binding.tvSoGiuong.append(content);
+                }
+
+//                binding.tvSoGiuong.setText(item.getBedroom().get(0).getName());
                 binding.tvDientich.setText(item.getDienTich() + " m²");
                 binding.tvSoPhong.setText("Còn " + item.getSoPhong() + " phòng khác giống phòng này");
                 binding.tvGia.setText(fm.format(item.getPrice()) + " đ");

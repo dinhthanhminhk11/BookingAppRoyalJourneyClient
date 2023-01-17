@@ -33,6 +33,7 @@ import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityBookingBinding;
+import com.example.bookingapproyaljourney.model.hotel.Bedroom;
 import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.request.BillRequest;
@@ -341,7 +342,7 @@ public class BookingActivity extends BaseActivity implements BottomSheetEditPers
                     binding.nameHouse.setText(item.getNameHotel());
                     binding.nameRoom.setText(item.getNameRoom());
                     binding.address.setText(item.getAddressHotel());
-                    binding.tvSoGiuong.setText(item.getBedroom().get(0).getName());
+//                    binding.tvSoGiuong.setText(item.getBedroom().get(0).getName());
 
                     if (item.isPolicyHotel()) {
                         binding.textCancel.setText("Hoàn huỷ miễn phí, bạn sẽ được hoàn tiền 100% , số tiền sẽ được chuyển vào ví RoyalJourneySuper");
@@ -358,6 +359,13 @@ public class BookingActivity extends BaseActivity implements BottomSheetEditPers
                     binding.editTextPrice.setText(fm.format(Integer.parseInt(item.getPriceCashFlow())) + " ₫");
                     priceUser = Integer.parseInt(item.getPriceCashFlow());
                     passCashUser = item.getPassCashFlow();
+
+                    for (Bedroom bedroom : item.getBedroom()
+                    ) {
+                        String content = "";
+                        content += bedroom.getName() + ", ";
+                        binding.tvSoGiuong.append(content);
+                    }
                 }
             }
         });

@@ -144,6 +144,7 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
         binding.rcvGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
         options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
 
         hotelInfoViewModel = new ViewModelProvider(this).get(HotelInfoViewModel.class);

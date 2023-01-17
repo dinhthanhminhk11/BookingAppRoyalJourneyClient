@@ -36,6 +36,7 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.databinding.ActivitySeeMoreNearFromYouBinding;
 import com.example.bookingapproyaljourney.map.FetchAddressIntentServices;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.house.DataMap;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.repository.MapRepository;
@@ -211,7 +212,7 @@ public class SeeMoreNearFromYouActivity extends BaseActivity implements OnMapRea
                 ) {
                     drawMakerListDataHouse(house);
                 }
-                initData(houseNearestByUserResponse.getDataMaps());
+//                initData(houseNearestByUserResponse.getDataMaps());
             }
         });
     }
@@ -356,7 +357,7 @@ public class SeeMoreNearFromYouActivity extends BaseActivity implements OnMapRea
         currentUser.setTag(false);
     }
 
-    private void initData(List<DataMap> data) {
+    private void initData(List<Hotel> data) {
         binding.textCountHouse.setText(this.getString(R.string.textBest5) + " " + data.size() + " " + this.getString(R.string.textBest6));
         nearFromYouAdapterMap.setData(data);
         nearFromYouAdapterMap.setCallback(new NearFromYouAdapterMap.Callback() {
@@ -366,12 +367,12 @@ public class SeeMoreNearFromYouActivity extends BaseActivity implements OnMapRea
             }
 
             @Override
-            public void onDirect(House house) {
-                LatLng latLng = getLocationFromAddress(house.getNameLocation());
-                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=%s", latLng.latitude, latLng.longitude, house.getNameLocation());
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(intent);
+            public void onDirect(Hotel house) {
+//                LatLng latLng = getLocationFromAddress(house.getNameLocation());
+//                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=%s", latLng.latitude, latLng.longitude, house.getNameLocation());
+//                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+//                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+//                startActivity(intent);
             }
 
             @Override
