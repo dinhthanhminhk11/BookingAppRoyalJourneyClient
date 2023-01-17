@@ -47,9 +47,9 @@ public class DetailProductRepository {
             @Override
             public void onResponse(Call<HouseDetailResponse> call, Response<HouseDetailResponse> response) {
                 if (!response.isSuccessful()) {
-                    Log.d(AppConstant.TAG_ERROR, "code ; " + response.code());
+                  //  Log.d(AppConstant.TAG_ERROR, "code ; " + response.code());
                 } else {
-                    Log.e(AppConstant.TAG, "data " + response.body().getContent());
+//                    Log.e(AppConstant.TAG, "data " + response.body().getContent());
                     callbackHouseById.success(response.body());
                 }
             }

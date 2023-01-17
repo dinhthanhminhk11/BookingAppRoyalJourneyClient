@@ -3,7 +3,7 @@ package com.example.bookingapproyaljourney.model.house;
 public class Bookmark {
     private String _id;
     private String idUser;
-    private String idHouse;
+    private String idHotel;
     private boolean isCheck;
     private int __v;
 
@@ -15,8 +15,8 @@ public class Bookmark {
         return idUser;
     }
 
-    public String getIdHouse() {
-        return idHouse;
+    public String getIdHotel() {
+        return idHotel;
     }
 
     public boolean isCheck() {

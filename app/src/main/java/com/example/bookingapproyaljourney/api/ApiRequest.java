@@ -130,17 +130,18 @@ public interface ApiRequest {
     @GET("listOrderByIdUser/{id}")
     Call<ListOrderByIdUser> getListOrderByIdUser(@Path("id") String id);
 
+    //Bookmark
     @GET("listBookmarkById/{id}")
     Call<BookmarkResponse> getListBookMarkByIdUser(@Path("id") String id);
 
     @POST("createBookmark")
     Call<BookmarkResponse> addBookmark(@Body PostIDUserAndIdHouse postIDUserAndIdHouse);
 
-    @DELETE("deleteBookmark/{idUser}/{idHouse}")
-    Call<BookmarkResponse> deleteBookmark(@Path("idUser") String idUser, @Path("idHouse") String idHouse);
+    @DELETE("deleteBookmark/{id}/{idHotel}")
+    Call<BookmarkResponse> deleteBookmark(@Path("id") String idUser, @Path("idHotel") String idHotel);
 
-    @GET("getBookmarkByIdUserAndIdHouse/{idUser}/{idHouse}")
-    Call<BookmarkResponse> getBookmarkByIdUserAndIdHouse(@Path("idUser") String idUser, @Path("idHouse") String idHouse);
+    @GET("getBookmarkByIdUserAndIdHouse/{id}/{idHotel}")
+    Call<BookmarkResponse> getBookmarkByIdUserAndIdHouse(@Path("id") String idUser, @Path("idHotel") String idHotel);
 
     @GET("getOrderById/{id}")
     Call<OrderBill> getOrderById(@Path("id") String id);

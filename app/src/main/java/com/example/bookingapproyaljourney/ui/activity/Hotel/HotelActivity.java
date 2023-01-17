@@ -32,12 +32,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.callback.CallbackGetBookmark;
+import com.example.bookingapproyaljourney.callback.InterfacePostBookmark;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityHotelBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.Room;
 import com.example.bookingapproyaljourney.model.hotel.TienNghiK;
+import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
+import com.example.bookingapproyaljourney.model.user.UserClient;
+import com.example.bookingapproyaljourney.repository.BookmarkRepository;
+import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.MedicalActivity;
 import com.example.bookingapproyaljourney.ui.activity.chat_message.ChatMessageActivity;
@@ -90,6 +96,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     private TextView showMedical;
     private ArrayList<TienNghiK> data;
     private SharedPreferences sharedPreferences;
+    private BookmarkRepository bookmarkRepository;
     private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +147,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
         binding.rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
 
+        bookmarkRepository = new BookmarkRepository();
         hotelInfoViewModel = new ViewModelProvider(this).get(HotelInfoViewModel.class);
         hotelInfoViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
             @Override
@@ -313,8 +321,29 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.itemboomak, menu);
         menuItem = menu.findItem(R.id.iconbookmak);
-        return super.onCreateOptionsMenu(menu);
+        bookmarkRepository.getBookmarkByIdUserAndIdHouse(UserClient.getInstance().getId(), idHotel, new CallbackGetBookmark() {
+            @Override
+            public void onResponse(BookmarkResponse bookmarkResponse) {
+                if (bookmarkResponse.getData().size() > 0) {
+                    if (bookmarkResponse.getData().get(0).isCheck()) {
+                        menuItem.setIcon(R.drawable.ic_baseline_bookmark_24_white_full);
+                        isClickSpeed = false;
+                    }
+                } else {
+                    menuItem.setIcon(R.drawable.ic_baseline_bookmark_border_24_menu_toolbar);
+                    isClickSpeed = true;
+                }
+            }
+
+            @Override
+            public void onFailure(BookmarkResponse bookmarkResponse) {
+
+            }
+        });
+        return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -322,9 +351,29 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
         if (id == R.id.iconbookmak) {
             if (isClickSpeed) {
                 item.setIcon(R.drawable.ic_baseline_bookmark_24_white_full);
+                bookmarkRepository.addBookMark(new PostIDUserAndIdHouse(UserClient.getInstance().getId(), idHotel), new InterfacePostBookmark() {
+                    @Override
+                    public void onResponse(BookmarkResponse bookmarkResponse) {
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
                 isClickSpeed = false;
             } else {
                 menuItem.setIcon(R.drawable.ic_baseline_bookmark_border_24_menu_toolbar);
+                bookmarkRepository.deleteBookmark(UserClient.getInstance().getId(), idHotel, new InterfacePostBookmark() {
+                    @Override
+                    public void onResponse(BookmarkResponse bookmarkResponse) {
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
                 isClickSpeed = true;
             }
             return true;
