@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityPayCashYourBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
@@ -26,7 +27,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-public class PayCashYourActivity extends AppCompatActivity {
+public class PayCashYourActivity extends BaseActivity {
 
     private ActivityPayCashYourBinding binding;
     private CashPayViewModel cashPayViewModel;

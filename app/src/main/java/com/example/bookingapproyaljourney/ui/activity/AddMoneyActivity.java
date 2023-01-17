@@ -15,11 +15,11 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityAddMoneyBinding;
 import com.example.bookingapproyaljourney.model.cash.CashFolwRequest;
@@ -32,7 +32,7 @@ import com.example.librarytoastcustom.CookieBar;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
-public class AddMoneyActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddMoneyActivity extends BaseActivity implements View.OnClickListener {
     private ActivityAddMoneyBinding binding;
     private String gia;
     private BottomSheetPayment bottomSheetPayment;

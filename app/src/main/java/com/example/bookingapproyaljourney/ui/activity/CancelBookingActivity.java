@@ -28,6 +28,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityCancelBookingBinding;
 import com.example.bookingapproyaljourney.response.bill.CancelBillResponse;
@@ -36,7 +37,7 @@ import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 import com.example.bookingapproyaljourney.view_model.CancelBookingViewModel;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class CancelBookingActivity extends AppCompatActivity {
+public class CancelBookingActivity extends BaseActivity {
 
     private ActivityCancelBookingBinding binding;
     private CancelBookingViewModel cancelBookingViewModel;

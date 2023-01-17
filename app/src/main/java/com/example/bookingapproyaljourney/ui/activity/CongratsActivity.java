@@ -9,10 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityCongratsBinding;
 
-public class CongratsActivity extends AppCompatActivity {
+public class CongratsActivity extends BaseActivity {
     ActivityCongratsBinding binding;
 
     @Override

@@ -7,10 +7,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityMedicalBinding;
 
-public class MedicalActivity extends AppCompatActivity {
+public class MedicalActivity extends BaseActivity {
     private ActivityMedicalBinding binding;
 
     @Override

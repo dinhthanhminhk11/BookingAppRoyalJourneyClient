@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 
-public class BillActivity extends AppCompatActivity {
+public class BillActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

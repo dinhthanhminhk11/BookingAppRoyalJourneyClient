@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryImageAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 
-public class DetailImageHouseActivity extends AppCompatActivity implements GalleryImageAdapter.EventClick {
+public class DetailImageHouseActivity extends BaseActivity implements GalleryImageAdapter.EventClick {
 
     private ArrayList<String> img = new ArrayList<>();
     private MaterialToolbar toolBar;

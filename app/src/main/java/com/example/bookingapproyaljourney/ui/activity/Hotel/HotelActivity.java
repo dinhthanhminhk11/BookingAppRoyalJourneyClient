@@ -21,7 +21,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
@@ -32,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.callback.CallbackGetBookmark;
 import com.example.bookingapproyaljourney.callback.InterfacePostBookmark;
 import com.example.bookingapproyaljourney.constants.AppConstant;
@@ -53,6 +53,10 @@ import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.Slidr;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrConfig;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrInterface;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrPosition;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -68,7 +72,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class HotelActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback, FeedbackAdapter.EventClick {
+public class HotelActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback, FeedbackAdapter.EventClick {
     private ActivityHotelBinding binding;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private MenuItem menuItem;
@@ -137,6 +141,8 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
+
+
         convenientAdapter = new ConvenientAdapter(this);
         roomHotelAdapter = new RoomHotelAdapter();
         binding.btPhone.setOnClickListener(this);
@@ -145,6 +151,7 @@ public class HotelActivity extends AppCompatActivity implements View.OnClickList
         binding.rcvGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.rcvRoom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rcvFeedback.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
         options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
 
         bookmarkRepository = new BookmarkRepository();

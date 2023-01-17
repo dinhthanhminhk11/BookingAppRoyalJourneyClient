@@ -20,6 +20,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityOtppasswordBinding;
 import com.example.bookingapproyaljourney.model.user.Email;
@@ -28,7 +29,7 @@ import com.example.bookingapproyaljourney.response.TestResponse;
 import com.example.bookingapproyaljourney.view_model.OTPPasswordViewModel;
 import com.example.librarytoastcustom.CookieBar;
 
-public class OTPPasswordActivity extends AppCompatActivity {
+public class OTPPasswordActivity extends BaseActivity {
 
     private ActivityOtppasswordBinding binding;
     private ImageView close;

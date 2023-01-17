@@ -9,10 +9,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends BaseActivity {
     private RelativeLayout layoutAboutUs;
     private MaterialToolbar toolBar;
     private TextView tv1;
