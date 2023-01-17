@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.databinding.ActivityFeedbackListBinding;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.adapter.FeedbackListAdapter;
@@ -25,7 +26,7 @@ import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 
 import java.text.DecimalFormat;
 
-public class FeedbackListActivity extends AppCompatActivity {
+public class FeedbackListActivity extends BaseActivity {
     private ActivityFeedbackListBinding binding;
     private FeedbackViewModel feedbackViewModel;
     private String id_boss = "";

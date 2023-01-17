@@ -179,6 +179,11 @@ public class HomeVer2Fragment extends Fragment {
     }
 
     private void initData() {
+        homeViewModel.getListAllHotel();
+        if (locationYouSelf != null) {
+            homeViewModel.getListHotelNearBy(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 10000));
+        }
+
         homeViewModel.getHotelReponseMutableLiveData().observe(getActivity(), new Observer<HotelReponse>() {
             @Override
             public void onChanged(HotelReponse hotelReponse) {
@@ -220,9 +225,6 @@ public class HomeVer2Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        homeViewModel.getListAllHotel();
-        if (locationYouSelf != null) {
-            homeViewModel.getListHotelNearBy(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 10000));
-        }
+
     }
 }

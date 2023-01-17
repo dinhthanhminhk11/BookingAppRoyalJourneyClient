@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityStatusBillBinding;
 import com.example.bookingapproyaljourney.model.user.UserClient;
@@ -46,7 +47,7 @@ import com.example.librarytoastcustom.CookieBar;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class StatusBillActivity extends AppCompatActivity {
+public class StatusBillActivity extends BaseActivity {
 
     private ActivityStatusBillBinding binding;
     private OrderListResponse orderListResponse;

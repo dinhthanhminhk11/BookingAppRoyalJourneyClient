@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityForgotBinding;
 import com.example.bookingapproyaljourney.model.user.Email;
@@ -21,7 +22,7 @@ import com.example.bookingapproyaljourney.view_model.ForgotPassViewModel;
 import com.example.librarytoastcustom.CookieBar;
 
 
-public class ForgotActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
+public class ForgotActivity extends BaseActivity implements GestureDetector.OnGestureListener {
     private ActivityForgotBinding binding;
     private float horizontalAxis1, horizontalAxis2, verticalAxis1, verticalAxis2;
     private static int MIN_DISTANCE = 100;

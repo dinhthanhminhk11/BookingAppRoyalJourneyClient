@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityFeedBackBinding;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
@@ -26,7 +27,7 @@ import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 
 import java.util.Calendar;
 
-public class FeedBackActivity extends AppCompatActivity {
+public class FeedBackActivity extends BaseActivity {
     private ActivityFeedBackBinding binding;
     private int sao = 0;
     private Boolean check = false;

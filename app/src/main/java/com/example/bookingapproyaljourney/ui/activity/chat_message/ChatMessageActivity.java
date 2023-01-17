@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.chat.Content;
 import com.example.bookingapproyaljourney.model.chat.Message;
@@ -45,7 +46,7 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-public class ChatMessageActivity extends AppCompatActivity {
+public class ChatMessageActivity extends BaseActivity {
     private Socket mSocket;
     private MaterialToolbar toolBar;
     private ImageView imgBossChat;

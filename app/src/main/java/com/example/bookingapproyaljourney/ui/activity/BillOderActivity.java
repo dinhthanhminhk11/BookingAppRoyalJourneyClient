@@ -35,6 +35,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityBillOderBinding;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
@@ -67,7 +68,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class BillOderActivity extends AppCompatActivity implements BottomSheetEditPerson.CallBack {
+public class BillOderActivity extends BaseActivity implements BottomSheetEditPerson.CallBack {
 
     private ActivityBillOderBinding binding;
     private BottomSheetPayment bottomSheetPayment;

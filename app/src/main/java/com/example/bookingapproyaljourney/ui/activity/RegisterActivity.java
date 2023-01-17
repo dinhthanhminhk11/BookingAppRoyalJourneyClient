@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityRegisterBinding;
 import com.example.bookingapproyaljourney.response.RegisterResponse;
@@ -23,7 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
     private RegisterViewModel viewModel;
     private ActivityRegisterBinding binding;
     private String tokenDevice;

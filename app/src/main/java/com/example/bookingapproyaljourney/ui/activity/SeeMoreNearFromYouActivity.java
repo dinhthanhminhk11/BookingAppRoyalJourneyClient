@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.databinding.ActivitySeeMoreNearFromYouBinding;
@@ -63,7 +64,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class SeeMoreNearFromYouActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class SeeMoreNearFromYouActivity extends BaseActivity implements OnMapReadyCallback {
     private String nameLocationYourSelf;
     private ActivitySeeMoreNearFromYouBinding binding;
     private GoogleMap mMap;

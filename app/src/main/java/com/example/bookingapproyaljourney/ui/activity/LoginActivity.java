@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
@@ -31,7 +32,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private String correct_email = "";
     private String correct_password = "";
     private UserLogin userLogin;

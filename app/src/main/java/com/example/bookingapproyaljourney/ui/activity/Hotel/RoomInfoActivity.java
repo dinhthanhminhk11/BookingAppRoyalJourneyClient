@@ -20,12 +20,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityRoomInfoBinding;
 import com.example.bookingapproyaljourney.model.hotel.Room;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.adapter.ConvenientAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.ImageAutoSliderAdapter;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.Slidr;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.Utils;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrConfig;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrInterface;
+import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrPosition;
 import com.example.bookingapproyaljourney.view_model.RoomInfoViewModel;
 import com.example.libraryautoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.example.libraryautoimageslider.SliderAnimations;
@@ -35,7 +41,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class RoomInfoActivity extends AppCompatActivity {
+public class RoomInfoActivity extends BaseActivity {
     private ActivityRoomInfoBinding binding;
     private RoomInfoViewModel roomInfoViewModel;
     private ImageAutoSliderAdapter imageAutoSliderAdapter;

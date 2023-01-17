@@ -34,6 +34,7 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.constants.Constants;
 import com.example.bookingapproyaljourney.databinding.ActivityNearFromYouMapsBinding;
@@ -72,7 +73,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class NearFromYouMapsActivity extends AppCompatActivity implements OnMapReadyCallback, BottomSheetFilterMap.Callback {
+public class NearFromYouMapsActivity extends BaseActivity implements OnMapReadyCallback, BottomSheetFilterMap.Callback {
     private GoogleMap mMap;
     private ActivityNearFromYouMapsBinding binding;
     private LatLng latLngLocationYourSelf;

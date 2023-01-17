@@ -20,6 +20,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityOtpBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
@@ -34,7 +35,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class OtpActivity extends AppCompatActivity {
+public class OtpActivity extends BaseActivity {
 
     private ActivityOtpBinding binding;
     private VerifyViewModel viewModel;

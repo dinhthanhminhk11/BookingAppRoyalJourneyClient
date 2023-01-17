@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
@@ -31,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityBookingBinding;
 import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
@@ -55,7 +55,7 @@ import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
-public class BookingActivity extends AppCompatActivity implements BottomSheetEditPerson.CallBack {
+public class BookingActivity extends BaseActivity implements BottomSheetEditPerson.CallBack {
     private ActivityBookingBinding binding;
     private String phonePrivate, yeuCauThemPrivate;
     private int TYPE_PAYMENT = 1;

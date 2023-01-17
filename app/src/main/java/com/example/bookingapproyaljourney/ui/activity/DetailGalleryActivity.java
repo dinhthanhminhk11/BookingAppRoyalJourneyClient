@@ -16,12 +16,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.ui.adapter.DetailGalleryAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 
-public class DetailGalleryActivity extends AppCompatActivity implements DetailGalleryAdapter.EventClick {
+public class DetailGalleryActivity extends BaseActivity implements DetailGalleryAdapter.EventClick {
 
     private ImageButton imgCancelGallery;
     private TextView tvCountGallery;

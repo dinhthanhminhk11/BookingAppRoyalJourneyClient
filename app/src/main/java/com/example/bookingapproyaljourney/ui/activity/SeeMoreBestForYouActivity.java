@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivitySeeMoreBestForYouBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
@@ -30,7 +31,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
-public class SeeMoreBestForYouActivity extends AppCompatActivity {
+public class SeeMoreBestForYouActivity extends BaseActivity {
     private List<House> list;
     private BestForYouAdapterNotNull bestForYouAdapterNotNull;
     private MaterialToolbar toolBar;

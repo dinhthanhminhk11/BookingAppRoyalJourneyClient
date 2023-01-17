@@ -14,6 +14,8 @@
         <item name="background_color">#FFFFFF</item>
         <item name="text_color">#000000</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="pinViewStyle">@style/PinWidget.PinView</item>
     </style>
 
