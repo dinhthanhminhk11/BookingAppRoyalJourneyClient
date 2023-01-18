@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/_12dp"
+    android:background="@drawable/background_item_trend_hotel"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nameCategoryItemCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingHorizontal="@dimen/_16dp"
+        android:paddingVertical="@dimen/_10dp"
+        android:text="aaa"
+        android:textColor="@color/black" />
+</LinearLayout>

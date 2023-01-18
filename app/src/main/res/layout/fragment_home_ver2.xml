@@ -25,15 +25,15 @@
                 android:background="@drawable/gradientbackground_white"
                 android:foreground="?attr/selectableItemBackground"
                 android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_20dp"
-                android:paddingTop="@dimen/_10dp">
+                android:paddingHorizontal="@dimen/_20dp">
 
                 <LinearLayout
                     android:id="@+id/contentSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:foreground="?attr/selectableItemBackground"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/_15dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -55,7 +55,6 @@
                         android:layout_width="@dimen/_24dp"
                         android:layout_height="@dimen/_24dp"
                         android:layout_gravity="center"
-                        android:foreground="?android:attr/selectableItemBackground"
                         android:src="@drawable/ic_sent_map" />
                 </LinearLayout>
 
@@ -63,17 +62,15 @@
                     android:id="@+id/contentPayOfflineLine"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_05dp"
-                    android:layout_marginTop="@dimen/_15dp"
                     android:background="@color/color_E0DFE4" />
 
                 <LinearLayout
                     android:id="@+id/contentDate"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15dp"
                     android:foreground="?attr/selectableItemBackground"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/_15dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -111,7 +108,7 @@
                                 android:id="@+id/tvTimeNhanPhong"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Thứ 3"
+                                android:text="Th 3"
                                 android:textColor="@color/color_858585" />
                         </LinearLayout>
                     </LinearLayout>
@@ -180,7 +177,7 @@
                                 android:id="@+id/dayEnd"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Thứ 3"
+                                android:text="Th 3"
                                 android:textColor="@color/color_858585" />
                         </LinearLayout>
                     </LinearLayout>
@@ -190,16 +187,15 @@
                     android:id="@+id/contentPayOfflineLine2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_05dp"
-                    android:layout_marginTop="@dimen/_15dp"
                     android:background="@color/color_E0DFE4" />
 
                 <LinearLayout
                     android:id="@+id/contentPerson"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15dp"
                     android:foreground="?attr/selectableItemBackground"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/_15dp">
 
                     <ImageView
                         android:layout_width="wrap_content"

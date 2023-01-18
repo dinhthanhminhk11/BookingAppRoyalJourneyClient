@@ -280,6 +280,7 @@ public class BottomSheetEditPerson extends BottomSheetDialog implements View.OnC
             downCountRoom.setAlpha(0.4f);
             downCountRoom.setEnabled(false);
         }
+
         if (countRoomText > countRoomResponse - 1) {
             upCountRoom.setAlpha(0.4f);
             upCountRoom.setEnabled(false);

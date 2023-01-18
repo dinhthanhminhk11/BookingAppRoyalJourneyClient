@@ -1,6 +1,7 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -27,8 +28,10 @@ import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
 import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
 import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPersonHome;
 import com.example.bookingapproyaljourney.view_model.HomeViewModel;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
@@ -54,6 +57,7 @@ public class HomeVer2Fragment extends Fragment {
     private String checkStartDate;
     private String checkEndDate;
     private long daysDiff = 1;
+    private BottomSheetPersonHome bottomSheetPersonHome;
 
     public HomeVer2Fragment(Location locationYouSelf) {
         this.locationYouSelf = locationYouSelf;
@@ -107,7 +111,8 @@ public class HomeVer2Fragment extends Fragment {
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
 
         binding.contentSearch.setOnClickListener(v -> {
-
+            startActivity(new Intent(getActivity(), SearchHotelActivity.class),
+                    ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
         });
 
         binding.contentDate.setOnClickListener(v -> {
@@ -172,10 +177,8 @@ public class HomeVer2Fragment extends Fragment {
         });
 
         binding.contentPerson.setOnClickListener(v -> {
-
+            showDiaLogEditPerson();
         });
-
-
     }
 
     private void initData() {
@@ -227,4 +230,25 @@ public class HomeVer2Fragment extends Fragment {
         super.onResume();
 
     }
+
+    private void showDiaLogEditPerson() {
+        bottomSheetPersonHome = new BottomSheetPersonHome(getActivity(), R.style.MaterialDialogSheet, new BottomSheetPersonHome.CallBack() {
+            @Override
+            public void onCLickCLose() {
+
+            }
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onCLickSum(int person, int children, int countRoom, int age) {
+                binding.countRoom.setText(countRoom + " phòng");
+                binding.countChildren.setText(children + " trẻ em");
+                binding.countPerson.setText(person + " người lớn");
+            }
+        });
+
+        bottomSheetPersonHome.show();
+        bottomSheetPersonHome.setCanceledOnTouchOutside(false);
+    }
+
 }

@@ -31,13 +31,16 @@
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.Hotel.BookingActivity"
+            android:name=".ui.activity.Hotel.SearchHotelActivity"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".ui.activity.Hotel.RoomInfoActivity"
+            android:name=".ui.activity.Hotel.BookingActivity"
             android:exported="true"></activity>
+        <activity
+            android:name=".ui.activity.Hotel.RoomInfoActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.activity.Hotel.HotelActivity"
             android:exported="true" />
@@ -47,7 +50,7 @@
         <activity
             android:name=".ui.activity.AddMoneyActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.activity.PayCashYourActivity"
             android:exported="true" />

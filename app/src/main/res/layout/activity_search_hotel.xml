@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+
+    tools:context=".ui.activity.Hotel.SearchHotelActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_15dp"
+        android:paddingVertical="@dimen/_10dp">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_round_close_24" />
+
+        <EditText
+            android:id="@+id/etSearchHomeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_8dp"
+            android:layout_marginRight="@dimen/_8dp"
+            android:layout_weight="1"
+            android:background="@drawable/framesearch_homefragment"
+            android:drawableLeft="@drawable/ic_search_homefragment"
+            android:drawablePadding="@dimen/_10dp"
+            android:hint="Địa chỉ"
+            android:imeOptions="actionSearch"
+            android:inputType="textCapSentences|textAutoComplete"
+            android:paddingVertical="@dimen/_10dp"
+            android:paddingLeft="@dimen/_16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/color_858585" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:paddingHorizontal="@dimen/_15dp"
+        android:paddingVertical="@dimen/_10dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="@color/color_EBEBEB" />
+
+    <LinearLayout
+        android:id="@+id/contentHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_15dp"
+            android:paddingVertical="@dimen/_10dp"
+            android:text="Lịch sử tìm kiếm"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listHitory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:paddingHorizontal="@dimen/_15dp"
+            android:paddingVertical="@dimen/_10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_15dp"
+            android:paddingVertical="@dimen/_10dp"
+            android:text="Xoá lịch sử"
+            android:textColor="@color/red"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="@color/color_EBEBEB" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_15dp"
+        android:paddingVertical="@dimen/_10dp"
+        android:text="Phổ biến"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listTrend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:paddingHorizontal="@dimen/_15dp"
+        android:paddingVertical="@dimen/_10dp" />
+
+</LinearLayout>
