@@ -51,6 +51,7 @@
                         android:textColor="@color/black" />
 
                     <ImageView
+                        android:foreground="?attr/selectableItemBackground"
                         android:id="@+id/direct"
                         android:layout_width="@dimen/_24dp"
                         android:layout_height="@dimen/_24dp"

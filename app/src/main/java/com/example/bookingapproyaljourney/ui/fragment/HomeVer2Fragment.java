@@ -1,7 +1,10 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import static com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelActivity.nameLocation;
+
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -111,8 +114,11 @@ public class HomeVer2Fragment extends Fragment {
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
 
         binding.contentSearch.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), SearchHotelActivity.class),
-                    ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            startActivity(new Intent(getActivity(), SearchHotelActivity.class), ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+        });
+
+        binding.direct.setOnClickListener(v->{
+            binding.textSearch.setText("Khách sạn gần nhất");
         });
 
         binding.contentDate.setOnClickListener(v -> {
@@ -228,7 +234,7 @@ public class HomeVer2Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        binding.textSearch.setText(nameLocation);
     }
 
     private void showDiaLogEditPerson() {

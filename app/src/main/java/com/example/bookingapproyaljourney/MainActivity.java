@@ -77,6 +77,7 @@ import com.example.bookingapproyaljourney.ui.custom.LighterHelper;
 import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HelpFragment;
+import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeVer2Fragment;
 import com.example.bookingapproyaljourney.ui.fragment.ListOrderAllFragment;
 import com.example.bookingapproyaljourney.ui.fragment.NotificationFragment;
@@ -691,4 +692,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             }
         }).addHighlight(new LighterParameter.Builder().setHighlightedViewId(R.id.nameCity).setTipView(LighterHelper.createCommonTipView(this, R.drawable.icon_tip_4, getString(R.string.Your_location))).setLighterShape(new RectShape(0, 0, 25)).setTipViewRelativeDirection(Direction.TOP).setTipViewDisplayAnimation(LighterHelper.getScaleAnimation()).setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0)).build()).show();
     }
+
+
 }
