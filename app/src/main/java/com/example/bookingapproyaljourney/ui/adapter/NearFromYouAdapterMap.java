@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.CallbackGetBookmark;
-import com.example.bookingapproyaljourney.callback.CategoryCallBack;
 import com.example.bookingapproyaljourney.callback.InterfacePostBookmark;
 import com.example.bookingapproyaljourney.databinding.ItemNearFromYouMapBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;

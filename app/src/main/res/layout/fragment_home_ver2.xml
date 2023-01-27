@@ -51,11 +51,11 @@
                         android:textColor="@color/black" />
 
                     <ImageView
-                        android:foreground="?attr/selectableItemBackground"
                         android:id="@+id/direct"
                         android:layout_width="@dimen/_24dp"
                         android:layout_height="@dimen/_24dp"
                         android:layout_gravity="center"
+                        android:foreground="?attr/selectableItemBackground"
                         android:src="@drawable/ic_sent_map" />
                 </LinearLayout>
 
@@ -84,7 +84,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="07"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_30dp" />
 
@@ -100,7 +99,6 @@
                                 android:id="@+id/monthDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tháng 1"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_16dp" />
 
@@ -109,7 +107,6 @@
                                 android:id="@+id/tvTimeNhanPhong"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Th 3"
                                 android:textColor="@color/color_858585" />
                         </LinearLayout>
                     </LinearLayout>
@@ -129,7 +126,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_16dp"
                             android:textStyle="bold" />
@@ -154,7 +150,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="07"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_30dp" />
 
@@ -169,7 +164,6 @@
                                 android:id="@+id/monthEnd"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tháng 1"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_16dp" />
 
@@ -178,7 +172,6 @@
                                 android:id="@+id/dayEnd"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Th 3"
                                 android:textColor="@color/color_858585" />
                         </LinearLayout>
                     </LinearLayout>
@@ -209,7 +202,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/_12dp"
-                        android:text="2 phòng"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16dp" />
 
@@ -227,7 +219,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="2 người lớn"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16dp" />
 
@@ -245,7 +236,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="2 trẻ em"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16dp" />
                 </LinearLayout>

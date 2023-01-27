@@ -1,14 +1,16 @@
 package com.example.bookingapproyaljourney.ui.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelActivity.nameLocation;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,10 @@ import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
 import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
 import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.ListFilterHotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelActivity;
+import com.example.bookingapproyaljourney.ui.activity.SeeMoreBestForYouActivity;
+import com.example.bookingapproyaljourney.ui.activity.SeeMoreNearFromYouActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPersonHome;
@@ -41,6 +46,7 @@ import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -59,12 +65,22 @@ public class HomeVer2Fragment extends Fragment {
     private NearFromYouAdapter nearFromYouAdapter;
     private String checkStartDate;
     private String checkEndDate;
+
     private long daysDiff = 1;
+    private int countRoom = 2;
+    private int countPerson = 2;
+    private int countChildren = 2;
+    private int ageChildren = 1;
+
     private BottomSheetPersonHome bottomSheetPersonHome;
+    private Date currentTimeNow;
+    private Date currentTimeTomorrow;
 
     public HomeVer2Fragment(Location locationYouSelf) {
         this.locationYouSelf = locationYouSelf;
     }
+
+    private long daysDiffPrivate = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,7 +133,7 @@ public class HomeVer2Fragment extends Fragment {
             startActivity(new Intent(getActivity(), SearchHotelActivity.class), ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
         });
 
-        binding.direct.setOnClickListener(v->{
+        binding.direct.setOnClickListener(v -> {
             binding.textSearch.setText("Khách sạn gần nhất");
         });
 
@@ -169,7 +185,7 @@ public class HomeVer2Fragment extends Fragment {
 
                     daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
                     binding.payDay.setText(daysDiff + "");
-
+                    daysDiffPrivate = daysDiff;
                     binding.startDate.setText(startDateString);
                     binding.endDate.setText(endDateString);
 
@@ -185,9 +201,74 @@ public class HomeVer2Fragment extends Fragment {
         binding.contentPerson.setOnClickListener(v -> {
             showDiaLogEditPerson();
         });
+
+        binding.seeMoreBestForYouHomeFragment.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), SeeMoreBestForYouActivity.class);
+            startActivity(i);
+        });
+
+        binding.seeMoreNearFromYouHomeFragment.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), SeeMoreNearFromYouActivity.class);
+            startActivity(i);
+        });
+
+        binding.btnSearch.setOnClickListener(v -> {
+            saveDataSearch();
+            startActivity(new Intent(getActivity(), ListFilterHotelActivity.class));
+        });
     }
 
     private void initData() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+
+        currentTimeNow = Calendar.getInstance().getTime();
+
+        currentTimeTomorrow = calendar.getTime();
+
+        binding.payDay.setText(daysDiffPrivate + "");
+
+        String dayNow = DateFormat.format("EEE", currentTimeNow).toString();
+        String dayTomorrow = DateFormat.format("EEE", currentTimeTomorrow).toString();
+
+        String dateNow = DateFormat.format("dd", currentTimeNow).toString();
+        String dateTomorrow = DateFormat.format("dd", currentTimeTomorrow).toString();
+
+
+        String monthNow = DateFormat.format("MM", currentTimeNow).toString();
+        String monthTomorrow = DateFormat.format("MM", currentTimeTomorrow).toString();
+
+        binding.startDate.setText(dateNow + "");
+        binding.monthDate.setText("Tháng " + monthNow);
+        binding.tvTimeNhanPhong.setText(dayNow);
+
+        binding.endDate.setText(dateTomorrow + "");
+        binding.monthEnd.setText("Tháng " + monthTomorrow);
+        binding.dayEnd.setText(dayTomorrow);
+
+        SharedPreferences sharedPreferences_user_count_room = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_ROOM, MODE_PRIVATE);
+        countRoom = sharedPreferences_user_count_room.getInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_ROOM, 2);
+
+        SharedPreferences sharedPreferences_user_count_person = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_PERSON, MODE_PRIVATE);
+        countPerson = sharedPreferences_user_count_person.getInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_PERSON, 2);
+
+        SharedPreferences sharedPreferences_user_count_children = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_CHILDREN, MODE_PRIVATE);
+        countChildren = sharedPreferences_user_count_children.getInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_CHILDREN, 2);
+
+        SharedPreferences sharedPreferences_user_count_text_search = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_TEXT_SEARCH, MODE_PRIVATE);
+        String textSearch = sharedPreferences_user_count_text_search.getString(AppConstant.SHAREDPREFERENCES_USER_TEXT_SEARCH, "Khách sạn gần nhất");
+
+        SharedPreferences sharedPreferences_user_age_children = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, MODE_PRIVATE);
+        ageChildren = sharedPreferences_user_age_children.getInt(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, 1);
+
+        binding.countRoom.setText(countRoom + " phòng");
+        binding.countChildren.setText(countChildren + " trẻ em");
+        binding.countPerson.setText(countPerson + " người lớn");
+        binding.textSearch.setText(textSearch);
+
+        Log.e("MinhDate", currentTimeNow + " now");
+        Log.e("MinhDate", currentTimeTomorrow + " tomorrow");
+
         homeViewModel.getListAllHotel();
         if (locationYouSelf != null) {
             homeViewModel.getListHotelNearBy(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 10000));
@@ -234,7 +315,9 @@ public class HomeVer2Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        binding.textSearch.setText(nameLocation);
+        if (!nameLocation.equals("")) {
+            binding.textSearch.setText(nameLocation);
+        }
     }
 
     private void showDiaLogEditPerson() {
@@ -246,10 +329,15 @@ public class HomeVer2Fragment extends Fragment {
 
             @SuppressLint("SetTextI18n")
             @Override
-            public void onCLickSum(int person, int children, int countRoom, int age) {
-                binding.countRoom.setText(countRoom + " phòng");
+            public void onCLickSum(int person, int children, int room, int age) {
+                binding.countRoom.setText(room + " phòng");
                 binding.countChildren.setText(children + " trẻ em");
                 binding.countPerson.setText(person + " người lớn");
+
+                countPerson = person;
+                countChildren = children;
+                countRoom = room;
+                ageChildren = age;
             }
         });
 
@@ -257,4 +345,30 @@ public class HomeVer2Fragment extends Fragment {
         bottomSheetPersonHome.setCanceledOnTouchOutside(false);
     }
 
+    private void saveDataSearch() {
+        SharedPreferences sharedPreferences_user_count_room = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_ROOM, MODE_PRIVATE);
+        SharedPreferences.Editor editor_user_count_room = sharedPreferences_user_count_room.edit();
+        editor_user_count_room.putInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_ROOM, countRoom);
+        editor_user_count_room.commit();
+
+        SharedPreferences sharedPreferences_user_count_person = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_PERSON, MODE_PRIVATE);
+        SharedPreferences.Editor editor_user_count_person = sharedPreferences_user_count_person.edit();
+        editor_user_count_person.putInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_PERSON, countPerson);
+        editor_user_count_person.commit();
+
+        SharedPreferences sharedPreferences_user_count_children = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_CHILDREN, MODE_PRIVATE);
+        SharedPreferences.Editor editor_user_count_children = sharedPreferences_user_count_children.edit();
+        editor_user_count_children.putInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_CHILDREN, countChildren);
+        editor_user_count_children.commit();
+
+        SharedPreferences sharedPreferences_user_count_text_search = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_TEXT_SEARCH, MODE_PRIVATE);
+        SharedPreferences.Editor editor_user_count_text_search = sharedPreferences_user_count_text_search.edit();
+        editor_user_count_text_search.putString(AppConstant.SHAREDPREFERENCES_USER_TEXT_SEARCH, binding.textSearch.getText().toString());
+        editor_user_count_text_search.commit();
+
+        SharedPreferences sharedPreferences_user_age_children = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, MODE_PRIVATE);
+        SharedPreferences.Editor editor_user_age_children = sharedPreferences_user_age_children.edit();
+        editor_user_age_children.putInt(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, ageChildren);
+        editor_user_age_children.commit();
+    }
 }

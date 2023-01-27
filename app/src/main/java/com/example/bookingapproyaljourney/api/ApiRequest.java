@@ -19,6 +19,7 @@ import com.example.bookingapproyaljourney.model.house.PostIDUserAndIdHouse;
 import com.example.bookingapproyaljourney.model.map.Root;
 import com.example.bookingapproyaljourney.model.order.OrderBill;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
+import com.example.bookingapproyaljourney.model.search.SearchModel;
 import com.example.bookingapproyaljourney.model.user.ChangePasswordRequest;
 import com.example.bookingapproyaljourney.model.user.Email;
 import com.example.bookingapproyaljourney.model.user.UserEditProfileRequest;
@@ -252,4 +253,7 @@ public interface ApiRequest {
 
     @GET("getDataCancelBooking/{id}")
     Call<CancelBillResponse> getDataCancelBooking(@Path("id") String id);
+
+    @GET("searchLocationAndHotel/{textLocation}")
+    Call<List<SearchModel>> getListSearchLocationHotel(@Path("textLocation") String textLocation);
 }

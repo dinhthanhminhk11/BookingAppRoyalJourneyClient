@@ -11,10 +11,12 @@ import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponseNearBy;
 import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
 import com.example.bookingapproyaljourney.model.hotel.Room;
+import com.example.bookingapproyaljourney.model.search.SearchModel;
 import com.example.bookingapproyaljourney.request.BillRequest;
 import com.example.bookingapproyaljourney.response.bill.BillResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import retrofit2.Call;
@@ -101,8 +103,8 @@ public class Repository {
         });
     }
 
-    public void getHotelAndRoomByIdRoom(String id,String idUser , Consumer<HotelBillResponse> consumer) {
-        apiRequest.getHotelAndRoomByIdRoom(id , idUser).enqueue(new Callback<HotelBillResponse>() {
+    public void getHotelAndRoomByIdRoom(String id, String idUser, Consumer<HotelBillResponse> consumer) {
+        apiRequest.getHotelAndRoomByIdRoom(id, idUser).enqueue(new Callback<HotelBillResponse>() {
             @Override
             public void onResponse(Call<HotelBillResponse> call, Response<HotelBillResponse> response) {
                 if (response.isSuccessful()) {
@@ -132,6 +134,24 @@ public class Repository {
 
             @Override
             public void onFailure(Call<BillResponse> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+            }
+        });
+    }
+
+    public void getListSearchLocationHotel(String textLocation, Consumer consumer) {
+        apiRequest.getListSearchLocationHotel(textLocation).enqueue(new Callback<List<SearchModel>>() {
+            @Override
+            public void onResponse(Call<List<SearchModel>> call, Response<List<SearchModel>> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchModel>> call, Throwable t) {
                 Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
             }
         });

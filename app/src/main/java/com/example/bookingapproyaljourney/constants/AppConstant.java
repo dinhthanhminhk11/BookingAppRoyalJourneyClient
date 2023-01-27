@@ -2,7 +2,7 @@ package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
 
-    public static final String BASE = "http://192.168.0.102:8080";
+    public static final String BASE = "https://926e-123-25-30-191.ap.ngrok.io";
 //    public static final String BASE = "http://192.168.0.113:8080";
     public static final String BASE_URL = BASE + "/api/";
     public static final String BASE_URL_CHAT = BASE;
@@ -73,4 +73,9 @@ public class AppConstant {
     public static final String da_tra_phong = "Đã trả phòng";
     public static final String CHECK_SUCCESS_ADD_MONEY = "CHECK_SUCCESS_ADD_MONEY";
 
+    public static final String SHAREDPREFERENCES_USER_COUNT_PERSON = "SHAREDPREFERENCES_USER_COUNT_PERSON";
+    public static final String SHAREDPREFERENCES_USER_COUNT_ROOM = "SHAREDPREFERENCES_USER_COUNT_ROOM";
+    public static final String SHAREDPREFERENCES_USER_COUNT_CHILDREN = "SHAREDPREFERENCES_USER_COUNT_CHILDREN";
+    public static final String SHAREDPREFERENCES_USER_TEXT_SEARCH = "SHAREDPREFERENCES_USER_TEXT_SEARCH";
+    public static final String SHAREDPREFERENCES_USER_AGE_CHILDREN = "SHAREDPREFERENCES_USER_AGE_CHILDREN";
 }

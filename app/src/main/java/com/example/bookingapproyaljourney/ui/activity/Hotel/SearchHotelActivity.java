@@ -7,18 +7,32 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.base.BaseActivity;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivitySearchHotelBinding;
+import com.example.bookingapproyaljourney.model.search.SearchModel;
+import com.example.bookingapproyaljourney.ui.adapter.SearchAdapter;
+import com.example.bookingapproyaljourney.view_model.SearchHotelViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 
 public class SearchHotelActivity extends BaseActivity implements View.OnClickListener {
-    public static String nameLocation = "Khách sạn gần nhất";
+    public static String nameLocation = "";
     private static SearchHotelActivity instance;
     private Consumer consumer;
+    private SearchAdapter searchAdapter;
+    private List<SearchModel> listSearchModel;
+    private List<SearchModel> listPrivate;
+    private SearchHotelViewModel searchHotelViewModel;
 
     public SearchHotelActivity() {
     }
@@ -41,15 +55,26 @@ public class SearchHotelActivity extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         binding = ActivitySearchHotelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initView();
         initData();
+        initView();
     }
 
     private void initData() {
-
+        listSearchModel = new ArrayList<>();
+        listPrivate = new ArrayList<>();
+        listSearchModel.add(new SearchModel("Hà Nội", 1));
+        listSearchModel.add(new SearchModel("Hải Dương", 1));
+        listSearchModel.add(new SearchModel("Hưng Yên", 1));
+        listSearchModel.add(new SearchModel("Quảng Ninh", 1));
+        listSearchModel.add(new SearchModel("Bắc Giang", 1));
+        listSearchModel.add(new SearchModel("Bắc Ninh", 1));
+        listSearchModel.add(new SearchModel("Đà Nẵng", 1));
+        listSearchModel.add(new SearchModel("Đà Lạt", 1));
     }
 
     private void initView() {
+        searchHotelViewModel = new ViewModelProvider(this).get(SearchHotelViewModel.class);
+        searchAdapter = new SearchAdapter();
         binding.btnPhuQuoc.setOnClickListener(this);
         binding.btnNhaTrang.setOnClickListener(this);
         binding.btnBaRia.setOnClickListener(this);
@@ -61,6 +86,8 @@ public class SearchHotelActivity extends BaseActivity implements View.OnClickLis
         binding.btnHoChiMinh.setOnClickListener(this);
         binding.btnHoiAn.setOnClickListener(this);
         binding.contentSearch.setOnClickListener(this);
+
+        binding.listSearch.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         binding.close.setOnClickListener(v -> {
             finish();
@@ -80,7 +107,38 @@ public class SearchHotelActivity extends BaseActivity implements View.OnClickLis
 
             @Override
             public void afterTextChanged(Editable editable) {
+                if (binding.etSearchHomeFragment.getText().toString().length() > 0) {
+                    binding.contentSearch.setVisibility(View.GONE);
+                    binding.listSearch.setVisibility(View.VISIBLE);
+                    binding.contentViewLine.setVisibility(View.GONE);
+                    binding.contentBottom.setVisibility(View.GONE);
+                    searchHotelViewModel.getListSearchLocationHotel(binding.etSearchHomeFragment.getText().toString().trim());
+                } else {
+                    binding.contentSearch.setVisibility(View.VISIBLE);
+                    binding.listSearch.setVisibility(View.GONE);
+                    binding.contentViewLine.setVisibility(View.VISIBLE);
+                    binding.contentBottom.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
+        searchHotelViewModel.getSearchModelMutableLiveData().observe(this, new Observer<List<SearchModel>>() {
+            @Override
+            public void onChanged(List<SearchModel> searchModel) {
+                searchAdapter.setData(searchModel);
+                searchAdapter.setConsumer(o -> {
+                    if (o instanceof SearchModel) {
+                        if (((SearchModel) o).getType() == 2) {
+                            Intent intent = new Intent(SearchHotelActivity.this, HotelActivity.class);
+                            intent.putExtra(AppConstant.HOTEL_EXTRA, ((SearchModel) o).getIdHotel());
+                            startActivity(intent);
+                        } else {
+                            onClickTrendLocation(((SearchModel) o).getNameHotel());
+                        }
+                    }
+                });
+                searchAdapter.setTextHighLight(binding.etSearchHomeFragment.getText().toString().trim());
+                binding.listSearch.setAdapter(searchAdapter);
             }
         });
     }
