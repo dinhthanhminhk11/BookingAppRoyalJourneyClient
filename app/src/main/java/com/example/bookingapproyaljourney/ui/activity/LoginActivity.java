@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityLoginBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
@@ -31,7 +32,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private String correct_email = "";
     private String correct_password = "";
     private UserLogin userLogin;
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private String checkStartDateResponse;
     private String tokenDevice;
+    private String stringCheckNullToken = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             changeTheme(2);
         }
+
+        stringCheckNullToken = getIntent().getStringExtra(AppConstant.CHECK_LOGIN_TOKEN_NULL);
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
@@ -143,15 +147,28 @@ public class LoginActivity extends AppCompatActivity {
                     if (!loginResponse.getUser().getTokenDevice().equals(tokenDevice)) {
                         loginViewModel.updateTokenDevice(new UserRequestTokenDevice(loginResponse.getUser().getId(), tokenDevice));
                     }
+
                     editor.putString(AppConstant.TOKEN_USER, loginResponse.getToken());
                     editor.putString(AppConstant.ID_USER, loginResponse.getUser().getId());
                     editor.commit();
+                    if (!(stringCheckNullToken == null)) {
+                        if (stringCheckNullToken.equals("checkNotSignIn")) {
+                            onBackPressed();
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra(CheckSuccess, AppConstant.LoginResultSuccess);
+                            startActivity(intent);
+                        }
+                    }else {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(CheckSuccess, AppConstant.LoginResultSuccess);
+                        startActivity(intent);
+                    }
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(CheckSuccess, AppConstant.LoginResultSuccess);
-                    startActivity(intent);
                 } else {
                     EventBus.getDefault().postSticky(new KeyEvent(AppConstant.CHECK_EVENT_CONFIRM_ACCOUNT));
                     Intent intent = new Intent(LoginActivity.this, OtpActivity.class);

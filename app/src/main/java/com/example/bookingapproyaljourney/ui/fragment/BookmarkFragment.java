@@ -23,10 +23,12 @@ import com.example.bookingapproyaljourney.callback.CallbackOrderClick;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentBookmarkBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
+import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.BookmarkResponse;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BookmarkAdapter;
 import com.example.bookingapproyaljourney.view_model.BookmarkViewModel;
 
@@ -120,14 +122,14 @@ public class BookmarkFragment extends Fragment {
                     }
 
                     @Override
-                    public void onDirect(HouseDetailResponse houseDetailResponse) {
+                    public void onDirect(HotelById hotelById) {
 
                     }
 
                     @Override
                     public void onClick(String id) {
-                        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-                        intent.putExtra(AppConstant.HOUSE_EXTRA, id);
+                        Intent intent = new Intent(getActivity(), HotelActivity.class);
+                        intent.putExtra(AppConstant.HOTEL_EXTRA, id);
                         startActivity(intent);
                     }
                 });

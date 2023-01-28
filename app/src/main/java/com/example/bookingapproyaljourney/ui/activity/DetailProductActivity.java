@@ -41,6 +41,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.callback.CallbackGetBookmark;
 import com.example.bookingapproyaljourney.callback.InterfacePostBookmark;
 import com.example.bookingapproyaljourney.constants.AppConstant;
@@ -81,7 +82,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-public class DetailProductActivity extends AppCompatActivity implements FeedbackAdapter.EventClick, OnMapReadyCallback {
+public class DetailProductActivity extends BaseActivity implements FeedbackAdapter.EventClick, OnMapReadyCallback {
     private ScrollView scrollView;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private CardView contenTOp;
@@ -301,12 +302,12 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
         });
 
-        showMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog();
-            }
-        });
+//        showMore.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showDialog();
+//            }
+//        });
 
         showMorebathdroom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -430,7 +431,7 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
             rcvConvenient.setHasFixedSize(true);
             rcvConvenient.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            convenientAdapter.setConvenientTestList(item.getSupplement());
+//            convenientAdapter.setConvenientTestList(item.getSupplement());
             rcvConvenient.setAdapter(convenientAdapter);
             data = item.getSupplement();
 
@@ -455,16 +456,16 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
     }
 
-    private void showDialog() {
-        bottomSheetConvenient = new BottomSheetConvenient(DetailProductActivity.this, R.style.MaterialDialogSheet, data, new BottomSheetConvenient.CallBack() {
-            @Override
-            public void onCLickCLose() {
-                bottomSheetConvenient.dismiss();
-            }
-        });
-        bottomSheetConvenient.show();
-        bottomSheetConvenient.setCanceledOnTouchOutside(false);
-    }
+//    private void showDialog() {
+//        bottomSheetConvenient = new BottomSheetConvenient(DetailProductActivity.this, R.style.MaterialDialogSheet, data, new BottomSheetConvenient.CallBack() {
+//            @Override
+//            public void onCLickCLose() {
+//                bottomSheetConvenient.dismiss();
+//            }
+//        });
+//        bottomSheetConvenient.show();
+//        bottomSheetConvenient.setCanceledOnTouchOutside(false);
+//    }
 
     private void showDialogBathRoom() {
         bottomSheetBathRoom = new BottomSheetBathRoom(DetailProductActivity.this, R.style.MaterialDialogSheet, dataBathRoom, new BottomSheetBathRoom.CallBack() {
@@ -501,7 +502,6 @@ public class DetailProductActivity extends AppCompatActivity implements Feedback
 
             }
         });
-
         return true;
     }
 

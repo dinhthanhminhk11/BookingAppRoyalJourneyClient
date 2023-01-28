@@ -79,8 +79,8 @@ public class BookmarkRepository {
         });
     }
 
-    public void getBookmarkByIdUserAndIdHouse(String idUser, String idHouse, CallbackGetBookmark callbackGetBookmark) {
-        Call<BookmarkResponse> call = apiRequest.getBookmarkByIdUserAndIdHouse(idUser, idHouse);
+    public void getBookmarkByIdUserAndIdHouse(String idUser, String idHotel, CallbackGetBookmark callbackGetBookmark) {
+        Call<BookmarkResponse> call = apiRequest.getBookmarkByIdUserAndIdHouse(idUser, idHotel);
         call.enqueue(new Callback<BookmarkResponse>() {
             @Override
             public void onResponse(Call<BookmarkResponse> call, Response<BookmarkResponse> response) {

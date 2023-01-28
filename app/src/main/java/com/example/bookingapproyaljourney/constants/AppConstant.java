@@ -2,17 +2,26 @@ package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
 
-    public static final String BASE = "http://192.168.0.101:8080";
+    public static final String BASE = "https://926e-123-25-30-191.ap.ngrok.io";
+//    public static final String BASE = "http://192.168.0.113:8080";
     public static final String BASE_URL = BASE + "/api/";
     public static final String BASE_URL_CHAT = BASE;
     public static final String URL_API_GOOGLE_MAP = "https://maps.googleapis.com/";
     public static final String API_KEY = "AIzaSyDId5Ne9ty3PAl9aMBW4A-_7WcXfH7ngFA";
     public static final String TAG = "Minh";
     public static final String TAGZZZZZZZZ = "Minh ZZZZZZZZZZZZZZZZ";
+    public static final String TAG_MINHCHEK = "MinhCheck";
     public static final String TAG_ERROR = "Retrofit_Error";
     public static final String HOUSE_EXTRA = "house";
+    public static final String HOTEL_EXTRA = "HOTEL_EXTRA";
+    public static final String ROOM_EXTRA = "ROOM_EXTRA";
+    public static final String CHECK_LOGIN_TOKEN_NULL = "CHECK_LOGIN_TOKEN_NULL";
+    public static final String ROOM_AGE_CHILDREN = "ROOM_AGE_CHILDREN";
+    public static final String ROOM_CANCEL_BOOKING = "ROOM_CANCEL_BOOKING";
     public static final String SHAREDPREFERENCES_USER = "USERCLIENT";
     public static final String SHAREDPREFERENCES_USER_THEME = "SHAREDPREFERENCES_USER_THEME";
+    public static final String SHAREDPREFERENCES_CHECK_PASS_CASH = "SHAREDPREFERENCES_CHECK_PASS_CASH";
+    public static final String SHAREDPREFERENCES_PASS = "SHAREDPREFERENCES_Pass";
     public static final String TOKEN_CANCEL = "TOKEN_CANCEL";
     public static final String SHAREDPREFERENCES_CHECK_CANCEL = "SHAREDPREFERENCES_CHECK_CANCEL";
     public static final String ID_USER = "ID_USER";
@@ -48,16 +57,25 @@ public class AppConstant {
 
     public static final int POS_DARK = 1;
     public static final int POS_LIGHT = 2;
+    public static final int POS_VANTAY = 2344;
+    public static final int POS_PASS = 2655;
     public static final String ChangePasswordResultSuccess = "ChangePasswordResultSuccess";
     public static final String dateCancel = "dateCancel";
     public static final String checkIsbacking = "checkIsbacking";
     public static final String checkSeem = "checkSeem";
     public static final String imageHost = "imageHost";
+    public static final String STATUS_BILL = "STATUS_BILL";
     public static final String idOrder = "idOrder";
     public static final String dataCreate = "dataCreate";
     public static final String Khach_huy = "Khách huỷ";
     public static final String Đa_xac_nhan = "Đã xác nhận";
     public static final String Dang_cho = "Đang chờ";
     public static final String da_tra_phong = "Đã trả phòng";
+    public static final String CHECK_SUCCESS_ADD_MONEY = "CHECK_SUCCESS_ADD_MONEY";
 
+    public static final String SHAREDPREFERENCES_USER_COUNT_PERSON = "SHAREDPREFERENCES_USER_COUNT_PERSON";
+    public static final String SHAREDPREFERENCES_USER_COUNT_ROOM = "SHAREDPREFERENCES_USER_COUNT_ROOM";
+    public static final String SHAREDPREFERENCES_USER_COUNT_CHILDREN = "SHAREDPREFERENCES_USER_COUNT_CHILDREN";
+    public static final String SHAREDPREFERENCES_USER_TEXT_SEARCH = "SHAREDPREFERENCES_USER_TEXT_SEARCH";
+    public static final String SHAREDPREFERENCES_USER_AGE_CHILDREN = "SHAREDPREFERENCES_USER_AGE_CHILDREN";
 }

@@ -1,5 +1,7 @@
 package com.example.bookingapproyaljourney;
 
+import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
+import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivity;
 import static com.example.bookingapproyaljourney.constants.AppConstant.CancelBookingActivityByAccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.ChangePasswordResultSuccess;
@@ -8,6 +10,7 @@ import static com.example.bookingapproyaljourney.constants.AppConstant.GetTestRe
 import static com.example.bookingapproyaljourney.constants.AppConstant.LoginResultSuccess;
 import static com.example.bookingapproyaljourney.constants.AppConstant.deleteOrderResponse;
 import static com.example.bookingapproyaljourney.constants.AppConstant.text1111111111111;
+import static com.example.libraryimagepicker.ImagePicker.REQUEST_CODE;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -30,6 +33,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +53,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.biometric.BiometricManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -73,6 +78,7 @@ import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HelpFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
+import com.example.bookingapproyaljourney.ui.fragment.HomeVer2Fragment;
 import com.example.bookingapproyaljourney.ui.fragment.ListOrderAllFragment;
 import com.example.bookingapproyaljourney.ui.fragment.NotificationFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ProfileFragment;
@@ -180,6 +186,24 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
+        BiometricManager biometricManager = BiometricManager.from(this);
+        switch (biometricManager.canAuthenticate(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)) {
+            case BiometricManager.BIOMETRIC_SUCCESS:
+                Log.d("MY_APP_TAG", "Ứng dụng có thể xác thực bằng sinh trắc học.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Log.e("MY_APP_TAG", "Không có tính năng sinh trắc học nào khả dụng trên thiết bị này.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                Log.e("MY_APP_TAG", "Các tính năng sinh trắc học hiện không khả dụng.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                // Prompts the user to create credentials that your app accepts.
+                final Intent enrollIntent = new Intent(Settings.ACTION_BIOMETRIC_ENROLL);
+                enrollIntent.putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED, BIOMETRIC_STRONG | DEVICE_CREDENTIAL);
+                startActivityForResult(enrollIntent, REQUEST_CODE);
+                break;
+        }
 
         SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
         int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
@@ -203,32 +227,14 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             setTheme(R.style.Theme_BookingAppRoyalJourney_Light);
         }
 
-        slidingRootNav = new SlidingRootNavBuilder(this)
-                .withMenuOpened(false)
-                .withToolbarMenuToggle(toolbar)
-                .withContentClickableWhenMenuOpened(false)
-                .withSavedState(savedInstanceState)
-                .withMenuLayout(R.layout.menu_left_drawer)
-                .inject();
+        slidingRootNav = new SlidingRootNavBuilder(this).withMenuOpened(false).withToolbarMenuToggle(toolbar).withContentClickableWhenMenuOpened(false).withSavedState(savedInstanceState).withMenuLayout(R.layout.menu_left_drawer).inject();
 
         contentBackgroundMenu = (RelativeLayout) findViewById(R.id.contentBackgroundMenu);
 
         screenIcons = loadScreenIcons();
         screenTitles = loadScreenTitles();
 
-        adapter = new DrawerAdapter(Arrays.asList(
-                createItemFor(POS_HOME).setChecked(true),
-                createItemFor(POS_PROFILE),
-                createItemFor(POS_NEARBY),
-                new SpaceItem(48),
-                createItemFor(POS_BOOKMARK),
-                createItemFor(POS_NOTIFICATION),
-                createItemFor(POS_MESSAGES),
-                new SpaceItem(48),
-                createItemFor(POS_TRAVEL),
-                createItemFor(POS_SETTING),
-                createItemFor(POS_HELP),
-                createItemFor(POS_LOGOUT)));
+        adapter = new DrawerAdapter(Arrays.asList(createItemFor(POS_HOME).setChecked(true), createItemFor(POS_PROFILE), createItemFor(POS_NEARBY), new SpaceItem(48), createItemFor(POS_BOOKMARK), createItemFor(POS_NOTIFICATION), createItemFor(POS_MESSAGES), new SpaceItem(48), createItemFor(POS_TRAVEL), createItemFor(POS_SETTING), createItemFor(POS_HELP), createItemFor(POS_LOGOUT)));
         adapter.setListener(this);
 
         if (theme == AppConstant.POS_DARK) {
@@ -244,96 +250,31 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         String check = getIntent().getStringExtra(CheckSuccess);
 
         if (!(check == null)) {
-            if (check.equals(text1111111111111)) {
-                CookieBar.build(this)
-                        .setTitle(R.string.Successfully)
-                        .setMessage(R.string.textcheck111)
-                        .setIcon(R.drawable.ic_complete_order)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+            if(check.equals("feedback")){
+                CookieBar.build(this).setTitle(this.getString(R.string.Successfully)).setMessage(this.getString(R.string.Successfully_feedback)).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
+            }else if (check.equals(text1111111111111)) {
+                CookieBar.build(this).setTitle(R.string.Successfully).setMessage(R.string.textcheck111).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             } else if (check.equals(CancelBookingActivity)) {
-                CookieBar.build(this)
-                        .setTitle(R.string.Successfully)
-                        .setMessage(R.string.textCheckCancelBookingActivity)
-                        .setIcon(R.drawable.ic_complete_order)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(5000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(R.string.Successfully).setMessage(R.string.textCheckCancelBookingActivity).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             } else if (check.equals(CancelBookingActivityByAccess)) {
-                CookieBar.build(this)
-                        .setTitle(R.string.Successfully)
-                        .setMessage(R.string.Request_canceled)
-                        .setIcon(R.drawable.ic_complete_order)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(3000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(R.string.Successfully).setMessage(R.string.Request_canceled).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             } else if (check.equals(deleteOrderResponse)) {
-                CookieBar.build(this)
-                        .setTitle(R.string.Successfully)
-                        .setMessage(R.string.Delete_successfully)
-                        .setIcon(R.drawable.ic_complete_order)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(3000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(R.string.Successfully).setMessage(R.string.Delete_successfully).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             } else if (check.equals(LoginResultSuccess)) {
-                CookieBar.build(this)
-                        .setTitle(R.string.Notify)
-                        .setMessage(R.string.Logged_in_successfully)
-                        .setIcon(R.drawable.ic_complete_order)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(3000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(R.string.Notify).setMessage(R.string.Logged_in_successfully).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             } else if (check.equals(ChangePasswordResultSuccess)) {
                 adapter.setSelected(POS_SETTING);
-                CookieBar.build(this)
-                        .setTitle(R.string.Notify)
-                        .setMessage(R.string.ChangePasswordSuccess)
-                        .setIcon(R.drawable.ic_complete_order)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(3000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(R.string.Notify).setMessage(R.string.ChangePasswordSuccess).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             } else if (check.equals(GetTestResponseMutableLiveData)) {
                 adapter.setSelected(POS_PROFILE);
-                CookieBar.build(this)
-                        .setTitle(R.string.Notify)
-                        .setMessage(R.string.EditProfileSuccess)
-                        .setIcon(R.drawable.ic_complete_order)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(3000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(R.string.Notify).setMessage(R.string.EditProfileSuccess).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
                 return;
             }
         }
 
 
-        if (ContextCompat.checkSelfPermission(getApplicationContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    LOCATION_PERMISSION_REQUEST_CODE);
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
         } else {
             getCurrentLocation();
         }
@@ -431,7 +372,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         } else if (position == POS_HOME) {
             nameAddress.setVisibility(View.GONE);
             nameCity.setVisibility(View.VISIBLE);
-            showFragment(new HomeFragment(locationYouSelf));
+            showFragment(new HomeVer2Fragment(locationYouSelf));
+//            showFragment(new HomeFragment(locationYouSelf));
         } else if (position == POS_NEARBY) {
             startActivity(new Intent(MainActivity.this, NearFromYouMapsActivity.class));
         } else if (position == POS_PROFILE) {
@@ -507,20 +449,12 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
     private void showFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.containerMain, fragment)
-                .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerMain, fragment).commit();
     }
 
     @SuppressWarnings("rawtypes")
     private DrawerItem createItemFor(int position) {
-        return new SimpleItem(screenIcons[position], screenTitles[position])
-                .withIconTint(color(R.color.white))
-                .withTextTint(color(R.color.white))
-                .withBackground(Color.TRANSPARENT)
-                .withSelectedIconTint(color(R.color.blue))
-                .withSelectedTextTint(color(R.color.blue))
-                .withSelectedBackGroundTint(R.drawable.background_select_white_activity);
+        return new SimpleItem(screenIcons[position], screenTitles[position]).withIconTint(color(R.color.white)).withTextTint(color(R.color.white)).withBackground(Color.TRANSPARENT).withSelectedIconTint(color(R.color.blue)).withSelectedTextTint(color(R.color.blue)).withSelectedBackGroundTint(R.drawable.background_select_white_activity);
     }
 
     private String[] loadScreenTitles() {
@@ -565,16 +499,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 getCurrentLocation();
             } else {
                 adapter.setSelected(POS_HOME);
-                CookieBar.build(this)
-                        .setTitle(R.string.Notify)
-                        .setMessage(R.string.You_do_not_allow_location_access)
-                        .setIcon(R.drawable.ic_icon_logo_app)
-                        .setTitleColor(R.color.black)
-                        .setMessageColor(R.color.black)
-                        .setDuration(3000)
-                        .setBackgroundRes(R.drawable.background_toast)
-                        .setCookiePosition(CookieBar.BOTTOM)
-                        .show();
+                CookieBar.build(this).setTitle(R.string.Notify).setMessage(R.string.You_do_not_allow_location_access).setIcon(R.drawable.ic_icon_logo_app).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
                 Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             }
         }
@@ -640,30 +565,28 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        LocationServices.getFusedLocationProviderClient(MainActivity.this)
-                .requestLocationUpdates(locationRequest, new LocationCallback() {
+        LocationServices.getFusedLocationProviderClient(MainActivity.this).requestLocationUpdates(locationRequest, new LocationCallback() {
 
-                    @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        super.onLocationResult(locationResult);
-                        LocationServices.getFusedLocationProviderClient(getApplicationContext())
-                                .removeLocationUpdates(this);
-                        if (locationResult != null && locationResult.getLocations().size() > 0) {
-                            int latestlocIndex = locationResult.getLocations().size() - 1;
-                            double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
-                            double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
-                            Log.e("MinhLoaction", String.format("Latitude : %s\n Longitude: %s", lati, longi));
-                            locationYouSelf = new Location("locationYourSelf");
-                            locationYouSelf.setLongitude(longi);
-                            locationYouSelf.setLatitude(lati);
-                            fetchAddressFromLocation(locationYouSelf);
-                            getAddress(lati, longi);
-                            adapter.setSelected(POS_HOME);
-                        } else {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                LocationServices.getFusedLocationProviderClient(getApplicationContext()).removeLocationUpdates(this);
+                if (locationResult != null && locationResult.getLocations().size() > 0) {
+                    int latestlocIndex = locationResult.getLocations().size() - 1;
+                    double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
+                    double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
+                    Log.e("MinhLoaction", String.format("Latitude : %s\n Longitude: %s", lati, longi));
+                    locationYouSelf = new Location("locationYourSelf");
+                    locationYouSelf.setLongitude(longi);
+                    locationYouSelf.setLatitude(lati);
+                    fetchAddressFromLocation(locationYouSelf);
+                    getAddress(lati, longi);
+                    adapter.setSelected(POS_HOME);
+                } else {
 
-                        }
-                    }
-                }, Looper.getMainLooper());
+                }
+            }
+        }, Looper.getMainLooper());
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
@@ -706,15 +629,10 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     public final boolean isInternetOn() {
         ConnectivityManager connec = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
-        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
-                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
+        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED || connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING || connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING || connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
             return true;
 
-        } else if (
-                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
+        } else if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED || connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
             Toast.makeText(this, R.string.NotConnectNetwork, Toast.LENGTH_LONG).show();
             return false;
         }
@@ -762,27 +680,16 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         RectShape rectShape = new RectShape();
         rectShape.setPaint(LighterHelper.getDiscretePaint());
 
-        Lighter.with(this)
-                .setBackgroundColor(0xB3000000)
-                .setOnLighterListener(new OnLighterListener() {
-                    @Override
-                    public void onShow(int index) {
+        Lighter.with(this).setBackgroundColor(0xB3000000).setOnLighterListener(new OnLighterListener() {
+            @Override
+            public void onShow(int index) {
 
-                    }
+            }
 
-                    @Override
-                    public void onDismiss() {
-                        EventBus.getDefault().postSticky(new KeyEvent(AppConstant.BY_USER_VER2));
-                    }
-                })
-                .addHighlight(new LighterParameter.Builder()
-                        .setHighlightedViewId(R.id.nameCity)
-                        .setTipView(LighterHelper.createCommonTipView(this, R.drawable.icon_tip_4, getString(R.string.Your_location)))
-                        .setLighterShape(new RectShape(0, 0, 25))
-                        .setTipViewRelativeDirection(Direction.TOP)
-                        .setTipViewDisplayAnimation(LighterHelper.getScaleAnimation())
-                        .setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0))
-                        .build())
-                .show();
+            @Override
+            public void onDismiss() {
+                EventBus.getDefault().postSticky(new KeyEvent(AppConstant.BY_USER_VER2));
+            }
+        }).addHighlight(new LighterParameter.Builder().setHighlightedViewId(R.id.nameCity).setTipView(LighterHelper.createCommonTipView(this, R.drawable.icon_tip_4, getString(R.string.Your_location))).setLighterShape(new RectShape(0, 0, 25)).setTipViewRelativeDirection(Direction.TOP).setTipViewDisplayAnimation(LighterHelper.getScaleAnimation()).setTipViewRelativeOffset(new MarginOffset(0, 20, 0, 0)).build()).show();
     }
 }

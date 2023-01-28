@@ -73,7 +73,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapter.Listernaer, BestForYouAdapterNotNull.Listernaer, BottomSheetFilterHome.EventClick {
+public class HomeFragment extends Fragment implements UpdateRecyclerView, BestForYouAdapterNotNull.Listernaer, BottomSheetFilterHome.EventClick {
     private ResultReceiver resultReceiver;
     private View view;
     private static final String ARG_PARAM1 = "param1";
@@ -175,18 +175,18 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         recyclerviewNearFromYou.setNestedScrollingEnabled(false);
         filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
         categoryViewModel = new ViewModelProvider(getActivity()).get(CategoryViewModel.class);
-        bestForYouAdapter = new BestForYouAdapter(this);
+//        bestForYouAdapter = new BestForYouAdapter(this);
         bestForYouAdapterNotNull = new BestForYouAdapterNotNull();
         bestForYouAdapterNotNull.setListernaer(this);
 
-        nearFromYouAdapter = new NearFromYouAdapter(new NearFromYouAdapter.Listerner() {
-            @Override
-            public void onClick(House house) {
-                Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-                intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
-                startActivity(intent);
-            }
-        });
+//        nearFromYouAdapter = new NearFromYouAdapter(new NearFromYouAdapter.Listerner() {
+//            @Override
+//            public void onClick(House house) {
+//                Intent intent = new Intent(getActivity(), DetailProductActivity.class);
+//                intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
+//                startActivity(intent);
+//            }
+//        });
 
         SharedPreferences sharedPreferencesTheme = getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
         int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
@@ -261,7 +261,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             contentBestForYouHomeFragment.setVisibility(View.VISIBLE);
             contentTextNearFromYou.setVisibility(View.VISIBLE);
             recyclerviewNearFromYou.setVisibility(View.VISIBLE);
-            nearFromYouAdapter.setDataHouse(houseNearestByUserResponse.getDataMaps());
+//            nearFromYouAdapter.setDataHouse(houseNearestByUserResponse.getDataMaps());
             recyclerviewNearFromYou.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
             recyclerviewNearFromYou.setAdapter(nearFromYouAdapter);
         }
@@ -274,7 +274,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
         }
         if (contentTextNearFromYou.getVisibility() == View.VISIBLE) {
-            bestForYouAdapter.setDataHouse(categoryBestForYouResponse.getHouses());
+//            bestForYouAdapter.setDataHouse(categoryBestForYouResponse.getHouses());
             recyclerviewListBestForYou.setAdapter(bestForYouAdapter);
         }
     }
@@ -296,13 +296,6 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     @Override
     public void callBackVIew(View view) {
         this.view = view;
-    }
-
-    @Override
-    public void onClickListChinh(House house) {
-        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-        intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
-        startActivity(intent);
     }
 
     @Override
@@ -495,7 +488,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             titleNearBy.setTextColor(Color.BLACK);
             titleBestYou.setTextColor(Color.BLACK);
 
-            bestForYouAdapter.setColor(getContext().getResources().getColor(R.color.color_858585), Color.BLACK);
+//            bestForYouAdapter.setColor(getContext().getResources().getColor(R.color.color_858585), Color.BLACK);
             bestForYouAdapterNotNull.setColor(Color.BLACK, getContext().getResources().getColor(R.color.color_858585));
         }
     }

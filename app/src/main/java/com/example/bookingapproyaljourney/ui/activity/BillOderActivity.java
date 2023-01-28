@@ -35,6 +35,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityBillOderBinding;
 import com.example.bookingapproyaljourney.model.order.OrderCreate;
@@ -48,6 +49,8 @@ import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPayment;
 import com.example.bookingapproyaljourney.view_model.DetailProductViewModel;
 import com.example.bookingapproyaljourney.view_model.OrderViewModel;
 import com.example.librarytoastcustom.CookieBar;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.stripe.android.PaymentConfiguration;
@@ -65,7 +68,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class BillOderActivity extends AppCompatActivity implements BottomSheetEditPerson.CallBack {
+public class BillOderActivity extends BaseActivity implements BottomSheetEditPerson.CallBack {
 
     private ActivityBillOderBinding binding;
     private BottomSheetPayment bottomSheetPayment;
@@ -110,7 +113,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         binding.editPerson.setPaintFlags(binding.editPerson.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        bottomSheetEditPerson = new BottomSheetEditPerson(BillOderActivity.this, R.style.MaterialDialogSheet, this);
+        bottomSheetEditPerson = new BottomSheetEditPerson(BillOderActivity.this, R.style.MaterialDialogSheet, this , null);
 
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         detailProductViewModel = new ViewModelProvider(this).get(DetailProductViewModel.class);
@@ -164,18 +167,13 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
         });
 
         binding.addPhone.setOnClickListener(v -> {
-
             binding.edPhone.setVisibility(View.VISIBLE);
             binding.btnComfirmPhone.setVisibility(View.VISIBLE);
-
         });
 
         binding.btnComfirmPhone.setOnClickListener(v -> {
             String phone = binding.edPhone.getText().toString();
             phonePrivate = binding.edPhone.getText().toString();
-
-//            binding.edPhone.setVisibility(View.GONE);
-//            binding.btnComfirmPhone.setVisibility(View.GONE);
             validateinfo(phone);
         });
 
@@ -294,13 +292,21 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
 
 
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+
+        CalendarConstraints.Builder constraintBuilder = new CalendarConstraints.Builder();
+        constraintBuilder.setValidator(DateValidatorPointForward.now());
+
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+
+        builder.setCalendarConstraints(constraintsBuilder.build());
         builder.setTheme(R.style.ThemeOverlay_App_DatePicker);
         MaterialDatePicker<Pair<Long, Long>> materialDatePicker = builder
                 .setTitleText(BillOderActivity.this.getString(R.string.Select_a_date))
                 .setPositiveButtonText(BillOderActivity.this.getString(R.string.SAVE))
                 .setNegativeButtonText(BillOderActivity.this.getString(R.string.Thoat))
+                .setSelection(new Pair<>(MaterialDatePicker.todayInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds()))
+                .setCalendarConstraints(constraintBuilder.build())
                 .build();
-
 
         binding.contentPayDayNight.setOnClickListener(v -> {
             materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
@@ -755,7 +761,7 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
     }
 
     @Override
-    public void onCLickSum(int sum) {
+    public void onCLickSum(int sum, int children ,int countRoom) {
         if (sum > houseDetailResponse.getLimitPerson()) {
             CookieBar.build(this)
                     .setTitle(this.getString(R.string.BillOder_host_received_max))
@@ -848,5 +854,6 @@ public class BillOderActivity extends AppCompatActivity implements BottomSheetEd
             binding.contentBackground4.setBackgroundColor(Color.WHITE);
         }
     }
+
 
 }

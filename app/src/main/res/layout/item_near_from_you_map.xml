@@ -117,7 +117,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
                 android:padding="3dp"
-                android:text="Hotel"
+                android:text="Khách Sạn"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/_12dp" />
 
@@ -176,4 +176,5 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

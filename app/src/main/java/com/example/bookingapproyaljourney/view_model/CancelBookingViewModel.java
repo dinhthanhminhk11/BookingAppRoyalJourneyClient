@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.bookingapproyaljourney.callback.CallBackString;
 import com.example.bookingapproyaljourney.callback.CallbackEditOrderByUser;
 import com.example.bookingapproyaljourney.repository.OrderRepository;
+import com.example.bookingapproyaljourney.response.bill.CancelBillResponse;
 import com.example.bookingapproyaljourney.response.order.OrderRequest;
 import com.example.bookingapproyaljourney.response.order.OrderStatusResponse;
 
@@ -20,6 +21,7 @@ public class CancelBookingViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<OrderStatusResponse> orderStatusResponseMutableLiveData = new MutableLiveData<>();
     MutableLiveData<String> getDate = new MutableLiveData<>();
+    MutableLiveData<CancelBillResponse> cancelBillResponseMutableLiveData = new MutableLiveData<>();
 
     public CancelBookingViewModel(@NonNull Application application) {
         super(application);
@@ -58,6 +60,16 @@ public class CancelBookingViewModel extends AndroidViewModel {
         });
     }
 
+    public void getDataCancelBooking(String id) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        orderRepository.getDataCancelBooking(id, o -> {
+            if (o instanceof CancelBillResponse) {
+                cancelBillResponseMutableLiveData.postValue((CancelBillResponse) o);
+                mProgressMutableData.postValue(View.GONE);
+            }
+        });
+    }
+
     public MutableLiveData<Integer> getmProgressMutableData() {
         return mProgressMutableData;
     }
@@ -84,5 +96,10 @@ public class CancelBookingViewModel extends AndroidViewModel {
 
     public MutableLiveData<String> getGetDate() {
         return getDate;
+    }
+
+
+    public MutableLiveData<CancelBillResponse> getCancelBillResponseMutableLiveData() {
+        return cancelBillResponseMutableLiveData;
     }
 }

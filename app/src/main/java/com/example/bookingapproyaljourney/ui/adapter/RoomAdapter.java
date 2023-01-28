@@ -19,11 +19,11 @@ import com.example.bookingapproyaljourney.model.house.SleepingPlace;
 
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHodel> {
     private List<SleepingPlace> roomList;
     private Context context;
-
     public RoomAdapter(Context context, List<SleepingPlace> roomList ) {
         this.roomList = roomList;
         this.context = context;

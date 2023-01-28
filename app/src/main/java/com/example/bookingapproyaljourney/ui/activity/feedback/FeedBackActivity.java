@@ -12,21 +12,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityFeedBackBinding;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.ui.Toast.ToastCheck;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
+import com.example.bookingapproyaljourney.ui.activity.StatusBillActivity;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 
 import java.util.Calendar;
 
-public class FeedBackActivity extends AppCompatActivity {
+public class FeedBackActivity extends BaseActivity {
     private ActivityFeedBackBinding binding;
     private int sao = 0;
-    private String id_boss = "";
     private Boolean check = false;
     private FeedbackViewModel feedbackViewModel;
 
@@ -37,7 +40,6 @@ public class FeedBackActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         feedbackViewModel = new ViewModelProvider(this).get(FeedbackViewModel.class);
         Intent intent = getIntent();
-        id_boss = intent.getStringExtra("ID_BOSS");
         String name_boss = intent.getStringExtra("NAME_BOSS");
         String img_boss = intent.getStringExtra("IMG_BOSS");
         String id_House = intent.getStringExtra("ID_HOUSE");
@@ -115,15 +117,13 @@ public class FeedBackActivity extends AppCompatActivity {
                 }
                 if (check) {
                     feedbackViewModel.updateFeedback(feedBack);
-                    Intent intent1 = new Intent(this, DetailProductActivity.class);
-                    intent1.putExtra(AppConstant.HOUSE_EXTRA, id_House);
-                    intent1.putExtra("CHECK_FEEDBACK", true);
+                    Intent intent1 = new Intent(this, MainActivity.class);
+                    intent1.putExtra(AppConstant.CheckSuccess, "feedback");
                     startActivity(intent1);
                 } else {
                     feedbackViewModel.insertFeedback(feedBack);
-                    Intent intent1 = new Intent(this, DetailProductActivity.class);
-                    intent1.putExtra(AppConstant.HOUSE_EXTRA, id_House);
-                    intent1.putExtra("CHECK_FEEDBACK", true);
+                    Intent intent1 = new Intent(this, MainActivity.class);
+                    intent1.putExtra(AppConstant.CheckSuccess, "feedback");
                     startActivity(intent1);
                 }
             });

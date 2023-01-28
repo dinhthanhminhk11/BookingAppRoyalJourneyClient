@@ -69,5 +69,4 @@ public class BottomSheetPayment extends BottomSheetDialog {
 
         void onClickPayment();
     }
-
 }

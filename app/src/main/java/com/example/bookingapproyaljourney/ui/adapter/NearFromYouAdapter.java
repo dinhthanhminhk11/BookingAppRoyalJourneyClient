@@ -1,96 +1,77 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.bookingapproyaljourney.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookingapproyaljourney.model.house.DataMap;
-import com.example.bookingapproyaljourney.model.house.House;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.databinding.ItemNearfromyouHomefragmentBinding;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class NearFromYouAdapter extends RecyclerView.Adapter<NearFromYouAdapter.ViewHolder> {
 
-    private List<DataMap> dataHouse;
-    private Listerner listerner;
-    private NumberFormat fm = new DecimalFormat("#,###");
+    private List<Hotel> dataHotel;
+    private static final DecimalFormat df = new DecimalFormat("0.0");
 
-    public void setDataHouse(List<DataMap> dataHouse) {
-        this.dataHouse = dataHouse;
+    private Consumer<Hotel> hotelConsumer;
+
+    public void setHotelConsumer(Consumer<Hotel> hotelConsumer) {
+        this.hotelConsumer = hotelConsumer;
     }
 
-    public NearFromYouAdapter( Listerner listerner ) {
-        this.listerner = listerner;
+    public NearFromYouAdapter(List<Hotel> dataHotel) {
+        this.dataHotel = dataHotel;
     }
-
-    public interface Listerner {
-        public void onClick(House house);
-    }
-
-    public void setData(List<DataMap> dataHouse) {
-        this.dataHouse = dataHouse;
-    }
-
 
     @NonNull
     @Override
     public NearFromYouAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_nearfromyou_homefragment, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(ItemNearfromyouHomefragmentBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(@NonNull NearFromYouAdapter.ViewHolder holder, int position) {
 
-        DataMap house = dataHouse.get(position);
-        if (house != null) {
+        Hotel item = dataHotel.get(position);
+        if (item instanceof Hotel) {
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.img)
                     .error(R.drawable.img);
-            Glide.with(holder.itemView.getContext()).load(house.getData().getImages().get(0)).apply(options).into(holder.imgNearFromYou);
+            Glide.with(holder.itemView.getContext()).load(item.getImages().get(0)).apply(options).into(holder.binding.imgItemNearFromYou);
 
-            holder.tvAddressNearFromYou.setText(house.getData().getNameLocation());
-            holder.tvDistance.setText(house.getDistance()+ " Km");
-            holder.tvNameNearFromYou.setText(house.getData().getName());
+            holder.binding.tvAddressItemNearFromYou.setText(item.getSonha() + ", " + item.getXa() + ", " + item.getHuyen() + ", " + item.getTinh());
+            holder.binding.tvDistanceItemNearFromYou.setText(df.format(item.getCalculated()/1000) + " Km");
+            holder.binding.tvNameItemNearFromYou.setText(item.getName());
 
             holder.itemView.setOnClickListener(v -> {
-                listerner.onClick(dataHouse.get(position).getData());
+                hotelConsumer.accept(item);
             });
         }
     }
 
     @Override
     public int getItemCount() {
-        return dataHouse == null ? 0 : dataHouse.size();
+        return dataHotel == null ? 0 : dataHotel.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgNearFromYou;
-        private TextView tvNameNearFromYou;
-        private TextView tvAddressNearFromYou;
-        private TextView tvDistance;
+        public ItemNearfromyouHomefragmentBinding binding;
 
-        public ViewHolder(@NonNull View view) {
-            super(view);
-            imgNearFromYou = (ImageView) view.findViewById(R.id.imgItemNearFromYou);
-            tvNameNearFromYou = (TextView) view.findViewById(R.id.tvNameItemNearFromYou);
-            tvAddressNearFromYou = (TextView) view.findViewById(R.id.tvAddressItemNearFromYou);
-            tvDistance = (TextView) view.findViewById(R.id.tvDistanceItemNearFromYou);
+        public ViewHolder(ItemNearfromyouHomefragmentBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
-
-
 }
 

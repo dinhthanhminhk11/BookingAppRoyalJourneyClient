@@ -85,8 +85,9 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/icon1"
+                android:layout_width="@dimen/_18dp"
+                android:layout_height="@dimen/_18dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_bedroom_itembestforyou" />
@@ -110,8 +111,8 @@
 
             <ImageView
                 android:id="@+id/imageConvenient"
-                android:layout_width="@dimen/_24dp"
-                android:layout_height="@dimen/_24dp"
+                android:layout_width="@dimen/_18dp"
+                android:layout_height="@dimen/_18dp"
                 android:layout_marginLeft="15dp" />
 
             <TextView
@@ -137,8 +138,9 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/icon2"
+                android:layout_width="@dimen/_18dp"
+                android:layout_height="@dimen/_18dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_bathroom_itembestforyou" />
 
@@ -159,8 +161,9 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/icon3"
+                android:layout_width="@dimen/_18dp"
+                android:layout_height="@dimen/_18dp"
                 android:layout_marginLeft="15dp"
                 android:src="@drawable/ic_baseline_person_24_item_house" />
 
@@ -202,14 +205,6 @@
                 android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/poppins_medium"
-                android:maxLines="1"
-                android:text="@string/textPerNightVN"
-                android:textColor="@color/blue" />
         </LinearLayout>
 
         <Button

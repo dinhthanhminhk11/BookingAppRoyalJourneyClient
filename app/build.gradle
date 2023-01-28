@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -81,5 +82,7 @@ dependencies {
     implementation 'com.cloudinary:cloudinary-android:2.2.0'
 
     implementation 'org.greenrobot:eventbus:3.0.0'
+
+    implementation 'androidx.biometric:biometric:1.1.0'
 
 }

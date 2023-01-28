@@ -81,7 +81,7 @@
     <string name="houserulesdetail">Nội quy nhận phòng</string>
     <string name="Cancellationpolicydetail">Chính sách hủy</string>
     <string name="pricedetail">Giá thuê</string>
-    <string name="rentnowdetail">Thuê ngay</string>
+    <string name="rentnowdetail">Chọn phòng</string>
     <string name="danhgiadetail">Đánh giá</string>
     <string name="Ytedetail">Y tế và an toàn</string>
     <string name="Y_te_detail">Các biện pháp an toàn trong đại dịch COVID-19 của BookingAppRoyalJourney được áp dụng. Có máy phát hiện khí CO/máy báo khói, Camera an ninh/thiết bị ghi</string>
@@ -142,7 +142,7 @@
     <string name="guest">Khách</string>
     <string name="option_payment">Thanh toán bằng</string>
     <string name="option_phone">Số điện thoại</string>
-    <string name="info_bill">Chi tiết giá</string>
+    <string name="info_bill">Chi tiết giá cho</string>
     <string name="service_charge">Phí dịch vụ</string>
     <string name="sum">Tổng</string>
     <string name="Exactly_cancel">Chính sách huỷ</string>
@@ -294,7 +294,7 @@
     <string name="RePassIsEmpty">Nhập lại mật khẩu mới</string>
     <string name="owner_detail">Owner</string>
     <string name="see_more">Xem Thêm</string>
-    <string name="check_in">Nhận phòng từ ngày:</string>
+    <string name="check_in">Nhận phòng từ:</string>
     <string name="byRoyal">Về chúng tôi</string>
     <string name="infoRoyal">Những thông tin về chúng tôi</string>
     <string name="Online_payment">Thanh toán online</string>
@@ -393,4 +393,21 @@
     <string name="Confirmed">Đã xác nhận</string>
     <string name="Member">Thành viên</string>
     <string name="feedback">Đánh giá</string>
+    <string name="yourpayment">Ví của bạn</string>
+    <string name="textInfoTextPayment">Sử dụng ngay</string>
+    <string name="taikhoannguon">Tài khoản nguồn</string>
+    <string name="titleAddMoney">Nạp tiền</string>
+    <string name="contentAddMoney">Thêm tiền vào ví của bạn</string>
+    <string name="historyPayment">Lịch sử giao dịch</string>
+    <string name="add_money_to_card">Nạp tiền</string>
+    <string name="textInputMoney">Nhập số tiền (₫)</string>
+    <string name="countMoneyAdd">Số tiền nạp</string>
+    <string name="textpayment2">Vui lòng chọn phương thức thanh toán</string>
+    <string name="historyPaymentNull">Chưa có giao dịch nào</string>
+    <string name="textErrorAddMoney">Nạp tiền không thành công</string>
+    <string name="textSuccessAddMoney">Nạp tiền thành công</string>
+    <string name="textBiometric1">Xác thực bằng vân tay</string>
+    <string name="textBiometric2">Mở khoá ví bằng vân tay của bạn</string>
+    <string name="textpinpass">Nhập mã pin của bạn</string>
+
 </resources>
