@@ -1,13 +1,23 @@
 package com.example.bookingapproyaljourney.ui.activity.Hotel;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityListFilterHotelBinding;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
+import com.example.bookingapproyaljourney.ui.adapter.ListFilterHotelAdapter;
+import com.example.bookingapproyaljourney.view_model.ListFilterHotelViewModel;
+
+import java.util.List;
 
 public class ListFilterHotelActivity extends BaseActivity {
 
@@ -17,6 +27,8 @@ public class ListFilterHotelActivity extends BaseActivity {
     private int count_children;
     private int ageChildren;
     private String textSearch;
+    private ListFilterHotelViewModel listFilterHotelViewModel;
+    private ListFilterHotelAdapter listFilterHotelAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +67,42 @@ public class ListFilterHotelActivity extends BaseActivity {
         ageChildren = sharedPreferences_user_age_children.getInt(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, 1);
 
         getSupportActionBar().setTitle(textSearch);
-        getSupportActionBar().setSubtitle(countRoom + " phòng, " + countPerson + " người lớn, " + count_children + " trẻ em");
+        getSupportActionBar().setSubtitle(countRoom + " phòng, " + countPerson + " người lớn, " + count_children + " trẻ em"/*+ ageChildren + "tuổi)"*/);
     }
 
     private void initView() {
+        binding.btnSearch.setOnClickListener(v->{
+            finish();
+        });
+        listFilterHotelAdapter = new ListFilterHotelAdapter();
+        listFilterHotelAdapter.setHotelConsumer(o -> {
+            Intent intent = new Intent(this, HotelActivity.class);
+            intent.putExtra(AppConstant.HOTEL_EXTRA, o.get_id());
+            startActivity(intent);
+        });
+        listFilterHotelViewModel = new ViewModelProvider(this).get(ListFilterHotelViewModel.class);
+
+        binding.rcvSeeMoreBestForYou.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 
     private void initData() {
+        listFilterHotelViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.progressBar.setVisibility(integer);
+            }
+        });
+        listFilterHotelViewModel.getListFilterHotelByHome(textSearch, ageChildren, countPerson, count_children, countRoom);
+        listFilterHotelViewModel.getSearchModelMutableLiveData().observe(this, new Observer<List<Hotel>>() {
+            @Override
+            public void onChanged(List<Hotel> hotels) {
+                if (hotels.size() > 0) {
+                    listFilterHotelAdapter.setDataHotel(hotels);
+                    binding.rcvSeeMoreBestForYou.setAdapter(listFilterHotelAdapter);
+                } else {
+                    binding.contentNullList.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 }

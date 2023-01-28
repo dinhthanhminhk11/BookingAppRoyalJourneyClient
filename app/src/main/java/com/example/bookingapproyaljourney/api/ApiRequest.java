@@ -7,6 +7,7 @@ import com.example.bookingapproyaljourney.model.chat.Message;
 import com.example.bookingapproyaljourney.model.feedback.DataFeedBack;
 import com.example.bookingapproyaljourney.model.feedback.DataId;
 import com.example.bookingapproyaljourney.model.feedback.FeedBack;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
@@ -256,4 +257,12 @@ public interface ApiRequest {
 
     @GET("searchLocationAndHotel/{textLocation}")
     Call<List<SearchModel>> getListSearchLocationHotel(@Path("textLocation") String textLocation);
+
+    @GET("getFilterHotel/textLocation={textLocation}&ageChildren={ageChildren}&person={person}&children={children}&countRoom={countRoom}")
+    Call<List<Hotel>> getListFilterHotelByHome(@Path("textLocation") String textLocation,
+                                               @Path("ageChildren") int ageChildren,
+                                               @Path("person") int person,
+                                               @Path("children") int children,
+                                               @Path("countRoom") int countRoom
+    );
 }

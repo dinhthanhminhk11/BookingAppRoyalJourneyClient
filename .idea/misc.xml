@@ -34,6 +34,7 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/activity_status_bill.xml" value="0.2501068832834545" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/bottomsheet_edit_person.xml" value="0.25" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/bottomsheet_edit_person_home.xml" value="0.3172295852928602" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_bookmark.xml" value="0.3270628473706712" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_home.xml" value="0.3180846515604959" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_home_ver2.xml" value="0.5" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/fragment_setting.xml" value="0.2669990933816863" />
@@ -41,6 +42,7 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_bestforyou_hired.xml" value="0.1554534057668199" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_bestforyou_homefragment_not_null.xml" value="0.1554534057668199" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_category_homefragment.xml" value="0.28430953398888414" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_filter_hotel_list.xml" value="0.20179563916203505" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_hotel_trend.xml" value="0.28430953398888414" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_layout_notification.xml" value="0.3142368533561351" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/BookingAppRoyalJourney/app/src/main/res/layout/item_near_from_you_map.xml" value="0.28858486532706284" />
