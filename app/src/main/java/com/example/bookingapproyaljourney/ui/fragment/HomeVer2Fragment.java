@@ -35,6 +35,7 @@ import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
 import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.Hotel.ListFilterHotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelActivity;
+import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.activity.SeeMoreBestForYouActivity;
 import com.example.bookingapproyaljourney.ui.activity.SeeMoreNearFromYouActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
@@ -208,7 +209,7 @@ public class HomeVer2Fragment extends Fragment {
         });
 
         binding.seeMoreNearFromYouHomeFragment.setOnClickListener(v -> {
-            Intent i = new Intent(getActivity(), SeeMoreNearFromYouActivity.class);
+            Intent i = new Intent(getActivity(), NearFromYouMapsActivity.class);
             startActivity(i);
         });
 
