@@ -123,7 +123,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/sign_up_login"
-        android:textColor="#0A8ED9"
+        android:textColor="@color/blue"
         android:textSize="@dimen/_14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

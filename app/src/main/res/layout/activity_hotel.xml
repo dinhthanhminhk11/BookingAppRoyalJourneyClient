@@ -286,7 +286,7 @@
                         android:layout_height="match_parent"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="@string/see_more"
-                        android:textColor="#0A8ED9"
+                        android:textColor="@color/blue"
                         android:textSize="@dimen/_16sp" />
                 </LinearLayout>
 
@@ -391,7 +391,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:src="@drawable/ic_star_detailproduct" />
+                        android:src="@drawable/ic_star_1" />
 
                     <TextView
                         android:id="@+id/tvCountSao"
@@ -400,7 +400,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/_5dp"
                         android:text="5.0"
-                        android:textColor="#0A8ED9"
+                        android:textColor="@color/blue"
                         android:textSize="@dimen/_20sp" />
 
                     <TextView
@@ -411,7 +411,7 @@
                         android:layout_marginStart="@dimen/_12dp"
                         android:layout_weight="1"
                         android:text="@string/feedback"
-                        android:textColor="#0A8ED9"
+                        android:textColor="@color/blue"
                         android:textSize="@dimen/_20sp" />
 
                     <TextView
@@ -420,7 +420,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:text="@string/see_more"
-                        android:textColor="#0A8ED9"
+                        android:textColor="@color/blue"
                         android:textSize="@dimen/_16dp" />
                 </LinearLayout>
 
@@ -683,7 +683,7 @@
                         android:layout_height="wrap_content"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="@string/see_more"
-                        android:textColor="#0A8ED9"
+                        android:textColor="@color/blue"
                         android:textSize="@dimen/_16sp" />
                 </LinearLayout>
 
@@ -771,7 +771,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8dp"
 
-                android:textColor="#0A8ED9"
+                android:textColor="@color/blue"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold" />
         </LinearLayout>
