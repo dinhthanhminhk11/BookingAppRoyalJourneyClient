@@ -165,6 +165,7 @@ public class AddMoneyActivity extends BaseActivity implements View.OnClickListen
             binding.text1.setTextColor(Color.WHITE);
             binding.vnd.setTextColor(Color.WHITE);
             binding.editInputMoney.setTextColor(Color.WHITE);
+            binding.editInputMoney.setHintTextColor(Color.WHITE);
             binding.text7.setTextColor(Color.WHITE);
             binding.textPayment.setTextColor(Color.WHITE);
             binding.priceAndCount.setTextColor(Color.WHITE);
@@ -178,6 +179,7 @@ public class AddMoneyActivity extends BaseActivity implements View.OnClickListen
             binding.number3.setTextColor(Color.WHITE);
             binding.lineNumber1.setBackgroundColor(Color.WHITE);
             binding.lineNumber2.setBackgroundColor(Color.WHITE);
+
         } else {
             binding.toolBar.setBackgroundColor(this.getResources().getColor(R.color.white));
             binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
@@ -192,6 +194,7 @@ public class AddMoneyActivity extends BaseActivity implements View.OnClickListen
             binding.text1.setTextColor(Color.BLACK);
             binding.vnd.setTextColor(Color.BLACK);
             binding.editInputMoney.setTextColor(this.getResources().getColor(R.color.color_555555));
+            binding.editInputMoney.setHintTextColor(Color.BLACK);
             binding.text7.setTextColor(Color.BLACK);
             binding.textPayment.setTextColor(this.getResources().getColor(R.color.color_555555));
             binding.priceAndCount.setTextColor(this.getResources().getColor(R.color.color_555555));
@@ -205,6 +208,7 @@ public class AddMoneyActivity extends BaseActivity implements View.OnClickListen
             binding.number3.setTextColor(Color.BLACK);
             binding.lineNumber1.setBackgroundColor(Color.BLACK);
             binding.lineNumber2.setBackgroundColor(Color.BLACK);
+
         }
     }
 

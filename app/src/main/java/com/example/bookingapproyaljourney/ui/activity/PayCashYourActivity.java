@@ -50,7 +50,11 @@ public class PayCashYourActivity extends BaseActivity {
             binding.switchComparTheme.setChecked(false);
         }
 
-        if (theme == AppConstant.POS_DARK) {
+//        thay đổi Theme
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme2 = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme2 == AppConstant.POS_DARK) {
             changeTheme(1);
         } else {
             changeTheme(2);
@@ -136,20 +140,16 @@ public class PayCashYourActivity extends BaseActivity {
             binding.contentAddMoney.setBackgroundResource(R.drawable.background_setting_item_dark);
             binding.contentBiometric.setBackgroundResource(R.drawable.background_setting_item_dark);
             binding.contentHistoryPayment.setBackgroundResource(R.drawable.background_setting_item_dark);
-            binding.layoutVanTay.setBackgroundResource(R.drawable.background_setting_item_dark);
 
             binding.text1.setTextColor(Color.WHITE);
             binding.contentPayOfflineLine.setBackgroundColor(Color.WHITE);
             binding.sourcePayment.setTextColor(Color.WHITE);
             binding.textCancel.setTextColor(Color.WHITE);
-            binding.iconChangepass.setColorFilter(getResources().getColor(R.color.white));
 
-            binding.iconChangepass2.setColorFilter(getResources().getColor(R.color.white));
             binding.iconChangePassLast2.setColorFilter(getResources().getColor(R.color.white));
             binding.textAddMoney.setTextColor(Color.WHITE);
             binding.contentTextAddMoney.setTextColor(Color.WHITE);
 
-            binding.iconChangepass3.setColorFilter(getResources().getColor(R.color.white));
             binding.textAddMoney2.setTextColor(Color.WHITE);
             binding.contentTextAddMoney2.setTextColor(Color.WHITE);
 
@@ -167,7 +167,6 @@ public class PayCashYourActivity extends BaseActivity {
             binding.contentAddMoney.setBackgroundColor(Color.WHITE);
             binding.contentBiometric.setBackgroundColor(Color.WHITE);
             binding.contentHistoryPayment.setBackgroundColor(Color.WHITE);
-            binding.layoutVanTay.setBackgroundColor(Color.WHITE);
 
             binding.text1.setTextColor(Color.BLACK);
             binding.contentPayOfflineLine.setBackgroundColor(Color.BLACK);
