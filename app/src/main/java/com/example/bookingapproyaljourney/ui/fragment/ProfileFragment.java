@@ -26,6 +26,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.FragmentProfileBinding;
+import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
 import com.example.bookingapproyaljourney.model.house.Convenient;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
@@ -33,6 +34,7 @@ import com.example.bookingapproyaljourney.response.LoginResponse;
 import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
 import com.example.bookingapproyaljourney.ui.activity.EditProfileActivity;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.LoginActivity;
 import com.example.bookingapproyaljourney.ui.activity.RegisterActivity;
 import com.example.bookingapproyaljourney.ui.adapter.HiredProfileAdapter;
@@ -164,13 +166,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onChanged(ListOrderByIdUser2 listOrderByIdUser) {
                 hiredProfileAdapter.setDataHouse(listOrderByIdUser.getData());
-                hiredProfileAdapter.setListernaer(new HiredProfileAdapter.Listernaer() {
-                    @Override
-                    public void onClickListChinh(HouseDetailResponse houseDetailResponse) {
-                        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-                        intent.putExtra(AppConstant.HOUSE_EXTRA, houseDetailResponse.get_id());
-                        startActivity(intent);
-                    }
+                hiredProfileAdapter.setConsumer(o ->{
+                    Intent intent = new Intent(getActivity(), HotelActivity.class);
+                    intent.putExtra(AppConstant.HOTEL_EXTRA,o.toString());
+                    startActivity(intent);
                 });
                 binding.recycleViewProfile.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                 binding.recycleViewProfile.setAdapter(hiredProfileAdapter);

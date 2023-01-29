@@ -17,7 +17,7 @@
         android:backgroundTint="@null"
         android:backgroundTintMode="@null"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="loading.json"
+        app:lottie_fileName="loadingver2222.json"
         app:lottie_loop="true" />
 
     <ScrollView

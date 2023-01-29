@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,31 +15,49 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.CallbackHouseById;
+import com.example.bookingapproyaljourney.callback.CallbackListOrderAccessById;
+import com.example.bookingapproyaljourney.databinding.ItemBestforyouHiredBinding;
+import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragmentBinding;
+import com.example.bookingapproyaljourney.databinding.ItemBookmarkByUserBinding;
+import com.example.bookingapproyaljourney.model.bill.Bill;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
+import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
+import com.example.bookingapproyaljourney.model.hotel.HotelById;
+import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.repository.DetailProductRepository;
+import com.example.bookingapproyaljourney.repository.Repository;
+import com.example.bookingapproyaljourney.repository.UserRepository;
 import com.example.bookingapproyaljourney.response.HouseDetailResponse;
+import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
 import com.example.bookingapproyaljourney.response.order.OrderListResponse2;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapter.ViewHolder> {
-    private List<OrderListResponse2> dataHouse;
+    private List<Bill> dataHotel;
     private NumberFormat fm = new DecimalFormat("#,###");
-    private DetailProductRepository detailProductRepository;
+    private Repository repository;
     private Listernaer listernaer;
+    private Consumer consumer;
     private int color = Color.BLACK;
     private int colorBlack = Color.BLACK;
     public interface Listernaer {
-        void onClickListChinh(HouseDetailResponse houseDetailResponse);
+        void onClickListChinh(HotelBillResponse houseDetailResponse);
+    }
+
+    public void setConsumer(Consumer consumer) {
+        this.consumer = consumer;
     }
 
     public HiredProfileAdapter() {
-        detailProductRepository = new DetailProductRepository();
+        repository = new Repository();
     }
 
-    public void setDataHouse(List<OrderListResponse2> dataHouse) {
-        this.dataHouse = dataHouse;
+    public void setDataHouse(List<Bill> dataHotel) {
+        this.dataHotel = dataHotel;
     }
 
     public void setListernaer(Listernaer listernaer) {
@@ -53,62 +72,101 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
     @NonNull
     @Override
     public HiredProfileAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bestforyou_hired, parent, false);
-        return new HiredProfileAdapter.ViewHolder(view);
+        return new ViewHolder(ItemBestforyouHomefragmentBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+
     }
 
+    @SuppressLint("NewApi")
     @Override
-    public void onBindViewHolder(@NonNull HiredProfileAdapter.ViewHolder holder, int position) {
-        OrderListResponse2 orderListResponse = dataHouse.get(position);
-        if (orderListResponse != null) {
-            detailProductRepository.getProductById(orderListResponse.getIdPro(), new CallbackHouseById() {
-                @Override
-                public void success(HouseDetailResponse houseDetailResponse) {
-                    RequestOptions options = new RequestOptions()
-                            .centerCrop()
-                            .placeholder(R.drawable.img)
-                            .error(R.drawable.img);
-                    Glide.with(holder.itemView.getContext()).load(houseDetailResponse.getImages().get(0)).apply(options).into(holder.imgBestForYou);
-                    holder.tvNameHouse.setText(houseDetailResponse.getName());
-                    holder.tvPriceHouse.setText(fm.format(houseDetailResponse.getPrice()) + " VND");
-                    holder.tvCountBedroom.setText(houseDetailResponse.getSleepingPlaces().size() + " " + holder.tvCountBedroom.getContext().getString(R.string.textBest1));
-                    holder.tvCountBathroom.setText(houseDetailResponse.getBathrooms().size() + " " + holder.tvCountBedroom.getContext().getString(R.string.textBest2));
+    public void onBindViewHolder(@NonNull HiredProfileAdapter.ViewHolder viewHolder, int position) {
+    Bill bill = dataHotel.get(position);
+        repository.getHotelById(bill.getIdHotel(), item -> {
+            if (item instanceof HotelById) {
+                RequestOptions options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
+                Glide.with(viewHolder.itemView.getContext()).load(item.getDataHotel().getImages().get(0)).apply(options).into(viewHolder.binding.imgItemBestForYou);
 
-                    holder.tvNameHouse.setTextColor(colorBlack);
-                    holder.tvCountBedroom.setTextColor(color);
-                    holder.tvCountBathroom.setTextColor(color);
-                    holder.itemView.setOnClickListener(v -> {
-                        listernaer.onClickListChinh(houseDetailResponse);
-                    });
+                if (item.getDataHotel().getTienNghiKS().size() > 2) {
+                    Glide.with(viewHolder.itemView.getContext()).load(item.getDataHotel().getTienNghiKS().get(0).getIconImage()).apply(options).into(viewHolder.binding.icon1);
+                    Glide.with(viewHolder.itemView.getContext()).load(item.getDataHotel().getTienNghiKS().get(1).getIconImage()).apply(options).into(viewHolder.binding.icon2);
+                    viewHolder.binding.nameIcon1.setText(item.getDataHotel().getTienNghiKS().get(0).getName());
+                    viewHolder.binding.tvNameIcon1.setText(item.getDataHotel().getTienNghiKS().get(1).getName());
                 }
+                viewHolder.binding.tvNameHouseItemBestforyou.setText(item.getDataHotel().getName());
+                viewHolder.binding.tvPriceHouseItemBestforyou.setText(item.getDataHotel().getGiaDaoDong());
+                viewHolder.binding.tvNameHouseItemBestforyou.setTextColor(colorBlack);
+                viewHolder.binding.tvNameIcon1.setTextColor(colorBlack);
+                viewHolder.binding.nameIcon1.setTextColor(colorBlack);
+                viewHolder.binding.tvPriceHouseItemBestforyou.setTextColor(color);
 
-                @Override
-                public void failure(Throwable t) {
+                viewHolder.itemView.setOnClickListener(v -> {
+                    consumer.accept(item.getDataHotel().get_id());
+                });
+            }
+        });
+//        Hotel item = dataHotel.get(position);
+//        if (item instanceof Hotel) {
+//
+//        }
+//        if (orderListResponse != null) {
+//            detailProductRepository.getProductById(orderListResponse.getIdPro(), new CallbackHouseById() {
+//                @Override
+//                public void success(HouseDetailResponse houseDetailResponse) {
+//                    RequestOptions options = new RequestOptions()
+//                            .centerCrop()
+//                            .placeholder(R.drawable.img)
+//                            .error(R.drawable.img);
+//                    Glide.with(holder.itemView.getContext()).load(houseDetailResponse.getImages().get(0)).apply(options).into(holder.imgBestForYou);
+//                    holder.tvNameHouse.setText(houseDetailResponse.getName());
+//                    holder.tvPriceHouse.setText(fm.format(houseDetailResponse.getPrice()) + " VND");
+//                    holder.tvCountBedroom.setText(houseDetailResponse.getSleepingPlaces().size() + " " + holder.tvCountBedroom.getContext().getString(R.string.textBest1));
+//                    holder.tvCountBathroom.setText(houseDetailResponse.getBathrooms().size() + " " + holder.tvCountBedroom.getContext().getString(R.string.textBest2));
+//
+//                    holder.tvNameHouse.setTextColor(colorBlack);
+//                    holder.tvCountBedroom.setTextColor(color);
+//                    holder.tvCountBathroom.setTextColor(color);
+//                    holder.itemView.setOnClickListener(v -> {
+//                        listernaer.onClickListChinh(houseDetailResponse);
+//                    });
+//                }
+//
+//                @Override
+//                public void failure(Throwable t) {
+//
+//                }
+//            });
+//        }
 
-                }
-            });
-        }
+
     }
 
     @Override
     public int getItemCount() {
-        return dataHouse == null ? 0 : dataHouse.size();
+        return dataHotel == null ? 0 : dataHotel.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgBestForYou;
-        private TextView tvNameHouse;
-        private TextView tvPriceHouse;
-        private TextView tvCountBedroom;
-        private TextView tvCountBathroom;
+        public ItemBestforyouHomefragmentBinding binding;
 
-        public ViewHolder(@NonNull View view) {
-            super(view);
-            imgBestForYou = (ImageView) view.findViewById(R.id.imgItemBestForYou);
-            tvNameHouse = (TextView) view.findViewById(R.id.tvNameHouseItemBestforyou);
-            tvPriceHouse = (TextView) view.findViewById(R.id.tvPriceHouseItemBestforyou);
-            tvCountBedroom = (TextView) view.findViewById(R.id.tvCountBedroomItemBestforyou);
-            tvCountBathroom = (TextView) view.findViewById(R.id.tvCountBathroomItemBestforyou);
+        public ViewHolder(ItemBestforyouHomefragmentBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
+
+//    public class ViewHolder extends RecyclerView.ViewHolder {
+//        private ImageView imgBestForYou;
+//        private TextView tvNameHouse;
+//        private TextView tvPriceHouse;
+//        private TextView tvCountBedroom;
+//        private TextView tvCountBathroom;
+//
+//        public ViewHolder(@NonNull View view) {
+//            super(view);
+//            imgBestForYou = (ImageView) view.findViewById(R.id.imgItemBestForYou);
+//            tvNameHouse = (TextView) view.findViewById(R.id.tvNameHouseItemBestforyou);
+//            tvPriceHouse = (TextView) view.findViewById(R.id.tvPriceHouseItemBestforyou);
+//            tvCountBedroom = (TextView) view.findViewById(R.id.tvCountBedroomItemBestforyou);
+//            tvCountBathroom = (TextView) view.findViewById(R.id.tvCountBathroomItemBestforyou);
+//        }
+//    }
 }

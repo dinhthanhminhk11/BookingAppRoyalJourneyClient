@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.ContactActivity"
+    android:background="@color/white"
     android:id="@+id/layoutAboutUs">
 
     <com.google.android.material.appbar.MaterialToolbar

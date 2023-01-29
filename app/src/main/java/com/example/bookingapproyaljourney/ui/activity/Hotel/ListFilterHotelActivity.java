@@ -3,8 +3,11 @@ package com.example.bookingapproyaljourney.ui.activity.Hotel;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,14 +18,16 @@ import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityListFilterHotelBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.ui.adapter.ListFilterHotelAdapter;
+import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterHome;
 import com.example.bookingapproyaljourney.view_model.ListFilterHotelViewModel;
 
 import java.util.List;
 
-public class ListFilterHotelActivity extends BaseActivity {
+public class ListFilterHotelActivity extends BaseActivity implements BottomSheetFilterHome.EventClick{
 
     private ActivityListFilterHotelBinding binding;
     private int countRoom;
+    private MenuItem menuItem;
     private int countPerson;
     private int count_children;
     private int ageChildren;
@@ -71,7 +76,7 @@ public class ListFilterHotelActivity extends BaseActivity {
     }
 
     private void initView() {
-        binding.btnSearch.setOnClickListener(v->{
+        binding.btnSearch.setOnClickListener(v -> {
             finish();
         });
         listFilterHotelAdapter = new ListFilterHotelAdapter();
@@ -104,5 +109,32 @@ public class ListFilterHotelActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.itemfilter, menu);
+        menuItem = menu.findItem(R.id.itemfilter);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.itemfilter) {
+            showDiaLog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void showDiaLog(){
+        BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(this, R.style.MaterialDialogSheet, this);
+        bottomSheetFilterHome.show();
+        bottomSheetFilterHome.setCanceledOnTouchOutside(false);
+    }
+
+    @Override
+    public void onCLickFilter(String giaBd, String giaKt, String sao, String idLoai) {
+
     }
 }

@@ -115,7 +115,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
                 android:padding="@dimen/_3dp"
-                android:text="Hotel"
+                android:text="Khách sạn"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/_12dp" />
 
