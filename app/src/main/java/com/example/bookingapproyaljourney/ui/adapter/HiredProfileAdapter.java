@@ -21,6 +21,7 @@ import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragment
 import com.example.bookingapproyaljourney.databinding.ItemBookmarkByUserBinding;
 import com.example.bookingapproyaljourney.model.bill.Bill;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
+import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.repository.DetailProductRepository;
@@ -40,11 +41,15 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
     private NumberFormat fm = new DecimalFormat("#,###");
     private Repository repository;
     private Listernaer listernaer;
-    private Consumer<HotelById> consumer;
+    private Consumer consumer;
     private int color = Color.BLACK;
     private int colorBlack = Color.BLACK;
     public interface Listernaer {
-        void onClickListChinh(HouseDetailResponse houseDetailResponse);
+        void onClickListChinh(HotelBillResponse houseDetailResponse);
+    }
+
+    public void setConsumer(Consumer consumer) {
+        this.consumer = consumer;
     }
 
     public HiredProfileAdapter() {
@@ -94,7 +99,7 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
                 viewHolder.binding.tvPriceHouseItemBestforyou.setTextColor(color);
 
                 viewHolder.itemView.setOnClickListener(v -> {
-                    consumer.accept(item);
+                    consumer.accept(item.getDataHotel().get_id());
                 });
             }
         });
