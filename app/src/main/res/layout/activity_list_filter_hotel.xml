@@ -10,6 +10,7 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
+        android:elevation="@dimen/_5dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
         android:theme="@style/ToolbarTheme"

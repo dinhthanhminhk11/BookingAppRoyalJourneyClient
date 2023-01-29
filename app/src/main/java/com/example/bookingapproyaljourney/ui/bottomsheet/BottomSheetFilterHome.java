@@ -104,8 +104,6 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
         List<String> a = new ArrayList<>();
     }
 
-
-
     private void initData() {
         starPrice.setText("120.000 đ");
         endPrice.setText("5.000.000 đ");
