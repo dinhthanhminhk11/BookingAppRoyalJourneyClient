@@ -23,7 +23,7 @@ import com.example.bookingapproyaljourney.view_model.ListFilterHotelViewModel;
 
 import java.util.List;
 
-public class ListFilterHotelActivity extends BaseActivity implements BottomSheetFilterHome.EventClick{
+public class ListFilterHotelActivity extends BaseActivity implements BottomSheetFilterHome.EventClick {
 
     private ActivityListFilterHotelBinding binding;
     private int countRoom;
@@ -106,6 +106,7 @@ public class ListFilterHotelActivity extends BaseActivity implements BottomSheet
                     binding.rcvSeeMoreBestForYou.setAdapter(listFilterHotelAdapter);
                 } else {
                     binding.contentNullList.setVisibility(View.VISIBLE);
+                    binding.rcvSeeMoreBestForYou.setVisibility(View.GONE);
                 }
             }
         });
@@ -127,7 +128,8 @@ public class ListFilterHotelActivity extends BaseActivity implements BottomSheet
         }
         return super.onOptionsItemSelected(item);
     }
-    private void showDiaLog(){
+
+    private void showDiaLog() {
         BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(this, R.style.MaterialDialogSheet, this);
         bottomSheetFilterHome.show();
         bottomSheetFilterHome.setCanceledOnTouchOutside(false);
@@ -135,6 +137,6 @@ public class ListFilterHotelActivity extends BaseActivity implements BottomSheet
 
     @Override
     public void onCLickFilter(String giaBd, String giaKt, String sao, String idLoai) {
-
+        listFilterHotelViewModel.getFilterHotelAndStarAndPrice(textSearch, ageChildren, countPerson, count_children, countRoom, Integer.parseInt(giaBd), Integer.parseInt(giaKt), Integer.parseInt(sao));
     }
 }

@@ -174,5 +174,21 @@ public class Repository {
                 Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
             }
         });
+    }  public void getFilterHotelAndStarAndPrice(String textLocation, int ageChildren, int person, int children, int countRoom, int startPrice , int endPrice , int TbSao , Consumer consumer) {
+        apiRequest.getFilterHotelAndStarAndPrice(textLocation, ageChildren, person, children, countRoom , startPrice , endPrice , TbSao).enqueue(new Callback<List<Hotel>>() {
+            @Override
+            public void onResponse(Call<List<Hotel>> call, Response<List<Hotel>> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Hotel>> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+            }
+        });
     }
 }

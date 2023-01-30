@@ -31,6 +31,14 @@ public class ListFilterHotelViewModel extends AndroidViewModel {
         });
     }
 
+    public void getFilterHotelAndStarAndPrice(String textLocation, int ageChildren, int person, int children, int countRoom, int startPrice , int endPrice , int TbSao) {
+        mProgressMutableData.postValue(View.VISIBLE);
+        repository.getFilterHotelAndStarAndPrice(textLocation, ageChildren, person, children, countRoom , startPrice , endPrice , TbSao, o -> {
+            searchModelMutableLiveData.postValue((List<Hotel>) o);
+            mProgressMutableData.postValue(View.GONE);
+        });
+    }
+
     public MutableLiveData<List<Hotel>> getSearchModelMutableLiveData() {
         return searchModelMutableLiveData;
     }
