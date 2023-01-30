@@ -37,7 +37,6 @@ import com.example.bookingapproyaljourney.ui.activity.Hotel.ListFilterHotelActiv
 import com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.activity.SeeMoreBestForYouActivity;
-import com.example.bookingapproyaljourney.ui.activity.SeeMoreNearFromYouActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPersonHome;
@@ -215,7 +214,10 @@ public class HomeVer2Fragment extends Fragment {
 
         binding.btnSearch.setOnClickListener(v -> {
             saveDataSearch();
-            startActivity(new Intent(getActivity(), ListFilterHotelActivity.class));
+            Intent intent = new Intent(getActivity(), ListFilterHotelActivity.class);
+            intent.putExtra(AppConstant.LOCATION_YOUR_SELF_LONG, String.valueOf(locationYouSelf.getLongitude()));
+            intent.putExtra(AppConstant.LOCATION_YOUR_SELF_LAT, String.valueOf(locationYouSelf.getLatitude()));
+            startActivity(intent);
         });
     }
 

@@ -15,6 +15,8 @@ public class AppConstant {
     public static final String TAG_ERROR = "Retrofit_Error";
     public static final String HOUSE_EXTRA = "house";
     public static final String HOTEL_EXTRA = "HOTEL_EXTRA";
+    public static final String LOCATION_YOUR_SELF_LONG = "LOCATION_YOUR_SELF_LONG";
+    public static final String LOCATION_YOUR_SELF_LAT = "LOCATION_YOUR_SELF_LAT";
     public static final String ROOM_EXTRA = "ROOM_EXTRA";
     public static final String CHECK_LOGIN_TOKEN_NULL = "CHECK_LOGIN_TOKEN_NULL";
     public static final String ROOM_AGE_CHILDREN = "ROOM_AGE_CHILDREN";

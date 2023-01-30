@@ -268,12 +268,33 @@ public interface ApiRequest {
 
     @GET("getFilterHotelAndStarAndPrice/textLocation={textLocation}&ageChildren={ageChildren}&person={person}&children={children}&countRoom={countRoom}&startPrice={startPrice}&endPrice={endPrice}&TbSao={TbSao}")
     Call<List<Hotel>> getFilterHotelAndStarAndPrice(@Path("textLocation") String textLocation,
-                                               @Path("ageChildren") int ageChildren,
-                                               @Path("person") int person,
-                                               @Path("children") int children,
-                                               @Path("countRoom") int countRoom,
-                                               @Path("startPrice") int startPrice,
-                                               @Path("endPrice") int endPrice,
-                                               @Path("TbSao") int TbSao
+                                                    @Path("ageChildren") int ageChildren,
+                                                    @Path("person") int person,
+                                                    @Path("children") int children,
+                                                    @Path("countRoom") int countRoom,
+                                                    @Path("startPrice") int startPrice,
+                                                    @Path("endPrice") int endPrice,
+                                                    @Path("TbSao") int TbSao
+    );
+
+    @POST("nearByUserLocationAndFilter/ageChildren={ageChildren}&person={person}&children={children}&countRoom={countRoom}")
+    Call<HotelReponseNearBy> nearByUserLocationAndFilter(
+            @Body LocationNearByRequest locationNearByRequest,
+            @Path("ageChildren") int ageChildren,
+            @Path("person") int person,
+            @Path("children") int children,
+            @Path("countRoom") int countRoom
+    );
+
+    @POST("nearByUserLocationAndFilterAndPriceAndStar/ageChildren={ageChildren}&person={person}&children={children}&countRoom={countRoom}&startPrice={startPrice}&endPrice={endPrice}&TbSao={TbSao}")
+    Call<HotelReponseNearBy> nearByUserLocationAndFilterAndPriceAndStar(
+            @Body LocationNearByRequest locationNearByRequest,
+            @Path("ageChildren") int ageChildren,
+            @Path("person") int person,
+            @Path("children") int children,
+            @Path("countRoom") int countRoom,
+            @Path("startPrice") int startPrice,
+            @Path("endPrice") int endPrice,
+            @Path("TbSao") int TbSao
     );
 }
