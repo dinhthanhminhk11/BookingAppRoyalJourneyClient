@@ -146,7 +146,6 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
     private void initView(View view) {
         backgroundContent = (ConstraintLayout) view.findViewById(R.id.backgroundContent);
 
-
         tvShowNull = (TextView) view.findViewById(R.id.tvShowNull);
         titleNearBy = (TextView) view.findViewById(R.id.titleNearBy);
         titleBestYou = (TextView) view.findViewById(R.id.titleBestYou);

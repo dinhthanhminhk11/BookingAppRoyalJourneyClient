@@ -1,6 +1,9 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragmentBinding;
 import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragmentNotNullBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
@@ -28,16 +32,17 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private ArrayList<Hotel> dataHotel;
     private NumberFormat fm = new DecimalFormat("#,###");
     private DecimalFormat decimalFormat = new DecimalFormat("#.#");
-    private int color = Color.BLUE;
-    private int colorBlack = Color.BLACK;
+    private int color = Color.BLACK;
+    private int colorBlue = Color.BLUE;
     private Consumer<Hotel> consumer;
     private int type;
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
 
 
+
     public void setColor(int color, int colorBlack) {
         this.color = color;
-        this.colorBlack = colorBlack;
+        this.colorBlue = colorBlack;
     }
 
     public void setDataHotel(ArrayList<Hotel> dataHotel) {
@@ -79,11 +84,14 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     viewHolder.binding.tvNameIcon1.setText(item.getTienNghiKS().get(1).getName());
                 }
                 viewHolder.binding.tvNameHouseItemBestforyou.setText(item.getName());
+                viewHolder.binding.tvNameHouseItemBestforyou.setTextColor(color);
                 viewHolder.binding.tvPriceHouseItemBestforyou.setText(item.getGiaDaoDong());
-                viewHolder.binding.tvNameHouseItemBestforyou.setTextColor(colorBlack);
-                viewHolder.binding.tvNameIcon1.setTextColor(colorBlack);
-                viewHolder.binding.nameIcon1.setTextColor(colorBlack);
-                viewHolder.binding.tvPriceHouseItemBestforyou.setTextColor(color);
+                viewHolder.binding.tvPriceHouseItemBestforyou.setTextColor(colorBlue);
+                viewHolder.binding.tvNameIcon1.setTextColor(color);
+                viewHolder.binding.nameIcon1.setTextColor(color);
+                viewHolder.binding.icon1.setColorFilter(color);
+                viewHolder.binding.icon2.setColorFilter(color);
+
 
                 viewHolder.itemView.setOnClickListener(v -> {
                     consumer.accept(item);
@@ -105,9 +113,9 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolderNearByNull.binding.imageItem.setIndicatorUnselectedColor(Color.GRAY);
                 viewHolderNearByNull.binding.imageItem.setScrollTimeInSec(4); //set scroll delay in seconds :
                 viewHolderNearByNull.binding.imageItem.startAutoCycle();
-                if(item.getTbSao() % 1 == 0){
-                    viewHolderNearByNull.binding.tvStart.setText(item.getTbSao()+"");
-                }else {
+                if (item.getTbSao() % 1 == 0) {
+                    viewHolderNearByNull.binding.tvStart.setText(item.getTbSao() + "");
+                } else {
                     viewHolderNearByNull.binding.tvStart.setText(decimalFormat.format(item.getTbSao()));
                 }
                 viewHolderNearByNull.binding.price.setText(item.getGiaDaoDong());
