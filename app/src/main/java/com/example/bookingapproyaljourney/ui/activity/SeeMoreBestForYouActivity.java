@@ -19,8 +19,11 @@ import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivitySeeMoreBestForYouBinding;
 import com.example.bookingapproyaljourney.event.KeyEvent;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
+import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapterNotNull;
 import com.example.bookingapproyaljourney.view_model.SeeMoreBestForYouViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -30,6 +33,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class SeeMoreBestForYouActivity extends BaseActivity {
     private List<House> list;
@@ -74,50 +78,36 @@ public class SeeMoreBestForYouActivity extends BaseActivity {
             changeTheme(2);
         }
 
-        seeMoreBestForYouViewModel.getCategoryBestForYouResponseMutableLiveData().observe(this, new Observer<CategoryBestForYouResponse>() {
+        seeMoreBestForYouViewModel.getHotelReponseMutableLiveData().observe(this, new Observer<HotelReponse>() {
             @Override
-            public void onChanged(CategoryBestForYouResponse categoryBestForYouResponse) {
-                bestForYouAdapterNotNull.setListernaer(new BestForYouAdapterNotNull.Listernaer() {
-                    @Override
-                    public void onClick(House house) {
-                        Intent intent = new Intent(SeeMoreBestForYouActivity.this, DetailProductActivity.class);
-                        intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
-                        startActivity(intent);
-                    }
-                });
-                bestForYouAdapterNotNull.setDataHouse(categoryBestForYouResponse.getHouses());
-                rcvSeeMoreBestForYou.setAdapter(bestForYouAdapterNotNull);
-                binding.progressBar.setVisibility(View.GONE);
+            public void onChanged(HotelReponse hotelReponse) {
+                if(hotelReponse instanceof HotelReponse){
+
+                    bestForYouAdapterNotNull.setDataHouse(hotelReponse.getDatapros());
+                    bestForYouAdapterNotNull.setConsumer(o ->{
+                        if(o instanceof Hotel){
+                            Intent intent = new Intent(SeeMoreBestForYouActivity.this, HotelActivity.class);
+                            intent.putExtra(AppConstant.HOTEL_EXTRA, o.get_id());
+                            startActivity(intent);
+                        }
+                    });
+                    rcvSeeMoreBestForYou.setAdapter(bestForYouAdapterNotNull);
+                }
             }
         });
 
-    }
-
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(KeyEvent event) {
-        if (event.getIdEven() == AppConstant.CHECK_EVENT_HOUSE) {
-            seeMoreBestForYouViewModel.getListBestForYouById("63437724ee6dd920372f306a");
-        } else if (event.getIdEven() == AppConstant.CHECK_EVENT_APARTMENT) {
-            seeMoreBestForYouViewModel.getListBestForYouById("6343772cee6dd920372f306c");
-        } else if (event.getIdEven() == AppConstant.CHECK_EVENT_HOTEL) {
-            seeMoreBestForYouViewModel.getListBestForYouById("63437732ee6dd920372f306e");
-        } else if (event.getIdEven() == AppConstant.CHECK_EVENT_VILLA) {
-            seeMoreBestForYouViewModel.getListBestForYouById("63437738ee6dd920372f3070");
-        } else if (event.getIdEven() == AppConstant.CHECK_EVENT_COTTAGE) {
-            seeMoreBestForYouViewModel.getListBestForYouById("63437740ee6dd920372f3072");
-        }
+        seeMoreBestForYouViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.progressBar.setVisibility(integer);
+            }
+        });
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
+    protected void onResume() {
+        super.onResume();
+        seeMoreBestForYouViewModel.getListAllHotel();
     }
 
     private void changeTheme(int idTheme) {

@@ -8,12 +8,20 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bookingapproyaljourney.callback.HouseByCategoryCallback;
+import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.repository.CategoryRepository;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 
 public class SeeMoreBestForYouViewModel extends AndroidViewModel {
 
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
+
+    public MutableLiveData<HotelReponse> getHotelReponseMutableLiveData() {
+        return hotelReponseMutableLiveData;
+    }
+
+    MutableLiveData<HotelReponse> hotelReponseMutableLiveData = new MutableLiveData<>();
+
     MutableLiveData<CategoryBestForYouResponse> categoryBestForYouResponseMutableLiveData = new MutableLiveData<>();
 
     private CategoryRepository categoryRepository;
@@ -22,6 +30,16 @@ public class SeeMoreBestForYouViewModel extends AndroidViewModel {
         super(application);
         categoryRepository = new CategoryRepository();
     }
+    public void getListAllHotel() {
+        mProgressMutableData.postValue(View.VISIBLE);
+        categoryRepository.getListAllHotel(o -> {
+            if (o instanceof HotelReponse) {
+                mProgressMutableData.postValue(View.GONE);
+                hotelReponseMutableLiveData.postValue(o);
+            }
+        });
+    }
+
 
     public void getListBestForYouById(String id) {
         mProgressMutableData.postValue(View.VISIBLE);

@@ -2,12 +2,11 @@ package com.example.bookingapproyaljourney.ui.activity.Hotel;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,13 +16,14 @@ import com.example.bookingapproyaljourney.base.BaseActivity;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ActivityListFilterHotelBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
+import com.example.bookingapproyaljourney.model.hotel.LocationNearByRequest;
 import com.example.bookingapproyaljourney.ui.adapter.ListFilterHotelAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetFilterHome;
 import com.example.bookingapproyaljourney.view_model.ListFilterHotelViewModel;
 
 import java.util.List;
 
-public class ListFilterHotelActivity extends BaseActivity implements BottomSheetFilterHome.EventClick{
+public class ListFilterHotelActivity extends BaseActivity implements BottomSheetFilterHome.EventClick {
 
     private ActivityListFilterHotelBinding binding;
     private int countRoom;
@@ -34,6 +34,7 @@ public class ListFilterHotelActivity extends BaseActivity implements BottomSheet
     private String textSearch;
     private ListFilterHotelViewModel listFilterHotelViewModel;
     private ListFilterHotelAdapter listFilterHotelAdapter;
+    private Location locationYouSelf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,16 +89,34 @@ public class ListFilterHotelActivity extends BaseActivity implements BottomSheet
         listFilterHotelViewModel = new ViewModelProvider(this).get(ListFilterHotelViewModel.class);
 
         binding.rcvSeeMoreBestForYou.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+        binding.btnFilter.setOnClickListener(v -> {
+            showDiaLog();
+        });
     }
 
     private void initData() {
+        double longi = Double.parseDouble(getIntent().getStringExtra(AppConstant.LOCATION_YOUR_SELF_LONG));
+        double lati = Double.parseDouble(getIntent().getStringExtra(AppConstant.LOCATION_YOUR_SELF_LAT));
+        locationYouSelf = new Location("locationYourSelf");
+        locationYouSelf.setLongitude(longi);
+        locationYouSelf.setLatitude(lati);
+        checkFilter();
         listFilterHotelViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 binding.progressBar.setVisibility(integer);
             }
         });
-        listFilterHotelViewModel.getListFilterHotelByHome(textSearch, ageChildren, countPerson, count_children, countRoom);
+
+        if (textSearch.equals("Khách sạn gần nhất")) {
+            if (locationYouSelf != null) {
+                listFilterHotelViewModel.nearByUserLocationAndFilter(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 10000, ageChildren), ageChildren, countPerson / countRoom, count_children, countRoom);
+            }
+        } else {
+            listFilterHotelViewModel.getListFilterHotelByHome(textSearch, ageChildren, countPerson / countRoom, count_children, countRoom);
+        }
+
         listFilterHotelViewModel.getSearchModelMutableLiveData().observe(this, new Observer<List<Hotel>>() {
             @Override
             public void onChanged(List<Hotel> hotels) {
@@ -106,28 +125,13 @@ public class ListFilterHotelActivity extends BaseActivity implements BottomSheet
                     binding.rcvSeeMoreBestForYou.setAdapter(listFilterHotelAdapter);
                 } else {
                     binding.contentNullList.setVisibility(View.VISIBLE);
+                    binding.rcvSeeMoreBestForYou.setVisibility(View.GONE);
                 }
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.itemfilter, menu);
-        menuItem = menu.findItem(R.id.itemfilter);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.itemfilter) {
-            showDiaLog();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    private void showDiaLog(){
+    private void showDiaLog() {
         BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(this, R.style.MaterialDialogSheet, this);
         bottomSheetFilterHome.show();
         bottomSheetFilterHome.setCanceledOnTouchOutside(false);
@@ -135,6 +139,34 @@ public class ListFilterHotelActivity extends BaseActivity implements BottomSheet
 
     @Override
     public void onCLickFilter(String giaBd, String giaKt, String sao, String idLoai) {
+        if (Integer.parseInt(giaBd) == 120000 && Integer.parseInt(giaKt) == 5000000 && Integer.parseInt(sao) == 5) {
+            binding.btnFilter.setImageResource(R.drawable.ic_filter_null);
+        } else {
+            binding.btnFilter.setImageResource(R.drawable.ic_filter_not_null);
+        }
+        if (textSearch.equals("Khách sạn gần nhất")) {
+            if (locationYouSelf != null) {
+                listFilterHotelViewModel.nearByUserLocationAndFilterAndPriceAndStar(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 10000, ageChildren), ageChildren, countPerson / countRoom, count_children, countRoom, Integer.parseInt(giaBd), Integer.parseInt(giaKt), Integer.parseInt(sao));
+            }
+        } else {
+            listFilterHotelViewModel.getFilterHotelAndStarAndPrice(textSearch, ageChildren, countPerson / countRoom, count_children, countRoom, Integer.parseInt(giaBd), Integer.parseInt(giaKt), Integer.parseInt(sao));
+        }
+    }
 
+    private void checkFilter() {
+        SharedPreferences sharedPreferences_user_data_start_price = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_START_PRICE, MODE_PRIVATE);
+        int giaBd = sharedPreferences_user_data_start_price.getInt(AppConstant.SHAREDPREFERENCES_USER_START_PRICE, 120000);
+
+        SharedPreferences sharedPreferences_user_data_end_price = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_END_PRICE, MODE_PRIVATE);
+        int giaKt = sharedPreferences_user_data_end_price.getInt(AppConstant.SHAREDPREFERENCES_USER_END_PRICE, 5000000);
+
+        SharedPreferences sharedPreferences_user_data_star = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_STAR, MODE_PRIVATE);
+        int sao = sharedPreferences_user_data_star.getInt(AppConstant.SHAREDPREFERENCES_USER_STAR, 5);
+
+        if (giaBd == 120000 && giaKt == 5000000 && sao == 5) {
+            binding.btnFilter.setImageResource(R.drawable.ic_filter_null);
+        } else {
+            binding.btnFilter.setImageResource(R.drawable.ic_filter_not_null);
+        }
     }
 }

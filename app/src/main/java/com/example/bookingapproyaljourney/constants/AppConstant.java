@@ -2,9 +2,9 @@ package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
 
-//    public static final String BASE = "https://926e-123-25-30-191.ap.ngrok.io";
 //    public static final String BASE = "http://192.168.0.113:8080";
-    public static final String BASE = "https://926e-123-25-30-191.ap.ngrok.io";
+//    public static final String BASE = "https://926e-123-25-30-191.ap.ngrok.io";
+    public static final String BASE = "https://rough-hill-5837.fly.dev"; // domain chính
     public static final String BASE_URL = BASE + "/api/";
     public static final String BASE_URL_CHAT = BASE;
     public static final String URL_API_GOOGLE_MAP = "https://maps.googleapis.com/";
@@ -15,6 +15,8 @@ public class AppConstant {
     public static final String TAG_ERROR = "Retrofit_Error";
     public static final String HOUSE_EXTRA = "house";
     public static final String HOTEL_EXTRA = "HOTEL_EXTRA";
+    public static final String LOCATION_YOUR_SELF_LONG = "LOCATION_YOUR_SELF_LONG";
+    public static final String LOCATION_YOUR_SELF_LAT = "LOCATION_YOUR_SELF_LAT";
     public static final String ROOM_EXTRA = "ROOM_EXTRA";
     public static final String CHECK_LOGIN_TOKEN_NULL = "CHECK_LOGIN_TOKEN_NULL";
     public static final String ROOM_AGE_CHILDREN = "ROOM_AGE_CHILDREN";
@@ -79,4 +81,7 @@ public class AppConstant {
     public static final String SHAREDPREFERENCES_USER_COUNT_CHILDREN = "SHAREDPREFERENCES_USER_COUNT_CHILDREN";
     public static final String SHAREDPREFERENCES_USER_TEXT_SEARCH = "SHAREDPREFERENCES_USER_TEXT_SEARCH";
     public static final String SHAREDPREFERENCES_USER_AGE_CHILDREN = "SHAREDPREFERENCES_USER_AGE_CHILDREN";
+    public static final String SHAREDPREFERENCES_USER_START_PRICE = "SHAREDPREFERENCES_USER_START_PRICE";
+    public static final String SHAREDPREFERENCES_USER_END_PRICE = "SHAREDPREFERENCES_USER_END_PRICE";
+    public static final String SHAREDPREFERENCES_USER_STAR = "SHAREDPREFERENCES_USER_STAR";
 }

@@ -1,8 +1,10 @@
 package com.example.bookingapproyaljourney.ui.bottomsheet;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,7 +12,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,16 +20,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.model.house.Category;
-import com.example.bookingapproyaljourney.model.house.Convenient;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.house.Loai;
-import com.example.bookingapproyaljourney.ui.adapter.FacilitiesAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.LoaiAdapter;
-import com.example.bookingapproyaljourney.ui.adapter.SortedByAdapter;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.slider.RangeSlider;
@@ -37,8 +34,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.Callback;
 
 public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnClickListener, LoaiAdapter.EventClick {
     private LinearLayout contentLayout;
@@ -105,8 +100,22 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
     }
 
     private void initData() {
-        starPrice.setText("120.000 đ");
-        endPrice.setText("5.000.000 đ");
+
+        SharedPreferences sharedPreferences_user_data_start_price = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_START_PRICE, MODE_PRIVATE);
+        giaBd = sharedPreferences_user_data_start_price.getInt(AppConstant.SHAREDPREFERENCES_USER_START_PRICE, 120000);
+
+        SharedPreferences sharedPreferences_user_data_end_price = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_END_PRICE, MODE_PRIVATE);
+        giaKt = sharedPreferences_user_data_end_price.getInt(AppConstant.SHAREDPREFERENCES_USER_END_PRICE, 5000000);
+
+        SharedPreferences sharedPreferences_user_data_star = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_STAR, MODE_PRIVATE);
+        sao = sharedPreferences_user_data_star.getInt(AppConstant.SHAREDPREFERENCES_USER_STAR, 5);
+        dataStar();
+
+        starPrice.setText(fm.format(giaBd) + " đ");
+        endPrice.setText(fm.format(giaKt) + " đ");
+
+        rangeFilter.setValues((float) giaBd, (float) giaKt);
+
         rangeFilter.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
             @Override
             public void onStartTrackingTouch(@NonNull RangeSlider slider) {
@@ -195,16 +204,21 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
             sao = 5;
         } else if (id == R.id.tvReset) {
             onCreate(null);
-            giaBd = 250000;
-            giaKt = 14000000;
+            giaBd = 120000;
+            giaKt = 5000000;
             sao = 5;
+            resetData();
             idList.clear();
 
         } else if (id == R.id.imgCancel) {
             cancel();
         } else if (id == R.id.btnFilter) {
-            String idCategory = idList.size()>0 ? (idList.toString().substring(1,idList.toString().length() - 1)).replace(" ",""): tk;
-            eventClick.onCLickFilter(giaBd+"",giaKt+"",sao+"",idCategory);
+            Log.e("MinhFilter", giaBd + " d");
+            Log.e("MinhFilter", giaKt + " d");
+            Log.e("MinhFilter", sao + " sao");
+            String idCategory = idList.size() > 0 ? (idList.toString().substring(1, idList.toString().length() - 1)).replace(" ", "") : tk;
+            eventClick.onCLickFilter(giaBd + "", giaKt + "", sao + "", idCategory);
+            saveCache();
             dismiss();
         }
     }
@@ -221,5 +235,69 @@ public class BottomSheetFilterHome extends BottomSheetDialog implements View.OnC
 
     public interface EventClick {
         void onCLickFilter(String giaBd, String giaKt, String sao, String idLoai);
+    }
+
+    private void saveCache() {
+        SharedPreferences sharedPreferences_user_start_price = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_START_PRICE, MODE_PRIVATE);
+        SharedPreferences.Editor editor_user_start_price = sharedPreferences_user_start_price.edit();
+        editor_user_start_price.putInt(AppConstant.SHAREDPREFERENCES_USER_START_PRICE, giaBd);
+        editor_user_start_price.commit();
+
+        SharedPreferences sharedPreferences_user_end_price = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_END_PRICE, MODE_PRIVATE);
+        SharedPreferences.Editor editor_user_end_price = sharedPreferences_user_end_price.edit();
+        editor_user_end_price.putInt(AppConstant.SHAREDPREFERENCES_USER_END_PRICE, giaKt);
+        editor_user_end_price.commit();
+
+        SharedPreferences sharedPreferences_user_star = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_STAR, MODE_PRIVATE);
+        SharedPreferences.Editor editor_user_start = sharedPreferences_user_star.edit();
+        editor_user_start.putInt(AppConstant.SHAREDPREFERENCES_USER_STAR, sao);
+        editor_user_start.commit();
+    }
+
+    private void resetData() {
+        starPrice.setText(fm.format(giaBd) + " đ");
+        endPrice.setText(fm.format(giaKt) + " đ");
+        rangeFilter.setValues((float) giaBd, (float) giaKt);
+        dataStar();
+    }
+
+    private void dataStar() {
+        if (sao == 1) {
+            imgStar1.setImageResource(R.drawable.ic_star_1);
+            imgStar2.setImageResource(R.drawable.ic_star_aphal);
+            imgStar3.setImageResource(R.drawable.ic_star_aphal);
+            imgStar4.setImageResource(R.drawable.ic_star_aphal);
+            imgStar5.setImageResource(R.drawable.ic_star_aphal);
+            tvCountStart.setText("1.0+");
+        } else if (sao == 2) {
+            imgStar1.setImageResource(R.drawable.ic_star_1);
+            imgStar2.setImageResource(R.drawable.ic_star_1);
+            imgStar3.setImageResource(R.drawable.ic_star_aphal);
+            imgStar4.setImageResource(R.drawable.ic_star_aphal);
+            imgStar5.setImageResource(R.drawable.ic_star_aphal);
+            tvCountStart.setText("2.0+");
+        } else if (sao == 3) {
+            imgStar1.setImageResource(R.drawable.ic_star_1);
+            imgStar2.setImageResource(R.drawable.ic_star_1);
+            imgStar3.setImageResource(R.drawable.ic_star_1);
+            imgStar4.setImageResource(R.drawable.ic_star_aphal);
+            imgStar5.setImageResource(R.drawable.ic_star_aphal);
+            tvCountStart.setText("3.0+");
+        } else if (sao == 4) {
+            imgStar1.setImageResource(R.drawable.ic_star_1);
+            imgStar2.setImageResource(R.drawable.ic_star_1);
+            imgStar3.setImageResource(R.drawable.ic_star_1);
+            imgStar4.setImageResource(R.drawable.ic_star_1);
+            imgStar5.setImageResource(R.drawable.ic_star_aphal);
+            tvCountStart.setText("4.0+");
+            sao = 4;
+        } else if (sao == 5) {
+            imgStar1.setImageResource(R.drawable.ic_star_1);
+            imgStar2.setImageResource(R.drawable.ic_star_1);
+            imgStar3.setImageResource(R.drawable.ic_star_1);
+            imgStar4.setImageResource(R.drawable.ic_star_1);
+            imgStar5.setImageResource(R.drawable.ic_star_1);
+            tvCountStart.setText("5.0+");
+        }
     }
 }

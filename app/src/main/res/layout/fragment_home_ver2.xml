@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutFrgHome2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_EBEBEB"
@@ -36,6 +37,7 @@
                     android:paddingVertical="@dimen/_15dp">
 
                     <ImageView
+                        android:id="@+id/imgSearch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_search" />
@@ -47,7 +49,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/_12dp"
                         android:layout_weight="1"
-                        android:text="Khách sạn gần bạn"
+                        android:text="@string/Hotels_near_you"
                         android:textColor="@color/black" />
 
                     <ImageView
@@ -192,6 +194,7 @@
                     android:paddingTop="@dimen/_15dp">
 
                     <ImageView
+                        android:id="@+id/imgOutPeople"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_outline_people_alt_24" />
@@ -206,6 +209,7 @@
                         android:textSize="@dimen/_16dp" />
 
                     <TextView
+                        android:id="@+id/dot1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -223,6 +227,7 @@
                         android:textSize="@dimen/_16dp" />
 
                     <TextView
+                        android:id="@+id/dot2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -318,7 +323,7 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_20dp"
                 android:paddingVertical="@dimen/_10dp"
-                android:visibility="gone">
+             >
 
                 <RelativeLayout
                     android:id="@+id/contentBestForYouHomeFragment"

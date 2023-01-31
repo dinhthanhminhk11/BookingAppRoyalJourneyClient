@@ -5,8 +5,11 @@ import static com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelAc
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -14,6 +17,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +43,6 @@ import com.example.bookingapproyaljourney.ui.activity.Hotel.ListFilterHotelActiv
 import com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.NearFromYouMapsActivity;
 import com.example.bookingapproyaljourney.ui.activity.SeeMoreBestForYouActivity;
-import com.example.bookingapproyaljourney.ui.activity.SeeMoreNearFromYouActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.NearFromYouAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetPersonHome;
@@ -47,6 +52,8 @@ import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -72,10 +79,12 @@ public class HomeVer2Fragment extends Fragment {
     private int countPerson = 2;
     private int countChildren = 2;
     private int ageChildren = 1;
-
+    private TextView contentText;
+    private Button login;
     private BottomSheetPersonHome bottomSheetPersonHome;
     private Date currentTimeNow;
     private Date currentTimeTomorrow;
+    private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     public HomeVer2Fragment(Location locationYouSelf) {
         this.locationYouSelf = locationYouSelf;
@@ -103,6 +112,82 @@ public class HomeVer2Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView();
         initData();
+//        change theme
+        SharedPreferences sharedPreferencesTheme = getActivity().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
+    }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.layoutFrgHome2.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.contentTop.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.contentPerson.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imgSearch.setColorFilter(getResources().getColor(R.color.white));
+            binding.direct.setColorFilter(getResources().getColor(R.color.white));
+            binding.startDate.setTextColor(Color.WHITE);
+            binding.textSearch.setTextColor(Color.WHITE);
+            binding.monthDate.setTextColor(Color.WHITE);
+            binding.tvTimeNhanPhong.setTextColor(Color.WHITE);
+            binding.endDate.setTextColor(Color.WHITE);
+            binding.monthEnd.setTextColor(Color.WHITE);
+            binding.dayEnd.setTextColor(Color.WHITE);
+            binding.contentPayOfflineLine2.setBackgroundColor(Color.WHITE);
+            binding.contentPayOfflineLine.setBackgroundColor(Color.WHITE);
+            binding.imgOutPeople.setColorFilter(getResources().getColor(R.color.white));
+            binding.countRoom.setTextColor(Color.WHITE);
+            binding.dot1.setTextColor(Color.WHITE);
+            binding.countPerson.setTextColor(Color.WHITE);
+            binding.dot2.setTextColor(Color.WHITE);
+            binding.countChildren.setTextColor(Color.WHITE);
+            binding.contentCenter.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.contentTextNearFromYou.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.titleNearBy.setTextColor(Color.WHITE);
+            binding.seeMoreNearFromYouHomeFragment.setTextColor(Color.WHITE);
+            binding.contentBottom.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.contentBestForYouHomeFragment.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.titleBestYou.setTextColor(Color.WHITE);
+            binding.seeMoreBestForYouHomeFragment.setTextColor(Color.WHITE);
+            bestForYouAdapter.setColor(Color.WHITE, this.getResources().getColor(R.color._0A8ED9));
+
+        } else {
+            binding.layoutFrgHome2.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+            binding.contentTop.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.contentPerson.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.imgSearch.setColorFilter(getResources().getColor(R.color.black));
+            binding.direct.setColorFilter(getResources().getColor(R.color.black));
+            binding.startDate.setTextColor(Color.BLACK);
+            binding.textSearch.setTextColor(Color.BLACK);
+            binding.monthDate.setTextColor(Color.BLACK);
+            binding.tvTimeNhanPhong.setTextColor(Color.BLACK);
+            binding.endDate.setTextColor(Color.BLACK);
+            binding.monthEnd.setTextColor(Color.BLACK);
+            binding.dayEnd.setTextColor(Color.BLACK);
+            binding.contentPayOfflineLine2.setBackgroundColor(Color.BLACK);
+            binding.contentPayOfflineLine.setBackgroundColor(Color.BLACK);
+            binding.imgOutPeople.setColorFilter(getResources().getColor(R.color.black));
+            binding.countRoom.setTextColor(Color.BLACK);
+            binding.dot1.setTextColor(Color.BLACK);
+            binding.countPerson.setTextColor(Color.BLACK);
+            binding.dot2.setTextColor(Color.BLACK);
+            binding.countChildren.setTextColor(Color.BLACK);
+            binding.contentCenter.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.contentTextNearFromYou.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.titleNearBy.setTextColor(Color.BLACK);
+            binding.seeMoreNearFromYouHomeFragment.setTextColor(Color.BLACK);
+            binding.contentBottom.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.contentBestForYouHomeFragment.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.titleBestYou.setTextColor(Color.BLACK);
+            binding.seeMoreBestForYouHomeFragment.setTextColor(Color.BLACK);
+            bestForYouAdapter.setColor(Color.BLACK, this.getResources().getColor(R.color._0A8ED9));
+        }
+
     }
 
     private void initView() {
@@ -135,7 +220,7 @@ public class HomeVer2Fragment extends Fragment {
         });
 
         binding.direct.setOnClickListener(v -> {
-            binding.textSearch.setText("Khách sạn gần nhất");
+            binding.textSearch.setText(getString(R.string.Nearest_Hotels));
         });
 
         binding.contentDate.setOnClickListener(v -> {
@@ -190,8 +275,8 @@ public class HomeVer2Fragment extends Fragment {
                     binding.startDate.setText(startDateString);
                     binding.endDate.setText(endDateString);
 
-                    binding.monthDate.setText("Tháng " + startMonthString);
-                    binding.monthEnd.setText("Tháng " + endMonthString);
+                    binding.monthDate.setText(getString(R.string.Month) + " " + startMonthString);
+                    binding.monthEnd.setText(getString(R.string.Month) + " " + endMonthString);
 
                     binding.tvTimeNhanPhong.setText(startDayString);
                     binding.dayEnd.setText(endDayString);
@@ -215,11 +300,16 @@ public class HomeVer2Fragment extends Fragment {
 
         binding.btnSearch.setOnClickListener(v -> {
             saveDataSearch();
-            startActivity(new Intent(getActivity(), ListFilterHotelActivity.class));
+            Intent intent = new Intent(getActivity(), ListFilterHotelActivity.class);
+            intent.putExtra(AppConstant.LOCATION_YOUR_SELF_LONG, String.valueOf(locationYouSelf.getLongitude()));
+            intent.putExtra(AppConstant.LOCATION_YOUR_SELF_LAT, String.valueOf(locationYouSelf.getLatitude()));
+            startActivity(intent);
         });
     }
 
     private void initData() {
+
+
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
 
@@ -230,6 +320,7 @@ public class HomeVer2Fragment extends Fragment {
         binding.payDay.setText(daysDiffPrivate + "");
 
         String dayNow = DateFormat.format("EEE", currentTimeNow).toString();
+
         String dayTomorrow = DateFormat.format("EEE", currentTimeTomorrow).toString();
 
         String dateNow = DateFormat.format("dd", currentTimeNow).toString();
@@ -240,11 +331,11 @@ public class HomeVer2Fragment extends Fragment {
         String monthTomorrow = DateFormat.format("MM", currentTimeTomorrow).toString();
 
         binding.startDate.setText(dateNow + "");
-        binding.monthDate.setText("Tháng " + monthNow);
+        binding.monthDate.setText(getString(R.string.Month) + " " + monthNow);
         binding.tvTimeNhanPhong.setText(dayNow);
 
         binding.endDate.setText(dateTomorrow + "");
-        binding.monthEnd.setText("Tháng " + monthTomorrow);
+        binding.monthEnd.setText(getString(R.string.Month) + " " + monthTomorrow);
         binding.dayEnd.setText(dayTomorrow);
 
         SharedPreferences sharedPreferences_user_count_room = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_ROOM, MODE_PRIVATE);
@@ -262,15 +353,16 @@ public class HomeVer2Fragment extends Fragment {
         SharedPreferences sharedPreferences_user_age_children = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, MODE_PRIVATE);
         ageChildren = sharedPreferences_user_age_children.getInt(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, 1);
 
-        binding.countRoom.setText(countRoom + " phòng");
-        binding.countChildren.setText(countChildren + " trẻ em");
-        binding.countPerson.setText(countPerson + " người lớn");
+        binding.countRoom.setText(countRoom + " " + getString(R.string.Room));
+        binding.countChildren.setText(countChildren + " " + getString(R.string.Children));
+        binding.countPerson.setText(countPerson + " " + getString(R.string.Adult));
         binding.textSearch.setText(textSearch);
 
         Log.e("MinhDate", currentTimeNow + " now");
         Log.e("MinhDate", currentTimeTomorrow + " tomorrow");
 
         homeViewModel.getListAllHotel();
+        homeViewModel.getHouseResponseByServer();
         if (locationYouSelf != null) {
             homeViewModel.getListHotelNearBy(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 10000));
         }
@@ -311,6 +403,37 @@ public class HomeVer2Fragment extends Fragment {
                 binding.progressBar.setVisibility(integer);
             }
         });
+
+        homeViewModel.getStringMutableLiveData().observe(getActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                try {
+                    Date date = format.parse(s);
+                    String checkDate1 = DateFormat.format("dd/MM/yyyy", currentTimeNow).toString();
+                    String checkDate2 = DateFormat.format("dd/MM/yyyy", date).toString();
+                    if (!checkDate1.equals(checkDate2)) {
+                        final Dialog dialog = new Dialog(getActivity());
+                        dialog.setContentView(R.layout.dia_log_check_date);
+                        Window window = dialog.getWindow();
+                        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        if (dialog.getWindow() != null) {
+                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        }
+
+
+                        contentText = (TextView) dialog.findViewById(R.id.contentText);
+                        login = (Button) dialog.findViewById(R.id.login);
+                        dialog.setCancelable(false);
+                        login.setOnClickListener(v -> {
+                        });
+                        dialog.show();
+//                        Toast.makeText(getActivity(), "Ngày đã bị đổi", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
@@ -331,9 +454,9 @@ public class HomeVer2Fragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onCLickSum(int person, int children, int room, int age) {
-                binding.countRoom.setText(room + " phòng");
-                binding.countChildren.setText(children + " trẻ em");
-                binding.countPerson.setText(person + " người lớn");
+                binding.countRoom.setText(room + " " + getString(R.string.Room));
+                binding.countChildren.setText(children + " " + getString(R.string.Children));
+                binding.countPerson.setText(person + " " + getString(R.string.Adult));
 
                 countPerson = person;
                 countChildren = children;

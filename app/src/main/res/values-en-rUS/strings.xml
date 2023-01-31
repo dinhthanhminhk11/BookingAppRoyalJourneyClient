@@ -442,4 +442,12 @@
     <string name="textBiometric1">Fingerprint authentication</string>
     <string name="textBiometric2">Unlock the wallet with your fingerprint</string>
     <string name="textpinpass">Enter your pin</string>
+    <string name="Hotels_near_you">Hotels near you</string>
+    <string name="Nearest_Hotels">Nearest Hotels</string>
+    <string name="Month">Month</string>
+    <string name="Room">Room</string>
+    <string name="Set_up_your_password">TSet up your password</string>
+    <string name="Re_enter">Re-enter</string>
+
+
 </resources>

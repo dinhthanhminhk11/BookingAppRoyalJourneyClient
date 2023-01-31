@@ -453,4 +453,11 @@
     <string name="textSuccessAddMoney">Nạp tiền thành công</string>
     <string name="textBiometric1">Xác thực bằng vân tay</string>
     <string name="textBiometric2">Mở khoá ví bằng vân tay của bạn</string>
+    <string name="Hotels_near_you">Khách sạn gần bạn</string>
+    <string name="Nearest_Hotels">Khách sạn gần nhất</string>
+    <string name="Month">Tháng</string>
+    <string name="Room">Phòng</string>
+    <string name="Set_up_your_password">Thiết lập mật khẩu của bạn</string>
+    <string name="Re_enter">Nhập lại</string>
+
 </resources>

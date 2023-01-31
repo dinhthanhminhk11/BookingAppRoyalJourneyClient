@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Thiết lập mật khẩu của bạn"
+        android:text="@string/Set_up_your_password"
         android:textColor="@color/black"
         android:textSize="@dimen/_18sp" />
 
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20dp"
         android:gravity="center"
-        android:text="Nhập lại"
+        android:text="@string/Re_enter"
         android:textColor="@color/black"
         android:textSize="@dimen/_18sp"
         android:visibility="gone" />

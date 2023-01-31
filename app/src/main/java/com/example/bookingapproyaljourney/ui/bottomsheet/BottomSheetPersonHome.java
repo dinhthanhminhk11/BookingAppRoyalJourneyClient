@@ -1,6 +1,10 @@
 package com.example.bookingapproyaljourney.ui.bottomsheet;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.bookingapproyaljourney.R;
+import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class BottomSheetPersonHome extends BottomSheetDialog implements View.OnClickListener {
@@ -35,9 +40,9 @@ public class BottomSheetPersonHome extends BottomSheetDialog implements View.OnC
     private TextView btnCancel;
     private Button login;
 
-    private int countPersonText = 1;
+    private int countPersonText;
     private int countPersonChildrenText;
-    private int countRoomText = 1;
+    private int countRoomText;
     private int ageText;
 
     public BottomSheetPersonHome(@NonNull Context context, int theme, CallBack callBack) {
@@ -87,6 +92,10 @@ public class BottomSheetPersonHome extends BottomSheetDialog implements View.OnC
         downPersonChildren.setEnabled(false);
         downAge.setAlpha(0.4f);
         downAge.setEnabled(false);
+        downCountRoom.setAlpha(0.4f);
+        downCountRoom.setEnabled(false);
+        downPerson.setAlpha(0.4f);
+        downPerson.setEnabled(false);
 
         downPerson.setOnClickListener(this);
         downPersonChildren.setOnClickListener(this);
@@ -97,9 +106,11 @@ public class BottomSheetPersonHome extends BottomSheetDialog implements View.OnC
         upCountRoom.setOnClickListener(this);
         upAge.setOnClickListener(this);
 
+        initDataCache();
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -158,12 +169,20 @@ public class BottomSheetPersonHome extends BottomSheetDialog implements View.OnC
     }
 
     private void checkAge() {
-        if (ageText > 0) {
+        if (ageText > 1) {
             downAge.setAlpha(1f);
             downAge.setEnabled(true);
         } else {
             downAge.setAlpha(0.4f);
             downAge.setEnabled(false);
+        }
+
+        if (ageText < 17) {
+            upAge.setAlpha(1f);
+            upAge.setEnabled(true);
+        } else {
+            upAge.setAlpha(0.4f);
+            upAge.setEnabled(false);
         }
     }
 
@@ -175,6 +194,20 @@ public class BottomSheetPersonHome extends BottomSheetDialog implements View.OnC
             downCountRoom.setAlpha(0.4f);
             downCountRoom.setEnabled(false);
         }
+
+        if (countRoomText < 16) {
+            upCountRoom.setAlpha(1f);
+            upCountRoom.setEnabled(true);
+        } else {
+            upCountRoom.setAlpha(0.4f);
+            upCountRoom.setEnabled(false);
+        }
+
+        if (Integer.parseInt(countRoom.getText().toString()) > Integer.parseInt(person.getText().toString())) {
+            countPersonText = Integer.parseInt(countRoom.getText().toString());
+            person.setText(countPersonText + "");
+            checkCountPerson();
+        }
     }
 
     private void checkCountChildren() {
@@ -184,6 +217,14 @@ public class BottomSheetPersonHome extends BottomSheetDialog implements View.OnC
         } else {
             downPersonChildren.setAlpha(0.4f);
             downPersonChildren.setEnabled(false);
+        }
+
+        if (countPersonChildrenText < 50) {
+            upPersonChildren.setAlpha(1f);
+            upPersonChildren.setEnabled(true);
+        } else {
+            upPersonChildren.setAlpha(0.4f);
+            upPersonChildren.setEnabled(false);
         }
     }
 
@@ -195,11 +236,52 @@ public class BottomSheetPersonHome extends BottomSheetDialog implements View.OnC
             downPerson.setAlpha(0.4f);
             downPerson.setEnabled(false);
         }
+
+        if (Integer.parseInt(countRoom.getText().toString()) > Integer.parseInt(person.getText().toString())) {
+            countRoomText = Integer.parseInt(person.getText().toString());
+            countRoom.setText(countRoomText + "");
+            checkCountRoom();
+        }
+        if (countPersonText < 50) {
+            upPerson.setAlpha(1f);
+            upPerson.setEnabled(true);
+        } else {
+            upPerson.setAlpha(0.4f);
+            upPerson.setEnabled(false);
+        }
     }
 
     public interface CallBack {
         void onCLickCLose();
 
         void onCLickSum(int person, int children, int countRoom, int age);
+    }
+
+    public void initDataCache() {
+        SharedPreferences sharedPreferences_user_count_room = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_ROOM, MODE_PRIVATE);
+        int countRoomCache = sharedPreferences_user_count_room.getInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_ROOM, 2);
+        countRoomText = countRoomCache;
+
+        SharedPreferences sharedPreferences_user_count_person = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_PERSON, MODE_PRIVATE);
+        int countPersonCache = sharedPreferences_user_count_person.getInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_PERSON, 2);
+        countPersonText = countPersonCache;
+
+        SharedPreferences sharedPreferences_user_count_children = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_COUNT_CHILDREN, MODE_PRIVATE);
+        int countChildrenCache = sharedPreferences_user_count_children.getInt(AppConstant.SHAREDPREFERENCES_USER_COUNT_CHILDREN, 2);
+        countPersonChildrenText = countChildrenCache;
+
+        SharedPreferences sharedPreferences_user_age_children = getContext().getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, MODE_PRIVATE);
+        int ageChildrenCache = sharedPreferences_user_age_children.getInt(AppConstant.SHAREDPREFERENCES_USER_AGE_CHILDREN, 1);
+        ageText = ageChildrenCache;
+
+        countRoom.setText(countRoomCache + "");
+        person.setText(countPersonCache + "");
+        personChildren.setText(countChildrenCache + "");
+        countAge.setText(ageChildrenCache + "");
+
+        checkAge();
+        checkCountPerson();
+        checkCountRoom();
+        checkCountChildren();
     }
 }
