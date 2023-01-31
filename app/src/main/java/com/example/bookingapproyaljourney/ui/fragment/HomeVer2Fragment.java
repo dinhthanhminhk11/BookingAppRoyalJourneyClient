@@ -5,9 +5,11 @@ import static com.example.bookingapproyaljourney.ui.activity.Hotel.SearchHotelAc
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -15,6 +17,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,6 +52,8 @@ import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -72,10 +79,12 @@ public class HomeVer2Fragment extends Fragment {
     private int countPerson = 2;
     private int countChildren = 2;
     private int ageChildren = 1;
-
+    private TextView contentText;
+    private Button login;
     private BottomSheetPersonHome bottomSheetPersonHome;
     private Date currentTimeNow;
     private Date currentTimeTomorrow;
+    private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     public HomeVer2Fragment(Location locationYouSelf) {
         this.locationYouSelf = locationYouSelf;
@@ -299,6 +308,8 @@ public class HomeVer2Fragment extends Fragment {
     }
 
     private void initData() {
+
+
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
 
@@ -309,6 +320,7 @@ public class HomeVer2Fragment extends Fragment {
         binding.payDay.setText(daysDiffPrivate + "");
 
         String dayNow = DateFormat.format("EEE", currentTimeNow).toString();
+
         String dayTomorrow = DateFormat.format("EEE", currentTimeTomorrow).toString();
 
         String dateNow = DateFormat.format("dd", currentTimeNow).toString();
@@ -350,6 +362,7 @@ public class HomeVer2Fragment extends Fragment {
         Log.e("MinhDate", currentTimeTomorrow + " tomorrow");
 
         homeViewModel.getListAllHotel();
+        homeViewModel.getHouseResponseByServer();
         if (locationYouSelf != null) {
             homeViewModel.getListHotelNearBy(new LocationNearByRequest(locationYouSelf.getLongitude(), locationYouSelf.getLatitude(), 10000));
         }
@@ -388,6 +401,37 @@ public class HomeVer2Fragment extends Fragment {
             @Override
             public void onChanged(Integer integer) {
                 binding.progressBar.setVisibility(integer);
+            }
+        });
+
+        homeViewModel.getStringMutableLiveData().observe(getActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                try {
+                    Date date = format.parse(s);
+                    String checkDate1 = DateFormat.format("dd/MM/yyyy", currentTimeNow).toString();
+                    String checkDate2 = DateFormat.format("dd/MM/yyyy", date).toString();
+                    if (!checkDate1.equals(checkDate2)) {
+                        final Dialog dialog = new Dialog(getActivity());
+                        dialog.setContentView(R.layout.dia_log_check_date);
+                        Window window = dialog.getWindow();
+                        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        if (dialog.getWindow() != null) {
+                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        }
+
+
+                        contentText = (TextView) dialog.findViewById(R.id.contentText);
+                        login = (Button) dialog.findViewById(R.id.login);
+                        dialog.setCancelable(false);
+                        login.setOnClickListener(v -> {
+                        });
+                        dialog.show();
+//                        Toast.makeText(getActivity(), "Ngày đã bị đổi", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

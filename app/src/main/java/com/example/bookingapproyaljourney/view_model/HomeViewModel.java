@@ -18,6 +18,7 @@ public class HomeViewModel extends AndroidViewModel {
     MutableLiveData<Integer> mProgressMutableData = new MutableLiveData<>();
     MutableLiveData<HotelReponse> hotelReponseMutableLiveData = new MutableLiveData<>();
     MutableLiveData<HotelReponseNearBy> hotelReponseMutableLiveDataNearBy = new MutableLiveData<>();
+    MutableLiveData<String> stringMutableLiveData = new MutableLiveData<>();
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -42,6 +43,20 @@ public class HomeViewModel extends AndroidViewModel {
                 hotelReponseMutableLiveDataNearBy.postValue(o);
             }
         });
+    }
+
+    public void getHouseResponseByServer() {
+        mProgressMutableData.postValue(View.VISIBLE);
+        repository.getHouseResponseByServer(o -> {
+            if (o instanceof String) {
+                mProgressMutableData.postValue(View.GONE);
+                stringMutableLiveData.postValue(String.valueOf(o));
+            }
+        });
+    }
+
+    public MutableLiveData<String> getStringMutableLiveData() {
+        return stringMutableLiveData;
     }
 
     public MutableLiveData<Integer> getmProgressMutableData() {

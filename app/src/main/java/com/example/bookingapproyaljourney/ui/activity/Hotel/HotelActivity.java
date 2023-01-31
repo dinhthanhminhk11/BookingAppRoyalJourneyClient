@@ -53,10 +53,6 @@ import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.Slidr;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrConfig;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrInterface;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrPosition;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -102,6 +98,7 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
     private SharedPreferences sharedPreferences;
     private BookmarkRepository bookmarkRepository;
     private String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -349,7 +346,6 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
         });
         return true;
     }
-
 
 
     @Override

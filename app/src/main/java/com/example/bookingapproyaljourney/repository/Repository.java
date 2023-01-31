@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.bookingapproyaljourney.api.ApiRequest;
+import com.example.bookingapproyaljourney.callback.CallBackString;
 import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
@@ -225,6 +226,24 @@ public class Repository {
 
             @Override
             public void onFailure(Call<HotelReponseNearBy> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, t.getMessage());
+            }
+        });
+    }
+
+    public void getHouseResponseByServer(Consumer consumer) {
+        apiRequest.getHouseResponseByServer().enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.e(AppConstant.TAG_MINHCHEK, t.getMessage());
             }
         });
