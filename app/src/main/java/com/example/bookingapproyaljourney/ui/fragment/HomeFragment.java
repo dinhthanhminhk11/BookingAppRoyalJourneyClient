@@ -40,12 +40,14 @@ import com.example.bookingapproyaljourney.MainActivity;
 import com.example.bookingapproyaljourney.R;
 import com.example.bookingapproyaljourney.callback.UpdateRecyclerView;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.model.house.House;
 import com.example.bookingapproyaljourney.model.user.UserClient;
 import com.example.bookingapproyaljourney.response.CategoryBestForYouResponse;
 import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.ui.activity.DetailProductActivity;
+import com.example.bookingapproyaljourney.ui.activity.Hotel.HotelActivity;
 import com.example.bookingapproyaljourney.ui.activity.SeeMoreBestForYouActivity;
 import com.example.bookingapproyaljourney.ui.activity.SeeMoreNearFromYouActivity;
 import com.example.bookingapproyaljourney.ui.adapter.BestForYouAdapter;
@@ -297,12 +299,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         this.view = view;
     }
 
-    @Override
-    public void onClick(House house) {
-        Intent intent = new Intent(getActivity(), DetailProductActivity.class);
-        intent.putExtra(AppConstant.HOUSE_EXTRA, house.getId());
-        startActivity(intent);
-    }
+
 
     private void showDialog() {
         BottomSheetFilterHome bottomSheetFilterHome = new BottomSheetFilterHome(requireContext(), R.style.MaterialDialogSheet, this);
@@ -318,7 +315,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         listCategory.setVisibility(View.GONE);
         recyclerviewNearFromYou.setVisibility(View.GONE);
         filterViewModel.filterLiveData(giaBd, giaKt, sao, idLoai).observe(getActivity(), it -> {
-            if (it.getHouses().size() == 0) {
+            if (it.getHotel().size() == 0) {
                 progressBar.setVisibility(View.GONE);
                 tvShowNull.setVisibility(View.VISIBLE);
                 tvContentNull.setVisibility(View.VISIBLE);
@@ -329,7 +326,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 recyclerviewListBestForYou.setVisibility(View.GONE);
             } else {
                 recyclerviewListBestForYou.setVisibility(View.VISIBLE);
-                bestForYouAdapterNotNull.setDataHouse(it.getHouses());
+                bestForYouAdapterNotNull.setDataHouse(it.getHotel());
                 recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
                 progressBar.setVisibility(View.GONE);
                 tvShowNull.setVisibility(View.GONE);
@@ -349,7 +346,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         recyclerviewNearFromYou.setVisibility(View.GONE);
         listCategory.setVisibility(View.GONE);
         filterViewModel.listSearchLiveData(tk).observe(getActivity(), it -> {
-            if (it.getHouses().size() == 0) {
+            if (it.getHotel().size() == 0) {
                 progressBar.setVisibility(View.GONE);
                 tvShowNull.setVisibility(View.VISIBLE);
                 tvContentNull.setVisibility(View.VISIBLE);
@@ -361,7 +358,7 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
                 recyclerviewListBestForYou.setVisibility(View.GONE);
             } else {
                 recyclerviewListBestForYou.setVisibility(View.VISIBLE);
-                bestForYouAdapterNotNull.setDataHouse(it.getHouses());
+                bestForYouAdapterNotNull.setDataHouse(it.getHotel());
                 recyclerviewListBestForYou.setAdapter(bestForYouAdapterNotNull);
                 progressBar.setVisibility(View.GONE);
                 tvShowNull.setVisibility(View.GONE);
@@ -492,4 +489,10 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
         }
     }
 
+    @Override
+    public void onClick(Hotel hotel) {
+        Intent intent = new Intent(getActivity(), HotelActivity.class);
+        intent.putExtra(AppConstant.HOUSE_EXTRA, hotel.get_id());
+        startActivity(intent);
+    }
 }
