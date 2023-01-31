@@ -2,9 +2,9 @@ package com.example.bookingapproyaljourney.constants;
 
 public class AppConstant {
 
-//    public static final String BASE = "https://926e-123-25-30-191.ap.ngrok.io";
 //    public static final String BASE = "http://192.168.0.113:8080";
-    public static final String BASE = "https://926e-123-25-30-191.ap.ngrok.io";
+//    public static final String BASE = "https://926e-123-25-30-191.ap.ngrok.io";
+    public static final String BASE = "https://rough-hill-5837.fly.dev"; // domain chính
     public static final String BASE_URL = BASE + "/api/";
     public static final String BASE_URL_CHAT = BASE;
     public static final String URL_API_GOOGLE_MAP = "https://maps.googleapis.com/";
