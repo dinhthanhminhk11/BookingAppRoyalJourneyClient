@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +31,7 @@ public class PayCashYourActivity extends BaseActivity {
     private ActivityPayCashYourBinding binding;
     private CashPayViewModel cashPayViewModel;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private CashFolwAdapter cashFolwAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,7 @@ public class PayCashYourActivity extends BaseActivity {
                     binding.recyclerView.setVisibility(View.GONE);
                 } else {
                     binding.text4.setVisibility(View.GONE);
-                    CashFolwAdapter cashFolwAdapter = new CashFolwAdapter(list);
+                    cashFolwAdapter = new CashFolwAdapter(list);
                     binding.recyclerView.setLayoutManager(new LinearLayoutManager(PayCashYourActivity.this, LinearLayoutManager.VERTICAL, false));
                     binding.recyclerView.setAdapter(cashFolwAdapter);
                 }
@@ -157,6 +157,7 @@ public class PayCashYourActivity extends BaseActivity {
             binding.text4.setTextColor(Color.WHITE);
             binding.contentPayOfflineLine2.setBackgroundColor(Color.WHITE);
 
+            cashFolwAdapter.setColor(Color.WHITE, Color.WHITE);
         } else {
             binding.toolBar.setBackgroundColor(this.getResources().getColor(R.color.white));
             binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
@@ -186,8 +187,7 @@ public class PayCashYourActivity extends BaseActivity {
             binding.text2.setTextColor(Color.BLACK);
             binding.text4.setTextColor(Color.BLACK);
             binding.contentPayOfflineLine2.setBackgroundColor(Color.BLACK);
+            cashFolwAdapter.setColor(Color.BLACK, getResources().getColor(R.color.color_858585));
         }
     }
-
-
 }

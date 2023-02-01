@@ -484,7 +484,6 @@ public class HomeFragment extends Fragment implements UpdateRecyclerView, BestFo
             titleNearBy.setTextColor(Color.BLACK);
             titleBestYou.setTextColor(Color.BLACK);
 
-//            bestForYouAdapter.setColor(getContext().getResources().getColor(R.color.color_858585), Color.BLACK);
             bestForYouAdapterNotNull.setColor(Color.BLACK, getContext().getResources().getColor(R.color.color_858585));
         }
     }

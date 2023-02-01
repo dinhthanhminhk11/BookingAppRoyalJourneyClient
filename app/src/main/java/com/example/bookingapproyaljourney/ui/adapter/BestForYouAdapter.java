@@ -1,9 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -14,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.constants.AppConstant;
 import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragmentBinding;
 import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragmentNotNullBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
@@ -38,11 +34,9 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private int type;
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
 
-
-
-    public void setColor(int color, int colorBlack) {
+    public void setColor(int color, int colorBlue) {
         this.color = color;
-        this.colorBlue = colorBlack;
+        this.colorBlue = colorBlue;
     }
 
     public void setDataHotel(ArrayList<Hotel> dataHotel) {
@@ -91,7 +85,6 @@ public class BestForYouAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder.binding.nameIcon1.setTextColor(color);
                 viewHolder.binding.icon1.setColorFilter(color);
                 viewHolder.binding.icon2.setColorFilter(color);
-
 
                 viewHolder.itemView.setOnClickListener(v -> {
                     consumer.accept(item);
