@@ -25,7 +25,9 @@ public class CashFolwAdapter extends RecyclerView.Adapter<CashFolwAdapter.ViewHo
         this.colorXam = colorXam;
     }
 
-    public CashFolwAdapter(List<CashFolwResponse> data) {
+    public CashFolwAdapter() {
+    }
+    public void  setData(List<CashFolwResponse> data) {
         this.data = data;
     }
 

@@ -49,6 +49,7 @@ public class PayCashYourActivity extends BaseActivity {
         } else {
             binding.switchComparTheme.setChecked(false);
         }
+        cashFolwAdapter = new CashFolwAdapter();
 
 //        thay đổi Theme
         SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
@@ -88,7 +89,7 @@ public class PayCashYourActivity extends BaseActivity {
                     binding.recyclerView.setVisibility(View.GONE);
                 } else {
                     binding.text4.setVisibility(View.GONE);
-                    cashFolwAdapter = new CashFolwAdapter(list);
+                    cashFolwAdapter.setData(list);
                     binding.recyclerView.setLayoutManager(new LinearLayoutManager(PayCashYourActivity.this, LinearLayoutManager.VERTICAL, false));
                     binding.recyclerView.setAdapter(cashFolwAdapter);
                 }
