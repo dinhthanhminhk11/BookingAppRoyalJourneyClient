@@ -407,31 +407,31 @@ public class HomeVer2Fragment extends Fragment {
         homeViewModel.getStringMutableLiveData().observe(getActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                try {
-                    Date date = format.parse(s);
-                    String checkDate1 = DateFormat.format("dd/MM/yyyy", currentTimeNow).toString();
-                    String checkDate2 = DateFormat.format("dd/MM/yyyy", date).toString();
-                    if (!checkDate1.equals(checkDate2)) {
-                        final Dialog dialog = new Dialog(getActivity());
-                        dialog.setContentView(R.layout.dia_log_check_date);
-                        Window window = dialog.getWindow();
-                        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        if (dialog.getWindow() != null) {
-                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        }
-
-
-                        contentText = (TextView) dialog.findViewById(R.id.contentText);
-                        login = (Button) dialog.findViewById(R.id.login);
-                        dialog.setCancelable(false);
-                        login.setOnClickListener(v -> {
-                        });
-                        dialog.show();
-//                        Toast.makeText(getActivity(), "Ngày đã bị đổi", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Date date = format.parse(s);
+//                    String checkDate1 = DateFormat.format("dd/MM/yyyy", currentTimeNow).toString();
+//                    String checkDate2 = DateFormat.format("dd/MM/yyyy", date).toString();
+//                    if (!checkDate1.equals(checkDate2)) {
+//                        final Dialog dialog = new Dialog(getActivity());
+//                        dialog.setContentView(R.layout.dia_log_check_date);
+//                        Window window = dialog.getWindow();
+//                        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                        if (dialog.getWindow() != null) {
+//                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                        }
+//
+//
+//                        contentText = (TextView) dialog.findViewById(R.id.contentText);
+//                        login = (Button) dialog.findViewById(R.id.login);
+//                        dialog.setCancelable(false);
+//                        login.setOnClickListener(v -> {
+//                        });
+//                        dialog.show();
+////                        Toast.makeText(getActivity(), "Ngày đã bị đổi", Toast.LENGTH_SHORT).show();
+//                    }
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
             }
         });
     }
