@@ -77,7 +77,6 @@ import com.example.bookingapproyaljourney.ui.custom.LighterHelper;
 import com.example.bookingapproyaljourney.ui.fragment.BookmarkFragment;
 import com.example.bookingapproyaljourney.ui.fragment.ChatFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HelpFragment;
-import com.example.bookingapproyaljourney.ui.fragment.HomeFragment;
 import com.example.bookingapproyaljourney.ui.fragment.HomeVer2Fragment;
 import com.example.bookingapproyaljourney.ui.fragment.ListOrderAllFragment;
 import com.example.bookingapproyaljourney.ui.fragment.NotificationFragment;
@@ -250,9 +249,9 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         String check = getIntent().getStringExtra(CheckSuccess);
 
         if (!(check == null)) {
-            if(check.equals("feedback")){
+            if (check.equals("feedback")) {
                 CookieBar.build(this).setTitle(this.getString(R.string.Successfully)).setMessage(this.getString(R.string.Successfully_feedback)).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
-            }else if (check.equals(text1111111111111)) {
+            } else if (check.equals(text1111111111111)) {
                 CookieBar.build(this).setTitle(R.string.Successfully).setMessage(R.string.textcheck111).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
             } else if (check.equals(CancelBookingActivity)) {
                 CookieBar.build(this).setTitle(R.string.Successfully).setMessage(R.string.textCheckCancelBookingActivity).setIcon(R.drawable.ic_complete_order).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(5000).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
@@ -293,7 +292,39 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
             @Override
             public void onChanged(LoginResponse loginResponse) {
                 if (loginResponse.isStatus()) {
-                    loginViewModel.getCountNotificationByUser(UserClient.getInstance().getId());
+                    Log.e("MinhLogin", " l " + loginResponse.getUser().isCheckAccount());
+                    if (loginResponse.getUser().isCheckAccount()) {
+
+                        UserClient userClient = UserClient.getInstance();
+                        userClient.setEmail(loginResponse.getUser().getEmail());
+                        userClient.setId(loginResponse.getUser().getId());
+                        userClient.setName(loginResponse.getUser().getName());
+                        userClient.setImage(loginResponse.getUser().getImage());
+                        userClient.setPhone(loginResponse.getUser().getPhone());
+                        userClient.setAddress(loginResponse.getUser().getAddress());
+                        userClient.setCountBooking(loginResponse.getUser().getCountBooking());
+                        loginViewModel.getCountNotificationByUser(UserClient.getInstance().getId());
+                    } else {
+                        final Dialog dialog = new Dialog(MainActivity.this);
+                        dialog.setContentView(R.layout.dia_log_check_date);
+                        Window window = dialog.getWindow();
+                        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        if (dialog.getWindow() != null) {
+                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        }
+                        TextView contentText = (TextView) dialog.findViewById(R.id.contentText);
+                        contentText.setText("Tài khoản của bạn đã bị khoá do spam huỷ phòng! Vui lòng liên hệ với chúng tôi để được giải đáp thắc mắc hoặc đăng nhập tài khoản khác");
+                        Button login = (Button) dialog.findViewById(R.id.login);
+                        dialog.setCancelable(false);
+                        login.setOnClickListener(v -> {
+                            SharedPreferences sharedPreferences = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(AppConstant.TOKEN_USER, "");
+                            editor.commit();
+                            dialog.dismiss();
+                        });
+                        dialog.show();
+                    }
                 }
             }
         });
