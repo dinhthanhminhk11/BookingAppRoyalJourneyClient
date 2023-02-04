@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutHotelActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_EBEBEB"
@@ -132,18 +133,19 @@
                     android:textSize="@dimen/_16sp"
                     android:textStyle="bold" />
 
-
                 <TextView
                     android:id="@+id/ContentHouse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
+
             <LinearLayout
-                android:visibility="gone"
+                android:id="@+id/layoutDanhGia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/gradientbackground_white">
+                android:background="@drawable/gradientbackground_white"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imgStar1"
@@ -213,6 +215,7 @@
                             android:textSize="@dimen/_16sp" />
 
                         <TextView
+                            android:id="@+id/tvOwner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_4dp"
@@ -271,7 +274,6 @@
 
                     <TextView
                         android:id="@+id/text3"
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -287,7 +289,7 @@
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="@string/see_more"
                         android:textColor="@color/blue"
-                        android:textSize="@dimen/_16sp" />
+                        android:textSize="@dimen/_14sp" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -345,7 +347,6 @@
 
                 <TextView
                     android:id="@+id/text5"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mapdetail"
@@ -421,7 +422,7 @@
                         android:gravity="center_vertical"
                         android:text="@string/see_more"
                         android:textColor="@color/blue"
-                        android:textSize="@dimen/_16dp" />
+                        android:textSize="@dimen/_14dp" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -447,7 +448,6 @@
 
                 <TextView
                     android:id="@+id/text8"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/check_in"
@@ -529,11 +529,10 @@
 
                 <TextView
                     android:id="@+id/text14"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10dp"
-                    android:text="@string/CancellationpolicydetailVer2"
+                    android:text="@string/Generalpolicy"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp"
                     android:textStyle="bold" />
@@ -544,7 +543,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:maxLines="5"
-                    android:text="Hoàn huỷ miễn phí"
+                    android:text="@string/Free_cancellation"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -561,7 +560,6 @@
 
                 <TextView
                     android:id="@+id/text9"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10dp"
@@ -579,18 +577,19 @@
                     android:visibility="gone">
 
                     <View
+                        android:id="@+id/viewDeMucHuy1"
                         android:layout_width="5dp"
                         android:layout_height="5dp"
                         android:layout_gravity="center"
                         android:background="@color/black" />
 
                     <TextView
-                        android:id="@+id/tvChinhSachHuyPhong"
+                        android:id="@+id/tvChinhSachHuyPhong1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:maxLines="2"
-                        android:text="Hoàn huỷ miễn phí"
+                        android:text="@string/Free_cancellation"
                         android:textColor="@color/black" />
 
 
@@ -610,17 +609,19 @@
                         android:orientation="horizontal">
 
                         <View
+                            android:id="@+id/viewDeMucHuy2"
                             android:layout_width="5dp"
                             android:layout_height="5dp"
                             android:layout_gravity="center"
                             android:background="@color/black" />
 
                         <TextView
+                            android:id="@+id/tvChinhSachHuyPhong2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="2"
-                            android:text="Trước 2 ngày 100%"
+                            android:text="@string/hai_day_la100"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -632,17 +633,19 @@
                         android:orientation="horizontal">
 
                         <View
+                            android:id="@+id/viewDeMucHuy3"
                             android:layout_width="5dp"
                             android:layout_height="5dp"
                             android:layout_gravity="center"
                             android:background="@color/black" />
 
                         <TextView
+                            android:id="@+id/tvChinhSachHuyPhong3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="2"
-                            android:text="Sau 2 ngày không hoàn tiền"
+                            android:text="@string/After_2_days_without_refund"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -668,7 +671,6 @@
 
                     <TextView
                         android:id="@+id/text10"
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -684,7 +686,7 @@
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="@string/see_more"
                         android:textColor="@color/blue"
-                        android:textSize="@dimen/_16sp" />
+                        android:textSize="@dimen/_14sp" />
                 </LinearLayout>
 
                 <TextView
@@ -707,7 +709,6 @@
 
                 <TextView
                     android:id="@+id/text15"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10dp"
@@ -724,8 +725,10 @@
                     android:overScrollMode="never" />
 
                 <View
+                    android:id="@+id/viewChonPhong"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_90dp" />
+                    android:layout_height="@dimen/_90dp"
+              />
             </LinearLayout>
 
             <com.airbnb.lottie.LottieAnimationView
@@ -759,6 +762,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvBottomGiaThue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pricedetail"
@@ -770,7 +774,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8dp"
-
                 android:textColor="@color/blue"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold" />

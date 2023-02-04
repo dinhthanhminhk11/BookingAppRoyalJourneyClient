@@ -448,6 +448,12 @@
     <string name="Room">Room</string>
     <string name="Set_up_your_password">TSet up your password</string>
     <string name="Re_enter">Re-enter</string>
+    <string name="Assess">Assess</string>
+    <string name="Generalpolicy">General policy</string>
+    <string name="choseRoom">Chose room</string>
+    <string name="Free_cancellation">Free cancellation</string>
+    <string name="hai_day_la100">2 days in advance 100%</string>
+    <string name="After_2_days_without_refund">After 2 days without refund</string>
 
 
 </resources>

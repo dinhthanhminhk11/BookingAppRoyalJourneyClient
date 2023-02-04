@@ -25,6 +25,12 @@ public class RoomHotelAdapter extends RecyclerView.Adapter<RoomHotelAdapter.View
     private NumberFormat fm = new DecimalFormat("#,###");
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
     private Consumer<Room> consumer;
+    private int color1, color2;
+
+    public void setColor(int color1, int color2) {
+        this.color1 = color1;
+        this.color2 = color2;
+    }
 
     public RoomHotelAdapter() {
     }
@@ -59,6 +65,17 @@ public class RoomHotelAdapter extends RecyclerView.Adapter<RoomHotelAdapter.View
             holder.binding.imageItem.startAutoCycle();
 
             holder.binding.tvTenPhong.setText(item.getName());
+            holder.binding.tvTenPhong.setTextColor(color1);
+            holder.binding.tvAmountBedRoom.setTextColor(color1);
+            holder.binding.tvArea.setTextColor(color1);
+            holder.binding.tvCountBathroom.setTextColor(color1);
+            holder.binding.price.setTextColor(color1);
+            holder.binding.tvDem.setTextColor(color1);
+            holder.binding.icon1.setColorFilter(color1);
+            holder.binding.icon2.setColorFilter(color1);
+            holder.binding.icon3.setColorFilter(color1);
+            holder.binding.viewBottom.setBackgroundColor(color2);
+
             holder.binding.tvAmountBedRoom.setText(item.getMaxNguoiLon() + " nguời lớn, " + item.getMaxTreEm() + " trẻ em");
             holder.binding.tvArea.setText(item.getDienTich() + " m²");
             holder.binding.tvCountBathroom.setText(item.getBedroom().get(0).getName());
@@ -66,6 +83,8 @@ public class RoomHotelAdapter extends RecyclerView.Adapter<RoomHotelAdapter.View
             holder.itemView.setOnClickListener(v -> {
                 consumer.accept(item);
             });
+
+
         }
     }
 

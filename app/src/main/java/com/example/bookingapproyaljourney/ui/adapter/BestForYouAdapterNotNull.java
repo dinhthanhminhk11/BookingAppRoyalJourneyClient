@@ -16,10 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragmentBinding;
-import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragmentNotNullBinding;
 import com.example.bookingapproyaljourney.model.hotel.Hotel;
-import com.example.bookingapproyaljourney.model.house.House;
 import com.example.libraryautoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.example.libraryautoimageslider.SliderAnimations;
 import com.example.libraryautoimageslider.SliderView;
@@ -37,15 +34,10 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
     private int color;
     private int color1;
     private Consumer<Hotel> consumer;
+
     public void setConsumer(Consumer<Hotel> consumer) {
         this.consumer = consumer;
     }
-
-
-
-
-
-
 
     public void setColor(int color, int color1) {
         this.color = color;
@@ -144,7 +136,7 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
         private TextView tvPerson;
         private TextView price;
         private Button btnDat;
-        private  ImageView icon1, icon2, icon3;
+        private ImageView icon1, icon2, icon3;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

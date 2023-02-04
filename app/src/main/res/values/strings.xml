@@ -459,5 +459,10 @@
     <string name="Room">Phòng</string>
     <string name="Set_up_your_password">Thiết lập mật khẩu của bạn</string>
     <string name="Re_enter">Nhập lại</string>
+    <string name="Assess">Đánh giá</string>
+    <string name="Generalpolicy">Chính sách chung</string>
+    <string name="Free_cancellation">Hoàn huỷ miễn phí</string>
+    <string name="hai_day_la100">Trước 2 ngày 100%</string>
+    <string name="After_2_days_without_refund">Sau 2 ngày không hoàn tiền</string>
 
 </resources>

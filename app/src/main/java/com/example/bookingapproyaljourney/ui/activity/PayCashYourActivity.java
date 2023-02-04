@@ -54,7 +54,6 @@ public class PayCashYourActivity extends BaseActivity {
 //        thay đổi Theme
         SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
         int theme2 = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
-
         if (theme2 == AppConstant.POS_DARK) {
             changeTheme(1);
         } else {
