@@ -185,7 +185,6 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
             binding.contentBackgroundGradiend.setBackground(null);
             binding.tvBottomGiaThue.setTextColor(Color.WHITE);
             binding.priceRoom.setTextColor(Color.WHITE);
-            binding.btnRentNow.setBackgroundColor(Color.BLACK);
             convenientAdapter.setColor(Color.WHITE);
             roomHotelAdapter.setColor(Color.WHITE, this.getResources().getColor(R.color.dark_212332));
             binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
@@ -203,8 +202,6 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
             binding.contentHost.setBackgroundColor(this.getResources().getColor(R.color.white));
             binding.NameManage.setTextColor(Color.BLACK);
             binding.tvOwner.setTextColor(Color.BLACK);
-//            binding.btPhone.setBackgroundColor(Color.BLACK);
-//            binding.btMesseger.setBackgroundColor(Color.BLACK);
             binding.contentConvenient.setBackgroundColor(this.getResources().getColor(R.color.white));
             binding.text3.setTextColor(Color.BLACK);
             binding.showMore.setTextColor(Color.BLACK);
@@ -237,13 +234,10 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
             binding.showMedical.setTextColor(Color.BLACK);
             binding.contentRoom.setBackgroundColor(this.getResources().getColor(R.color.white));
             binding.text15.setTextColor(Color.BLACK);
-//            binding.contentBackgroundGradiend.setBackground(null);
             binding.tvBottomGiaThue.setTextColor(Color.BLACK);
             binding.priceRoom.setTextColor(Color.BLACK);
-            binding.btnRentNow.setBackgroundColor(Color.BLACK);
             convenientAdapter.setColor(Color.BLACK);
             roomHotelAdapter.setColor(Color.BLACK, this.getResources().getColor(R.color.color_EBEBEB));
-
         }
 
     }

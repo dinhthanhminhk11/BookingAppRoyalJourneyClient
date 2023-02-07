@@ -60,6 +60,18 @@ public class RoomInfoActivity extends BaseActivity {
         initToolbar();
         initView();
 
+        //        thay đổi Theme
+        SharedPreferences sharedPreferences = this.getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+
+        if (theme == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
     }
 
     private void initToolbar() {
@@ -116,10 +128,10 @@ public class RoomInfoActivity extends BaseActivity {
                 binding.collapseToolbarLayout.setTitle(item.getName());
 
                 binding.countImage.setText(item.getImages().size() + "");
-                binding.tvCountPerson.setText("Ở " + (item.getMaxTreEm() + item.getMaxNguoiLon()) + " người");
-                binding.text2.setText("• Phòng chứa tối đa " + (item.getMaxTreEm() + item.getMaxNguoiLon()) + " người");
-                binding.text1.setText("• Cho phép " + item.getMaxNguoiLon() + " người lớn");
-                binding.text3.setText("• Cho phép tối đa " + item.getMaxTreEm() + " trẻ em đi theo");
+                binding.tvCountPerson.setText(RoomInfoActivity.this.getString(R.string.Stay) + " " + (item.getMaxTreEm() + item.getMaxNguoiLon()) + " " + RoomInfoActivity.this.getString(R.string.textBest3));
+                binding.text2.setText("• " + RoomInfoActivity.this.getString(R.string.Maximum_occupancy_of) + " " + (item.getMaxTreEm() + item.getMaxNguoiLon()) + " " + RoomInfoActivity.this.getString(R.string.textBest3));
+                binding.text1.setText("• " + RoomInfoActivity.this.getString(R.string.Allowed) + " " + item.getMaxNguoiLon() + " " + RoomInfoActivity.this.getString(R.string.adult));
+                binding.text3.setText("• " + RoomInfoActivity.this.getString(R.string.Up_to) + " " + item.getMaxTreEm() + " " + RoomInfoActivity.this.getString(R.string.children_allowed));
 
                 for (Bedroom bedroom : item.getBedroom()
                 ) {
@@ -130,9 +142,9 @@ public class RoomInfoActivity extends BaseActivity {
 
 //                binding.tvSoGiuong.setText(item.getBedroom().get(0).getName());
                 binding.tvDientich.setText(item.getDienTich() + " m²");
-                binding.tvSoPhong.setText("Còn " + item.getSoPhong() + " phòng khác giống phòng này");
+                binding.tvSoPhong.setText(" " + RoomInfoActivity.this.getString(R.string.There_are) + " " + item.getSoPhong() + " " + RoomInfoActivity.this.getString(R.string.other_rooms_like_this_one));
                 binding.tvGia.setText(fm.format(item.getPrice()) + " đ");
-                binding.text4.setText("Trẻ em mà trên " + ageChildren + " tuổi sẽ được tính như người lớn");
+                binding.text4.setText(" " + RoomInfoActivity.this.getString(R.string.Children_over_the_age_of) + " " + ageChildren + " " + RoomInfoActivity.this.getString(R.string.will_be_counted_as_adults));
                 binding.contentMota.setText(item.getMota());
                 convenientAdapter.setConvenientTestList(item.getTienNghiPhong());
                 binding.recyclerView.setAdapter(convenientAdapter);
@@ -178,4 +190,73 @@ public class RoomInfoActivity extends BaseActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.layoutScrollView.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.layoutLinearRoomInfo.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imgItemnguoi.setColorFilter(getResources().getColor(R.color.white));
+            binding.tvCountPerson.setTextColor(Color.WHITE);
+            binding.text2.setTextColor(Color.WHITE);
+            binding.text1.setTextColor(Color.WHITE);
+            binding.text3.setTextColor(Color.WHITE);
+            binding.imgItemBedRoom.setColorFilter(getResources().getColor(R.color.white));
+            binding.tvSoGiuong.setTextColor(Color.WHITE);
+            binding.imgItemDienTich.setColorFilter(getResources().getColor(R.color.white));
+            binding.tvDientich.setTextColor(Color.WHITE);
+            binding.text5.setTextColor(Color.WHITE);
+            binding.tvGia.setTextColor(Color.WHITE);
+            binding.contentContentHotel.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.tvMota.setTextColor(Color.WHITE);
+            binding.contentMota.setTextColor(Color.WHITE);
+            binding.layoutChinhSachHuy.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.tvTextCSH.setTextColor(Color.WHITE);
+            binding.canceltrue.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.cancelfalse.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.layoutTienNghiPhong.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.viewCSH.setBackgroundColor(Color.WHITE);
+            binding.viewCSH1.setBackgroundColor(Color.WHITE);
+            binding.viewCSH2.setBackgroundColor(Color.WHITE);
+            binding.tvChinhSachHuyPhong.setTextColor(Color.WHITE);
+            binding.tvChinhSachHuyPhong1.setTextColor(Color.WHITE);
+            binding.tvChinhSachHuyPhong2.setTextColor(Color.WHITE);
+            binding.tvTienNghiPhong.setTextColor(Color.WHITE);
+            binding.recyclerView.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.layoutBtn.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            convenientAdapter.setColor(Color.WHITE);
+        } else {
+            binding.layoutScrollView.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+            binding.layoutLinearRoomInfo.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.imgItemnguoi.setColorFilter(getResources().getColor(R.color.black));
+            binding.tvCountPerson.setTextColor(Color.BLACK);
+            binding.text2.setTextColor(Color.BLACK);
+            binding.text1.setTextColor(Color.BLACK);
+            binding.text3.setTextColor(Color.BLACK);
+            binding.imgItemBedRoom.setColorFilter(getResources().getColor(R.color.black));
+            binding.tvSoGiuong.setTextColor(Color.BLACK);
+            binding.imgItemDienTich.setColorFilter(getResources().getColor(R.color.black));
+            binding.tvDientich.setTextColor(Color.BLACK);
+            binding.text5.setTextColor(Color.BLACK);
+            binding.tvGia.setTextColor(Color.BLACK);
+            binding.contentContentHotel.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.tvMota.setTextColor(Color.BLACK);
+            binding.contentMota.setTextColor(Color.BLACK);
+            binding.layoutChinhSachHuy.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.tvTextCSH.setTextColor(Color.BLACK);
+            binding.canceltrue.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.cancelfalse.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.layoutTienNghiPhong.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.viewCSH.setBackgroundColor(Color.BLACK);
+            binding.viewCSH1.setBackgroundColor(Color.BLACK);
+            binding.viewCSH2.setBackgroundColor(Color.BLACK);
+            binding.tvChinhSachHuyPhong.setTextColor(Color.BLACK);
+            binding.tvChinhSachHuyPhong1.setTextColor(Color.BLACK);
+            binding.tvChinhSachHuyPhong2.setTextColor(Color.BLACK);
+            binding.tvTienNghiPhong.setTextColor(Color.BLACK);
+            binding.recyclerView.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.layoutBtn.setBackgroundColor(this.getResources().getColor(R.color.white));
+            convenientAdapter.setColor(Color.BLACK);
+        }
+    }
+
 }

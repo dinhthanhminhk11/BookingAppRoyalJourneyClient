@@ -464,5 +464,18 @@
     <string name="Free_cancellation">Hoàn huỷ miễn phí</string>
     <string name="hai_day_la100">Trước 2 ngày 100%</string>
     <string name="After_2_days_without_refund">Sau 2 ngày không hoàn tiền</string>
+    <string name="Stay">Ở</string>
+    <string name="Maximum_occupancy_of">Phòng chứa tối đa</string>
+    <string name="Allowed">Cho phép</string>
+    <string name="adult">người lớn</string>
+    <string name="Up_to">Cho phép tối đa</string>
+    <string name="children_allowed">trẻ em đi theo</string>
+    <string name="There_are">Còn</string>
+    <string name="other_rooms_like_this_one">phòng khác giống phòng này</string>
+    <string name="Children_over_the_age_of">Trẻ em trên</string>
+    <string name="will_be_counted_as_adults">tuổi sẽ được tính như người lớn</string>
+    <string name="Rate_for_night">Giá cho 1 đêm</string>
+    <string name="Room_amenities">Tiện Nghi Phòng</string>
+    <string name="Choose">Chọn</string>
 
 </resources>
