@@ -10,16 +10,16 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="202dp"
-        android:layout_height="201dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:scaleType="fitCenter"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/logoapp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.46" />
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
