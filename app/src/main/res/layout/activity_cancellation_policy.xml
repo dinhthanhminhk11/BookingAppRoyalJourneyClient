@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/contentBackground"
     android:background="@color/white"
     tools:context=".ui.activity.CancellationPolicyActivity">
 
@@ -33,6 +33,52 @@
                 android:layout_height="wrap_content"
                 android:text="Hướng dẫn thực hiện • Khách"
                 android:textSize="@dimen/_16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Giá phòng khách sạn"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20dp"
+                android:text="Giá thuê chỉ bao gồm giá khách sạn, chưa tính chi phí dịch vụ và giá bảo hiểm du lịch, giá dịch vụ sẽ được thoả thuận riêng giữ khách hàng và chủ khách sạn. Vai trò của RoyalJourney chỉ đơn thuần là nhà cung cấp thông tin phòng tiện nghi để kết nối giữa khách hàng và công ty du lịch liên quan"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="@dimen/_20dp"
+                android:background="@color/color_F6F6F6" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Cách đổi lịch khách sạn"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20dp"
+                android:text="Thật tiếc là chúng tôi không hỗ trợ đổi lịch đặt phòng bạn hay cân nhắc thông tin trước khi đặt hoặc cách tốt nhất là bạn sẽ huỷ phòng đó và đặt lại phòng mới"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="@dimen/_20dp"
+                android:background="@color/color_F6F6F6" />
 
             <TextView
                 android:id="@+id/text2"
@@ -244,11 +290,11 @@
                 app:backgroundTint="@null" />
 
             <TextView
-                android:layout_marginBottom="@dimen/_20dp"
                 android:id="@+id/tvContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20dp"
+                android:layout_marginBottom="@dimen/_20dp"
                 android:text="@string/tvContact"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp" />
