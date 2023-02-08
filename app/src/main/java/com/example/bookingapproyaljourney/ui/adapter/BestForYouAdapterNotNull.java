@@ -1,5 +1,6 @@
 package com.example.bookingapproyaljourney.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.model.house.House;
+import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.libraryautoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.example.libraryautoimageslider.SliderAnimations;
 import com.example.libraryautoimageslider.SliderView;
@@ -23,22 +24,29 @@ import com.example.libraryautoimageslider.SliderView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAdapterNotNull.ViewHolder> {
-    private List<House> dataHouse;
+    private List<Hotel> dataHotel;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private DecimalFormat decimalFormat = new DecimalFormat("#.#");
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
     private int color;
     private int color1;
+    private Consumer<Hotel> consumer;
+
+    public void setConsumer(Consumer<Hotel> consumer) {
+        this.consumer = consumer;
+    }
 
     public void setColor(int color, int color1) {
         this.color = color;
         this.color1 = color1;
     }
 
-    public void setDataHouse(List<House> dataHouse) {
+    public void setDataHouse(List<Hotel> dataHotel) {
         notifyDataSetChanged();
-        this.dataHouse = dataHouse;
+        this.dataHotel = dataHotel;
     }
 
     private Listernaer listernaer;
@@ -51,7 +59,7 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
     }
 
     public interface Listernaer {
-        void onClick(House house);
+        void onClick(Hotel hotel);
     }
 
     @NonNull
@@ -61,11 +69,14 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
         return new BestForYouAdapterNotNull.ViewHolder(view);
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(@NonNull BestForYouAdapterNotNull.ViewHolder holder, int position) {
-        House house = dataHouse.get(position);
-        if (house != null) {
-            imageAutoSliderAdapter = new ImageAutoSliderAdapter(house.getImages());
+        Hotel hotel = dataHotel.get(position);
+        if (hotel != null) {
+            RequestOptions options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);
+
+            imageAutoSliderAdapter = new ImageAutoSliderAdapter(hotel.getImages());
             holder.imageItem.setSliderAdapter(imageAutoSliderAdapter);
             holder.imageItem.setIndicatorAnimation(IndicatorAnimationType.THIN_WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
             holder.imageItem.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
@@ -74,45 +85,44 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
             holder.imageItem.setIndicatorUnselectedColor(Color.GRAY);
             holder.imageItem.setScrollTimeInSec(4); //set scroll delay in seconds :
             holder.imageItem.startAutoCycle();
+            if (hotel.getTbSao() % 1 == 0) {
+                holder.tvStart.setText(hotel.getTbSao() + "");
+            } else {
+                holder.tvStart.setText(decimalFormat.format(hotel.getTbSao()));
+            }
+            holder.price.setText(hotel.getGiaDaoDong());
+            if (hotel.getTienNghiKS().size() > 4) {
+                Glide.with(holder.itemView.getContext()).load(hotel.getTienNghiKS().get(0).getIconImage()).apply(options).into(holder.icon1);
+                Glide.with(holder.itemView.getContext()).load(hotel.getTienNghiKS().get(1).getIconImage()).apply(options).into(holder.icon2);
+                Glide.with(holder.itemView.getContext()).load(hotel.getTienNghiKS().get(2).getIconImage()).apply(options).into(holder.icon3);
+                Glide.with(holder.itemView.getContext()).load(hotel.getTienNghiKS().get(3).getIconImage()).apply(options).into(holder.imageConvenient);
 
-            NumberFormat format = new DecimalFormat("#,###");
-            holder.price.setText(format.format(house.getPrice()) + " VNĐ");
-            holder.tvTenPhong.setText(house.getName());
-            RequestOptions options = new RequestOptions()
-                    .centerCrop()
-                    .placeholder(R.drawable.img)
-                    .error(R.drawable.img);
-            Glide.with(holder.itemView.getContext()).
-                    load(house.getSupplement().get(0).getIconImage()).
-                    apply(options).
-                    dontAnimate().
-                    into(holder.imageConvenient);
-            holder.tvNameConvenient.setText(house.getSupplement().get(0).getName());
-            holder.tvAmountBedRoom.setText(house.getBathrooms().size() + " " + holder.tvCountBathroom.getContext().getString(R.string.textBest1));
-            holder.tvCountBathroom.setText(house.getBathrooms().size() + " " + holder.tvCountBathroom.getContext().getString(R.string.textBest2));
-            holder.tvPerson.setText(house.getLimitPerson() + " " + holder.tvCountBathroom.getContext().getString(R.string.textBest3));
-            holder.tvStart.setText(house.getSao() + "");
+                holder.tvAmountBedRoom.setText(hotel.getTienNghiKS().get(0).getName());
+                holder.tvCountBathroom.setText(hotel.getTienNghiKS().get(1).getName());
+                holder.tvNameConvenient.setText(hotel.getTienNghiKS().get(2).getName());
+                holder.tvPerson.setText(hotel.getTienNghiKS().get(3).getName());
+
+
+            }
+//                viewHolderNearByNull.binding.tvStart.setText(item.getTbSao().toString());
+            holder.tvTenPhong.setText(hotel.getName());
+
             holder.itemView.setOnClickListener(v -> {
-                listernaer.onClick(house);
+                consumer.accept(hotel);
             });
             holder.btnDat.setOnClickListener(v -> {
-                listernaer.onClick(house);
+                consumer.accept(hotel);
             });
 
-            holder.tvAmountBedRoom.setTextColor(color1);
-            holder.tvCountBathroom.setTextColor(color1);
-            holder.tvNameConvenient.setTextColor(color1);
-            holder.tvPerson.setTextColor(color);
-            holder.tvTenPhong.setTextColor(color);
-            holder.tvStart.setTextColor(color);
 
         }
     }
 
     @Override
     public int getItemCount() {
-        return dataHouse == null ? 0 : dataHouse.size();
+        return dataHotel == null ? 0 : dataHotel.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private SliderView imageItem;
@@ -126,6 +136,7 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
         private TextView tvPerson;
         private TextView price;
         private Button btnDat;
+        private ImageView icon1, icon2, icon3;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -140,6 +151,10 @@ public class BestForYouAdapterNotNull extends RecyclerView.Adapter<BestForYouAda
             tvPerson = (TextView) itemView.findViewById(R.id.tvPerson);
             price = (TextView) itemView.findViewById(R.id.price);
             btnDat = (Button) itemView.findViewById(R.id.btn_dat);
+            icon1 = (ImageView) itemView.findViewById(R.id.icon1);
+            icon2 = (ImageView) itemView.findViewById(R.id.icon2);
+            icon3 = (ImageView) itemView.findViewById(R.id.icon3);
+
         }
     }
 }

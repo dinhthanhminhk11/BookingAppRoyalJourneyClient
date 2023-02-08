@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.ui.adapter;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,7 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
     private int color = Color.BLACK;
     private int background = Color.WHITE;
     private Consumer consumer;
-
+    private static final DecimalFormat df = new DecimalFormat("0.0");
     public NearFromYouAdapterMap() {
         categoryRepository = new CategoryRepository();
         bookmarkRepository = new BookmarkRepository();
@@ -88,21 +89,22 @@ public class NearFromYouAdapterMap extends RecyclerView.Adapter<NearFromYouAdapt
             holder.itemNearFromYouMapBinding.name.setTextColor(color);
             holder.itemNearFromYouMapBinding.address.setTextColor(color);
             holder.itemNearFromYouMapBinding.contentCard.setCardBackgroundColor(background);
-           /* if (item.getStart() == 1) {
+            holder.itemNearFromYouMapBinding.nameCategory.setText("Cách " +df.format(item.getCalculated()/1000) + " Km");
+            if (item.getTbSao() == 1) {
                 holder.itemNearFromYouMapBinding.imageStar2.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar3.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar4.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            } else if (item.getStart() == 2) {
+            } else if (item.getTbSao() == 2) {
                 holder.itemNearFromYouMapBinding.imageStar3.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar4.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            } else if (item.getStart() == 3) {
+            } else if (item.getTbSao() == 3) {
                 holder.itemNearFromYouMapBinding.imageStar4.setVisibility(View.INVISIBLE);
                 holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            } else if (item.getStart() == 4) {
+            } else if (item.getTbSao() == 4) {
                 holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            }*/
+            }
             holder.itemNearFromYouMapBinding.price.setText(item.getGiaDaoDong());
             holder.itemNearFromYouMapBinding.direct.setOnClickListener(v -> {
                 callback.onDirect(item);

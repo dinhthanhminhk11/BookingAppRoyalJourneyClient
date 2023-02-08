@@ -8,6 +8,7 @@ import com.example.bookingapproyaljourney.callback.CategoryCallBack;
 import com.example.bookingapproyaljourney.callback.HouseByCategoryCallback;
 import com.example.bookingapproyaljourney.callback.InterfaceResponseHouseNearestByUser;
 import com.example.bookingapproyaljourney.constants.AppConstant;
+import com.example.bookingapproyaljourney.model.hotel.HotelReponse;
 import com.example.bookingapproyaljourney.model.house.Category;
 import com.example.bookingapproyaljourney.api.ApiRequest;
 import com.example.bookingapproyaljourney.model.house.HouseNearestByUser;
@@ -16,6 +17,7 @@ import com.example.bookingapproyaljourney.response.HouseNearestByUserResponse;
 import com.example.bookingapproyaljourney.retrofit.RetrofitRequest;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +29,25 @@ public class CategoryRepository {
     public CategoryRepository() {
         this.apiRequest = RetrofitRequest.getRetrofitInstance().create(ApiRequest.class);
     }
+
+    public void getListAllHotel(Consumer<HotelReponse> consumer) {
+        apiRequest.getAllListHotel().enqueue(new Callback<HotelReponse>() {
+            @Override
+            public void onResponse(Call<HotelReponse> call, Response<HotelReponse> response) {
+                if (response.isSuccessful()) {
+                    consumer.accept(response.body());
+                } else {
+                    Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HotelReponse> call, Throwable t) {
+                Log.e(AppConstant.TAG_MINHCHEK, AppConstant.TAG_ERROR);
+            }
+        });
+    }
+
 
     public MutableLiveData<List<Category>> getCategory() {
         final MutableLiveData<List<Category>> data = new MutableLiveData<>();

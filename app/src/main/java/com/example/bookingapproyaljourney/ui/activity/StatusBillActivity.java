@@ -273,7 +273,7 @@ public class StatusBillActivity extends BaseActivity {
         });
 
         binding.btnPay.setOnClickListener(v -> {
-            if (UserClient.getInstance().getCountBooking() < -5) {
+            if (UserClient.getInstance().getCountBooking() <= -5) {
                 CookieBar.build(this)
                         .setTitle(R.string.Your_reputation_is_very_low)
                         .setMessage(R.string.By_canceling_too_many_rooms_you_will_not_be_able_to_continue_to_cancel)

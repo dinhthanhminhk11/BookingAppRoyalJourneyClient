@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.ViewHodel> {
     private ArrayList<TienNghiK> convenientTestList;
     private Context context;
-    private int color = Color.BLACK;
+    private int color;
 
     public ConvenientAdapter(Context context) {
         this.context = context;
@@ -52,6 +52,7 @@ public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.Vi
         Glide.with(context).load(convenientTestList.get(position).getIconImage()).apply(options).into(holder.imgConvenien);
         holder.tvConvenien.setText(convenientTestList.get(position).getName());
         holder.tvConvenien.setTextColor(color);
+        holder.imgConvenien.setColorFilter(color);
     }
 
     @Override
@@ -66,7 +67,6 @@ public class ConvenientAdapter extends RecyclerView.Adapter<ConvenientAdapter.Vi
 
         public ViewHodel(@NonNull View itemView) {
             super(itemView);
-
             imgConvenien = (ImageView) itemView.findViewById(R.id.image);
             tvConvenien = (TextView) itemView.findViewById(R.id.name);
         }

@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRoomInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.Hotel.RoomInfoActivity">
@@ -95,6 +96,7 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <ScrollView
+            android:id="@+id/layoutScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/backgroundscrellview">
@@ -105,6 +107,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/layoutLinearRoomInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/gradientbackground_white_ver2"
@@ -118,6 +121,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/imgItemnguoi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_outline_people_alt_24_ver2" />
@@ -181,6 +185,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/imgItemBedRoom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_baseline_bed_outline" />
@@ -203,6 +208,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/imgItemDienTich"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_group_12365" />
@@ -236,7 +242,7 @@
                         android:layout_gravity="center|right"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="25dp"
-                        android:text="Giá cho 1 đêm"
+                        android:text="@string/Rate_for_night"
                         android:textColor="@color/black"
                         android:textSize="13dp" />
 
@@ -266,9 +272,10 @@
                     android:paddingVertical="@dimen/_10dp">
 
                     <TextView
+                        android:id="@+id/tvMota"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Mô tả"
+                        android:text="@string/motadetail"
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -278,11 +285,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10dp"
-                        android:text="Trước ngày 2 ngày 100%"
+                        android:text="@string/hai_day_la100"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutChinhSachHuy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10dp"
@@ -292,9 +300,10 @@
                     android:paddingVertical="@dimen/_10dp">
 
                     <TextView
+                        android:id="@+id/tvTextCSH"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Chính Sách Hủy Phòng"
+                        android:text="@string/Cancellationpolicydetail"
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -308,6 +317,7 @@
                         android:visibility="gone">
 
                         <View
+                            android:id="@+id/viewCSH"
                             android:layout_width="5dp"
                             android:layout_height="5dp"
                             android:layout_gravity="center"
@@ -319,9 +329,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="2"
-                            android:text="Hoàn huỷ miễn phí"
+                            android:text="@string/Free_cancellation"
                             android:textColor="@color/black" />
-
 
                     </LinearLayout>
 
@@ -339,17 +348,19 @@
                             android:orientation="horizontal">
 
                             <View
+                                android:id="@+id/viewCSH1"
                                 android:layout_width="5dp"
                                 android:layout_height="5dp"
                                 android:layout_gravity="center"
                                 android:background="@color/black" />
 
                             <TextView
+                                android:id="@+id/tvChinhSachHuyPhong1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:maxLines="2"
-                                android:text="Trước ngày 2 ngày 100%"
+                                android:text="@string/hai_day_la100"
                                 android:textColor="@color/black" />
 
                         </LinearLayout>
@@ -361,17 +372,19 @@
                             android:orientation="horizontal">
 
                             <View
+                                android:id="@+id/viewCSH2"
                                 android:layout_width="5dp"
                                 android:layout_height="5dp"
                                 android:layout_gravity="center"
                                 android:background="@color/black" />
 
                             <TextView
+                                android:id="@+id/tvChinhSachHuyPhong2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:maxLines="2"
-                                android:text="Sau ngày 2 ngày không hoàn tiền"
+                                android:text="@string/After_2_days_without_refund"
                                 android:textColor="@color/black" />
 
                         </LinearLayout>
@@ -379,6 +392,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutTienNghiPhong"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10dp"
@@ -388,10 +402,11 @@
                     android:paddingVertical="@dimen/_10dp">
 
                     <TextView
+                        android:id="@+id/tvTienNghiPhong"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="Tiện Nghi Phòng"
+                        android:text="@string/Room_amenities"
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -422,6 +437,7 @@
         app:lottie_loop="true" />
 
     <LinearLayout
+        android:id="@+id/layoutBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -436,13 +452,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_buttom_blue"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="Chọn"
+            android:text="@string/Choose"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15dp"
             app:backgroundTint="@null" />
 
     </LinearLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

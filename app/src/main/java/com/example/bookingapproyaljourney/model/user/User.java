@@ -24,6 +24,9 @@ public class User {
     private int countBooking;
     @SerializedName("tokenDevice")
     private String tokenDevice;
+    @SerializedName("checkAccount")
+    private boolean checkAccount;
+
     public User() {
     }
 
@@ -115,15 +118,12 @@ public class User {
         this.tokenDevice = tokenDevice;
     }
 
+    public boolean isCheckAccount() {
+        return checkAccount;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' + "\n" +
-                ", name='" + name + '\'' + "\n" +
-                ", email='" + email + '\'' + "\n" +
-                ", image='" + image + '\'' + "\n" +
-                ", phone='" + phone + '\'' + "\n" +
-                ", address='" + address + '\'' + "\n" +
-                '}';
+        return "User{" + "id='" + id + '\'' + "\n" + ", name='" + name + '\'' + "\n" + ", email='" + email + '\'' + "\n" + ", image='" + image + '\'' + "\n" + ", phone='" + phone + '\'' + "\n" + ", address='" + address + '\'' + "\n" + '}';
     }
 }

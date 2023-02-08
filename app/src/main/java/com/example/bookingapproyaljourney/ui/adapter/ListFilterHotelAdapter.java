@@ -3,6 +3,7 @@ package com.example.bookingapproyaljourney.ui.adapter;
 import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,6 @@ public class ListFilterHotelAdapter extends RecyclerView.Adapter<ListFilterHotel
     private static final DecimalFormat df = new DecimalFormat("0.0");
     private boolean isClickSpeed = true;
     private Consumer<Hotel> hotelConsumer;
-
     private BookmarkRepository bookmarkRepository;
 
     public void setHotelConsumer(Consumer<Hotel> hotelConsumer) {
@@ -69,24 +69,26 @@ public class ListFilterHotelAdapter extends RecyclerView.Adapter<ListFilterHotel
             holder.binding.name.setText(item.getName());
             holder.binding.address.setText(item.getSonha() + ", " + item.getXa() + ", " + item.getHuyen() + ", " + item.getTinh());
 
+            holder.binding.nameCategory.setText( item.getCalculated() == 0.0 ? "Khách sạn" :  "Cách " +df.format(item.getCalculated()/1000) + " Km");
+
 //            holder.binding.name.setTextColor(color);
 //            holder.binding.address.setTextColor(color);
 //            holder.binding.contentCard.setCardBackgroundColor(background);
-           /* if (item.getStart() == 1) {
-                holder.itemNearFromYouMapBinding.imageStar2.setVisibility(View.INVISIBLE);
-                holder.itemNearFromYouMapBinding.imageStar3.setVisibility(View.INVISIBLE);
-                holder.itemNearFromYouMapBinding.imageStar4.setVisibility(View.INVISIBLE);
-                holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            } else if (item.getStart() == 2) {
-                holder.itemNearFromYouMapBinding.imageStar3.setVisibility(View.INVISIBLE);
-                holder.itemNearFromYouMapBinding.imageStar4.setVisibility(View.INVISIBLE);
-                holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            } else if (item.getStart() == 3) {
-                holder.itemNearFromYouMapBinding.imageStar4.setVisibility(View.INVISIBLE);
-                holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            } else if (item.getStart() == 4) {
-                holder.itemNearFromYouMapBinding.imageStar5.setVisibility(View.INVISIBLE);
-            }*/
+            if (item.getTbSao() == 1) {
+                holder.binding.imageStar2.setVisibility(View.INVISIBLE);
+                holder.binding.imageStar3.setVisibility(View.INVISIBLE);
+                holder.binding.imageStar4.setVisibility(View.INVISIBLE);
+                holder.binding.imageStar5.setVisibility(View.INVISIBLE);
+            } else if (item.getTbSao() == 2) {
+                holder.binding.imageStar3.setVisibility(View.INVISIBLE);
+                holder.binding.imageStar4.setVisibility(View.INVISIBLE);
+                holder.binding.imageStar5.setVisibility(View.INVISIBLE);
+            } else if (item.getTbSao() == 3) {
+                holder.binding.imageStar4.setVisibility(View.INVISIBLE);
+                holder.binding.imageStar5.setVisibility(View.INVISIBLE);
+            } else if (item.getTbSao() == 4) {
+                holder.binding.imageStar5.setVisibility(View.INVISIBLE);
+            }
             holder.binding.price.setText(item.getGiaDaoDong());
 
             bookmarkRepository.getBookmarkByIdUserAndIdHouse(UserClient.getInstance().getId(), item.get_id(), new CallbackGetBookmark() {

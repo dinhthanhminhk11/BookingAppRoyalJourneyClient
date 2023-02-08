@@ -313,5 +313,11 @@ public class BottomSheetEditPerson extends BottomSheetDialog implements View.OnC
         } else {
 
         }
+
+        if (Integer.parseInt(countRoom.getText().toString()) > Integer.parseInt(person.getText().toString())) {
+            countPersonText = Integer.parseInt(countRoom.getText().toString());
+            person.setText(countPersonText + "");
+            checkCountPerson();
+        }
     }
 }

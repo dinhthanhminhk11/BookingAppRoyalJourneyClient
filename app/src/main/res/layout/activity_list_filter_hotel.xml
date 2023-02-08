@@ -10,11 +10,21 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:elevation="@dimen/_5dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
+        android:elevation="@dimen/_5dp"
         android:theme="@style/ToolbarTheme"
-        app:titleTextColor="@color/black" />
+        app:titleTextColor="@color/black">
+
+        <ImageView
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/_20dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_filter_null" />
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvSeeMoreBestForYou"

@@ -442,4 +442,31 @@
     <string name="textBiometric1">Fingerprint authentication</string>
     <string name="textBiometric2">Unlock the wallet with your fingerprint</string>
     <string name="textpinpass">Enter your pin</string>
+    <string name="Hotels_near_you">Hotels near you</string>
+    <string name="Nearest_Hotels">Nearest Hotels</string>
+    <string name="Month">Month</string>
+    <string name="Room">Room</string>
+    <string name="Set_up_your_password">TSet up your password</string>
+    <string name="Re_enter">Re-enter</string>
+    <string name="Assess">Assess</string>
+    <string name="Generalpolicy">General policy</string>
+    <string name="choseRoom">Chose room</string>
+    <string name="Free_cancellation">Free cancellation</string>
+    <string name="hai_day_la100">2 days in advance 100%</string>
+    <string name="After_2_days_without_refund">After 2 days without refund</string>
+    <string name="Stay">Stay</string>
+    <string name="Maximum_occupancy_of">Maximum occupancy of </string>
+    <string name="Allowed">Allowed</string>
+    <string name="adult">adult</string>
+    <string name="Up_to">Up to</string>
+    <string name="children_allowed">children allowed</string>
+    <string name="There_are">There are</string>
+    <string name="other_rooms_like_this_one">other rooms like this one</string>
+    <string name="Children_over_the_age_of">Children over the age of </string>
+    <string name="will_be_counted_as_adults">will be counted as adults</string>
+    <string name="Rate_for_night">Rate for 1 night</string>
+    <string name="Room_amenities">Room amenities</string>
+    <string name="Choose">Choose</string>
+
+
 </resources>

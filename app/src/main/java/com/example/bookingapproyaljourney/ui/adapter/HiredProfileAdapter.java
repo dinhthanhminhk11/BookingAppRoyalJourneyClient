@@ -3,10 +3,7 @@ package com.example.bookingapproyaljourney.ui.adapter;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,22 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookingapproyaljourney.R;
-import com.example.bookingapproyaljourney.callback.CallbackHouseById;
-import com.example.bookingapproyaljourney.callback.CallbackListOrderAccessById;
-import com.example.bookingapproyaljourney.databinding.ItemBestforyouHiredBinding;
 import com.example.bookingapproyaljourney.databinding.ItemBestforyouHomefragmentBinding;
-import com.example.bookingapproyaljourney.databinding.ItemBookmarkByUserBinding;
 import com.example.bookingapproyaljourney.model.bill.Bill;
-import com.example.bookingapproyaljourney.model.hotel.Hotel;
 import com.example.bookingapproyaljourney.model.hotel.HotelBillResponse;
 import com.example.bookingapproyaljourney.model.hotel.HotelById;
-import com.example.bookingapproyaljourney.model.user.UserClient;
-import com.example.bookingapproyaljourney.repository.DetailProductRepository;
 import com.example.bookingapproyaljourney.repository.Repository;
-import com.example.bookingapproyaljourney.repository.UserRepository;
-import com.example.bookingapproyaljourney.response.HouseDetailResponse;
-import com.example.bookingapproyaljourney.response.order.ListOrderByIdUser2;
-import com.example.bookingapproyaljourney.response.order.OrderListResponse2;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -44,6 +30,7 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
     private Consumer consumer;
     private int color = Color.BLACK;
     private int colorBlack = Color.BLACK;
+
     public interface Listernaer {
         void onClickListChinh(HotelBillResponse houseDetailResponse);
     }
@@ -79,7 +66,7 @@ public class HiredProfileAdapter extends RecyclerView.Adapter<HiredProfileAdapte
     @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(@NonNull HiredProfileAdapter.ViewHolder viewHolder, int position) {
-    Bill bill = dataHotel.get(position);
+        Bill bill = dataHotel.get(position);
         repository.getHotelById(bill.getIdHotel(), item -> {
             if (item instanceof HotelById) {
                 RequestOptions options = new RequestOptions().centerCrop().placeholder(R.drawable.img).error(R.drawable.img);

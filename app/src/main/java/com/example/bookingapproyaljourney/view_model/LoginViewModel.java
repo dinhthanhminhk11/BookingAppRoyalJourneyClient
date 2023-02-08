@@ -44,14 +44,6 @@ public class LoginViewModel extends AndroidViewModel {
             public void onResponse(LoginResponse loginResponse) {
                 mProgressMutableData.postValue(View.GONE);
                 mLoginResultMutableDataToKen.postValue(loginResponse);
-                UserClient userClient = UserClient.getInstance();
-                userClient.setEmail(loginResponse.getUser().getEmail());
-                userClient.setId(loginResponse.getUser().getId());
-                userClient.setName(loginResponse.getUser().getName());
-                userClient.setImage(loginResponse.getUser().getImage());
-                userClient.setPhone(loginResponse.getUser().getPhone());
-                userClient.setAddress(loginResponse.getUser().getAddress());
-                userClient.setCountBooking(loginResponse.getUser().getCountBooking());
             }
 
             @Override
@@ -74,14 +66,6 @@ public class LoginViewModel extends AndroidViewModel {
             public void onResponse(LoginResponse loginResponse) {
                 mProgressMutableData.postValue(View.GONE);
                 mLoginResultMutableDataToKen.postValue(loginResponse);
-                UserClient userClient = UserClient.getInstance();
-                userClient.setEmail(loginResponse.getUser().getEmail());
-                userClient.setId(loginResponse.getUser().getId());
-                userClient.setName(loginResponse.getUser().getName());
-                userClient.setImage(loginResponse.getUser().getImage());
-                userClient.setPhone(loginResponse.getUser().getPhone());
-                userClient.setAddress(loginResponse.getUser().getAddress());
-                userClient.setCountBooking(loginResponse.getUser().getCountBooking());
             }
 
             @Override

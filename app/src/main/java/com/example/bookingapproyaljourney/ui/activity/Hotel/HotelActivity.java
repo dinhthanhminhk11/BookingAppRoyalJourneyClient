@@ -53,10 +53,6 @@ import com.example.bookingapproyaljourney.ui.adapter.FeedbackAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.GalleryAdapter;
 import com.example.bookingapproyaljourney.ui.adapter.RoomHotelAdapter;
 import com.example.bookingapproyaljourney.ui.bottomsheet.BottomSheetConvenient;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.Slidr;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrConfig;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrInterface;
-import com.example.bookingapproyaljourney.ui.custom.mutilfragment.model.SlidrPosition;
 import com.example.bookingapproyaljourney.view_model.FeedbackViewModel;
 import com.example.bookingapproyaljourney.view_model.HotelInfoViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -102,6 +98,7 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
     private SharedPreferences sharedPreferences;
     private BookmarkRepository bookmarkRepository;
     private String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +123,123 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(new Intent(HotelActivity.this, MedicalActivity.class));
             }
         });
+
+//        thay đổi Theme
+        SharedPreferences sharedPreferencesTheme = getSharedPreferences(AppConstant.SHAREDPREFERENCES_USER_THEME, MODE_PRIVATE);
+        int theme2 = sharedPreferencesTheme.getInt(AppConstant.SHAREDPREFERENCES_USER_THEME, 0);
+        if (theme2 == AppConstant.POS_DARK) {
+            changeTheme(1);
+        } else {
+            changeTheme(2);
+        }
+
+    }
+
+    private void changeTheme(int idTheme) {
+        if (idTheme == 1) {
+            binding.layoutHotelActivity.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.scrollView.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.contentCancellationPolicy.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.titleMota.setTextColor(Color.WHITE);
+            binding.ContentHouse.setTextColor(Color.WHITE);
+            binding.layoutDanhGia.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imgStar1.setColorFilter(getResources().getColor(R.color.white));
+            binding.tvSao.setTextColor(Color.WHITE);
+            binding.contentHost.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.NameManage.setTextColor(Color.WHITE);
+            binding.tvOwner.setTextColor(Color.WHITE);
+            binding.btPhone.setBackgroundColor(Color.BLACK);
+            binding.btMesseger.setBackgroundColor(Color.BLACK);
+            binding.contentConvenient.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.text3.setTextColor(Color.WHITE);
+            binding.showMore.setTextColor(Color.WHITE);
+            binding.contentImageHotel.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.text4.setTextColor(Color.WHITE);
+            binding.contentLocation.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.text5.setTextColor(Color.WHITE);
+            binding.contentFeedback.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.imgStar2.setColorFilter(getResources().getColor(R.color.white));
+            binding.tvCountSao.setTextColor(Color.WHITE);
+            binding.btnDanhGia.setTextColor(Color.WHITE);
+            binding.btnShowFeedback.setTextColor(Color.WHITE);
+            binding.contentOpenAndEndingHotel.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.text8.setTextColor(Color.WHITE);
+            binding.contentPolicy.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.text14.setTextColor(Color.WHITE);
+            binding.textPolicy.setTextColor(Color.WHITE);
+            binding.contentCancelBooking.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.contentMedican.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.text9.setTextColor(Color.WHITE);
+            binding.viewDeMucHuy1.setBackgroundColor(Color.WHITE);
+            binding.viewDeMucHuy2.setBackgroundColor(Color.WHITE);
+            binding.viewDeMucHuy3.setBackgroundColor(Color.WHITE);
+            binding.tvChinhSachHuyPhong1.setTextColor(Color.WHITE);
+            binding.tvChinhSachHuyPhong2.setTextColor(Color.WHITE);
+            binding.tvChinhSachHuyPhong3.setTextColor(Color.WHITE);
+            binding.contentMedican.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.text10.setTextColor(Color.WHITE);
+            binding.text11.setTextColor(Color.WHITE);
+            binding.showMedical.setTextColor(Color.WHITE);
+            binding.contentRoom.setBackgroundColor(this.getResources().getColor(R.color.dark_212332));
+            binding.text15.setTextColor(Color.WHITE);
+            binding.contentBackgroundGradiend.setBackground(null);
+            binding.tvBottomGiaThue.setTextColor(Color.WHITE);
+            binding.priceRoom.setTextColor(Color.WHITE);
+            convenientAdapter.setColor(Color.WHITE);
+            roomHotelAdapter.setColor(Color.WHITE, this.getResources().getColor(R.color.dark_212332));
+            binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
+
+        } else {
+            binding.toolBar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+            binding.layoutHotelActivity.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+            binding.scrollView.setBackgroundColor(this.getResources().getColor(R.color.color_EBEBEB));
+            binding.contentCancellationPolicy.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.titleMota.setTextColor(Color.BLACK);
+            binding.ContentHouse.setTextColor(Color.BLACK);
+            binding.layoutDanhGia.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.imgStar1.setColorFilter(getResources().getColor(R.color.white));
+            binding.tvSao.setTextColor(Color.BLACK);
+            binding.contentHost.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.NameManage.setTextColor(Color.BLACK);
+            binding.tvOwner.setTextColor(Color.BLACK);
+            binding.contentConvenient.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.text3.setTextColor(Color.BLACK);
+            binding.showMore.setTextColor(Color.BLACK);
+            binding.contentImageHotel.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.text4.setTextColor(Color.BLACK);
+            binding.contentLocation.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.text5.setTextColor(Color.BLACK);
+            binding.contentFeedback.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.imgStar2.setColorFilter(getResources().getColor(R.color.black));
+            binding.tvCountSao.setTextColor(Color.BLACK);
+            binding.btnDanhGia.setTextColor(Color.BLACK);
+            binding.btnShowFeedback.setTextColor(Color.BLACK);
+            binding.contentOpenAndEndingHotel.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.text8.setTextColor(Color.BLACK);
+            binding.contentPolicy.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.text14.setTextColor(Color.BLACK);
+            binding.textPolicy.setTextColor(Color.BLACK);
+            binding.contentCancelBooking.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.contentMedican.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.text9.setTextColor(Color.BLACK);
+            binding.viewDeMucHuy1.setBackgroundColor(Color.BLACK);
+            binding.viewDeMucHuy2.setBackgroundColor(Color.BLACK);
+            binding.viewDeMucHuy3.setBackgroundColor(Color.BLACK);
+            binding.tvChinhSachHuyPhong1.setTextColor(Color.BLACK);
+            binding.tvChinhSachHuyPhong2.setTextColor(Color.BLACK);
+            binding.tvChinhSachHuyPhong3.setTextColor(Color.BLACK);
+            binding.contentMedican.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.text10.setTextColor(Color.BLACK);
+            binding.text11.setTextColor(Color.BLACK);
+            binding.showMedical.setTextColor(Color.BLACK);
+            binding.contentRoom.setBackgroundColor(this.getResources().getColor(R.color.white));
+            binding.text15.setTextColor(Color.BLACK);
+            binding.tvBottomGiaThue.setTextColor(Color.BLACK);
+            binding.priceRoom.setTextColor(Color.BLACK);
+            convenientAdapter.setColor(Color.BLACK);
+            roomHotelAdapter.setColor(Color.BLACK, this.getResources().getColor(R.color.color_EBEBEB));
+        }
+
     }
 
     private void showDialog() {
@@ -141,7 +255,6 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void initView() {
-
 
         convenientAdapter = new ConvenientAdapter(this);
         roomHotelAdapter = new RoomHotelAdapter();
@@ -167,8 +280,8 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
             FeedbackAdapter feedbackAdapter = new FeedbackAdapter(it, this);
             binding.rcvFeedback.setAdapter(feedbackAdapter);
             if (it.size() > 0) {
-                binding.btnDanhGia.setText(it.size() + " Đánh giá");
-                binding.tvTotalFeedback.setText(it.size() + " Đánh giá");
+                binding.btnDanhGia.setText(it.size() + R.string.Assess);
+                binding.tvTotalFeedback.setText(it.size() + R.string.Assess);
                 float total = 0;
                 for (int i = 0; i < it.size(); i++) {
                     total = total + it.get(i).getSao();
@@ -182,9 +295,9 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
                 }
                 feedbackViewModel.updateSaoProduct(idHotel, (double) average);
             } else {
-                binding.btnDanhGia.setText("Đánh giá");
+                binding.btnDanhGia.setText(R.string.Assess);
                 binding.tvCountSao.setText("5.0");
-                binding.tvTotalFeedback.setText("0 Đánh giá");
+                binding.tvTotalFeedback.setText("0 " + R.string.Assess);
             }
 
         });
@@ -349,8 +462,6 @@ public class HotelActivity extends BaseActivity implements View.OnClickListener,
         });
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
